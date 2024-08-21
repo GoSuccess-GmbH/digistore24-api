@@ -1,0 +1,21 @@
+{
+    "name": "gosuccess/ds24-php-api-wrapper",
+    "description": "PHP API Wrapper for Digistore24.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "GoSuccess\\Digistore24\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GoSuccess",
+            "homepage": "https://gosuccess.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "PHP": ">=8.3"
+    }
+}
