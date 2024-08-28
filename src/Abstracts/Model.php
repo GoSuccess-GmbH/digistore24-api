@@ -15,8 +15,6 @@ abstract class Model
             return;
         }
 
-        error_log( print_r( $data, true ) );
-
         /**
          * Properties of current child object.
          */
