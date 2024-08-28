@@ -3,7 +3,6 @@
 namespace GoSuccess\Digistore24\Controllers;
 use GoSuccess\Digistore24\Abstracts\Controller;
 use GoSuccess\Digistore24\Models\Country\Country;
-use stdClass;
 
 class CountryController extends Controller
 {
