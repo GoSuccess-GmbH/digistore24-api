@@ -6,6 +6,11 @@ use GoSuccess\Digistore24\Models\Country\Country;
 
 class CountryController extends Controller
 {
+    /**
+     * Get all countries Digistore24 accepts.
+     * @link https://dev.digistore24.com/en/articles/67-listcountries
+     * @return Country[]|null
+     */
     public function list(): ?array
     {
         $data = $this->api->call(
