@@ -9,6 +9,7 @@ use GoSuccess\Digistore24\Controllers\AffiliateController;
 use GoSuccess\Digistore24\Controllers\BillingController;
 use GoSuccess\Digistore24\Controllers\BuyerController;
 use GoSuccess\Digistore24\Controllers\BuyUrlController;
+use GoSuccess\Digistore24\Controllers\CountryController;
 use GoSuccess\Digistore24\Controllers\IPNController;
 use GoSuccess\Digistore24\Controllers\MonitoringController;
 use GoSuccess\Digistore24\Controllers\UserController;
@@ -31,6 +32,8 @@ class API
     public BillingController $billing;
     public BuyUrlController $buy_url;
 
+    public CountryController $country;
+
     public function __construct( string $api_key )
     {
         try
@@ -46,6 +49,7 @@ class API
             $this->ipn = new IPNController( $this );
             $this->billing = new BillingController( $this );
             $this->buy_url = new BuyUrlController( $this );
+            $this->country = new CountryController( $this );
         }
         catch( DigistoreApiException|Exception $e )
         {

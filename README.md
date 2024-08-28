@@ -71,7 +71,7 @@ composer require gosuccess/php-ds24-api-wrapper
 - [x]  listBuyUrls
 - [ ]  listCommissions
 - [ ]  listConversionTools
-- [ ]  listCountries
+- [x]  listCountries
 - [ ]  listCurrencies
 - [ ]  listCustomFormRecords
 - [ ]  listDeliveries
