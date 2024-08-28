@@ -4,7 +4,6 @@ namespace GoSuccess\Digistore24\Models\Affiliate;
 
 use GoSuccess\Digistore24\Abstracts\Model;
 use GoSuccess\Digistore24\Attributes\ArrayItemType;
-use GoSuccess\Digistore24\Attributes\TestItem;
 
 class CommissionUpdateResponse extends Model
 {
