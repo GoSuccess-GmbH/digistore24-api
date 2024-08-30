@@ -1,5 +1,5 @@
 {
-    "name": "gosuccess/ds24-php-api-wrapper",
+    "name": "gosuccess/php-ds24-api-wrapper",
     "description": "PHP API Wrapper for Digistore24.",
     "type": "library",
     "license": "MIT",
