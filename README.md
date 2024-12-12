@@ -12,23 +12,23 @@ composer require gosuccess/php-ds24-api-wrapper
 
 ## Functions
 
-- [x]  addBalanceToPurchase
-- [x]  copyProduct
+- [x]  [addBalanceToPurchase](./docs/addBalanceToPurchase.md)
+- [x]  [copyProduct](./docs/copyProduct.md)
 - [ ]  createAddonChangePurchase
-- [x]  createBillingOnDemand
-- [x]  createBuyUrl
+- [x]  [createBillingOnDemand](./docs/createBillingOnDemand.md)
+- [x]  [createBuyUrl](./docs/createBuyUrl.md)
 - [ ]  createEticket
 - [ ]  createImage
 - [ ]  createOrderform
 - [ ]  createPaymentplan
-- [x]  createProduct
+- [x]  [createProduct](./docs/createProduct.md)
 - [ ]  createProductGroup
 - [ ]  createRebillingPayment
 - [ ]  createShippingCostPolicy
 - [ ]  createUpgrade
-- [x]  createUpgradePurchase
+- [x]  [createUpgradePurchase](./docs/createUpgradePurchase.md)
 - [ ]  createVoucher
-- [x]  deleteBuyUrl
+- [x]  [deleteBuyUrl](./docs/deleteBuyUrl.md)
 - [ ]  deleteImage
 - [ ]  deleteOrderform
 - [ ]  deletePaymentplan
@@ -38,9 +38,9 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  deleteUpgrade
 - [ ]  deleteUpsells
 - [ ]  deleteVoucher
-- [x]  getAffiliateCommission
+- [x]  [getAffiliateCommission](./docs/getAffiliateCommission.md)
 - [ ]  getAffiliateForEmail
-- [x]  getBuyer
+- [x]  [getBuyer](./docs/getBuyer.md)
 - [ ]  getCustomerToAffiliateBuyerDetails
 - [ ]  getDelivery
 - [ ]  getEticket
@@ -50,28 +50,28 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  getMarketplaceEntry
 - [ ]  getOrderform
 - [ ]  getOrderformMetas
-- [x]  getProduct
+- [x]  [getProduct](./docs/getProduct.md)
 - [ ]  getProductGroup
-- [x]  getPurchase
+- [x]  [getPurchase](./docs/getPurchase.md)
 - [ ]  getPurchaseDownloads
-- [x]  getPurchaseTracking
+- [x]  [getPurchaseTracking](./docs/getPurchaseTracking.md)
 - [ ]  getReferringAffiliate
 - [ ]  getServiceProofRequest
 - [ ]  getShippingCostPolicy
 - [ ]  getSmartupgrade
 - [ ]  getUpgrade
 - [ ]  getUpsells
-- [x]  getUserInfo
-- [x]  getVoucher
-- [x]  ipnDelete
-- [x]  ipnInfo
-- [x]  ipnSetup
+- [x]  [getUserInfo](./docs/getUserInfo.md)
+- [x]  [getVoucher](./docs/getVoucher.md)
+- [x]  [ipnDelete](./docs/ipnDelete.md)
+- [x]  [ipnInfo](./docs/ipnInfo.md)
+- [x]  [ipnSetup](./docs/ipnSetup.md)
 - [ ]  listAccountAccess
 - [ ]  listBuyers
-- [x]  listBuyUrls
+- [x]  [listBuyUrls](./docs/listBuyUrl.md)
 - [ ]  listCommissions
 - [ ]  listConversionTools
-- [x]  listCountries
+- [x]  [listCountries](./docs/listCountries.md)
 - [ ]  listCurrencies
 - [ ]  listCustomFormRecords
 - [ ]  listDeliveries
@@ -97,16 +97,16 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  listUpgrades
 - [ ]  listVouchers
 - [ ]  logMemberAccess
-- [x]  ping
+- [x]  [ping](./docs/ping.md)
 - [ ]  refundPartially
 - [ ]  refundPurchase
 - [ ]  refundTransaction
 - [ ]  renderJsTrackingCode
 - [ ]  reportFraud
-- [ ]  requestApiKey
+- [x]  [requestApiKey](./docs/requestApiKey.md)
 - [ ]  resendInvoiceMail
 - [ ]  resendPurchaseConfirmationMail
-- [ ]  retrieveApiKey
+- [x]  [retrieveApiKey](./docs/retrieveApiKey.md)
 - [ ]  setAffiliateForEmail
 - [ ]  setReferringAffiliate
 - [ ]  startRebilling
@@ -118,7 +118,7 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  statsSalesSummary
 - [ ]  stopRebilling
 - [ ]  unregister
-- [x]  updateAffiliateCommission
+- [x]  [updateAffiliateCommission](./docs/updateAffiliateCommission.md)
 - [ ]  updateBuyer
 - [ ]  updateDelivery
 - [ ]  updateOrderform
