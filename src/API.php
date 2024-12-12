@@ -6,6 +6,7 @@ use Exception;
 use GoSuccess\Digistore24\Sdk\DigistoreApi;
 use GoSuccess\Digistore24\Sdk\DigistoreApiException;
 use GoSuccess\Digistore24\Controllers\AffiliateController;
+use GoSuccess\Digistore24\Controllers\APIController;
 use GoSuccess\Digistore24\Controllers\BillingController;
 use GoSuccess\Digistore24\Controllers\BuyerController;
 use GoSuccess\Digistore24\Controllers\BuyUrlController;
@@ -31,6 +32,7 @@ class API
     public IPNController $ipn;
     public BillingController $billing;
     public BuyUrlController $buy_url;
+    public APIController $api_setup;
 
     public CountryController $country;
 
@@ -50,6 +52,7 @@ class API
             $this->billing = new BillingController( $this );
             $this->buy_url = new BuyUrlController( $this );
             $this->country = new CountryController( $this );
+            $this->api_setup = new APIController( $this );
         }
         catch( DigistoreApiException|Exception $e )
         {
