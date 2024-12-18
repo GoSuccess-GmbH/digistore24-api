@@ -3,6 +3,7 @@
 namespace GoSuccess\Digistore24\Controllers;
 
 use GoSuccess\Digistore24\Abstracts\Controller;
+use GoSuccess\Digistore24\Models\API\DeleteApiKeyResponse;
 use GoSuccess\Digistore24\Models\API\RequestApiKeyRequest;
 use GoSuccess\Digistore24\Models\API\RequestApiKeyResponse;
 use GoSuccess\Digistore24\Models\API\RetrieveApiKeyRequest;
@@ -34,6 +35,7 @@ class APIController extends Controller
 
         return new RequestApiKeyResponse( $data );
     }
+
     /**
      * Retrieve API Key.
      * @link https://dev.digistore24.com/en/articles/97
@@ -53,5 +55,25 @@ class APIController extends Controller
         }
 
         return new RetrieveApiKeyResponse( $data );
+    }
+    
+    /**
+     * Delete API Key.
+     * @link https://dev.digistore24.com/en/articles/108-unregister
+     * @param \GoSuccess\Digistore24\Models\API\RetrieveApiKeyRequest $request
+     * @return DeleteApiKeyResponse|null
+     */
+    public function delete(): ?DeleteApiKeyResponse
+    {
+        $data = $this->api->call(
+            'unregister'
+        );
+        
+        if( ! $data )
+        {
+            return null;
+        }
+
+        return new DeleteApiKeyResponse( $data );
     }
 }

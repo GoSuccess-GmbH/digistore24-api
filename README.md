@@ -117,7 +117,7 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  statsSales
 - [ ]  statsSalesSummary
 - [ ]  stopRebilling
-- [ ]  unregister
+- [x]  [unregister](./docs/unregister.md)
 - [x]  [updateAffiliateCommission](./docs/updateAffiliateCommission.md)
 - [ ]  updateBuyer
 - [ ]  updateDelivery
