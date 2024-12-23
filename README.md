@@ -23,7 +23,7 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  createPaymentplan
 - [x]  [createProduct](./docs/createProduct.md)
 - [ ]  createProductGroup
-- [ ]  createRebillingPayment
+- [x]  [createRebillingPayment](./docs/createRebillingPayment.md)
 - [ ]  createShippingCostPolicy
 - [ ]  createUpgrade
 - [x]  [createUpgradePurchase](./docs/createUpgradePurchase.md)
@@ -89,7 +89,7 @@ composer require gosuccess/php-ds24-api-wrapper
 - [ ]  listProductTypes
 - [ ]  listPurchases
 - [ ]  listPurchasesOfEmail
-- [ ]  listRebillingStatusChanges
+- [x]  [listRebillingStatusChanges](./docs/listRebillingStatusChanges.md)
 - [ ]  listServiceProofRequests
 - [ ]  listShippingCostPolicies
 - [ ]  listSmartUpgrades
@@ -109,14 +109,14 @@ composer require gosuccess/php-ds24-api-wrapper
 - [x]  [retrieveApiKey](./docs/retrieveApiKey.md)
 - [ ]  setAffiliateForEmail
 - [ ]  setReferringAffiliate
-- [ ]  startRebilling
+- [x]  [startRebilling](./docs/startRebilling.md)
 - [ ]  statsAffiliateToplist
 - [ ]  statsDailyAmounts
 - [ ]  statsExpectedPayouts
 - [ ]  statsMarketplace
 - [ ]  statsSales
 - [ ]  statsSalesSummary
-- [ ]  stopRebilling
+- [x]  [stopRebilling](./docs/stopRebilling.md)
 - [x]  [unregister](./docs/unregister.md)
 - [x]  [updateAffiliateCommission](./docs/updateAffiliateCommission.md)
 - [ ]  updateBuyer
