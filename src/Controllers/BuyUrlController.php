@@ -52,7 +52,7 @@ class BuyUrlController extends Controller
      * @param int $page_size
      * @return BuyUrl[]|null
      */
-    public function list( int $page_no = 1, int $page_size = 1000 ): ?array
+    public function list( int $page_no = 1, int $page_size = 100 ): ?array
     {
         $data = $this->api->call(
             'listBuyUrls',
