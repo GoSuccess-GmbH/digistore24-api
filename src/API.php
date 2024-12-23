@@ -17,6 +17,7 @@ use GoSuccess\Digistore24\Controllers\UserController;
 use GoSuccess\Digistore24\Controllers\VoucherController;
 use GoSuccess\Digistore24\Controllers\ProductController;
 use GoSuccess\Digistore24\Controllers\PurchaseController;
+use GoSuccess\Digistore24\Controllers\RebillingController;
 
 class API
 {
@@ -33,6 +34,7 @@ class API
     public BillingController $billing;
     public BuyUrlController $buy_url;
     public APIController $api_setup;
+    public RebillingController $rebilling;
 
     public CountryController $country;
 
@@ -53,6 +55,7 @@ class API
             $this->buy_url = new BuyUrlController( $this );
             $this->country = new CountryController( $this );
             $this->api_setup = new APIController( $this );
+            $this->rebilling = new RebillingController( $this );
         }
         catch( DigistoreApiException|Exception $e )
         {
