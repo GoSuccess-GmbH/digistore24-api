@@ -1,27 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Attributes;
 
 use Attribute;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-final class ArrayItemType
+final readonly class ArrayItemType
 {
     /**
-     * Array item type (class, enum, int ...).
-     * @var string|null
+     * @param string|null $type Array item type (class, enum, int, float, etc.)
+     * @param string|null $object Object name (fully qualified class or enum name)
      */
-    public ?string $type = null;
-
-    /**
-     * Object name, if necessary.
-     * @var string
-     */
-    public ?string $object = null;
-
-    public function __construct( ?string $type = null, ?string $object = null )
-    {
-        $this->type = $type;
-        $this->object = $object;
-    }
+    public function __construct(
+        public ?string $type = null,
+        public ?string $object = null
+    ) {}
 }
