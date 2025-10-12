@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Controllers;
+
 use GoSuccess\Digistore24\Abstracts\Controller;
 use GoSuccess\Digistore24\Models\Affiliate\Commission;
 use GoSuccess\Digistore24\Models\Affiliate\CommissionUpdateRequest;
@@ -9,56 +12,56 @@ use GoSuccess\Digistore24\Models\Affiliate\CommissionUpdateResponse;
 class AffiliateController extends Controller
 {
     /**
-     * Get current affiliate commission.
+     * Get current affiliate commission
      * @link https://dev.digistore24.com/en/articles/38-getaffiliatecommission
-     * @param int|string $affiliate_id
-     * @param array $product_ids
+     * @param int|string $affiliateId
+     * @param array<int> $productIds
      * @return Commission|null
      */
-    public function get_commission( int|string $affiliate_id, array $product_ids = [] ): ?Commission
+    public function getCommission(int|string $affiliateId, array $productIds = []): ?Commission
     {
         $data = $this->api->call(
             'getAffiliateCommission',
-            $affiliate_id,
-            implode( ',', $product_ids )
+            $affiliateId,
+            implode(',', $productIds)
         );
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new Commission( $data );
+        return new Commission($data);
     }
 
     /**
-     * Get affiliate commission.
+     * Update affiliate commission
      * @link https://dev.digistore24.com/en/articles/109-updateaffiliatecommission
-     * @param \GoSuccess\Digistore24\Models\Affiliate\CommissionUpdateRequest|null $data
+     * @param CommissionUpdateRequest $request
      * @return CommissionUpdateResponse|null
      */
-    public function update_commission( CommissionUpdateRequest $data = null ): ?CommissionUpdateResponse
+    public function updateCommission(CommissionUpdateRequest $request): ?CommissionUpdateResponse
     {
-        $affiliate_id = $data->affiliate_id;
-        $product_ids = is_array( $data->product_ids ) ? implode( ',', $data->product_ids ) : $data->product_ids;
+        $affiliateId = $request->affiliate_id;
+        $productIds = is_array($request->product_ids) 
+            ? implode(',', $request->product_ids) 
+            : $request->product_ids;
         
-        unset( $data->affiliate_id );
-        unset( $data->product_ids );
+        unset($request->affiliate_id);
+        unset($request->product_ids);
 
-        $update_data = $data === null ? [] : get_object_vars( $data );
+        $updateData = get_object_vars($request);
 
         $data = $this->api->call(
             'updateAffiliateCommission',
-            $affiliate_id,
-            $product_ids,
-            $update_data
+            $affiliateId,
+            $productIds,
+            $updateData
         );
 
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new CommissionUpdateResponse( $data );
+        return new CommissionUpdateResponse($data);
     }
 }

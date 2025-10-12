@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Controllers;
 
 use GoSuccess\Digistore24\Abstracts\Controller;
@@ -11,85 +13,70 @@ use GoSuccess\Digistore24\Models\IPN\SetupResponse;
 class IPNController extends Controller
 {
     /**
-     * Setup IPN-Connection.
+     * Setup IPN-Connection
      * @link https://dev.digistore24.com/en/articles/61-ipnsetup
-     * @param \GoSuccess\Digistore24\Models\IPN\Settings $ipn_settings
+     * @param Settings $ipnSettings
      * @return SetupResponse|null
      */
-    public function create( Settings $ipn_settings ): ?SetupResponse
+    public function create(Settings $ipnSettings): ?SetupResponse
     {
         $data = $this->api->call(
             'ipnSetup',
-            $ipn_settings->ipn_url,
-            $ipn_settings->name,
-            $ipn_settings->product_ids,
-            $ipn_settings->domain_id,
+            $ipnSettings->ipn_url,
+            $ipnSettings->name,
+            $ipnSettings->product_ids,
+            $ipnSettings->domain_id,
             array_map(
-                function( $category )
-                {
-                    return $category->value;
-                },
-                $ipn_settings->categories
+                fn($category): string => $category->value,
+                $ipnSettings->categories
             ),
             array_map(
-                function( $transaction )
-                {
-                    return $transaction->value;
-                },
-                $ipn_settings->transactions
+                fn($transaction): string => $transaction->value,
+                $ipnSettings->transactions
             ),
-            $ipn_settings->timing->value,
-            $ipn_settings->sha_passphrase,
-            $ipn_settings->newsletter_send_policy->value
+            $ipnSettings->timing->value,
+            $ipnSettings->sha_passphrase,
+            $ipnSettings->newsletter_send_policy->value
         );
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new SetupResponse( $data );
+        return new SetupResponse($data);
     }
 
     /**
-     * Get IPN-Connection info.
+     * Get IPN-Connection info
      * @link https://dev.digistore24.com/en/articles/60-ipninfo
-     * @param string $domain_id
+     * @param string $domainId
      * @return IPN|null
      */
-    public function get( string $domain_id ): ?IPN
+    public function get(string $domainId): ?IPN
     {
-        $data = $this->api->call(
-            'ipnInfo',
-            $domain_id
-        );
+        $data = $this->api->call('ipnInfo', $domainId);
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new IPN( $data );
+        return new IPN($data);
     }
 
     /**
-     * Delete IPN-Connection.
+     * Delete IPN-Connection
      * @link https://dev.digistore24.com/en/articles/59-ipndelete
-     * @param string $domain_id
+     * @param string $domainId
      * @return DeleteResponse|null
      */
-    public function delete( string $domain_id ): ?DeleteResponse
+    public function delete(string $domainId): ?DeleteResponse
     {
-        $data = $this->api->call(
-            'ipnDelete',
-            $domain_id
-        );
+        $data = $this->api->call('ipnDelete', $domainId);
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new DeleteResponse( $data );
+        return new DeleteResponse($data);
     }
 }

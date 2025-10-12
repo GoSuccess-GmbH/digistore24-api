@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Controllers;
+
 use GoSuccess\Digistore24\Abstracts\Controller;
 use GoSuccess\Digistore24\Models\Billing\CreateBillingOnDemandRequest;
 use GoSuccess\Digistore24\Models\Billing\CreateBillingOnDemandResponse;
@@ -8,13 +11,13 @@ use GoSuccess\Digistore24\Models\Billing\CreateBillingOnDemandResponse;
 class BillingController extends Controller
 {
     /**
-     * Creates a billing on demand.
-     * Hint: The "Billing on demand" right must be enabled for your vendor account.
+     * Creates a billing on demand
+     * Hint: The "Billing on demand" right must be enabled for your vendor account
      * @link https://dev.digistore24.com/en/articles/17-createbillingondemand
-     * @param \GoSuccess\Digistore24\Models\Billing\CreateBillingOnDemandRequest $billing
+     * @param CreateBillingOnDemandRequest $billing
      * @return CreateBillingOnDemandResponse|null
      */
-    public function create_billing_on_demand( CreateBillingOnDemandRequest $billing ): ?CreateBillingOnDemandResponse
+    public function createBillingOnDemand(CreateBillingOnDemandRequest $billing): ?CreateBillingOnDemandResponse
     {
         $data = $this->api->call(
             'createBillingOnDemand',
@@ -27,11 +30,10 @@ class BillingController extends Controller
             $billing->addons
         );
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new CreateBillingOnDemandResponse( $data );
+        return new CreateBillingOnDemandResponse($data);
     }
 }

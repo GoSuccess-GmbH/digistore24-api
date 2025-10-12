@@ -1,37 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Controllers;
+
 use GoSuccess\Digistore24\Abstracts\Controller;
 use GoSuccess\Digistore24\Models\Country\Country;
 
 class CountryController extends Controller
 {
     /**
-     * Get all countries Digistore24 accepts.
+     * Get all countries Digistore24 accepts
      * @link https://dev.digistore24.com/en/articles/67-listcountries
-     * @return Country[]|null
+     * @return array<Country>|null
      */
     public function list(): ?array
     {
-        $data = $this->api->call(
-            'listCountries'
-        );
+        $data = $this->api->call('listCountries');
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
         return array_map(
-            function( $country_code, $country_name )
-            {
+            function(string $countryCode, string $countryName): Country {
                 $country = new Country();
-                $country->code = $country_code;
-                $country->name = $country_name;
-
+                $country->code = $countryCode;
+                $country->name = $countryName;
                 return $country;
             },
-            array_keys( (array) $data ),
+            array_keys((array) $data),
             (array) $data
         );
     }

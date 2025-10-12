@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Controllers;
 
 use GoSuccess\Digistore24\Abstracts\Controller;
@@ -11,87 +13,68 @@ use GoSuccess\Digistore24\Models\BuyUrl\DeleteBuyUrlResponse;
 class BuyUrlController extends Controller
 {
     /**
-     * Creates an special order URL.
+     * Creates a special order URL
      * @link https://dev.digistore24.com/en/articles/18-createbuyurl
-     * @param \GoSuccess\Digistore24\Models\BuyUrl\CreateBuyUrlRequest $buy_url
+     * @param CreateBuyUrlRequest $buyUrl
      * @return CreateBuyUrlResponse|null
      */
-    public function create( CreateBuyUrlRequest $buy_url ): ?CreateBuyUrlResponse
+    public function create(CreateBuyUrlRequest $buyUrl): ?CreateBuyUrlResponse
     {
         $data = $this->api->call(
             'createBuyUrl',
-            $buy_url->product_id,
-            $buy_url->buyer === null ? [] : get_object_vars( $buy_url->buyer ),
-            $buy_url->payment_plan === null ? [] : get_object_vars( $buy_url->payment_plan ),
-            $buy_url->tracking === null ? [] : get_object_vars( $buy_url->tracking ),
-            $buy_url->valid_until,
-            $buy_url->urls === null ? [] : get_object_vars( $buy_url->urls ),
-            $buy_url->placeholders,
-            $buy_url->settings === null ? [] : get_object_vars( $buy_url->settings ),
-            $buy_url->addons === null ? [] : array_map(
-                function( $addon )
-                {
-                    return get_object_vars( $addon );
-                },
-                $buy_url->addons
+            $buyUrl->product_id,
+            $buyUrl->buyer === null ? [] : get_object_vars($buyUrl->buyer),
+            $buyUrl->payment_plan === null ? [] : get_object_vars($buyUrl->payment_plan),
+            $buyUrl->tracking === null ? [] : get_object_vars($buyUrl->tracking),
+            $buyUrl->valid_until,
+            $buyUrl->urls === null ? [] : get_object_vars($buyUrl->urls),
+            $buyUrl->placeholders,
+            $buyUrl->settings === null ? [] : get_object_vars($buyUrl->settings),
+            $buyUrl->addons === null ? [] : array_map(
+                fn(object $addon): array => get_object_vars($addon),
+                $buyUrl->addons
             ),
         );
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new CreateBuyUrlResponse( $data );
+        return new CreateBuyUrlResponse($data);
     }
 
     /**
-     * List generated order URLs.
+     * List generated order URLs
      * @link https://dev.digistore24.com/en/articles/64-listbuyurls
-     * @param int $page_no
-     * @param int $page_size
-     * @return BuyUrl[]|null
+     * @param int $pageNo
+     * @param int $pageSize
+     * @return array<BuyUrl>|null
      */
-    public function list( int $page_no = 1, int $page_size = 100 ): ?array
+    public function list(int $pageNo = 1, int $pageSize = 100): ?array
     {
-        $data = $this->api->call(
-            'listBuyUrls',
-            $page_no,
-            $page_size
-        );
+        $data = $this->api->call('listBuyUrls', $pageNo, $pageSize);
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return array_map(
-            function( $buy_url )
-            {
-                return new BuyUrl( $buy_url );
-            },
-            $data->buyurls
-        );
+        return $this->mapToModels($data->buyurls, BuyUrl::class);
     }
 
     /**
-     * Delete a generated form URL.
+     * Delete a generated form URL
      * @link https://dev.digistore24.com/en/articles/28-deletebuyurl
-     * @param int $buy_url_id
+     * @param int $buyUrlId
      * @return DeleteBuyUrlResponse|null
      */
-    public function delete( int $buy_url_id ): ?DeleteBuyUrlResponse
+    public function delete(int $buyUrlId): ?DeleteBuyUrlResponse
     {
-        $data = $this->api->call(
-            'deleteBuyUrl',
-            $buy_url_id
-        );
+        $data = $this->api->call('deleteBuyUrl', $buyUrlId);
         
-        if( ! $data )
-        {
+        if (!$data) {
             return null;
         }
 
-        return new DeleteBuyUrlResponse( $data );
+        return new DeleteBuyUrlResponse($data);
     }
 }
