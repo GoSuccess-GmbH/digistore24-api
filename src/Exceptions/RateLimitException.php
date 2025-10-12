@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace GoSuccess\Digistore24\Exceptions;
+
+/**
+ * Thrown when rate limit is exceeded (HTTP 429)
+ */
+class RateLimitException extends ApiException
+{
+    /**
+     * Get retry-after time in seconds
+     */
+    public function getRetryAfter(): ?int
+    {
+        return $this->getContextValue('retry_after');
+    }
+}
