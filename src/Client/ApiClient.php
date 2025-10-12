@@ -11,9 +11,6 @@ use GoSuccess\Digistore24\Exception\NotFoundException;
 use GoSuccess\Digistore24\Exception\RateLimitException;
 use GoSuccess\Digistore24\Exception\RequestException;
 use GoSuccess\Digistore24\Exception\ValidationException;
-use GoSuccess\Digistore24\Http\CurlHttpVersion;
-use GoSuccess\Digistore24\Http\CurlInfo;
-use GoSuccess\Digistore24\Http\CurlOption;
 use GoSuccess\Digistore24\Http\Method;
 use GoSuccess\Digistore24\Http\Response;
 use GoSuccess\Digistore24\Http\StatusCode;
@@ -111,17 +108,17 @@ class ApiClient
 
         // Set cURL options
         $options = [
-            CurlOption::URL->value => $url,
-            CurlOption::RETURNTRANSFER->value => true,
-            CurlOption::TIMEOUT->value => $this->config->timeout,
-            CurlOption::FOLLOWLOCATION->value => false,
-            CurlOption::ENCODING->value => '',
-            CurlOption::MAXREDIRS->value => 0,
-            CurlOption::HTTP_VERSION->value => CurlHttpVersion::HTTP_1_1->value,
-            CurlOption::CUSTOMREQUEST->value => $method->value,
-            CurlOption::USERAGENT->value => self::USER_AGENT,
-            CurlOption::HEADER->value => true,
-            CurlOption::HTTPHEADER->value => [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => $this->config->timeout,
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 0,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => $method->value,
+            CURLOPT_USERAGENT => self::USER_AGENT,
+            CURLOPT_HEADER => true,
+            CURLOPT_HTTPHEADER => [
                 'Accept: application/json',
                 'Accept-Charset: utf-8',
                 'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
@@ -131,10 +128,10 @@ class ApiClient
 
         // Add body for POST/PUT/PATCH
         if (in_array($method, [Method::POST, Method::PUT, Method::PATCH], true)) {
-            $options[CurlOption::POST->value] = true;
-            $options[CurlOption::POSTFIELDS->value] = $queryString;
+            $options[CURLOPT_POST] = true;
+            $options[CURLOPT_POSTFIELDS] = $queryString;
         } elseif ($method === Method::GET && !empty($params)) {
-            $options[CurlOption::URL->value] = "{$url}?{$queryString}";
+            $options[CURLOPT_URL] = "{$url}?{$queryString}";
         }
 
         curl_setopt_array($ch, $options);
@@ -143,8 +140,8 @@ class ApiClient
         $response = curl_exec($ch);
         $curlErrno = curl_errno($ch);
         $curlError = curl_error($ch);
-        $httpCode = (int) curl_getinfo($ch, CurlInfo::HTTP_CODE->value());
-        $headerSize = (int) curl_getinfo($ch, CurlInfo::HEADER_SIZE->value());
+        $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $headerSize = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
 
