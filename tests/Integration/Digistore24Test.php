@@ -86,9 +86,9 @@ final class Digistore24Test extends TestCase
         $request->productId = '';
     }
 
-    public function testGetClientReturnsApiClient(): void
+    public function testClientPropertyReturnsApiClient(): void
     {
-        $client = $this->client->getClient();
+        $client = $this->client->client;
         $this->assertInstanceOf(\GoSuccess\Digistore24\Client\ApiClient::class, $client);
     }
 }

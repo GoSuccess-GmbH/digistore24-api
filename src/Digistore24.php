@@ -51,90 +51,111 @@ use GoSuccess\Digistore24\Resource\VoucherResource;
  */
 final class Digistore24
 {
-    private ?ApiClient $client = null;
+    /**
+     * HTTP Client (lazy-loaded)
+     * 
+     * For advanced use cases where you need direct access to the HTTP client.
+     */
+    public ApiClient $client {
+        get {
+            if (!isset($this->client)) {
+                $config = new Configuration(
+                    apiKey: $this->apiKey,
+                    baseUrl: $this->baseUrl,
+                    timeout: $this->timeout,
+                    language: $this->language,
+                    maxRetries: $this->maxRetries,
+                    operatorName: $this->operatorName,
+                    debug: $this->debug,
+                );
+                $this->client = new ApiClient($config);
+            }
+            return $this->client;
+        }
+    }
 
     /**
      * Affiliate management
      */
     public AffiliateResource $affiliates {
-        get => $this->affiliates ??= new AffiliateResource($this->getClient());
+        get => $this->affiliates ??= new AffiliateResource($this->client);
     }
 
     /**
      * Billing operations
      */
     public BillingResource $billing {
-        get => $this->billing ??= new BillingResource($this->getClient());
+        get => $this->billing ??= new BillingResource($this->client);
     }
 
     /**
      * Buyer information
      */
     public BuyerResource $buyers {
-        get => $this->buyers ??= new BuyerResource($this->getClient());
+        get => $this->buyers ??= new BuyerResource($this->client);
     }
 
     /**
      * Buy URL management
      */
     public BuyUrlResource $buyUrls {
-        get => $this->buyUrls ??= new BuyUrlResource($this->getClient());
+        get => $this->buyUrls ??= new BuyUrlResource($this->client);
     }
 
     /**
      * Country information
      */
     public CountryResource $countries {
-        get => $this->countries ??= new CountryResource($this->getClient());
+        get => $this->countries ??= new CountryResource($this->client);
     }
 
     /**
      * IPN/Webhook management
      */
     public IpnResource $ipn {
-        get => $this->ipn ??= new IpnResource($this->getClient());
+        get => $this->ipn ??= new IpnResource($this->client);
     }
 
     /**
      * API monitoring
      */
     public MonitoringResource $monitoring {
-        get => $this->monitoring ??= new MonitoringResource($this->getClient());
+        get => $this->monitoring ??= new MonitoringResource($this->client);
     }
 
     /**
      * Product management
      */
     public ProductResource $products {
-        get => $this->products ??= new ProductResource($this->getClient());
+        get => $this->products ??= new ProductResource($this->client);
     }
 
     /**
      * Purchase management
      */
     public PurchaseResource $purchases {
-        get => $this->purchases ??= new PurchaseResource($this->getClient());
+        get => $this->purchases ??= new PurchaseResource($this->client);
     }
 
     /**
      * Rebilling/Subscription management
      */
     public RebillingResource $rebilling {
-        get => $this->rebilling ??= new RebillingResource($this->getClient());
+        get => $this->rebilling ??= new RebillingResource($this->client);
     }
 
     /**
      * User/Authentication management
      */
     public UserResource $users {
-        get => $this->users ??= new UserResource($this->getClient());
+        get => $this->users ??= new UserResource($this->client);
     }
 
     /**
      * Voucher management
      */
     public VoucherResource $vouchers {
-        get => $this->vouchers ??= new VoucherResource($this->getClient());
+        get => $this->vouchers ??= new VoucherResource($this->client);
     }
 
     /**
@@ -157,28 +178,5 @@ final class Digistore24
         private readonly ?string $operatorName = null,
         private readonly bool $debug = false,
     ) {
-    }
-
-    /**
-     * Get the underlying HTTP client
-     * 
-     * For advanced use cases where you need direct access to the HTTP client.
-     */
-    public function getClient(): ApiClient
-    {
-        if ($this->client === null) {
-            $config = new Configuration(
-                apiKey: $this->apiKey,
-                baseUrl: $this->baseUrl,
-                timeout: $this->timeout,
-                language: $this->language,
-                maxRetries: $this->maxRetries,
-                operatorName: $this->operatorName,
-                debug: $this->debug,
-            );
-            $this->client = new ApiClient($config);
-        }
-        
-        return $this->client;
     }
 }
