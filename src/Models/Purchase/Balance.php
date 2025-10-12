@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Models\Purchase;
 
 use GoSuccess\Digistore24\Abstracts\Model;
