@@ -51,90 +51,90 @@ use GoSuccess\Digistore24\Resource\VoucherResource;
  */
 final class Digistore24
 {
-    private readonly ApiClient $client;
+    private ?ApiClient $client = null;
 
     /**
      * Affiliate management
      */
     public AffiliateResource $affiliates {
-        get => $this->affiliates ??= new AffiliateResource($this->client);
+        get => $this->affiliates ??= new AffiliateResource($this->getClient());
     }
 
     /**
      * Billing operations
      */
     public BillingResource $billing {
-        get => $this->billing ??= new BillingResource($this->client);
+        get => $this->billing ??= new BillingResource($this->getClient());
     }
 
     /**
      * Buyer information
      */
     public BuyerResource $buyers {
-        get => $this->buyers ??= new BuyerResource($this->client);
+        get => $this->buyers ??= new BuyerResource($this->getClient());
     }
 
     /**
      * Buy URL management
      */
     public BuyUrlResource $buyUrls {
-        get => $this->buyUrls ??= new BuyUrlResource($this->client);
+        get => $this->buyUrls ??= new BuyUrlResource($this->getClient());
     }
 
     /**
      * Country information
      */
     public CountryResource $countries {
-        get => $this->countries ??= new CountryResource($this->client);
+        get => $this->countries ??= new CountryResource($this->getClient());
     }
 
     /**
      * IPN/Webhook management
      */
     public IpnResource $ipn {
-        get => $this->ipn ??= new IpnResource($this->client);
+        get => $this->ipn ??= new IpnResource($this->getClient());
     }
 
     /**
      * API monitoring
      */
     public MonitoringResource $monitoring {
-        get => $this->monitoring ??= new MonitoringResource($this->client);
+        get => $this->monitoring ??= new MonitoringResource($this->getClient());
     }
 
     /**
      * Product management
      */
     public ProductResource $products {
-        get => $this->products ??= new ProductResource($this->client);
+        get => $this->products ??= new ProductResource($this->getClient());
     }
 
     /**
      * Purchase management
      */
     public PurchaseResource $purchases {
-        get => $this->purchases ??= new PurchaseResource($this->client);
+        get => $this->purchases ??= new PurchaseResource($this->getClient());
     }
 
     /**
      * Rebilling/Subscription management
      */
     public RebillingResource $rebilling {
-        get => $this->rebilling ??= new RebillingResource($this->client);
+        get => $this->rebilling ??= new RebillingResource($this->getClient());
     }
 
     /**
      * User/Authentication management
      */
     public UserResource $users {
-        get => $this->users ??= new UserResource($this->client);
+        get => $this->users ??= new UserResource($this->getClient());
     }
 
     /**
      * Voucher management
      */
     public VoucherResource $vouchers {
-        get => $this->vouchers ??= new VoucherResource($this->client);
+        get => $this->vouchers ??= new VoucherResource($this->getClient());
     }
 
     /**
@@ -149,25 +149,14 @@ final class Digistore24
      * @param bool $debug Enable debug mode with detailed logging (default: false)
      */
     public function __construct(
-        string $apiKey,
-        string $baseUrl = 'https://www.digistore24.com',
-        int $timeout = 30,
-        string $language = 'en',
-        int $maxRetries = 3,
-        ?string $operatorName = null,
-        bool $debug = false,
+        private readonly string $apiKey,
+        private readonly string $baseUrl = 'https://www.digistore24.com',
+        private readonly int $timeout = 30,
+        private readonly string $language = 'en',
+        private readonly int $maxRetries = 3,
+        private readonly ?string $operatorName = null,
+        private readonly bool $debug = false,
     ) {
-        $config = new Configuration(
-            apiKey: $apiKey,
-            baseUrl: $baseUrl,
-            timeout: $timeout,
-            language: $language,
-            maxRetries: $maxRetries,
-            operatorName: $operatorName,
-            debug: $debug,
-        );
-
-        $this->client = new ApiClient($config);
     }
 
     /**
@@ -177,6 +166,19 @@ final class Digistore24
      */
     public function getClient(): ApiClient
     {
+        if ($this->client === null) {
+            $config = new Configuration(
+                apiKey: $this->apiKey,
+                baseUrl: $this->baseUrl,
+                timeout: $this->timeout,
+                language: $this->language,
+                maxRetries: $this->maxRetries,
+                operatorName: $this->operatorName,
+                debug: $this->debug,
+            );
+            $this->client = new ApiClient($config);
+        }
+        
         return $this->client;
     }
 }
