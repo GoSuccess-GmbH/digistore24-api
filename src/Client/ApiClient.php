@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Client;
 
-use GoSuccess\Digistore24\Exceptions\ApiException;
-use GoSuccess\Digistore24\Exceptions\AuthenticationException;
-use GoSuccess\Digistore24\Exceptions\ForbiddenException;
-use GoSuccess\Digistore24\Exceptions\NotFoundException;
-use GoSuccess\Digistore24\Exceptions\RateLimitException;
-use GoSuccess\Digistore24\Exceptions\RequestException;
-use GoSuccess\Digistore24\Exceptions\ValidationException;
+use GoSuccess\Digistore24\Exception\ApiException;
+use GoSuccess\Digistore24\Exception\AuthenticationException;
+use GoSuccess\Digistore24\Exception\ForbiddenException;
+use GoSuccess\Digistore24\Exception\NotFoundException;
+use GoSuccess\Digistore24\Exception\RateLimitException;
+use GoSuccess\Digistore24\Exception\RequestException;
+use GoSuccess\Digistore24\Exception\ValidationException;
 use GoSuccess\Digistore24\Http\CurlHttpVersion;
 use GoSuccess\Digistore24\Http\CurlInfo;
 use GoSuccess\Digistore24\Http\CurlOption;

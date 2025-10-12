@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Exceptions;
+namespace GoSuccess\Digistore24\Exception;
 
 /**
  * Thrown when request validation fails (HTTP 400)

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Contracts;
+namespace GoSuccess\Digistore24\Base;
 
 use GoSuccess\Digistore24\Http\Method;
 use GoSuccess\Digistore24\Utils\ArrayHelper;
 use GoSuccess\Digistore24\Utils\Validator;
 
 /**
- * Abstract Request
+ * Abstract Request Base Class
  * 
  * Base class for all API request objects.
- * Uses PHP 8.4 property hooks for validation and transformation.
+ * Uses PHP 8.4 features for clean, type-safe requests.
  */
-abstract readonly class AbstractRequest
+abstract class AbstractRequest
 {
     /**
      * Get the API endpoint for this request

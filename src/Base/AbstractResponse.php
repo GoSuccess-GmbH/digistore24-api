@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Contracts;
+namespace GoSuccess\Digistore24\Base;
 
 use GoSuccess\Digistore24\Http\Response;
 use GoSuccess\Digistore24\Utils\TypeConverter;
 
 /**
- * Abstract Response
+ * Abstract Response Base Class
  * 
  * Base class for all API response objects.
- * Uses PHP 8.4 property hooks for automatic type conversion.
+ * Uses PHP 8.4 features for automatic type conversion.
  */
-abstract readonly class AbstractResponse
+abstract class AbstractResponse
 {
     /**
      * Raw HTTP response
