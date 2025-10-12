@@ -8,6 +8,11 @@
             "GoSuccess\\Digistore24\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "GoSuccess\\Digistore24\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "GoSuccess",
@@ -16,6 +21,13 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "PHP": ">=8.4"
+        "php": ">=8.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage"
     }
 }

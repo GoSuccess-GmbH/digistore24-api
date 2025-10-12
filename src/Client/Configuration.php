@@ -10,7 +10,7 @@ namespace GoSuccess\Digistore24\Client;
  * Holds all configuration settings for the Digistore24 API client.
  * Uses PHP 8.4 property hooks for validation and computed properties.
  */
-readonly class Configuration
+final class Configuration
 {
     /**
      * The Digistore24 API key (format: XXX-XXXXXXXXXXXXXXXXX)

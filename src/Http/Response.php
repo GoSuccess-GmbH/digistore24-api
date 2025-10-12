@@ -10,12 +10,12 @@ namespace GoSuccess\Digistore24\Http;
  * Represents a response from the Digistore24 API.
  * Uses PHP 8.4 property hooks for computed properties.
  */
-readonly class Response
+final class Response
 {
     /**
      * HTTP status code (raw integer)
      */
-    public int $statusCode;
+    public readonly int $statusCode;
 
     /**
      * HTTP status code (typed enum, computed)
@@ -29,19 +29,19 @@ readonly class Response
      * 
      * @var array<string, mixed>
      */
-    public array $data;
+    public readonly array $data;
 
     /**
      * Response headers
      * 
      * @var array<string, string[]>
      */
-    public array $headers;
+    public readonly array $headers;
 
     /**
      * Raw response body
      */
-    public string $rawBody;
+    public readonly string $rawBody;
 
     /**
      * Check if response was successful (2xx status code)
