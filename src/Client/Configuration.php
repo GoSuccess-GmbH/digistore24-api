@@ -8,49 +8,97 @@ namespace GoSuccess\Digistore24\Client;
  * API Configuration
  * 
  * Holds all configuration settings for the Digistore24 API client.
+ * Uses PHP 8.4 property hooks for validation and computed properties.
  */
 readonly class Configuration
 {
     /**
-     * @param string $apiKey The Digistore24 API key (format: XXX-XXXXXXXXXXXXXXXXX)
-     * @param string $baseUrl Base URL for the API (default: production)
-     * @param int $timeout Request timeout in seconds
-     * @param int $maxRetries Maximum number of retry attempts for failed requests
-     * @param string $language Response language ('de' or 'en')
-     * @param string|null $operatorName Optional operator name for audit logging
-     * @param bool $debug Enable debug mode with detailed logging
+     * The Digistore24 API key (format: XXX-XXXXXXXXXXXXXXXXX)
      */
-    public function __construct(
-        public string $apiKey,
-        public string $baseUrl = 'https://www.digistore24.com',
-        public int $timeout = 30,
-        public int $maxRetries = 3,
-        public string $language = 'en',
-        public ?string $operatorName = null,
-        public bool $debug = false,
-    ) {
-        if (empty($this->apiKey)) {
-            throw new \InvalidArgumentException('API key cannot be empty');
-        }
-
-        if (!in_array($this->language, ['de', 'en'], true)) {
-            throw new \InvalidArgumentException('Language must be either "de" or "en"');
-        }
-
-        if ($this->timeout < 1) {
-            throw new \InvalidArgumentException('Timeout must be at least 1 second');
-        }
-
-        if ($this->maxRetries < 0) {
-            throw new \InvalidArgumentException('Max retries cannot be negative');
+    public string $apiKey {
+        set {
+            if (empty($value)) {
+                throw new \InvalidArgumentException('API key cannot be empty');
+            }
+            $this->apiKey = $value;
         }
     }
 
     /**
-     * Get API endpoint URL
+     * Base URL for the API (automatically trimmed)
      */
-    public function getApiUrl(): string
-    {
-        return rtrim($this->baseUrl, '/') . '/api/call';
+    public string $baseUrl {
+        set => rtrim($value, '/');
+    }
+
+    /**
+     * Request timeout in seconds (minimum 1)
+     */
+    public int $timeout {
+        set {
+            if ($value < 1) {
+                throw new \InvalidArgumentException('Timeout must be at least 1 second');
+            }
+            $this->timeout = $value;
+        }
+    }
+
+    /**
+     * Maximum number of retry attempts (minimum 0)
+     */
+    public int $maxRetries {
+        set {
+            if ($value < 0) {
+                throw new \InvalidArgumentException('Max retries cannot be negative');
+            }
+            $this->maxRetries = $value;
+        }
+    }
+
+    /**
+     * Response language ('de' or 'en')
+     */
+    public string $language {
+        set {
+            if (!in_array($value, ['de', 'en'], true)) {
+                throw new \InvalidArgumentException('Language must be either "de" or "en"');
+            }
+            $this->language = $value;
+        }
+    }
+
+    /**
+     * Optional operator name for audit logging
+     */
+    public ?string $operatorName;
+
+    /**
+     * Enable debug mode with detailed logging
+     */
+    public bool $debug;
+
+    /**
+     * Full API endpoint URL (computed property)
+     */
+    public string $apiUrl {
+        get => $this->baseUrl . '/api/call';
+    }
+
+    public function __construct(
+        string $apiKey,
+        string $baseUrl = 'https://www.digistore24.com',
+        int $timeout = 30,
+        int $maxRetries = 3,
+        string $language = 'en',
+        ?string $operatorName = null,
+        bool $debug = false,
+    ) {
+        $this->apiKey = $apiKey;
+        $this->baseUrl = $baseUrl;
+        $this->timeout = $timeout;
+        $this->maxRetries = $maxRetries;
+        $this->language = $language;
+        $this->operatorName = $operatorName;
+        $this->debug = $debug;
     }
 }

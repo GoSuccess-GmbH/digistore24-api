@@ -260,7 +260,7 @@ class ApiClient
      */
     private function buildUrl(string $endpoint): string
     {
-        return $this->config->getApiUrl() . '/' . ltrim($endpoint, '/');
+        return $this->config->apiUrl . '/' . ltrim($endpoint, '/');
     }
 
     /**

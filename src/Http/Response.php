@@ -7,10 +7,56 @@ namespace GoSuccess\Digistore24\Http;
 /**
  * HTTP Response
  * 
- * Represents a response from the Digistore24 API
+ * Represents a response from the Digistore24 API.
+ * Uses PHP 8.4 property hooks for computed properties.
  */
 readonly class Response
 {
+    /**
+     * HTTP status code
+     */
+    public int $statusCode;
+
+    /**
+     * Response data
+     * 
+     * @var array<string, mixed>
+     */
+    public array $data;
+
+    /**
+     * Response headers
+     * 
+     * @var array<string, string[]>
+     */
+    public array $headers;
+
+    /**
+     * Raw response body
+     */
+    public string $rawBody;
+
+    /**
+     * Check if response was successful (2xx status code)
+     */
+    public bool $isSuccess {
+        get => $this->statusCode >= 200 && $this->statusCode < 300;
+    }
+
+    /**
+     * Check if response is a client error (4xx status code)
+     */
+    public bool $isClientError {
+        get => $this->statusCode >= 400 && $this->statusCode < 500;
+    }
+
+    /**
+     * Check if response is a server error (5xx status code)
+     */
+    public bool $isServerError {
+        get => $this->statusCode >= 500 && $this->statusCode < 600;
+    }
+
     /**
      * @param int $statusCode HTTP status code
      * @param array<string, mixed> $data Response data
@@ -18,35 +64,15 @@ readonly class Response
      * @param string $rawBody Raw response body
      */
     public function __construct(
-        public int $statusCode,
-        public array $data,
-        public array $headers = [],
-        public string $rawBody = '',
+        int $statusCode,
+        array $data,
+        array $headers = [],
+        string $rawBody = '',
     ) {
-    }
-
-    /**
-     * Check if response was successful (2xx status code)
-     */
-    public function isSuccess(): bool
-    {
-        return $this->statusCode >= 200 && $this->statusCode < 300;
-    }
-
-    /**
-     * Check if response is a client error (4xx status code)
-     */
-    public function isClientError(): bool
-    {
-        return $this->statusCode >= 400 && $this->statusCode < 500;
-    }
-
-    /**
-     * Check if response is a server error (5xx status code)
-     */
-    public function isServerError(): bool
-    {
-        return $this->statusCode >= 500 && $this->statusCode < 600;
+        $this->statusCode = $statusCode;
+        $this->data = $data;
+        $this->headers = $headers;
+        $this->rawBody = $rawBody;
     }
 
     /**
