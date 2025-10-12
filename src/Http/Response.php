@@ -13,9 +13,16 @@ namespace GoSuccess\Digistore24\Http;
 readonly class Response
 {
     /**
-     * HTTP status code
+     * HTTP status code (raw integer)
      */
     public int $statusCode;
+
+    /**
+     * HTTP status code (typed enum, computed)
+     */
+    public ?StatusCode $status {
+        get => StatusCode::fromInt($this->statusCode);
+    }
 
     /**
      * Response data
@@ -40,21 +47,21 @@ readonly class Response
      * Check if response was successful (2xx status code)
      */
     public bool $isSuccess {
-        get => $this->statusCode >= 200 && $this->statusCode < 300;
+        get => $this->status?->isSuccess() ?? ($this->statusCode >= 200 && $this->statusCode < 300);
     }
 
     /**
      * Check if response is a client error (4xx status code)
      */
     public bool $isClientError {
-        get => $this->statusCode >= 400 && $this->statusCode < 500;
+        get => $this->status?->isClientError() ?? ($this->statusCode >= 400 && $this->statusCode < 500);
     }
 
     /**
      * Check if response is a server error (5xx status code)
      */
     public bool $isServerError {
-        get => $this->statusCode >= 500 && $this->statusCode < 600;
+        get => $this->status?->isServerError() ?? ($this->statusCode >= 500 && $this->statusCode < 600);
     }
 
     /**

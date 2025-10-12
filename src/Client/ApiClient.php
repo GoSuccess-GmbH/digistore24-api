@@ -11,8 +11,12 @@ use GoSuccess\Digistore24\Exceptions\NotFoundException;
 use GoSuccess\Digistore24\Exceptions\RateLimitException;
 use GoSuccess\Digistore24\Exceptions\RequestException;
 use GoSuccess\Digistore24\Exceptions\ValidationException;
+use GoSuccess\Digistore24\Http\CurlHttpVersion;
+use GoSuccess\Digistore24\Http\CurlInfo;
+use GoSuccess\Digistore24\Http\CurlOption;
 use GoSuccess\Digistore24\Http\Method;
 use GoSuccess\Digistore24\Http\Response;
+use GoSuccess\Digistore24\Http\StatusCode;
 
 /**
  * HTTP Client for Digistore24 API
@@ -107,30 +111,30 @@ class ApiClient
 
         // Set cURL options
         $options = [
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => $this->config->timeout,
-            CURLOPT_FOLLOWLOCATION => false,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 0,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => $method->value,
-            CURLOPT_USERAGENT => self::USER_AGENT,
-            CURLOPT_HEADER => true,
-            CURLOPT_HTTPHEADER => [
+            CurlOption::URL->value => $url,
+            CurlOption::RETURNTRANSFER->value => true,
+            CurlOption::TIMEOUT->value => $this->config->timeout,
+            CurlOption::FOLLOWLOCATION->value => false,
+            CurlOption::ENCODING->value => '',
+            CurlOption::MAXREDIRS->value => 0,
+            CurlOption::HTTP_VERSION->value => CurlHttpVersion::HTTP_1_1->value,
+            CurlOption::CUSTOMREQUEST->value => $method->value,
+            CurlOption::USERAGENT->value => self::USER_AGENT,
+            CurlOption::HEADER->value => true,
+            CurlOption::HTTPHEADER->value => [
                 'Accept: application/json',
                 'Accept-Charset: utf-8',
                 'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
-                'X-DS-API-KEY: ' . $this->config->apiKey,
+                "X-DS-API-KEY: {$this->config->apiKey}",
             ],
         ];
 
         // Add body for POST/PUT/PATCH
         if (in_array($method, [Method::POST, Method::PUT, Method::PATCH], true)) {
-            $options[CURLOPT_POST] = true;
-            $options[CURLOPT_POSTFIELDS] = $queryString;
+            $options[CurlOption::POST->value] = true;
+            $options[CurlOption::POSTFIELDS->value] = $queryString;
         } elseif ($method === Method::GET && !empty($params)) {
-            $options[CURLOPT_URL] = $url . '?' . $queryString;
+            $options[CurlOption::URL->value] = "{$url}?{$queryString}";
         }
 
         curl_setopt_array($ch, $options);
@@ -139,8 +143,8 @@ class ApiClient
         $response = curl_exec($ch);
         $curlErrno = curl_errno($ch);
         $curlError = curl_error($ch);
-        $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $headerSize = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $httpCode = (int) curl_getinfo($ch, CurlInfo::HTTP_CODE->value());
+        $headerSize = (int) curl_getinfo($ch, CurlInfo::HEADER_SIZE->value());
 
         curl_close($ch);
 
@@ -193,37 +197,43 @@ class ApiClient
      */
     private function handleHttpErrors(Response $response): void
     {
-        match (true) {
-            $response->statusCode === 401 => throw new AuthenticationException(
+        $statusCode = StatusCode::fromInt($response->statusCode);
+
+        match ($statusCode) {
+            StatusCode::UNAUTHORIZED => throw new AuthenticationException(
                 'Invalid or missing API key',
-                401,
-                ['status_code' => 401]
+                StatusCode::UNAUTHORIZED->value,
+                ['status_code' => StatusCode::UNAUTHORIZED->value]
             ),
-            $response->statusCode === 403 => throw new ForbiddenException(
+            StatusCode::FORBIDDEN => throw new ForbiddenException(
                 'Access forbidden - insufficient permissions',
-                403,
-                ['status_code' => 403]
+                StatusCode::FORBIDDEN->value,
+                ['status_code' => StatusCode::FORBIDDEN->value]
             ),
-            $response->statusCode === 404 => throw new NotFoundException(
+            StatusCode::NOT_FOUND => throw new NotFoundException(
                 'Resource not found',
-                404,
-                ['status_code' => 404]
+                StatusCode::NOT_FOUND->value,
+                ['status_code' => StatusCode::NOT_FOUND->value]
             ),
-            $response->statusCode === 429 => throw new RateLimitException(
+            StatusCode::TOO_MANY_REQUESTS => throw new RateLimitException(
                 'Rate limit exceeded',
-                429,
+                StatusCode::TOO_MANY_REQUESTS->value,
                 [
-                    'status_code' => 429,
+                    'status_code' => StatusCode::TOO_MANY_REQUESTS->value,
                     'retry_after' => (int) ($response->getHeader('Retry-After') ?? 60),
                 ]
             ),
-            $response->statusCode >= 500 => throw new ApiException(
+            default => null,
+        };
+
+        // Handle server errors (5xx)
+        if ($statusCode?->isServerError() ?? false) {
+            throw new ApiException(
                 'Server error',
                 $response->statusCode,
                 ['status_code' => $response->statusCode]
-            ),
-            default => null,
-        };
+            );
+        }
     }
 
     /**
@@ -260,7 +270,7 @@ class ApiClient
      */
     private function buildUrl(string $endpoint): string
     {
-        return $this->config->apiUrl . '/' . ltrim($endpoint, '/');
+        return "{$this->config->apiUrl}/" . ltrim($endpoint, '/');
     }
 
     /**
