@@ -56,62 +56,86 @@ final class Digistore24
     /**
      * Affiliate management
      */
-    public readonly AffiliateResource $affiliates;
+    public AffiliateResource $affiliates {
+        get => $this->affiliates ??= new AffiliateResource($this->client);
+    }
 
     /**
      * Billing operations
      */
-    public readonly BillingResource $billing;
+    public BillingResource $billing {
+        get => $this->billing ??= new BillingResource($this->client);
+    }
 
     /**
      * Buyer information
      */
-    public readonly BuyerResource $buyers;
+    public BuyerResource $buyers {
+        get => $this->buyers ??= new BuyerResource($this->client);
+    }
 
     /**
      * Buy URL management
      */
-    public readonly BuyUrlResource $buyUrls;
+    public BuyUrlResource $buyUrls {
+        get => $this->buyUrls ??= new BuyUrlResource($this->client);
+    }
 
     /**
      * Country information
      */
-    public readonly CountryResource $countries;
+    public CountryResource $countries {
+        get => $this->countries ??= new CountryResource($this->client);
+    }
 
     /**
      * IPN/Webhook management
      */
-    public readonly IpnResource $ipn;
+    public IpnResource $ipn {
+        get => $this->ipn ??= new IpnResource($this->client);
+    }
 
     /**
      * API monitoring
      */
-    public readonly MonitoringResource $monitoring;
+    public MonitoringResource $monitoring {
+        get => $this->monitoring ??= new MonitoringResource($this->client);
+    }
 
     /**
      * Product management
      */
-    public readonly ProductResource $products;
+    public ProductResource $products {
+        get => $this->products ??= new ProductResource($this->client);
+    }
 
     /**
      * Purchase management
      */
-    public readonly PurchaseResource $purchases;
+    public PurchaseResource $purchases {
+        get => $this->purchases ??= new PurchaseResource($this->client);
+    }
 
     /**
      * Rebilling/Subscription management
      */
-    public readonly RebillingResource $rebilling;
+    public RebillingResource $rebilling {
+        get => $this->rebilling ??= new RebillingResource($this->client);
+    }
 
     /**
      * User/Authentication management
      */
-    public readonly UserResource $users;
+    public UserResource $users {
+        get => $this->users ??= new UserResource($this->client);
+    }
 
     /**
      * Voucher management
      */
-    public readonly VoucherResource $vouchers;
+    public VoucherResource $vouchers {
+        get => $this->vouchers ??= new VoucherResource($this->client);
+    }
 
     /**
      * Create a new Digistore24 API client
@@ -144,20 +168,6 @@ final class Digistore24
         );
 
         $this->client = new ApiClient($config);
-
-        // Initialize all resources
-        $this->affiliates = new AffiliateResource($this->client);
-        $this->billing = new BillingResource($this->client);
-        $this->buyers = new BuyerResource($this->client);
-        $this->buyUrls = new BuyUrlResource($this->client);
-        $this->countries = new CountryResource($this->client);
-        $this->ipn = new IpnResource($this->client);
-        $this->monitoring = new MonitoringResource($this->client);
-        $this->products = new ProductResource($this->client);
-        $this->purchases = new PurchaseResource($this->client);
-        $this->rebilling = new RebillingResource($this->client);
-        $this->users = new UserResource($this->client);
-        $this->vouchers = new VoucherResource($this->client);
     }
 
     /**
