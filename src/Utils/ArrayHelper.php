@@ -220,7 +220,7 @@ final class ArrayHelper
     /**
      * Convert string to camelCase
      */
-    private static function toCamelCase(string $value): string
+    public static function toCamelCase(string $value): string
     {
         $value = str_replace(['-', '_'], ' ', $value);
         $value = ucwords($value);
@@ -231,7 +231,7 @@ final class ArrayHelper
     /**
      * Convert string to snake_case
      */
-    private static function toSnakeCase(string $value): string
+    public static function toSnakeCase(string $value): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $value) ?? $value);
     }
