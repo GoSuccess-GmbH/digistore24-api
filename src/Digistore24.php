@@ -27,8 +27,17 @@ use GoSuccess\Digistore24\Resource\VoucherResource;
  * 
  * @example
  * ```php
- * // Initialize client
- * $ds24 = new Digistore24('YOUR-API-KEY');
+ * // Initialize client with simple configuration
+ * $config = new Configuration('YOUR-API-KEY');
+ * $ds24 = new Digistore24($config);
+ * 
+ * // Or with advanced options
+ * $config = new Configuration(
+ *     apiKey: 'YOUR-API-KEY',
+ *     timeout: 60,
+ *     debug: true
+ * );
+ * $ds24 = new Digistore24($config);
  * 
  * // Create a buy URL
  * $request = new CreateBuyUrlRequest(productId: 12345);
@@ -59,16 +68,7 @@ final class Digistore24
     public ApiClient $client {
         get {
             if (!isset($this->client)) {
-                $config = new Configuration(
-                    apiKey: $this->apiKey,
-                    baseUrl: $this->baseUrl,
-                    timeout: $this->timeout,
-                    language: $this->language,
-                    maxRetries: $this->maxRetries,
-                    operatorName: $this->operatorName,
-                    debug: $this->debug,
-                );
-                $this->client = new ApiClient($config);
+                $this->client = new ApiClient($this->config);
             }
             return $this->client;
         }
@@ -161,22 +161,10 @@ final class Digistore24
     /**
      * Create a new Digistore24 API client
      * 
-     * @param string $apiKey Digistore24 API key (format: XXX-XXXXXXXXXXXXXXXXX)
-     * @param string $baseUrl Base URL for API (default: https://www.digistore24.com)
-     * @param int $timeout Request timeout in seconds (default: 30)
-     * @param string $language API response language (default: 'en')
-     * @param int $maxRetries Maximum number of retry attempts for failed requests (default: 3)
-     * @param string|null $operatorName Optional operator name for audit logging
-     * @param bool $debug Enable debug mode with detailed logging (default: false)
+     * @param Configuration $config API configuration object
      */
     public function __construct(
-        private readonly string $apiKey,
-        private readonly string $baseUrl = 'https://www.digistore24.com',
-        private readonly int $timeout = 30,
-        private readonly string $language = 'en',
-        private readonly int $maxRetries = 3,
-        private readonly ?string $operatorName = null,
-        private readonly bool $debug = false,
+        private readonly Configuration $config,
     ) {
     }
 }
