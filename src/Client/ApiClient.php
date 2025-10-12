@@ -27,8 +27,8 @@ use GoSuccess\Digistore24\Http\StatusCode;
  */
 class ApiClient
 {
-    private const API_VERSION = '1.0';
-    private const USER_AGENT = 'GoSuccess-Digistore24-PHP-SDK/2.0';
+    private const string API_VERSION = '1.0';
+    private const string USER_AGENT = 'GoSuccess-Digistore24-PHP-SDK/2.0';
 
     /**
      * @param Configuration $config API configuration
@@ -158,16 +158,19 @@ class ApiClient
         $headers = $this->parseHeaders(substr((string) $response, 0, $headerSize));
         $body = substr((string) $response, $headerSize);
 
+        $bodyPreview = substr($body, 0, 500);
         $this->log("Response: HTTP {$httpCode}");
-        $this->log("Body: " . substr($body, 0, 500));
+        $this->log("Body: {$bodyPreview}");
 
         // Parse JSON
         $data = json_decode($body, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
+            $jsonError = json_last_error_msg();
+            $bodyPreview = substr($body, 0, 1000);
             throw new ApiException(
                 'Invalid JSON response from API',
                 0,
-                ['json_error' => json_last_error_msg(), 'body' => substr($body, 0, 1000)]
+                ['json_error' => $jsonError, 'body' => $bodyPreview]
             );
         }
 
@@ -267,7 +270,8 @@ class ApiClient
      */
     private function buildUrl(string $endpoint): string
     {
-        return "{$this->config->apiUrl}/" . ltrim($endpoint, '/');
+        $cleanEndpoint = ltrim($endpoint, '/');
+        return "{$this->config->apiUrl}/{$cleanEndpoint}";
     }
 
     /**
