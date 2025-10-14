@@ -8,9 +8,11 @@ use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Eticket\CreateEticketRequest;
 use GoSuccess\Digistore24\Api\Request\Eticket\GetEticketRequest;
 use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketsRequest;
+use GoSuccess\Digistore24\Api\Request\Eticket\ValidateEticketRequest;
 use GoSuccess\Digistore24\Api\Response\Eticket\CreateEticketResponse;
 use GoSuccess\Digistore24\Api\Response\Eticket\GetEticketResponse;
 use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketsResponse;
+use GoSuccess\Digistore24\Api\Response\Eticket\ValidateEticketResponse;
 
 /**
  * E-Ticket Resource
@@ -57,5 +59,20 @@ final class EticketResource extends AbstractResource
     public function list(ListEticketsRequest $request): ListEticketsResponse
     {
         return $this->executeTyped($request, ListEticketsResponse::class);
+    }
+
+    /**
+     * Validate an e-ticket
+     * 
+     * Marks an e-ticket as validated (scanned/used). This is typically used at event
+     * check-in to grant access and prevent duplicate entries.
+     * 
+     * @param ValidateEticketRequest $request The validate e-ticket request
+     * @return ValidateEticketResponse The response with validation details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function validate(ValidateEticketRequest $request): ValidateEticketResponse
+    {
+        return $this->executeTyped($request, ValidateEticketResponse::class);
     }
 }
