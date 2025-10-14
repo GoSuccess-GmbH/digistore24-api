@@ -11,33 +11,49 @@ final class UpdateProductGroupRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new UpdateProductGroupRequest();
+        $request = new UpdateProductGroupRequest(
+            productGroupId: 'PG123',
+            data: ['name' => 'Updated Group']
+        );
+        
         $this->assertInstanceOf(UpdateProductGroupRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new UpdateProductGroupRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new UpdateProductGroupRequest(
+            productGroupId: 'PG123',
+            data: ['name' => 'Updated Group']
+        );
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('updateProductGroup', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_product_group_id_and_data(): void
     {
-        $request = new UpdateProductGroupRequest();
+        $request = new UpdateProductGroupRequest(
+            productGroupId: 'PG123',
+            data: ['name' => 'Updated Group', 'description' => 'New Description']
+        );
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('PG123', $array['product_group_id']);
+        $this->assertSame('Updated Group', $array['name']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new UpdateProductGroupRequest();
+        $request = new UpdateProductGroupRequest(
+            productGroupId: 'PG123',
+            data: ['name' => 'Updated Group']
+        );
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
