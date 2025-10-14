@@ -10,12 +10,14 @@ use GoSuccess\Digistore24\Api\Request\Product\CopyProductRequest;
 use GoSuccess\Digistore24\Api\Request\Product\DeleteProductRequest;
 use GoSuccess\Digistore24\Api\Request\Product\GetProductRequest;
 use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
+use GoSuccess\Digistore24\Api\Request\Product\ListProductTypesRequest;
 use GoSuccess\Digistore24\Api\Request\Product\UpdateProductRequest;
 use GoSuccess\Digistore24\Api\Response\Product\CreateProductResponse;
 use GoSuccess\Digistore24\Api\Response\Product\CopyProductResponse;
 use GoSuccess\Digistore24\Api\Response\Product\DeleteProductResponse;
 use GoSuccess\Digistore24\Api\Response\Product\GetProductResponse;
 use GoSuccess\Digistore24\Api\Response\Product\ListProductsResponse;
+use GoSuccess\Digistore24\Api\Response\Product\ListProductTypesResponse;
 use GoSuccess\Digistore24\Api\Response\Product\UpdateProductResponse;
 
 /**
@@ -115,5 +117,23 @@ final class ProductResource extends AbstractResource
     public function delete(DeleteProductRequest $request): DeleteProductResponse
     {
         return $this->executeTyped($request, DeleteProductResponse::class);
+    }
+
+    /**
+     * List all available product types
+     * 
+     * Returns a list of all product types available in Digistore24. Use these
+     * product type IDs when creating or updating products with the createProduct
+     * or updateProduct endpoints.
+     * 
+     * @link https://digistore24.com/api/docs/paths/listProductTypes.yaml OpenAPI Specification
+     * 
+     * @param ListProductTypesRequest $request The list product types request
+     * @return ListProductTypesResponse The response with all available product types
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function listProductTypes(ListProductTypesRequest $request): ListProductTypesResponse
+    {
+        return $this->executeTyped($request, ListProductTypesResponse::class);
     }
 }
