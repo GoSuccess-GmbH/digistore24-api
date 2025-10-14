@@ -122,19 +122,19 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ updateProductGroup - Update product group
 - ⏳ deleteProductGroup - Delete product group
 
-### Products (6/6)
+### Products (2/6)
 - ⏳ createProduct - Create a product
-- ⏳ getProduct - Get product details
-- ⏳ listProducts - List all products
+- ✅ getProduct - Get product details
+- ✅ listProducts - List all products
 - ⏳ copyProduct - Copy/duplicate a product
 - ⏳ updateProduct - Update product
 - ⏳ deleteProduct - Delete product
 - ⏳ listProductTypes - List available product types
 
-### Purchases (10/10)
+### Purchases (3/10)
 - ✅ createAddonChangePurchase - Create addon change order
-- ⏳ getPurchase - Get purchase details
-- ⏳ listPurchases - List all purchases
+- ✅ getPurchase - Get purchase details
+- ✅ listPurchases - List all purchases
 - ⏳ listPurchasesOfEmail - List purchases by email
 - ⏳ getPurchaseTracking - Get purchase tracking data
 - ⏳ getPurchaseDownloads - Get download links
