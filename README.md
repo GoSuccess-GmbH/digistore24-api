@@ -33,11 +33,22 @@ composer require gosuccess/php-ds24-api-wrapper
 <?php
 
 use GoSuccess\Digistore24\Digistore24;
+use GoSuccess\Digistore24\Client\Configuration;
 use GoSuccess\Digistore24\Request\BuyUrl\CreateBuyUrlRequest;
 use GoSuccess\Digistore24\DataTransferObject\BuyerData;
 
-// Initialize the client
-$ds24 = new Digistore24('YOUR-API-KEY');
+// Initialize configuration
+$config = new Configuration('YOUR-API-KEY');
+
+// Or with advanced options
+$config = new Configuration(
+    apiKey: 'YOUR-API-KEY',
+    timeout: 60,
+    debug: true
+);
+
+// Create client
+$ds24 = new Digistore24($config);
 
 // Create a buy URL
 $request = new CreateBuyUrlRequest();
