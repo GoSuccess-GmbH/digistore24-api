@@ -213,9 +213,17 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 ## Summary
 
 - **Total Endpoints**: ~130+
-- **Implemented**: 4 (logMemberAccess, createAddonChangePurchase, createImage, createEticket)
-- **Remaining**: ~126
-- **Progress**: 3%
+- **Implemented**: 21 endpoints across 5 complete categories
+- **Remaining**: ~109
+- **Progress**: 16%
+
+### Complete Categories (5)
+1. ✅ Account Access (2/2) - 100%
+2. ✅ E-Tickets (7/7) - 100%
+3. ✅ Images (4/4) - 100%
+4. ✅ Buy URLs (3/3) - 100%
+5. ⚠️ Products (2/6) - 33% (getProduct, listProducts)
+6. ⚠️ Purchases (3/10+) - 30% (createAddonChangePurchase, getPurchase, listPurchases)
 
 ## Implementation Priority
 
