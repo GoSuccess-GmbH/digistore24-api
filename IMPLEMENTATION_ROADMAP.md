@@ -131,19 +131,19 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ✅ deleteProduct - Delete product
 - ⏳ listProductTypes - List available product types
 
-### Purchases (7/10)
+### Purchases (11/11)
 - ✅ createAddonChangePurchase - Create addon change order
 - ✅ getPurchase - Get purchase details
 - ✅ listPurchases - List all purchases
 - ✅ listPurchasesOfEmail - List purchases by email
 - ✅ getPurchaseTracking - Get purchase tracking data
-- ⏳ getPurchaseDownloads - Get download links
+- ✅ getPurchaseDownloads - Get download links
 - ⏳ getCustomerToAffiliateBuyerDetails - Get customer-to-affiliate details
 - ✅ createUpgradePurchase - Create upgrade order
 - ✅ addBalanceToPurchase - Add balance to purchase
-- ⏳ updatePurchase - Update purchase
-- ⏳ refundPurchase - Refund entire purchase
-- ⏳ resendPurchaseConfirmationMail - Resend confirmation email
+- ✅ updatePurchase - Update purchase
+- ✅ refundPurchase - Refund entire purchase
+- ✅ resendPurchaseConfirmationMail - Resend confirmation email
 
 ### Rebilling (4/4)
 - ⏳ createRebillingPayment - Create rebilling payment
@@ -213,19 +213,17 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 ## Summary
 
 - **Total Endpoints**: ~130+
-- **Implemented**: 29 endpoints across 5 categories
-- **Remaining**: ~101
-- **Progress**: 22%
+- **Implemented**: 33 endpoints across 6 complete categories
+- **Remaining**: ~97
+- **Progress**: 25%
 
-### Complete Categories
+### Complete Categories (6)
 1. ✅ Account Access (2/2) - 100%
 2. ✅ E-Tickets (7/7) - 100%
 3. ✅ Images (4/4) - 100%
 4. ✅ Buy URLs (3/3) - 100%
 5. ✅ Products (6/6) - 100%
-
-### In Progress
-6. 🚧 Purchases (7/10+) - 70% (missing: updatePurchase, refundPurchase, resendPurchaseConfirmationMail, getPurchaseDownloads, getCustomerToAffiliateBuyerDetails)
+6. ✅ Purchases (11/11) - 100%
 
 ## Implementation Priority
 
