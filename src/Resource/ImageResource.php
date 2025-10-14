@@ -6,9 +6,13 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Image\CreateImageRequest;
+use GoSuccess\Digistore24\Api\Request\Image\DeleteImageRequest;
 use GoSuccess\Digistore24\Api\Request\Image\GetImageRequest;
+use GoSuccess\Digistore24\Api\Request\Image\ListImagesRequest;
 use GoSuccess\Digistore24\Api\Response\Image\CreateImageResponse;
+use GoSuccess\Digistore24\Api\Response\Image\DeleteImageResponse;
 use GoSuccess\Digistore24\Api\Response\Image\GetImageResponse;
+use GoSuccess\Digistore24\Api\Response\Image\ListImagesResponse;
 
 /**
  * Image Resource
@@ -43,5 +47,33 @@ final class ImageResource extends AbstractResource
     public function get(GetImageRequest $request): GetImageResponse
     {
         return $this->executeTyped($request, GetImageResponse::class);
+    }
+
+    /**
+     * List all images
+     * 
+     * Retrieves a list of all images, optionally filtered by usage type.
+     * 
+     * @param ListImagesRequest $request The list images request
+     * @return ListImagesResponse The response with image list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function list(ListImagesRequest $request): ListImagesResponse
+    {
+        return $this->executeTyped($request, ListImagesResponse::class);
+    }
+
+    /**
+     * Delete an image
+     * 
+     * Deletes an image from Digistore24.
+     * 
+     * @param DeleteImageRequest $request The delete image request
+     * @return DeleteImageResponse The response indicating success
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function delete(DeleteImageRequest $request): DeleteImageResponse
+    {
+        return $this->executeTyped($request, DeleteImageResponse::class);
     }
 }
