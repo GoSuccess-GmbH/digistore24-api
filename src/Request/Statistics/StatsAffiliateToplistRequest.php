@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Statistics;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class StatsAffiliateToplistRequest extends AbstractRequest
+final class StatsAffiliateToplistRequest extends AbstractRequest
 {
     public function __construct(
         private ?string $from = null,

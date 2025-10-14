@@ -13,7 +13,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  * 
  * @link https://digistore24.com/api/docs/paths/deleteBuyUrl.yaml
  */
-final readonly class DeleteBuyUrlRequest extends AbstractRequest
+final class DeleteBuyUrlRequest extends AbstractRequest
 {
     /**
      * @param int $id Buy URL ID to delete

@@ -46,7 +46,7 @@ final readonly class BuyUrlListItem
  * 
  * Contains a list of buy URLs.
  */
-final readonly class ListBuyUrlsResponse extends AbstractResponse
+final class ListBuyUrlsResponse extends AbstractResponse
 {
     /**
      * @param array<BuyUrlListItem> $items List of buy URLs

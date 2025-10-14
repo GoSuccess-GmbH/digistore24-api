@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\SmartUpgrade;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class GetSmartupgradeRequest extends AbstractRequest
+final class GetSmartupgradeRequest extends AbstractRequest
 {
     public function __construct(private string $smartupgradeId, private ?string $purchaseId = null) {}
     public function getEndpoint(): string { return 'getSmartupgrade'; }

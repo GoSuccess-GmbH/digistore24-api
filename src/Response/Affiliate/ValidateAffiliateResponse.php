@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Affiliate API endpoint.
  */
-final readonly class ValidateAffiliateResponse extends AbstractResponse
+final class ValidateAffiliateResponse extends AbstractResponse
 {
     public function __construct(private bool $isValid, private array $data)
     {

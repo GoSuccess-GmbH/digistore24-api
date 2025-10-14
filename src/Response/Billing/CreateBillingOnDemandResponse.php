@@ -14,7 +14,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/createBillingOnDemand.yaml
  */
-final readonly class CreateBillingOnDemandResponse extends AbstractResponse
+final class CreateBillingOnDemandResponse extends AbstractResponse
 {
     public function __construct(
         private string $createdPurchaseId,

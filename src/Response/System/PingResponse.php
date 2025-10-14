@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/ping.yaml
  */
-final readonly class PingResponse extends AbstractResponse
+final class PingResponse extends AbstractResponse
 {
     public function __construct(
         private string $result,

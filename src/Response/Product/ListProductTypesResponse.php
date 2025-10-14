@@ -16,7 +16,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/listProductTypes.yaml
  */
-final readonly class ListProductTypesResponse extends AbstractResponse
+final class ListProductTypesResponse extends AbstractResponse
 {
     /**
      * @param array<int, object{id: int, name: string, category: string}> $productTypes

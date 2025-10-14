@@ -19,7 +19,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/createBillingOnDemand.yaml
  */
-final readonly class CreateBillingOnDemandRequest extends AbstractRequest
+final class CreateBillingOnDemandRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The reference order (must support rebilling)

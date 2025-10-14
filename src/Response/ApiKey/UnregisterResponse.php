@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the ApiKey API endpoint.
  */
-final readonly class UnregisterResponse extends AbstractResponse
+final class UnregisterResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

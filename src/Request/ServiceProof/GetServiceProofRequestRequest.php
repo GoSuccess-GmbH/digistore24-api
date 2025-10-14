@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ServiceProof;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class GetServiceProofRequestRequest extends AbstractRequest
+final class GetServiceProofRequestRequest extends AbstractRequest
 {
     public function __construct(private string $serviceProofRequestId) {}
     public function getEndpoint(): string { return 'getServiceProofRequest'; }

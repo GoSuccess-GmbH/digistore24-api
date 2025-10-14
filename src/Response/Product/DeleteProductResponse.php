@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Product API endpoint.
  */
-final readonly class DeleteProductResponse extends AbstractResponse
+final class DeleteProductResponse extends AbstractResponse
 {
     public function __construct(private bool $success = true)
     {

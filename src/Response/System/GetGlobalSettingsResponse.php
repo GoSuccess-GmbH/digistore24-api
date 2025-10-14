@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/getGlobalSettings.yaml
  */
-final readonly class GetGlobalSettingsResponse extends AbstractResponse
+final class GetGlobalSettingsResponse extends AbstractResponse
 {
     /**
      * @param array<string, array{label: string, limits: array{max_file_size_kb: int, min_width: int, max_width: int, min_height: int, max_height: int}, limits_msg: string}> $imageMetas

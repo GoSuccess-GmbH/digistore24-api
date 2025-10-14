@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the OrderForm API endpoint.
  */
-final readonly class DeleteOrderformResponse extends AbstractResponse
+final class DeleteOrderformResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

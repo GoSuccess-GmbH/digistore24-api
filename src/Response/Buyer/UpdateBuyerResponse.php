@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Buyer API endpoint.
  */
-final readonly class UpdateBuyerResponse extends AbstractResponse
+final class UpdateBuyerResponse extends AbstractResponse
 {
     public function __construct(private string $result, private array $data)
     {

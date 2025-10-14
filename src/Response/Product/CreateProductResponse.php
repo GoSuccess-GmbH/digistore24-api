@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Product API endpoint.
  */
-final readonly class CreateProductResponse extends AbstractResponse
+final class CreateProductResponse extends AbstractResponse
 {
     public function __construct(private int $productId)
     {

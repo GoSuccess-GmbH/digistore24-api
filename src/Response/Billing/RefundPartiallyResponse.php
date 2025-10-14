@@ -14,7 +14,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/refundPartially.yaml
  */
-final readonly class RefundPartiallyResponse extends AbstractResponse
+final class RefundPartiallyResponse extends AbstractResponse
 {
     /**
      * @param string $result Result status of the refund

@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Delivery;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class UpdateDeliveryRequest extends AbstractRequest
+final class UpdateDeliveryRequest extends AbstractRequest
 {
     public function __construct(private string $deliveryId, private array $data) {}
     public function getEndpoint(): string { return 'updateDelivery'; }

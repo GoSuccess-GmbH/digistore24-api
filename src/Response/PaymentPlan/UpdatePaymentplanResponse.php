@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the PaymentPlan API endpoint.
  */
-final readonly class UpdatePaymentplanResponse extends AbstractResponse
+final class UpdatePaymentplanResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

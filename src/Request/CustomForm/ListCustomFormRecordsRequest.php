@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/listCustomFormRecords.yaml
  */
-final readonly class ListCustomFormRecordsRequest extends AbstractRequest
+final class ListCustomFormRecordsRequest extends AbstractRequest
 {
     /**
      * @param string|null $purchaseId Optional purchase ID to filter records

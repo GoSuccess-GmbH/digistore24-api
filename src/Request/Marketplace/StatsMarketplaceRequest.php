@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Marketplace;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class StatsMarketplaceRequest extends AbstractRequest
+final class StatsMarketplaceRequest extends AbstractRequest
 {
     public function __construct(private ?string $from = null, private ?string $to = null) {}
     public function getEndpoint(): string { return 'statsMarketplace'; }

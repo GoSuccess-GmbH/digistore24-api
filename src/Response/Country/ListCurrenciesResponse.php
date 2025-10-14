@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 /**
  * @see https://digistore24.com/api/docs/paths/listCurrencies.yaml
  */
-final readonly class ListCurrenciesResponse extends AbstractResponse
+final class ListCurrenciesResponse extends AbstractResponse
 {
     /**
      * @param array<int, object{id: int, code: string, symbol: string, min_price: float, max_price: float, name: string}> $currencies

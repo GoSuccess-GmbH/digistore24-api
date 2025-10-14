@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Affiliate API endpoint.
  */
-final readonly class SetReferringAffiliateResponse extends AbstractResponse
+final class SetReferringAffiliateResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

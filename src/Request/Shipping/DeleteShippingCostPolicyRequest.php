@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Shipping;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class DeleteShippingCostPolicyRequest extends AbstractRequest
+final class DeleteShippingCostPolicyRequest extends AbstractRequest
 {
     public function __construct(private string $shippingCostPolicyId) {}
     public function getEndpoint(): string { return 'deleteShippingCostPolicy'; }

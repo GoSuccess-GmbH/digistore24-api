@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 /**
  * @see https://digistore24.com/api/docs/paths/listCountries.yaml
  */
-final readonly class ListCountriesResponse extends AbstractResponse
+final class ListCountriesResponse extends AbstractResponse
 {
     /**
      * @param array<string, string> $countries Country code => Country name

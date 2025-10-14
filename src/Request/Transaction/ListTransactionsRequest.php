@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Transaction;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class ListTransactionsRequest extends AbstractRequest
+final class ListTransactionsRequest extends AbstractRequest
 {
     public function __construct(
         private ?string $from = null,

@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the ServiceProof API endpoint.
  */
-final readonly class UpdateServiceProofRequestResponse extends AbstractResponse
+final class UpdateServiceProofRequestResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

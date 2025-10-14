@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the SmartUpgrade API endpoint.
  */
-final readonly class GetSmartupgradeResponse extends AbstractResponse
+final class GetSmartupgradeResponse extends AbstractResponse
 {
     public function __construct(private array $data)
     {

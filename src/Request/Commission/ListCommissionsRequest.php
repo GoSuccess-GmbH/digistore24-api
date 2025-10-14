@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/listCommissions.yaml
  */
-final readonly class ListCommissionsRequest extends AbstractRequest
+final class ListCommissionsRequest extends AbstractRequest
 {
     /**
      * @param string|null $from Start time (e.g., "2014-02-28 23:11:24", "now", "-3d", "start")

@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Purchase API endpoint.
  */
-final readonly class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
+final class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
 {
     public function __construct(private array $details)
     {

@@ -13,7 +13,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  * 
  * @link https://digistore24.com/api/docs/paths/listBuyUrls.yaml
  */
-final readonly class ListBuyUrlsRequest extends AbstractRequest
+final class ListBuyUrlsRequest extends AbstractRequest
 {
     public function getEndpoint(): string
     {

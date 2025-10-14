@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Upsell API endpoint.
  */
-final readonly class DeleteUpsellsResponse extends AbstractResponse
+final class DeleteUpsellsResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

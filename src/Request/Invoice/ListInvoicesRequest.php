@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Invoice;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class ListInvoicesRequest extends AbstractRequest
+final class ListInvoicesRequest extends AbstractRequest
 {
     public function __construct(private string $purchaseId) {}
     public function getEndpoint(): string { return 'listInvoices'; }

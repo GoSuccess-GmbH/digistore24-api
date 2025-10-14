@@ -14,7 +14,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/reportFraud.yaml
  */
-final readonly class ReportFraudRequest extends AbstractRequest
+final class ReportFraudRequest extends AbstractRequest
 {
     /**
      * @param int $transactionId The numeric ID of the fraud transaction

@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the User API endpoint.
  */
-final readonly class GetUserInfoResponse extends AbstractResponse
+final class GetUserInfoResponse extends AbstractResponse
 {
     public function __construct(private array $userInfo)
     {

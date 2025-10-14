@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/renderJsTrackingCode.yaml
  */
-final readonly class RenderJsTrackingCodeRequest extends AbstractRequest
+final class RenderJsTrackingCodeRequest extends AbstractRequest
 {
     /**
      * @param string|null $affiliateInput The name of the HTML form input field for affiliate name

@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\PaymentPlan;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class UpdatePaymentplanRequest extends AbstractRequest
+final class UpdatePaymentplanRequest extends AbstractRequest
 {
     public function __construct(private string $paymentplanId, private array $data) {}
     public function getEndpoint(): string { return 'updatePaymentplan'; }

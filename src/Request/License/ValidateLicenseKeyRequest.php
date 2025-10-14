@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/validateLicenseKey.yaml
  */
-final readonly class ValidateLicenseKeyRequest extends AbstractRequest
+final class ValidateLicenseKeyRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The purchase ID to validate against

@@ -10,7 +10,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 /**
  * @see https://digistore24.com/api/docs/paths/listCurrencies.yaml
  */
-final readonly class ListCurrenciesRequest extends AbstractRequest
+final class ListCurrenciesRequest extends AbstractRequest
 {
     public function __construct(
         private ?string $convertTo = null,

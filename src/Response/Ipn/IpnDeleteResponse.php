@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Ipn API endpoint.
  */
-final readonly class IpnDeleteResponse extends AbstractResponse
+final class IpnDeleteResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

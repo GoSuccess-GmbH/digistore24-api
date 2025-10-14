@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ConversionTool;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class ListConversionToolsRequest extends AbstractRequest
+final class ListConversionToolsRequest extends AbstractRequest
 {
     public function __construct(private string $type) {}
     public function getEndpoint(): string { return 'listConversionTools'; }

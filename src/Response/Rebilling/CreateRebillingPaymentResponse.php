@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Rebilling API endpoint.
  */
-final readonly class CreateRebillingPaymentResponse extends AbstractResponse
+final class CreateRebillingPaymentResponse extends AbstractResponse
 {
     public function __construct(private string $result, private array $data)
     {

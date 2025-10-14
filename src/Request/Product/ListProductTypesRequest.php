@@ -16,7 +16,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/listProductTypes.yaml
  */
-final readonly class ListProductTypesRequest extends AbstractRequest
+final class ListProductTypesRequest extends AbstractRequest
 {
     public function __construct()
     {

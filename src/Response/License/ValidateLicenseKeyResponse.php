@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/validateLicenseKey.yaml
  */
-final readonly class ValidateLicenseKeyResponse extends AbstractResponse
+final class ValidateLicenseKeyResponse extends AbstractResponse
 {
     public function __construct(
         private string $isLicenseValid,

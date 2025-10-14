@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Purchase API endpoint.
  */
-final readonly class AddBalanceToPurchaseResponse extends AbstractResponse
+final class AddBalanceToPurchaseResponse extends AbstractResponse
 {
     public function __construct(private float $oldBalance, private float $newBalance)
     {

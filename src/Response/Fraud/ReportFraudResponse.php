@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/reportFraud.yaml
  */
-final readonly class ReportFraudResponse extends AbstractResponse
+final class ReportFraudResponse extends AbstractResponse
 {
     /**
      * @param string $result

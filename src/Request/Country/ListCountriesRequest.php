@@ -10,7 +10,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 /**
  * @see https://digistore24.com/api/docs/paths/listCountries.yaml
  */
-final readonly class ListCountriesRequest extends AbstractRequest
+final class ListCountriesRequest extends AbstractRequest
 {
     public function __construct() {}
 

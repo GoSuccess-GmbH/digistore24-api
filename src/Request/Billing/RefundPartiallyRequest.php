@@ -20,7 +20,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/refundPartially.yaml
  */
-final readonly class RefundPartiallyRequest extends AbstractRequest
+final class RefundPartiallyRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The purchase ID to refund

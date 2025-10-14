@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Purchase API endpoint.
  */
-final readonly class RefundPurchaseResponse extends AbstractResponse
+final class RefundPurchaseResponse extends AbstractResponse
 {
     public function __construct(private string $result, private array $data)
     {

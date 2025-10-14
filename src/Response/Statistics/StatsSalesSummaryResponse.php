@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Statistics API endpoint.
  */
-final readonly class StatsSalesSummaryResponse extends AbstractResponse
+final class StatsSalesSummaryResponse extends AbstractResponse
 {
     public function __construct(private array $data)
     {

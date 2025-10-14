@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/renderJsTrackingCode.yaml
  */
-final readonly class RenderJsTrackingCodeResponse extends AbstractResponse
+final class RenderJsTrackingCodeResponse extends AbstractResponse
 {
     public function __construct(
         private string $result,

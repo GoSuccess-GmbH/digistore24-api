@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/getGlobalSettings.yaml
  */
-final readonly class GetGlobalSettingsRequest extends AbstractRequest
+final class GetGlobalSettingsRequest extends AbstractRequest
 {
     public function __construct()
     {

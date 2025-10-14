@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Shipping API endpoint.
  */
-final readonly class GetShippingCostPolicyResponse extends AbstractResponse
+final class GetShippingCostPolicyResponse extends AbstractResponse
 {
     public function __construct(private array $shippingCostPolicy)
     {

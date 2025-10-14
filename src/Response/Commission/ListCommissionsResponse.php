@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/listCommissions.yaml
  */
-final readonly class ListCommissionsResponse extends AbstractResponse
+final class ListCommissionsResponse extends AbstractResponse
 {
     /**
      * @param int $pageNo Current page number

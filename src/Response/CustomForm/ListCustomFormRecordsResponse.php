@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * @see https://digistore24.com/api/docs/paths/listCustomFormRecords.yaml
  */
-final readonly class ListCustomFormRecordsResponse extends AbstractResponse
+final class ListCustomFormRecordsResponse extends AbstractResponse
 {
     /**
      * @param array<int, object{form_id: int, id: int, purchase_id: string, purchase_item_id: int, product_id: int, form_no: int, form_count: int, data: array<string, string>, address: array<string, string>}> $records

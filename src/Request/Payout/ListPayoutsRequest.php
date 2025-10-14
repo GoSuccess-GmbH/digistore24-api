@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Payout;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
-final readonly class ListPayoutsRequest extends AbstractRequest
+final class ListPayoutsRequest extends AbstractRequest
 {
     public function __construct() {}
     public function getEndpoint(): string { return 'listPayouts'; }

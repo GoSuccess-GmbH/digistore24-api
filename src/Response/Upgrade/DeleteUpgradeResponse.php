@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Upgrade API endpoint.
  */
-final readonly class DeleteUpgradeResponse extends AbstractResponse
+final class DeleteUpgradeResponse extends AbstractResponse
 {
     public function __construct(private string $result)
     {

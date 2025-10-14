@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
  *
  * @see https://digistore24.com/api/docs/paths/ping.yaml
  */
-final readonly class PingRequest extends AbstractRequest
+final class PingRequest extends AbstractRequest
 {
     public function __construct()
     {

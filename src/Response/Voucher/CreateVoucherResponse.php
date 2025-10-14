@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the Voucher API endpoint.
  */
-final readonly class CreateVoucherResponse extends AbstractResponse
+final class CreateVoucherResponse extends AbstractResponse
 {
     public function __construct(private string $result, private array $data)
     {

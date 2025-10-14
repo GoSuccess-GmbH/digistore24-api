@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the ConversionTool API endpoint.
  */
-final readonly class ValidateCouponCodeResponse extends AbstractResponse
+final class ValidateCouponCodeResponse extends AbstractResponse
 {
     public function __construct(private string $status, private array $data)
     {

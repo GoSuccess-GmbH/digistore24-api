@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  *
  * Response object for the ConversionTool API endpoint.
  */
-final readonly class ListConversionToolsResponse extends AbstractResponse
+final class ListConversionToolsResponse extends AbstractResponse
 {
     public function __construct(private array $smartupgrades)
     {

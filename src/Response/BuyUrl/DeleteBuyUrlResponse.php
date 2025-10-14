@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
  * 
  * Confirms deletion of a buy URL.
  */
-final readonly class DeleteBuyUrlResponse extends AbstractResponse
+final class DeleteBuyUrlResponse extends AbstractResponse
 {
     /**
      * @param bool $success Whether deletion was successful
