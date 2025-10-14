@@ -12,32 +12,53 @@ final class StatsMarketplaceRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new StatsMarketplaceRequest();
+        
         $this->assertInstanceOf(StatsMarketplaceRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_can_create_instance_with_dates(): void
     {
-        $request = new StatsMarketplaceRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new StatsMarketplaceRequest(from: '2024-01-01', to: '2024-12-31');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertInstanceOf(StatsMarketplaceRequest::class, $request);
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new StatsMarketplaceRequest();
+        
+        $this->assertSame('statsMarketplace', $request->getEndpoint());
+    }
+
+    public function test_to_array_returns_empty_array_without_dates(): void
+    {
+        $request = new StatsMarketplaceRequest();
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertEmpty($array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_to_array_includes_dates_when_set(): void
+    {
+        $request = new StatsMarketplaceRequest(from: '2024-01-01', to: '2024-12-31');
+        
+        $array = $request->toArray();
+        
+        $this->assertIsArray($array);
+        $this->assertSame('2024-01-01', $array['from']);
+        $this->assertSame('2024-12-31', $array['to']);
+    }
+
+    public function test_validate_returns_empty_array(): void
     {
         $request = new StatsMarketplaceRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

@@ -11,33 +11,36 @@ final class GetMarketplaceEntryRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new GetMarketplaceEntryRequest();
+        $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
+        
         $this->assertInstanceOf(GetMarketplaceEntryRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new GetMarketplaceEntryRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('getMarketplaceEntry', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_entry_id(): void
     {
-        $request = new GetMarketplaceEntryRequest();
+        $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('E12345', $array['entry_id']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new GetMarketplaceEntryRequest();
+        $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
