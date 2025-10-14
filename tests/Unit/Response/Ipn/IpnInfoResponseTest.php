@@ -12,17 +12,30 @@ final class IpnInfoResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'url' => 'https://example.com/webhook',
+                'ipn_id' => 'IPN789',
+                'active' => true
+            ]
+        ];
         $response = IpnInfoResponse::fromArray($data);
         
         $this->assertInstanceOf(IpnInfoResponse::class, $response);
+        $this->assertSame('https://example.com/webhook', $response->getUrl());
+        $this->assertArrayHasKey('active', $response->getData());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'url' => 'https://api.example.com/notifications',
+                    'ipn_id' => 'IPN012'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +43,21 @@ final class IpnInfoResponseTest extends TestCase
         $response = IpnInfoResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(IpnInfoResponse::class, $response);
+        $this->assertSame('https://api.example.com/notifications', $response->getUrl());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = IpnInfoResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

@@ -12,17 +12,30 @@ final class IpnSetupResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'ipn_id' => 'IPN123',
+                'url' => 'https://example.com/ipn'
+            ]
+        ];
         $response = IpnSetupResponse::fromArray($data);
         
         $this->assertInstanceOf(IpnSetupResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'ipn_id' => 'IPN456'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +43,21 @@ final class IpnSetupResponseTest extends TestCase
         $response = IpnSetupResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(IpnSetupResponse::class, $response);
+        $this->assertArrayHasKey('ipn_id', $response->getData());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = IpnSetupResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
