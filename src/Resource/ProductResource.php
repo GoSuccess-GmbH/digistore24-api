@@ -5,68 +5,43 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Product\GetProductRequest;
+use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
+use GoSuccess\Digistore24\Api\Response\Product\GetProductResponse;
+use GoSuccess\Digistore24\Api\Response\Product\ListProductsResponse;
 
 /**
  * Product Resource
  * 
  * Manage products and their settings.
- * 
- * @link https://digistore24.com/api/docs/tags/product
  */
 final class ProductResource extends AbstractResource
 {
     /**
-     * Get product information
+     * Get product details
      * 
-     * TODO: Implement when getProduct endpoint request/response classes are added
+     * Retrieves detailed information about a specific product.
      * 
-     * @link https://digistore24.com/api/docs/paths/getProduct.yaml
-     * 
-     * @example
-     * ```php
-     * $request = new GetProductRequest(productId: 12345);
-     * $product = $client->products->get($request);
-     * echo "Product: {$product->name}\n";
-     * ```
+     * @param GetProductRequest $request The get product request
+     * @return GetProductResponse The response with product details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
-    // public function get(GetProductRequest $request): GetProductResponse
-    // {
-    //     return $this->executeTyped($request, GetProductResponse::class);
-    // }
+    public function get(GetProductRequest $request): GetProductResponse
+    {
+        return $this->executeTyped($request, GetProductResponse::class);
+    }
 
     /**
      * List all products
      * 
-     * TODO: Implement when listProducts endpoint is added
+     * Retrieves a list of all products, optionally filtered by type or publish status.
      * 
-     * @link https://digistore24.com/api/docs/paths/listProducts.yaml
+     * @param ListProductsRequest $request The list products request
+     * @return ListProductsResponse The response with products list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
-    // public function list(ListProductsRequest $request): ListProductsResponse
-    // {
-    //     return $this->executeTyped($request, ListProductsResponse::class);
-    // }
-
-    /**
-     * Create a new product
-     * 
-     * TODO: Implement when createProduct endpoint is added
-     * 
-     * @link https://digistore24.com/api/docs/paths/createProduct.yaml
-     */
-    // public function create(CreateProductRequest $request): CreateProductResponse
-    // {
-    //     return $this->executeTyped($request, CreateProductResponse::class);
-    // }
-
-    /**
-     * Copy an existing product
-     * 
-     * TODO: Implement when copyProduct endpoint is added
-     * 
-     * @link https://digistore24.com/api/docs/paths/copyProduct.yaml
-     */
-    // public function copy(CopyProductRequest $request): CopyProductResponse
-    // {
-    //     return $this->executeTyped($request, CopyProductResponse::class);
-    // }
+    public function list(ListProductsRequest $request): ListProductsResponse
+    {
+        return $this->executeTyped($request, ListProductsResponse::class);
+    }
 }
