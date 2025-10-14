@@ -1,20 +1,32 @@
 <?php
+
 declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Api\Response\Affiliate;
+
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
+
+/**
+ * Validate Affiliate Response
+ *
+ * Response object for the Affiliate API endpoint.
+ */
 final readonly class ValidateAffiliateResponse extends AbstractResponse
 {
     public function __construct(private bool $isValid, private array $data)
     {
     }
+
     public function isValid(): bool
     {
         return $this->isValid;
     }
+
     public function getData(): array
     {
         return $this->data;
     }
+
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
