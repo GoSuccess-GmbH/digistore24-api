@@ -8,6 +8,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Purchase\AddBalanceToPurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateUpgradePurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\GetCustomerToAffiliateBuyerDetailsRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseDownloadsRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseTrackingRequest;
@@ -19,6 +20,7 @@ use GoSuccess\Digistore24\Api\Request\Purchase\UpdatePurchaseRequest;
 use GoSuccess\Digistore24\Api\Response\Purchase\AddBalanceToPurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\CreateUpgradePurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetCustomerToAffiliateBuyerDetailsResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseDownloadsResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseTrackingResponse;
@@ -208,5 +210,22 @@ final class PurchaseResource extends AbstractResource
     public function getDownloads(GetPurchaseDownloadsRequest $request): GetPurchaseDownloadsResponse
     {
         return $this->executeTyped($request, GetPurchaseDownloadsResponse::class);
+    }
+
+    /**
+     * Get customer-to-affiliate program details
+     * 
+     * Returns details on the customer-to-affiliate program for specific buyer(s).
+     * Requires customer-to-affiliate program to be set up in Digistore24 first.
+     * Provides affiliate registration URL and promotion URL for the buyer.
+     * 
+     * @param GetCustomerToAffiliateBuyerDetailsRequest $request The get customer affiliate details request
+     * @return GetCustomerToAffiliateBuyerDetailsResponse The response with affiliate program details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/getCustomerToAffiliateBuyerDetails.yaml
+     */
+    public function getCustomerToAffiliateDetails(GetCustomerToAffiliateBuyerDetailsRequest $request): GetCustomerToAffiliateBuyerDetailsResponse
+    {
+        return $this->executeTyped($request, GetCustomerToAffiliateBuyerDetailsResponse::class);
     }
 }
