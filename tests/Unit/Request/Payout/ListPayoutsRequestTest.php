@@ -12,32 +12,35 @@ final class ListPayoutsRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListPayoutsRequest();
+        
         $this->assertInstanceOf(ListPayoutsRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListPayoutsRequest();
-        $endpoint = $request->getEndpoint();
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('listPayouts', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_returns_empty_array(): void
     {
         $request = new ListPayoutsRequest();
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertEmpty($array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
         $request = new ListPayoutsRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
