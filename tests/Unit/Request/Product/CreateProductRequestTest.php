@@ -11,33 +11,41 @@ final class CreateProductRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new CreateProductRequest();
+        $request = new CreateProductRequest(nameIntern: 'Test Product');
+        
         $this->assertInstanceOf(CreateProductRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new CreateProductRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new CreateProductRequest(nameIntern: 'Test Product');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('createProduct', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_name_intern(): void
     {
-        $request = new CreateProductRequest();
+        $request = new CreateProductRequest(
+            nameIntern: 'Test Product',
+            nameDe: 'Testprodukt',
+            productTypeId: 1
+        );
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('Test Product', $array['name_intern']);
+        $this->assertSame('Testprodukt', $array['name_de']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new CreateProductRequest();
+        $request = new CreateProductRequest(nameIntern: 'Test Product');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

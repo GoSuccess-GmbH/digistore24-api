@@ -12,32 +12,36 @@ final class ListProductsRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListProductsRequest();
+        
         $this->assertInstanceOf(ListProductsRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListProductsRequest();
-        $endpoint = $request->getEndpoint();
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('/listProducts', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_with_parameters(): void
     {
-        $request = new ListProductsRequest();
+        $request = new ListProductsRequest(productType: 'digital', onlyPublished: true);
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('digital', $array['product_type']);
+        $this->assertSame('y', $array['only_published']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
         $request = new ListProductsRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
