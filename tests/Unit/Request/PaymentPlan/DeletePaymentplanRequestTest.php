@@ -11,33 +11,36 @@ final class DeletePaymentplanRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new DeletePaymentplanRequest();
+        $request = new DeletePaymentplanRequest(paymentplanId: 'PP123');
+        
         $this->assertInstanceOf(DeletePaymentplanRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new DeletePaymentplanRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new DeletePaymentplanRequest(paymentplanId: 'PP123');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('deletePaymentplan', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_paymentplan_id(): void
     {
-        $request = new DeletePaymentplanRequest();
+        $request = new DeletePaymentplanRequest(paymentplanId: 'PP123');
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('PP123', $array['paymentplan_id']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new DeletePaymentplanRequest();
+        $request = new DeletePaymentplanRequest(paymentplanId: 'PP123');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

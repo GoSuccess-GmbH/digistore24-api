@@ -11,33 +11,26 @@ final class CreatePaymentplanRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new CreatePaymentplanRequest();
+        $request = new CreatePaymentplanRequest(data: ['name' => 'Test Plan']);
+        
         $this->assertInstanceOf(CreatePaymentplanRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new CreatePaymentplanRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new CreatePaymentplanRequest(data: ['name' => 'Test Plan']);
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('createPaymentplan', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new CreatePaymentplanRequest();
-        $array = $request->toArray();
+        $request = new CreatePaymentplanRequest(data: ['name' => 'Test Plan']);
         
-        $this->assertIsArray($array);
-    }
-
-    public function test_validate_returns_array(): void
-    {
-        $request = new CreatePaymentplanRequest();
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
