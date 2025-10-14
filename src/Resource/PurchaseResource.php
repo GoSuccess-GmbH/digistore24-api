@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
+use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
 
 /**
  * Purchase Resource
@@ -15,6 +17,23 @@ use GoSuccess\Digistore24\Api\Base\AbstractResource;
  */
 final class PurchaseResource extends AbstractResource
 {
+    /**
+     * Create addon change purchase
+     * 
+     * Creates a package change order to add or remove products from an order.
+     * The main product's quantity cannot be changed. Added products must be subscriptions.
+     * Requires "Billing on demand" right to be enabled for the vendor account.
+     * 
+     * @param CreateAddonChangePurchaseRequest $request The addon change request
+     * @return CreateAddonChangePurchaseResponse The response
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/createAddonChangePurchase.yaml
+     */
+    public function createAddonChange(CreateAddonChangePurchaseRequest $request): CreateAddonChangePurchaseResponse
+    {
+        return $this->executeTyped($request, CreateAddonChangePurchaseResponse::class);
+    }
+
     /**
      * Get purchase details
      * 
