@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Base;
 
+use GoSuccess\Digistore24\Api\Contract\RequestInterface;
 use GoSuccess\Digistore24\Api\Http\Method;
 use GoSuccess\Digistore24\Api\Util\ArrayHelper;
 use GoSuccess\Digistore24\Api\Util\Validator;
@@ -14,7 +15,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  * Base class for all API request objects.
  * Uses PHP 8.4 features for clean, type-safe requests.
  */
-abstract class AbstractRequest
+abstract class AbstractRequest implements RequestInterface
 {
     /**
      * Get the API endpoint for this request

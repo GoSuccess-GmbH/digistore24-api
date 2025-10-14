@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api;
 
 use GoSuccess\Digistore24\Api\Client\ApiClient;
 use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Contract\HttpClientInterface;
 use GoSuccess\Digistore24\Api\Resource\AffiliateResource;
 use GoSuccess\Digistore24\Api\Resource\BillingResource;
 use GoSuccess\Digistore24\Api\Resource\BuyerResource;
@@ -65,7 +66,7 @@ final class Digistore24
      * 
      * For advanced use cases where you need direct access to the HTTP client.
      */
-    public ApiClient $client {
+    public HttpClientInterface $client {
         get {
             if (!isset($this->client)) {
                 $this->client = new ApiClient($this->config);

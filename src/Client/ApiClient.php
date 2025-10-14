@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Client;
 
+use GoSuccess\Digistore24\Api\Contract\HttpClientInterface;
 use GoSuccess\Digistore24\Api\Exception\ApiException;
 use GoSuccess\Digistore24\Api\Exception\AuthenticationException;
 use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
@@ -25,7 +26,7 @@ use GoSuccess\Digistore24\Api\Http\StatusCode;
  * - Type-safe responses
  * - Comprehensive error handling
  */
-class ApiClient
+final class ApiClient implements HttpClientInterface
 {
     private const string API_VERSION = '1.0';
     private const string USER_AGENT = 'GoSuccess-Digistore24-PHP-SDK/2.0';

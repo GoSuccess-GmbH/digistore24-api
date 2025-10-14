@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Base;
 
-use GoSuccess\Digistore24\Api\Client\ApiClient;
+use GoSuccess\Digistore24\Api\Contract\HttpClientInterface;
+use GoSuccess\Digistore24\Api\Contract\RequestInterface;
+use GoSuccess\Digistore24\Api\Contract\ResponseInterface;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
@@ -16,13 +18,13 @@ use GoSuccess\Digistore24\Api\Http\Response;
 abstract class AbstractResource
 {
     public function __construct(
-        protected readonly ApiClient $client
+        protected readonly HttpClientInterface $client
     ) {}
 
     /**
      * Execute a request and get raw HTTP response
      */
-    protected function execute(AbstractRequest $request): Response
+    protected function execute(RequestInterface $request): Response
     {
         $endpoint = $request->endpoint();
         $method = $request->method();
@@ -34,12 +36,12 @@ abstract class AbstractResource
     /**
      * Execute a request and parse into typed response
      * 
-     * @template T of AbstractResponse
-     * @param AbstractRequest $request
+     * @template T of ResponseInterface
+     * @param RequestInterface $request
      * @param class-string<T> $responseClass
      * @return T
      */
-    protected function executeTyped(AbstractRequest $request, string $responseClass): AbstractResponse
+    protected function executeTyped(RequestInterface $request, string $responseClass): ResponseInterface
     {
         $response = $this->execute($request);
         return $responseClass::fromResponse($response);
