@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+namespace GoSuccess\Digistore24\Response\Statistics;
+use GoSuccess\Digistore24\Base\AbstractResponse;
+final readonly class StatsSalesResponse extends AbstractResponse
+{
+    public function __construct(private array $data) {}
+    public function getData(): array { return $this->data; }
+    public function getSales(): array { return $this->data['sales'] ?? []; }
+    public static function fromArray(array $data): self
+    {
+        return new self(data: $data['data'] ?? []);
+    }
+}
