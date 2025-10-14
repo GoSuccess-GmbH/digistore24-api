@@ -6,9 +6,9 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use GoSuccess\Digistore24\Client\ApiClient;
-use GoSuccess\Digistore24\Client\Configuration;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Client\ApiClient;
+use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 // Create configuration
 $config = new Configuration(
@@ -27,7 +27,7 @@ try {
     echo "API Version: " . $response->data['api_version'] . PHP_EOL;
     echo "Server Time: " . $response->data['data']['server_time'] . PHP_EOL;
     
-} catch (\GoSuccess\Digistore24\Exceptions\ApiException $e) {
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: " . $e->getMessage() . PHP_EOL;
     print_r($e->getContext());
 }

@@ -8,9 +8,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use GoSuccess\Digistore24\Utils\TypeConverter;
-use GoSuccess\Digistore24\Utils\ArrayHelper;
-use GoSuccess\Digistore24\Utils\Validator;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
+use GoSuccess\Digistore24\Api\Util\ArrayHelper;
+use GoSuccess\Digistore24\Api\Util\Validator;
 
 echo "=== TypeConverter Examples ===" . PHP_EOL;
 
@@ -81,7 +81,7 @@ if (!empty($errors)) {
 
 echo PHP_EOL . "=== Property Hooks Example ===" . PHP_EOL;
 
-use GoSuccess\Digistore24\Client\Configuration;
+use GoSuccess\Digistore24\Api\Client\Configuration;
 
 // Configuration with property hooks
 $config = new Configuration(

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Base;
 
 use GoSuccess\Digistore24\Api\Http\Response;
-use GoSuccess\Digistore24\Api\Utils\TypeConverter;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Abstract Response Base Class
@@ -56,8 +56,7 @@ abstract class AbstractResponse
             'int', 'integer' => TypeConverter::toInt($value),
             'float', 'double' => TypeConverter::toFloat($value),
             'bool', 'boolean' => TypeConverter::toBool($value),
-            'datetime' => TypeConverter::toDateTime($value),
-            'datetime_immutable' => TypeConverter::toDateTimeImmutable($value),
+            'datetime', 'datetime_immutable' => TypeConverter::toDateTime($value),
             'array' => TypeConverter::toArray($value),
             'string' => TypeConverter::toString($value),
             default => $value,

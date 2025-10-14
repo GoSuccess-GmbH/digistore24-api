@@ -28,10 +28,10 @@ final class BuyUrlResource extends AbstractResource
      * @param CreateBuyUrlRequest $request Request with product ID and optional parameters
      * @return CreateBuyUrlResponse Response containing the buy URL and metadata
      * 
-     * @throws \GoSuccess\Digistore24\Exception\ValidationException If request validation fails
-     * @throws \GoSuccess\Digistore24\Exception\AuthenticationException If API key is invalid
-     * @throws \GoSuccess\Digistore24\Exception\NotFoundException If product not found
-     * @throws \GoSuccess\Digistore24\Exception\RateLimitException If rate limit exceeded
+     * @throws \GoSuccess\Digistore24\Api\Exception\ValidationException If request validation fails
+     * @throws \GoSuccess\Digistore24\Api\Exception\AuthenticationException If API key is invalid
+     * @throws \GoSuccess\Digistore24\Api\Exception\NotFoundException If product not found
+     * @throws \GoSuccess\Digistore24\Api\Exception\RateLimitException If rate limit exceeded
      * 
      * @example
      * ```php

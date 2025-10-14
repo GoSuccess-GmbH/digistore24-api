@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use GoSuccess\Digistore24\Digistore24;
-use GoSuccess\Digistore24\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\DataTransferObject\BuyerData;
-use GoSuccess\Digistore24\DataTransferObject\PaymentPlanData;
-use GoSuccess\Digistore24\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
 
 /**
  * Example: Complete Digistore24 API Usage
@@ -17,13 +18,15 @@ use GoSuccess\Digistore24\DataTransferObject\TrackingData;
  */
 
 // Initialize the Digistore24 client
-$ds24 = new Digistore24(
+$config = new Configuration(
     apiKey: 'YOUR-API-KEY',
     language: 'en',
     timeout: 30,
     maxRetries: 3,
     debug: false
 );
+
+$ds24 = new Digistore24($config);
 
 // Example 1: Create a simple buy URL
 echo "=== Example 1: Simple Buy URL ===\n";
@@ -37,7 +40,7 @@ try {
     echo "URL: {$response->url}\n";
     echo "Valid until: {$response->validUntil->format('Y-m-d H:i:s')}\n";
     echo "ID: {$response->id}\n\n";
-} catch (\GoSuccess\Digistore24\Exception\ApiException $e) {
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n";
     echo "Code: {$e->getCode()}\n\n";
 }
@@ -64,7 +67,7 @@ try {
     $response = $ds24->buyUrls->create($request);
     echo "Buy URL with buyer data created!\n";
     echo "URL: {$response->url}\n\n";
-} catch (\GoSuccess\Digistore24\Exception\ValidationException $e) {
+} catch (\GoSuccess\Digistore24\Api\Exception\ValidationException $e) {
     echo "Validation error: {$e->getMessage()}\n\n";
 }
 
@@ -87,7 +90,7 @@ try {
     $response = $ds24->buyUrls->create($request);
     echo "Buy URL with payment plan created!\n";
     echo "URL: {$response->url}\n\n";
-} catch (\GoSuccess\Digistore24\Exception\ApiException $e) {
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n\n";
 }
 
@@ -109,7 +112,7 @@ try {
     $response = $ds24->buyUrls->create($request);
     echo "Buy URL with tracking created!\n";
     echo "URL: {$response->url}\n\n";
-} catch (\GoSuccess\Digistore24\Exception\ApiException $e) {
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n\n";
 }
 
@@ -171,7 +174,7 @@ try {
     echo "URL: {$response->url}\n";
     echo "Valid until: {$response->validUntil->format('Y-m-d H:i:s')}\n";
     echo "ID: {$response->id}\n\n";
-} catch (\GoSuccess\Digistore24\Exception\ApiException $e) {
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n";
     echo "Context: " . json_encode($e->getContext(), JSON_PRETTY_PRINT) . "\n\n";
 }
