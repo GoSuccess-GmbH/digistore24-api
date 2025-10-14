@@ -7,10 +7,16 @@ namespace GoSuccess\Digistore24\Api\Resource;
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Eticket\CreateEticketRequest;
 use GoSuccess\Digistore24\Api\Request\Eticket\GetEticketRequest;
+use GoSuccess\Digistore24\Api\Request\Eticket\GetEticketSettingsRequest;
+use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketLocationsRequest;
+use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketTemplatesRequest;
 use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketsRequest;
 use GoSuccess\Digistore24\Api\Request\Eticket\ValidateEticketRequest;
 use GoSuccess\Digistore24\Api\Response\Eticket\CreateEticketResponse;
 use GoSuccess\Digistore24\Api\Response\Eticket\GetEticketResponse;
+use GoSuccess\Digistore24\Api\Response\Eticket\GetEticketSettingsResponse;
+use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketLocationsResponse;
+use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketTemplatesResponse;
 use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketsResponse;
 use GoSuccess\Digistore24\Api\Response\Eticket\ValidateEticketResponse;
 
@@ -74,5 +80,47 @@ final class EticketResource extends AbstractResource
     public function validate(ValidateEticketRequest $request): ValidateEticketResponse
     {
         return $this->executeTyped($request, ValidateEticketResponse::class);
+    }
+
+    /**
+     * Get e-ticket settings
+     * 
+     * Retrieves the e-ticket configuration settings for the account.
+     * 
+     * @param GetEticketSettingsRequest $request The get e-ticket settings request
+     * @return GetEticketSettingsResponse The response with e-ticket settings
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function getSettings(GetEticketSettingsRequest $request): GetEticketSettingsResponse
+    {
+        return $this->executeTyped($request, GetEticketSettingsResponse::class);
+    }
+
+    /**
+     * List e-ticket locations
+     * 
+     * Retrieves all available e-ticket locations.
+     * 
+     * @param ListEticketLocationsRequest $request The list e-ticket locations request
+     * @return ListEticketLocationsResponse The response with locations list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function listLocations(ListEticketLocationsRequest $request): ListEticketLocationsResponse
+    {
+        return $this->executeTyped($request, ListEticketLocationsResponse::class);
+    }
+
+    /**
+     * List e-ticket templates
+     * 
+     * Retrieves all available e-ticket templates.
+     * 
+     * @param ListEticketTemplatesRequest $request The list e-ticket templates request
+     * @return ListEticketTemplatesResponse The response with templates list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function listTemplates(ListEticketTemplatesRequest $request): ListEticketTemplatesResponse
+    {
+        return $this->executeTyped($request, ListEticketTemplatesResponse::class);
     }
 }
