@@ -11,33 +11,58 @@ final class UpdateBuyerRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new UpdateBuyerRequest();
+        $request = new UpdateBuyerRequest(buyerId: 'B12345');
+        
         $this->assertInstanceOf(UpdateBuyerRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new UpdateBuyerRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new UpdateBuyerRequest(buyerId: 'B12345');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('updateBuyer', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_buyer_id_only(): void
     {
-        $request = new UpdateBuyerRequest();
+        $request = new UpdateBuyerRequest(buyerId: 'B12345');
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('B12345', $array['buyer_id']);
+        $this->assertCount(1, $array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_to_array_includes_all_optional_data(): void
     {
-        $request = new UpdateBuyerRequest();
+        $request = new UpdateBuyerRequest(
+            buyerId: 'B12345',
+            email: 'updated@example.com',
+            firstName: 'John',
+            lastName: 'Doe',
+            address: ['street' => 'Main St', 'city' => 'Berlin']
+        );
+        
+        $array = $request->toArray();
+        
+        $this->assertIsArray($array);
+        $this->assertSame('B12345', $array['buyer_id']);
+        $this->assertSame('updated@example.com', $array['email']);
+        $this->assertSame('John', $array['first_name']);
+        $this->assertSame('Doe', $array['last_name']);
+        $this->assertIsArray($array['address']);
+        $this->assertSame('Main St', $array['address']['street']);
+    }
+
+    public function test_validate_returns_empty_array(): void
+    {
+        $request = new UpdateBuyerRequest(buyerId: 'B12345');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

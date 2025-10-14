@@ -12,32 +12,53 @@ final class ListBuyersRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListBuyersRequest();
+        
         $this->assertInstanceOf(ListBuyersRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_can_create_instance_with_pagination(): void
     {
-        $request = new ListBuyersRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new ListBuyersRequest(pageNo: 2, pageSize: 50);
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertInstanceOf(ListBuyersRequest::class, $request);
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListBuyersRequest();
+        
+        $this->assertSame('listBuyers', $request->getEndpoint());
+    }
+
+    public function test_to_array_returns_empty_array_without_pagination(): void
+    {
+        $request = new ListBuyersRequest();
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertEmpty($array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_to_array_includes_pagination_data(): void
+    {
+        $request = new ListBuyersRequest(pageNo: 2, pageSize: 50);
+        
+        $array = $request->toArray();
+        
+        $this->assertIsArray($array);
+        $this->assertSame(2, $array['page_no']);
+        $this->assertSame(50, $array['page_size']);
+    }
+
+    public function test_validate_returns_empty_array(): void
     {
         $request = new ListBuyersRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
