@@ -11,15 +11,15 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  * 
  * Deletes a previously generated buy URL.
  * 
- * @link https://dev.digistore24.com/en/articles/28-deletebuyurl
+ * @link https://digistore24.com/api/docs/paths/deleteBuyUrl.yaml
  */
 final readonly class DeleteBuyUrlRequest extends AbstractRequest
 {
     /**
-     * @param int $buyUrlId Buy URL ID to delete
+     * @param int $id Buy URL ID to delete
      */
     public function __construct(
-        public int $buyUrlId,
+        public int $id,
     ) {}
 
     public function endpoint(): string
@@ -30,7 +30,7 @@ final readonly class DeleteBuyUrlRequest extends AbstractRequest
     public function toArray(): array
     {
         return [
-            'buy_url_id' => $this->buyUrlId,
+            'id' => $this->id,
         ];
     }
 
@@ -38,7 +38,7 @@ final readonly class DeleteBuyUrlRequest extends AbstractRequest
     {
         $errors = [];
 
-        if ($this->buyUrlId <= 0) {
+        if ($this->id <= 0) {
             $errors[] = 'Buy URL ID must be greater than 0';
         }
 

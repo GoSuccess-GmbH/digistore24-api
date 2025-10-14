@@ -58,12 +58,12 @@ final class BuyUrlResource extends AbstractResource
     /**
      * List all buy URLs
      * 
-     * Retrieves a paginated list of all generated buy URLs.
+     * Retrieves a list of all generated buy URLs.
      * 
      * @param ListBuyUrlsRequest $request The list buy URLs request
      * @return ListBuyUrlsResponse The response with buy URLs list
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
-     * @link https://dev.digistore24.com/en/articles/64-listbuyurls
+     * @link https://digistore24.com/api/docs/paths/listBuyUrls.yaml
      */
     public function list(ListBuyUrlsRequest $request): ListBuyUrlsResponse
     {
@@ -78,7 +78,7 @@ final class BuyUrlResource extends AbstractResource
      * @param DeleteBuyUrlRequest $request The delete buy URL request
      * @return DeleteBuyUrlResponse The response confirming deletion
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
-     * @link https://dev.digistore24.com/en/articles/28-deletebuyurl
+     * @link https://digistore24.com/api/docs/paths/deleteBuyUrl.yaml
      */
     public function delete(DeleteBuyUrlRequest $request): DeleteBuyUrlResponse
     {
