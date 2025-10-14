@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Tests\Unit\DataTransferObject;
+namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
-use GoSuccess\Digistore24\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
 use PHPUnit\Framework\TestCase;
 
 /**

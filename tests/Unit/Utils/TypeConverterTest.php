@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Tests\Unit\Utils;
+namespace GoSuccess\Digistore24\Api\Tests\Unit\Utils;
 
-use GoSuccess\Digistore24\Util\TypeConverter;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 use PHPUnit\Framework\TestCase;
 
 /**

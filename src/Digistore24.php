@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24;
+namespace GoSuccess\Digistore24\Api;
 
-use GoSuccess\Digistore24\Client\ApiClient;
-use GoSuccess\Digistore24\Client\Configuration;
-use GoSuccess\Digistore24\Resource\AffiliateResource;
-use GoSuccess\Digistore24\Resource\BillingResource;
-use GoSuccess\Digistore24\Resource\BuyerResource;
-use GoSuccess\Digistore24\Resource\BuyUrlResource;
-use GoSuccess\Digistore24\Resource\CountryResource;
-use GoSuccess\Digistore24\Resource\IpnResource;
-use GoSuccess\Digistore24\Resource\MonitoringResource;
-use GoSuccess\Digistore24\Resource\ProductResource;
-use GoSuccess\Digistore24\Resource\PurchaseResource;
-use GoSuccess\Digistore24\Resource\RebillingResource;
-use GoSuccess\Digistore24\Resource\UserResource;
-use GoSuccess\Digistore24\Resource\VoucherResource;
+use GoSuccess\Digistore24\Api\Client\ApiClient;
+use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Resource\AffiliateResource;
+use GoSuccess\Digistore24\Api\Resource\BillingResource;
+use GoSuccess\Digistore24\Api\Resource\BuyerResource;
+use GoSuccess\Digistore24\Api\Resource\BuyUrlResource;
+use GoSuccess\Digistore24\Api\Resource\CountryResource;
+use GoSuccess\Digistore24\Api\Resource\IpnResource;
+use GoSuccess\Digistore24\Api\Resource\MonitoringResource;
+use GoSuccess\Digistore24\Api\Resource\ProductResource;
+use GoSuccess\Digistore24\Api\Resource\PurchaseResource;
+use GoSuccess\Digistore24\Api\Resource\RebillingResource;
+use GoSuccess\Digistore24\Api\Resource\UserResource;
+use GoSuccess\Digistore24\Api\Resource\VoucherResource;
 
 /**
  * Digistore24 API Client

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Resource;
+namespace GoSuccess\Digistore24\Api\Resource;
 
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\Response\BuyUrl\CreateBuyUrlResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
+use GoSuccess\Digistore24\Api\Response\BuyUrl\CreateBuyUrlResponse;
 
 /**
  * Buy URL Resource

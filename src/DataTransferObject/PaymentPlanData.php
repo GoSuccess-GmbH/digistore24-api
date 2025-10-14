@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\DataTransferObject;
+namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Payment Plan Data Transfer Object

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\BuyUrl;
+namespace GoSuccess\Digistore24\Api\Request\BuyUrl;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\DataTransferObject\BuyerData;
-use GoSuccess\Digistore24\DataTransferObject\PaymentPlanData;
-use GoSuccess\Digistore24\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
 
 /**
  * Create Buy URL Request

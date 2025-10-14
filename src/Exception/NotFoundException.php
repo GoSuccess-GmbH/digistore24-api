@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Exception;
+namespace GoSuccess\Digistore24\Api\Exception;
 
 /**
  * Thrown when a requested resource is not found (HTTP 404)

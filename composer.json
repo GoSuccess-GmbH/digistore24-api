@@ -5,12 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "GoSuccess\\Digistore24\\": "src/"
+            "GoSuccess\\Digistore24\\Api\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GoSuccess\\Digistore24\\Tests\\": "tests/"
+            "GoSuccess\\Digistore24\\Api\\Tests\\": "tests/"
         }
     },
     "authors": [

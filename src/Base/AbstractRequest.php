@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Base;
+namespace GoSuccess\Digistore24\Api\Base;
 
-use GoSuccess\Digistore24\Http\Method;
-use GoSuccess\Digistore24\Utils\ArrayHelper;
-use GoSuccess\Digistore24\Utils\Validator;
+use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Utils\ArrayHelper;
+use GoSuccess\Digistore24\Api\Utils\Validator;
 
 /**
  * Abstract Request Base Class

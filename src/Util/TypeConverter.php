@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Util;
+namespace GoSuccess\Digistore24\Api\Util;
 
 use DateTimeImmutable;
 use DateTimeInterface;

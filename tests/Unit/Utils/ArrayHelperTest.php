@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Tests\Unit\Utils;
+namespace GoSuccess\Digistore24\Api\Tests\Unit\Utils;
 
-use GoSuccess\Digistore24\Util\ArrayHelper;
+use GoSuccess\Digistore24\Api\Util\ArrayHelper;
 use PHPUnit\Framework\TestCase;
 
 /**

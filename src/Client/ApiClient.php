@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Client;
+namespace GoSuccess\Digistore24\Api\Client;
 
-use GoSuccess\Digistore24\Exception\ApiException;
-use GoSuccess\Digistore24\Exception\AuthenticationException;
-use GoSuccess\Digistore24\Exception\ForbiddenException;
-use GoSuccess\Digistore24\Exception\NotFoundException;
-use GoSuccess\Digistore24\Exception\RateLimitException;
-use GoSuccess\Digistore24\Exception\RequestException;
-use GoSuccess\Digistore24\Exception\ValidationException;
-use GoSuccess\Digistore24\Http\Method;
-use GoSuccess\Digistore24\Http\Response;
-use GoSuccess\Digistore24\Http\StatusCode;
+use GoSuccess\Digistore24\Api\Exception\ApiException;
+use GoSuccess\Digistore24\Api\Exception\AuthenticationException;
+use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
+use GoSuccess\Digistore24\Api\Exception\NotFoundException;
+use GoSuccess\Digistore24\Api\Exception\RateLimitException;
+use GoSuccess\Digistore24\Api\Exception\RequestException;
+use GoSuccess\Digistore24\Api\Exception\ValidationException;
+use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Http\StatusCode;
 
 /**
  * HTTP Client for Digistore24 API

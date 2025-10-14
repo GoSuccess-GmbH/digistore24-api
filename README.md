@@ -32,10 +32,10 @@ composer require gosuccess/php-ds24-api-wrapper
 ```php
 <?php
 
-use GoSuccess\Digistore24\Digistore24;
-use GoSuccess\Digistore24\Client\Configuration;
-use GoSuccess\Digistore24\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 
 // Initialize configuration
 $config = new Configuration('YOUR-API-KEY');
@@ -99,7 +99,7 @@ $buyer->country = 'invalid';         // ❌ Throws InvalidArgumentException
 ### Create Buy URL with Payment Plan
 
 ```php
-use GoSuccess\Digistore24\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
 
 $request = new CreateBuyUrlRequest();
 $request->productId = 12345;
@@ -117,7 +117,7 @@ $response = $ds24->buyUrls->create($request);
 ### Add Tracking Parameters
 
 ```php
-use GoSuccess\Digistore24\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
 
 $tracking = new TrackingData();
 $tracking->affiliate = 'partner123';
@@ -130,7 +130,7 @@ $request->tracking = $tracking;
 ### Error Handling
 
 ```php
-use GoSuccess\Digistore24\Exception\{
+use GoSuccess\Digistore24\Api\Exception\{
     ApiException,
     AuthenticationException,
     ValidationException,

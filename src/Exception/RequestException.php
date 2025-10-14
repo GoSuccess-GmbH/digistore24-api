@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Exception;
+namespace GoSuccess\Digistore24\Api\Exception;
 
 /**
  * Thrown when HTTP request fails (cURL errors, connection issues)

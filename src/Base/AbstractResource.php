@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Base;
+namespace GoSuccess\Digistore24\Api\Base;
 
-use GoSuccess\Digistore24\Client\ApiClient;
-use GoSuccess\Digistore24\Http\Response;
+use GoSuccess\Digistore24\Api\Client\ApiClient;
+use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Abstract Resource Base Class

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Http;
+namespace GoSuccess\Digistore24\Api\Http;
 
 /**
  * HTTP Response

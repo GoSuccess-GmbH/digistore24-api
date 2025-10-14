@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Tests\Integration;
+namespace GoSuccess\Digistore24\Api\Tests\Integration;
 
-use GoSuccess\Digistore24\Digistore24;
-use GoSuccess\Digistore24\Client\Configuration;
-use GoSuccess\Digistore24\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Integration Test for Digistore24 Main Facade
  * 
- * @covers \GoSuccess\Digistore24\Digistore24
+ * @covers \GoSuccess\Digistore24\Api\Digistore24
  */
 final class Digistore24Test extends TestCase
 {
@@ -33,18 +33,18 @@ final class Digistore24Test extends TestCase
 
     public function testClientHasAllResources(): void
     {
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\AffiliateResource::class, $this->client->affiliates);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\BillingResource::class, $this->client->billing);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\BuyerResource::class, $this->client->buyers);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\BuyUrlResource::class, $this->client->buyUrls);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\CountryResource::class, $this->client->countries);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\IpnResource::class, $this->client->ipn);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\MonitoringResource::class, $this->client->monitoring);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\ProductResource::class, $this->client->products);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\PurchaseResource::class, $this->client->purchases);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\RebillingResource::class, $this->client->rebilling);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\UserResource::class, $this->client->users);
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Resource\VoucherResource::class, $this->client->vouchers);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\AffiliateResource::class, $this->client->affiliates);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\BillingResource::class, $this->client->billing);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\BuyerResource::class, $this->client->buyers);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\BuyUrlResource::class, $this->client->buyUrls);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\CountryResource::class, $this->client->countries);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\IpnResource::class, $this->client->ipn);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\MonitoringResource::class, $this->client->monitoring);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\ProductResource::class, $this->client->products);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\PurchaseResource::class, $this->client->purchases);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\RebillingResource::class, $this->client->rebilling);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\UserResource::class, $this->client->users);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Resource\VoucherResource::class, $this->client->vouchers);
     }
 
     public function testCanCreateRequestWithPropertyHooks(): void
@@ -92,6 +92,6 @@ final class Digistore24Test extends TestCase
     public function testClientPropertyReturnsApiClient(): void
     {
         $client = $this->client->client;
-        $this->assertInstanceOf(\GoSuccess\Digistore24\Client\ApiClient::class, $client);
+        $this->assertInstanceOf(\GoSuccess\Digistore24\Api\Client\ApiClient::class, $client);
     }
 }

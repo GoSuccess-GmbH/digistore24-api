@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Tests\Unit\Http;
+namespace GoSuccess\Digistore24\Api\Tests\Unit\Http;
 
-use GoSuccess\Digistore24\Http\Response;
-use GoSuccess\Digistore24\Http\StatusCode;
+use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Http\StatusCode;
 use PHPUnit\Framework\TestCase;
 
 /**

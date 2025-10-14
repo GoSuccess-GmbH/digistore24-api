@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Client;
+namespace GoSuccess\Digistore24\Api\Client;
 
 /**
  * API Configuration

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Tests\Unit\DataTransferObject;
+namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
-use GoSuccess\Digistore24\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Exception;
+namespace GoSuccess\Digistore24\Api\Exception;
 
 /**
  * Thrown when rate limit is exceeded (HTTP 429)
