@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ListPayoutsRequest extends AbstractRequest
 {
     public function __construct() {}
-    public function endpoint(): string { return 'listPayouts'; }
+    public function getEndpoint(): string { return 'listPayouts'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return []; }
 }

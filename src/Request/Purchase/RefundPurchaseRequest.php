@@ -39,7 +39,7 @@ final class RefundPurchaseRequest extends AbstractRequest
         return $data;
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/refundPurchase';
     }

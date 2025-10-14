@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class UpdateShippingCostPolicyRequest extends AbstractRequest
 {
     public function __construct(private string $shippingCostPolicyId, private array $data) {}
-    public function endpoint(): string { return 'updateShippingCostPolicy'; }
+    public function getEndpoint(): string { return 'updateShippingCostPolicy'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

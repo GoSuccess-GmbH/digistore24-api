@@ -75,7 +75,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
             addons: [$addon]
         );
 
-        $this->assertSame('createAddonChangePurchase', $request->endpoint());
+        $this->assertSame('createAddonChangePurchase', $request->getEndpoint());
     }
 
     public function testToArrayWithMinimalData(): void

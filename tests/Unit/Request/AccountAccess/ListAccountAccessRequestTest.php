@@ -24,7 +24,7 @@ final class ListAccountAccessRequestTest extends TestCase
             purchaseId: 'ABC123',
         );
 
-        $this->assertSame('/listAccountAccess', $request->endpoint());
+        $this->assertSame('/listAccountAccess', $request->getEndpoint());
     }
 
     public function test_to_array_converts_correctly(): void

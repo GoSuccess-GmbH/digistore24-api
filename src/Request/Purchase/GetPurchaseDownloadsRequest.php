@@ -28,7 +28,7 @@ final class GetPurchaseDownloadsRequest extends AbstractRequest
         ];
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/getPurchaseDownloads';
     }

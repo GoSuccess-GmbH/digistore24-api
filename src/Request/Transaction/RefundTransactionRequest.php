@@ -10,7 +10,7 @@ final readonly class RefundTransactionRequest extends AbstractRequest
         private ?bool $force = null,
         private ?string $requestDate = null,
     ) {}
-    public function endpoint(): string { return 'refundTransaction'; }
+    public function getEndpoint(): string { return 'refundTransaction'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

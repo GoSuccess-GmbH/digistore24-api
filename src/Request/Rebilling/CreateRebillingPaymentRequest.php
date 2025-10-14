@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class CreateRebillingPaymentRequest extends AbstractRequest
 {
     public function __construct(private string $purchaseId, private array $data = []) {}
-    public function endpoint(): string { return 'createRebillingPayment'; }
+    public function getEndpoint(): string { return 'createRebillingPayment'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

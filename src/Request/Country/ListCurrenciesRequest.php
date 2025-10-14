@@ -16,7 +16,7 @@ final readonly class ListCurrenciesRequest extends AbstractRequest
         private ?string $convertTo = null,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'listCurrencies';
     }

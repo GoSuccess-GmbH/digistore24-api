@@ -40,7 +40,7 @@ final readonly class CreateBillingOnDemandRequest extends AbstractRequest
         private ?array $addons = null,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'createBillingOnDemand';
     }

@@ -31,7 +31,7 @@ final readonly class RefundPartiallyRequest extends AbstractRequest
         private float $amount,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'refundPartially';
     }

@@ -85,7 +85,7 @@ final class ListEticketsRequestTest extends TestCase
     {
         $request = new ListEticketsRequest();
 
-        $this->assertSame('/listEtickets', $request->endpoint());
+        $this->assertSame('/listEtickets', $request->getEndpoint());
     }
 
     public function test_to_array_with_no_filters(): void

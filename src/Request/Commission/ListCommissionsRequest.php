@@ -36,7 +36,7 @@ final readonly class ListCommissionsRequest extends AbstractRequest
         private ?string $purchaseId = null,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'listCommissions';
     }

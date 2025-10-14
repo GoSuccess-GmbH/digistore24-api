@@ -12,7 +12,7 @@ final readonly class UpdateBuyerRequest extends AbstractRequest
         private ?string $lastName = null,
         private ?array $address = null,
     ) {}
-    public function endpoint(): string { return 'updateBuyer'; }
+    public function getEndpoint(): string { return 'updateBuyer'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

@@ -24,7 +24,7 @@ final class ValidateEticketRequestTest extends TestCase
             ticketId: 'TICKET123',
         );
 
-        $this->assertSame('/validateEticket', $request->endpoint());
+        $this->assertSame('/validateEticket', $request->getEndpoint());
     }
 
     public function test_to_array_converts_correctly(): void

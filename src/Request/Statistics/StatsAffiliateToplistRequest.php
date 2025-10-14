@@ -10,7 +10,7 @@ final readonly class StatsAffiliateToplistRequest extends AbstractRequest
         private ?string $to = null,
         private ?int $limit = null,
     ) {}
-    public function endpoint(): string { return 'statsAffiliateToplist'; }
+    public function getEndpoint(): string { return 'statsAffiliateToplist'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array
     {

@@ -42,7 +42,7 @@ final class CreateEticketRequest extends AbstractRequest
         }
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'createEticket';
     }

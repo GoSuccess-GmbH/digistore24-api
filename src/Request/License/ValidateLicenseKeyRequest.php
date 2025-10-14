@@ -26,7 +26,7 @@ final readonly class ValidateLicenseKeyRequest extends AbstractRequest
         private string $licenseKey,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'validateLicenseKey';
     }

@@ -27,7 +27,7 @@ final readonly class ReportFraudRequest extends AbstractRequest
         private string $comment,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'reportFraud';
     }

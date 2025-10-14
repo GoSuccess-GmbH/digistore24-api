@@ -9,7 +9,7 @@ final readonly class ListBuyersRequest extends AbstractRequest
         private ?int $pageNo = null,
         private ?int $pageSize = null,
     ) {}
-    public function endpoint(): string { return 'listBuyers'; }
+    public function getEndpoint(): string { return 'listBuyers'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array
     {

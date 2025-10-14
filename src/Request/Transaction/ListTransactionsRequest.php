@@ -14,7 +14,7 @@ final readonly class ListTransactionsRequest extends AbstractRequest
         private ?int $pageNo = null,
         private ?int $pageSize = null,
     ) {}
-    public function endpoint(): string { return 'listTransactions'; }
+    public function getEndpoint(): string { return 'listTransactions'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

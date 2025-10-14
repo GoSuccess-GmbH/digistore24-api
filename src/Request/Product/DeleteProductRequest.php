@@ -29,7 +29,7 @@ final class DeleteProductRequest extends AbstractRequest
     }
 
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/deleteProduct';
     }

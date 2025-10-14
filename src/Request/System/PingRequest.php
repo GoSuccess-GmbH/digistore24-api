@@ -22,7 +22,7 @@ final readonly class PingRequest extends AbstractRequest
         // No parameters required
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'ping';
     }

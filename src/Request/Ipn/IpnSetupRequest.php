@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class IpnSetupRequest extends AbstractRequest
 {
     public function __construct(private string $url, private ?string $ipnPassword = null) {}
-    public function endpoint(): string { return 'ipnSetup'; }
+    public function getEndpoint(): string { return 'ipnSetup'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

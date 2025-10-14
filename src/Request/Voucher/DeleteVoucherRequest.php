@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class DeleteVoucherRequest extends AbstractRequest
 {
     public function __construct(private string $code) {}
-    public function endpoint(): string { return 'deleteVoucher'; }
+    public function getEndpoint(): string { return 'deleteVoucher'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array { return ['code' => $this->code]; }
 }

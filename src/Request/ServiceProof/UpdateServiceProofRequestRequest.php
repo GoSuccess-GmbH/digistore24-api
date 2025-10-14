@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class UpdateServiceProofRequestRequest extends AbstractRequest
 {
     public function __construct(private string $serviceProofRequestId, private array $data) {}
-    public function endpoint(): string { return 'updateServiceProofRequest'; }
+    public function getEndpoint(): string { return 'updateServiceProofRequest'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

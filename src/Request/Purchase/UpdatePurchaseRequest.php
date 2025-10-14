@@ -51,7 +51,7 @@ final class UpdatePurchaseRequest extends AbstractRequest
         return $data;
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/updatePurchase';
     }

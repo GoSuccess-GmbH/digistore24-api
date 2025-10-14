@@ -22,7 +22,7 @@ final class ListEticketsRequest extends AbstractRequest
     ) {
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/listEtickets';
     }

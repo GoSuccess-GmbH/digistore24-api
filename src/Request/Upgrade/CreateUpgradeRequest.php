@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class CreateUpgradeRequest extends AbstractRequest
 {
     public function __construct(private array $data) {}
-    public function endpoint(): string { return 'createUpgrade'; }
+    public function getEndpoint(): string { return 'createUpgrade'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array { return $this->data; }
 }

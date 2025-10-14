@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class StatsSalesRequest extends AbstractRequest
 {
     public function __construct(private ?string $from = null, private ?string $to = null) {}
-    public function endpoint(): string { return 'statsSales'; }
+    public function getEndpoint(): string { return 'statsSales'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array
     {

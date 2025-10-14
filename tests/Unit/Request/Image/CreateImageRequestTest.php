@@ -65,7 +65,7 @@ final class CreateImageRequestTest extends TestCase
             imageUrl: 'https://example.com/image.jpg'
         );
 
-        $this->assertSame('createImage', $request->endpoint());
+        $this->assertSame('createImage', $request->getEndpoint());
     }
 
     public function testToArrayWithMinimalData(): void

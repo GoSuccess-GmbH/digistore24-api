@@ -23,7 +23,7 @@ final readonly class ListProductTypesRequest extends AbstractRequest
         // No parameters required for this endpoint
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'listProductTypes';
     }

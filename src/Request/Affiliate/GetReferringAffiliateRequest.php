@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class GetReferringAffiliateRequest extends AbstractRequest
 {
     public function __construct(private string $purchaseId) {}
-    public function endpoint(): string { return 'getReferringAffiliate'; }
+    public function getEndpoint(): string { return 'getReferringAffiliate'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return ['purchase_id' => $this->purchaseId]; }
 }

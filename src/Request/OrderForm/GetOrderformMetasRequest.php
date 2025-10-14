@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class GetOrderformMetasRequest extends AbstractRequest
 {
     public function __construct() {}
-    public function endpoint(): string { return 'getOrderformMetas'; }
+    public function getEndpoint(): string { return 'getOrderformMetas'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return []; }
 }

@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class RefundPartiallyRequest extends AbstractRequest
 {
     public function __construct(private string $purchaseId, private float $amount, private string $reason = '') {}
-    public function endpoint(): string { return 'refundPartially'; }
+    public function getEndpoint(): string { return 'refundPartially'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

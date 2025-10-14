@@ -111,7 +111,7 @@ final class CreateProductRequest extends AbstractRequest
         return ['data' => $data];
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/createProduct';
     }

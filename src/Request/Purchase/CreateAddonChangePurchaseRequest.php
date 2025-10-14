@@ -41,7 +41,7 @@ final class CreateAddonChangePurchaseRequest extends AbstractRequest
         }
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'createAddonChangePurchase';
     }

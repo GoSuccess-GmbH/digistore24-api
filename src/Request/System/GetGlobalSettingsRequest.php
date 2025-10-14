@@ -22,7 +22,7 @@ final readonly class GetGlobalSettingsRequest extends AbstractRequest
         // No parameters required
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'getGlobalSettings';
     }

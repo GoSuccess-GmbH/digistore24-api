@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ValidateCouponCodeRequest extends AbstractRequest
 {
     public function __construct(private string $code) {}
-    public function endpoint(): string { return 'validateCouponCode'; }
+    public function getEndpoint(): string { return 'validateCouponCode'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return ['code' => $this->code]; }
 }

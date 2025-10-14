@@ -37,7 +37,7 @@ final class CreateBuyUrlRequest extends AbstractRequest
     public ?array $settings = null;
     public ?array $addons = null;
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'createBuyUrl';
     }

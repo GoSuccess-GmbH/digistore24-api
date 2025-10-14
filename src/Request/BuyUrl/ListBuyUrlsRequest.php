@@ -15,7 +15,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  */
 final readonly class ListBuyUrlsRequest extends AbstractRequest
 {
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/listBuyUrls';
     }

@@ -20,12 +20,12 @@ abstract class AbstractRequest implements RequestInterface
     /**
      * Get the API endpoint for this request
      */
-    abstract public function endpoint(): string;
+    abstract public function getEndpoint(): string;
 
     /**
      * Get the HTTP method for this request
      */
-    public function method(): Method
+    public function getMethod(): Method
     {
         return Method::POST;
     }

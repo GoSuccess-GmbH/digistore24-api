@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class DeleteOrderformRequest extends AbstractRequest
 {
     public function __construct(private string $orderformId) {}
-    public function endpoint(): string { return 'deleteOrderform'; }
+    public function getEndpoint(): string { return 'deleteOrderform'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array { return ['orderform_id' => $this->orderformId]; }
 }

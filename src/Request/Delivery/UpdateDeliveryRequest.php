@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class UpdateDeliveryRequest extends AbstractRequest
 {
     public function __construct(private string $deliveryId, private array $data) {}
-    public function endpoint(): string { return 'updateDelivery'; }
+    public function getEndpoint(): string { return 'updateDelivery'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

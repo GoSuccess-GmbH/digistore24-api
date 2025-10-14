@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ListShippingCostPoliciesRequest extends AbstractRequest
 {
     public function __construct() {}
-    public function endpoint(): string { return 'listShippingCostPolicies'; }
+    public function getEndpoint(): string { return 'listShippingCostPolicies'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return []; }
 }

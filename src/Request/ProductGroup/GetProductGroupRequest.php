@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class GetProductGroupRequest extends AbstractRequest
 {
     public function __construct(private string $productGroupId) {}
-    public function endpoint(): string { return 'getProductGroup'; }
+    public function getEndpoint(): string { return 'getProductGroup'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return ['product_group_id' => $this->productGroupId]; }
 }

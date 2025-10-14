@@ -22,7 +22,7 @@ final readonly class DeleteBuyUrlRequest extends AbstractRequest
         public int $id,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/deleteBuyUrl';
     }

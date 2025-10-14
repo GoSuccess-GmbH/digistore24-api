@@ -28,7 +28,7 @@ final class GetPurchaseTrackingRequest extends AbstractRequest
         ];
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/getPurchaseTracking';
     }

@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class GetMarketplaceEntryRequest extends AbstractRequest
 {
     public function __construct(private string $entryId) {}
-    public function endpoint(): string { return 'getMarketplaceEntry'; }
+    public function getEndpoint(): string { return 'getMarketplaceEntry'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return ['entry_id' => $this->entryId]; }
 }

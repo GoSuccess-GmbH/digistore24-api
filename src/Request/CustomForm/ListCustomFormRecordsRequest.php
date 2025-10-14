@@ -24,7 +24,7 @@ final readonly class ListCustomFormRecordsRequest extends AbstractRequest
         private ?string $purchaseId = null,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'listCustomFormRecords';
     }

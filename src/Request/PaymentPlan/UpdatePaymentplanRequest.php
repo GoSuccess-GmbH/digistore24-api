@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class UpdatePaymentplanRequest extends AbstractRequest
 {
     public function __construct(private string $paymentplanId, private array $data) {}
-    public function endpoint(): string { return 'updatePaymentplan'; }
+    public function getEndpoint(): string { return 'updatePaymentplan'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {

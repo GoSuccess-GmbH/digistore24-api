@@ -18,7 +18,7 @@ final class GetImageRequest extends AbstractRequest
     ) {
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/getImage';
     }

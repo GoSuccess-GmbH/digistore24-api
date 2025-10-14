@@ -20,12 +20,12 @@ interface RequestInterface extends ArrayableInterface, ValidatableInterface
      * 
      * @return string The endpoint path (e.g., 'createBuyUrl')
      */
-    public function endpoint(): string;
+    public function getEndpoint(): string;
 
     /**
      * Get the HTTP method for this request
      * 
      * @return Method The HTTP method to use
      */
-    public function method(): Method;
+    public function getMethod(): Method;
 }

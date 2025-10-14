@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ListSmartUpgradesRequest extends AbstractRequest
 {
     public function __construct() {}
-    public function endpoint(): string { return 'listSmartUpgrades'; }
+    public function getEndpoint(): string { return 'listSmartUpgrades'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return []; }
 }

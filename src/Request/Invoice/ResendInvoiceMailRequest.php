@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ResendInvoiceMailRequest extends AbstractRequest
 {
     public function __construct(private string $purchaseId) {}
-    public function endpoint(): string { return 'resendInvoiceMail'; }
+    public function getEndpoint(): string { return 'resendInvoiceMail'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array { return ['purchase_id' => $this->purchaseId]; }
 }

@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ListServiceProofRequestsRequest extends AbstractRequest
 {
     public function __construct(private ?int $limit = null, private ?int $offset = null) {}
-    public function endpoint(): string { return 'listServiceProofRequests'; }
+    public function getEndpoint(): string { return 'listServiceProofRequests'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array
     {

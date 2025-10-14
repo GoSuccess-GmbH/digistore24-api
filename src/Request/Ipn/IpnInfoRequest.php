@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class IpnInfoRequest extends AbstractRequest
 {
     public function __construct() {}
-    public function endpoint(): string { return 'ipnInfo'; }
+    public function getEndpoint(): string { return 'ipnInfo'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array { return []; }
 }

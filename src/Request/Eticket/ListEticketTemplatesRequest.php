@@ -13,7 +13,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  */
 final class ListEticketTemplatesRequest extends AbstractRequest
 {
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/listEticketTemplates';
     }

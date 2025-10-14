@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class CreateOrderformRequest extends AbstractRequest
 {
     public function __construct(private array $data) {}
-    public function endpoint(): string { return 'createOrderform'; }
+    public function getEndpoint(): string { return 'createOrderform'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array { return $this->data; }
 }

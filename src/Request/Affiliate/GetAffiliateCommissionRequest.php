@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class GetAffiliateCommissionRequest extends AbstractRequest
 {
     public function __construct(private int $productId, private string $affiliateId) {}
-    public function endpoint(): string { return 'getAffiliateCommission'; }
+    public function getEndpoint(): string { return 'getAffiliateCommission'; }
     public function method(): Method { return Method::GET; }
     public function toArray(): array
     {

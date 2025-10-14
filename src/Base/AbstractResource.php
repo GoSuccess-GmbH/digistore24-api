@@ -26,8 +26,8 @@ abstract class AbstractResource
      */
     protected function execute(RequestInterface $request): Response
     {
-        $endpoint = $request->endpoint();
-        $method = $request->method();
+        $endpoint = $request->getEndpoint();
+        $method = $request->getMethod();
         $data = $request->toArray();
 
         return $this->client->request($endpoint, $method, $data);

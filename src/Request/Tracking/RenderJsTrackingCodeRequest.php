@@ -30,7 +30,7 @@ final readonly class RenderJsTrackingCodeRequest extends AbstractRequest
         private ?string $callback = null,
     ) {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'renderJsTrackingCode';
     }

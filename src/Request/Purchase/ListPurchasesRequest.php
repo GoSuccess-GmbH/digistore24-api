@@ -21,7 +21,7 @@ final class ListPurchasesRequest extends AbstractRequest
     ) {
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/listPurchases';
     }

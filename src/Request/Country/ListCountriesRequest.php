@@ -14,7 +14,7 @@ final readonly class ListCountriesRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return 'listCountries';
     }

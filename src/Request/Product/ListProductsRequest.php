@@ -19,7 +19,7 @@ final class ListProductsRequest extends AbstractRequest
     ) {
     }
 
-    public function endpoint(): string
+    public function getEndpoint(): string
     {
         return '/listProducts';
     }

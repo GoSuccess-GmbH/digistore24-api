@@ -24,7 +24,7 @@ final class GetEticketRequestTest extends TestCase
             orderId: 'ORDER123',
         );
 
-        $this->assertSame('/getEticket', $request->endpoint());
+        $this->assertSame('/getEticket', $request->getEndpoint());
     }
 
     public function test_to_array_converts_correctly(): void

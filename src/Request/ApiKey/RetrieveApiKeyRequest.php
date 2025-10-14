@@ -6,7 +6,7 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class RetrieveApiKeyRequest extends AbstractRequest
 {
     public function __construct(private string $email, private string $token) {}
-    public function endpoint(): string { return 'retrieveApiKey'; }
+    public function getEndpoint(): string { return 'retrieveApiKey'; }
     public function method(): Method { return Method::POST; }
     public function toArray(): array
     {
