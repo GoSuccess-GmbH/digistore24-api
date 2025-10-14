@@ -12,17 +12,31 @@ final class ListDeliveriesResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'deliveries' => [
+                    ['id' => 1, 'status' => 'shipped'],
+                    ['id' => 2, 'status' => 'pending']
+                ]
+            ]
+        ];
         $response = ListDeliveriesResponse::fromArray($data);
         
         $this->assertInstanceOf(ListDeliveriesResponse::class, $response);
+        $this->assertCount(2, $response->getDeliveries());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'deliveries' => [
+                        ['id' => 1, 'status' => 'shipped']
+                    ]
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,6 +44,7 @@ final class ListDeliveriesResponseTest extends TestCase
         $response = ListDeliveriesResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(ListDeliveriesResponse::class, $response);
+        $this->assertCount(1, $response->getDeliveries());
     }
 
     public function test_has_raw_response(): void
@@ -43,7 +58,7 @@ final class ListDeliveriesResponseTest extends TestCase
         
         $response = ListDeliveriesResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
