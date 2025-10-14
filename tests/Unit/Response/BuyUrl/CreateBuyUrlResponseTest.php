@@ -12,17 +12,26 @@ final class CreateBuyUrlResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'id' => '123',
+            'url' => 'https://digistore24.com/buy/12345',
+            'valid_until' => '2024-12-31'
+        ];
         $response = CreateBuyUrlResponse::fromArray($data);
         
         $this->assertInstanceOf(CreateBuyUrlResponse::class, $response);
+        $this->assertSame('123', $response->id);
+        $this->assertSame('https://digistore24.com/buy/12345', $response->url);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'id' => '123',
+                'url' => 'https://digistore24.com/buy/12345'
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +39,21 @@ final class CreateBuyUrlResponseTest extends TestCase
         $response = CreateBuyUrlResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(CreateBuyUrlResponse::class, $response);
+        $this->assertSame('123', $response->id);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = CreateBuyUrlResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
