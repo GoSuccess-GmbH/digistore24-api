@@ -11,33 +11,36 @@ final class GetServiceProofRequestRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new GetServiceProofRequestRequest();
+        $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
+        
         $this->assertInstanceOf(GetServiceProofRequestRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new GetServiceProofRequestRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('getServiceProofRequest', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_service_proof_request_id(): void
     {
-        $request = new GetServiceProofRequestRequest();
+        $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('SPR123', $array['service_proof_request_id']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new GetServiceProofRequestRequest();
+        $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

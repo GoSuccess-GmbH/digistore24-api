@@ -12,32 +12,36 @@ final class ListServiceProofRequestsRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListServiceProofRequestsRequest();
+        
         $this->assertInstanceOf(ListServiceProofRequestsRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListServiceProofRequestsRequest();
-        $endpoint = $request->getEndpoint();
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('listServiceProofRequests', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_with_pagination(): void
     {
-        $request = new ListServiceProofRequestsRequest();
+        $request = new ListServiceProofRequestsRequest(limit: 50, offset: 10);
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame(50, $array['limit']);
+        $this->assertSame(10, $array['offset']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
         $request = new ListServiceProofRequestsRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
