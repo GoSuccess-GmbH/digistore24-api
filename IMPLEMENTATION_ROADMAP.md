@@ -31,9 +31,9 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ refundPartially - Partially refund a purchase
 
 ### Buy URLs (3/3)
-- ⏳ createBuyUrl - Create customized buy URL
-- ⏳ listBuyUrls - List all buy URLs
-- ⏳ deleteBuyUrl - Delete a buy URL
+- ✅ createBuyUrl - Create customized buy URL
+- ✅ listBuyUrls - List all buy URLs
+- ✅ deleteBuyUrl - Delete a buy URL
 
 ### Buyers (3/3)
 - ⏳ getBuyer - Get buyer information
