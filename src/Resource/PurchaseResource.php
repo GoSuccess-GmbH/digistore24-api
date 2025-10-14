@@ -5,11 +5,19 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Purchase\AddBalanceToPurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\CreateUpgradePurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseTrackingRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesOfEmailRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesRequest;
+use GoSuccess\Digistore24\Api\Response\Purchase\AddBalanceToPurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\CreateUpgradePurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseTrackingResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesOfEmailResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesResponse;
 
 /**
@@ -69,38 +77,67 @@ final class PurchaseResource extends AbstractResource
     }
 
     /**
+     * List purchases by email address
+     * 
+     * Retrieves all purchases belonging to a specific email address.
+     * 
+     * @param ListPurchasesOfEmailRequest $request The list purchases by email request
+     * @return ListPurchasesOfEmailResponse The response with purchases list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/listPurchasesOfEmail.yaml
+     */
+    public function listByEmail(ListPurchasesOfEmailRequest $request): ListPurchasesOfEmailResponse
+    {
+        return $this->executeTyped($request, ListPurchasesOfEmailResponse::class);
+    }
+
+    /**
      * Get purchase tracking information
      * 
-     * TODO: Implement when getPurchaseTracking endpoint is added
+     * Returns tracking data for one or more orders including UTM parameters,
+     * click IDs, sub IDs, vendor key, and campaign key.
      * 
+     * @param GetPurchaseTrackingRequest $request The get purchase tracking request
+     * @return GetPurchaseTrackingResponse The response with tracking details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      * @link https://digistore24.com/api/docs/paths/getPurchaseTracking.yaml
      */
-    // public function getTracking(GetPurchaseTrackingRequest $request): GetPurchaseTrackingResponse
-    // {
-    //     return $this->executeTyped($request, GetPurchaseTrackingResponse::class);
-    // }
+    public function getTracking(GetPurchaseTrackingRequest $request): GetPurchaseTrackingResponse
+    {
+        return $this->executeTyped($request, GetPurchaseTrackingResponse::class);
+    }
 
     /**
      * Create upgrade purchase
      * 
-     * TODO: Implement when createUpgradePurchase endpoint is added
+     * Performs an upgrade without user interaction. Requires full access rights
+     * and "Billing on demand" permission. You must ensure the buyer is informed
+     * and agrees to automatic upgrades.
      * 
+     * @param CreateUpgradePurchaseRequest $request The create upgrade purchase request
+     * @return CreateUpgradePurchaseResponse The response with new purchase details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      * @link https://digistore24.com/api/docs/paths/createUpgradePurchase.yaml
      */
-    // public function createUpgrade(CreateUpgradePurchaseRequest $request): CreateUpgradePurchaseResponse
-    // {
-    //     return $this->executeTyped($request, CreateUpgradePurchaseResponse::class);
-    // }
+    public function createUpgrade(CreateUpgradePurchaseRequest $request): CreateUpgradePurchaseResponse
+    {
+        return $this->executeTyped($request, CreateUpgradePurchaseResponse::class);
+    }
 
     /**
      * Add balance to purchase
      * 
-     * TODO: Implement when addBalanceToPurchase endpoint is added
+     * For subscription and installment payments - add balance to the order.
+     * This will be billed with the next payments. Use negative amounts to
+     * reduce balance (but total cannot go below 0).
      * 
+     * @param AddBalanceToPurchaseRequest $request The add balance request
+     * @return AddBalanceToPurchaseResponse The response with old and new balance
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      * @link https://digistore24.com/api/docs/paths/addBalanceToPurchase.yaml
      */
-    // public function addBalance(AddBalanceToPurchaseRequest $request): AddBalanceToPurchaseResponse
-    // {
-    //     return $this->executeTyped($request, AddBalanceToPurchaseResponse::class);
-    // }
+    public function addBalance(AddBalanceToPurchaseRequest $request): AddBalanceToPurchaseResponse
+    {
+        return $this->executeTyped($request, AddBalanceToPurchaseResponse::class);
+    }
 }
