@@ -26,7 +26,7 @@ final readonly class ListCurrenciesResponse extends AbstractResponse
         return $this->currencies;
     }
 
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $currencies = array_map(
             fn($item) => (object) [

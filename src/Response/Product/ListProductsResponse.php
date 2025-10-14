@@ -25,7 +25,7 @@ final class ProductListItem
     ) {
     }
 
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
             productId: $data['product_id'] ?? '',

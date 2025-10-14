@@ -29,7 +29,7 @@ final readonly class BuyUrlListItem
         public ?\DateTimeInterface $modifiedAt = null,
     ) {}
 
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
             id: TypeConverter::toInt($data['id']) ?? 0,

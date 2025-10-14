@@ -55,7 +55,7 @@ final readonly class RefundPartiallyResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
             result: (string) ($data['result'] ?? 'unknown'),

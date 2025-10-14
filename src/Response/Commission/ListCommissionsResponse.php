@@ -93,7 +93,7 @@ final readonly class ListCommissionsResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $items = array_map(
             fn($item) => (object) [

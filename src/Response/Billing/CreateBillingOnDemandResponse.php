@@ -75,7 +75,7 @@ final readonly class CreateBillingOnDemandResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
             createdPurchaseId: (string) $data['created_purchase_id'],

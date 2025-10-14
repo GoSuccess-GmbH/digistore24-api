@@ -24,7 +24,7 @@ final class AccountAccessEntry
     ) {
     }
 
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
             platformName: $data['platform_name'] ?? '',

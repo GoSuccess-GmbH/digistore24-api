@@ -67,7 +67,7 @@ final readonly class GetGlobalSettingsResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $imageMetas = [];
         foreach (($data['image_metas'] ?? []) as $key => $meta) {

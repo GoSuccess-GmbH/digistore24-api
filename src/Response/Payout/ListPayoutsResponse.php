@@ -4,9 +4,14 @@ namespace GoSuccess\Digistore24\Api\Response\Payout;
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 final readonly class ListPayoutsResponse extends AbstractResponse
 {
-    public function __construct(private array $payoutList) {}
-    public function getPayoutList(): array { return $this->payoutList; }
-    public static function fromArray(array $data): self
+    public function __construct(private array $payoutList)
+    {
+    }
+    public function getPayoutList(): array
+    {
+        return $this->payoutList;
+    }
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(payoutList: $data['data']['payout_list'] ?? []);
     }
