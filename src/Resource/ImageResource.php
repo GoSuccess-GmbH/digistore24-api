@@ -6,7 +6,9 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Image\CreateImageRequest;
+use GoSuccess\Digistore24\Api\Request\Image\GetImageRequest;
 use GoSuccess\Digistore24\Api\Response\Image\CreateImageResponse;
+use GoSuccess\Digistore24\Api\Response\Image\GetImageResponse;
 
 /**
  * Image Resource
@@ -27,5 +29,19 @@ final class ImageResource extends AbstractResource
     public function create(CreateImageRequest $request): CreateImageResponse
     {
         return $this->executeTyped($request, CreateImageResponse::class);
+    }
+
+    /**
+     * Get image details
+     * 
+     * Retrieves detailed information about a specific image by its ID.
+     * 
+     * @param GetImageRequest $request The get image request
+     * @return GetImageResponse The response with image details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function get(GetImageRequest $request): GetImageResponse
+    {
+        return $this->executeTyped($request, GetImageResponse::class);
     }
 }
