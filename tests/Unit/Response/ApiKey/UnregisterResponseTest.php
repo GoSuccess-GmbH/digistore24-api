@@ -12,17 +12,19 @@ final class UnregisterResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = ['result' => 'success'];
         $response = UnregisterResponse::fromArray($data);
         
         $this->assertInstanceOf(UnregisterResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: ['result' => 'success'],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +32,22 @@ final class UnregisterResponseTest extends TestCase
         $response = UnregisterResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(UnregisterResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: ['result' => 'success'],
             headers: [],
             rawBody: 'test'
         );
         
         $response = UnregisterResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
