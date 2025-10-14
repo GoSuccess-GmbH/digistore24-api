@@ -6,7 +6,11 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesRequest;
 use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesResponse;
 
 /**
  * Purchase Resource
@@ -37,33 +41,32 @@ final class PurchaseResource extends AbstractResource
     /**
      * Get purchase details
      * 
-     * TODO: Implement when getPurchase endpoint is added
+     * Retrieves detailed information about a specific purchase/order.
      * 
+     * @param GetPurchaseRequest $request The get purchase request
+     * @return GetPurchaseResponse The response with purchase details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      * @link https://digistore24.com/api/docs/paths/getPurchase.yaml
-     * 
-     * @example
-     * ```php
-     * $request = new GetPurchaseRequest(purchaseId: 'ABC123');
-     * $purchase = $client->purchases->get($request);
-     * echo "Order: {$purchase->orderId}\n";
-     * ```
      */
-    // public function get(GetPurchaseRequest $request): GetPurchaseResponse
-    // {
-    //     return $this->executeTyped($request, GetPurchaseResponse::class);
-    // }
+    public function get(GetPurchaseRequest $request): GetPurchaseResponse
+    {
+        return $this->executeTyped($request, GetPurchaseResponse::class);
+    }
 
     /**
      * List all purchases
      * 
-     * TODO: Implement when listPurchases endpoint is added
+     * Retrieves a list of all purchases, optionally filtered by product, buyer, or date range.
      * 
+     * @param ListPurchasesRequest $request The list purchases request
+     * @return ListPurchasesResponse The response with purchases list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      * @link https://digistore24.com/api/docs/paths/listPurchases.yaml
      */
-    // public function list(ListPurchasesRequest $request): ListPurchasesResponse
-    // {
-    //     return $this->executeTyped($request, ListPurchasesResponse::class);
-    // }
+    public function list(ListPurchasesRequest $request): ListPurchasesResponse
+    {
+        return $this->executeTyped($request, ListPurchasesResponse::class);
+    }
 
     /**
      * Get purchase tracking information
