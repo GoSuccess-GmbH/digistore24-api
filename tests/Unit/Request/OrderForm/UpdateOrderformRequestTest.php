@@ -11,33 +11,35 @@ final class UpdateOrderformRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new UpdateOrderformRequest();
+        $request = new UpdateOrderformRequest(
+            orderformId: 'OF123',
+            data: ['name' => 'Updated Form']
+        );
+        
         $this->assertInstanceOf(UpdateOrderformRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new UpdateOrderformRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new UpdateOrderformRequest(
+            orderformId: 'OF123',
+            data: ['name' => 'Updated Form']
+        );
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('updateOrderform', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new UpdateOrderformRequest();
-        $array = $request->toArray();
+        $request = new UpdateOrderformRequest(
+            orderformId: 'OF123',
+            data: ['name' => 'Updated Form']
+        );
         
-        $this->assertIsArray($array);
-    }
-
-    public function test_validate_returns_array(): void
-    {
-        $request = new UpdateOrderformRequest();
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
