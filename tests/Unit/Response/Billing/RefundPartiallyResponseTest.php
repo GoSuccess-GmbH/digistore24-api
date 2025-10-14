@@ -12,17 +12,26 @@ final class RefundPartiallyResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+            'data' => ['refund_amount' => 25.50]
+        ];
         $response = RefundPartiallyResponse::fromArray($data);
         
         $this->assertInstanceOf(RefundPartiallyResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertArrayHasKey('refund_amount', $response->getData());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => ['refund_amount' => 25.50]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +39,22 @@ final class RefundPartiallyResponseTest extends TestCase
         $response = RefundPartiallyResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(RefundPartiallyResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: ['result' => 'success'],
             headers: [],
             rawBody: 'test'
         );
         
         $response = RefundPartiallyResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
