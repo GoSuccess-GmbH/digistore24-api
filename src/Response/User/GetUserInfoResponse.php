@@ -1,0 +1,13 @@
+<?php
+declare(strict_types=1);
+namespace GoSuccess\Digistore24\Response\User;
+use GoSuccess\Digistore24\Base\AbstractResponse;
+final readonly class GetUserInfoResponse extends AbstractResponse
+{
+    public function __construct(private array $userInfo) {}
+    public function getUserInfo(): array { return $this->userInfo; }
+    public static function fromArray(array $data): self
+    {
+        return new self(userInfo: $data['data'] ?? []);
+    }
+}
