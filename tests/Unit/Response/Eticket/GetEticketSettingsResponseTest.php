@@ -12,17 +12,29 @@ final class GetEticketSettingsResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'eticket_enabled' => true,
+            'default_location_id' => 'LOC123',
+            'default_template_id' => 'TPL456',
+            'max_tickets_per_order' => 5,
+            'require_email_validation' => true,
+            'settings' => ['auto_send' => true]
+        ];
         $response = GetEticketSettingsResponse::fromArray($data);
         
         $this->assertInstanceOf(GetEticketSettingsResponse::class, $response);
+        $this->assertTrue($response->eticketEnabled);
+        $this->assertSame(5, $response->maxTicketsPerOrder);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'eticket_enabled' => true,
+                'max_tickets_per_order' => 10
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +42,21 @@ final class GetEticketSettingsResponseTest extends TestCase
         $response = GetEticketSettingsResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetEticketSettingsResponse::class, $response);
+        $this->assertTrue($response->eticketEnabled);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = GetEticketSettingsResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
