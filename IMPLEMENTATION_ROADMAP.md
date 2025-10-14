@@ -131,14 +131,14 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ✅ deleteProduct - Delete product
 - ⏳ listProductTypes - List available product types
 
-### Purchases (11/11)
+### Purchases (12/12)
 - ✅ createAddonChangePurchase - Create addon change order
 - ✅ getPurchase - Get purchase details
 - ✅ listPurchases - List all purchases
 - ✅ listPurchasesOfEmail - List purchases by email
 - ✅ getPurchaseTracking - Get purchase tracking data
 - ✅ getPurchaseDownloads - Get download links
-- ⏳ getCustomerToAffiliateBuyerDetails - Get customer-to-affiliate details
+- ✅ getCustomerToAffiliateBuyerDetails - Get customer-to-affiliate details
 - ✅ createUpgradePurchase - Create upgrade order
 - ✅ addBalanceToPurchase - Add balance to purchase
 - ✅ updatePurchase - Update purchase
@@ -213,9 +213,9 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 ## Summary
 
 - **Total Endpoints**: ~130+
-- **Implemented**: 33 endpoints across 6 complete categories
-- **Remaining**: ~97
-- **Progress**: 25%
+- **Implemented**: 34 endpoints across 6 complete categories
+- **Remaining**: ~96
+- **Progress**: 26%
 
 ### Complete Categories (6)
 1. ✅ Account Access (2/2) - 100%
@@ -223,7 +223,7 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 3. ✅ Images (4/4) - 100%
 4. ✅ Buy URLs (3/3) - 100%
 5. ✅ Products (6/6) - 100%
-6. ✅ Purchases (11/11) - 100%
+6. ✅ Purchases (12/12) - 100%
 
 ## Implementation Priority
 
