@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\PaymentPlan\CreatePaymentplanRequest;
-use GoSuccess\Digistore24\Request\PaymentPlan\UpdatePaymentplanRequest;
-use GoSuccess\Digistore24\Request\PaymentPlan\DeletePaymentplanRequest;
-use GoSuccess\Digistore24\Request\PaymentPlan\ListPaymentPlansRequest;
-use GoSuccess\Digistore24\Response\PaymentPlan\CreatePaymentplanResponse;
-use GoSuccess\Digistore24\Response\PaymentPlan\UpdatePaymentplanResponse;
-use GoSuccess\Digistore24\Response\PaymentPlan\DeletePaymentplanResponse;
-use GoSuccess\Digistore24\Response\PaymentPlan\ListPaymentPlansResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\PaymentPlan\CreatePaymentplanRequest;
+use GoSuccess\Digistore24\Api\Request\PaymentPlan\UpdatePaymentplanRequest;
+use GoSuccess\Digistore24\Api\Request\PaymentPlan\DeletePaymentplanRequest;
+use GoSuccess\Digistore24\Api\Request\PaymentPlan\ListPaymentPlansRequest;
+use GoSuccess\Digistore24\Api\Response\PaymentPlan\CreatePaymentplanResponse;
+use GoSuccess\Digistore24\Api\Response\PaymentPlan\UpdatePaymentplanResponse;
+use GoSuccess\Digistore24\Api\Response\PaymentPlan\DeletePaymentplanResponse;
+use GoSuccess\Digistore24\Api\Response\PaymentPlan\ListPaymentPlansResponse;
 final class PaymentPlanResource extends AbstractResource
 {
     public function create(CreatePaymentplanRequest $request): CreatePaymentplanResponse

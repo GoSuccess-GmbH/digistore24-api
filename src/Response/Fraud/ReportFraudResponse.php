@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Response\Fraud;
+namespace GoSuccess\Digistore24\Api\Response\Fraud;
 
-use GoSuccess\Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
  * Response from reporting fraud.

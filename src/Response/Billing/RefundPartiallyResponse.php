@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Response\Billing;
+namespace GoSuccess\Digistore24\Api\Response\Billing;
 
-use GoSuccess\Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
  * Response from partially refunding a purchase.

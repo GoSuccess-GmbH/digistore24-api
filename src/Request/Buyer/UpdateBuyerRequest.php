@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Request\Buyer;
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+namespace GoSuccess\Digistore24\Api\Request\Buyer;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class UpdateBuyerRequest extends AbstractRequest
 {
     public function __construct(
@@ -12,9 +12,9 @@ final readonly class UpdateBuyerRequest extends AbstractRequest
         private ?string $lastName = null,
         private ?array $address = null,
     ) {}
-    public function getEndpoint(): string { return 'updateBuyer'; }
-    public function getMethod(): Method { return Method::POST; }
-    public function getParameters(): array
+    public function endpoint(): string { return 'updateBuyer'; }
+    public function method(): Method { return Method::POST; }
+    public function toArray(): array
     {
         $params = ['buyer_id' => $this->buyerId];
         if ($this->email !== null) $params['email'] = $this->email;

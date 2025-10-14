@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\Upgrade\GetUpgradeRequest;
-use GoSuccess\Digistore24\Request\Upgrade\CreateUpgradeRequest;
-use GoSuccess\Digistore24\Request\Upgrade\DeleteUpgradeRequest;
-use GoSuccess\Digistore24\Request\Upgrade\ListUpgradesRequest;
-use GoSuccess\Digistore24\Response\Upgrade\GetUpgradeResponse;
-use GoSuccess\Digistore24\Response\Upgrade\CreateUpgradeResponse;
-use GoSuccess\Digistore24\Response\Upgrade\DeleteUpgradeResponse;
-use GoSuccess\Digistore24\Response\Upgrade\ListUpgradesResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Upgrade\GetUpgradeRequest;
+use GoSuccess\Digistore24\Api\Request\Upgrade\CreateUpgradeRequest;
+use GoSuccess\Digistore24\Api\Request\Upgrade\DeleteUpgradeRequest;
+use GoSuccess\Digistore24\Api\Request\Upgrade\ListUpgradesRequest;
+use GoSuccess\Digistore24\Api\Response\Upgrade\GetUpgradeResponse;
+use GoSuccess\Digistore24\Api\Response\Upgrade\CreateUpgradeResponse;
+use GoSuccess\Digistore24\Api\Response\Upgrade\DeleteUpgradeResponse;
+use GoSuccess\Digistore24\Api\Response\Upgrade\ListUpgradesResponse;
 final class UpgradeResource extends AbstractResource
 {
     public function get(GetUpgradeRequest $request): GetUpgradeResponse

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\Billing;
+namespace GoSuccess\Digistore24\Api\Request\Billing;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to partially refund a purchase.
@@ -31,17 +31,17 @@ final readonly class RefundPartiallyRequest extends AbstractRequest
         private float $amount,
     ) {}
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'refundPartially';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::POST;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         return [
             'purchase_id' => $this->purchaseId,

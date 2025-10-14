@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Request\Transaction;
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+namespace GoSuccess\Digistore24\Api\Request\Transaction;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ListTransactionsRequest extends AbstractRequest
 {
     public function __construct(
@@ -14,9 +14,9 @@ final readonly class ListTransactionsRequest extends AbstractRequest
         private ?int $pageNo = null,
         private ?int $pageSize = null,
     ) {}
-    public function getEndpoint(): string { return 'listTransactions'; }
-    public function getMethod(): Method { return Method::POST; }
-    public function getParameters(): array
+    public function endpoint(): string { return 'listTransactions'; }
+    public function method(): Method { return Method::POST; }
+    public function toArray(): array
     {
         $params = [];
         if ($this->from !== null) $params['from'] = $this->from;

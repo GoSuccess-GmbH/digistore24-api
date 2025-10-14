@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Resource;
+namespace GoSuccess\Digistore24\Api\Resource;
 
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\License\ValidateLicenseKeyRequest;
-use GoSuccess\Digistore24\Response\License\ValidateLicenseKeyResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\License\ValidateLicenseKeyRequest;
+use GoSuccess\Digistore24\Api\Response\License\ValidateLicenseKeyResponse;
 
 /**
  * License Resource

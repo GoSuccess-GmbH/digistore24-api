@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Request\ConversionTool;
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+namespace GoSuccess\Digistore24\Api\Request\ConversionTool;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class ValidateCouponCodeRequest extends AbstractRequest
 {
     public function __construct(private string $code) {}
-    public function getEndpoint(): string { return 'validateCouponCode'; }
-    public function getMethod(): Method { return Method::GET; }
-    public function getParameters(): array { return ['code' => $this->code]; }
+    public function endpoint(): string { return 'validateCouponCode'; }
+    public function method(): Method { return Method::GET; }
+    public function toArray(): array { return ['code' => $this->code]; }
 }

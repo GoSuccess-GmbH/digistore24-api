@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Response\Upsell;
-use GoSuccess\Digistore24\Base\AbstractResponse;
+namespace GoSuccess\Digistore24\Api\Response\Upsell;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 final readonly class UpdateUpsellsResponse extends AbstractResponse
 {
     public function __construct(private string $result) {}

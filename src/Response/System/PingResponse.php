@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Response\System;
+namespace GoSuccess\Digistore24\Api\Response\System;
 
-use GoSuccess\Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
  * Response from pinging the Digistore24 server.

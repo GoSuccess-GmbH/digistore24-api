@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\Product;
+namespace GoSuccess\Digistore24\Api\Request\Product;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to list all available product types.
@@ -23,17 +23,17 @@ final readonly class ListProductTypesRequest extends AbstractRequest
         // No parameters required for this endpoint
     }
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'listProductTypes';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::GET;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         return [];
     }

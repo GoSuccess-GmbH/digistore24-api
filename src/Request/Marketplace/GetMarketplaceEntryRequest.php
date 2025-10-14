@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Request\Marketplace;
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+namespace GoSuccess\Digistore24\Api\Request\Marketplace;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class GetMarketplaceEntryRequest extends AbstractRequest
 {
     public function __construct(private string $entryId) {}
-    public function getEndpoint(): string { return 'getMarketplaceEntry'; }
-    public function getMethod(): Method { return Method::GET; }
-    public function getParameters(): array { return ['entry_id' => $this->entryId]; }
+    public function endpoint(): string { return 'getMarketplaceEntry'; }
+    public function method(): Method { return Method::GET; }
+    public function toArray(): array { return ['entry_id' => $this->entryId]; }
 }

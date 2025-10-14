@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Response\Transaction;
-use GoSuccess\Digistore24\Base\AbstractResponse;
+namespace GoSuccess\Digistore24\Api\Response\Transaction;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 final readonly class RefundTransactionResponse extends AbstractResponse
 {
     public function __construct(private string $status, private string $modified, private array $data) {}

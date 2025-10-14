@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\Statistics\StatsAffiliateToplistRequest;
-use GoSuccess\Digistore24\Request\Statistics\StatsDailyAmountsRequest;
-use GoSuccess\Digistore24\Request\Statistics\StatsSalesRequest;
-use GoSuccess\Digistore24\Request\Statistics\StatsSalesSummaryRequest;
-use GoSuccess\Digistore24\Response\Statistics\StatsAffiliateToplistResponse;
-use GoSuccess\Digistore24\Response\Statistics\StatsDailyAmountsResponse;
-use GoSuccess\Digistore24\Response\Statistics\StatsSalesResponse;
-use GoSuccess\Digistore24\Response\Statistics\StatsSalesSummaryResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Statistics\StatsAffiliateToplistRequest;
+use GoSuccess\Digistore24\Api\Request\Statistics\StatsDailyAmountsRequest;
+use GoSuccess\Digistore24\Api\Request\Statistics\StatsSalesRequest;
+use GoSuccess\Digistore24\Api\Request\Statistics\StatsSalesSummaryRequest;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsAffiliateToplistResponse;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsDailyAmountsResponse;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsSalesResponse;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsSalesSummaryResponse;
 final class StatisticsResource extends AbstractResource
 {
     public function affiliateToplist(StatsAffiliateToplistRequest $request): StatsAffiliateToplistResponse

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Resource;
+namespace GoSuccess\Digistore24\Api\Resource;
 
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\Tracking\RenderJsTrackingCodeRequest;
-use GoSuccess\Digistore24\Request\Purchase\GetPurchaseTrackingRequest;
-use GoSuccess\Digistore24\Response\Tracking\RenderJsTrackingCodeResponse;
-use GoSuccess\Digistore24\Response\Purchase\GetPurchaseTrackingResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Tracking\RenderJsTrackingCodeRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseTrackingRequest;
+use GoSuccess\Digistore24\Api\Response\Tracking\RenderJsTrackingCodeResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseTrackingResponse;
 
 /**
  * Tracking Resource

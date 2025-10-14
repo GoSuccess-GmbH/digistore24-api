@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\Shipping\CreateShippingCostPolicyRequest;
-use GoSuccess\Digistore24\Request\Shipping\GetShippingCostPolicyRequest;
-use GoSuccess\Digistore24\Request\Shipping\UpdateShippingCostPolicyRequest;
-use GoSuccess\Digistore24\Request\Shipping\DeleteShippingCostPolicyRequest;
-use GoSuccess\Digistore24\Request\Shipping\ListShippingCostPoliciesRequest;
-use GoSuccess\Digistore24\Response\Shipping\CreateShippingCostPolicyResponse;
-use GoSuccess\Digistore24\Response\Shipping\GetShippingCostPolicyResponse;
-use GoSuccess\Digistore24\Response\Shipping\UpdateShippingCostPolicyResponse;
-use GoSuccess\Digistore24\Response\Shipping\DeleteShippingCostPolicyResponse;
-use GoSuccess\Digistore24\Response\Shipping\ListShippingCostPoliciesResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Shipping\CreateShippingCostPolicyRequest;
+use GoSuccess\Digistore24\Api\Request\Shipping\GetShippingCostPolicyRequest;
+use GoSuccess\Digistore24\Api\Request\Shipping\UpdateShippingCostPolicyRequest;
+use GoSuccess\Digistore24\Api\Request\Shipping\DeleteShippingCostPolicyRequest;
+use GoSuccess\Digistore24\Api\Request\Shipping\ListShippingCostPoliciesRequest;
+use GoSuccess\Digistore24\Api\Response\Shipping\CreateShippingCostPolicyResponse;
+use GoSuccess\Digistore24\Api\Response\Shipping\GetShippingCostPolicyResponse;
+use GoSuccess\Digistore24\Api\Response\Shipping\UpdateShippingCostPolicyResponse;
+use GoSuccess\Digistore24\Api\Response\Shipping\DeleteShippingCostPolicyResponse;
+use GoSuccess\Digistore24\Api\Response\Shipping\ListShippingCostPoliciesResponse;
 final class ShippingResource extends AbstractResource
 {
     public function create(CreateShippingCostPolicyRequest $request): CreateShippingCostPolicyResponse

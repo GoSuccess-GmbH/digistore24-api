@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Response\License;
+namespace GoSuccess\Digistore24\Api\Response\License;
 
-use GoSuccess\Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
  * Response from validating a license key.

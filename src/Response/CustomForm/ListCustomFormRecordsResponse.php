@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Response\CustomForm;
+namespace GoSuccess\Digistore24\Api\Response\CustomForm;
 
-use GoSuccess\Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
  * Response containing custom form records.

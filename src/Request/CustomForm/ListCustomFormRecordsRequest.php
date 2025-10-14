@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\CustomForm;
+namespace GoSuccess\Digistore24\Api\Request\CustomForm;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to list custom form records.
@@ -24,17 +24,17 @@ final readonly class ListCustomFormRecordsRequest extends AbstractRequest
         private ?string $purchaseId = null,
     ) {}
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'listCustomFormRecords';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::GET;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         $params = [];
 

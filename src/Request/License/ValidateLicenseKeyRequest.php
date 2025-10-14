@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\License;
+namespace GoSuccess\Digistore24\Api\Request\License;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to validate a license key.
@@ -26,17 +26,17 @@ final readonly class ValidateLicenseKeyRequest extends AbstractRequest
         private string $licenseKey,
     ) {}
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'validateLicenseKey';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::GET;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         return [
             'purchase_id' => $this->purchaseId,

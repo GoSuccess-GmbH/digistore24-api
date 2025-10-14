@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Request\Statistics;
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+namespace GoSuccess\Digistore24\Api\Request\Statistics;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class StatsAffiliateToplistRequest extends AbstractRequest
 {
     public function __construct(
@@ -10,9 +10,9 @@ final readonly class StatsAffiliateToplistRequest extends AbstractRequest
         private ?string $to = null,
         private ?int $limit = null,
     ) {}
-    public function getEndpoint(): string { return 'statsAffiliateToplist'; }
-    public function getMethod(): Method { return Method::GET; }
-    public function getParameters(): array
+    public function endpoint(): string { return 'statsAffiliateToplist'; }
+    public function method(): Method { return Method::GET; }
+    public function toArray(): array
     {
         $params = [];
         if ($this->from !== null) $params['from'] = $this->from;

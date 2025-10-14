@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Resource;
+namespace GoSuccess\Digistore24\Api\Resource;
 
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\System\PingRequest;
-use GoSuccess\Digistore24\Request\System\GetGlobalSettingsRequest;
-use GoSuccess\Digistore24\Response\System\PingResponse;
-use GoSuccess\Digistore24\Response\System\GetGlobalSettingsResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\System\PingRequest;
+use GoSuccess\Digistore24\Api\Request\System\GetGlobalSettingsRequest;
+use GoSuccess\Digistore24\Api\Response\System\PingResponse;
+use GoSuccess\Digistore24\Api\Response\System\GetGlobalSettingsResponse;
 
 /**
  * System Resource

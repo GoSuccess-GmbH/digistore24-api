@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Resource;
+namespace GoSuccess\Digistore24\Api\Resource;
 
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\Fraud\ReportFraudRequest;
-use GoSuccess\Digistore24\Response\Fraud\ReportFraudResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Fraud\ReportFraudRequest;
+use GoSuccess\Digistore24\Api\Response\Fraud\ReportFraudResponse;
 
 /**
  * Fraud Resource

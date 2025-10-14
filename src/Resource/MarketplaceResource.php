@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\Marketplace\ListMarketplaceEntriesRequest;
-use GoSuccess\Digistore24\Request\Marketplace\GetMarketplaceEntryRequest;
-use GoSuccess\Digistore24\Request\Marketplace\StatsMarketplaceRequest;
-use GoSuccess\Digistore24\Response\Marketplace\ListMarketplaceEntriesResponse;
-use GoSuccess\Digistore24\Response\Marketplace\GetMarketplaceEntryResponse;
-use GoSuccess\Digistore24\Response\Marketplace\StatsMarketplaceResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\Marketplace\ListMarketplaceEntriesRequest;
+use GoSuccess\Digistore24\Api\Request\Marketplace\GetMarketplaceEntryRequest;
+use GoSuccess\Digistore24\Api\Request\Marketplace\StatsMarketplaceRequest;
+use GoSuccess\Digistore24\Api\Response\Marketplace\ListMarketplaceEntriesResponse;
+use GoSuccess\Digistore24\Api\Response\Marketplace\GetMarketplaceEntryResponse;
+use GoSuccess\Digistore24\Api\Response\Marketplace\StatsMarketplaceResponse;
 final class MarketplaceResource extends AbstractResource
 {
     public function list(ListMarketplaceEntriesRequest $request): ListMarketplaceEntriesResponse

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Resource;
+namespace GoSuccess\Digistore24\Api\Resource;
 
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\CustomForm\ListCustomFormRecordsRequest;
-use GoSuccess\Digistore24\Response\CustomForm\ListCustomFormRecordsResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\CustomForm\ListCustomFormRecordsRequest;
+use GoSuccess\Digistore24\Api\Response\CustomForm\ListCustomFormRecordsResponse;
 
 /**
  * Custom Form Resource

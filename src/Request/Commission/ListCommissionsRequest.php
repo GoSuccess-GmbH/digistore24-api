@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\Commission;
+namespace GoSuccess\Digistore24\Api\Request\Commission;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to list affiliate commissions.
@@ -36,17 +36,17 @@ final readonly class ListCommissionsRequest extends AbstractRequest
         private ?string $purchaseId = null,
     ) {}
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'listCommissions';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::GET;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         $params = [];
 

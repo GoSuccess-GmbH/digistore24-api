@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\ApiKey\RequestApiKeyRequest;
-use GoSuccess\Digistore24\Request\ApiKey\RetrieveApiKeyRequest;
-use GoSuccess\Digistore24\Request\ApiKey\UnregisterRequest;
-use GoSuccess\Digistore24\Response\ApiKey\RequestApiKeyResponse;
-use GoSuccess\Digistore24\Response\ApiKey\RetrieveApiKeyResponse;
-use GoSuccess\Digistore24\Response\ApiKey\UnregisterResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\ApiKey\RequestApiKeyRequest;
+use GoSuccess\Digistore24\Api\Request\ApiKey\RetrieveApiKeyRequest;
+use GoSuccess\Digistore24\Api\Request\ApiKey\UnregisterRequest;
+use GoSuccess\Digistore24\Api\Response\ApiKey\RequestApiKeyResponse;
+use GoSuccess\Digistore24\Api\Response\ApiKey\RetrieveApiKeyResponse;
+use GoSuccess\Digistore24\Api\Response\ApiKey\UnregisterResponse;
 final class ApiKeyResource extends AbstractResource
 {
     public function request(RequestApiKeyRequest $request): RequestApiKeyResponse

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\Billing;
+namespace GoSuccess\Digistore24\Api\Request\Billing;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to create a billing on demand order.
@@ -40,17 +40,17 @@ final readonly class CreateBillingOnDemandRequest extends AbstractRequest
         private ?array $addons = null,
     ) {}
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'createBillingOnDemand';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::POST;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         $params = [
             'purchase_id' => $this->purchaseId,

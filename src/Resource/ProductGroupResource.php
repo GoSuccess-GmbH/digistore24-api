@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\ProductGroup\CreateProductGroupRequest;
-use GoSuccess\Digistore24\Request\ProductGroup\GetProductGroupRequest;
-use GoSuccess\Digistore24\Request\ProductGroup\UpdateProductGroupRequest;
-use GoSuccess\Digistore24\Request\ProductGroup\DeleteProductGroupRequest;
-use GoSuccess\Digistore24\Request\ProductGroup\ListProductGroupsRequest;
-use GoSuccess\Digistore24\Response\ProductGroup\CreateProductGroupResponse;
-use GoSuccess\Digistore24\Response\ProductGroup\GetProductGroupResponse;
-use GoSuccess\Digistore24\Response\ProductGroup\UpdateProductGroupResponse;
-use GoSuccess\Digistore24\Response\ProductGroup\DeleteProductGroupResponse;
-use GoSuccess\Digistore24\Response\ProductGroup\ListProductGroupsResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\CreateProductGroupRequest;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\GetProductGroupRequest;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\UpdateProductGroupRequest;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\DeleteProductGroupRequest;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\ListProductGroupsRequest;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\CreateProductGroupResponse;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\GetProductGroupResponse;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\UpdateProductGroupResponse;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\DeleteProductGroupResponse;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\ListProductGroupsResponse;
 final class ProductGroupResource extends AbstractResource
 {
     public function create(CreateProductGroupRequest $request): CreateProductGroupResponse

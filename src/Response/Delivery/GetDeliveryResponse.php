@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Response\Delivery;
-use GoSuccess\Digistore24\Base\AbstractResponse;
+namespace GoSuccess\Digistore24\Api\Response\Delivery;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 final readonly class GetDeliveryResponse extends AbstractResponse
 {
     public function __construct(private array $data) {}

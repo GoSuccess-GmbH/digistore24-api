@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Request\Transaction;
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+namespace GoSuccess\Digistore24\Api\Request\Transaction;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 final readonly class RefundTransactionRequest extends AbstractRequest
 {
     public function __construct(
@@ -10,9 +10,9 @@ final readonly class RefundTransactionRequest extends AbstractRequest
         private ?bool $force = null,
         private ?string $requestDate = null,
     ) {}
-    public function getEndpoint(): string { return 'refundTransaction'; }
-    public function getMethod(): Method { return Method::POST; }
-    public function getParameters(): array
+    public function endpoint(): string { return 'refundTransaction'; }
+    public function method(): Method { return Method::POST; }
+    public function toArray(): array
     {
         $params = ['transaction_id' => $this->transactionId];
         if ($this->force !== null) $params['force'] = $this->force;

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
-namespace GoSuccess\Digistore24\Resource;
-use GoSuccess\Digistore24\Base\AbstractResource;
-use GoSuccess\Digistore24\Request\ConversionTool\ListConversionToolsRequest;
-use GoSuccess\Digistore24\Request\ConversionTool\ValidateCouponCodeRequest;
-use GoSuccess\Digistore24\Response\ConversionTool\ListConversionToolsResponse;
-use GoSuccess\Digistore24\Response\ConversionTool\ValidateCouponCodeResponse;
+namespace GoSuccess\Digistore24\Api\Resource;
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\ConversionTool\ListConversionToolsRequest;
+use GoSuccess\Digistore24\Api\Request\ConversionTool\ValidateCouponCodeRequest;
+use GoSuccess\Digistore24\Api\Response\ConversionTool\ListConversionToolsResponse;
+use GoSuccess\Digistore24\Api\Response\ConversionTool\ValidateCouponCodeResponse;
 final class ConversionToolResource extends AbstractResource
 {
     public function list(ListConversionToolsRequest $request): ListConversionToolsResponse

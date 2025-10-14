@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\Fraud;
+namespace GoSuccess\Digistore24\Api\Request\Fraud;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to report fraud.
@@ -27,17 +27,17 @@ final readonly class ReportFraudRequest extends AbstractRequest
         private string $comment,
     ) {}
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'reportFraud';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::POST;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         return [
             'transaction_id' => $this->transactionId,

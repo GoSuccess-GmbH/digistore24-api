@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Request\System;
+namespace GoSuccess\Digistore24\Api\Request\System;
 
-use GoSuccess\Digistore24\Base\AbstractRequest;
-use GoSuccess\Digistore24\Http\Method;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
  * Request to ping the Digistore24 server.
@@ -22,17 +22,17 @@ final readonly class PingRequest extends AbstractRequest
         // No parameters required
     }
 
-    public function getEndpoint(): string
+    public function endpoint(): string
     {
         return 'ping';
     }
 
-    public function getMethod(): Method
+    public function method(): Method
     {
         return Method::GET;
     }
 
-    public function getParameters(): array
+    public function toArray(): array
     {
         return [];
     }
