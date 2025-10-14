@@ -6,7 +6,11 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\ListBuyUrlsRequest;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\DeleteBuyUrlRequest;
 use GoSuccess\Digistore24\Api\Response\BuyUrl\CreateBuyUrlResponse;
+use GoSuccess\Digistore24\Api\Response\BuyUrl\ListBuyUrlsResponse;
+use GoSuccess\Digistore24\Api\Response\BuyUrl\DeleteBuyUrlResponse;
 
 /**
  * Buy URL Resource
@@ -54,24 +58,30 @@ final class BuyUrlResource extends AbstractResource
     /**
      * List all buy URLs
      * 
-     * TODO: Implement when listBuyUrl endpoint is added
+     * Retrieves a paginated list of all generated buy URLs.
      * 
-     * @link https://digistore24.com/api/docs/paths/listBuyUrl.yaml
+     * @param ListBuyUrlsRequest $request The list buy URLs request
+     * @return ListBuyUrlsResponse The response with buy URLs list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://dev.digistore24.com/en/articles/64-listbuyurls
      */
-    // public function list(ListBuyUrlRequest $request): ListBuyUrlResponse
-    // {
-    //     return $this->executeTyped($request, ListBuyUrlResponse::class);
-    // }
+    public function list(ListBuyUrlsRequest $request): ListBuyUrlsResponse
+    {
+        return $this->executeTyped($request, ListBuyUrlsResponse::class);
+    }
 
     /**
      * Delete a buy URL
      * 
-     * TODO: Implement when deleteBuyUrl endpoint is added
+     * Deletes a previously generated buy URL.
      * 
-     * @link https://digistore24.com/api/docs/paths/deleteBuyUrl.yaml
+     * @param DeleteBuyUrlRequest $request The delete buy URL request
+     * @return DeleteBuyUrlResponse The response confirming deletion
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://dev.digistore24.com/en/articles/28-deletebuyurl
      */
-    // public function delete(DeleteBuyUrlRequest $request): DeleteBuyUrlResponse
-    // {
-    //     return $this->executeTyped($request, DeleteBuyUrlResponse::class);
-    // }
+    public function delete(DeleteBuyUrlRequest $request): DeleteBuyUrlResponse
+    {
+        return $this->executeTyped($request, DeleteBuyUrlResponse::class);
+    }
 }
