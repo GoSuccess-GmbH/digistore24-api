@@ -6,7 +6,9 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\AccountAccess\LogMemberAccessRequest;
+use GoSuccess\Digistore24\Api\Request\AccountAccess\ListAccountAccessRequest;
 use GoSuccess\Digistore24\Api\Response\AccountAccess\LogMemberAccessResponse;
+use GoSuccess\Digistore24\Api\Response\AccountAccess\ListAccountAccessResponse;
 
 /**
  * Account Access Resource
@@ -29,5 +31,20 @@ final class AccountAccessResource extends AbstractResource
     public function logAccess(LogMemberAccessRequest $request): LogMemberAccessResponse
     {
         return $this->executeTyped($request, LogMemberAccessResponse::class);
+    }
+
+    /**
+     * List all logged member accesses
+     * 
+     * Retrieves the history of all logged member accesses for a specific purchase.
+     * Shows when buyers have accessed their membership content.
+     * 
+     * @param ListAccountAccessRequest $request The list request
+     * @return ListAccountAccessResponse The response with access history
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function listAccesses(ListAccountAccessRequest $request): ListAccountAccessResponse
+    {
+        return $this->executeTyped($request, ListAccountAccessResponse::class);
     }
 }
