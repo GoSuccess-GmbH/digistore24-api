@@ -12,32 +12,35 @@ final class IpnInfoRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new IpnInfoRequest();
+        
         $this->assertInstanceOf(IpnInfoRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new IpnInfoRequest();
-        $endpoint = $request->getEndpoint();
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('ipnInfo', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_returns_empty_array(): void
     {
         $request = new IpnInfoRequest();
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertEmpty($array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
         $request = new IpnInfoRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

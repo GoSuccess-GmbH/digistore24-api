@@ -11,33 +11,51 @@ final class IpnSetupRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new IpnSetupRequest();
+        $request = new IpnSetupRequest(url: 'https://example.com/ipn');
+        
         $this->assertInstanceOf(IpnSetupRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new IpnSetupRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new IpnSetupRequest(url: 'https://example.com/ipn');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('ipnSetup', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_url_only(): void
     {
-        $request = new IpnSetupRequest();
+        $request = new IpnSetupRequest(url: 'https://example.com/ipn');
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('https://example.com/ipn', $array['url']);
+        $this->assertCount(1, $array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_to_array_includes_ipn_password_when_set(): void
     {
-        $request = new IpnSetupRequest();
+        $request = new IpnSetupRequest(
+            url: 'https://example.com/ipn',
+            ipnPassword: 'secret123'
+        );
+        
+        $array = $request->toArray();
+        
+        $this->assertIsArray($array);
+        $this->assertSame('https://example.com/ipn', $array['url']);
+        $this->assertSame('secret123', $array['ipn_password']);
+    }
+
+    public function test_validate_returns_empty_array(): void
+    {
+        $request = new IpnSetupRequest(url: 'https://example.com/ipn');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
