@@ -6,9 +6,9 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 
 ✅ = Implemented | 🚧 = In Progress | ⏳ = Planned
 
-### Account Access (1/2)
+### Account Access (2/2)
 - ✅ logMemberAccess - Log member access to content
-- ⏳ listAccountAccess - List all logged member accesses
+- ✅ listAccountAccess - List all logged member accesses
 
 ### Affiliates (3/9)
 - ⏳ getAffiliateCommission - Get affiliate commission settings
