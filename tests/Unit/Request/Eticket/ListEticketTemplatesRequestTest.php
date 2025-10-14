@@ -12,32 +12,35 @@ final class ListEticketTemplatesRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListEticketTemplatesRequest();
+        
         $this->assertInstanceOf(ListEticketTemplatesRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListEticketTemplatesRequest();
-        $endpoint = $request->getEndpoint();
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('/listEticketTemplates', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_returns_empty_array(): void
     {
         $request = new ListEticketTemplatesRequest();
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertEmpty($array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
         $request = new ListEticketTemplatesRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
