@@ -12,17 +12,29 @@ final class ResendInvoiceMailResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'status' => 'success',
+                'note' => 'Invoice email has been resent successfully'
+            ]
+        ];
         $response = ResendInvoiceMailResponse::fromArray($data);
         
         $this->assertInstanceOf(ResendInvoiceMailResponse::class, $response);
+        $this->assertSame('success', $response->getStatus());
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'status' => 'success',
+                    'note' => 'Email sent to recipient'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +42,21 @@ final class ResendInvoiceMailResponseTest extends TestCase
         $response = ResendInvoiceMailResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(ResendInvoiceMailResponse::class, $response);
+        $this->assertSame('Email sent to recipient', $response->getNote());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = ResendInvoiceMailResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
