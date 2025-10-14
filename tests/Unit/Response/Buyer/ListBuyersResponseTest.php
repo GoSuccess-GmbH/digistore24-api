@@ -12,17 +12,31 @@ final class ListBuyersResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'buyer_list' => [
+                    ['buyer_id' => 'BUY1', 'email' => 'buyer1@example.com'],
+                    ['buyer_id' => 'BUY2', 'email' => 'buyer2@example.com']
+                ]
+            ]
+        ];
         $response = ListBuyersResponse::fromArray($data);
         
         $this->assertInstanceOf(ListBuyersResponse::class, $response);
+        $this->assertCount(2, $response->getBuyerList());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'buyer_list' => [
+                        ['buyer_id' => 'BUY1']
+                    ]
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,6 +44,7 @@ final class ListBuyersResponseTest extends TestCase
         $response = ListBuyersResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(ListBuyersResponse::class, $response);
+        $this->assertCount(1, $response->getBuyerList());
     }
 
     public function test_has_raw_response(): void
@@ -43,7 +58,7 @@ final class ListBuyersResponseTest extends TestCase
         
         $response = ListBuyersResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

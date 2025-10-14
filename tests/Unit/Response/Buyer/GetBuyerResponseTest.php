@@ -12,17 +12,30 @@ final class GetBuyerResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'buyer_id' => 'BUY123',
+                'email' => 'buyer@example.com',
+                'first_name' => 'John'
+            ]
+        ];
         $response = GetBuyerResponse::fromArray($data);
         
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
+        $this->assertSame('BUY123', $response->getBuyerId());
+        $this->assertSame('buyer@example.com', $response->getEmail());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'buyer_id' => 'BUY123',
+                    'email' => 'buyer@example.com'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,6 +43,7 @@ final class GetBuyerResponseTest extends TestCase
         $response = GetBuyerResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
+        $this->assertSame('BUY123', $response->getBuyerId());
     }
 
     public function test_has_raw_response(): void
@@ -43,7 +57,7 @@ final class GetBuyerResponseTest extends TestCase
         
         $response = GetBuyerResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
