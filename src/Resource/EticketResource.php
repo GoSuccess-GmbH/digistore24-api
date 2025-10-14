@@ -7,8 +7,10 @@ namespace GoSuccess\Digistore24\Api\Resource;
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Eticket\CreateEticketRequest;
 use GoSuccess\Digistore24\Api\Request\Eticket\GetEticketRequest;
+use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketsRequest;
 use GoSuccess\Digistore24\Api\Response\Eticket\CreateEticketResponse;
 use GoSuccess\Digistore24\Api\Response\Eticket\GetEticketResponse;
+use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketsResponse;
 
 /**
  * E-Ticket Resource
@@ -41,5 +43,19 @@ final class EticketResource extends AbstractResource
     public function get(GetEticketRequest $request): GetEticketResponse
     {
         return $this->executeTyped($request, GetEticketResponse::class);
+    }
+
+    /**
+     * List e-tickets
+     * 
+     * Retrieves a list of e-tickets, optionally filtered by product, location, or date range.
+     * 
+     * @param ListEticketsRequest $request The list e-tickets request
+     * @return ListEticketsResponse The response with e-ticket list
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     */
+    public function list(ListEticketsRequest $request): ListEticketsResponse
+    {
+        return $this->executeTyped($request, ListEticketsResponse::class);
     }
 }
