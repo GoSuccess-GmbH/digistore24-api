@@ -122,25 +122,25 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ updateProductGroup - Update product group
 - ⏳ deleteProductGroup - Delete product group
 
-### Products (2/6)
-- ⏳ createProduct - Create a product
+### Products (6/6)
+- ✅ createProduct - Create a product
 - ✅ getProduct - Get product details
 - ✅ listProducts - List all products
-- ⏳ copyProduct - Copy/duplicate a product
-- ⏳ updateProduct - Update product
-- ⏳ deleteProduct - Delete product
+- ✅ copyProduct - Copy/duplicate a product
+- ✅ updateProduct - Update product
+- ✅ deleteProduct - Delete product
 - ⏳ listProductTypes - List available product types
 
-### Purchases (3/10)
+### Purchases (7/10)
 - ✅ createAddonChangePurchase - Create addon change order
 - ✅ getPurchase - Get purchase details
 - ✅ listPurchases - List all purchases
-- ⏳ listPurchasesOfEmail - List purchases by email
-- ⏳ getPurchaseTracking - Get purchase tracking data
+- ✅ listPurchasesOfEmail - List purchases by email
+- ✅ getPurchaseTracking - Get purchase tracking data
 - ⏳ getPurchaseDownloads - Get download links
 - ⏳ getCustomerToAffiliateBuyerDetails - Get customer-to-affiliate details
-- ⏳ createUpgradePurchase - Create upgrade order
-- ⏳ addBalanceToPurchase - Add balance to purchase
+- ✅ createUpgradePurchase - Create upgrade order
+- ✅ addBalanceToPurchase - Add balance to purchase
 - ⏳ updatePurchase - Update purchase
 - ⏳ refundPurchase - Refund entire purchase
 - ⏳ resendPurchaseConfirmationMail - Resend confirmation email
@@ -213,17 +213,19 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 ## Summary
 
 - **Total Endpoints**: ~130+
-- **Implemented**: 21 endpoints across 5 complete categories
-- **Remaining**: ~109
-- **Progress**: 16%
+- **Implemented**: 29 endpoints across 5 categories
+- **Remaining**: ~101
+- **Progress**: 22%
 
-### Complete Categories (5)
+### Complete Categories
 1. ✅ Account Access (2/2) - 100%
 2. ✅ E-Tickets (7/7) - 100%
 3. ✅ Images (4/4) - 100%
 4. ✅ Buy URLs (3/3) - 100%
-5. ⚠️ Products (2/6) - 33% (getProduct, listProducts)
-6. ⚠️ Purchases (3/10+) - 30% (createAddonChangePurchase, getPurchase, listPurchases)
+5. ✅ Products (6/6) - 100%
+
+### In Progress
+6. 🚧 Purchases (7/10+) - 70% (missing: updatePurchase, refundPurchase, resendPurchaseConfirmationMail, getPurchaseDownloads, getCustomerToAffiliateBuyerDetails)
 
 ## Implementation Priority
 
