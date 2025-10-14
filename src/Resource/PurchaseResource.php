@@ -8,17 +8,25 @@ use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Purchase\AddBalanceToPurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateUpgradePurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseDownloadsRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\GetPurchaseTrackingRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesOfEmailRequest;
 use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\RefundPurchaseRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\ResendPurchaseConfirmationMailRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\UpdatePurchaseRequest;
 use GoSuccess\Digistore24\Api\Response\Purchase\AddBalanceToPurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\CreateUpgradePurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseDownloadsResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseTrackingResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesOfEmailResponse;
 use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\RefundPurchaseResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\ResendPurchaseConfirmationMailResponse;
+use GoSuccess\Digistore24\Api\Response\Purchase\UpdatePurchaseResponse;
 
 /**
  * Purchase Resource
@@ -139,5 +147,66 @@ final class PurchaseResource extends AbstractResource
     public function addBalance(AddBalanceToPurchaseRequest $request): AddBalanceToPurchaseResponse
     {
         return $this->executeTyped($request, AddBalanceToPurchaseResponse::class);
+    }
+
+    /**
+     * Update purchase
+     * 
+     * Changes the tracking data of an order and can extend rebilling intervals.
+     * 
+     * @param UpdatePurchaseRequest $request The update purchase request
+     * @return UpdatePurchaseResponse The response indicating if purchase was modified
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/updatePurchase.yaml
+     */
+    public function update(UpdatePurchaseRequest $request): UpdatePurchaseResponse
+    {
+        return $this->executeTyped($request, UpdatePurchaseResponse::class);
+    }
+
+    /**
+     * Refund purchase
+     * 
+     * Refunds all payments of an order which may be refunded according to refund policy.
+     * 
+     * @param RefundPurchaseRequest $request The refund purchase request
+     * @return RefundPurchaseResponse The response with refund result
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/refundPurchase.yaml
+     */
+    public function refund(RefundPurchaseRequest $request): RefundPurchaseResponse
+    {
+        return $this->executeTyped($request, RefundPurchaseResponse::class);
+    }
+
+    /**
+     * Resend purchase confirmation mail
+     * 
+     * Resends the order confirmation email to the buyer.
+     * 
+     * @param ResendPurchaseConfirmationMailRequest $request The resend mail request
+     * @return ResendPurchaseConfirmationMailResponse The response with send status
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/resendPurchaseConfirmationMail.yaml
+     */
+    public function resendConfirmationMail(ResendPurchaseConfirmationMailRequest $request): ResendPurchaseConfirmationMailResponse
+    {
+        return $this->executeTyped($request, ResendPurchaseConfirmationMailResponse::class);
+    }
+
+    /**
+     * Get purchase downloads
+     * 
+     * Returns download information for purchased digital products including URLs,
+     * download limits, access status, and file details.
+     * 
+     * @param GetPurchaseDownloadsRequest $request The get downloads request
+     * @return GetPurchaseDownloadsResponse The response with download details
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @link https://digistore24.com/api/docs/paths/getPurchaseDownloads.yaml
+     */
+    public function getDownloads(GetPurchaseDownloadsRequest $request): GetPurchaseDownloadsResponse
+    {
+        return $this->executeTyped($request, GetPurchaseDownloadsResponse::class);
     }
 }

@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Digistore24\Request\Purchase;
+
+use Digistore24\Base\AbstractRequest;
+
+/**
+ * Request to resend purchase confirmation mail
+ *
+ * @link https://digistore24.com/api/docs/paths/resendPurchaseConfirmationMail.yaml OpenAPI Specification
+ */
+final readonly class ResendPurchaseConfirmationMailRequest extends AbstractRequest
+{
+    /**
+     * @param string $purchaseId The Digistore24 order ID
+     */
+    public function __construct(
+        public string $purchaseId,
+    ) {
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'purchase_id' => $this->purchaseId,
+        ];
+    }
+
+    public function validate(): void
+    {
+        // Purchase ID is validated by readonly string type
+    }
+}
