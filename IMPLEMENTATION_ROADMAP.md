@@ -27,8 +27,8 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ unregister - Remove API access
 
 ### Billing (2/2)
-- ⏳ createBillingOnDemand - Create billing on demand order
-- ⏳ refundPartially - Partially refund a purchase
+- ✅ createBillingOnDemand - Create billing on demand order
+- ✅ refundPartially - Partially refund a purchase
 
 ### Buy URLs (3/3)
 - ✅ createBuyUrl - Create customized buy URL
@@ -213,17 +213,18 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 ## Summary
 
 - **Total Endpoints**: ~130+
-- **Implemented**: 35 endpoints across 6 complete categories
-- **Remaining**: ~95
-- **Progress**: 27%
+- **Implemented**: 37 endpoints across 7 complete categories
+- **Remaining**: ~93
+- **Progress**: 28%
 
-### Complete Categories (6)
+### Complete Categories (7)
 1. ✅ Account Access (2/2) - 100%
 2. ✅ E-Tickets (7/7) - 100%
 3. ✅ Images (4/4) - 100%
 4. ✅ Buy URLs (3/3) - 100%
 5. ✅ Products (7/7) - 100%
 6. ✅ Purchases (12/12) - 100%
+7. ✅ Billing (2/2) - 100%
 
 ## Implementation Priority
 
