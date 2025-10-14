@@ -11,33 +11,37 @@ final class CreateUpgradeRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new CreateUpgradeRequest();
+        $request = new CreateUpgradeRequest(data: ['name' => 'Premium Upgrade']);
+        
         $this->assertInstanceOf(CreateUpgradeRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new CreateUpgradeRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new CreateUpgradeRequest(data: ['name' => 'Premium Upgrade']);
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('createUpgrade', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_data(): void
     {
-        $request = new CreateUpgradeRequest();
+        $request = new CreateUpgradeRequest(data: ['name' => 'Premium Upgrade', 'price' => 99.99]);
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('Premium Upgrade', $array['name']);
+        $this->assertSame(99.99, $array['price']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new CreateUpgradeRequest();
+        $request = new CreateUpgradeRequest(data: ['name' => 'Premium Upgrade']);
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 

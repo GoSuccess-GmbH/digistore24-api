@@ -11,33 +11,36 @@ final class DeleteUpgradeRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new DeleteUpgradeRequest();
+        $request = new DeleteUpgradeRequest(upgradeId: 'UPG123');
+        
         $this->assertInstanceOf(DeleteUpgradeRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new DeleteUpgradeRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new DeleteUpgradeRequest(upgradeId: 'UPG123');
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('deleteUpgrade', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_upgrade_id(): void
     {
-        $request = new DeleteUpgradeRequest();
+        $request = new DeleteUpgradeRequest(upgradeId: 'UPG123');
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('UPG123', $array['upgrade_id']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new DeleteUpgradeRequest();
+        $request = new DeleteUpgradeRequest(upgradeId: 'UPG123');
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
