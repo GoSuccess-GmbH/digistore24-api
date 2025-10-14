@@ -73,9 +73,9 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 
 ### Images (4/4)
 - ✅ createImage - Create/upload an image
-- ⏳ getImage - Get image details
-- ⏳ listImages - List all images
-- ⏳ deleteImage - Delete an image
+- ✅ getImage - Get image details
+- ✅ listImages - List all images
+- ✅ deleteImage - Delete an image
 
 ### Invoices (2/2)
 - ⏳ listInvoices - List all invoices
