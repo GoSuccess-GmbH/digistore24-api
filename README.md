@@ -1,6 +1,6 @@
-# PHP Digistore24 API Wrapper
+# Digistore24 API Client for PHP
 
-Modern, type-safe PHP wrapper for the Digistore24 API with **PHP 8.4 property hooks** and clean architecture.
+Modern, type-safe PHP API client for Digistore24 with **PHP 8.4 property hooks** and clean architecture.
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.4%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -24,7 +24,7 @@ Modern, type-safe PHP wrapper for the Digistore24 API with **PHP 8.4 property ho
 ## Installation
 
 ```bash
-composer require gosuccess/php-ds24-api-wrapper
+composer require gosuccess/digistore24-api
 ```
 
 ## Quick Start

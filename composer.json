@@ -1,8 +1,9 @@
 {
-    "name": "gosuccess/php-ds24-api-wrapper",
-    "description": "PHP API Wrapper for Digistore24.",
+    "name": "gosuccess/digistore24-api",
+    "description": "Modern PHP API client for Digistore24 with PHP 8.4 features",
     "type": "library",
     "license": "MIT",
+    "keywords": ["digistore24", "api", "client", "payment", "ecommerce", "php8.4"],
     "autoload": {
         "psr-4": {
             "GoSuccess\\Digistore24\\Api\\": "src/"
