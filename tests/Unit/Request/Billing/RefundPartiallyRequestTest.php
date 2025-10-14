@@ -11,33 +11,49 @@ final class RefundPartiallyRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new RefundPartiallyRequest();
+        $request = new RefundPartiallyRequest(
+            purchaseId: 'P12345',
+            amount: 15.50
+        );
+        
         $this->assertInstanceOf(RefundPartiallyRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new RefundPartiallyRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new RefundPartiallyRequest(
+            purchaseId: 'P12345',
+            amount: 15.50
+        );
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('refundPartially', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_all_data(): void
     {
-        $request = new RefundPartiallyRequest();
+        $request = new RefundPartiallyRequest(
+            purchaseId: 'P12345',
+            amount: 15.50
+        );
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('P12345', $array['purchase_id']);
+        $this->assertSame(15.50, $array['amount']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new RefundPartiallyRequest();
+        $request = new RefundPartiallyRequest(
+            purchaseId: 'P12345',
+            amount: 15.50
+        );
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
