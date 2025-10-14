@@ -25,7 +25,7 @@ final class LicenseResource extends AbstractResource
      * 
      * @param ValidateLicenseKeyRequest $request The validate license key request
      * @return ValidateLicenseKeyResponse The response with license validation result
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function validate(ValidateLicenseKeyRequest $request): ValidateLicenseKeyResponse
     {

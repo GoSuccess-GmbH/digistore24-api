@@ -30,8 +30,5 @@ final class GetImageRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

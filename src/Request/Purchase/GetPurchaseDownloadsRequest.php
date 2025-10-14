@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/getPurchaseDownloads.yaml OpenAPI Specification
  */
-final readonly class GetPurchaseDownloadsRequest extends AbstractRequest
+final class GetPurchaseDownloadsRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId Single Digistore24 order ID or comma-separated list of order IDs
@@ -28,8 +28,8 @@ final readonly class GetPurchaseDownloadsRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        // Purchase ID is validated by readonly string type
+        return '/getPurchaseDownloads';
     }
 }

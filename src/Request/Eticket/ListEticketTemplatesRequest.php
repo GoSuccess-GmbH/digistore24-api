@@ -23,8 +23,5 @@ final class ListEticketTemplatesRequest extends AbstractRequest
         return [];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

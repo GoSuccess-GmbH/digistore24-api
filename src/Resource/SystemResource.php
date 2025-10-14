@@ -27,7 +27,7 @@ final class SystemResource extends AbstractResource
      * 
      * @param PingRequest $request The ping request
      * @return PingResponse The response with server time
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function ping(PingRequest $request): PingResponse
     {
@@ -44,7 +44,7 @@ final class SystemResource extends AbstractResource
      * 
      * @param GetGlobalSettingsRequest $request The get global settings request
      * @return GetGlobalSettingsResponse The response with global settings
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function getGlobalSettings(GetGlobalSettingsRequest $request): GetGlobalSettingsResponse
     {

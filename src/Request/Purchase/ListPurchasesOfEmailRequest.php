@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/listPurchasesOfEmail.yaml OpenAPI Specification
  */
-final readonly class ListPurchasesOfEmailRequest extends AbstractRequest
+final class ListPurchasesOfEmailRequest extends AbstractRequest
 {
     /**
      * @param string $email The buyer's email address
@@ -31,14 +31,8 @@ final readonly class ListPurchasesOfEmailRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException('Invalid email address format');
-        }
-
-        if ($this->limit < 1) {
-            throw new \InvalidArgumentException('Limit must be at least 1');
-        }
+        return '/listPurchasesOfEmail';
     }
 }

@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/resendPurchaseConfirmationMail.yaml OpenAPI Specification
  */
-final readonly class ResendPurchaseConfirmationMailRequest extends AbstractRequest
+final class ResendPurchaseConfirmationMailRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The Digistore24 order ID
@@ -28,8 +28,8 @@ final readonly class ResendPurchaseConfirmationMailRequest extends AbstractReque
         ];
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        // Purchase ID is validated by readonly string type
+        return '/resendPurchaseConfirmationMail';
     }
 }

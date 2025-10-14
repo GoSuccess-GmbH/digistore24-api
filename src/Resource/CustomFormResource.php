@@ -25,7 +25,7 @@ final class CustomFormResource extends AbstractResource
      * 
      * @param ListCustomFormRecordsRequest $request The list custom form records request
      * @return ListCustomFormRecordsResponse The response with custom form records
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function listRecords(ListCustomFormRecordsRequest $request): ListCustomFormRecordsResponse
     {

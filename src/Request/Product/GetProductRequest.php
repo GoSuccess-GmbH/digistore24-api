@@ -30,8 +30,5 @@ final class GetProductRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

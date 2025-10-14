@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/copyProduct.yaml OpenAPI Specification
  */
-final readonly class CopyProductRequest extends AbstractRequest
+final class CopyProductRequest extends AbstractRequest
 {
     /**
      * @param int $productId The ID of the product to be copied
@@ -39,11 +39,9 @@ final readonly class CopyProductRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        $params = [
+        $data = [
             'product_id' => (string)$this->productId,
         ];
-
-        $data = [];
 
         if ($this->nameIntern !== null) {
             $data['name_intern'] = $this->nameIntern;
@@ -70,33 +68,11 @@ final readonly class CopyProductRequest extends AbstractRequest
             $data['name_es'] = $this->nameEs;
         }
 
-        if (!empty($data)) {
-            $params['data'] = $data;
-        }
-
-        return $params;
+        return $data;
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        if ($this->nameIntern !== null && strlen($this->nameIntern) > 63) {
-            throw new \InvalidArgumentException('nameIntern must not exceed 63 characters');
-        }
-
-        if ($this->nameDe !== null && strlen($this->nameDe) > 63) {
-            throw new \InvalidArgumentException('nameDe must not exceed 63 characters');
-        }
-
-        if ($this->nameEn !== null && strlen($this->nameEn) > 63) {
-            throw new \InvalidArgumentException('nameEn must not exceed 63 characters');
-        }
-
-        if ($this->nameEs !== null && strlen($this->nameEs) > 63) {
-            throw new \InvalidArgumentException('nameEs must not exceed 63 characters');
-        }
-
-        if ($this->isActive !== null && !in_array($this->isActive, ['Y', 'N'], true)) {
-            throw new \InvalidArgumentException('isActive must be either "Y" or "N"');
-        }
+        return '/copyProduct';
     }
 }

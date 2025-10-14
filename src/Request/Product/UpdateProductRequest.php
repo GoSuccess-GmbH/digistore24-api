@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/updateProduct.yaml OpenAPI Specification
  */
-final readonly class UpdateProductRequest extends AbstractRequest
+final class UpdateProductRequest extends AbstractRequest
 {
     /**
      * @param int $productId The Digistore24 product ID
@@ -59,11 +59,9 @@ final readonly class UpdateProductRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        $params = [
+        $data = [
             'product_id' => $this->productId,
         ];
-
-        $data = [];
 
         if ($this->nameDe !== null) {
             $data['name_de'] = $this->nameDe;
@@ -108,66 +106,23 @@ final readonly class UpdateProductRequest extends AbstractRequest
             $data['approval_status'] = $this->approvalStatus;
         }
         if ($this->affiliateCommission !== null) {
-            $data['affiliate_commision'] = $this->affiliateCommission; // Note: API uses 'commision' (typo)
+            $data['affiliate_commission'] = $this->affiliateCommission;
         }
         if ($this->buyerType !== null) {
             $data['buyer_type'] = $this->buyerType;
         }
         if ($this->isAddressInputMandatory !== null) {
-            $data['is_address_input_mandatory'] = $this->isAddressInputMandatory;
+            $data['is_address_input_mandatory'] = $this->isAddressInputMandatory ? 'Y' : 'N';
         }
         if ($this->addOrderDataToThankyouPageUrl !== null) {
-            $data['add_order_data_to_thankyou_page_url'] = $this->addOrderDataToThankyouPageUrl;
+            $data['add_order_data_to_thankyou_page_url'] = $this->addOrderDataToThankyouPageUrl ? 'Y' : 'N';
         }
 
-        // Only add data to params if there's something to update
-        if (!empty($data)) {
-            $params = array_merge($params, $data);
-        }
-
-        return $params;
+        return $data;
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        if ($this->nameDe !== null && strlen($this->nameDe) > 63) {
-            throw new \InvalidArgumentException('nameDe must not exceed 63 characters');
-        }
-
-        if ($this->nameEn !== null && strlen($this->nameEn) > 63) {
-            throw new \InvalidArgumentException('nameEn must not exceed 63 characters');
-        }
-
-        if ($this->nameEs !== null && strlen($this->nameEs) > 63) {
-            throw new \InvalidArgumentException('nameEs must not exceed 63 characters');
-        }
-
-        if ($this->nameIntern !== null && strlen($this->nameIntern) > 63) {
-            throw new \InvalidArgumentException('nameIntern must not exceed 63 characters');
-        }
-
-        if ($this->salespageUrl !== null && strlen($this->salespageUrl) > 255) {
-            throw new \InvalidArgumentException('salespageUrl must not exceed 255 characters');
-        }
-
-        if ($this->upsellSalespageUrl !== null && strlen($this->upsellSalespageUrl) > 255) {
-            throw new \InvalidArgumentException('upsellSalespageUrl must not exceed 255 characters');
-        }
-
-        if ($this->thankyouUrl !== null && strlen($this->thankyouUrl) > 255) {
-            throw new \InvalidArgumentException('thankyouUrl must not exceed 255 characters');
-        }
-
-        if ($this->imageUrl !== null && strlen($this->imageUrl) > 255) {
-            throw new \InvalidArgumentException('imageUrl must not exceed 255 characters');
-        }
-
-        if ($this->approvalStatus !== null && !in_array($this->approvalStatus, ['new', 'pending'], true)) {
-            throw new \InvalidArgumentException('approvalStatus must be either "new" or "pending"');
-        }
-
-        if ($this->buyerType !== null && !in_array($this->buyerType, ['consumer', 'business'], true)) {
-            throw new \InvalidArgumentException('buyerType must be either "consumer" or "business"');
-        }
+        return '/updateProduct';
     }
 }

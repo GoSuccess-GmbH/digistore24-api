@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/deleteProduct.yaml OpenAPI Specification
  */
-final readonly class DeleteProductRequest extends AbstractRequest
+final class DeleteProductRequest extends AbstractRequest
 {
     /**
      * @param int $productId ID of the product to delete
@@ -28,8 +28,11 @@ final readonly class DeleteProductRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): void
+
+    public function endpoint(): string
     {
-        // Product ID is validated by readonly int type
+        return '/deleteProduct';
     }
+
+    
 }

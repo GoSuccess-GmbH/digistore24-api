@@ -31,8 +31,5 @@ final class ListAccountAccessRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

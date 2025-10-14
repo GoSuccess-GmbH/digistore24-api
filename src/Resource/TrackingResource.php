@@ -27,7 +27,7 @@ final class TrackingResource extends AbstractResource
      * 
      * @param RenderJsTrackingCodeRequest $request The render JS tracking code request
      * @return RenderJsTrackingCodeResponse The response with JavaScript tracking code
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function renderJsCode(RenderJsTrackingCodeRequest $request): RenderJsTrackingCodeResponse
     {
@@ -44,7 +44,7 @@ final class TrackingResource extends AbstractResource
      * 
      * @param GetPurchaseTrackingRequest $request The get purchase tracking request
      * @return GetPurchaseTrackingResponse The response with tracking data
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function getPurchaseTracking(GetPurchaseTrackingRequest $request): GetPurchaseTrackingResponse
     {

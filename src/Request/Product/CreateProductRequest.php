@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/createProduct.yaml OpenAPI Specification
  */
-final readonly class CreateProductRequest extends AbstractRequest
+final class CreateProductRequest extends AbstractRequest
 {
     /**
      * @param string $nameIntern Internal product name (max 63 chars)
@@ -111,55 +111,8 @@ final readonly class CreateProductRequest extends AbstractRequest
         return ['data' => $data];
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        // nameIntern is required and validated by readonly property
-        if (strlen($this->nameIntern) > 63) {
-            throw new \InvalidArgumentException('nameIntern must not exceed 63 characters');
-        }
-
-        if ($this->nameDe !== null && strlen($this->nameDe) > 63) {
-            throw new \InvalidArgumentException('nameDe must not exceed 63 characters');
-        }
-
-        if ($this->nameEn !== null && strlen($this->nameEn) > 63) {
-            throw new \InvalidArgumentException('nameEn must not exceed 63 characters');
-        }
-
-        if ($this->nameEs !== null && strlen($this->nameEs) > 63) {
-            throw new \InvalidArgumentException('nameEs must not exceed 63 characters');
-        }
-
-        if ($this->salespageUrl !== null && strlen($this->salespageUrl) > 255) {
-            throw new \InvalidArgumentException('salespageUrl must not exceed 255 characters');
-        }
-
-        if ($this->upsellSalespageUrl !== null && strlen($this->upsellSalespageUrl) > 255) {
-            throw new \InvalidArgumentException('upsellSalespageUrl must not exceed 255 characters');
-        }
-
-        if ($this->thankyouUrl !== null && strlen($this->thankyouUrl) > 255) {
-            throw new \InvalidArgumentException('thankyouUrl must not exceed 255 characters');
-        }
-
-        if ($this->imageUrl !== null && strlen($this->imageUrl) > 255) {
-            throw new \InvalidArgumentException('imageUrl must not exceed 255 characters');
-        }
-
-        if ($this->approvalStatus !== null && !in_array($this->approvalStatus, ['new', 'pending'], true)) {
-            throw new \InvalidArgumentException('approvalStatus must be either "new" or "pending"');
-        }
-
-        if ($this->buyerType !== null && !in_array($this->buyerType, ['consumer', 'business'], true)) {
-            throw new \InvalidArgumentException('buyerType must be either "consumer" or "business"');
-        }
-
-        if ($this->isAddressInputMandatory !== null && !in_array($this->isAddressInputMandatory, ['Y', 'N'], true)) {
-            throw new \InvalidArgumentException('isAddressInputMandatory must be either "Y" or "N"');
-        }
-
-        if ($this->addOrderDataToThankyouPageUrl !== null && !in_array($this->addOrderDataToThankyouPageUrl, ['Y', 'N'], true)) {
-            throw new \InvalidArgumentException('addOrderDataToThankyouPageUrl must be either "Y" or "N"');
-        }
+        return '/createProduct';
     }
 }

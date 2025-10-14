@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/createUpgradePurchase.yaml OpenAPI Specification
  */
-final readonly class CreateUpgradePurchaseRequest extends AbstractRequest
+final class CreateUpgradePurchaseRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseIds Comma-separated list of purchase IDs
@@ -37,16 +37,17 @@ final readonly class CreateUpgradePurchaseRequest extends AbstractRequest
         if ($this->paymentPlanId !== null) {
             $data['payment_plan_id'] = $this->paymentPlanId;
         }
-
-        if ($this->quantities !== null && !empty($this->quantities)) {
-            $data['quantities'] = $this->quantities;
+        if ($this->quantities !== null) {
+            foreach ($this->quantities as $key => $quantity) {
+                $data["quantity[$key]"] = $quantity;
+            }
         }
 
         return $data;
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        // Purchase IDs and upgrade ID are validated by readonly string types
+        return '/createUpgradePurchase';
     }
 }

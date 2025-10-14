@@ -23,8 +23,5 @@ final class GetEticketSettingsRequest extends AbstractRequest
         return [];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

@@ -54,8 +54,5 @@ final class ListEticketsRequest extends AbstractRequest
         return $data;
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

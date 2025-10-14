@@ -25,7 +25,7 @@ final class CommissionResource extends AbstractResource
      * 
      * @param ListCommissionsRequest $request The list commissions request
      * @return ListCommissionsResponse The response with commission list
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function list(ListCommissionsRequest $request): ListCommissionsResponse
     {

@@ -24,7 +24,7 @@ final class FraudResource extends AbstractResource
      * 
      * @param ReportFraudRequest $request The report fraud request
      * @return ReportFraudResponse The response with fraud report results
-     * @throws \GoSuccess\Digistore24\Exception\ApiException
+     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
      */
     public function report(ReportFraudRequest $request): ReportFraudResponse
     {

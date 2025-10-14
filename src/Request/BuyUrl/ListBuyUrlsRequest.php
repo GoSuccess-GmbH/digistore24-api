@@ -25,8 +25,5 @@ final readonly class ListBuyUrlsRequest extends AbstractRequest
         return [];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

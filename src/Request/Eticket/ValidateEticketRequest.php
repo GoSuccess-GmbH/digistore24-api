@@ -30,8 +30,5 @@ final class ValidateEticketRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

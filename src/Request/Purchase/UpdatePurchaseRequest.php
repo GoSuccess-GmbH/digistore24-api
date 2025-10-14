@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/updatePurchase.yaml OpenAPI Specification
  */
-final readonly class UpdatePurchaseRequest extends AbstractRequest
+final class UpdatePurchaseRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The ID of the purchase to update
@@ -31,11 +31,9 @@ final readonly class UpdatePurchaseRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        $params = [
+        $data = [
             'purchase_id' => $this->purchaseId,
         ];
-
-        $data = [];
 
         if ($this->trackingParam !== null) {
             $data['tracking_param'] = $this->trackingParam;
@@ -44,22 +42,17 @@ final readonly class UpdatePurchaseRequest extends AbstractRequest
             $data['custom'] = $this->custom;
         }
         if ($this->unlockInvoices !== null) {
-            $data['unlock_invoices'] = $this->unlockInvoices;
+            $data['unlock_invoices'] = $this->unlockInvoices ? 'Y' : 'N';
         }
         if ($this->nextPaymentAt !== null) {
             $data['next_payment_at'] = $this->nextPaymentAt;
         }
 
-        // Only add data if there's something to update
-        if (!empty($data)) {
-            $params = array_merge($params, $data);
-        }
-
-        return $params;
+        return $data;
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        // Purchase ID is validated by readonly string type
+        return '/updatePurchase';
     }
 }

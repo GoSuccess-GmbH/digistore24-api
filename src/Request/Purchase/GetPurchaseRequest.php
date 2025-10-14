@@ -30,8 +30,5 @@ final class GetPurchaseRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

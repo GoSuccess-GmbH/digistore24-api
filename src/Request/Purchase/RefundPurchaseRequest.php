@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  *
  * @link https://digistore24.com/api/docs/paths/refundPurchase.yaml OpenAPI Specification
  */
-final readonly class RefundPurchaseRequest extends AbstractRequest
+final class RefundPurchaseRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The purchase ID
@@ -27,20 +27,20 @@ final readonly class RefundPurchaseRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        $params = [
+        $data = [
             'purchase_id' => $this->purchaseId,
             'force' => $this->force,
         ];
 
         if ($this->requestDate !== null) {
-            $params['request_date'] = $this->requestDate;
+            $data['request_date'] = $this->requestDate;
         }
 
-        return $params;
+        return $data;
     }
 
-    public function validate(): void
+    public function endpoint(): string
     {
-        // Purchase ID and force are validated by readonly types
+        return '/refundPurchase';
     }
 }

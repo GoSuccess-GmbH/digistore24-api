@@ -30,8 +30,5 @@ final class DeleteImageRequest extends AbstractRequest
         ];
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }

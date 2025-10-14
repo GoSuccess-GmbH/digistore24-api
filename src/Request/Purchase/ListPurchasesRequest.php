@@ -49,8 +49,5 @@ final class ListPurchasesRequest extends AbstractRequest
         return $data;
     }
 
-    public function validate(): array
-    {
-        return [];
-    }
+    
 }
