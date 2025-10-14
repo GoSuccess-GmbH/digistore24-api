@@ -12,32 +12,35 @@ final class ListVouchersRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListVouchersRequest();
+        
         $this->assertInstanceOf(ListVouchersRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListVouchersRequest();
-        $endpoint = $request->getEndpoint();
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('listVouchers', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_returns_empty_array(): void
     {
         $request = new ListVouchersRequest();
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertEmpty($array);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
         $request = new ListVouchersRequest();
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
