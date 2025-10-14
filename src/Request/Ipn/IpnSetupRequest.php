@@ -1,0 +1,17 @@
+<?php
+declare(strict_types=1);
+namespace GoSuccess\Digistore24\Request\Ipn;
+use GoSuccess\Digistore24\Base\AbstractRequest;
+use GoSuccess\Digistore24\Http\Method;
+final readonly class IpnSetupRequest extends AbstractRequest
+{
+    public function __construct(private string $url, private ?string $ipnPassword = null) {}
+    public function getEndpoint(): string { return 'ipnSetup'; }
+    public function getMethod(): Method { return Method::POST; }
+    public function getParameters(): array
+    {
+        $params = ['url' => $this->url];
+        if ($this->ipnPassword !== null) $params['ipn_password'] = $this->ipnPassword;
+        return $params;
+    }
+}
