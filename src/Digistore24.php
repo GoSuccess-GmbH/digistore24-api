@@ -13,6 +13,7 @@ use GoSuccess\Digistore24\Api\Resource\BillingResource;
 use GoSuccess\Digistore24\Api\Resource\BuyerResource;
 use GoSuccess\Digistore24\Api\Resource\BuyUrlResource;
 use GoSuccess\Digistore24\Api\Resource\CountryResource;
+use GoSuccess\Digistore24\Api\Resource\EticketResource;
 use GoSuccess\Digistore24\Api\Resource\ImageResource;
 use GoSuccess\Digistore24\Api\Resource\IpnResource;
 use GoSuccess\Digistore24\Api\Resource\MonitoringResource;
@@ -117,6 +118,13 @@ final class Digistore24
      */
     public CountryResource $countries {
         get => $this->countries ??= new CountryResource($this->client);
+    }
+
+    /**
+     * E-Ticket management
+     */
+    public EticketResource $etickets {
+        get => $this->etickets ??= new EticketResource($this->client);
     }
 
     /**
