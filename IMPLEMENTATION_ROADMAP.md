@@ -59,14 +59,14 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ listDeliveries - List all deliveries
 - ⏳ updateDelivery - Update delivery information
 
-### E-Tickets (4/7)
+### E-Tickets (7/7)
 - ✅ createEticket - Create free e-tickets
 - ✅ getEticket - Get e-ticket details
 - ✅ listEtickets - List all e-tickets
 - ✅ validateEticket - Validate an e-ticket
-- ⏳ getEticketSettings - Get e-ticket configuration
-- ⏳ listEticketLocations - List available locations
-- ⏳ listEticketTemplates - List available templates
+- ✅ getEticketSettings - Get e-ticket configuration
+- ✅ listEticketLocations - List available locations
+- ✅ listEticketTemplates - List available templates
 
 ### Fraud Management (1/1)
 - ⏳ reportFraud - Report fraudulent activity
