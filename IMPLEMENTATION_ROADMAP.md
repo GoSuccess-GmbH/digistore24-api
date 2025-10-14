@@ -41,7 +41,7 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ listBuyers - List all buyers
 
 ### Commissions
-- ⏳ listCommissions - List affiliate commissions
+- ✅ listCommissions - List affiliate commissions
 
 ### Conversion Tools (2/2)
 - ⏳ listConversionTools - List conversion tools
@@ -52,7 +52,7 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ listCurrencies - List all currencies
 
 ### Custom Forms (1/1)
-- ⏳ listCustomFormRecords - List custom form submissions
+- ✅ listCustomFormRecords - List custom form submissions
 
 ### Deliveries (3/3)
 - ⏳ getDelivery - Get delivery details
@@ -69,7 +69,7 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ✅ listEticketTemplates - List available templates
 
 ### Fraud Management (1/1)
-- ⏳ reportFraud - Report fraudulent activity
+- ✅ reportFraud - Report fraudulent activity
 
 ### Images (4/4)
 - ✅ createImage - Create/upload an image
@@ -87,7 +87,7 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 - ⏳ ipnDelete - Delete IPN webhook
 
 ### Licenses (1/1)
-- ⏳ validateLicenseKey - Validate a license key
+- ✅ validateLicenseKey - Validate a license key
 
 ### Marketplace (3/3)
 - ⏳ getMarketplaceEntry - Get marketplace entry
@@ -213,11 +213,11 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 ## Summary
 
 - **Total Endpoints**: ~130+
-- **Implemented**: 37 endpoints across 7 complete categories
-- **Remaining**: ~93
-- **Progress**: 28%
+- **Implemented**: 41 endpoints across 11 complete categories
+- **Remaining**: ~89
+- **Progress**: 31%
 
-### Complete Categories (7)
+### Complete Categories (11)
 1. ✅ Account Access (2/2) - 100%
 2. ✅ E-Tickets (7/7) - 100%
 3. ✅ Images (4/4) - 100%
@@ -225,6 +225,10 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 5. ✅ Products (7/7) - 100%
 6. ✅ Purchases (12/12) - 100%
 7. ✅ Billing (2/2) - 100%
+8. ✅ Commissions (1/1) - 100%
+9. ✅ Custom Forms (1/1) - 100%
+10. ✅ Fraud Management (1/1) - 100%
+11. ✅ Licenses (1/1) - 100%
 
 ## Implementation Priority
 
