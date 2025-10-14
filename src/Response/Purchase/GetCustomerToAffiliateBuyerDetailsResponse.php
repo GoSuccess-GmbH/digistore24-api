@@ -2,68 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Purchase;
+namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
-use Digistore24\Base\AbstractResponse;
-
-/**
- * Customer-to-affiliate program details for a buyer
- */
-final readonly class CustomerAffiliateDetails
-{
-    public function __construct(
-        public string $customerAffiliateName,
-        public string $customerToAffiliateUrl,
-        public string $customerAffiliatePromoUrl,
-    ) {
-    }
-}
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from getting customer-to-affiliate buyer details
+ * Get Customer To Affiliate Buyer Details Response
  *
- * @link https://digistore24.com/api/docs/paths/getCustomerToAffiliateBuyerDetails.yaml OpenAPI Specification
+ * Response object for the Purchase API endpoint.
  */
 final readonly class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
 {
-    /** @var array<string, CustomerAffiliateDetails> Customer affiliate details indexed by purchase ID */
-    public array $details;
-
-    protected function parse(array $data): void
+    public function __construct(private array $details)
     {
-        $details = [];
-
-        // Handle single purchase response (data object directly)
-        if (isset($data['data']) && isset($data['data']['customer_affiliate_name'])) {
-            // Single purchase - extract purchase ID if available or use 'single'
-            $purchaseId = array_key_first($data) !== 'data' ? array_key_first($data) : 'single';
-            $details[$purchaseId] = $this->parseCustomerAffiliateDetails($data['data']);
-        } else {
-            // Handle multiple purchases (object with purchase IDs as keys)
-            foreach ($data as $purchaseId => $purchaseData) {
-                if (isset($purchaseData['data'])) {
-                    $details[$purchaseId] = $this->parseCustomerAffiliateDetails($purchaseData['data']);
-                }
-            }
-        }
-
-        $this->details = $details;
     }
 
-    private function parseCustomerAffiliateDetails(array $data): CustomerAffiliateDetails
+    public function getDetails(): array
     {
-        return new CustomerAffiliateDetails(
-            customerAffiliateName: $data['customer_affiliate_name'],
-            customerToAffiliateUrl: $data['customer_to_affiliate_url'],
-            customerAffiliatePromoUrl: $data['customer_affiliate_promo_url'],
-        );
+        return $this->details;
     }
 
-    /**
-     * Get customer affiliate details for a specific purchase
-     */
-    public function getDetailsForPurchase(string $purchaseId): ?CustomerAffiliateDetails
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
-        return $this->details[$purchaseId] ?? null;
+        return new self(details: $data['data'] ?? []);
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Request\Purchase;
+namespace GoSuccess\Digistore24\Api\Request\Purchase;
 
-use Digistore24\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 
 /**
  * Request to get purchase tracking details

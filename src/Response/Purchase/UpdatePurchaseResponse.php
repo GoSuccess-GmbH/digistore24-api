@@ -2,29 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Purchase;
+namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
-use Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from updating a purchase
+ * Update Purchase Response
  *
- * @link https://digistore24.com/api/docs/paths/updatePurchase.yaml OpenAPI Specification
+ * Response object for the Purchase API endpoint.
  */
 final readonly class UpdatePurchaseResponse extends AbstractResponse
 {
-    public string $isModified;
-
-    protected function parse(array $data): void
+    public function __construct(private string $isModified)
     {
-        $this->isModified = $data['data']['is_modified'];
     }
 
-    /**
-     * Check if the purchase was successfully modified
-     */
+    public function getIsModified(): string
+    {
+        return $this->isModified;
+    }
+
     public function wasModified(): bool
     {
         return $this->isModified === 'Y';
+    }
+
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    {
+        return new self(isModified: (string) ($data['data']['is_modified'] ?? 'N'));
     }
 }

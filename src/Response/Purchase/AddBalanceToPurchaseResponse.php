@@ -2,31 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Purchase;
+namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
-use Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from adding balance to a purchase
+ * Add Balance To Purchase Response
  *
- * @link https://digistore24.com/api/docs/paths/addBalanceToPurchase.yaml OpenAPI Specification
+ * Response object for the Purchase API endpoint.
  */
 final readonly class AddBalanceToPurchaseResponse extends AbstractResponse
 {
-    public float $oldBalance;
-    public float $newBalance;
-
-    protected function parse(array $data): void
+    public function __construct(private float $oldBalance, private float $newBalance)
     {
-        $this->oldBalance = (float)$data['old_balance'];
-        $this->newBalance = (float)$data['new_balance'];
     }
 
-    /**
-     * Get the balance difference
-     */
+    public function getOldBalance(): float
+    {
+        return $this->oldBalance;
+    }
+
+    public function getNewBalance(): float
+    {
+        return $this->newBalance;
+    }
+
     public function getBalanceChange(): float
     {
         return $this->newBalance - $this->oldBalance;
+    }
+
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    {
+        return new self(
+            oldBalance: (float) ($data['data']['old_balance'] ?? 0.0),
+            newBalance: (float) ($data['data']['new_balance'] ?? 0.0)
+        );
     }
 }

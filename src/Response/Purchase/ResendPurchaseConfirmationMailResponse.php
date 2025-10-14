@@ -2,31 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Purchase;
+namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
-use Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from resending purchase confirmation mail
+ * Resend Purchase Confirmation Mail Response
  *
- * @link https://digistore24.com/api/docs/paths/resendPurchaseConfirmationMail.yaml OpenAPI Specification
+ * Response object for the Purchase API endpoint.
  */
 final readonly class ResendPurchaseConfirmationMailResponse extends AbstractResponse
 {
-    public string $modified;
-    public ?string $note;
-
-    protected function parse(array $data): void
+    public function __construct(private string $modified, private ?string $note)
     {
-        $this->modified = $data['data']['modified'];
-        $this->note = $data['data']['note'] ?? null;
     }
 
-    /**
-     * Check if the email was successfully sent
-     */
+    public function getModified(): string
+    {
+        return $this->modified;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
     public function wasSuccessful(): bool
     {
         return $this->modified === 'Y';
+    }
+
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    {
+        return new self(
+            modified: (string) ($data['data']['modified'] ?? 'N'),
+            note: $data['data']['note'] ?? null
+        );
     }
 }

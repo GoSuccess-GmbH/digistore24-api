@@ -2,47 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Purchase;
+namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
-use Digistore24\Base\AbstractResponse;
-
-/**
- * Purchase item in email list
- */
-final readonly class PurchaseListItem
-{
-    public function __construct(
-        public string $id,
-        public string $createdAt,
-        public float $amount,
-        public string $currency,
-        public string $status,
-    ) {
-    }
-}
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from listing purchases by email
+ * List Purchases Of Email Response
  *
- * @link https://digistore24.com/api/docs/paths/listPurchasesOfEmail.yaml OpenAPI Specification
+ * Response object for the Purchase API endpoint.
  */
 final readonly class ListPurchasesOfEmailResponse extends AbstractResponse
 {
-    /** @var PurchaseListItem[] */
-    public array $purchases;
-
-    protected function parse(array $data): void
+    /**
+     * @param array<int, array<string, mixed>> $purchases
+     */
+    public function __construct(private array $purchases)
     {
-        $purchases = [];
-        foreach ($data as $item) {
-            $purchases[] = new PurchaseListItem(
-                id: (string)$item['id'],
-                createdAt: (string)$item['created_at'],
-                amount: (float)$item['amount'],
-                currency: (string)$item['currency'],
-                status: (string)$item['status'],
-            );
-        }
-        $this->purchases = $purchases;
+    }
+
+    public function getPurchases(): array
+    {
+        return $this->purchases;
+    }
+
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    {
+        return new self(purchases: $data['data'] ?? []);
     }
 }

@@ -2,31 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Purchase;
+namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
-use Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from refunding a purchase
+ * Refund Purchase Response
  *
- * @link https://digistore24.com/api/docs/paths/refundPurchase.yaml OpenAPI Specification
+ * Response object for the Purchase API endpoint.
  */
 final readonly class RefundPurchaseResponse extends AbstractResponse
 {
-    public string $result;
-    public array $data;
-
-    protected function parse(array $data): void
+    public function __construct(private string $result, private array $data)
     {
-        $this->result = $data['result'];
-        $this->data = $data['data'] ?? [];
     }
 
-    /**
-     * Check if the refund was successful
-     */
+    public function getResult(): string
+    {
+        return $this->result;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
     public function wasSuccessful(): bool
     {
         return strtolower($this->result) === 'success';
+    }
+
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    {
+        return new self(
+            result: (string) ($data['result'] ?? ''),
+            data: $data['data'] ?? []
+        );
     }
 }

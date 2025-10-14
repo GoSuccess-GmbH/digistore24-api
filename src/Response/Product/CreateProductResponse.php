@@ -2,21 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Digistore24\Response\Product;
+namespace GoSuccess\Digistore24\Api\Response\Product;
 
-use Digistore24\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
- * Response from creating a product
+ * Create Product Response
  *
- * @link https://digistore24.com/api/docs/paths/createProduct.yaml OpenAPI Specification
+ * Response object for the Product API endpoint.
  */
 final readonly class CreateProductResponse extends AbstractResponse
 {
-    public int $productId;
-
-    protected function parse(array $data): void
+    public function __construct(private int $productId)
     {
-        $this->productId = (int)$data['product_id'];
+    }
+
+    public function getProductId(): int
+    {
+        return $this->productId;
+    }
+
+    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    {
+        return new self(productId: (int) ($data['data']['product_id'] ?? 0));
     }
 }
