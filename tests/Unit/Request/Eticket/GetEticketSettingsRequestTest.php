@@ -9,17 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 final class GetEticketSettingsRequestTest extends TestCase
 {
-<?php
-
-declare(strict_types=1);
-
-namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Eticket;
-
-use GoSuccess\Digistore24\Api\Request\Eticket\GetEticketSettingsRequest;
-use PHPUnit\Framework\TestCase;
-
-final class GetEticketSettingsRequestTest extends TestCase
-{
     public function test_can_create_instance(): void
     {
         $request = new GetEticketSettingsRequest();
@@ -31,7 +20,7 @@ final class GetEticketSettingsRequestTest extends TestCase
     {
         $request = new GetEticketSettingsRequest();
         
-        $this->assertSame('/getEticketSettings', $request->getEndpoint());
+        $this->assertSame('getEticketSettings', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void
@@ -53,6 +42,5 @@ final class GetEticketSettingsRequestTest extends TestCase
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
-}
 }
 
