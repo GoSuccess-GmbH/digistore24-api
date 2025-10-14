@@ -11,33 +11,49 @@ final class ValidateLicenseKeyRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $request = new ValidateLicenseKeyRequest();
+        $request = new ValidateLicenseKeyRequest(
+            purchaseId: 'P12345',
+            licenseKey: 'LIC-ABC-123-XYZ'
+        );
+        
         $this->assertInstanceOf(ValidateLicenseKeyRequest::class, $request);
     }
 
-    public function test_endpoint_returns_string(): void
+    public function test_endpoint_returns_correct_value(): void
     {
-        $request = new ValidateLicenseKeyRequest();
-        $endpoint = $request->getEndpoint();
+        $request = new ValidateLicenseKeyRequest(
+            purchaseId: 'P12345',
+            licenseKey: 'LIC-ABC-123-XYZ'
+        );
         
-        $this->assertIsString($endpoint);
-        $this->assertNotEmpty($endpoint);
+        $this->assertSame('validateLicenseKey', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_array(): void
+    public function test_to_array_includes_all_data(): void
     {
-        $request = new ValidateLicenseKeyRequest();
+        $request = new ValidateLicenseKeyRequest(
+            purchaseId: 'P12345',
+            licenseKey: 'LIC-ABC-123-XYZ'
+        );
+        
         $array = $request->toArray();
         
         $this->assertIsArray($array);
+        $this->assertSame('P12345', $array['purchase_id']);
+        $this->assertSame('LIC-ABC-123-XYZ', $array['license_key']);
     }
 
-    public function test_validate_returns_array(): void
+    public function test_validate_returns_empty_array(): void
     {
-        $request = new ValidateLicenseKeyRequest();
+        $request = new ValidateLicenseKeyRequest(
+            purchaseId: 'P12345',
+            licenseKey: 'LIC-ABC-123-XYZ'
+        );
+        
         $errors = $request->validate();
         
         $this->assertIsArray($errors);
+        $this->assertEmpty($errors);
     }
 }
 
