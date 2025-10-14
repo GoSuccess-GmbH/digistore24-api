@@ -12,17 +12,26 @@ final class GetAffiliateForEmailResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'affiliate_id' => 'AFF12345'
+            ]
+        ];
         $response = GetAffiliateForEmailResponse::fromArray($data);
         
         $this->assertInstanceOf(GetAffiliateForEmailResponse::class, $response);
+        $this->assertSame('AFF12345', $response->getAffiliateId());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'affiliate_id' => 'AFF12345'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,6 +39,7 @@ final class GetAffiliateForEmailResponseTest extends TestCase
         $response = GetAffiliateForEmailResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetAffiliateForEmailResponse::class, $response);
+        $this->assertSame('AFF12345', $response->getAffiliateId());
     }
 
     public function test_has_raw_response(): void
@@ -43,7 +53,7 @@ final class GetAffiliateForEmailResponseTest extends TestCase
         
         $response = GetAffiliateForEmailResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
