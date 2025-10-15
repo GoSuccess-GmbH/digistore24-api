@@ -12,10 +12,16 @@ use GoSuccess\Digistore24\Api\Response\Country\ListCurrenciesResponse;
 
 /**
  * Country & Currency Resource
+ *
+ * Provides methods to retrieve available countries and currencies.
  */
 final class CountryResource extends AbstractResource
 {
     /**
+     * List all available countries.
+     *
+     * @param ListCountriesRequest $request Request to list countries
+     * @return ListCountriesResponse Response with list of countries
      * @link https://digistore24.com/api/docs/paths/listCountries.yaml
      */
     public function listCountries(ListCountriesRequest $request): ListCountriesResponse
@@ -24,6 +30,10 @@ final class CountryResource extends AbstractResource
     }
 
     /**
+     * List all available currencies.
+     *
+     * @param ListCurrenciesRequest $request Request to list currencies
+     * @return ListCurrenciesResponse Response with list of currencies
      * @link https://digistore24.com/api/docs/paths/listCurrencies.yaml
      */
     public function listCurrencies(ListCurrenciesRequest $request): ListCurrenciesResponse
