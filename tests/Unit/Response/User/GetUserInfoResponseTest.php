@@ -12,17 +12,36 @@ final class GetUserInfoResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'user_id' => '12345',
+                'email' => 'vendor@example.com',
+                'first_name' => 'John',
+                'last_name' => 'Vendor',
+                'company_name' => 'Vendor Corp',
+                'account_type' => 'premium',
+            ],
+        ];
         $response = GetUserInfoResponse::fromArray($data);
         
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
+        $this->assertIsArray($response->getUserInfo());
+        $this->assertSame('12345', $response->getUserInfo()['user_id']);
+        $this->assertSame('vendor@example.com', $response->getUserInfo()['email']);
+        $this->assertSame('premium', $response->getUserInfo()['account_type']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'user_id' => '67890',
+                    'email' => 'test@vendor.com',
+                    'first_name' => 'Jane',
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +49,26 @@ final class GetUserInfoResponseTest extends TestCase
         $response = GetUserInfoResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
+        $this->assertSame('67890', $response->getUserInfo()['user_id']);
+        $this->assertSame('Jane', $response->getUserInfo()['first_name']);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'user_id' => '11111',
+                ],
+            ],
             headers: [],
             rawBody: 'test'
         );
         
         $response = GetUserInfoResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
