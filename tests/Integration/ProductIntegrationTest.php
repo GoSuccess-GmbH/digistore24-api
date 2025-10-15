@@ -46,9 +46,25 @@ final class ProductIntegrationTest extends IntegrationTestCase
         if (!empty($response->products)) {
             $product = $response->products[0];
             $this->assertInstanceOf(ProductListItem::class, $product);
-            $this->assertNotEmpty($product->productId);
-            $this->assertNotEmpty($product->productName);
+            
+            // Validate essential properties
+            $this->assertNotEmpty($product->id);
+            $this->assertNotEmpty($product->name);
             $this->assertNotEmpty($product->currency);
+            $this->assertNotEmpty($product->ownerId);
+            $this->assertNotEmpty($product->ownerName);
+            
+            // Validate optional properties exist
+            $this->assertIsString($product->description);
+            $this->assertIsString($product->salespageUrl);
+            $this->assertIsString($product->productGroupName);
+            $this->assertIsBool($product->isActive);
+            $this->assertIsBool($product->isDeleted);
+            
+            // Validate date properties
+            if ($product->createdAt !== null) {
+                $this->assertInstanceOf(\DateTimeInterface::class, $product->createdAt);
+            }
         }
     }
 }
