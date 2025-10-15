@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ServiceProof;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\ServiceProofRequestUpdateData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -15,9 +16,9 @@ final class UpdateServiceProofRequestRequest extends AbstractRequest
 {
     /**
      * @param string $serviceProofRequestId The unique identifier of the service proof request
-     * @param array $data The updated service proof request data (status, notes, etc.)
+     * @param ServiceProofRequestUpdateData $proofData The updated service proof request data
      */
-    public function __construct(private string $serviceProofRequestId, private array $data) {}
+    public function __construct(private string $serviceProofRequestId, private ServiceProofRequestUpdateData $proofData) {}
 
     public function getEndpoint(): string { return '/updateServiceProofRequest'; }
 
@@ -25,6 +26,6 @@ final class UpdateServiceProofRequestRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        return array_merge(['service_proof_request_id' => $this->serviceProofRequestId], $this->data);
+        return array_merge(['service_proof_request_id' => $this->serviceProofRequestId], $this->proofData->toArray());
     }
 }

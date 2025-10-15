@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\AffiliateCommissionData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -17,12 +18,12 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
     /**
      * @param int $productId The product ID
      * @param string $affiliateId The affiliate ID
-     * @param array $data Commission settings data
+     * @param AffiliateCommissionData $commission Commission settings data
      */
     public function __construct(
         private int $productId,
         private string $affiliateId,
-        private array $data
+        private AffiliateCommissionData $commission
     ) {
     }
 
@@ -43,7 +44,7 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
                 'product_id' => $this->productId,
                 'affiliate_id' => $this->affiliateId
             ],
-            $this->data
+            $this->commission->toArray()
         );
     }
 }

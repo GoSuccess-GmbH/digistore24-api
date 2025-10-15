@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\OrderForm;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\OrderFormData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -15,9 +16,9 @@ final class UpdateOrderformRequest extends AbstractRequest
 {
     /**
      * @param string $orderformId The unique identifier of the order form to update
-     * @param array $data The updated order form configuration data
+     * @param OrderFormData $orderForm The updated order form configuration data
      */
-    public function __construct(private string $orderformId, private array $data) {}
+    public function __construct(private string $orderformId, private OrderFormData $orderForm) {}
 
     public function getEndpoint(): string { return '/updateOrderform'; }
 
@@ -25,6 +26,6 @@ final class UpdateOrderformRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        return array_merge(['orderform_id' => $this->orderformId], $this->data);
+        return array_merge(['orderform_id' => $this->orderformId], $this->orderForm->toArray());
     }
 }

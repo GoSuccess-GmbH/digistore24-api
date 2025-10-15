@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ProductGroup;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\ProductGroupData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -15,9 +16,9 @@ final class UpdateProductGroupRequest extends AbstractRequest
 {
     /**
      * @param string $productGroupId The unique identifier of the product group to update
-     * @param array $data The updated product group configuration
+     * @param ProductGroupData $productGroup The updated product group configuration
      */
-    public function __construct(private string $productGroupId, private array $data) {}
+    public function __construct(private string $productGroupId, private ProductGroupData $productGroup) {}
 
     public function getEndpoint(): string { return '/updateProductGroup'; }
 
@@ -25,6 +26,6 @@ final class UpdateProductGroupRequest extends AbstractRequest
 
     public function toArray(): array
     {
-        return array_merge(['product_group_id' => $this->productGroupId], $this->data);
+        return array_merge(['product_group_id' => $this->productGroupId], $this->productGroup->toArray());
     }
 }

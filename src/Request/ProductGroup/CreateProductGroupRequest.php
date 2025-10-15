@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ProductGroup;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\ProductGroupData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -14,13 +15,13 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final class CreateProductGroupRequest extends AbstractRequest
 {
     /**
-     * @param array $data The product group configuration (name, description, products, etc.)
+     * @param ProductGroupData $productGroup The product group configuration
      */
-    public function __construct(private array $data) {}
+    public function __construct(private ProductGroupData $productGroup) {}
 
     public function getEndpoint(): string { return '/createProductGroup'; }
 
     public function method(): Method { return Method::POST; }
 
-    public function toArray(): array { return $this->data; }
+    public function toArray(): array { return $this->productGroup->toArray(); }
 }

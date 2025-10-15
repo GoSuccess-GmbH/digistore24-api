@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\PaymentPlan;
 
+use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanFullData;
 use GoSuccess\Digistore24\Api\Request\PaymentPlan\UpdatePaymentplanRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -11,9 +12,12 @@ final class UpdatePaymentplanRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
+        $plan = new PaymentPlanFullData();
+        $plan->firstAmount = 29.99;
+        
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            data: ['name' => 'Updated Plan']
+            paymentPlan: $plan
         );
         
         $this->assertInstanceOf(UpdatePaymentplanRequest::class, $request);
@@ -21,9 +25,12 @@ final class UpdatePaymentplanRequestTest extends TestCase
 
     public function test_endpoint_returns_correct_value(): void
     {
+        $plan = new PaymentPlanFullData();
+        $plan->firstAmount = 29.99;
+        
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            data: ['name' => 'Updated Plan']
+            paymentPlan: $plan
         );
         
         $this->assertSame('/updatePaymentplan', $request->getEndpoint());
@@ -31,24 +38,29 @@ final class UpdatePaymentplanRequestTest extends TestCase
 
     public function test_to_array_includes_paymentplan_id_and_data(): void
     {
+        $plan = new PaymentPlanFullData();
+        $plan->firstAmount = 29.99;
+        
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            data: ['name' => 'Updated Plan', 'price' => 29.99]
+            paymentPlan: $plan
         );
         
         $array = $request->toArray();
         
         $this->assertIsArray($array);
         $this->assertSame('PP123', $array['paymentplan_id']);
-        $this->assertSame('Updated Plan', $array['name']);
-        $this->assertSame(29.99, $array['price']);
+        $this->assertSame(29.99, $array['first_amount']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
+        $plan = new PaymentPlanFullData();
+        $plan->firstAmount = 29.99;
+        
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            data: ['name' => 'Updated Plan']
+            paymentPlan: $plan
         );
         
         $errors = $request->validate();

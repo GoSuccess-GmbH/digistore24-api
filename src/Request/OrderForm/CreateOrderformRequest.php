@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\OrderForm;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\OrderFormData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -14,13 +15,13 @@ use GoSuccess\Digistore24\Api\Http\Method;
 final class CreateOrderformRequest extends AbstractRequest
 {
     /**
-     * @param array $data The order form configuration data (name, products, settings, etc.)
+     * @param OrderFormData $orderForm The order form configuration data
      */
-    public function __construct(private array $data) {}
+    public function __construct(private OrderFormData $orderForm) {}
 
     public function getEndpoint(): string { return '/createOrderform'; }
 
     public function method(): Method { return Method::POST; }
 
-    public function toArray(): array { return $this->data; }
+    public function toArray(): array { return $this->orderForm->toArray(); }
 }

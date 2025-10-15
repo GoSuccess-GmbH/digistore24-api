@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Voucher;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\DataTransferObject\VoucherData;
 use GoSuccess\Digistore24\Api\Http\Method;
 
 /**
@@ -16,11 +17,11 @@ final class UpdateVoucherRequest extends AbstractRequest
 {
     /**
      * @param string $code The voucher code
-     * @param array $data Updated voucher data
+     * @param VoucherData $voucher Updated voucher data
      */
     public function __construct(
         private string $code,
-        private array $data
+        private VoucherData $voucher
     ) {
     }
 
@@ -38,7 +39,7 @@ final class UpdateVoucherRequest extends AbstractRequest
     {
         return array_merge(
             ['code' => $this->code],
-            $this->data
+            $this->voucher->toArray()
         );
     }
 }
