@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Shipping;
@@ -17,11 +18,22 @@ final class CreateShippingCostPolicyRequest extends AbstractRequest
     /**
      * @param ShippingCostPolicyData $policy The shipping cost policy configuration
      */
-    public function __construct(private ShippingCostPolicyData $policy) {}
+    public function __construct(private ShippingCostPolicyData $policy)
+    {
+    }
 
-    public function getEndpoint(): string { return '/createShippingCostPolicy'; }
+    public function getEndpoint(): string
+    {
+        return '/createShippingCostPolicy';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
-    public function toArray(): array { return $this->policy->toArray(); }
+    public function toArray(): array
+    {
+        return $this->policy->toArray();
+    }
 }

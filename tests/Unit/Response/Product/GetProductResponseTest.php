@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Product;
 
-use GoSuccess\Digistore24\Api\Response\Product\GetProductResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Product\GetProductResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetProductResponseTest extends TestCase
@@ -21,10 +21,10 @@ final class GetProductResponseTest extends TestCase
             'description' => 'Advanced training',
             'is_published' => true,
             'image_url' => 'https://example.com/image.jpg',
-            'additional_data' => ['category' => 'education']
+            'additional_data' => ['category' => 'education'],
         ];
         $response = GetProductResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetProductResponse::class, $response);
         $this->assertSame('Premium Course', $response->productName);
         $this->assertSame(99.99, $response->price);
@@ -41,14 +41,14 @@ final class GetProductResponseTest extends TestCase
                 'product_type' => 'membership',
                 'price' => 49.99,
                 'currency' => 'USD',
-                'is_published' => false
+                'is_published' => false,
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetProductResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetProductResponse::class, $response);
         $this->assertSame('Basic Package', $response->productName);
     }
@@ -59,12 +59,11 @@ final class GetProductResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetProductResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

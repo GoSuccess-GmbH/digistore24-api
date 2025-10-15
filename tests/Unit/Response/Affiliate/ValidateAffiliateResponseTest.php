@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Affiliate;
 
-use GoSuccess\Digistore24\Api\Response\Affiliate\ValidateAffiliateResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Affiliate\ValidateAffiliateResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ValidateAffiliateResponseTest extends TestCase
@@ -15,11 +15,11 @@ final class ValidateAffiliateResponseTest extends TestCase
         $data = [
             'data' => [
                 'is_valid' => true,
-                'affiliate_id' => 'AFF123'
-            ]
+                'affiliate_id' => 'AFF123',
+            ],
         ];
         $response = ValidateAffiliateResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ValidateAffiliateResponse::class, $response);
         $this->assertTrue($response->isValid());
         $this->assertArrayHasKey('is_valid', $response->getData());
@@ -32,15 +32,15 @@ final class ValidateAffiliateResponseTest extends TestCase
             data: [
                 'data' => [
                     'is_valid' => true,
-                    'affiliate_id' => 'AFF123'
-                ]
+                    'affiliate_id' => 'AFF123',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ValidateAffiliateResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ValidateAffiliateResponse::class, $response);
         $this->assertTrue($response->isValid());
         $this->assertArrayHasKey('is_valid', $response->getData());
@@ -52,12 +52,11 @@ final class ValidateAffiliateResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ValidateAffiliateResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

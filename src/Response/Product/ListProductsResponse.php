@@ -31,9 +31,9 @@ final class ProductListItem
             productId: $data['product_id'] ?? '',
             productName: $data['product_name'] ?? '',
             productType: $data['product_type'] ?? '',
-            price: (float) ($data['price'] ?? 0),
+            price: (float)($data['price'] ?? 0),
             currency: $data['currency'] ?? 'EUR',
-            isPublished: (bool) ($data['is_published'] ?? false),
+            isPublished: (bool)($data['is_published'] ?? false),
             createdAt: isset($data['created_at']) ? new \DateTimeImmutable($data['created_at']) : null,
         );
     }
@@ -68,8 +68,9 @@ final class ListProductsResponse extends AbstractResponse
 
         $instance = new self(
             products: $products,
-            totalCount: (int) ($data['total_count'] ?? count($products)),
+            totalCount: (int)($data['total_count'] ?? count($products)),
         );
+
         return $instance;
     }
 }

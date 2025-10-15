@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetPurchaseResponseTest extends TestCase
@@ -25,7 +25,7 @@ final class GetPurchaseResponseTest extends TestCase
             'additional_data' => ['key' => 'value'],
         ];
         $response = GetPurchaseResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetPurchaseResponse::class, $response);
         $this->assertSame('P123456', $response->purchaseId);
         $this->assertSame('789', $response->productId);
@@ -55,11 +55,11 @@ final class GetPurchaseResponseTest extends TestCase
                 'created_at' => '2024-02-01 14:00:00',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetPurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetPurchaseResponse::class, $response);
         $this->assertSame('P654321', $response->purchaseId);
         $this->assertSame('Digital Product', $response->productName);
@@ -82,12 +82,11 @@ final class GetPurchaseResponseTest extends TestCase
                 'created_at' => '2024-01-01 00:00:00',
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetPurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -22,6 +22,4 @@ final class ListEticketTemplatesRequest extends AbstractRequest
     {
         return [];
     }
-
-    
 }

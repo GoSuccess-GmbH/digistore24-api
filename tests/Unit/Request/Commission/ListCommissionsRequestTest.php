@@ -12,23 +12,23 @@ final class ListCommissionsRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListCommissionsRequest();
-        
+
         $this->assertInstanceOf(ListCommissionsRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListCommissionsRequest();
-        
+
         $this->assertSame('/listCommissions', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_parameters(): void
     {
         $request = new ListCommissionsRequest();
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertEmpty($array);
     }
@@ -42,11 +42,11 @@ final class ListCommissionsRequestTest extends TestCase
             pageSize: 50,
             transactionType: 'payment',
             commissionType: 'fixed',
-            purchaseId: 'P12345'
+            purchaseId: 'P12345',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('2024-01-01', $array['from']);
         $this->assertSame('2024-12-31', $array['to']);
@@ -60,11 +60,10 @@ final class ListCommissionsRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListCommissionsRequest();
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

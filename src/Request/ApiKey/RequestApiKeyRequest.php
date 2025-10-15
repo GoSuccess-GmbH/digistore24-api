@@ -19,7 +19,7 @@ final class RequestApiKeyRequest extends AbstractRequest
      * @param string $email The vendor email address
      */
     public function __construct(
-        private string $email
+        private string $email,
     ) {
     }
 

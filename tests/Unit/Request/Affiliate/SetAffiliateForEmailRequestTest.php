@@ -13,9 +13,9 @@ final class SetAffiliateForEmailRequestTest extends TestCase
     {
         $request = new SetAffiliateForEmailRequest(
             email: 'test@example.com',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $this->assertInstanceOf(SetAffiliateForEmailRequest::class, $request);
     }
 
@@ -23,9 +23,9 @@ final class SetAffiliateForEmailRequestTest extends TestCase
     {
         $request = new SetAffiliateForEmailRequest(
             email: 'test@example.com',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $this->assertSame('/setAffiliateForEmail', $request->getEndpoint());
     }
 
@@ -33,11 +33,11 @@ final class SetAffiliateForEmailRequestTest extends TestCase
     {
         $request = new SetAffiliateForEmailRequest(
             email: 'test@example.com',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('test@example.com', $array['email']);
         $this->assertSame('AFF123', $array['affiliate_id']);
@@ -47,13 +47,12 @@ final class SetAffiliateForEmailRequestTest extends TestCase
     {
         $request = new SetAffiliateForEmailRequest(
             email: 'test@example.com',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

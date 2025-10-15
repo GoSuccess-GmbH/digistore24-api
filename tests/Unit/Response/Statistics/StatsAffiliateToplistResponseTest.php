@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Statistics;
 
-use GoSuccess\Digistore24\Api\Response\Statistics\StatsAffiliateToplistResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsAffiliateToplistResponse;
 use PHPUnit\Framework\TestCase;
 
 final class StatsAffiliateToplistResponseTest extends TestCase
@@ -33,7 +33,7 @@ final class StatsAffiliateToplistResponseTest extends TestCase
             ],
         ];
         $response = StatsAffiliateToplistResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(StatsAffiliateToplistResponse::class, $response);
         $toplist = $response->getToplist();
         $this->assertCount(2, $toplist);
@@ -57,11 +57,11 @@ final class StatsAffiliateToplistResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = StatsAffiliateToplistResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(StatsAffiliateToplistResponse::class, $response);
         $this->assertCount(1, $response->getToplist());
     }
@@ -72,12 +72,11 @@ final class StatsAffiliateToplistResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = StatsAffiliateToplistResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

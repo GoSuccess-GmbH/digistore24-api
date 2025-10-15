@@ -14,9 +14,9 @@ final class ReportFraudRequestTest extends TestCase
         $request = new ReportFraudRequest(
             transactionId: 12345,
             who: 'buyer',
-            comment: 'Fraudulent purchase'
+            comment: 'Fraudulent purchase',
         );
-        
+
         $this->assertInstanceOf(ReportFraudRequest::class, $request);
     }
 
@@ -25,9 +25,9 @@ final class ReportFraudRequestTest extends TestCase
         $request = new ReportFraudRequest(
             transactionId: 12345,
             who: 'buyer',
-            comment: 'Fraudulent purchase'
+            comment: 'Fraudulent purchase',
         );
-        
+
         $this->assertSame('/reportFraud', $request->getEndpoint());
     }
 
@@ -36,11 +36,11 @@ final class ReportFraudRequestTest extends TestCase
         $request = new ReportFraudRequest(
             transactionId: 12345,
             who: 'buyer,affiliate',
-            comment: 'Fraudulent purchase'
+            comment: 'Fraudulent purchase',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame(12345, $array['transaction_id']);
         $this->assertSame('buyer,affiliate', $array['who']);
@@ -52,13 +52,12 @@ final class ReportFraudRequestTest extends TestCase
         $request = new ReportFraudRequest(
             transactionId: 12345,
             who: 'buyer',
-            comment: 'Fraudulent purchase'
+            comment: 'Fraudulent purchase',
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

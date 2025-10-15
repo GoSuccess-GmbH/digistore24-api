@@ -25,7 +25,8 @@ final class ReportFraudRequest extends AbstractRequest
         private int $transactionId,
         private string $who,
         private string $comment,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

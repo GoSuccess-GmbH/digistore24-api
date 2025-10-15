@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Create Image Response
- * 
+ *
  * Response after successfully creating an image.
  */
 final class CreateImageResponse extends AbstractResponse
@@ -30,6 +30,7 @@ final class CreateImageResponse extends AbstractResponse
             imageId: self::getValue($data, 'image_id', 'string', ''),
             imageUrl: self::getValue($data, 'image_url', 'string', ''),
         );
+
         return $instance;
     }
 }

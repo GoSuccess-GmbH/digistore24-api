@@ -64,8 +64,9 @@ final class ListImagesResponse extends AbstractResponse
 
         $instance = new self(
             images: $images,
-            totalCount: (int) ($data['total_count'] ?? count($images)),
+            totalCount: (int)($data['total_count'] ?? count($images)),
         );
+
         return $instance;
     }
 }

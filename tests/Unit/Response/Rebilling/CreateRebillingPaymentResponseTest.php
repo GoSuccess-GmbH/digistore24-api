@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Rebilling;
 
-use GoSuccess\Digistore24\Api\Response\Rebilling\CreateRebillingPaymentResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Rebilling\CreateRebillingPaymentResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateRebillingPaymentResponseTest extends TestCase
@@ -22,7 +22,7 @@ final class CreateRebillingPaymentResponseTest extends TestCase
             ],
         ];
         $response = CreateRebillingPaymentResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateRebillingPaymentResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -41,11 +41,11 @@ final class CreateRebillingPaymentResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateRebillingPaymentResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateRebillingPaymentResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -59,12 +59,11 @@ final class CreateRebillingPaymentResponseTest extends TestCase
                 'data' => [],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateRebillingPaymentResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

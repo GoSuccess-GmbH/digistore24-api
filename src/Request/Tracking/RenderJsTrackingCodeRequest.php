@@ -28,7 +28,8 @@ final class RenderJsTrackingCodeRequest extends AbstractRequest
         private ?string $campaignkeyInput = null,
         private ?string $trackingkeyInput = null,
         private ?string $callback = null,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

@@ -24,6 +24,6 @@ final class CreateProductResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
-        return new self(productId: (int) ($data['data']['product_id'] ?? 0));
+        return new self(productId: (int)($data['data']['product_id'] ?? 0));
     }
 }

@@ -13,7 +13,7 @@ class ValidatorTest extends TestCase
     {
         $this->assertTrue(Validator::isEmail('test@example.com'));
         $this->assertTrue(Validator::isEmail('user.name+tag@example.co.uk'));
-        
+
         $this->assertFalse(Validator::isEmail('invalid'));
         $this->assertFalse(Validator::isEmail('test@'));
         $this->assertFalse(Validator::isEmail('@example.com'));
@@ -24,7 +24,7 @@ class ValidatorTest extends TestCase
         $this->assertTrue(Validator::isUrl('https://example.com'));
         $this->assertTrue(Validator::isUrl('http://domain.co.uk/path'));
         $this->assertTrue(Validator::isUrl('https://sub.domain.com/path?query=value'));
-        
+
         $this->assertFalse(Validator::isUrl('not-a-url'));
         $this->assertFalse(Validator::isUrl('invalid format'));
     }
@@ -33,7 +33,7 @@ class ValidatorTest extends TestCase
     {
         $this->assertTrue(Validator::isApiKey('ABC-12345678901234567'));
         $this->assertTrue(Validator::isApiKey('XYZ-ABCDEFGHIJKLMNOPQ'));
-        
+
         $this->assertFalse(Validator::isApiKey('invalid'));
         $this->assertFalse(Validator::isApiKey('ABC123'));
         $this->assertFalse(Validator::isApiKey('ABC-123')); // Too short
@@ -44,7 +44,7 @@ class ValidatorTest extends TestCase
         $this->assertTrue(Validator::isCountryCode('US'));
         $this->assertTrue(Validator::isCountryCode('DE'));
         $this->assertTrue(Validator::isCountryCode('GB'));
-        
+
         $this->assertFalse(Validator::isCountryCode('USA'));
         $this->assertFalse(Validator::isCountryCode('us'));
         $this->assertFalse(Validator::isCountryCode('1'));
@@ -55,7 +55,7 @@ class ValidatorTest extends TestCase
         $this->assertTrue(Validator::isCurrencyCode('USD'));
         $this->assertTrue(Validator::isCurrencyCode('EUR'));
         $this->assertTrue(Validator::isCurrencyCode('GBP'));
-        
+
         $this->assertFalse(Validator::isCurrencyCode('US'));
         $this->assertFalse(Validator::isCurrencyCode('usd'));
         $this->assertFalse(Validator::isCurrencyCode('EURO'));
@@ -65,7 +65,7 @@ class ValidatorTest extends TestCase
     {
         $this->assertTrue(Validator::isLength('hello', 3, 10));
         $this->assertTrue(Validator::isLength('test', 4, 4));
-        
+
         $this->assertFalse(Validator::isLength('hi', 3, 10));
         $this->assertFalse(Validator::isLength('this is too long', 1, 10));
     }
@@ -75,7 +75,7 @@ class ValidatorTest extends TestCase
         $data = ['name' => 'John'];
         $rules = [
             'name' => 'required',
-            'email' => 'required'
+            'email' => 'required',
         ];
 
         $errors = Validator::validate($data, $rules);
@@ -89,11 +89,11 @@ class ValidatorTest extends TestCase
     {
         $data = [
             'valid' => 'test@example.com',
-            'invalid' => 'not-an-email'
+            'invalid' => 'not-an-email',
         ];
         $rules = [
             'valid' => 'email',
-            'invalid' => 'email'
+            'invalid' => 'email',
         ];
 
         $errors = Validator::validate($data, $rules);
@@ -107,11 +107,11 @@ class ValidatorTest extends TestCase
     {
         $data = [
             'valid' => 'https://example.com',
-            'invalid' => 'not-a-url'
+            'invalid' => 'not-a-url',
         ];
         $rules = [
             'valid' => 'url',
-            'invalid' => 'url'
+            'invalid' => 'url',
         ];
 
         $errors = Validator::validate($data, $rules);
@@ -124,11 +124,11 @@ class ValidatorTest extends TestCase
     {
         $data = [
             'valid' => 'hello',
-            'invalid' => 'hi'
+            'invalid' => 'hi',
         ];
         $rules = [
             'valid' => 'min:3',
-            'invalid' => 'min:3'
+            'invalid' => 'min:3',
         ];
 
         $errors = Validator::validate($data, $rules);
@@ -141,11 +141,11 @@ class ValidatorTest extends TestCase
     {
         $data = [
             'valid' => 'hello',
-            'invalid' => 'this is too long'
+            'invalid' => 'this is too long',
         ];
         $rules = [
             'valid' => 'max:10',
-            'invalid' => 'max:10'
+            'invalid' => 'max:10',
         ];
 
         $errors = Validator::validate($data, $rules);
@@ -158,11 +158,11 @@ class ValidatorTest extends TestCase
     {
         $data = [
             'email' => 'test@example.com',
-            'name' => ''
+            'name' => '',
         ];
         $rules = [
             'email' => 'required|email',
-            'name' => 'required|min:2'
+            'name' => 'required|min:2',
         ];
 
         $errors = Validator::validate($data, $rules);

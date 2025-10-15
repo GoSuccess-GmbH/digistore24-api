@@ -47,16 +47,16 @@ use GoSuccess\Digistore24\Api\Resource\VoucherResource;
 
 /**
  * Digistore24 API Client
- * 
+ *
  * Main entry point for the Digistore24 API wrapper.
  * Provides access to all API resources with a clean, fluent interface.
- * 
+ *
  * @example
  * ```php
  * // Initialize client with simple configuration
  * $config = new Configuration('YOUR-API-KEY');
  * $ds24 = new Digistore24($config);
- * 
+ *
  * // Or with advanced options
  * $config = new Configuration(
  *     apiKey: 'YOUR-API-KEY',
@@ -64,31 +64,31 @@ use GoSuccess\Digistore24\Api\Resource\VoucherResource;
  *     debug: true
  * );
  * $ds24 = new Digistore24($config);
- * 
+ *
  * // Create a buy URL
  * $request = new CreateBuyUrlRequest(productId: 12345);
  * $request->buyer = new BuyerData();
  * $request->buyer->email = 'customer@example.com';
- * 
+ *
  * $response = $ds24->buyUrls->create($request);
  * echo "Buy URL: {$response->url}\n";
- * 
+ *
  * // Get product information
  * $product = $ds24->products->get(new GetProductRequest(12345));
  * echo "Product: {$product->name}\n";
- * 
+ *
  * // List purchases
  * $purchases = $ds24->purchases->list(new ListPurchasesRequest());
  * foreach ($purchases->items as $purchase) {
  *     echo "Order: {$purchase->orderId}\n";
  * }
- * 
+ *
  * // Manage vouchers
  * $vouchers = $ds24->vouchers->list(new ListVouchersRequest());
- * 
+ *
  * // Get statistics
  * $stats = $ds24->statistics->salesSummary(new StatsSalesSummaryRequest());
- * 
+ *
  * // Manage affiliates
  * $commission = $ds24->affiliates->getCommission(
  *     new GetAffiliateCommissionRequest()
@@ -99,14 +99,15 @@ final class Digistore24
 {
     /**
      * HTTP Client (lazy-loaded)
-     * 
+     *
      * For advanced use cases where you need direct access to the HTTP client.
      */
     public HttpClientInterface $client {
         get {
-            if (!isset($this->client)) {
+            if (! isset($this->client)) {
                 $this->client = new ApiClient($this->config);
             }
+
             return $this->client;
         }
     }
@@ -372,7 +373,7 @@ final class Digistore24
 
     /**
      * Create a new Digistore24 API client
-     * 
+     *
      * @param Configuration $config API configuration object
      */
     public function __construct(

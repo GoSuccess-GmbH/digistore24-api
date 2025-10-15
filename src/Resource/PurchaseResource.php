@@ -32,23 +32,23 @@ use GoSuccess\Digistore24\Api\Response\Purchase\UpdatePurchaseResponse;
 
 /**
  * Purchase Resource
- * 
+ *
  * Retrieve and manage purchase information.
- * 
+ *
  * @link https://digistore24.com/api/docs/tags/purchase
  */
 final class PurchaseResource extends AbstractResource
 {
     /**
      * Create addon change purchase
-     * 
+     *
      * Creates a package change order to add or remove products from an order.
      * The main product's quantity cannot be changed. Added products must be subscriptions.
      * Requires "Billing on demand" right to be enabled for the vendor account.
-     * 
+     *
      * @param CreateAddonChangePurchaseRequest $request The addon change request
-     * @return CreateAddonChangePurchaseResponse The response
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return CreateAddonChangePurchaseResponse The response
      * @link https://digistore24.com/api/docs/paths/createAddonChangePurchase.yaml
      */
     public function createAddonChange(CreateAddonChangePurchaseRequest $request): CreateAddonChangePurchaseResponse
@@ -58,12 +58,12 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Get purchase details
-     * 
+     *
      * Retrieves detailed information about a specific purchase/order.
-     * 
+     *
      * @param GetPurchaseRequest $request The get purchase request
-     * @return GetPurchaseResponse The response with purchase details
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return GetPurchaseResponse The response with purchase details
      * @link https://digistore24.com/api/docs/paths/getPurchase.yaml
      */
     public function get(GetPurchaseRequest $request): GetPurchaseResponse
@@ -73,12 +73,12 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * List all purchases
-     * 
+     *
      * Retrieves a list of all purchases, optionally filtered by product, buyer, or date range.
-     * 
+     *
      * @param ListPurchasesRequest $request The list purchases request
-     * @return ListPurchasesResponse The response with purchases list
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return ListPurchasesResponse The response with purchases list
      * @link https://digistore24.com/api/docs/paths/listPurchases.yaml
      */
     public function list(ListPurchasesRequest $request): ListPurchasesResponse
@@ -88,12 +88,12 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * List purchases by email address
-     * 
+     *
      * Retrieves all purchases belonging to a specific email address.
-     * 
+     *
      * @param ListPurchasesOfEmailRequest $request The list purchases by email request
-     * @return ListPurchasesOfEmailResponse The response with purchases list
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return ListPurchasesOfEmailResponse The response with purchases list
      * @link https://digistore24.com/api/docs/paths/listPurchasesOfEmail.yaml
      */
     public function listByEmail(ListPurchasesOfEmailRequest $request): ListPurchasesOfEmailResponse
@@ -103,13 +103,13 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Get purchase tracking information
-     * 
+     *
      * Returns tracking data for one or more orders including UTM parameters,
      * click IDs, sub IDs, vendor key, and campaign key.
-     * 
+     *
      * @param GetPurchaseTrackingRequest $request The get purchase tracking request
-     * @return GetPurchaseTrackingResponse The response with tracking details
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return GetPurchaseTrackingResponse The response with tracking details
      * @link https://digistore24.com/api/docs/paths/getPurchaseTracking.yaml
      */
     public function getTracking(GetPurchaseTrackingRequest $request): GetPurchaseTrackingResponse
@@ -119,14 +119,14 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Create upgrade purchase
-     * 
+     *
      * Performs an upgrade without user interaction. Requires full access rights
      * and "Billing on demand" permission. You must ensure the buyer is informed
      * and agrees to automatic upgrades.
-     * 
+     *
      * @param CreateUpgradePurchaseRequest $request The create upgrade purchase request
-     * @return CreateUpgradePurchaseResponse The response with new purchase details
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return CreateUpgradePurchaseResponse The response with new purchase details
      * @link https://digistore24.com/api/docs/paths/createUpgradePurchase.yaml
      */
     public function createUpgrade(CreateUpgradePurchaseRequest $request): CreateUpgradePurchaseResponse
@@ -136,14 +136,14 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Add balance to purchase
-     * 
+     *
      * For subscription and installment payments - add balance to the order.
      * This will be billed with the next payments. Use negative amounts to
      * reduce balance (but total cannot go below 0).
-     * 
+     *
      * @param AddBalanceToPurchaseRequest $request The add balance request
-     * @return AddBalanceToPurchaseResponse The response with old and new balance
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return AddBalanceToPurchaseResponse The response with old and new balance
      * @link https://digistore24.com/api/docs/paths/addBalanceToPurchase.yaml
      */
     public function addBalance(AddBalanceToPurchaseRequest $request): AddBalanceToPurchaseResponse
@@ -153,12 +153,12 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Update purchase
-     * 
+     *
      * Changes the tracking data of an order and can extend rebilling intervals.
-     * 
+     *
      * @param UpdatePurchaseRequest $request The update purchase request
-     * @return UpdatePurchaseResponse The response indicating if purchase was modified
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return UpdatePurchaseResponse The response indicating if purchase was modified
      * @link https://digistore24.com/api/docs/paths/updatePurchase.yaml
      */
     public function update(UpdatePurchaseRequest $request): UpdatePurchaseResponse
@@ -168,12 +168,12 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Refund purchase
-     * 
+     *
      * Refunds all payments of an order which may be refunded according to refund policy.
-     * 
+     *
      * @param RefundPurchaseRequest $request The refund purchase request
-     * @return RefundPurchaseResponse The response with refund result
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return RefundPurchaseResponse The response with refund result
      * @link https://digistore24.com/api/docs/paths/refundPurchase.yaml
      */
     public function refund(RefundPurchaseRequest $request): RefundPurchaseResponse
@@ -183,12 +183,12 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Resend purchase confirmation mail
-     * 
+     *
      * Resends the order confirmation email to the buyer.
-     * 
+     *
      * @param ResendPurchaseConfirmationMailRequest $request The resend mail request
-     * @return ResendPurchaseConfirmationMailResponse The response with send status
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return ResendPurchaseConfirmationMailResponse The response with send status
      * @link https://digistore24.com/api/docs/paths/resendPurchaseConfirmationMail.yaml
      */
     public function resendConfirmationMail(ResendPurchaseConfirmationMailRequest $request): ResendPurchaseConfirmationMailResponse
@@ -198,13 +198,13 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Get purchase downloads
-     * 
+     *
      * Returns download information for purchased digital products including URLs,
      * download limits, access status, and file details.
-     * 
+     *
      * @param GetPurchaseDownloadsRequest $request The get downloads request
-     * @return GetPurchaseDownloadsResponse The response with download details
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return GetPurchaseDownloadsResponse The response with download details
      * @link https://digistore24.com/api/docs/paths/getPurchaseDownloads.yaml
      */
     public function getDownloads(GetPurchaseDownloadsRequest $request): GetPurchaseDownloadsResponse
@@ -214,14 +214,14 @@ final class PurchaseResource extends AbstractResource
 
     /**
      * Get customer-to-affiliate program details
-     * 
+     *
      * Returns details on the customer-to-affiliate program for specific buyer(s).
      * Requires customer-to-affiliate program to be set up in Digistore24 first.
      * Provides affiliate registration URL and promotion URL for the buyer.
-     * 
+     *
      * @param GetCustomerToAffiliateBuyerDetailsRequest $request The get customer affiliate details request
-     * @return GetCustomerToAffiliateBuyerDetailsResponse The response with affiliate program details
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return GetCustomerToAffiliateBuyerDetailsResponse The response with affiliate program details
      * @link https://digistore24.com/api/docs/paths/getCustomerToAffiliateBuyerDetails.yaml
      */
     public function getCustomerToAffiliateDetails(GetCustomerToAffiliateBuyerDetailsRequest $request): GetCustomerToAffiliateBuyerDetailsResponse

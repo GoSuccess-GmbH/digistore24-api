@@ -16,7 +16,8 @@ final class ListCountriesResponse extends AbstractResponse
      */
     public function __construct(
         private array $countries,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array<string, string>

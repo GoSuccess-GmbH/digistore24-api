@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Integration;
 
-use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
-use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -25,9 +25,9 @@ final class Digistore24Test extends TestCase
         $config = new Configuration(
             apiKey: 'TEST-API-KEY-123456789',
             timeout: 5,
-            maxRetries: 0 // Disable retries for faster tests
+            maxRetries: 0, // Disable retries for faster tests
         );
-        
+
         $this->client = new Digistore24($config);
     }
 

@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Buy URL List Item
- * 
+ *
  * Represents a single buy URL in the list.
  */
 final readonly class BuyUrlListItem
@@ -27,14 +27,15 @@ final readonly class BuyUrlListItem
         public string $url = '',
         public ?\DateTimeInterface $createdAt = null,
         public ?\DateTimeInterface $modifiedAt = null,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
             id: TypeConverter::toInt($data['id']) ?? 0,
             productId: TypeConverter::toInt($data['product_id'] ?? null),
-            url: (string) ($data['url'] ?? ''),
+            url: (string)($data['url'] ?? ''),
             createdAt: TypeConverter::toDateTime($data['created_at'] ?? null),
             modifiedAt: TypeConverter::toDateTime($data['modified_at'] ?? null),
         );
@@ -43,7 +44,7 @@ final readonly class BuyUrlListItem
 
 /**
  * List Buy URLs Response
- * 
+ *
  * Contains a list of buy URLs.
  */
 final class ListBuyUrlsResponse extends AbstractResponse
@@ -53,7 +54,8 @@ final class ListBuyUrlsResponse extends AbstractResponse
      */
     public function __construct(
         public array $items,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {

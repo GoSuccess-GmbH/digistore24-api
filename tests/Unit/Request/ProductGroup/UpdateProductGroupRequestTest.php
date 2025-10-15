@@ -14,12 +14,12 @@ final class UpdateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Updated Group';
-        
+
         $request = new UpdateProductGroupRequest(
             productGroupId: 'PG123',
-            productGroup: $group
+            productGroup: $group,
         );
-        
+
         $this->assertInstanceOf(UpdateProductGroupRequest::class, $request);
     }
 
@@ -27,12 +27,12 @@ final class UpdateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Updated Group';
-        
+
         $request = new UpdateProductGroupRequest(
             productGroupId: 'PG123',
-            productGroup: $group
+            productGroup: $group,
         );
-        
+
         $this->assertSame('/updateProductGroup', $request->getEndpoint());
     }
 
@@ -40,14 +40,14 @@ final class UpdateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Updated Group';
-        
+
         $request = new UpdateProductGroupRequest(
             productGroupId: 'PG123',
-            productGroup: $group
+            productGroup: $group,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('PG123', $array['product_group_id']);
         $this->assertSame('Updated Group', $array['name']);
@@ -57,16 +57,15 @@ final class UpdateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Updated Group';
-        
+
         $request = new UpdateProductGroupRequest(
             productGroupId: 'PG123',
-            productGroup: $group
+            productGroup: $group,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

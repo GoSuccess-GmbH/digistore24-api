@@ -12,23 +12,23 @@ final class UpdateBuyerRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
-        
+
         $this->assertInstanceOf(UpdateBuyerRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
-        
+
         $this->assertSame('/updateBuyer', $request->getEndpoint());
     }
 
     public function test_to_array_includes_buyer_id_only(): void
     {
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('B12345', $array['buyer_id']);
         $this->assertCount(1, $array);
@@ -41,11 +41,11 @@ final class UpdateBuyerRequestTest extends TestCase
             email: 'updated@example.com',
             firstName: 'John',
             lastName: 'Doe',
-            address: ['street' => 'Main St', 'city' => 'Berlin']
+            address: ['street' => 'Main St', 'city' => 'Berlin'],
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('B12345', $array['buyer_id']);
         $this->assertSame('updated@example.com', $array['email']);
@@ -58,11 +58,10 @@ final class UpdateBuyerRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

@@ -41,11 +41,11 @@ final class EticketListItem
             locationId: $data['location_id'] ?? '',
             locationName: $data['location_name'] ?? '',
             eventDate: new \DateTimeImmutable($data['event_date'] ?? 'now'),
-            days: (int) ($data['days'] ?? 1),
+            days: (int)($data['days'] ?? 1),
             buyerEmail: $data['buyer_email'] ?? '',
             buyerFirstName: $data['buyer_first_name'] ?? '',
             buyerLastName: $data['buyer_last_name'] ?? '',
-            isValidated: (bool) ($data['is_validated'] ?? false),
+            isValidated: (bool)($data['is_validated'] ?? false),
             validatedAt: isset($data['validated_at']) ? new \DateTimeImmutable($data['validated_at']) : null,
             createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
         );

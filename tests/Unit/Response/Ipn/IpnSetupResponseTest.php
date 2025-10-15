@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Ipn;
 
-use GoSuccess\Digistore24\Api\Response\Ipn\IpnSetupResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Ipn\IpnSetupResponse;
 use PHPUnit\Framework\TestCase;
 
 final class IpnSetupResponseTest extends TestCase
@@ -16,11 +16,11 @@ final class IpnSetupResponseTest extends TestCase
             'result' => 'success',
             'data' => [
                 'ipn_id' => 'IPN123',
-                'url' => 'https://example.com/ipn'
-            ]
+                'url' => 'https://example.com/ipn',
+            ],
         ];
         $response = IpnSetupResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(IpnSetupResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -33,15 +33,15 @@ final class IpnSetupResponseTest extends TestCase
             data: [
                 'result' => 'success',
                 'data' => [
-                    'ipn_id' => 'IPN456'
-                ]
+                    'ipn_id' => 'IPN456',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = IpnSetupResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(IpnSetupResponse::class, $response);
         $this->assertArrayHasKey('ipn_id', $response->getData());
     }
@@ -52,12 +52,11 @@ final class IpnSetupResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = IpnSetupResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

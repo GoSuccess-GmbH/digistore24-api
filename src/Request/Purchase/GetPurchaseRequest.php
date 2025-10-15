@@ -29,6 +29,4 @@ final class GetPurchaseRequest extends AbstractRequest
             'purchase_id' => $this->purchaseId,
         ];
     }
-
-    
 }

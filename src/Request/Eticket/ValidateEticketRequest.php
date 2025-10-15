@@ -29,6 +29,4 @@ final class ValidateEticketRequest extends AbstractRequest
             'ticket_id' => $this->ticketId,
         ];
     }
-
-    
 }

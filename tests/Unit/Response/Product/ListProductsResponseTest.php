@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Product;
 
-use GoSuccess\Digistore24\Api\Response\Product\ListProductsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Product\ListProductsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListProductsResponseTest extends TestCase
@@ -21,7 +21,7 @@ final class ListProductsResponseTest extends TestCase
                     'price' => 29.99,
                     'currency' => 'EUR',
                     'is_published' => true,
-                    'created_at' => '2024-01-15'
+                    'created_at' => '2024-01-15',
                 ],
                 [
                     'product_id' => '102',
@@ -30,13 +30,13 @@ final class ListProductsResponseTest extends TestCase
                     'price' => 59.99,
                     'currency' => 'EUR',
                     'is_published' => false,
-                    'created_at' => '2024-02-01'
-                ]
+                    'created_at' => '2024-02-01',
+                ],
             ],
-            'total_count' => 2
+            'total_count' => 2,
         ];
         $response = ListProductsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListProductsResponse::class, $response);
         $this->assertCount(2, $response->products);
         $this->assertSame(2, $response->totalCount);
@@ -54,17 +54,17 @@ final class ListProductsResponseTest extends TestCase
                         'product_type' => 'service',
                         'price' => 99.99,
                         'currency' => 'USD',
-                        'is_published' => true
-                    ]
+                        'is_published' => true,
+                    ],
                 ],
-                'total_count' => 1
+                'total_count' => 1,
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListProductsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListProductsResponse::class, $response);
         $this->assertCount(1, $response->products);
     }
@@ -75,12 +75,11 @@ final class ListProductsResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListProductsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

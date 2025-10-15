@@ -14,12 +14,12 @@ final class UpdatePaymentplanRequestTest extends TestCase
     {
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 29.99;
-        
+
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            paymentPlan: $plan
+            paymentPlan: $plan,
         );
-        
+
         $this->assertInstanceOf(UpdatePaymentplanRequest::class, $request);
     }
 
@@ -27,12 +27,12 @@ final class UpdatePaymentplanRequestTest extends TestCase
     {
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 29.99;
-        
+
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            paymentPlan: $plan
+            paymentPlan: $plan,
         );
-        
+
         $this->assertSame('/updatePaymentplan', $request->getEndpoint());
     }
 
@@ -40,14 +40,14 @@ final class UpdatePaymentplanRequestTest extends TestCase
     {
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 29.99;
-        
+
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            paymentPlan: $plan
+            paymentPlan: $plan,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('PP123', $array['paymentplan_id']);
         $this->assertSame(29.99, $array['first_amount']);
@@ -57,16 +57,15 @@ final class UpdatePaymentplanRequestTest extends TestCase
     {
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 29.99;
-        
+
         $request = new UpdatePaymentplanRequest(
             paymentplanId: 'PP123',
-            paymentPlan: $plan
+            paymentPlan: $plan,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

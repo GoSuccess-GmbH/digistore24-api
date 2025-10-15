@@ -27,7 +27,7 @@ final class ListEticketsResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $tickets = [];
-        
+
         // Support both direct and nested data structures
         $ticketsData = $data['data']['tickets'] ?? $data['tickets'] ?? [];
 
@@ -39,7 +39,7 @@ final class ListEticketsResponse extends AbstractResponse
 
         return new self(
             tickets: $tickets,
-            totalCount: (int) ($data['data']['total_count'] ?? $data['total_count'] ?? count($tickets)),
+            totalCount: (int)($data['data']['total_count'] ?? $data['total_count'] ?? count($tickets)),
         );
     }
 }

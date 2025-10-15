@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Log Member Access Response
- * 
+ *
  * Response after successfully logging member access.
  */
 final class LogMemberAccessResponse extends AbstractResponse

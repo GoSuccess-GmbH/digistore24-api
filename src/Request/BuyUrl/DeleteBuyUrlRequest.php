@@ -8,9 +8,9 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 
 /**
  * Delete Buy URL Request
- * 
+ *
  * Deletes a previously generated buy URL.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/deleteBuyUrl.yaml
  */
 final class DeleteBuyUrlRequest extends AbstractRequest
@@ -20,7 +20,8 @@ final class DeleteBuyUrlRequest extends AbstractRequest
      */
     public function __construct(
         public int $id,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

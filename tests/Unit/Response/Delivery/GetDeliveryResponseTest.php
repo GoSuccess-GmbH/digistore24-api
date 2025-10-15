@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Delivery;
 
-use GoSuccess\Digistore24\Api\Response\Delivery\GetDeliveryResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Delivery\GetDeliveryResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetDeliveryResponseTest extends TestCase
@@ -16,11 +16,11 @@ final class GetDeliveryResponseTest extends TestCase
             'data' => [
                 'delivery_id' => 'DEL123',
                 'status' => 'shipped',
-                'tracking_number' => 'TRACK123'
-            ]
+                'tracking_number' => 'TRACK123',
+            ],
         ];
         $response = GetDeliveryResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetDeliveryResponse::class, $response);
         $this->assertArrayHasKey('delivery_id', $response->getData());
     }
@@ -32,15 +32,15 @@ final class GetDeliveryResponseTest extends TestCase
             data: [
                 'data' => [
                     'delivery_id' => 'DEL123',
-                    'status' => 'shipped'
-                ]
+                    'status' => 'shipped',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetDeliveryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetDeliveryResponse::class, $response);
         $this->assertArrayHasKey('delivery_id', $response->getData());
     }
@@ -51,12 +51,11 @@ final class GetDeliveryResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetDeliveryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

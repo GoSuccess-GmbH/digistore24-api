@@ -30,7 +30,8 @@ final class ValidateLicenseKeyResponse extends AbstractResponse
         private ?string $lastTransactionTypeMsg,
         private ?string $paidUntil,
         private ?string $paidUntilMsg,
-    ) {}
+    ) {
+    }
 
     public function isValid(): bool
     {
@@ -130,22 +131,22 @@ final class ValidateLicenseKeyResponse extends AbstractResponse
         $licenseData = $data['data'] ?? [];
 
         return new self(
-            isLicenseValid: (string) ($licenseData['is_license_valid'] ?? 'N'),
-            isLicenseKeyFound: (string) ($licenseData['is_license_key_found'] ?? 'N'),
-            purchaseId: (string) ($licenseData['purchase_id'] ?? ''),
-            licenseKey: (string) ($licenseData['license_key'] ?? ''),
-            productId: (int) ($licenseData['product_id'] ?? 0),
-            productName: (string) ($licenseData['product_name'] ?? ''),
-            billingStatus: (string) ($licenseData['billing_tatus'] ?? ''),
-            billingStatusMsg: (string) ($licenseData['billing_tatus_msg'] ?? ''),
-            lastPaymentAt: isset($licenseData['last_payment_at']) ? (string) $licenseData['last_payment_at'] : null,
-            lastPaymentAtMsg: isset($licenseData['last_payment_at_msg']) ? (string) $licenseData['last_payment_at_msg'] : null,
-            nextPaymentAt: isset($licenseData['next_payment_at']) ? (string) $licenseData['next_payment_at'] : null,
-            nextPaymentAtMsg: isset($licenseData['next_payment_at_msg']) ? (string) $licenseData['next_payment_at_msg'] : null,
-            lastTransactionType: isset($licenseData['last_transaction_type']) ? (string) $licenseData['last_transaction_type'] : null,
-            lastTransactionTypeMsg: isset($licenseData['last_transaction_type_msg']) ? (string) $licenseData['last_transaction_type_msg'] : null,
-            paidUntil: isset($licenseData['paid_until']) ? (string) $licenseData['paid_until'] : null,
-            paidUntilMsg: isset($licenseData['paid_until_msg']) ? (string) $licenseData['paid_until_msg'] : null,
+            isLicenseValid: (string)($licenseData['is_license_valid'] ?? 'N'),
+            isLicenseKeyFound: (string)($licenseData['is_license_key_found'] ?? 'N'),
+            purchaseId: (string)($licenseData['purchase_id'] ?? ''),
+            licenseKey: (string)($licenseData['license_key'] ?? ''),
+            productId: (int)($licenseData['product_id'] ?? 0),
+            productName: (string)($licenseData['product_name'] ?? ''),
+            billingStatus: (string)($licenseData['billing_tatus'] ?? ''),
+            billingStatusMsg: (string)($licenseData['billing_tatus_msg'] ?? ''),
+            lastPaymentAt: isset($licenseData['last_payment_at']) ? (string)$licenseData['last_payment_at'] : null,
+            lastPaymentAtMsg: isset($licenseData['last_payment_at_msg']) ? (string)$licenseData['last_payment_at_msg'] : null,
+            nextPaymentAt: isset($licenseData['next_payment_at']) ? (string)$licenseData['next_payment_at'] : null,
+            nextPaymentAtMsg: isset($licenseData['next_payment_at_msg']) ? (string)$licenseData['next_payment_at_msg'] : null,
+            lastTransactionType: isset($licenseData['last_transaction_type']) ? (string)$licenseData['last_transaction_type'] : null,
+            lastTransactionTypeMsg: isset($licenseData['last_transaction_type_msg']) ? (string)$licenseData['last_transaction_type_msg'] : null,
+            paidUntil: isset($licenseData['paid_until']) ? (string)$licenseData['paid_until'] : null,
+            paidUntilMsg: isset($licenseData['paid_until_msg']) ? (string)$licenseData['paid_until_msg'] : null,
         );
     }
 }

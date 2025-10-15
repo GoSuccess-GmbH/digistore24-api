@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Buyer;
 
-use GoSuccess\Digistore24\Api\Response\Buyer\GetBuyerResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Buyer\GetBuyerResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetBuyerResponseTest extends TestCase
@@ -16,11 +16,11 @@ final class GetBuyerResponseTest extends TestCase
             'data' => [
                 'buyer_id' => 'BUY123',
                 'email' => 'buyer@example.com',
-                'first_name' => 'John'
-            ]
+                'first_name' => 'John',
+            ],
         ];
         $response = GetBuyerResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
         $this->assertSame('BUY123', $response->getBuyerId());
         $this->assertSame('buyer@example.com', $response->getEmail());
@@ -33,15 +33,15 @@ final class GetBuyerResponseTest extends TestCase
             data: [
                 'data' => [
                     'buyer_id' => 'BUY123',
-                    'email' => 'buyer@example.com'
-                ]
+                    'email' => 'buyer@example.com',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetBuyerResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
         $this->assertSame('BUY123', $response->getBuyerId());
     }
@@ -52,12 +52,11 @@ final class GetBuyerResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetBuyerResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

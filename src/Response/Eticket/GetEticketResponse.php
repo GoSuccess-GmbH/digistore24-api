@@ -23,7 +23,7 @@ final class GetEticketResponse extends AbstractResponse
     {
         // Support both direct and nested data structures
         $ticketData = $data['data'] ?? $data;
-        
+
         return new self(
             ticket: EticketDetail::fromArray($ticketData),
         );

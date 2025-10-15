@@ -6,7 +6,7 @@ namespace GoSuccess\Digistore24\Api\Http;
 
 /**
  * HTTP Response
- * 
+ *
  * Represents a response from the Digistore24 API.
  * Uses PHP 8.4 property hooks for computed properties.
  */
@@ -26,14 +26,14 @@ final class Response
 
     /**
      * Response data
-     * 
+     *
      * @var array<string, mixed>
      */
     public readonly array $data;
 
     /**
      * Response headers
-     * 
+     *
      * @var array<string, string[]>
      */
     public readonly array $headers;
@@ -93,6 +93,7 @@ final class Response
                 return $values[0] ?? null;
             }
         }
+
         return null;
     }
 }

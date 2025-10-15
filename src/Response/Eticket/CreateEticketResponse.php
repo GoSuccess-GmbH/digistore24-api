@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * E-Ticket Item
- * 
+ *
  * Represents a single created e-ticket.
  */
 final class EticketItem
@@ -36,7 +36,7 @@ final class EticketItem
 
 /**
  * Create E-Ticket Response
- * 
+ *
  * Response after successfully creating e-tickets.
  */
 final class CreateEticketResponse extends AbstractResponse
@@ -54,12 +54,13 @@ final class CreateEticketResponse extends AbstractResponse
         $etickets = [];
         if (isset($data['etickets']) && is_array($data['etickets'])) {
             $etickets = array_map(
-                fn(array $item): EticketItem => EticketItem::fromArray($item),
-                $data['etickets']
+                fn (array $item): EticketItem => EticketItem::fromArray($item),
+                $data['etickets'],
             );
         }
 
         $instance = new self(etickets: $etickets);
+
         return $instance;
     }
 }

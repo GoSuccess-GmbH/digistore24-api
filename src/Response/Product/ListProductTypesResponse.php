@@ -23,7 +23,8 @@ final class ListProductTypesResponse extends AbstractResponse
      */
     public function __construct(
         private array $productTypes,
-    ) {}
+    ) {
+    }
 
     /**
      * Get all product types.
@@ -48,6 +49,7 @@ final class ListProductTypesResponse extends AbstractResponse
                 return $type;
             }
         }
+
         return null;
     }
 
@@ -61,7 +63,7 @@ final class ListProductTypesResponse extends AbstractResponse
     {
         return array_filter(
             $this->productTypes,
-            fn($type) => $type->category === $category
+            fn ($type) => $type->category === $category,
         );
     }
 
@@ -72,7 +74,8 @@ final class ListProductTypesResponse extends AbstractResponse
      */
     public function getCategories(): array
     {
-        $categories = array_map(fn($type) => $type->category, $this->productTypes);
+        $categories = array_map(fn ($type) => $type->category, $this->productTypes);
+
         return array_values(array_unique($categories));
     }
 
@@ -83,12 +86,12 @@ final class ListProductTypesResponse extends AbstractResponse
     {
         // API returns array of product type objects directly
         $productTypes = array_map(
-            fn($item) => (object) [
-                'id' => (int) $item['id'],
-                'name' => (string) $item['name'],
-                'category' => (string) $item['category'],
+            fn ($item) => (object)[
+                'id' => (int)$item['id'],
+                'name' => (string)$item['name'],
+                'category' => (string)$item['category'],
             ],
-            $data
+            $data,
         );
 
         return new self($productTypes);

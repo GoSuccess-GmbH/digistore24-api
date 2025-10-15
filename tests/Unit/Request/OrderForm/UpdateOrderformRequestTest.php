@@ -14,12 +14,12 @@ final class UpdateOrderformRequestTest extends TestCase
     {
         $form = new OrderFormData();
         $form->name = 'Updated Form';
-        
+
         $request = new UpdateOrderformRequest(
             orderformId: 'OF123',
-            orderForm: $form
+            orderForm: $form,
         );
-        
+
         $this->assertInstanceOf(UpdateOrderformRequest::class, $request);
     }
 
@@ -27,12 +27,12 @@ final class UpdateOrderformRequestTest extends TestCase
     {
         $form = new OrderFormData();
         $form->name = 'Updated Form';
-        
+
         $request = new UpdateOrderformRequest(
             orderformId: 'OF123',
-            orderForm: $form
+            orderForm: $form,
         );
-        
+
         $this->assertSame('/updateOrderform', $request->getEndpoint());
     }
 
@@ -40,16 +40,15 @@ final class UpdateOrderformRequestTest extends TestCase
     {
         $form = new OrderFormData();
         $form->name = 'Updated Form';
-        
+
         $request = new UpdateOrderformRequest(
             orderformId: 'OF123',
-            orderForm: $form
+            orderForm: $form,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

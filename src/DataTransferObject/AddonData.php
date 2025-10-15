@@ -6,7 +6,7 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Addon Data
- * 
+ *
  * Represents an add-on product for addon change purchases.
  */
 final class AddonData
@@ -30,7 +30,7 @@ final class AddonData
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array

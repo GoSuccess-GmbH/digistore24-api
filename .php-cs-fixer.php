@@ -12,7 +12,7 @@ $finder = PhpCsFixer\Finder::create()
 return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR12' => true,
-        '@PHP84Migration' => true,
+        '@PHP8x4Migration' => true,
         
         // Import statements
         'ordered_imports' => [
@@ -48,7 +48,7 @@ return (new PhpCsFixer\Config())
             ]
         ],
         'final_class' => false, // We use final explicitly where needed
-        'visibility_required' => ['elements' => ['property', 'method', 'const']],
+                'modifier_keywords' => true,
         
         // Functions
         'function_declaration' => ['closure_function_spacing' => 'one'],
@@ -87,7 +87,6 @@ return (new PhpCsFixer\Config())
                 'extra',
                 'throw',
                 'use',
-                'use_trait',
             ]
         ],
         'no_spaces_around_offset' => true,

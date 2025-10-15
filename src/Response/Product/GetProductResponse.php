@@ -33,13 +33,14 @@ final class GetProductResponse extends AbstractResponse
             productId: $data['product_id'] ?? '',
             productName: $data['product_name'] ?? '',
             productType: $data['product_type'] ?? '',
-            price: (float) ($data['price'] ?? 0),
+            price: (float)($data['price'] ?? 0),
             currency: $data['currency'] ?? 'EUR',
             description: $data['description'] ?? null,
-            isPublished: (bool) ($data['is_published'] ?? false),
+            isPublished: (bool)($data['is_published'] ?? false),
             imageUrl: $data['image_url'] ?? null,
             additionalData: $data['additional_data'] ?? [],
         );
+
         return $instance;
     }
 }

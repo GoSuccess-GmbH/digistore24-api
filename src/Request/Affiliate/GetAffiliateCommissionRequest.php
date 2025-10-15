@@ -20,7 +20,7 @@ final class GetAffiliateCommissionRequest extends AbstractRequest
      */
     public function __construct(
         private int $productId,
-        private string $affiliateId
+        private string $affiliateId,
     ) {
     }
 
@@ -38,7 +38,7 @@ final class GetAffiliateCommissionRequest extends AbstractRequest
     {
         return [
             'product_id' => $this->productId,
-            'affiliate_id' => $this->affiliateId
+            'affiliate_id' => $this->affiliateId,
         ];
     }
 }

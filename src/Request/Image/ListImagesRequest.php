@@ -33,6 +33,4 @@ final class ListImagesRequest extends AbstractRequest
 
         return $data;
     }
-
-    
 }

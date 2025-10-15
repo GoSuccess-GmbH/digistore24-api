@@ -17,7 +17,7 @@ final class ResponseTest extends TestCase
         $response = new Response(
             statusCode: 200,
             data: [],
-            headers: []
+            headers: [],
         );
 
         $this->assertTrue($response->isSuccess);
@@ -28,7 +28,7 @@ final class ResponseTest extends TestCase
         $response = new Response(
             statusCode: 400,
             data: [],
-            headers: []
+            headers: [],
         );
 
         $this->assertFalse($response->isSuccess);
@@ -39,7 +39,7 @@ final class ResponseTest extends TestCase
         $response = new Response(
             statusCode: 404,
             data: [],
-            headers: []
+            headers: [],
         );
 
         $this->assertTrue($response->isClientError);
@@ -50,7 +50,7 @@ final class ResponseTest extends TestCase
         $response = new Response(
             statusCode: 500,
             data: [],
-            headers: []
+            headers: [],
         );
 
         $this->assertTrue($response->isServerError);
@@ -64,7 +64,7 @@ final class ResponseTest extends TestCase
         $response = new Response(
             statusCode: 200,
             data: $data,
-            headers: $headers
+            headers: $headers,
         );
 
         $this->assertSame(200, $response->statusCode);
@@ -79,9 +79,9 @@ final class ResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'user' => ['name' => 'John', 'email' => 'john@example.com'],
-                'status' => 'success'
+                'status' => 'success',
             ],
-            headers: []
+            headers: [],
         );
 
         $this->assertSame('John', $response->data['user']['name']);

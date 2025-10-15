@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Delivery;
 
-use GoSuccess\Digistore24\Api\Response\Delivery\UpdateDeliveryResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Delivery\UpdateDeliveryResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateDeliveryResponseTest extends TestCase
@@ -14,7 +14,7 @@ final class UpdateDeliveryResponseTest extends TestCase
     {
         $data = ['result' => 'success'];
         $response = UpdateDeliveryResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdateDeliveryResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -26,11 +26,11 @@ final class UpdateDeliveryResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdateDeliveryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdateDeliveryResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -41,12 +41,11 @@ final class UpdateDeliveryResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdateDeliveryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

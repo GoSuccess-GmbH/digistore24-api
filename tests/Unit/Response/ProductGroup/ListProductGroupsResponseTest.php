@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ProductGroup;
 
-use GoSuccess\Digistore24\Api\Response\ProductGroup\ListProductGroupsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\ListProductGroupsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListProductGroupsResponseTest extends TestCase
@@ -18,18 +18,18 @@ final class ListProductGroupsResponseTest extends TestCase
                     [
                         'group_id' => 'PG01',
                         'name' => 'Group A',
-                        'product_count' => 3
+                        'product_count' => 3,
                     ],
                     [
                         'group_id' => 'PG02',
                         'name' => 'Group B',
-                        'product_count' => 5
-                    ]
-                ]
-            ]
+                        'product_count' => 5,
+                    ],
+                ],
+            ],
         ];
         $response = ListProductGroupsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListProductGroupsResponse::class, $response);
         $this->assertCount(2, $response->getProductGroups());
     }
@@ -43,17 +43,17 @@ final class ListProductGroupsResponseTest extends TestCase
                     'product_groups' => [
                         [
                             'group_id' => 'PG03',
-                            'name' => 'Group C'
-                        ]
-                    ]
-                ]
+                            'name' => 'Group C',
+                        ],
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListProductGroupsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListProductGroupsResponse::class, $response);
         $this->assertCount(1, $response->getProductGroups());
     }
@@ -64,12 +64,11 @@ final class ListProductGroupsResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListProductGroupsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

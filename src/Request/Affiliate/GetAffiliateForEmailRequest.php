@@ -18,7 +18,7 @@ final class GetAffiliateForEmailRequest extends AbstractRequest
      * @param string $email The email address to look up
      */
     public function __construct(
-        private string $email
+        private string $email,
     ) {
     }
 

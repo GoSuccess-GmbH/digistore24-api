@@ -18,7 +18,7 @@ final class ListDeliveriesRequest extends AbstractRequest
      * @param string|null $purchaseId Optional purchase ID to filter deliveries
      */
     public function __construct(
-        private ?string $purchaseId = null
+        private ?string $purchaseId = null,
     ) {
     }
 
@@ -38,6 +38,7 @@ final class ListDeliveriesRequest extends AbstractRequest
         if ($this->purchaseId !== null) {
             $params['purchase_id'] = $this->purchaseId;
         }
+
         return $params;
     }
 }

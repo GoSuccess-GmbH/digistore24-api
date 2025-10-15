@@ -8,7 +8,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 
 /**
  * Delete Buy URL Response
- * 
+ *
  * Confirms deletion of a buy URL.
  */
 final class DeleteBuyUrlResponse extends AbstractResponse
@@ -18,7 +18,8 @@ final class DeleteBuyUrlResponse extends AbstractResponse
      */
     public function __construct(
         public bool $success = true,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {

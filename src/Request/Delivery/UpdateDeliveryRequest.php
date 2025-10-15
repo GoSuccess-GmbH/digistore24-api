@@ -21,7 +21,7 @@ final class UpdateDeliveryRequest extends AbstractRequest
      */
     public function __construct(
         private string $deliveryId,
-        private DeliveryData $delivery
+        private DeliveryData $delivery,
     ) {
     }
 
@@ -39,7 +39,7 @@ final class UpdateDeliveryRequest extends AbstractRequest
     {
         return array_merge(
             ['delivery_id' => $this->deliveryId],
-            $this->delivery->toArray()
+            $this->delivery->toArray(),
         );
     }
 }

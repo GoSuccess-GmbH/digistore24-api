@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ServiceProof;
 
-use GoSuccess\Digistore24\Api\Response\ServiceProof\ListServiceProofRequestsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ServiceProof\ListServiceProofRequestsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListServiceProofRequestsResponseTest extends TestCase
@@ -21,7 +21,7 @@ final class ListServiceProofRequestsResponseTest extends TestCase
             ],
         ];
         $response = ListServiceProofRequestsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListServiceProofRequestsResponse::class, $response);
         $this->assertCount(2, $response->getServiceProofRequests());
     }
@@ -38,11 +38,11 @@ final class ListServiceProofRequestsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListServiceProofRequestsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListServiceProofRequestsResponse::class, $response);
         $this->assertCount(1, $response->getServiceProofRequests());
     }
@@ -57,12 +57,11 @@ final class ListServiceProofRequestsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListServiceProofRequestsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

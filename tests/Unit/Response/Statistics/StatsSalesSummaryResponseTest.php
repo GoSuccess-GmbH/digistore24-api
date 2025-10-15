@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Statistics;
 
-use GoSuccess\Digistore24\Api\Response\Statistics\StatsSalesSummaryResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsSalesSummaryResponse;
 use PHPUnit\Framework\TestCase;
 
 final class StatsSalesSummaryResponseTest extends TestCase
@@ -25,7 +25,7 @@ final class StatsSalesSummaryResponseTest extends TestCase
             ],
         ];
         $response = StatsSalesSummaryResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(StatsSalesSummaryResponse::class, $response);
         $summary = $response->getSummary();
         $this->assertSame(450, $summary['total_sales']);
@@ -47,11 +47,11 @@ final class StatsSalesSummaryResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = StatsSalesSummaryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(StatsSalesSummaryResponse::class, $response);
         $summary = $response->getSummary();
         $this->assertSame(100, $summary['total_sales']);
@@ -63,12 +63,11 @@ final class StatsSalesSummaryResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = StatsSalesSummaryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

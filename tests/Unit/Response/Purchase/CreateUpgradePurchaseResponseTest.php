@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\CreateUpgradePurchaseResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\CreateUpgradePurchaseResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateUpgradePurchaseResponseTest extends TestCase
@@ -27,7 +27,7 @@ final class CreateUpgradePurchaseResponseTest extends TestCase
             ],
         ];
         $response = CreateUpgradePurchaseResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateUpgradePurchaseResponse::class, $response);
         $this->assertIsArray($response->getData());
         $this->assertIsArray($response->getNewPurchase());
@@ -52,11 +52,11 @@ final class CreateUpgradePurchaseResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateUpgradePurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateUpgradePurchaseResponse::class, $response);
         $this->assertSame('P654321', $response->getNewPurchase()['purchase_id']);
         $this->assertSame('2024-01-15', $response->getUpgradeInfo()['upgrade_date']);
@@ -72,12 +72,11 @@ final class CreateUpgradePurchaseResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateUpgradePurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

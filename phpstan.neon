@@ -9,8 +9,6 @@ parameters:
         - vendor
     
     # Enable stricter analysis
-    checkMissingIterableValueType: true
-    checkGenericClassInNonGenericObjectType: true
     checkImplicitMixed: true
     
     # Report unknown classes

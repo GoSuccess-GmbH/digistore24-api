@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ProductGroup;
 
-use GoSuccess\Digistore24\Api\Response\ProductGroup\GetProductGroupResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\GetProductGroupResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetProductGroupResponseTest extends TestCase
@@ -17,12 +17,12 @@ final class GetProductGroupResponseTest extends TestCase
                 'product_group' => [
                     'group_id' => 'PG001',
                     'name' => 'Premium Products',
-                    'product_count' => 5
-                ]
-            ]
+                    'product_count' => 5,
+                ],
+            ],
         ];
         $response = GetProductGroupResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetProductGroupResponse::class, $response);
         $this->assertArrayHasKey('group_id', $response->getProductGroup());
         $this->assertSame('PG001', $response->getProductGroup()['group_id']);
@@ -36,16 +36,16 @@ final class GetProductGroupResponseTest extends TestCase
                 'data' => [
                     'product_group' => [
                         'group_id' => 'PG002',
-                        'name' => 'Basic Products'
-                    ]
-                ]
+                        'name' => 'Basic Products',
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetProductGroupResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetProductGroupResponse::class, $response);
         $this->assertSame('Basic Products', $response->getProductGroup()['name']);
     }
@@ -56,12 +56,11 @@ final class GetProductGroupResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetProductGroupResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -12,23 +12,23 @@ final class ListEticketLocationsRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new ListEticketLocationsRequest();
-        
+
         $this->assertInstanceOf(ListEticketLocationsRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new ListEticketLocationsRequest();
-        
+
         $this->assertSame('/listEticketLocations', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void
     {
         $request = new ListEticketLocationsRequest();
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertEmpty($array);
     }
@@ -36,11 +36,10 @@ final class ListEticketLocationsRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListEticketLocationsRequest();
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

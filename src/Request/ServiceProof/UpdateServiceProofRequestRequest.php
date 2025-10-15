@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\ServiceProof;
@@ -18,11 +19,19 @@ final class UpdateServiceProofRequestRequest extends AbstractRequest
      * @param string $serviceProofRequestId The unique identifier of the service proof request
      * @param ServiceProofRequestUpdateData $proofData The updated service proof request data
      */
-    public function __construct(private string $serviceProofRequestId, private ServiceProofRequestUpdateData $proofData) {}
+    public function __construct(private string $serviceProofRequestId, private ServiceProofRequestUpdateData $proofData)
+    {
+    }
 
-    public function getEndpoint(): string { return '/updateServiceProofRequest'; }
+    public function getEndpoint(): string
+    {
+        return '/updateServiceProofRequest';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
     public function toArray(): array
     {

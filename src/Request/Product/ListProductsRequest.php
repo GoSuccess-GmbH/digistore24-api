@@ -38,6 +38,4 @@ final class ListProductsRequest extends AbstractRequest
 
         return $data;
     }
-
-    
 }

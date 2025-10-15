@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Affiliate;
 
-use GoSuccess\Digistore24\Api\Response\Affiliate\GetAffiliateCommissionResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Affiliate\GetAffiliateCommissionResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetAffiliateCommissionResponseTest extends TestCase
@@ -16,12 +16,12 @@ final class GetAffiliateCommissionResponseTest extends TestCase
             'data' => [
                 'commission' => [
                     'first_sale' => 50,
-                    'resale' => 40
-                ]
-            ]
+                    'resale' => 40,
+                ],
+            ],
         ];
         $response = GetAffiliateCommissionResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetAffiliateCommissionResponse::class, $response);
         $this->assertSame(['first_sale' => 50, 'resale' => 40], $response->getCommission());
     }
@@ -34,16 +34,16 @@ final class GetAffiliateCommissionResponseTest extends TestCase
                 'data' => [
                     'commission' => [
                         'first_sale' => 50,
-                        'resale' => 40
-                    ]
-                ]
+                        'resale' => 40,
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetAffiliateCommissionResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetAffiliateCommissionResponse::class, $response);
         $this->assertSame(['first_sale' => 50, 'resale' => 40], $response->getCommission());
     }
@@ -54,12 +54,11 @@ final class GetAffiliateCommissionResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => ['commission' => []]],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetAffiliateCommissionResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

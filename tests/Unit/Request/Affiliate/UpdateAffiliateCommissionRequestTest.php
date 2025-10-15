@@ -14,13 +14,13 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
     {
         $commission = new AffiliateCommissionData();
         $commission->commissionRate = 10.5;
-        
+
         $request = new UpdateAffiliateCommissionRequest(
             productId: 12345,
             affiliateId: 'AFF123',
-            commission: $commission
+            commission: $commission,
         );
-        
+
         $this->assertInstanceOf(UpdateAffiliateCommissionRequest::class, $request);
     }
 
@@ -28,13 +28,13 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
     {
         $commission = new AffiliateCommissionData();
         $commission->commissionRate = 10.5;
-        
+
         $request = new UpdateAffiliateCommissionRequest(
             productId: 12345,
             affiliateId: 'AFF123',
-            commission: $commission
+            commission: $commission,
         );
-        
+
         $this->assertSame('/updateAffiliateCommission', $request->getEndpoint());
     }
 
@@ -43,15 +43,15 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
         $commission = new AffiliateCommissionData();
         $commission->commissionRate = 10.5;
         $commission->commissionFix = 5.0;
-        
+
         $request = new UpdateAffiliateCommissionRequest(
             productId: 12345,
             affiliateId: 'AFF123',
-            commission: $commission
+            commission: $commission,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame(12345, $array['product_id']);
         $this->assertSame('AFF123', $array['affiliate_id']);
@@ -63,15 +63,15 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
     {
         $commission = new AffiliateCommissionData();
         $commission->commissionRate = 10.5;
-        
+
         $request = new UpdateAffiliateCommissionRequest(
             productId: 12345,
             affiliateId: 'AFF123',
-            commission: $commission
+            commission: $commission,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }

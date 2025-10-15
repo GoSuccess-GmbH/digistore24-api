@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Voucher;
 
-use GoSuccess\Digistore24\Api\Response\Voucher\UpdateVoucherResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Voucher\UpdateVoucherResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateVoucherResponseTest extends TestCase
@@ -16,7 +16,7 @@ final class UpdateVoucherResponseTest extends TestCase
             'result' => 'success',
         ];
         $response = UpdateVoucherResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdateVoucherResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -29,11 +29,11 @@ final class UpdateVoucherResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdateVoucherResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdateVoucherResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -44,12 +44,11 @@ final class UpdateVoucherResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdateVoucherResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

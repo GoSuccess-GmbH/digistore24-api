@@ -53,6 +53,4 @@ final class ListEticketsRequest extends AbstractRequest
 
         return $data;
     }
-
-    
 }

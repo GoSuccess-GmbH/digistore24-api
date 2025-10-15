@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\BuyUrl;
 
-use GoSuccess\Digistore24\Api\Response\BuyUrl\DeleteBuyUrlResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\BuyUrl\DeleteBuyUrlResponse;
 use PHPUnit\Framework\TestCase;
 
 final class DeleteBuyUrlResponseTest extends TestCase
@@ -14,7 +14,7 @@ final class DeleteBuyUrlResponseTest extends TestCase
     {
         $data = [];
         $response = DeleteBuyUrlResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(DeleteBuyUrlResponse::class, $response);
         $this->assertTrue($response->success);
     }
@@ -25,11 +25,11 @@ final class DeleteBuyUrlResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = DeleteBuyUrlResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(DeleteBuyUrlResponse::class, $response);
         $this->assertTrue($response->success);
     }
@@ -40,12 +40,11 @@ final class DeleteBuyUrlResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = DeleteBuyUrlResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

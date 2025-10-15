@@ -29,8 +29,8 @@ final class AccountAccessEntry
             platformName: $data['platform_name'] ?? '',
             loginName: $data['login_name'] ?? '',
             loginUrl: $data['login_url'] ?? '',
-            numberOfUnlockedLectures: (int) ($data['number_of_unlocked_lectures'] ?? 0),
-            totalNumberOfLectures: (int) ($data['total_number_of_lectures'] ?? 0),
+            numberOfUnlockedLectures: (int)($data['number_of_unlocked_lectures'] ?? 0),
+            totalNumberOfLectures: (int)($data['total_number_of_lectures'] ?? 0),
             loginAt: new \DateTimeImmutable($data['login_at'] ?? 'now'),
         );
     }

@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 
 /**
  * Create E-Ticket Request
- * 
+ *
  * Creates free e-tickets for events.
  */
 final class CreateEticketRequest extends AbstractRequest

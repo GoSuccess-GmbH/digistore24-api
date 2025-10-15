@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
 
 /**
  * Create Addon Change Purchase Request
- * 
+ *
  * Creates a package change order to add or remove products from an order.
  * The main product's quantity cannot be changed. Added products must be subscriptions.
  * Requires "Billing on demand" right to be enabled for the vendor account.
@@ -35,7 +35,7 @@ final class CreateAddonChangePurchaseRequest extends AbstractRequest
         }
 
         foreach ($addons as $addon) {
-            if (!$addon instanceof AddonData) {
+            if (! $addon instanceof AddonData) {
                 throw new \InvalidArgumentException('All addons must be instances of AddonData');
             }
         }
@@ -50,7 +50,7 @@ final class CreateAddonChangePurchaseRequest extends AbstractRequest
     {
         $data = [
             'purchase_id' => $this->purchaseId,
-            'addons' => array_map(fn(AddonData $addon): array => $addon->toArray(), $this->addons),
+            'addons' => array_map(fn (AddonData $addon): array => $addon->toArray(), $this->addons),
         ];
 
         if ($this->tracking !== null) {

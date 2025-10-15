@@ -14,12 +14,12 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Updated Shipping';
-        
+
         $request = new UpdateShippingCostPolicyRequest(
             shippingCostPolicyId: 'SCP123',
-            policy: $policy
+            policy: $policy,
         );
-        
+
         $this->assertInstanceOf(UpdateShippingCostPolicyRequest::class, $request);
     }
 
@@ -27,12 +27,12 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Updated Shipping';
-        
+
         $request = new UpdateShippingCostPolicyRequest(
             shippingCostPolicyId: 'SCP123',
-            policy: $policy
+            policy: $policy,
         );
-        
+
         $this->assertSame('/updateShippingCostPolicy', $request->getEndpoint());
     }
 
@@ -40,14 +40,14 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Updated Shipping';
-        
+
         $request = new UpdateShippingCostPolicyRequest(
             shippingCostPolicyId: 'SCP123',
-            policy: $policy
+            policy: $policy,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('SCP123', $array['shipping_cost_policy_id']);
         $this->assertSame('Updated Shipping', $array['name']);
@@ -57,16 +57,15 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Updated Shipping';
-        
+
         $request = new UpdateShippingCostPolicyRequest(
             shippingCostPolicyId: 'SCP123',
-            policy: $policy
+            policy: $policy,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

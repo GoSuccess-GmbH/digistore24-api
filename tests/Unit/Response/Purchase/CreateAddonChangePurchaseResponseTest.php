@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\CreateAddonChangePurchaseResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateAddonChangePurchaseResponseTest extends TestCase
@@ -21,7 +21,7 @@ final class CreateAddonChangePurchaseResponseTest extends TestCase
             'pay_url' => 'https://digistore24.com/pay/P123456789',
         ];
         $response = CreateAddonChangePurchaseResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateAddonChangePurchaseResponse::class, $response);
         $this->assertSame('P123456789', $response->createdPurchaseId);
         $this->assertSame('paid', $response->paymentStatus);
@@ -44,11 +44,11 @@ final class CreateAddonChangePurchaseResponseTest extends TestCase
                 'pay_url' => null,
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateAddonChangePurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateAddonChangePurchaseResponse::class, $response);
         $this->assertSame('P987654321', $response->createdPurchaseId);
         $this->assertSame('pending', $response->paymentStatus);
@@ -70,12 +70,11 @@ final class CreateAddonChangePurchaseResponseTest extends TestCase
                 'billing_status_msg' => 'Subscription active',
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateAddonChangePurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

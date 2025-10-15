@@ -6,10 +6,10 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Shipping Cost Policy Data Transfer Object
- * 
+ *
  * Data structure for shipping cost policy creation and updates.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/createShippingCostPolicy.yaml
  * @link https://digistore24.com/api/docs/paths/updateShippingCostPolicy.yaml
  */
@@ -82,9 +82,9 @@ final class ShippingCostPolicyData
      */
     public string $feeType = 'total_fee' {
         set {
-            if (!in_array($value, ['total_fee', 'fee_per_unit'], true)) {
+            if (! in_array($value, ['total_fee', 'fee_per_unit'], true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid fee type: $value. Allowed: total_fee, fee_per_unit"
+                    "Invalid fee type: $value. Allowed: total_fee, fee_per_unit",
                 );
             }
             $this->feeType = $value;
@@ -96,9 +96,9 @@ final class ShippingCostPolicyData
      */
     public string $billingCycle = 'once' {
         set {
-            if (!in_array($value, ['once', 'monthly'], true)) {
+            if (! in_array($value, ['once', 'monthly'], true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid billing cycle: $value. Allowed: once, monthly"
+                    "Invalid billing cycle: $value. Allowed: once, monthly",
                 );
             }
             $this->billingCycle = $value;
@@ -211,7 +211,7 @@ final class ShippingCostPolicyData
 
     /**
      * Create ShippingCostPolicyData from array
-     * 
+     *
      * @param array<string, mixed> $data
      */
     public static function fromArray(array $data): self
@@ -228,22 +228,22 @@ final class ShippingCostPolicyData
         $instance->billingCycle = $data['billing_cycle'] ?? 'once';
         $instance->currency = $data['currency'] ?? null;
         $instance->scaleLevelCount = $data['scale_level_count'] ?? 1;
-        $instance->scale1Amount = isset($data['scale_1_amount']) ? (float) $data['scale_1_amount'] : null;
+        $instance->scale1Amount = isset($data['scale_1_amount']) ? (float)$data['scale_1_amount'] : null;
         $instance->scale2From = $data['scale_2_from'] ?? null;
-        $instance->scale2Amount = isset($data['scale_2_amount']) ? (float) $data['scale_2_amount'] : null;
+        $instance->scale2Amount = isset($data['scale_2_amount']) ? (float)$data['scale_2_amount'] : null;
         $instance->scale3From = $data['scale_3_from'] ?? null;
-        $instance->scale3Amount = isset($data['scale_3_amount']) ? (float) $data['scale_3_amount'] : null;
+        $instance->scale3Amount = isset($data['scale_3_amount']) ? (float)$data['scale_3_amount'] : null;
         $instance->scale4From = $data['scale_4_from'] ?? null;
-        $instance->scale4Amount = isset($data['scale_4_amount']) ? (float) $data['scale_4_amount'] : null;
+        $instance->scale4Amount = isset($data['scale_4_amount']) ? (float)$data['scale_4_amount'] : null;
         $instance->scale5From = $data['scale_5_from'] ?? null;
-        $instance->scale5Amount = isset($data['scale_5_amount']) ? (float) $data['scale_5_amount'] : null;
-        
+        $instance->scale5Amount = isset($data['scale_5_amount']) ? (float)$data['scale_5_amount'] : null;
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
@@ -259,51 +259,51 @@ final class ShippingCostPolicyData
             'billing_cycle' => $this->billingCycle,
             'scale_level_count' => $this->scaleLevelCount,
         ];
-        
+
         if ($this->labelXX !== null) {
             $data['label_XX'] = $this->labelXX;
         }
-        
+
         if ($this->currency !== null) {
             $data['currency'] = $this->currency;
         }
-        
+
         if ($this->scale1Amount !== null) {
             $data['scale_1_amount'] = $this->scale1Amount;
         }
-        
+
         if ($this->scale2From !== null) {
             $data['scale_2_from'] = $this->scale2From;
         }
-        
+
         if ($this->scale2Amount !== null) {
             $data['scale_2_amount'] = $this->scale2Amount;
         }
-        
+
         if ($this->scale3From !== null) {
             $data['scale_3_from'] = $this->scale3From;
         }
-        
+
         if ($this->scale3Amount !== null) {
             $data['scale_3_amount'] = $this->scale3Amount;
         }
-        
+
         if ($this->scale4From !== null) {
             $data['scale_4_from'] = $this->scale4From;
         }
-        
+
         if ($this->scale4Amount !== null) {
             $data['scale_4_amount'] = $this->scale4Amount;
         }
-        
+
         if ($this->scale5From !== null) {
             $data['scale_5_from'] = $this->scale5From;
         }
-        
+
         if ($this->scale5Amount !== null) {
             $data['scale_5_amount'] = $this->scale5Amount;
         }
-        
+
         return $data;
     }
 }

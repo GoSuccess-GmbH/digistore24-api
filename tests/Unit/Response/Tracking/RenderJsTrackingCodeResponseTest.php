@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Tracking;
 
-use GoSuccess\Digistore24\Api\Response\Tracking\RenderJsTrackingCodeResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Tracking\RenderJsTrackingCodeResponse;
 use PHPUnit\Framework\TestCase;
 
 final class RenderJsTrackingCodeResponseTest extends TestCase
@@ -20,7 +20,7 @@ final class RenderJsTrackingCodeResponseTest extends TestCase
             ],
         ];
         $response = RenderJsTrackingCodeResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(RenderJsTrackingCodeResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -40,11 +40,11 @@ final class RenderJsTrackingCodeResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = RenderJsTrackingCodeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(RenderJsTrackingCodeResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
         $this->assertStringContainsString('console.log', $response->getScriptCode());
@@ -62,12 +62,11 @@ final class RenderJsTrackingCodeResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = RenderJsTrackingCodeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

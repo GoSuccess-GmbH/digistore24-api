@@ -97,21 +97,21 @@ final class TypeConverterTest extends TestCase
     {
         $data = ['key' => 'value', 'number' => 42];
         $json = json_encode($data);
-        
+
         // Manual decode in test
         $manualDecode = json_decode($json, true);
         $manualError = json_last_error();
         $manualErrorMsg = json_last_error_msg();
-        
+
         //  Check TypeConverter source
         $reflection = new \ReflectionClass(TypeConverter::class);
         $sourceFile = $reflection->getFileName();
-        
+
         // TypeConverter test
         $result = TypeConverter::toArray($json);
-        
+
         // Detailed failure message
-        if (!isset($result['key'])) {
+        if (! isset($result['key'])) {
             $message = sprintf(
                 "TypeConverter::toArray() test failed:\n" .
                 "  Source file: %s\n" .
@@ -124,11 +124,11 @@ final class TypeConverterTest extends TestCase
                 print_r($result, true),
                 print_r($manualDecode, true),
                 $manualError,
-                $manualErrorMsg
+                $manualErrorMsg,
             );
             $this->fail($message);
         }
-        
+
         $this->assertIsArray($result);
         $this->assertArrayHasKey('key', $result);
         $this->assertSame('value', $result['key']);

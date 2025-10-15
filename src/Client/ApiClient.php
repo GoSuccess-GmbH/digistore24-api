@@ -11,14 +11,13 @@ use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
 use GoSuccess\Digistore24\Api\Exception\NotFoundException;
 use GoSuccess\Digistore24\Api\Exception\RateLimitException;
 use GoSuccess\Digistore24\Api\Exception\RequestException;
-use GoSuccess\Digistore24\Api\Exception\ValidationException;
 use GoSuccess\Digistore24\Api\Http\Method;
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Http\StatusCode;
 
 /**
  * HTTP Client for Digistore24 API
- * 
+ *
  * Handles all HTTP communication with the Digistore24 API using cURL.
  * Features:
  * - Automatic retries with exponential backoff
@@ -29,36 +28,37 @@ use GoSuccess\Digistore24\Api\Http\StatusCode;
 final class ApiClient implements HttpClientInterface
 {
     private const string API_VERSION = '1.0';
+
     private const string USER_AGENT = 'GoSuccess-Digistore24-PHP-SDK/2.0';
 
     /**
      * @param Configuration $config API configuration
      */
     public function __construct(
-        private readonly Configuration $config
+        private readonly Configuration $config,
     ) {
-        if (!extension_loaded('curl')) {
+        if (! extension_loaded('curl')) {
             throw new RequestException(
                 'cURL extension is required but not loaded',
                 0,
-                ['extension' => 'curl']
+                ['extension' => 'curl'],
             );
         }
     }
 
     /**
      * Send a request to the API
-     * 
+     *
      * @param string $endpoint API endpoint (e.g., 'createBuyUrl')
      * @param Method $method HTTP method
      * @param array<string, mixed> $params Request parameters
-     * @return Response
      * @throws ApiException
+     * @return Response
      */
     public function request(
         string $endpoint,
         Method $method = Method::POST,
-        array $params = []
+        array $params = [],
     ): Response {
         $url = $this->buildUrl($endpoint);
         $attempt = 0;
@@ -72,22 +72,24 @@ final class ApiClient implements HttpClientInterface
             } catch (RateLimitException $e) {
                 $lastException = $e;
                 $retryAfter = $e->getRetryAfter() ?? 5;
-                
+
                 if ($attempt < $this->config->maxRetries) {
                     $this->log("Rate limit hit, waiting {$retryAfter}s before retry");
                     sleep($retryAfter);
                     continue;
                 }
+
                 throw $e;
             } catch (RequestException $e) {
                 $lastException = $e;
-                
+
                 if ($attempt < $this->config->maxRetries) {
                     $backoff = $this->calculateBackoff($attempt);
                     $this->log("Request failed, retrying in {$backoff}s (attempt {$attempt})");
                     sleep($backoff);
                     continue;
                 }
+
                 throw $e;
             }
         }
@@ -97,7 +99,7 @@ final class ApiClient implements HttpClientInterface
 
     /**
      * Execute single HTTP request
-     * 
+     *
      * @throws ApiException
      */
     private function executeRequest(string $url, Method $method, array $params): Response
@@ -131,7 +133,7 @@ final class ApiClient implements HttpClientInterface
         if (in_array($method, [Method::POST, Method::PUT, Method::PATCH], true)) {
             $options[CURLOPT_POST] = true;
             $options[CURLOPT_POSTFIELDS] = $queryString;
-        } elseif ($method === Method::GET && !empty($params)) {
+        } elseif ($method === Method::GET && ! empty($params)) {
             $options[CURLOPT_URL] = "{$url}?{$queryString}";
         }
 
@@ -141,8 +143,8 @@ final class ApiClient implements HttpClientInterface
         $response = curl_exec($ch);
         $curlErrno = curl_errno($ch);
         $curlError = curl_error($ch);
-        $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $headerSize = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $httpCode = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $headerSize = (int)curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
 
@@ -151,13 +153,13 @@ final class ApiClient implements HttpClientInterface
             throw new RequestException(
                 "cURL error: {$curlError}",
                 $curlErrno,
-                ['curl_errno' => $curlErrno, 'curl_error' => $curlError]
+                ['curl_errno' => $curlErrno, 'curl_error' => $curlError],
             );
         }
 
         // Parse response
-        $headers = $this->parseHeaders(substr((string) $response, 0, $headerSize));
-        $body = substr((string) $response, $headerSize);
+        $headers = $this->parseHeaders(substr((string)$response, 0, $headerSize));
+        $body = substr((string)$response, $headerSize);
 
         $bodyPreview = substr($body, 0, 500);
         $this->log("Response: HTTP {$httpCode}");
@@ -168,10 +170,11 @@ final class ApiClient implements HttpClientInterface
         if (json_last_error() !== JSON_ERROR_NONE) {
             $jsonError = json_last_error_msg();
             $bodyPreview = substr($body, 0, 1000);
+
             throw new ApiException(
                 'Invalid JSON response from API',
                 0,
-                ['json_error' => $jsonError, 'body' => $bodyPreview]
+                ['json_error' => $jsonError, 'body' => $bodyPreview],
             );
         }
 
@@ -179,7 +182,7 @@ final class ApiClient implements HttpClientInterface
             statusCode: $httpCode,
             data: $data ?? [],
             headers: $headers,
-            rawBody: $body
+            rawBody: $body,
         );
 
         // Handle HTTP errors
@@ -193,7 +196,7 @@ final class ApiClient implements HttpClientInterface
 
     /**
      * Handle HTTP-level errors
-     * 
+     *
      * @throws ApiException
      */
     private function handleHttpErrors(Response $response): void
@@ -204,25 +207,25 @@ final class ApiClient implements HttpClientInterface
             StatusCode::UNAUTHORIZED => throw new AuthenticationException(
                 'Invalid or missing API key',
                 StatusCode::UNAUTHORIZED->value,
-                ['status_code' => StatusCode::UNAUTHORIZED->value]
+                ['status_code' => StatusCode::UNAUTHORIZED->value],
             ),
             StatusCode::FORBIDDEN => throw new ForbiddenException(
                 'Access forbidden - insufficient permissions',
                 StatusCode::FORBIDDEN->value,
-                ['status_code' => StatusCode::FORBIDDEN->value]
+                ['status_code' => StatusCode::FORBIDDEN->value],
             ),
             StatusCode::NOT_FOUND => throw new NotFoundException(
                 'Resource not found',
                 StatusCode::NOT_FOUND->value,
-                ['status_code' => StatusCode::NOT_FOUND->value]
+                ['status_code' => StatusCode::NOT_FOUND->value],
             ),
             StatusCode::TOO_MANY_REQUESTS => throw new RateLimitException(
                 'Rate limit exceeded',
                 StatusCode::TOO_MANY_REQUESTS->value,
                 [
                     'status_code' => StatusCode::TOO_MANY_REQUESTS->value,
-                    'retry_after' => (int) ($response->getHeader('Retry-After') ?? 60),
-                ]
+                    'retry_after' => (int)($response->getHeader('Retry-After') ?? 60),
+                ],
             ),
             default => null,
         };
@@ -232,14 +235,14 @@ final class ApiClient implements HttpClientInterface
             throw new ApiException(
                 'Server error',
                 $response->statusCode,
-                ['status_code' => $response->statusCode]
+                ['status_code' => $response->statusCode],
             );
         }
     }
 
     /**
      * Handle API-level errors (from response body)
-     * 
+     *
      * @throws ApiException
      */
     private function handleApiErrors(Response $response): void
@@ -247,21 +250,21 @@ final class ApiClient implements HttpClientInterface
         // Check for error in response
         if (isset($response->data['result']) && $response->data['result'] === 'error') {
             $message = $response->data['message'] ?? 'Unknown API error';
-            $code = (int) ($response->data['code'] ?? 0);
+            $code = (int)($response->data['code'] ?? 0);
 
             throw new ApiException(
                 $message,
                 $code,
-                ['api_error' => $response->data]
+                ['api_error' => $response->data],
             );
         }
 
         // Validate response structure
-        if (!isset($response->data['result']) || !isset($response->data['data'])) {
+        if (! isset($response->data['result']) || ! isset($response->data['data'])) {
             throw new ApiException(
                 'Invalid API response structure',
                 0,
-                ['response' => $response->data]
+                ['response' => $response->data],
             );
         }
     }
@@ -272,12 +275,13 @@ final class ApiClient implements HttpClientInterface
     private function buildUrl(string $endpoint): string
     {
         $cleanEndpoint = ltrim($endpoint, '/');
+
         return "{$this->config->apiUrl}/{$cleanEndpoint}";
     }
 
     /**
      * Add meta parameters to request
-     * 
+     *
      * @param array<string, mixed> $params
      * @return array<string, mixed>
      */
@@ -305,7 +309,7 @@ final class ApiClient implements HttpClientInterface
 
     /**
      * Parse HTTP headers
-     * 
+     *
      * @return array<string, string[]>
      */
     private function parseHeaders(string $headerText): array

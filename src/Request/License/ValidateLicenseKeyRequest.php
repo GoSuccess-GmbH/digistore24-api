@@ -24,7 +24,8 @@ final class ValidateLicenseKeyRequest extends AbstractRequest
     public function __construct(
         private string $purchaseId,
         private string $licenseKey,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

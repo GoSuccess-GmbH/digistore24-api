@@ -48,6 +48,4 @@ final class ListPurchasesRequest extends AbstractRequest
 
         return $data;
     }
-
-    
 }

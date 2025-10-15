@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\CustomForm;
 
-use GoSuccess\Digistore24\Api\Response\CustomForm\ListCustomFormRecordsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\CustomForm\ListCustomFormRecordsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListCustomFormRecordsResponseTest extends TestCase
@@ -23,12 +23,12 @@ final class ListCustomFormRecordsResponseTest extends TestCase
                     'form_no' => 1,
                     'form_count' => 1,
                     'data' => ['field1' => 'value1'],
-                    'address' => ['city' => 'Berlin']
-                ]
-            ]
+                    'address' => ['city' => 'Berlin'],
+                ],
+            ],
         ];
         $response = ListCustomFormRecordsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListCustomFormRecordsResponse::class, $response);
         $this->assertCount(1, $response->getRecords());
     }
@@ -46,16 +46,16 @@ final class ListCustomFormRecordsResponseTest extends TestCase
                         'purchase_item_id' => 10,
                         'product_id' => 12345,
                         'form_no' => 1,
-                        'form_count' => 1
-                    ]
-                ]
+                        'form_count' => 1,
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListCustomFormRecordsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListCustomFormRecordsResponse::class, $response);
         $this->assertCount(1, $response->getRecords());
     }
@@ -66,12 +66,11 @@ final class ListCustomFormRecordsResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListCustomFormRecordsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

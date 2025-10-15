@@ -40,10 +40,11 @@ final class RefundTransactionResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $refundData = $data['data'] ?? [];
+
         return new self(
-            status: (string) ($refundData['status'] ?? ''),
-            modified: (string) ($refundData['modified'] ?? 'N'),
-            data: $refundData
+            status: (string)($refundData['status'] ?? ''),
+            modified: (string)($refundData['modified'] ?? 'N'),
+            data: $refundData,
         );
     }
 }

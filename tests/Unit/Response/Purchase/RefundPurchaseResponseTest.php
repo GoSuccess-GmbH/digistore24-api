@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\RefundPurchaseResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\RefundPurchaseResponse;
 use PHPUnit\Framework\TestCase;
 
 final class RefundPurchaseResponseTest extends TestCase
@@ -21,7 +21,7 @@ final class RefundPurchaseResponseTest extends TestCase
             ],
         ];
         $response = RefundPurchaseResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -40,11 +40,11 @@ final class RefundPurchaseResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = RefundPurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -58,12 +58,11 @@ final class RefundPurchaseResponseTest extends TestCase
                 'data' => [],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = RefundPurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

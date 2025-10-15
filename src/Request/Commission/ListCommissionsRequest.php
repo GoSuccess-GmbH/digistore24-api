@@ -34,7 +34,8 @@ final class ListCommissionsRequest extends AbstractRequest
         private ?string $transactionType = null,
         private ?string $commissionType = null,
         private ?string $purchaseId = null,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

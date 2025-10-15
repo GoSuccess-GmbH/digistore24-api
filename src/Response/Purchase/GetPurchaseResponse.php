@@ -37,11 +37,12 @@ final class GetPurchaseResponse extends AbstractResponse
             buyerEmail: $data['buyer_email'] ?? '',
             paymentStatus: $data['payment_status'] ?? '',
             billingStatus: $data['billing_status'] ?? '',
-            amount: (float) ($data['amount'] ?? 0),
+            amount: (float)($data['amount'] ?? 0),
             currency: $data['currency'] ?? 'EUR',
             createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
             additionalData: $data['additional_data'] ?? [],
         );
+
         return $instance;
     }
 }

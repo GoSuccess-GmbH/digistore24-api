@@ -38,7 +38,8 @@ final class CreateBillingOnDemandRequest extends AbstractRequest
         private ?array $placeholders = null,
         private ?array $settings = null,
         private ?array $addons = null,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

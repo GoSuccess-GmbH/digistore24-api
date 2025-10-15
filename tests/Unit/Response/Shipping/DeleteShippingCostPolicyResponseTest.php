@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Shipping;
 
-use GoSuccess\Digistore24\Api\Response\Shipping\DeleteShippingCostPolicyResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Shipping\DeleteShippingCostPolicyResponse;
 use PHPUnit\Framework\TestCase;
 
 final class DeleteShippingCostPolicyResponseTest extends TestCase
@@ -16,7 +16,7 @@ final class DeleteShippingCostPolicyResponseTest extends TestCase
             'result' => 'success',
         ];
         $response = DeleteShippingCostPolicyResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(DeleteShippingCostPolicyResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -29,11 +29,11 @@ final class DeleteShippingCostPolicyResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = DeleteShippingCostPolicyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(DeleteShippingCostPolicyResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -44,12 +44,11 @@ final class DeleteShippingCostPolicyResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = DeleteShippingCostPolicyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

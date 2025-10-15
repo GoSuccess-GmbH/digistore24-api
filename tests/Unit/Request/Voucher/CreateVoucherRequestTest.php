@@ -15,9 +15,9 @@ final class CreateVoucherRequestTest extends TestCase
         $voucher = new VoucherData();
         $voucher->code = 'SAVE20';
         $voucher->firstRate = 20.0;
-        
+
         $request = new CreateVoucherRequest(voucher: $voucher);
-        
+
         $this->assertInstanceOf(CreateVoucherRequest::class, $request);
     }
 
@@ -26,9 +26,9 @@ final class CreateVoucherRequestTest extends TestCase
         $voucher = new VoucherData();
         $voucher->code = 'SAVE20';
         $voucher->firstRate = 20.0;
-        
+
         $request = new CreateVoucherRequest(voucher: $voucher);
-        
+
         $this->assertSame('/createVoucher', $request->getEndpoint());
     }
 
@@ -37,11 +37,11 @@ final class CreateVoucherRequestTest extends TestCase
         $voucher = new VoucherData();
         $voucher->code = 'SAVE20';
         $voucher->firstRate = 20.0;
-        
+
         $request = new CreateVoucherRequest(voucher: $voucher);
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('SAVE20', $array['code']);
         $this->assertSame(20.0, $array['first_rate']);
@@ -52,13 +52,12 @@ final class CreateVoucherRequestTest extends TestCase
         $voucher = new VoucherData();
         $voucher->code = 'SAVE20';
         $voucher->firstRate = 20.0;
-        
+
         $request = new CreateVoucherRequest(voucher: $voucher);
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

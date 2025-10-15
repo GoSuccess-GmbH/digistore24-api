@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ConversionTool;
 
-use GoSuccess\Digistore24\Api\Response\ConversionTool\ValidateCouponCodeResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ConversionTool\ValidateCouponCodeResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ValidateCouponCodeResponseTest extends TestCase
@@ -16,11 +16,11 @@ final class ValidateCouponCodeResponseTest extends TestCase
             'data' => [
                 'status' => 'success',
                 'code' => 'SAVE20',
-                'discount' => 20
-            ]
+                'discount' => 20,
+            ],
         ];
         $response = ValidateCouponCodeResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ValidateCouponCodeResponse::class, $response);
         $this->assertSame('success', $response->getStatus());
         $this->assertTrue($response->isValid());
@@ -33,15 +33,15 @@ final class ValidateCouponCodeResponseTest extends TestCase
             data: [
                 'data' => [
                     'status' => 'success',
-                    'code' => 'SAVE20'
-                ]
+                    'code' => 'SAVE20',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ValidateCouponCodeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ValidateCouponCodeResponse::class, $response);
         $this->assertTrue($response->isValid());
     }
@@ -52,12 +52,11 @@ final class ValidateCouponCodeResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ValidateCouponCodeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

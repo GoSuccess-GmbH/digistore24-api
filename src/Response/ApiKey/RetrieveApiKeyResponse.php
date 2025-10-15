@@ -24,6 +24,6 @@ final class RetrieveApiKeyResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
-        return new self(apiKey: (string) ($data['data']['api_key'] ?? ''));
+        return new self(apiKey: (string)($data['data']['api_key'] ?? ''));
     }
 }

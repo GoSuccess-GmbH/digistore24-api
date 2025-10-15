@@ -6,7 +6,7 @@ namespace GoSuccess\Digistore24\Api\Http;
 
 /**
  * HTTP Status Codes
- * 
+ *
  * Type-safe enum for HTTP status codes used in API responses.
  */
 enum StatusCode: int

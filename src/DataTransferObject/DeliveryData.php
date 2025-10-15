@@ -6,10 +6,10 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Delivery Data Transfer Object
- * 
+ *
  * Data structure for delivery status updates.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/updateDelivery.yaml
  */
 final class DeliveryData
@@ -19,16 +19,16 @@ final class DeliveryData
      */
     public ?string $type = null {
         set {
-            if ($value !== null && !in_array($value, [
+            if ($value !== null && ! in_array($value, [
                 'request',
                 'in_progress',
                 'delivery',
                 'partial_delivery',
                 'return',
-                'cancel'
+                'cancel',
             ], true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid delivery type: $value. Allowed: request, in_progress, delivery, partial_delivery, return, cancel"
+                    "Invalid delivery type: $value. Allowed: request, in_progress, delivery, partial_delivery, return, cancel",
                 );
             }
             $this->type = $value;
@@ -37,7 +37,7 @@ final class DeliveryData
 
     /**
      * Whether the product has been shipped
-     * 
+     *
      * Y = The product has been shipped (type is set to 'delivery')
      * N = The delivery was cancelled (type is set to 'cancel')
      */
@@ -75,7 +75,7 @@ final class DeliveryData
 
     /**
      * Create DeliveryData from array
-     * 
+     *
      * @param array{
      *     type?: string|null,
      *     is_shipped?: bool|string|null,
@@ -88,51 +88,51 @@ final class DeliveryData
     {
         $instance = new self();
         $instance->type = $data['type'] ?? null;
-        
+
         // Handle Digistore24's Y/N format
         if (isset($data['is_shipped'])) {
             $instance->isShipped = is_bool($data['is_shipped'])
                 ? $data['is_shipped']
                 : ($data['is_shipped'] === 'Y' || $data['is_shipped'] === true);
         }
-        
+
         $instance->quantityDelivered = $data['quantity_delivered'] ?? null;
         $instance->addQuantityDelivered = $data['add_quantity_delivered'] ?? null;
         $instance->isShippedByResellerFrom = $data['is_shipped_by_reseller_from'] ?? null;
-        
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
         $data = [];
-        
+
         if ($this->type !== null) {
             $data['type'] = $this->type;
         }
-        
+
         if ($this->isShipped !== null) {
             // Convert boolean to Digistore24's Y/N format
             $data['is_shipped'] = $this->isShipped ? 'Y' : 'N';
         }
-        
+
         if ($this->quantityDelivered !== null) {
             $data['quantity_delivered'] = $this->quantityDelivered;
         }
-        
+
         if ($this->addQuantityDelivered !== null) {
             $data['add_quantity_delivered'] = $this->addQuantityDelivered;
         }
-        
+
         if ($this->isShippedByResellerFrom !== null) {
             $data['is_shipped_by_reseller_from'] = $this->isShippedByResellerFrom;
         }
-        
+
         return $data;
     }
 }

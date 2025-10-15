@@ -8,7 +8,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 
 /**
  * Create Image Request
- * 
+ *
  * Creates an image on Digistore24 by providing a URL to copy from.
  */
 final class CreateImageRequest extends AbstractRequest

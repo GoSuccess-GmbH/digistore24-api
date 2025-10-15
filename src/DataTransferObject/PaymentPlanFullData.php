@@ -6,11 +6,11 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Payment Plan Full Data Transfer Object
- * 
+ *
  * Complete data structure for payment plan creation and updates.
  * Extends beyond the basic PaymentPlanData with additional settings.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/createPaymentplan.yaml
  * @link https://digistore24.com/api/docs/paths/updatePaymentplan.yaml
  */
@@ -102,12 +102,12 @@ final class PaymentPlanFullData
             $allowedPolicies = [
                 '6m_0', '6m_6m', '6m_12m',
                 '12m_0', '12m_3m', '12m_6m', '12m_12m',
-                '24m_0', '24m_6m', '24m_12m'
+                '24m_0', '24m_6m', '24m_12m',
             ];
-            
-            if ($value !== null && !in_array($value, $allowedPolicies, true)) {
+
+            if ($value !== null && ! in_array($value, $allowedPolicies, true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid cancel policy: $value. Allowed: " . implode(', ', $allowedPolicies)
+                    "Invalid cancel policy: $value. Allowed: " . implode(', ', $allowedPolicies),
                 );
             }
             $this->cancelPolicy = $value;
@@ -116,7 +116,7 @@ final class PaymentPlanFullData
 
     /**
      * Create PaymentPlanFullData from array
-     * 
+     *
      * @param array{
      *     first_amount?: float|null,
      *     first_billing_interval?: string|null,
@@ -131,61 +131,61 @@ final class PaymentPlanFullData
     public static function fromArray(array $data): self
     {
         $instance = new self();
-        $instance->firstAmount = isset($data['first_amount']) ? (float) $data['first_amount'] : null;
+        $instance->firstAmount = isset($data['first_amount']) ? (float)$data['first_amount'] : null;
         $instance->firstBillingInterval = $data['first_billing_interval'] ?? null;
         $instance->currency = $data['currency'] ?? null;
-        $instance->otherAmounts = isset($data['other_amounts']) ? (float) $data['other_amounts'] : null;
+        $instance->otherAmounts = isset($data['other_amounts']) ? (float)$data['other_amounts'] : null;
         $instance->otherBillingIntervals = $data['other_billing_intervals'] ?? null;
-        $instance->numberOfInstallments = isset($data['number_of_installments']) 
-            ? (int) $data['number_of_installments'] 
+        $instance->numberOfInstallments = isset($data['number_of_installments'])
+            ? (int)$data['number_of_installments']
             : null;
         $instance->isActive = $data['is_active'] ?? null;
         $instance->cancelPolicy = $data['cancel_policy'] ?? null;
-        
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
         $data = [];
-        
+
         if ($this->firstAmount !== null) {
             $data['first_amount'] = $this->firstAmount;
         }
-        
+
         if ($this->firstBillingInterval !== null) {
             $data['first_billing_interval'] = $this->firstBillingInterval;
         }
-        
+
         if ($this->currency !== null) {
             $data['currency'] = $this->currency;
         }
-        
+
         if ($this->otherAmounts !== null) {
             $data['other_amounts'] = $this->otherAmounts;
         }
-        
+
         if ($this->otherBillingIntervals !== null) {
             $data['other_billing_intervals'] = $this->otherBillingIntervals;
         }
-        
+
         if ($this->numberOfInstallments !== null) {
             $data['number_of_installments'] = $this->numberOfInstallments;
         }
-        
+
         if ($this->isActive !== null) {
             $data['is_active'] = $this->isActive ? 'Y' : 'N';
         }
-        
+
         if ($this->cancelPolicy !== null) {
             $data['cancel_policy'] = $this->cancelPolicy;
         }
-        
+
         return $data;
     }
 }

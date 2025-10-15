@@ -29,6 +29,6 @@ final class UpdatePurchaseResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
-        return new self(isModified: (string) ($data['data']['is_modified'] ?? 'N'));
+        return new self(isModified: (string)($data['data']['is_modified'] ?? 'N'));
     }
 }

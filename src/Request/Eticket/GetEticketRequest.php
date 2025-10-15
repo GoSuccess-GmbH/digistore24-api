@@ -29,6 +29,4 @@ final class GetEticketRequest extends AbstractRequest
             'order_id' => $this->orderId,
         ];
     }
-
-    
 }

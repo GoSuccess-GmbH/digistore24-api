@@ -10,7 +10,7 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Abstract Response Base Class
- * 
+ *
  * Base class for all API response objects.
  * Uses PHP 8.4 features for automatic type conversion.
  */
@@ -23,7 +23,7 @@ abstract class AbstractResponse implements ResponseInterface
 
     /**
      * Create response from HTTP response
-     * 
+     *
      * @param Response $response Raw HTTP response
      * @return static
      */
@@ -31,12 +31,13 @@ abstract class AbstractResponse implements ResponseInterface
     {
         $instance = static::fromArray($response->data, $response);
         $instance->rawResponse = $response;
+
         return $instance;
     }
 
     /**
      * Create response from array data
-     * 
+     *
      * @param array<string, mixed> $data Response data
      * @param Response|null $rawResponse Raw HTTP response
      * @return static
@@ -67,7 +68,7 @@ abstract class AbstractResponse implements ResponseInterface
 
     /**
      * Get array of values with type conversion
-     * 
+     *
      * @param array<string, mixed> $data
      * @param string $key
      * @param class-string $itemClass Item class for nested objects
@@ -78,7 +79,7 @@ abstract class AbstractResponse implements ResponseInterface
     {
         $value = $data[$key] ?? [];
 
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return [];
         }
 
@@ -88,22 +89,22 @@ abstract class AbstractResponse implements ResponseInterface
 
         // Convert array items to objects
         return array_map(
-            fn($item) => is_subclass_of($itemClass, self::class)
+            fn ($item) => is_subclass_of($itemClass, self::class)
                 ? $itemClass::fromArray($item, $rawResponse)
                 : $item,
-            $value
+            $value,
         );
     }
 
     /**
      * Convert to array
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
         $data = [];
-        
+
         foreach (get_object_vars($this) as $property => $value) {
             if ($property === 'rawResponse') {
                 continue;
@@ -113,8 +114,8 @@ abstract class AbstractResponse implements ResponseInterface
                 $data[$property] = $value->toArray();
             } elseif (is_array($value)) {
                 $data[$property] = array_map(
-                    fn($item) => $item instanceof self ? $item->toArray() : $item,
-                    $value
+                    fn ($item) => $item instanceof self ? $item->toArray() : $item,
+                    $value,
                 );
             } elseif ($value instanceof \DateTimeInterface) {
                 $data[$property] = $value->format('Y-m-d H:i:s');

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\OrderForm;
 
-use GoSuccess\Digistore24\Api\Response\OrderForm\GetOrderformMetasResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\OrderForm\GetOrderformMetasResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetOrderformMetasResponseTest extends TestCase
@@ -16,11 +16,11 @@ final class GetOrderformMetasResponseTest extends TestCase
             'data' => [
                 'meta_key_1' => 'value1',
                 'meta_key_2' => 'value2',
-                'custom_field' => 'custom value'
-            ]
+                'custom_field' => 'custom value',
+            ],
         ];
         $response = GetOrderformMetasResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetOrderformMetasResponse::class, $response);
         $this->assertArrayHasKey('meta_key_1', $response->getMetas());
         $this->assertSame('value1', $response->getMetas()['meta_key_1']);
@@ -33,15 +33,15 @@ final class GetOrderformMetasResponseTest extends TestCase
             data: [
                 'data' => [
                     'title' => 'Order Form Title',
-                    'description' => 'Form description'
-                ]
+                    'description' => 'Form description',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetOrderformMetasResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetOrderformMetasResponse::class, $response);
         $this->assertSame('Order Form Title', $response->getData()['title']);
     }
@@ -52,12 +52,11 @@ final class GetOrderformMetasResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetOrderformMetasResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -43,6 +43,7 @@ final class ListBuyersRequest extends AbstractRequest
         if ($this->pageSize !== null) {
             $params['page_size'] = $this->pageSize;
         }
+
         return $params;
     }
 }

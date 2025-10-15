@@ -14,9 +14,9 @@ final class CreateUpgradeRequestTest extends TestCase
     {
         $upgrade = new UpgradeData();
         $upgrade->name = 'Premium Upgrade';
-        
+
         $request = new CreateUpgradeRequest(upgrade: $upgrade);
-        
+
         $this->assertInstanceOf(CreateUpgradeRequest::class, $request);
     }
 
@@ -24,9 +24,9 @@ final class CreateUpgradeRequestTest extends TestCase
     {
         $upgrade = new UpgradeData();
         $upgrade->name = 'Premium Upgrade';
-        
+
         $request = new CreateUpgradeRequest(upgrade: $upgrade);
-        
+
         $this->assertSame('/createUpgrade', $request->getEndpoint());
     }
 
@@ -36,11 +36,11 @@ final class CreateUpgradeRequestTest extends TestCase
         $upgrade->name = 'Premium Upgrade';
         $upgrade->toProductId = 12345;
         $upgrade->upgradeFrom = '100,200';
-        
+
         $request = new CreateUpgradeRequest(upgrade: $upgrade);
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('Premium Upgrade', $array['name']);
         $this->assertSame(12345, $array['to_product_id']);
@@ -51,13 +51,12 @@ final class CreateUpgradeRequestTest extends TestCase
     {
         $upgrade = new UpgradeData();
         $upgrade->name = 'Premium Upgrade';
-        
+
         $request = new CreateUpgradeRequest(upgrade: $upgrade);
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

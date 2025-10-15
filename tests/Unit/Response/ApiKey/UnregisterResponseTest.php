@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ApiKey;
 
-use GoSuccess\Digistore24\Api\Response\ApiKey\UnregisterResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ApiKey\UnregisterResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UnregisterResponseTest extends TestCase
@@ -14,7 +14,7 @@ final class UnregisterResponseTest extends TestCase
     {
         $data = ['result' => 'success'];
         $response = UnregisterResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -26,11 +26,11 @@ final class UnregisterResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UnregisterResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -42,12 +42,11 @@ final class UnregisterResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UnregisterResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -12,23 +12,23 @@ final class GetOrderformMetasRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new GetOrderformMetasRequest();
-        
+
         $this->assertInstanceOf(GetOrderformMetasRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new GetOrderformMetasRequest();
-        
+
         $this->assertSame('/getOrderformMetas', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void
     {
         $request = new GetOrderformMetasRequest();
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertEmpty($array);
     }
@@ -36,11 +36,10 @@ final class GetOrderformMetasRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetOrderformMetasRequest();
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

@@ -18,7 +18,7 @@ final class ResendInvoiceMailRequest extends AbstractRequest
      * @param string $purchaseId The purchase ID
      */
     public function __construct(
-        private string $purchaseId
+        private string $purchaseId,
     ) {
     }
 

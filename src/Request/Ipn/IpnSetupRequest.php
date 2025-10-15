@@ -20,7 +20,7 @@ final class IpnSetupRequest extends AbstractRequest
      */
     public function __construct(
         private string $url,
-        private ?string $ipnPassword = null
+        private ?string $ipnPassword = null,
     ) {
     }
 
@@ -40,6 +40,7 @@ final class IpnSetupRequest extends AbstractRequest
         if ($this->ipnPassword !== null) {
             $params['ipn_password'] = $this->ipnPassword;
         }
+
         return $params;
     }
 }

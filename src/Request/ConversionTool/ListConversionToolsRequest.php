@@ -18,7 +18,7 @@ final class ListConversionToolsRequest extends AbstractRequest
      * @param string $type The conversion tool type (e.g., 'voucher', 'coupon')
      */
     public function __construct(
-        private string $type
+        private string $type,
     ) {
     }
 

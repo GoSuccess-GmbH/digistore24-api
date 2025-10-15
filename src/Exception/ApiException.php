@@ -21,14 +21,14 @@ class ApiException extends \Exception
         string $message = '',
         int $code = 0,
         protected array $context = [],
-        ?Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
     }
 
     /**
      * Get error context
-     * 
+     *
      * @return array<string, mixed>
      */
     public function getContext(): array

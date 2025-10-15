@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\OrderForm;
@@ -17,11 +18,22 @@ final class CreateOrderformRequest extends AbstractRequest
     /**
      * @param OrderFormData $orderForm The order form configuration data
      */
-    public function __construct(private OrderFormData $orderForm) {}
+    public function __construct(private OrderFormData $orderForm)
+    {
+    }
 
-    public function getEndpoint(): string { return '/createOrderform'; }
+    public function getEndpoint(): string
+    {
+        return '/createOrderform';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
-    public function toArray(): array { return $this->orderForm->toArray(); }
+    public function toArray(): array
+    {
+        return $this->orderForm->toArray();
+    }
 }

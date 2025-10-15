@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Eticket;
 
-use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketTemplatesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketTemplatesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListEticketTemplatesResponseTest extends TestCase
@@ -18,12 +18,12 @@ final class ListEticketTemplatesResponseTest extends TestCase
                     'template_id' => 'TPL123',
                     'template_name' => 'Standard Ticket',
                     'description' => 'Default ticket template',
-                    'preview_url' => 'https://example.com/preview/123'
-                ]
-            ]
+                    'preview_url' => 'https://example.com/preview/123',
+                ],
+            ],
         ];
         $response = ListEticketTemplatesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListEticketTemplatesResponse::class, $response);
         $this->assertCount(1, $response->templates);
     }
@@ -36,16 +36,16 @@ final class ListEticketTemplatesResponseTest extends TestCase
                 'templates' => [
                     [
                         'template_id' => 'TPL123',
-                        'template_name' => 'Standard Ticket'
-                    ]
-                ]
+                        'template_name' => 'Standard Ticket',
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListEticketTemplatesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListEticketTemplatesResponse::class, $response);
         $this->assertCount(1, $response->templates);
     }
@@ -56,12 +56,11 @@ final class ListEticketTemplatesResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListEticketTemplatesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

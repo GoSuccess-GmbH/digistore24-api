@@ -6,7 +6,7 @@ namespace GoSuccess\Digistore24\Api\Client;
 
 /**
  * API Configuration
- * 
+ *
  * Holds all configuration settings for the Digistore24 API client.
  * Uses PHP 8.4 property hooks for validation and computed properties.
  */
@@ -60,7 +60,7 @@ final class Configuration
      */
     public string $language {
         set {
-            if (!in_array($value, ['de', 'en'], true)) {
+            if (! in_array($value, ['de', 'en'], true)) {
                 throw new \InvalidArgumentException('Language must be either "de" or "en"');
             }
             $this->language = $value;

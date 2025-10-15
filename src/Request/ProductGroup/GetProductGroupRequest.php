@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\ProductGroup;
@@ -16,11 +17,22 @@ final class GetProductGroupRequest extends AbstractRequest
     /**
      * @param string $productGroupId The unique identifier of the product group
      */
-    public function __construct(private string $productGroupId) {}
+    public function __construct(private string $productGroupId)
+    {
+    }
 
-    public function getEndpoint(): string { return '/getProductGroup'; }
+    public function getEndpoint(): string
+    {
+        return '/getProductGroup';
+    }
 
-    public function method(): Method { return Method::GET; }
+    public function method(): Method
+    {
+        return Method::GET;
+    }
 
-    public function toArray(): array { return ['product_group_id' => $this->productGroupId]; }
+    public function toArray(): array
+    {
+        return ['product_group_id' => $this->productGroupId];
+    }
 }

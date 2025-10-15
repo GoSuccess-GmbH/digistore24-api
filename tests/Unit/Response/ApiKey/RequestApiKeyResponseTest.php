@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ApiKey;
 
-use GoSuccess\Digistore24\Api\Response\ApiKey\RequestApiKeyResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ApiKey\RequestApiKeyResponse;
 use PHPUnit\Framework\TestCase;
 
 final class RequestApiKeyResponseTest extends TestCase
@@ -14,7 +14,7 @@ final class RequestApiKeyResponseTest extends TestCase
     {
         $data = ['result' => 'success'];
         $response = RequestApiKeyResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(RequestApiKeyResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -26,11 +26,11 @@ final class RequestApiKeyResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = RequestApiKeyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(RequestApiKeyResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -42,12 +42,11 @@ final class RequestApiKeyResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = RequestApiKeyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -22,6 +22,4 @@ final class GetEticketSettingsRequest extends AbstractRequest
     {
         return [];
     }
-
-    
 }

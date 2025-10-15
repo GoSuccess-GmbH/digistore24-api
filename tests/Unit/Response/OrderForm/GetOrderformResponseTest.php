@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\OrderForm;
 
-use GoSuccess\Digistore24\Api\Response\OrderForm\GetOrderformResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\OrderForm\GetOrderformResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetOrderformResponseTest extends TestCase
@@ -17,11 +17,11 @@ final class GetOrderformResponseTest extends TestCase
                 'orderform_id' => 'OF123',
                 'name' => 'My Order Form',
                 'product_id' => 456,
-                'status' => 'active'
-            ]
+                'status' => 'active',
+            ],
         ];
         $response = GetOrderformResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetOrderformResponse::class, $response);
         $this->assertArrayHasKey('orderform_id', $response->getData());
         $this->assertSame('OF123', $response->getData()['orderform_id']);
@@ -34,15 +34,15 @@ final class GetOrderformResponseTest extends TestCase
             data: [
                 'data' => [
                     'orderform_id' => 'OF456',
-                    'name' => 'Premium Form'
-                ]
+                    'name' => 'Premium Form',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetOrderformResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetOrderformResponse::class, $response);
         $this->assertSame('Premium Form', $response->getData()['name']);
     }
@@ -53,12 +53,11 @@ final class GetOrderformResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetOrderformResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

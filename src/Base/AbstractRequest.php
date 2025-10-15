@@ -11,7 +11,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
  * Abstract Request Base Class
- * 
+ *
  * Base class for all API request objects.
  * Uses PHP 8.4 features for clean, type-safe requests.
  */
@@ -32,13 +32,13 @@ abstract class AbstractRequest implements RequestInterface
 
     /**
      * Convert request to array for API call
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
         $data = [];
-        
+
         foreach (get_object_vars($this) as $property => $value) {
             // Skip null values
             if ($value === null) {
@@ -47,7 +47,7 @@ abstract class AbstractRequest implements RequestInterface
 
             // Convert to API format (snake_case)
             $key = ArrayHelper::toSnakeCase($property);
-            
+
             // Handle nested objects
             if ($value instanceof self) {
                 $data[$key] = $value->toArray();
@@ -67,7 +67,7 @@ abstract class AbstractRequest implements RequestInterface
 
     /**
      * Convert array values recursively
-     * 
+     *
      * @param array<mixed> $array
      * @return array<mixed>
      */
@@ -86,19 +86,20 @@ abstract class AbstractRequest implements RequestInterface
             if (is_array($value)) {
                 return $this->convertArray($value);
             }
+
             return $value;
         }, $array);
     }
 
     /**
      * Validate the request
-     * 
+     *
      * @return array<string, string[]> Validation errors
      */
     public function validate(): array
     {
         $rules = $this->rules();
-        
+
         if (empty($rules)) {
             return [];
         }
@@ -108,9 +109,9 @@ abstract class AbstractRequest implements RequestInterface
 
     /**
      * Get validation rules
-     * 
+     *
      * Override in subclasses to define validation rules.
-     * 
+     *
      * @return array<string, array{rule: string, params?: array<mixed>, message?: string}>
      */
     protected function rules(): array
@@ -128,20 +129,21 @@ abstract class AbstractRequest implements RequestInterface
 
     /**
      * Ensure request is valid or throw exception
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function ensureValid(): void
     {
         $errors = $this->validate();
-        
-        if (!empty($errors)) {
+
+        if (! empty($errors)) {
             $messages = [];
             foreach ($errors as $field => $fieldErrors) {
                 $messages[] = "{$field}: " . implode(', ', $fieldErrors);
             }
+
             throw new \InvalidArgumentException(
-                'Request validation failed: ' . implode('; ', $messages)
+                'Request validation failed: ' . implode('; ', $messages),
             );
         }
     }

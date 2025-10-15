@@ -23,7 +23,7 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
     public function __construct(
         private int $productId,
         private string $affiliateId,
-        private AffiliateCommissionData $commission
+        private AffiliateCommissionData $commission,
     ) {
     }
 
@@ -42,9 +42,9 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
         return array_merge(
             [
                 'product_id' => $this->productId,
-                'affiliate_id' => $this->affiliateId
+                'affiliate_id' => $this->affiliateId,
             ],
-            $this->commission->toArray()
+            $this->commission->toArray(),
         );
     }
 }

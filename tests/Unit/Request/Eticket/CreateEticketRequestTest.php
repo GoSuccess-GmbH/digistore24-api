@@ -14,15 +14,15 @@ final class CreateEticketRequestTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        
+
         $request = new CreateEticketRequest(
             buyer: $buyer,
             productId: 'P123',
             locationId: 'L456',
             templateId: 'T789',
-            date: new \DateTime('2025-12-31')
+            date: new \DateTime('2025-12-31'),
         );
-        
+
         $this->assertInstanceOf(CreateEticketRequest::class, $request);
     }
 
@@ -30,15 +30,15 @@ final class CreateEticketRequestTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        
+
         $request = new CreateEticketRequest(
             buyer: $buyer,
             productId: 'P123',
             locationId: 'L456',
             templateId: 'T789',
-            date: new \DateTime('2025-12-31')
+            date: new \DateTime('2025-12-31'),
         );
-        
+
         $this->assertSame('/createEticket', $request->getEndpoint());
     }
 
@@ -46,19 +46,18 @@ final class CreateEticketRequestTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        
+
         $request = new CreateEticketRequest(
             buyer: $buyer,
             productId: 'P123',
             locationId: 'L456',
             templateId: 'T789',
-            date: new \DateTime('2025-12-31')
+            date: new \DateTime('2025-12-31'),
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

@@ -19,7 +19,7 @@ final class CreateVoucherRequest extends AbstractRequest
      * @param VoucherData $voucher Voucher configuration data
      */
     public function __construct(
-        private VoucherData $voucher
+        private VoucherData $voucher,
     ) {
     }
 

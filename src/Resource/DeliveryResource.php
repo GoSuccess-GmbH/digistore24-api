@@ -6,11 +6,11 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Delivery\GetDeliveryRequest;
-use GoSuccess\Digistore24\Api\Request\Delivery\UpdateDeliveryRequest;
 use GoSuccess\Digistore24\Api\Request\Delivery\ListDeliveriesRequest;
+use GoSuccess\Digistore24\Api\Request\Delivery\UpdateDeliveryRequest;
 use GoSuccess\Digistore24\Api\Response\Delivery\GetDeliveryResponse;
-use GoSuccess\Digistore24\Api\Response\Delivery\UpdateDeliveryResponse;
 use GoSuccess\Digistore24\Api\Response\Delivery\ListDeliveriesResponse;
+use GoSuccess\Digistore24\Api\Response\Delivery\UpdateDeliveryResponse;
 
 /**
  * Delivery Resource

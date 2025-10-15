@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\License;
 
-use GoSuccess\Digistore24\Api\Response\License\ValidateLicenseKeyResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\License\ValidateLicenseKeyResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ValidateLicenseKeyResponseTest extends TestCase
@@ -24,11 +24,11 @@ final class ValidateLicenseKeyResponseTest extends TestCase
                 'billing_tatus_msg' => 'License is active',
                 'last_payment_at' => '2024-01-15',
                 'next_payment_at' => '2025-01-15',
-                'paid_until' => '2025-01-15'
-            ]
+                'paid_until' => '2025-01-15',
+            ],
         ];
         $response = ValidateLicenseKeyResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ValidateLicenseKeyResponse::class, $response);
         $this->assertTrue($response->isValid());
         $this->assertTrue($response->isFound());
@@ -48,15 +48,15 @@ final class ValidateLicenseKeyResponseTest extends TestCase
                     'product_id' => 456,
                     'product_name' => 'Basic Software',
                     'billing_tatus' => 'active',
-                    'billing_tatus_msg' => 'Active subscription'
-                ]
+                    'billing_tatus_msg' => 'Active subscription',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ValidateLicenseKeyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ValidateLicenseKeyResponse::class, $response);
         $this->assertSame('Basic Software', $response->getProductName());
     }
@@ -67,12 +67,11 @@ final class ValidateLicenseKeyResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ValidateLicenseKeyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

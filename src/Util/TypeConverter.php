@@ -9,7 +9,7 @@ use DateTimeInterface;
 
 /**
  * Type Converter Utility
- * 
+ *
  * Provides type conversion utilities specific to the Digistore24 API.
  * Handles Digistore24-specific formats (e.g., Y/N for booleans).
  */
@@ -17,7 +17,7 @@ final class TypeConverter
 {
     /**
      * Convert value to integer
-     * 
+     *
      * @param mixed $value Value to convert
      * @param int|null $default Default value if conversion fails
      * @return int|null
@@ -33,7 +33,7 @@ final class TypeConverter
         }
 
         if (is_numeric($value)) {
-            return (int) $value;
+            return (int)$value;
         }
 
         return $default;
@@ -41,7 +41,7 @@ final class TypeConverter
 
     /**
      * Convert value to float
-     * 
+     *
      * @param mixed $value Value to convert
      * @param float|null $default Default value if conversion fails
      * @return float|null
@@ -57,7 +57,7 @@ final class TypeConverter
         }
 
         if (is_numeric($value)) {
-            return (float) $value;
+            return (float)$value;
         }
 
         return $default;
@@ -65,9 +65,9 @@ final class TypeConverter
 
     /**
      * Convert value to boolean
-     * 
+     *
      * Handles Digistore24 format: 'Y' = true, 'N' = false
-     * 
+     *
      * @param mixed $value Value to convert
      * @param bool|null $default Default value if conversion fails
      * @return bool|null
@@ -111,7 +111,7 @@ final class TypeConverter
 
     /**
      * Convert value to DateTime
-     * 
+     *
      * @param mixed $value Value to convert (timestamp, string, or DateTime object)
      * @param DateTimeImmutable|null $default Default value if conversion fails
      * @return DateTimeImmutable|null
@@ -131,7 +131,7 @@ final class TypeConverter
         }
 
         if (is_int($value)) {
-            return (new DateTimeImmutable())->setTimestamp($value);
+            return new DateTimeImmutable()->setTimestamp($value);
         }
 
         if (is_string($value)) {
@@ -147,7 +147,7 @@ final class TypeConverter
 
     /**
      * Convert value to array
-     * 
+     *
      * @param mixed $value Value to convert
      * @param array|null $default Default value if conversion fails
      * @return array|null
@@ -167,12 +167,13 @@ final class TypeConverter
             if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
                 return $decoded;
             }
+
             // Return as single-element array for non-JSON strings
             return [$value];
         }
 
         if (is_object($value)) {
-            return (array) $value;
+            return (array)$value;
         }
 
         return $default;
@@ -180,7 +181,7 @@ final class TypeConverter
 
     /**
      * Convert value to string
-     * 
+     *
      * @param mixed $value Value to convert
      * @param string|null $default Default value if conversion fails
      * @return string|null
@@ -196,11 +197,11 @@ final class TypeConverter
         }
 
         if (is_scalar($value)) {
-            return (string) $value;
+            return (string)$value;
         }
 
         if (is_object($value) && method_exists($value, '__toString')) {
-            return (string) $value;
+            return (string)$value;
         }
 
         return $default;

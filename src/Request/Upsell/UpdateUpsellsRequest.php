@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Upsell;
@@ -17,11 +18,19 @@ final class UpdateUpsellsRequest extends AbstractRequest
      * @param int $productId The unique identifier of the product
      * @param array $data The upsell configuration (upsell products, order, conditions, etc.)
      */
-    public function __construct(private int $productId, private array $data) {}
+    public function __construct(private int $productId, private array $data)
+    {
+    }
 
-    public function getEndpoint(): string { return '/updateUpsells'; }
+    public function getEndpoint(): string
+    {
+        return '/updateUpsells';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
     public function toArray(): array
     {

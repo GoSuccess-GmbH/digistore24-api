@@ -18,7 +18,7 @@ final class GetDeliveryRequest extends AbstractRequest
      * @param string $deliveryId The delivery ID
      */
     public function __construct(
-        private string $deliveryId
+        private string $deliveryId,
     ) {
     }
 

@@ -18,7 +18,7 @@ final class ValidateCouponCodeRequest extends AbstractRequest
      * @param string $code The coupon/voucher code to validate
      */
     public function __construct(
-        private string $code
+        private string $code,
     ) {
     }
 

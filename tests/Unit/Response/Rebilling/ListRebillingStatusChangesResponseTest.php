@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Rebilling;
 
-use GoSuccess\Digistore24\Api\Response\Rebilling\ListRebillingStatusChangesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Rebilling\ListRebillingStatusChangesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListRebillingStatusChangesResponseTest extends TestCase
@@ -33,7 +33,7 @@ final class ListRebillingStatusChangesResponseTest extends TestCase
             ],
         ];
         $response = ListRebillingStatusChangesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListRebillingStatusChangesResponse::class, $response);
         $this->assertIsArray($response->getStatusChanges());
         $this->assertCount(2, $response->getStatusChanges());
@@ -55,11 +55,11 @@ final class ListRebillingStatusChangesResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListRebillingStatusChangesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListRebillingStatusChangesResponse::class, $response);
         $this->assertCount(1, $response->getStatusChanges());
     }
@@ -74,12 +74,11 @@ final class ListRebillingStatusChangesResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListRebillingStatusChangesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

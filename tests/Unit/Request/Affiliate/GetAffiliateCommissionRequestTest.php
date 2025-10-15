@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Affiliate;
 
 use GoSuccess\Digistore24\Api\Request\Affiliate\GetAffiliateCommissionRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
 use PHPUnit\Framework\TestCase;
 
 final class GetAffiliateCommissionRequestTest extends TestCase
@@ -14,9 +13,9 @@ final class GetAffiliateCommissionRequestTest extends TestCase
     {
         $request = new GetAffiliateCommissionRequest(
             productId: 12345,
-            affiliateId: 'ABC123'
+            affiliateId: 'ABC123',
         );
-        
+
         $this->assertInstanceOf(GetAffiliateCommissionRequest::class, $request);
     }
 
@@ -24,9 +23,9 @@ final class GetAffiliateCommissionRequestTest extends TestCase
     {
         $request = new GetAffiliateCommissionRequest(
             productId: 12345,
-            affiliateId: 'ABC123'
+            affiliateId: 'ABC123',
         );
-        
+
         $this->assertSame('/getAffiliateCommission', $request->getEndpoint());
     }
 
@@ -34,11 +33,11 @@ final class GetAffiliateCommissionRequestTest extends TestCase
     {
         $request = new GetAffiliateCommissionRequest(
             productId: 12345,
-            affiliateId: 'ABC123'
+            affiliateId: 'ABC123',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame(12345, $array['product_id']);
         $this->assertSame('ABC123', $array['affiliate_id']);
@@ -48,13 +47,12 @@ final class GetAffiliateCommissionRequestTest extends TestCase
     {
         $request = new GetAffiliateCommissionRequest(
             productId: 12345,
-            affiliateId: 'ABC123'
+            affiliateId: 'ABC123',
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

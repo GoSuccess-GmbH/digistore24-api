@@ -23,7 +23,8 @@ final class RefundPartiallyResponse extends AbstractResponse
     public function __construct(
         private string $result,
         private array $data,
-    ) {}
+    ) {
+    }
 
     /**
      * Get the result status.
@@ -48,7 +49,7 @@ final class RefundPartiallyResponse extends AbstractResponse
      */
     public function wasSuccessful(): bool
     {
-        return strtolower($this->result) === 'success' 
+        return strtolower($this->result) === 'success'
             || strtolower($this->result) === 'ok';
     }
 
@@ -58,7 +59,7 @@ final class RefundPartiallyResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            result: (string) ($data['result'] ?? 'unknown'),
+            result: (string)($data['result'] ?? 'unknown'),
             data: $data['data'] ?? [],
         );
     }

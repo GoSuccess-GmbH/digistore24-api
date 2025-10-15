@@ -6,10 +6,10 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Service Proof Data Transfer Object
- * 
+ *
  * Data structure for service proof request updates.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/updateServiceProofRequest.yaml
  */
 final class ServiceProofData
@@ -19,9 +19,9 @@ final class ServiceProofData
      */
     public string $requestStatus {
         set {
-            if (!in_array($value, ['proof_provided', 'exec_refund'], true)) {
+            if (! in_array($value, ['proof_provided', 'exec_refund'], true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid request status: $value. Allowed: proof_provided, exec_refund"
+                    "Invalid request status: $value. Allowed: proof_provided, exec_refund",
                 );
             }
             $this->requestStatus = $value;
@@ -35,7 +35,7 @@ final class ServiceProofData
 
     /**
      * Create ServiceProofData from array
-     * 
+     *
      * @param array{
      *     request_status: string,
      *     message?: string|null
@@ -46,22 +46,23 @@ final class ServiceProofData
         $instance = new self();
         $instance->requestStatus = $data['request_status'];
         $instance->message = $data['message'] ?? null;
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, string>
      */
     public function toArray(): array
     {
         $data = ['request_status' => $this->requestStatus];
-        
+
         if ($this->message !== null) {
             $data['message'] = $this->message;
         }
-        
+
         return $data;
     }
 }

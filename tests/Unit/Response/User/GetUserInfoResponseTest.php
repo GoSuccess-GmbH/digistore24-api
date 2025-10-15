@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\User;
 
-use GoSuccess\Digistore24\Api\Response\User\GetUserInfoResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\User\GetUserInfoResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetUserInfoResponseTest extends TestCase
@@ -23,7 +23,7 @@ final class GetUserInfoResponseTest extends TestCase
             ],
         ];
         $response = GetUserInfoResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
         $this->assertIsArray($response->getUserInfo());
         $this->assertSame('12345', $response->getUserInfo()['user_id']);
@@ -43,11 +43,11 @@ final class GetUserInfoResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetUserInfoResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
         $this->assertSame('67890', $response->getUserInfo()['user_id']);
         $this->assertSame('Jane', $response->getUserInfo()['first_name']);
@@ -63,12 +63,11 @@ final class GetUserInfoResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetUserInfoResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

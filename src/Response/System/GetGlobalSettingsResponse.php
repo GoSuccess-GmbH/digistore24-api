@@ -20,7 +20,8 @@ final class GetGlobalSettingsResponse extends AbstractResponse
     public function __construct(
         private array $imageMetas,
         private array $types,
-    ) {}
+    ) {
+    }
 
     /**
      * Get image metadata for different image types.
@@ -72,15 +73,15 @@ final class GetGlobalSettingsResponse extends AbstractResponse
         $imageMetas = [];
         foreach (($data['image_metas'] ?? []) as $key => $meta) {
             $imageMetas[$key] = [
-                'label' => (string) ($meta['label'] ?? ''),
+                'label' => (string)($meta['label'] ?? ''),
                 'limits' => [
-                    'max_file_size_kb' => (int) ($meta['limits']['max_file_size_kb'] ?? 0),
-                    'min_width' => (int) ($meta['limits']['min_width'] ?? 0),
-                    'max_width' => (int) ($meta['limits']['max_width'] ?? 0),
-                    'min_height' => (int) ($meta['limits']['min_height'] ?? 0),
-                    'max_height' => (int) ($meta['limits']['max_height'] ?? 0),
+                    'max_file_size_kb' => (int)($meta['limits']['max_file_size_kb'] ?? 0),
+                    'min_width' => (int)($meta['limits']['min_width'] ?? 0),
+                    'max_width' => (int)($meta['limits']['max_width'] ?? 0),
+                    'min_height' => (int)($meta['limits']['min_height'] ?? 0),
+                    'max_height' => (int)($meta['limits']['max_height'] ?? 0),
                 ],
-                'limits_msg' => (string) ($meta['limits_msg'] ?? ''),
+                'limits_msg' => (string)($meta['limits_msg'] ?? ''),
             ];
         }
 

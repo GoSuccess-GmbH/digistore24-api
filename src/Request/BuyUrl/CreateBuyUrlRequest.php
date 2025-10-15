@@ -13,10 +13,10 @@ use GoSuccess\Digistore24\Api\DataTransferObject\UrlsData;
 
 /**
  * Create Buy URL Request
- * 
+ *
  * Request object for creating a customized order form URL.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/createBuyUrl.yaml
  */
 final class CreateBuyUrlRequest extends AbstractRequest
@@ -31,12 +31,19 @@ final class CreateBuyUrlRequest extends AbstractRequest
     }
 
     public ?BuyerData $buyer = null;
+
     public ?PaymentPlanData $paymentPlan = null;
+
     public ?TrackingData $tracking = null;
+
     public string $validUntil = '24h';
+
     public ?UrlsData $urls = null;
+
     public ?array $placeholders = null;
+
     public ?SettingsData $settings = null;
+
     public ?array $addons = null;
 
     public function getEndpoint(): string

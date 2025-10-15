@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Country;
 
-use GoSuccess\Digistore24\Api\Response\Country\ListCurrenciesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Country\ListCurrenciesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListCurrenciesResponseTest extends TestCase
@@ -19,7 +19,7 @@ final class ListCurrenciesResponseTest extends TestCase
                 'symbol' => '€',
                 'min_price' => 1.00,
                 'max_price' => 9999.99,
-                'name' => 'Euro'
+                'name' => 'Euro',
             ],
             [
                 'id' => 2,
@@ -27,11 +27,11 @@ final class ListCurrenciesResponseTest extends TestCase
                 'symbol' => '$',
                 'min_price' => 1.00,
                 'max_price' => 9999.99,
-                'name' => 'US Dollar'
-            ]
+                'name' => 'US Dollar',
+            ],
         ];
         $response = ListCurrenciesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListCurrenciesResponse::class, $response);
         $this->assertCount(2, $response->getCurrencies());
     }
@@ -47,15 +47,15 @@ final class ListCurrenciesResponseTest extends TestCase
                     'symbol' => '€',
                     'min_price' => 1.00,
                     'max_price' => 9999.99,
-                    'name' => 'Euro'
-                ]
+                    'name' => 'Euro',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListCurrenciesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListCurrenciesResponse::class, $response);
         $this->assertCount(1, $response->getCurrencies());
     }
@@ -66,12 +66,11 @@ final class ListCurrenciesResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListCurrenciesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

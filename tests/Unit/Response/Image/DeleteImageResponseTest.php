@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Image;
 
-use GoSuccess\Digistore24\Api\Response\Image\DeleteImageResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Image\DeleteImageResponse;
 use PHPUnit\Framework\TestCase;
 
 final class DeleteImageResponseTest extends TestCase
@@ -15,10 +15,10 @@ final class DeleteImageResponseTest extends TestCase
         $data = [
             'success' => true,
             'image_id' => 'IMG123',
-            'message' => 'Image deleted successfully'
+            'message' => 'Image deleted successfully',
         ];
         $response = DeleteImageResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(DeleteImageResponse::class, $response);
         $this->assertTrue($response->success);
         $this->assertSame('IMG123', $response->imageId);
@@ -30,14 +30,14 @@ final class DeleteImageResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'success' => true,
-                'image_id' => 'IMG456'
+                'image_id' => 'IMG456',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = DeleteImageResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(DeleteImageResponse::class, $response);
         $this->assertTrue($response->success);
     }
@@ -48,12 +48,11 @@ final class DeleteImageResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = DeleteImageResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

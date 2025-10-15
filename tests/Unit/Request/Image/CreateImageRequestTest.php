@@ -13,7 +13,7 @@ final class CreateImageRequestTest extends TestCase
     {
         $request = new CreateImageRequest(
             name: 'Product Image',
-            imageUrl: 'https://example.com/image.jpg'
+            imageUrl: 'https://example.com/image.jpg',
         );
 
         $this->assertSame('Product Image', $request->name);
@@ -28,7 +28,7 @@ final class CreateImageRequestTest extends TestCase
             name: 'Product Image',
             imageUrl: 'https://example.com/image.jpg',
             usageType: 'product',
-            altTag: 'Premium Product Photo'
+            altTag: 'Premium Product Photo',
         );
 
         $this->assertSame('Product Image', $request->name);
@@ -44,7 +44,7 @@ final class CreateImageRequestTest extends TestCase
 
         new CreateImageRequest(
             name: str_repeat('a', 64),
-            imageUrl: 'https://example.com/image.jpg'
+            imageUrl: 'https://example.com/image.jpg',
         );
     }
 
@@ -52,7 +52,7 @@ final class CreateImageRequestTest extends TestCase
     {
         $request = new CreateImageRequest(
             name: str_repeat('a', 63),
-            imageUrl: 'https://example.com/image.jpg'
+            imageUrl: 'https://example.com/image.jpg',
         );
 
         $this->assertSame(63, strlen($request->name));
@@ -62,7 +62,7 @@ final class CreateImageRequestTest extends TestCase
     {
         $request = new CreateImageRequest(
             name: 'Product Image',
-            imageUrl: 'https://example.com/image.jpg'
+            imageUrl: 'https://example.com/image.jpg',
         );
 
         $this->assertSame('/createImage', $request->getEndpoint());
@@ -72,7 +72,7 @@ final class CreateImageRequestTest extends TestCase
     {
         $request = new CreateImageRequest(
             name: 'Product Image',
-            imageUrl: 'https://example.com/image.jpg'
+            imageUrl: 'https://example.com/image.jpg',
         );
 
         $array = $request->toArray();
@@ -90,7 +90,7 @@ final class CreateImageRequestTest extends TestCase
             name: 'Product Image',
             imageUrl: 'https://example.com/image.jpg',
             usageType: 'product',
-            altTag: 'Premium Product Photo'
+            altTag: 'Premium Product Photo',
         );
 
         $array = $request->toArray();
@@ -106,7 +106,7 @@ final class CreateImageRequestTest extends TestCase
     {
         $request = new CreateImageRequest(
             name: 'Product Image',
-            imageUrl: 'https://example.com/image.jpg'
+            imageUrl: 'https://example.com/image.jpg',
         );
 
         $this->assertTrue($request->isValid());

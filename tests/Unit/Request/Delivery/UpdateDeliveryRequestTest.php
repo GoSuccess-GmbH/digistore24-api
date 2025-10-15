@@ -14,12 +14,12 @@ final class UpdateDeliveryRequestTest extends TestCase
     {
         $delivery = new DeliveryData();
         $delivery->type = 'delivery';
-        
+
         $request = new UpdateDeliveryRequest(
             deliveryId: 'D12345',
-            delivery: $delivery
+            delivery: $delivery,
         );
-        
+
         $this->assertInstanceOf(UpdateDeliveryRequest::class, $request);
     }
 
@@ -27,12 +27,12 @@ final class UpdateDeliveryRequestTest extends TestCase
     {
         $delivery = new DeliveryData();
         $delivery->type = 'delivery';
-        
+
         $request = new UpdateDeliveryRequest(
             deliveryId: 'D12345',
-            delivery: $delivery
+            delivery: $delivery,
         );
-        
+
         $this->assertSame('/updateDelivery', $request->getEndpoint());
     }
 
@@ -41,14 +41,14 @@ final class UpdateDeliveryRequestTest extends TestCase
         $delivery = new DeliveryData();
         $delivery->type = 'delivery';
         $delivery->isShipped = true;
-        
+
         $request = new UpdateDeliveryRequest(
             deliveryId: 'D12345',
-            delivery: $delivery
+            delivery: $delivery,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('D12345', $array['delivery_id']);
         $this->assertSame('delivery', $array['type']);
@@ -59,16 +59,15 @@ final class UpdateDeliveryRequestTest extends TestCase
     {
         $delivery = new DeliveryData();
         $delivery->type = 'delivery';
-        
+
         $request = new UpdateDeliveryRequest(
             deliveryId: 'D12345',
-            delivery: $delivery
+            delivery: $delivery,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

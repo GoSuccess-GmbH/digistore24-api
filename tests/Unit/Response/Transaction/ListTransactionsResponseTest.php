@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Transaction;
 
-use GoSuccess\Digistore24\Api\Response\Transaction\ListTransactionsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Transaction\ListTransactionsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListTransactionsResponseTest extends TestCase
@@ -34,7 +34,7 @@ final class ListTransactionsResponseTest extends TestCase
             ],
         ];
         $response = ListTransactionsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListTransactionsResponse::class, $response);
         $this->assertIsArray($response->getData());
         $this->assertIsArray($response->getTransactionList());
@@ -57,11 +57,11 @@ final class ListTransactionsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListTransactionsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListTransactionsResponse::class, $response);
         $this->assertCount(1, $response->getTransactionList());
     }
@@ -76,12 +76,11 @@ final class ListTransactionsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListTransactionsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

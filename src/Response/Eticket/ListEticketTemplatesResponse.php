@@ -59,6 +59,7 @@ final class ListEticketTemplatesResponse extends AbstractResponse
         }
 
         $instance = new self(templates: $templates);
+
         return $instance;
     }
 }

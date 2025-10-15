@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Upsell;
 
-use GoSuccess\Digistore24\Api\Response\Upsell\GetUpsellsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Upsell\GetUpsellsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetUpsellsResponseTest extends TestCase
@@ -31,7 +31,7 @@ final class GetUpsellsResponseTest extends TestCase
             ],
         ];
         $response = GetUpsellsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetUpsellsResponse::class, $response);
         $this->assertIsArray($response->getUpsells());
         $this->assertCount(2, $response->getUpsells());
@@ -50,11 +50,11 @@ final class GetUpsellsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetUpsellsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetUpsellsResponse::class, $response);
         $this->assertCount(1, $response->getUpsells());
     }
@@ -69,12 +69,11 @@ final class GetUpsellsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetUpsellsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

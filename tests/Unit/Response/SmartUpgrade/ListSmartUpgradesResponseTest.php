@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\SmartUpgrade;
 
-use GoSuccess\Digistore24\Api\Response\SmartUpgrade\ListSmartUpgradesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\SmartUpgrade\ListSmartUpgradesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListSmartUpgradesResponseTest extends TestCase
@@ -29,7 +29,7 @@ final class ListSmartUpgradesResponseTest extends TestCase
             ],
         ];
         $response = ListSmartUpgradesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListSmartUpgradesResponse::class, $response);
         $smartupgrades = $response->getSmartupgrades();
         $this->assertCount(2, $smartupgrades);
@@ -49,11 +49,11 @@ final class ListSmartUpgradesResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListSmartUpgradesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListSmartUpgradesResponse::class, $response);
         $this->assertCount(1, $response->getSmartupgrades());
     }
@@ -64,12 +64,11 @@ final class ListSmartUpgradesResponseTest extends TestCase
             statusCode: 200,
             data: ['smartupgrades' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListSmartUpgradesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

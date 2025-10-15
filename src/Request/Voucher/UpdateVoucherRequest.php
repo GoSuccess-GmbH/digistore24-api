@@ -21,7 +21,7 @@ final class UpdateVoucherRequest extends AbstractRequest
      */
     public function __construct(
         private string $code,
-        private VoucherData $voucher
+        private VoucherData $voucher,
     ) {
     }
 
@@ -39,7 +39,7 @@ final class UpdateVoucherRequest extends AbstractRequest
     {
         return array_merge(
             ['code' => $this->code],
-            $this->voucher->toArray()
+            $this->voucher->toArray(),
         );
     }
 }

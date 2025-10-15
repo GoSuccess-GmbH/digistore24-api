@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Marketplace;
 
-use GoSuccess\Digistore24\Api\Response\Marketplace\ListMarketplaceEntriesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Marketplace\ListMarketplaceEntriesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListMarketplaceEntriesResponseTest extends TestCase
@@ -18,18 +18,18 @@ final class ListMarketplaceEntriesResponseTest extends TestCase
                     [
                         'entry_id' => 'ENTRY123',
                         'product_name' => 'Amazing Product',
-                        'status' => 'active'
+                        'status' => 'active',
                     ],
                     [
                         'entry_id' => 'ENTRY456',
                         'product_name' => 'Great Service',
-                        'status' => 'pending'
-                    ]
-                ]
-            ]
+                        'status' => 'pending',
+                    ],
+                ],
+            ],
         ];
         $response = ListMarketplaceEntriesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListMarketplaceEntriesResponse::class, $response);
         $this->assertCount(2, $response->getEntries());
     }
@@ -43,17 +43,17 @@ final class ListMarketplaceEntriesResponseTest extends TestCase
                     'entries' => [
                         [
                             'entry_id' => 'ENTRY789',
-                            'product_name' => 'New Product'
-                        ]
-                    ]
-                ]
+                            'product_name' => 'New Product',
+                        ],
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListMarketplaceEntriesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListMarketplaceEntriesResponse::class, $response);
         $this->assertCount(1, $response->getEntries());
     }
@@ -64,12 +64,11 @@ final class ListMarketplaceEntriesResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListMarketplaceEntriesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

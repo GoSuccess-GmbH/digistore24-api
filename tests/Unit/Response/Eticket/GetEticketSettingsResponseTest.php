@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Eticket;
 
-use GoSuccess\Digistore24\Api\Response\Eticket\GetEticketSettingsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Eticket\GetEticketSettingsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetEticketSettingsResponseTest extends TestCase
@@ -18,10 +18,10 @@ final class GetEticketSettingsResponseTest extends TestCase
             'default_template_id' => 'TPL456',
             'max_tickets_per_order' => 5,
             'require_email_validation' => true,
-            'settings' => ['auto_send' => true]
+            'settings' => ['auto_send' => true],
         ];
         $response = GetEticketSettingsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetEticketSettingsResponse::class, $response);
         $this->assertTrue($response->eticketEnabled);
         $this->assertSame(5, $response->maxTicketsPerOrder);
@@ -33,14 +33,14 @@ final class GetEticketSettingsResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'eticket_enabled' => true,
-                'max_tickets_per_order' => 10
+                'max_tickets_per_order' => 10,
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetEticketSettingsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetEticketSettingsResponse::class, $response);
         $this->assertTrue($response->eticketEnabled);
     }
@@ -51,12 +51,11 @@ final class GetEticketSettingsResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetEticketSettingsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

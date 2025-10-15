@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
-use GoSuccess\Digistore24\Api\Request\Marketplace\ListMarketplaceEntriesRequest;
 use GoSuccess\Digistore24\Api\Request\Marketplace\GetMarketplaceEntryRequest;
+use GoSuccess\Digistore24\Api\Request\Marketplace\ListMarketplaceEntriesRequest;
 use GoSuccess\Digistore24\Api\Request\Marketplace\StatsMarketplaceRequest;
-use GoSuccess\Digistore24\Api\Response\Marketplace\ListMarketplaceEntriesResponse;
 use GoSuccess\Digistore24\Api\Response\Marketplace\GetMarketplaceEntryResponse;
+use GoSuccess\Digistore24\Api\Response\Marketplace\ListMarketplaceEntriesResponse;
 use GoSuccess\Digistore24\Api\Response\Marketplace\StatsMarketplaceResponse;
 
 /**

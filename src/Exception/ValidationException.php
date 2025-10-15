@@ -11,7 +11,7 @@ class ValidationException extends ApiException
 {
     /**
      * Get validation errors
-     * 
+     *
      * @return array<string, string[]>
      */
     public function getErrors(): array

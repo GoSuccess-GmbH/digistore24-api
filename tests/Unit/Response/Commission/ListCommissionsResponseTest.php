@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Commission;
 
-use GoSuccess\Digistore24\Api\Response\Commission\ListCommissionsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Commission\ListCommissionsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListCommissionsResponseTest extends TestCase
@@ -26,12 +26,12 @@ final class ListCommissionsResponseTest extends TestCase
                     'reason' => 'Sale commission',
                     'schedule_payout_at' => '2024-02-01',
                     'transaction_id' => 100,
-                    'purchase_id' => 'P123'
-                ]
-            ]
+                    'purchase_id' => 'P123',
+                ],
+            ],
         ];
         $response = ListCommissionsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListCommissionsResponse::class, $response);
         $this->assertSame(1, $response->getPageNo());
         $this->assertCount(1, $response->getItems());
@@ -47,14 +47,14 @@ final class ListCommissionsResponseTest extends TestCase
                 'page_size' => 10,
                 'item_count' => 25,
                 'page_count' => 3,
-                'items' => []
+                'items' => [],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListCommissionsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListCommissionsResponse::class, $response);
         $this->assertSame(1, $response->getPageNo());
     }
@@ -65,12 +65,11 @@ final class ListCommissionsResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListCommissionsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

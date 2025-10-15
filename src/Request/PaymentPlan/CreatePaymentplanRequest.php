@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\PaymentPlan;
@@ -17,11 +18,22 @@ final class CreatePaymentplanRequest extends AbstractRequest
     /**
      * @param PaymentPlanFullData $paymentPlan The payment plan configuration
      */
-    public function __construct(private PaymentPlanFullData $paymentPlan) {}
+    public function __construct(private PaymentPlanFullData $paymentPlan)
+    {
+    }
 
-    public function getEndpoint(): string { return '/createPaymentplan'; }
+    public function getEndpoint(): string
+    {
+        return '/createPaymentplan';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
-    public function toArray(): array { return $this->paymentPlan->toArray(); }
+    public function toArray(): array
+    {
+        return $this->paymentPlan->toArray();
+    }
 }

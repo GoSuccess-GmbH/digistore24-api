@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Marketplace;
 
-use GoSuccess\Digistore24\Api\Response\Marketplace\GetMarketplaceEntryResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Marketplace\GetMarketplaceEntryResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetMarketplaceEntryResponseTest extends TestCase
@@ -18,11 +18,11 @@ final class GetMarketplaceEntryResponseTest extends TestCase
                 'product_name' => 'Premium Course',
                 'description' => 'Learn advanced techniques',
                 'price' => 99.99,
-                'status' => 'active'
-            ]
+                'status' => 'active',
+            ],
         ];
         $response = GetMarketplaceEntryResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetMarketplaceEntryResponse::class, $response);
         $this->assertArrayHasKey('entry_id', $response->getData());
         $this->assertSame('ENTRY001', $response->getData()['entry_id']);
@@ -36,15 +36,15 @@ final class GetMarketplaceEntryResponseTest extends TestCase
                 'data' => [
                     'entry_id' => 'ENTRY002',
                     'product_name' => 'Starter Package',
-                    'price' => 49.99
-                ]
+                    'price' => 49.99,
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetMarketplaceEntryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetMarketplaceEntryResponse::class, $response);
         $this->assertSame('Starter Package', $response->getData()['product_name']);
     }
@@ -55,12 +55,11 @@ final class GetMarketplaceEntryResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetMarketplaceEntryResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

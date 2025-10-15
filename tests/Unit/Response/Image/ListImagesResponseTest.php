@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Image;
 
-use GoSuccess\Digistore24\Api\Response\Image\ListImagesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Image\ListImagesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListImagesResponseTest extends TestCase
@@ -19,20 +19,20 @@ final class ListImagesResponseTest extends TestCase
                     'image_url' => 'https://example.com/images/123.jpg',
                     'name' => 'Product 1',
                     'usage_type' => 'product',
-                    'created_at' => '2024-01-15'
+                    'created_at' => '2024-01-15',
                 ],
                 [
                     'image_id' => 'IMG456',
                     'image_url' => 'https://example.com/images/456.jpg',
                     'name' => 'Banner 2',
                     'usage_type' => 'banner',
-                    'created_at' => '2024-02-01'
-                ]
+                    'created_at' => '2024-02-01',
+                ],
             ],
-            'total_count' => 2
+            'total_count' => 2,
         ];
         $response = ListImagesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListImagesResponse::class, $response);
         $this->assertCount(2, $response->images);
         $this->assertSame(2, $response->totalCount);
@@ -48,17 +48,17 @@ final class ListImagesResponseTest extends TestCase
                         'image_id' => 'IMG789',
                         'image_url' => 'https://example.com/images/789.jpg',
                         'name' => 'Logo',
-                        'created_at' => '2024-03-01'
-                    ]
+                        'created_at' => '2024-03-01',
+                    ],
                 ],
-                'total_count' => 1
+                'total_count' => 1,
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListImagesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListImagesResponse::class, $response);
         $this->assertCount(1, $response->images);
     }
@@ -69,12 +69,11 @@ final class ListImagesResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListImagesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -12,7 +12,9 @@ use GoSuccess\Digistore24\Api\Http\Method;
  */
 final class ListCountriesRequest extends AbstractRequest
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function getEndpoint(): string
     {

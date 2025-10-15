@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseTrackingResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseTrackingResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetPurchaseTrackingResponseTest extends TestCase
@@ -23,7 +23,7 @@ final class GetPurchaseTrackingResponseTest extends TestCase
             ],
         ];
         $response = GetPurchaseTrackingResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetPurchaseTrackingResponse::class, $response);
         $this->assertIsArray($response->getTracking());
         $this->assertSame('TRK123456', $response->getTracking()['tracking_id']);
@@ -42,11 +42,11 @@ final class GetPurchaseTrackingResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetPurchaseTrackingResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetPurchaseTrackingResponse::class, $response);
         $this->assertSame('facebook', $response->getTracking()['source']);
     }
@@ -61,12 +61,11 @@ final class GetPurchaseTrackingResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetPurchaseTrackingResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -29,7 +29,8 @@ final class RefundPartiallyRequest extends AbstractRequest
     public function __construct(
         private string $purchaseId,
         private float $amount,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

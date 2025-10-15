@@ -11,15 +11,16 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Abstract Resource Base Class
- * 
+ *
  * Base class for all API resource classes.
  * Resources group related API endpoints together.
  */
 abstract class AbstractResource
 {
     public function __construct(
-        protected readonly HttpClientInterface $client
-    ) {}
+        protected readonly HttpClientInterface $client,
+    ) {
+    }
 
     /**
      * Execute a request and get raw HTTP response
@@ -35,7 +36,7 @@ abstract class AbstractResource
 
     /**
      * Execute a request and parse into typed response
-     * 
+     *
      * @template T of ResponseInterface
      * @param RequestInterface $request
      * @param class-string<T> $responseClass
@@ -44,6 +45,7 @@ abstract class AbstractResource
     protected function executeTyped(RequestInterface $request, string $responseClass): ResponseInterface
     {
         $response = $this->execute($request);
+
         return $responseClass::fromResponse($response);
     }
 }

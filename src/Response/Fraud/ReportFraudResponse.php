@@ -30,7 +30,8 @@ final class ReportFraudResponse extends AbstractResponse
         private string $affiliateStatus,
         private string $affiliateMessage,
         private string $affiliateCode,
-    ) {}
+    ) {
+    }
 
     public function getResult(): string
     {
@@ -80,13 +81,13 @@ final class ReportFraudResponse extends AbstractResponse
         $fraudData = $data['data'] ?? [];
 
         return new self(
-            result: (string) ($data['result'] ?? 'unknown'),
-            buyerStatus: (string) ($fraudData['buyer_status'] ?? ''),
-            buyerMessage: (string) ($fraudData['buyer_message'] ?? ''),
-            buyerCode: (string) ($fraudData['buyer_code'] ?? ''),
-            affiliateStatus: (string) ($fraudData['affiliate_status'] ?? ''),
-            affiliateMessage: (string) ($fraudData['affiliate_message'] ?? ''),
-            affiliateCode: (string) ($fraudData['affiliate_code'] ?? ''),
+            result: (string)($data['result'] ?? 'unknown'),
+            buyerStatus: (string)($fraudData['buyer_status'] ?? ''),
+            buyerMessage: (string)($fraudData['buyer_message'] ?? ''),
+            buyerCode: (string)($fraudData['buyer_code'] ?? ''),
+            affiliateStatus: (string)($fraudData['affiliate_status'] ?? ''),
+            affiliateMessage: (string)($fraudData['affiliate_message'] ?? ''),
+            affiliateCode: (string)($fraudData['affiliate_code'] ?? ''),
         );
     }
 }

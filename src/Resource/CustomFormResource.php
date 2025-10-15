@@ -10,22 +10,22 @@ use GoSuccess\Digistore24\Api\Response\CustomForm\ListCustomFormRecordsResponse;
 
 /**
  * Custom Form Resource
- * 
+ *
  * Retrieve custom form data collected during checkout.
  */
 final class CustomFormResource extends AbstractResource
 {
     /**
      * List custom form records
-     * 
+     *
      * Returns a list with data from additional input fields collected
      * during the checkout process.
-     * 
+     *
      * @link https://digistore24.com/api/docs/paths/listCustomFormRecords.yaml OpenAPI Specification
-     * 
+     *
      * @param ListCustomFormRecordsRequest $request The list custom form records request
-     * @return ListCustomFormRecordsResponse The response with custom form records
      * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @return ListCustomFormRecordsResponse The response with custom form records
      */
     public function listRecords(ListCustomFormRecordsRequest $request): ListCustomFormRecordsResponse
     {

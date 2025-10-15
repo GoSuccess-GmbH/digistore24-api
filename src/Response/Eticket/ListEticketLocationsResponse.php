@@ -61,6 +61,7 @@ final class ListEticketLocationsResponse extends AbstractResponse
         }
 
         $instance = new self(locations: $locations);
+
         return $instance;
     }
 }

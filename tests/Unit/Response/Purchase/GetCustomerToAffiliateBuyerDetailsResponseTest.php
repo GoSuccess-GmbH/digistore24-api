@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\GetCustomerToAffiliateBuyerDetailsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetCustomerToAffiliateBuyerDetailsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
@@ -22,7 +22,7 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
             ],
         ];
         $response = GetCustomerToAffiliateBuyerDetailsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetCustomerToAffiliateBuyerDetailsResponse::class, $response);
         $this->assertIsArray($response->getDetails());
         $this->assertSame('buyer@example.com', $response->getDetails()['buyer_email']);
@@ -40,11 +40,11 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetCustomerToAffiliateBuyerDetailsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetCustomerToAffiliateBuyerDetailsResponse::class, $response);
         $this->assertSame('customer@test.com', $response->getDetails()['buyer_email']);
     }
@@ -59,12 +59,11 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetCustomerToAffiliateBuyerDetailsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

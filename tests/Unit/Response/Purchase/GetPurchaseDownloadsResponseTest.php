@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseDownloadsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\GetPurchaseDownloadsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetPurchaseDownloadsResponseTest extends TestCase
@@ -30,7 +30,7 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
             ],
         ];
         $response = GetPurchaseDownloadsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
         $this->assertIsArray($response->getDownloads());
         $this->assertCount(2, $response->getDownloads());
@@ -52,11 +52,11 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetPurchaseDownloadsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
         $this->assertCount(1, $response->getDownloads());
     }
@@ -71,12 +71,11 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetPurchaseDownloadsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

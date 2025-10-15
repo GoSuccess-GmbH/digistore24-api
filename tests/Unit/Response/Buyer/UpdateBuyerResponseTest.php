@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Buyer;
 
-use GoSuccess\Digistore24\Api\Response\Buyer\UpdateBuyerResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Buyer\UpdateBuyerResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateBuyerResponseTest extends TestCase
@@ -14,10 +14,10 @@ final class UpdateBuyerResponseTest extends TestCase
     {
         $data = [
             'result' => 'success',
-            'data' => ['buyer_id' => 'BUY123']
+            'data' => ['buyer_id' => 'BUY123'],
         ];
         $response = UpdateBuyerResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdateBuyerResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -29,14 +29,14 @@ final class UpdateBuyerResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'result' => 'success',
-                'data' => ['buyer_id' => 'BUY123']
+                'data' => ['buyer_id' => 'BUY123'],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdateBuyerResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdateBuyerResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -47,12 +47,11 @@ final class UpdateBuyerResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdateBuyerResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

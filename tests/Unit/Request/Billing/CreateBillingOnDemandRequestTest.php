@@ -13,9 +13,9 @@ final class CreateBillingOnDemandRequestTest extends TestCase
     {
         $request = new CreateBillingOnDemandRequest(
             purchaseId: 'P12345',
-            productId: '67890'
+            productId: '67890',
         );
-        
+
         $this->assertInstanceOf(CreateBillingOnDemandRequest::class, $request);
     }
 
@@ -23,9 +23,9 @@ final class CreateBillingOnDemandRequestTest extends TestCase
     {
         $request = new CreateBillingOnDemandRequest(
             purchaseId: 'P12345',
-            productId: '67890'
+            productId: '67890',
         );
-        
+
         $this->assertSame('/createBillingOnDemand', $request->getEndpoint());
     }
 
@@ -33,11 +33,11 @@ final class CreateBillingOnDemandRequestTest extends TestCase
     {
         $request = new CreateBillingOnDemandRequest(
             purchaseId: 'P12345',
-            productId: '67890'
+            productId: '67890',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame('67890', $array['product_id']);
@@ -52,11 +52,11 @@ final class CreateBillingOnDemandRequestTest extends TestCase
             tracking: ['custom' => 'test123'],
             placeholders: ['title' => 'Custom Title'],
             settings: ['quantity' => 2],
-            addons: [['product_id' => '999']]
+            addons: [['product_id' => '999']],
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertArrayHasKey('payment_plan', $array);
         $this->assertArrayHasKey('tracking', $array);
@@ -69,13 +69,12 @@ final class CreateBillingOnDemandRequestTest extends TestCase
     {
         $request = new CreateBillingOnDemandRequest(
             purchaseId: 'P12345',
-            productId: '67890'
+            productId: '67890',
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

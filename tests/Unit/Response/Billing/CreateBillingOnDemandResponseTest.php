@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Billing;
 
-use GoSuccess\Digistore24\Api\Response\Billing\CreateBillingOnDemandResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Billing\CreateBillingOnDemandResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateBillingOnDemandResponseTest extends TestCase
@@ -17,10 +17,10 @@ final class CreateBillingOnDemandResponseTest extends TestCase
             'payment_status' => 'paid',
             'payment_status_msg' => 'Payment successful',
             'billing_status' => 'completed',
-            'billing_status_msg' => 'Billing completed'
+            'billing_status_msg' => 'Billing completed',
         ];
         $response = CreateBillingOnDemandResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateBillingOnDemandResponse::class, $response);
         $this->assertSame('P123456', $response->getCreatedPurchaseId());
         $this->assertSame('paid', $response->getPaymentStatus());
@@ -37,14 +37,14 @@ final class CreateBillingOnDemandResponseTest extends TestCase
                 'payment_status' => 'paid',
                 'payment_status_msg' => 'Payment successful',
                 'billing_status' => 'completed',
-                'billing_status_msg' => 'Billing completed'
+                'billing_status_msg' => 'Billing completed',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateBillingOnDemandResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateBillingOnDemandResponse::class, $response);
         $this->assertSame('P123456', $response->getCreatedPurchaseId());
         $this->assertTrue($response->wasSuccessful());
@@ -59,15 +59,14 @@ final class CreateBillingOnDemandResponseTest extends TestCase
                 'payment_status' => 'paid',
                 'payment_status_msg' => 'Payment successful',
                 'billing_status' => 'completed',
-                'billing_status_msg' => 'Billing completed'
+                'billing_status_msg' => 'Billing completed',
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateBillingOnDemandResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

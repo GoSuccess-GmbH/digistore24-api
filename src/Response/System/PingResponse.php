@@ -16,7 +16,8 @@ final class PingResponse extends AbstractResponse
     public function __construct(
         private string $result,
         private string $serverTime,
-    ) {}
+    ) {
+    }
 
     /**
      * Get result status.
@@ -39,7 +40,7 @@ final class PingResponse extends AbstractResponse
      */
     public function wasSuccessful(): bool
     {
-        return strtolower($this->result) === 'success' 
+        return strtolower($this->result) === 'success'
             || strtolower($this->result) === 'ok';
     }
 
@@ -49,8 +50,8 @@ final class PingResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            result: (string) ($data['result'] ?? 'unknown'),
-            serverTime: (string) ($data['data']['server_time'] ?? ''),
+            result: (string)($data['result'] ?? 'unknown'),
+            serverTime: (string)($data['data']['server_time'] ?? ''),
         );
     }
 }

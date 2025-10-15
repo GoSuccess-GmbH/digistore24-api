@@ -10,7 +10,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * HTTP Client Interface
- * 
+ *
  * Defines the contract for HTTP clients that communicate with the API.
  * This abstraction allows for different HTTP implementations and easier testing.
  */
@@ -18,16 +18,16 @@ interface HttpClientInterface
 {
     /**
      * Send a request to the API
-     * 
+     *
      * @param string $endpoint API endpoint (e.g., 'createBuyUrl')
      * @param Method $method HTTP method
      * @param array<string, mixed> $params Request parameters
-     * @return Response The API response
      * @throws ApiException When the request fails or returns an error
+     * @return Response The API response
      */
     public function request(
         string $endpoint,
         Method $method = Method::POST,
-        array $params = []
+        array $params = [],
     ): Response;
 }

@@ -12,23 +12,23 @@ final class GetDeliveryRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
-        
+
         $this->assertInstanceOf(GetDeliveryRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
-        
+
         $this->assertSame('/getDelivery', $request->getEndpoint());
     }
 
     public function test_to_array_includes_delivery_id(): void
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('D12345', $array['delivery_id']);
     }
@@ -36,11 +36,10 @@ final class GetDeliveryRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

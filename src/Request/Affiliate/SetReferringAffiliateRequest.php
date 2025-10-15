@@ -20,7 +20,7 @@ final class SetReferringAffiliateRequest extends AbstractRequest
      */
     public function __construct(
         private string $purchaseId,
-        private string $affiliateId
+        private string $affiliateId,
     ) {
     }
 
@@ -38,7 +38,7 @@ final class SetReferringAffiliateRequest extends AbstractRequest
     {
         return [
             'purchase_id' => $this->purchaseId,
-            'affiliate_id' => $this->affiliateId
+            'affiliate_id' => $this->affiliateId,
         ];
     }
 }

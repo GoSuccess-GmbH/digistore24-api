@@ -55,6 +55,7 @@ final class UpdateBuyerRequest extends AbstractRequest
         if ($this->address !== null) {
             $params['address'] = $this->address;
         }
+
         return $params;
     }
 }

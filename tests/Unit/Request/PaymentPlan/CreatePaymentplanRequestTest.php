@@ -15,9 +15,9 @@ final class CreatePaymentplanRequestTest extends TestCase
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 49.99;
         $plan->currency = 'USD';
-        
+
         $request = new CreatePaymentplanRequest(paymentPlan: $plan);
-        
+
         $this->assertInstanceOf(CreatePaymentplanRequest::class, $request);
     }
 
@@ -26,9 +26,9 @@ final class CreatePaymentplanRequestTest extends TestCase
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 49.99;
         $plan->currency = 'USD';
-        
+
         $request = new CreatePaymentplanRequest(paymentPlan: $plan);
-        
+
         $this->assertSame('/createPaymentplan', $request->getEndpoint());
     }
 
@@ -37,13 +37,12 @@ final class CreatePaymentplanRequestTest extends TestCase
         $plan = new PaymentPlanFullData();
         $plan->firstAmount = 49.99;
         $plan->currency = 'USD';
-        
+
         $request = new CreatePaymentplanRequest(paymentPlan: $plan);
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

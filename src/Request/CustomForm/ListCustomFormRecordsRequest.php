@@ -22,7 +22,8 @@ final class ListCustomFormRecordsRequest extends AbstractRequest
      */
     public function __construct(
         private ?string $purchaseId = null,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {

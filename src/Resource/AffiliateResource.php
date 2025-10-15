@@ -6,18 +6,18 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\Affiliate\GetAffiliateCommissionRequest;
-use GoSuccess\Digistore24\Api\Request\Affiliate\UpdateAffiliateCommissionRequest;
 use GoSuccess\Digistore24\Api\Request\Affiliate\GetAffiliateForEmailRequest;
-use GoSuccess\Digistore24\Api\Request\Affiliate\SetAffiliateForEmailRequest;
 use GoSuccess\Digistore24\Api\Request\Affiliate\GetReferringAffiliateRequest;
+use GoSuccess\Digistore24\Api\Request\Affiliate\SetAffiliateForEmailRequest;
 use GoSuccess\Digistore24\Api\Request\Affiliate\SetReferringAffiliateRequest;
+use GoSuccess\Digistore24\Api\Request\Affiliate\UpdateAffiliateCommissionRequest;
 use GoSuccess\Digistore24\Api\Request\Affiliate\ValidateAffiliateRequest;
 use GoSuccess\Digistore24\Api\Response\Affiliate\GetAffiliateCommissionResponse;
-use GoSuccess\Digistore24\Api\Response\Affiliate\UpdateAffiliateCommissionResponse;
 use GoSuccess\Digistore24\Api\Response\Affiliate\GetAffiliateForEmailResponse;
-use GoSuccess\Digistore24\Api\Response\Affiliate\SetAffiliateForEmailResponse;
 use GoSuccess\Digistore24\Api\Response\Affiliate\GetReferringAffiliateResponse;
+use GoSuccess\Digistore24\Api\Response\Affiliate\SetAffiliateForEmailResponse;
 use GoSuccess\Digistore24\Api\Response\Affiliate\SetReferringAffiliateResponse;
+use GoSuccess\Digistore24\Api\Response\Affiliate\UpdateAffiliateCommissionResponse;
 use GoSuccess\Digistore24\Api\Response\Affiliate\ValidateAffiliateResponse;
 
 /**

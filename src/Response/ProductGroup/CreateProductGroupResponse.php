@@ -40,8 +40,8 @@ final class CreateProductGroupResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            result: (string) ($data['result'] ?? ''),
-            data: $data['data'] ?? []
+            result: (string)($data['result'] ?? ''),
+            data: $data['data'] ?? [],
         );
     }
 }

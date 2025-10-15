@@ -30,15 +30,15 @@ final class ValidateEticketResponse extends AbstractResponse
     {
         // Support both direct and nested data structures
         $ticketData = $data['data'] ?? $data;
-        
+
         return new self(
-            success: (bool) ($ticketData['success'] ?? true),
+            success: (bool)($ticketData['success'] ?? true),
             ticketId: $ticketData['ticket_id'] ?? '',
             orderId: $ticketData['order_id'] ?? '',
             productName: $ticketData['product_name'] ?? '',
             buyerName: $ticketData['buyer_name'] ?? '',
             validatedAt: new \DateTimeImmutable($ticketData['validated_at'] ?? 'now'),
-            wasAlreadyValidated: (bool) ($ticketData['was_already_validated'] ?? false),
+            wasAlreadyValidated: (bool)($ticketData['was_already_validated'] ?? false),
             message: $ticketData['message'] ?? null,
         );
     }

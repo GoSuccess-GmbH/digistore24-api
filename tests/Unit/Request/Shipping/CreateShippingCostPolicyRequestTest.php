@@ -14,9 +14,9 @@ final class CreateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Standard Shipping';
-        
+
         $request = new CreateShippingCostPolicyRequest(policy: $policy);
-        
+
         $this->assertInstanceOf(CreateShippingCostPolicyRequest::class, $request);
     }
 
@@ -24,9 +24,9 @@ final class CreateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Standard Shipping';
-        
+
         $request = new CreateShippingCostPolicyRequest(policy: $policy);
-        
+
         $this->assertSame('/createShippingCostPolicy', $request->getEndpoint());
     }
 
@@ -35,11 +35,11 @@ final class CreateShippingCostPolicyRequestTest extends TestCase
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Standard Shipping';
         $policy->position = 50;
-        
+
         $request = new CreateShippingCostPolicyRequest(policy: $policy);
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('Standard Shipping', $array['name']);
         $this->assertSame(50, $array['position']);
@@ -49,13 +49,12 @@ final class CreateShippingCostPolicyRequestTest extends TestCase
     {
         $policy = new ShippingCostPolicyData();
         $policy->name = 'Standard Shipping';
-        
+
         $request = new CreateShippingCostPolicyRequest(policy: $policy);
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\SmartUpgrade;
 
-use GoSuccess\Digistore24\Api\Response\SmartUpgrade\GetSmartupgradeResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\SmartUpgrade\GetSmartupgradeResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetSmartupgradeResponseTest extends TestCase
@@ -22,7 +22,7 @@ final class GetSmartupgradeResponseTest extends TestCase
             ],
         ];
         $response = GetSmartupgradeResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetSmartupgradeResponse::class, $response);
         $this->assertIsArray($response->getData());
         $this->assertSame('SU123', $response->getData()['smartupgrade_id']);
@@ -39,11 +39,11 @@ final class GetSmartupgradeResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetSmartupgradeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetSmartupgradeResponse::class, $response);
         $this->assertSame('SU999', $response->getData()['smartupgrade_id']);
     }
@@ -56,12 +56,11 @@ final class GetSmartupgradeResponseTest extends TestCase
                 'data' => [],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetSmartupgradeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

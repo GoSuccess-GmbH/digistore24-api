@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Invoice;
 
-use GoSuccess\Digistore24\Api\Response\Invoice\ListInvoicesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Invoice\ListInvoicesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListInvoicesResponseTest extends TestCase
@@ -19,18 +19,18 @@ final class ListInvoicesResponseTest extends TestCase
                     [
                         'invoice_id' => 'INV001',
                         'invoice_date' => '2024-01-15',
-                        'amount' => 99.99
+                        'amount' => 99.99,
                     ],
                     [
                         'invoice_id' => 'INV002',
                         'invoice_date' => '2024-02-15',
-                        'amount' => 49.99
-                    ]
-                ]
-            ]
+                        'amount' => 49.99,
+                    ],
+                ],
+            ],
         ];
         $response = ListInvoicesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListInvoicesResponse::class, $response);
         $this->assertSame('P123456', $response->getPurchaseId());
         $this->assertCount(2, $response->getInvoiceList());
@@ -46,17 +46,17 @@ final class ListInvoicesResponseTest extends TestCase
                     'invoice_list' => [
                         [
                             'invoice_id' => 'INV003',
-                            'amount' => 149.99
-                        ]
-                    ]
-                ]
+                            'amount' => 149.99,
+                        ],
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListInvoicesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListInvoicesResponse::class, $response);
         $this->assertSame('P789012', $response->getPurchaseId());
     }
@@ -67,12 +67,11 @@ final class ListInvoicesResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListInvoicesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

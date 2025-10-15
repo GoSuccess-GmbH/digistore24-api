@@ -6,10 +6,10 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Product Group Data Transfer Object
- * 
+ *
  * Data structure for product group creation and updates.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/createProductGroup.yaml
  * @link https://digistore24.com/api/docs/paths/updateProductGroup.yaml
  */
@@ -47,7 +47,7 @@ final class ProductGroupData
 
     /**
      * Create ProductGroupData from array
-     * 
+     *
      * @param array{
      *     name: string,
      *     position?: int,
@@ -60,13 +60,13 @@ final class ProductGroupData
         $instance->name = $data['name'];
         $instance->position = $data['position'] ?? 10;
         $instance->isShownAsTab = $data['is_shown_as_tab'] ?? false;
-        
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array

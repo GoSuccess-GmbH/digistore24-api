@@ -16,7 +16,8 @@ final class ListCurrenciesResponse extends AbstractResponse
      */
     public function __construct(
         private array $currencies,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array<int, object{id: int, code: string, symbol: string, min_price: float, max_price: float, name: string}>
@@ -29,16 +30,17 @@ final class ListCurrenciesResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $currencies = array_map(
-            fn($item) => (object) [
-                'id' => (int) $item['id'],
-                'code' => (string) $item['code'],
-                'symbol' => (string) $item['symbol'],
-                'min_price' => (float) $item['min_price'],
-                'max_price' => (float) $item['max_price'],
-                'name' => (string) $item['name'],
+            fn ($item) => (object)[
+                'id' => (int)$item['id'],
+                'code' => (string)$item['code'],
+                'symbol' => (string)$item['symbol'],
+                'min_price' => (float)$item['min_price'],
+                'max_price' => (float)$item['max_price'],
+                'name' => (string)$item['name'],
             ],
-            $data
+            $data,
         );
+
         return new self(currencies: $currencies);
     }
 }

@@ -29,6 +29,4 @@ final class GetProductRequest extends AbstractRequest
             'product_id' => $this->productId,
         ];
     }
-
-    
 }

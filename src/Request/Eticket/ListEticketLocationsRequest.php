@@ -22,6 +22,4 @@ final class ListEticketLocationsRequest extends AbstractRequest
     {
         return [];
     }
-
-    
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Affiliate;
 
-use GoSuccess\Digistore24\Api\Response\Affiliate\UpdateAffiliateCommissionResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Affiliate\UpdateAffiliateCommissionResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateAffiliateCommissionResponseTest extends TestCase
@@ -14,7 +14,7 @@ final class UpdateAffiliateCommissionResponseTest extends TestCase
     {
         $data = ['result' => 'success'];
         $response = UpdateAffiliateCommissionResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdateAffiliateCommissionResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -26,11 +26,11 @@ final class UpdateAffiliateCommissionResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdateAffiliateCommissionResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdateAffiliateCommissionResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -42,12 +42,11 @@ final class UpdateAffiliateCommissionResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdateAffiliateCommissionResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -25,7 +25,7 @@ final class AddonDataTest extends TestCase
             productId: 12345,
             amount: 29.99,
             quantity: 3,
-            isQuantityEditableAfterPurchase: true
+            isQuantityEditableAfterPurchase: true,
         );
 
         $this->assertSame(12345, $addon->productId);
@@ -59,7 +59,7 @@ final class AddonDataTest extends TestCase
             productId: 12345,
             amount: 29.99,
             quantity: 2,
-            isQuantityEditableAfterPurchase: true
+            isQuantityEditableAfterPurchase: true,
         );
         $array = $addon->toArray();
 

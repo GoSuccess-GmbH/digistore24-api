@@ -12,14 +12,14 @@ final class CreateProductRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new CreateProductRequest(nameIntern: 'Test Product');
-        
+
         $this->assertInstanceOf(CreateProductRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new CreateProductRequest(nameIntern: 'Test Product');
-        
+
         $this->assertSame('/createProduct', $request->getEndpoint());
     }
 
@@ -28,11 +28,11 @@ final class CreateProductRequestTest extends TestCase
         $request = new CreateProductRequest(
             nameIntern: 'Test Product',
             nameDe: 'Testprodukt',
-            productTypeId: 1
+            productTypeId: 1,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertArrayHasKey('data', $array);
         $this->assertSame('Test Product', $array['data']['name_intern']);
@@ -43,11 +43,10 @@ final class CreateProductRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new CreateProductRequest(nameIntern: 'Test Product');
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

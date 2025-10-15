@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Billing;
 
-use GoSuccess\Digistore24\Api\Response\Billing\RefundPartiallyResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Billing\RefundPartiallyResponse;
 use PHPUnit\Framework\TestCase;
 
 final class RefundPartiallyResponseTest extends TestCase
@@ -14,10 +14,10 @@ final class RefundPartiallyResponseTest extends TestCase
     {
         $data = [
             'result' => 'success',
-            'data' => ['refund_amount' => 25.50]
+            'data' => ['refund_amount' => 25.50],
         ];
         $response = RefundPartiallyResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(RefundPartiallyResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -30,14 +30,14 @@ final class RefundPartiallyResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'result' => 'success',
-                'data' => ['refund_amount' => 25.50]
+                'data' => ['refund_amount' => 25.50],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = RefundPartiallyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(RefundPartiallyResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -49,12 +49,11 @@ final class RefundPartiallyResponseTest extends TestCase
             statusCode: 200,
             data: ['result' => 'success'],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = RefundPartiallyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

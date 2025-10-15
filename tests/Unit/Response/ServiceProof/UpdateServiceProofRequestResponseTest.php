@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ServiceProof;
 
-use GoSuccess\Digistore24\Api\Response\ServiceProof\UpdateServiceProofRequestResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ServiceProof\UpdateServiceProofRequestResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateServiceProofRequestResponseTest extends TestCase
@@ -16,7 +16,7 @@ final class UpdateServiceProofRequestResponseTest extends TestCase
             'result' => 'success',
         ];
         $response = UpdateServiceProofRequestResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdateServiceProofRequestResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -29,11 +29,11 @@ final class UpdateServiceProofRequestResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdateServiceProofRequestResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdateServiceProofRequestResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -46,12 +46,11 @@ final class UpdateServiceProofRequestResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdateServiceProofRequestResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

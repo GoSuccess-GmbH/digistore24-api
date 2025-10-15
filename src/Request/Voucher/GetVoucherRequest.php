@@ -18,7 +18,7 @@ final class GetVoucherRequest extends AbstractRequest
      * @param string $code The voucher code or ID
      */
     public function __construct(
-        private string $code
+        private string $code,
     ) {
     }
 

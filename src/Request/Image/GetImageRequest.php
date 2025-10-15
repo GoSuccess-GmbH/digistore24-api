@@ -29,6 +29,4 @@ final class GetImageRequest extends AbstractRequest
             'image_id' => $this->imageId,
         ];
     }
-
-    
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Upsell;
@@ -16,11 +17,22 @@ final class GetUpsellsRequest extends AbstractRequest
     /**
      * @param int $productId The unique identifier of the product
      */
-    public function __construct(private int $productId) {}
+    public function __construct(private int $productId)
+    {
+    }
 
-    public function getEndpoint(): string { return '/getUpsells'; }
+    public function getEndpoint(): string
+    {
+        return '/getUpsells';
+    }
 
-    public function method(): Method { return Method::GET; }
+    public function method(): Method
+    {
+        return Method::GET;
+    }
 
-    public function toArray(): array { return ['product_id' => $this->productId]; }
+    public function toArray(): array
+    {
+        return ['product_id' => $this->productId];
+    }
 }

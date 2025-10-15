@@ -14,9 +14,9 @@ final class CreateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Test Group';
-        
+
         $request = new CreateProductGroupRequest(productGroup: $group);
-        
+
         $this->assertInstanceOf(CreateProductGroupRequest::class, $request);
     }
 
@@ -24,9 +24,9 @@ final class CreateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Test Group';
-        
+
         $request = new CreateProductGroupRequest(productGroup: $group);
-        
+
         $this->assertSame('/createProductGroup', $request->getEndpoint());
     }
 
@@ -35,11 +35,11 @@ final class CreateProductGroupRequestTest extends TestCase
         $group = new ProductGroupData();
         $group->name = 'Test Group';
         $group->position = 20;
-        
+
         $request = new CreateProductGroupRequest(productGroup: $group);
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('Test Group', $array['name']);
         $this->assertSame(20, $array['position']);
@@ -49,13 +49,12 @@ final class CreateProductGroupRequestTest extends TestCase
     {
         $group = new ProductGroupData();
         $group->name = 'Test Group';
-        
+
         $request = new CreateProductGroupRequest(productGroup: $group);
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

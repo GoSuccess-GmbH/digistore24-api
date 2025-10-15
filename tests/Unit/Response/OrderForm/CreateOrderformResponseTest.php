@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\OrderForm;
 
-use GoSuccess\Digistore24\Api\Response\OrderForm\CreateOrderformResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\OrderForm\CreateOrderformResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateOrderformResponseTest extends TestCase
@@ -15,11 +15,11 @@ final class CreateOrderformResponseTest extends TestCase
         $data = [
             'result' => 'success',
             'data' => [
-                'orderform_id' => 'OF123456'
-            ]
+                'orderform_id' => 'OF123456',
+            ],
         ];
         $response = CreateOrderformResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateOrderformResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
         $this->assertSame('OF123456', $response->getOrderformId());
@@ -32,15 +32,15 @@ final class CreateOrderformResponseTest extends TestCase
             data: [
                 'result' => 'success',
                 'data' => [
-                    'orderform_id' => 'OF789012'
-                ]
+                    'orderform_id' => 'OF789012',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateOrderformResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateOrderformResponse::class, $response);
         $this->assertSame('OF789012', $response->getOrderformId());
     }
@@ -51,12 +51,11 @@ final class CreateOrderformResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateOrderformResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Upsell;
 
-use GoSuccess\Digistore24\Api\Response\Upsell\DeleteUpsellsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Upsell\DeleteUpsellsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class DeleteUpsellsResponseTest extends TestCase
@@ -16,7 +16,7 @@ final class DeleteUpsellsResponseTest extends TestCase
             'result' => 'success',
         ];
         $response = DeleteUpsellsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(DeleteUpsellsResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -29,11 +29,11 @@ final class DeleteUpsellsResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = DeleteUpsellsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(DeleteUpsellsResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -46,12 +46,11 @@ final class DeleteUpsellsResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = DeleteUpsellsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

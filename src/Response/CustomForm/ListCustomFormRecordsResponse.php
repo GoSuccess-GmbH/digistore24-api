@@ -19,7 +19,8 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
      */
     public function __construct(
         private array $records,
-    ) {}
+    ) {
+    }
 
     /**
      * Get all custom form records.
@@ -41,7 +42,7 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
     {
         return array_filter(
             $this->records,
-            fn($record) => $record->purchase_id === $purchaseId
+            fn ($record) => $record->purchase_id === $purchaseId,
         );
     }
 
@@ -51,18 +52,18 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $records = array_map(
-            fn($item) => (object) [
-                'form_id' => (int) $item['form_id'],
-                'id' => (int) $item['id'],
-                'purchase_id' => (string) $item['purchase_id'],
-                'purchase_item_id' => (int) $item['purchase_item_id'],
-                'product_id' => (int) $item['product_id'],
-                'form_no' => (int) $item['form_no'],
-                'form_count' => (int) $item['form_count'],
-                'data' => (array) ($item['data'] ?? []),
-                'address' => (array) ($item['address'] ?? []),
+            fn ($item) => (object)[
+                'form_id' => (int)$item['form_id'],
+                'id' => (int)$item['id'],
+                'purchase_id' => (string)$item['purchase_id'],
+                'purchase_item_id' => (int)$item['purchase_item_id'],
+                'product_id' => (int)$item['product_id'],
+                'form_no' => (int)$item['form_no'],
+                'form_count' => (int)$item['form_count'],
+                'data' => (array)($item['data'] ?? []),
+                'address' => (array)($item['address'] ?? []),
             ],
-            $data['records'] ?? []
+            $data['records'] ?? [],
         );
 
         return new self($records);

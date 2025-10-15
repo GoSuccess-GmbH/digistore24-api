@@ -30,9 +30,10 @@ final class ListInvoicesResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $invoiceData = $data['data'] ?? [];
+
         return new self(
-            purchaseId: (string) ($invoiceData['purchase_id'] ?? ''),
-            invoiceList: $invoiceData['invoice_list'] ?? []
+            purchaseId: (string)($invoiceData['purchase_id'] ?? ''),
+            invoiceList: $invoiceData['invoice_list'] ?? [],
         );
     }
 }

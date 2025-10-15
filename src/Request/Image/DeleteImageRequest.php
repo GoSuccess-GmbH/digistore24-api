@@ -29,6 +29,4 @@ final class DeleteImageRequest extends AbstractRequest
             'image_id' => $this->imageId,
         ];
     }
-
-    
 }

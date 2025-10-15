@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Product;
 
-use GoSuccess\Digistore24\Api\Response\Product\UpdateProductResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Product\UpdateProductResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateProductResponseTest extends TestCase
@@ -14,11 +14,11 @@ final class UpdateProductResponseTest extends TestCase
     {
         $data = [
             'data' => [
-                'modified' => 'Y'
-            ]
+                'modified' => 'Y',
+            ],
         ];
         $response = UpdateProductResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdateProductResponse::class, $response);
         $this->assertTrue($response->wasModified());
         $this->assertSame('Y', $response->getModified());
@@ -30,15 +30,15 @@ final class UpdateProductResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'modified' => 'Y'
-                ]
+                    'modified' => 'Y',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdateProductResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdateProductResponse::class, $response);
         $this->assertTrue($response->wasModified());
     }
@@ -49,12 +49,11 @@ final class UpdateProductResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdateProductResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

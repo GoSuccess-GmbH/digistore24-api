@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Upgrade;
@@ -17,11 +18,22 @@ final class CreateUpgradeRequest extends AbstractRequest
     /**
      * @param UpgradeData $upgrade The upgrade configuration
      */
-    public function __construct(private UpgradeData $upgrade) {}
+    public function __construct(private UpgradeData $upgrade)
+    {
+    }
 
-    public function getEndpoint(): string { return '/createUpgrade'; }
+    public function getEndpoint(): string
+    {
+        return '/createUpgrade';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
-    public function toArray(): array { return $this->upgrade->toArray(); }
+    public function toArray(): array
+    {
+        return $this->upgrade->toArray();
+    }
 }

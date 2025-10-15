@@ -30,8 +30,8 @@ final class ValidateAffiliateResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            isValid: (bool) ($data['data']['is_valid'] ?? false),
-            data: $data['data'] ?? []
+            isValid: (bool)($data['data']['is_valid'] ?? false),
+            data: $data['data'] ?? [],
         );
     }
 }

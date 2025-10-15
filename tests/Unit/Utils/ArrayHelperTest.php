@@ -17,9 +17,9 @@ final class ArrayHelperTest extends TestCase
             'user' => [
                 'name' => 'John',
                 'address' => [
-                    'city' => 'Berlin'
-                ]
-            ]
+                    'city' => 'Berlin',
+                ],
+            ],
         ];
 
         $this->assertSame('John', ArrayHelper::get($array, 'user.name'));
@@ -29,7 +29,7 @@ final class ArrayHelperTest extends TestCase
     public function testGetReturnsDefaultForMissingKey(): void
     {
         $array = ['key' => 'value'];
-        
+
         $this->assertSame('default', ArrayHelper::get($array, 'missing', 'default'));
         $this->assertNull(ArrayHelper::get($array, 'missing'));
     }
@@ -37,7 +37,7 @@ final class ArrayHelperTest extends TestCase
     public function testSetCreatesNestedArray(): void
     {
         $array = [];
-        
+
         ArrayHelper::set($array, 'user.name', 'John');
         ArrayHelper::set($array, 'user.address.city', 'Berlin');
 
@@ -49,8 +49,8 @@ final class ArrayHelperTest extends TestCase
     {
         $array = [
             'user' => [
-                'name' => 'John'
-            ]
+                'name' => 'John',
+            ],
         ];
 
         $this->assertTrue(ArrayHelper::has($array, 'user.name'));
@@ -62,7 +62,7 @@ final class ArrayHelperTest extends TestCase
         $array = [
             'first_name' => 'John',
             'last_name' => 'Doe',
-            'email_address' => 'john@example.com'
+            'email_address' => 'john@example.com',
         ];
 
         $result = ArrayHelper::keysToCamelCase($array);
@@ -78,7 +78,7 @@ final class ArrayHelperTest extends TestCase
         $array = [
             'firstName' => 'John',
             'lastName' => 'Doe',
-            'emailAddress' => 'john@example.com'
+            'emailAddress' => 'john@example.com',
         ];
 
         $result = ArrayHelper::keysToSnakeCase($array);
@@ -109,9 +109,9 @@ final class ArrayHelperTest extends TestCase
             'user' => [
                 'name' => 'John',
                 'address' => [
-                    'city' => 'Berlin'
-                ]
-            ]
+                    'city' => 'Berlin',
+                ],
+            ],
         ];
 
         $result = ArrayHelper::flatten($array);
@@ -126,7 +126,7 @@ final class ArrayHelperTest extends TestCase
             'name' => 'John',
             'email' => null,
             'age' => 30,
-            'address' => null
+            'address' => null,
         ];
 
         $result = ArrayHelper::removeNulls($array);
@@ -143,7 +143,7 @@ final class ArrayHelperTest extends TestCase
             'name' => 'John',
             'email' => 'john@example.com',
             'age' => 30,
-            'city' => 'Berlin'
+            'city' => 'Berlin',
         ];
 
         $result = ArrayHelper::only($array, ['name', 'email']);
@@ -160,7 +160,7 @@ final class ArrayHelperTest extends TestCase
             'name' => 'John',
             'email' => 'john@example.com',
             'age' => 30,
-            'city' => 'Berlin'
+            'city' => 'Berlin',
         ];
 
         $result = ArrayHelper::except($array, ['age', 'city']);

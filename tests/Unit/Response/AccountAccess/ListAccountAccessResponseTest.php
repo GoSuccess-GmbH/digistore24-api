@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\AccountAccess;
 
+use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Response\AccountAccess\AccountAccessEntry;
 use GoSuccess\Digistore24\Api\Response\AccountAccess\ListAccountAccessResponse;
-use GoSuccess\Digistore24\Api\Http\Response;
-use GoSuccess\Digistore24\Api\Http\StatusCode;
 use PHPUnit\Framework\TestCase;
 
 final class ListAccountAccessResponseTest extends TestCase

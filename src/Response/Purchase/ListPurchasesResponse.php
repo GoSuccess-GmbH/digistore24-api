@@ -34,7 +34,7 @@ final class PurchaseListItem
             productName: $data['product_name'] ?? '',
             buyerEmail: $data['buyer_email'] ?? '',
             paymentStatus: $data['payment_status'] ?? '',
-            amount: (float) ($data['amount'] ?? 0),
+            amount: (float)($data['amount'] ?? 0),
             currency: $data['currency'] ?? 'EUR',
             createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
         );
@@ -70,8 +70,9 @@ final class ListPurchasesResponse extends AbstractResponse
 
         $instance = new self(
             purchases: $purchases,
-            totalCount: (int) ($data['total_count'] ?? count($purchases)),
+            totalCount: (int)($data['total_count'] ?? count($purchases)),
         );
+
         return $instance;
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\PaymentPlan;
 
-use GoSuccess\Digistore24\Api\Response\PaymentPlan\ListPaymentPlansResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\PaymentPlan\ListPaymentPlansResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListPaymentPlansResponseTest extends TestCase
@@ -18,18 +18,18 @@ final class ListPaymentPlansResponseTest extends TestCase
                     [
                         'paymentplan_id' => 'PP001',
                         'name' => 'Monthly Plan',
-                        'price' => 29.99
+                        'price' => 29.99,
                     ],
                     [
                         'paymentplan_id' => 'PP002',
                         'name' => 'Yearly Plan',
-                        'price' => 299.99
-                    ]
-                ]
-            ]
+                        'price' => 299.99,
+                    ],
+                ],
+            ],
         ];
         $response = ListPaymentPlansResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListPaymentPlansResponse::class, $response);
         $this->assertCount(2, $response->getPaymentPlans());
     }
@@ -43,17 +43,17 @@ final class ListPaymentPlansResponseTest extends TestCase
                     'payment_plans' => [
                         [
                             'paymentplan_id' => 'PP003',
-                            'name' => 'Lifetime Plan'
-                        ]
-                    ]
-                ]
+                            'name' => 'Lifetime Plan',
+                        ],
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListPaymentPlansResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListPaymentPlansResponse::class, $response);
         $this->assertCount(1, $response->getPaymentPlans());
     }
@@ -64,12 +64,11 @@ final class ListPaymentPlansResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListPaymentPlansResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

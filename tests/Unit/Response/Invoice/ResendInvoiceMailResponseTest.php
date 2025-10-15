@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Invoice;
 
-use GoSuccess\Digistore24\Api\Response\Invoice\ResendInvoiceMailResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Invoice\ResendInvoiceMailResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ResendInvoiceMailResponseTest extends TestCase
@@ -15,11 +15,11 @@ final class ResendInvoiceMailResponseTest extends TestCase
         $data = [
             'data' => [
                 'status' => 'success',
-                'note' => 'Invoice email has been resent successfully'
-            ]
+                'note' => 'Invoice email has been resent successfully',
+            ],
         ];
         $response = ResendInvoiceMailResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ResendInvoiceMailResponse::class, $response);
         $this->assertSame('success', $response->getStatus());
         $this->assertTrue($response->wasSuccessful());
@@ -32,15 +32,15 @@ final class ResendInvoiceMailResponseTest extends TestCase
             data: [
                 'data' => [
                     'status' => 'success',
-                    'note' => 'Email sent to recipient'
-                ]
+                    'note' => 'Email sent to recipient',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ResendInvoiceMailResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ResendInvoiceMailResponse::class, $response);
         $this->assertSame('Email sent to recipient', $response->getNote());
     }
@@ -51,12 +51,11 @@ final class ResendInvoiceMailResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ResendInvoiceMailResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

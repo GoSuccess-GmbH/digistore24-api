@@ -6,15 +6,15 @@ namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
 use GoSuccess\Digistore24\Api\Request\ProductGroup\CreateProductGroupRequest;
-use GoSuccess\Digistore24\Api\Request\ProductGroup\GetProductGroupRequest;
-use GoSuccess\Digistore24\Api\Request\ProductGroup\UpdateProductGroupRequest;
 use GoSuccess\Digistore24\Api\Request\ProductGroup\DeleteProductGroupRequest;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\GetProductGroupRequest;
 use GoSuccess\Digistore24\Api\Request\ProductGroup\ListProductGroupsRequest;
+use GoSuccess\Digistore24\Api\Request\ProductGroup\UpdateProductGroupRequest;
 use GoSuccess\Digistore24\Api\Response\ProductGroup\CreateProductGroupResponse;
-use GoSuccess\Digistore24\Api\Response\ProductGroup\GetProductGroupResponse;
-use GoSuccess\Digistore24\Api\Response\ProductGroup\UpdateProductGroupResponse;
 use GoSuccess\Digistore24\Api\Response\ProductGroup\DeleteProductGroupResponse;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\GetProductGroupResponse;
 use GoSuccess\Digistore24\Api\Response\ProductGroup\ListProductGroupsResponse;
+use GoSuccess\Digistore24\Api\Response\ProductGroup\UpdateProductGroupResponse;
 
 /**
  * Product Group Resource

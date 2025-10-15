@@ -9,7 +9,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Create Addon Change Purchase Response
- * 
+ *
  * Response after creating a package change order.
  */
 final class CreateAddonChangePurchaseResponse extends AbstractResponse
@@ -42,6 +42,7 @@ final class CreateAddonChangePurchaseResponse extends AbstractResponse
             billingStatusMsg: self::getValue($data, 'billing_status_msg', 'string', ''),
             payUrl: self::getValue($data, 'pay_url', 'string'),
         );
+
         return $instance;
     }
 }

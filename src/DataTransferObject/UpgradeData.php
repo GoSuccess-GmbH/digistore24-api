@@ -6,10 +6,10 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Upgrade Data Transfer Object
- * 
+ *
  * Data structure for upgrade creation.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/createUpgrade.yaml
  */
 final class UpgradeData
@@ -53,7 +53,7 @@ final class UpgradeData
 
     /**
      * Determines which buyer data fields are protected
-     * 
+     *
      * - none: All fields editable
      * - email: Only email protected
      * - email_and_name: Email and name protected
@@ -61,9 +61,9 @@ final class UpgradeData
      */
     public string $buyerReadonlyKeys = 'none' {
         set {
-            if (!in_array($value, ['none', 'email', 'email_and_name', 'all'], true)) {
+            if (! in_array($value, ['none', 'email', 'email_and_name', 'all'], true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid buyer readonly keys: $value. Allowed: none, email, email_and_name, all"
+                    "Invalid buyer readonly keys: $value. Allowed: none, email, email_and_name, all",
                 );
             }
             $this->buyerReadonlyKeys = $value;
@@ -72,7 +72,7 @@ final class UpgradeData
 
     /**
      * Create UpgradeData from array
-     * 
+     *
      * @param array{
      *     name: string,
      *     to_product_id: int,
@@ -93,22 +93,22 @@ final class UpgradeData
         $instance->downgradeFrom = $data['downgrade_from'] ?? '';
         $instance->specialOfferFor = $data['special_offer_for'] ?? '';
         $instance->fallbackProductId = $data['fallback_product_id'] ?? null;
-        
+
         // Handle Digistore24's Y/N format
         if (isset($data['is_active'])) {
             $instance->isActive = is_bool($data['is_active'])
                 ? $data['is_active']
                 : ($data['is_active'] === 'Y' || $data['is_active'] === true);
         }
-        
+
         $instance->buyerReadonlyKeys = $data['buyer_readonly_keys'] ?? 'none';
-        
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
@@ -122,11 +122,11 @@ final class UpgradeData
             'is_active' => $this->isActive ? 'Y' : 'N',
             'buyer_readonly_keys' => $this->buyerReadonlyKeys,
         ];
-        
+
         if ($this->fallbackProductId !== null) {
             $data['fallback_product_id'] = $this->fallbackProductId;
         }
-        
+
         return $data;
     }
 }

@@ -22,7 +22,8 @@ final class CreateBillingOnDemandResponse extends AbstractResponse
         private string $paymentStatusMsg,
         private string $billingStatus,
         private string $billingStatusMsg,
-    ) {}
+    ) {
+    }
 
     /**
      * Get the ID of the newly created order.
@@ -78,11 +79,11 @@ final class CreateBillingOnDemandResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            createdPurchaseId: (string) $data['created_purchase_id'],
-            paymentStatus: (string) $data['payment_status'],
-            paymentStatusMsg: (string) $data['payment_status_msg'],
-            billingStatus: (string) $data['billing_status'],
-            billingStatusMsg: (string) $data['billing_status_msg'],
+            createdPurchaseId: (string)$data['created_purchase_id'],
+            paymentStatus: (string)$data['payment_status'],
+            paymentStatusMsg: (string)$data['payment_status_msg'],
+            billingStatus: (string)$data['billing_status'],
+            billingStatusMsg: (string)$data['billing_status_msg'],
         );
     }
 }

@@ -26,7 +26,8 @@ final class ListCommissionsResponse extends AbstractResponse
         private int $itemCount,
         private int $pageCount,
         private array $items,
-    ) {}
+    ) {
+    }
 
     /**
      * Get current page number.
@@ -85,8 +86,8 @@ final class ListCommissionsResponse extends AbstractResponse
     {
         return array_reduce(
             $this->items,
-            fn($sum, $item) => $sum + $item->amount,
-            0.0
+            fn ($sum, $item) => $sum + $item->amount,
+            0.0,
         );
     }
 
@@ -96,24 +97,24 @@ final class ListCommissionsResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $items = array_map(
-            fn($item) => (object) [
-                'id' => (int) $item['id'],
-                'created_at' => (string) $item['created_at'],
-                'amount' => (float) $item['amount'],
-                'currency' => (string) $item['currency'],
-                'reason' => (string) $item['reason'],
-                'schedule_payout_at' => (string) $item['schedule_payout_at'],
-                'transaction_id' => (int) $item['transaction_id'],
-                'purchase_id' => (string) $item['purchase_id'],
+            fn ($item) => (object)[
+                'id' => (int)$item['id'],
+                'created_at' => (string)$item['created_at'],
+                'amount' => (float)$item['amount'],
+                'currency' => (string)$item['currency'],
+                'reason' => (string)$item['reason'],
+                'schedule_payout_at' => (string)$item['schedule_payout_at'],
+                'transaction_id' => (int)$item['transaction_id'],
+                'purchase_id' => (string)$item['purchase_id'],
             ],
-            $data['items'] ?? []
+            $data['items'] ?? [],
         );
 
         return new self(
-            pageNo: (int) ($data['page_no'] ?? 1),
-            pageSize: (int) ($data['page_size'] ?? 0),
-            itemCount: (int) ($data['item_count'] ?? 0),
-            pageCount: (int) ($data['page_count'] ?? 0),
+            pageNo: (int)($data['page_no'] ?? 1),
+            pageSize: (int)($data['page_size'] ?? 0),
+            itemCount: (int)($data['item_count'] ?? 0),
+            pageCount: (int)($data['page_count'] ?? 0),
             items: $items,
         );
     }

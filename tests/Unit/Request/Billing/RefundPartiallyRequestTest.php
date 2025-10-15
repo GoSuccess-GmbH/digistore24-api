@@ -13,9 +13,9 @@ final class RefundPartiallyRequestTest extends TestCase
     {
         $request = new RefundPartiallyRequest(
             purchaseId: 'P12345',
-            amount: 15.50
+            amount: 15.50,
         );
-        
+
         $this->assertInstanceOf(RefundPartiallyRequest::class, $request);
     }
 
@@ -23,9 +23,9 @@ final class RefundPartiallyRequestTest extends TestCase
     {
         $request = new RefundPartiallyRequest(
             purchaseId: 'P12345',
-            amount: 15.50
+            amount: 15.50,
         );
-        
+
         $this->assertSame('/refundPartially', $request->getEndpoint());
     }
 
@@ -33,11 +33,11 @@ final class RefundPartiallyRequestTest extends TestCase
     {
         $request = new RefundPartiallyRequest(
             purchaseId: 'P12345',
-            amount: 15.50
+            amount: 15.50,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame(15.50, $array['amount']);
@@ -47,13 +47,12 @@ final class RefundPartiallyRequestTest extends TestCase
     {
         $request = new RefundPartiallyRequest(
             purchaseId: 'P12345',
-            amount: 15.50
+            amount: 15.50,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

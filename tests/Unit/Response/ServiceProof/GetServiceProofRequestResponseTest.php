@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\ServiceProof;
 
-use GoSuccess\Digistore24\Api\Response\ServiceProof\GetServiceProofRequestResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\ServiceProof\GetServiceProofRequestResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetServiceProofRequestResponseTest extends TestCase
@@ -24,7 +24,7 @@ final class GetServiceProofRequestResponseTest extends TestCase
             ],
         ];
         $response = GetServiceProofRequestResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetServiceProofRequestResponse::class, $response);
         $this->assertIsArray($response->getServiceProofRequest());
         $this->assertSame('SPR123456', $response->getServiceProofRequest()['request_id']);
@@ -44,11 +44,11 @@ final class GetServiceProofRequestResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetServiceProofRequestResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetServiceProofRequestResponse::class, $response);
         $this->assertSame('SPR999', $response->getServiceProofRequest()['request_id']);
     }
@@ -63,12 +63,11 @@ final class GetServiceProofRequestResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetServiceProofRequestResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

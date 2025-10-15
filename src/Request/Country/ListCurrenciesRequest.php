@@ -14,7 +14,8 @@ final class ListCurrenciesRequest extends AbstractRequest
 {
     public function __construct(
         private ?string $convertTo = null,
-    ) {}
+    ) {
+    }
 
     public function getEndpoint(): string
     {
@@ -32,6 +33,7 @@ final class ListCurrenciesRequest extends AbstractRequest
         if ($this->convertTo !== null) {
             $params['convert_to'] = $this->convertTo;
         }
+
         return $params;
     }
 }

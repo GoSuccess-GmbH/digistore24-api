@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Statistics;
 
-use GoSuccess\Digistore24\Api\Response\Statistics\StatsSalesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Statistics\StatsSalesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class StatsSalesResponseTest extends TestCase
@@ -35,7 +35,7 @@ final class StatsSalesResponseTest extends TestCase
             ],
         ];
         $response = StatsSalesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(StatsSalesResponse::class, $response);
         $sales = $response->getSales();
         $this->assertCount(2, $sales);
@@ -59,11 +59,11 @@ final class StatsSalesResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = StatsSalesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(StatsSalesResponse::class, $response);
         $this->assertCount(1, $response->getSales());
     }
@@ -74,12 +74,11 @@ final class StatsSalesResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = StatsSalesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

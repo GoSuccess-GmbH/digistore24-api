@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Shipping;
 
-use GoSuccess\Digistore24\Api\Response\Shipping\GetShippingCostPolicyResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Shipping\GetShippingCostPolicyResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetShippingCostPolicyResponseTest extends TestCase
@@ -25,7 +25,7 @@ final class GetShippingCostPolicyResponseTest extends TestCase
             ],
         ];
         $response = GetShippingCostPolicyResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetShippingCostPolicyResponse::class, $response);
         $policy = $response->getShippingCostPolicy();
         $this->assertSame('SCP123', $policy['shipping_cost_policy_id']);
@@ -46,11 +46,11 @@ final class GetShippingCostPolicyResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetShippingCostPolicyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetShippingCostPolicyResponse::class, $response);
         $this->assertSame('SCP999', $response->getShippingCostPolicy()['shipping_cost_policy_id']);
     }
@@ -61,12 +61,11 @@ final class GetShippingCostPolicyResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => ['shipping_cost_policy' => []]],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetShippingCostPolicyResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

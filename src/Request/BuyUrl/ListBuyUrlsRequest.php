@@ -8,9 +8,9 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 
 /**
  * List Buy URLs Request
- * 
+ *
  * Retrieves a list of all generated buy URLs.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/listBuyUrls.yaml
  */
 final class ListBuyUrlsRequest extends AbstractRequest
@@ -24,6 +24,4 @@ final class ListBuyUrlsRequest extends AbstractRequest
     {
         return [];
     }
-
-    
 }

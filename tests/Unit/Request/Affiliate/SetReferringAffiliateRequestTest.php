@@ -13,9 +13,9 @@ final class SetReferringAffiliateRequestTest extends TestCase
     {
         $request = new SetReferringAffiliateRequest(
             purchaseId: 'P12345',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $this->assertInstanceOf(SetReferringAffiliateRequest::class, $request);
     }
 
@@ -23,9 +23,9 @@ final class SetReferringAffiliateRequestTest extends TestCase
     {
         $request = new SetReferringAffiliateRequest(
             purchaseId: 'P12345',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $this->assertSame('/setReferringAffiliate', $request->getEndpoint());
     }
 
@@ -33,11 +33,11 @@ final class SetReferringAffiliateRequestTest extends TestCase
     {
         $request = new SetReferringAffiliateRequest(
             purchaseId: 'P12345',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame('AFF123', $array['affiliate_id']);
@@ -47,13 +47,12 @@ final class SetReferringAffiliateRequestTest extends TestCase
     {
         $request = new SetReferringAffiliateRequest(
             purchaseId: 'P12345',
-            affiliateId: 'AFF123'
+            affiliateId: 'AFF123',
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

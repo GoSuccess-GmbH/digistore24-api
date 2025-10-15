@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Rebilling;
@@ -17,11 +18,19 @@ final class CreateRebillingPaymentRequest extends AbstractRequest
      * @param string $purchaseId The unique identifier of the purchase
      * @param array $data Optional payment data (amount, date, etc.)
      */
-    public function __construct(private string $purchaseId, private array $data = []) {}
+    public function __construct(private string $purchaseId, private array $data = [])
+    {
+    }
 
-    public function getEndpoint(): string { return '/createRebillingPayment'; }
+    public function getEndpoint(): string
+    {
+        return '/createRebillingPayment';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
     public function toArray(): array
     {

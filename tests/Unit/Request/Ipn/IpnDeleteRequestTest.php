@@ -12,23 +12,23 @@ final class IpnDeleteRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $request = new IpnDeleteRequest();
-        
+
         $this->assertInstanceOf(IpnDeleteRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new IpnDeleteRequest();
-        
+
         $this->assertSame('/ipnDelete', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void
     {
         $request = new IpnDeleteRequest();
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertEmpty($array);
     }
@@ -36,11 +36,10 @@ final class IpnDeleteRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $request = new IpnDeleteRequest();
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

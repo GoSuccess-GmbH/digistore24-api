@@ -20,7 +20,7 @@ final class RetrieveApiKeyRequest extends AbstractRequest
      */
     public function __construct(
         private string $email,
-        private string $token
+        private string $token,
     ) {
     }
 
@@ -38,7 +38,7 @@ final class RetrieveApiKeyRequest extends AbstractRequest
     {
         return [
             'email' => $this->email,
-            'token' => $this->token
+            'token' => $this->token,
         ];
     }
 }

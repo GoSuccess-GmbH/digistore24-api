@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\ListPurchasesResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListPurchasesResponseTest extends TestCase
@@ -38,7 +38,7 @@ final class ListPurchasesResponseTest extends TestCase
             'total_count' => 2,
         ];
         $response = ListPurchasesResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListPurchasesResponse::class, $response);
         $this->assertIsArray($response->purchases);
         $this->assertCount(2, $response->purchases);
@@ -67,11 +67,11 @@ final class ListPurchasesResponseTest extends TestCase
                 'total_count' => 1,
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListPurchasesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListPurchasesResponse::class, $response);
         $this->assertCount(1, $response->purchases);
         $this->assertSame('P333333', $response->purchases[0]->purchaseId);
@@ -86,12 +86,11 @@ final class ListPurchasesResponseTest extends TestCase
                 'total_count' => 0,
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListPurchasesResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

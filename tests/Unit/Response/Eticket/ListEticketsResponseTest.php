@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Eticket;
 
+use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Response\Eticket\EticketListItem;
 use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketsResponse;
-use GoSuccess\Digistore24\Api\Http\Response;
 use PHPUnit\Framework\TestCase;
 
 final class ListEticketsResponseTest extends TestCase

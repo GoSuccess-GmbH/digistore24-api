@@ -18,7 +18,7 @@ final class GetBuyerRequest extends AbstractRequest
      * @param string $buyerId The buyer ID or email address
      */
     public function __construct(
-        private string $buyerId
+        private string $buyerId,
     ) {
     }
 

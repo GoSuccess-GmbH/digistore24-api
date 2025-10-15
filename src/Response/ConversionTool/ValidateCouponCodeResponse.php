@@ -35,9 +35,10 @@ final class ValidateCouponCodeResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         $couponData = $data['data'] ?? [];
+
         return new self(
-            status: (string) ($couponData['status'] ?? ''),
-            data: $couponData
+            status: (string)($couponData['status'] ?? ''),
+            data: $couponData,
         );
     }
 }

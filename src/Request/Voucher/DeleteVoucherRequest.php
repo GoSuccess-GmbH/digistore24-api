@@ -18,7 +18,7 @@ final class DeleteVoucherRequest extends AbstractRequest
      * @param string $code The voucher code to delete
      */
     public function __construct(
-        private string $code
+        private string $code,
     ) {
     }
 

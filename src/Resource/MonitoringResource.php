@@ -8,20 +8,20 @@ use GoSuccess\Digistore24\Api\Base\AbstractResource;
 
 /**
  * Monitoring Resource
- * 
+ *
  * Health checks and API status monitoring.
- * 
+ *
  * @link https://digistore24.com/api/docs/tags/monitoring
  */
 final class MonitoringResource extends AbstractResource
 {
     /**
      * Ping the API to check connectivity
-     * 
+     *
      * TODO: Implement when ping endpoint is added
-     * 
+     *
      * @link https://digistore24.com/api/docs/paths/ping.yaml
-     * 
+     *
      * @example
      * ```php
      * $request = new PingRequest();

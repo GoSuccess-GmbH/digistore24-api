@@ -6,10 +6,10 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Affiliate Commission Data Transfer Object
- * 
+ *
  * Data structure for affiliate commission updates.
  * Uses PHP 8.4 property hooks for automatic validation.
- * 
+ *
  * @link https://digistore24.com/api/docs/paths/updateAffiliateCommission.yaml
  */
 final class AffiliateCommissionData
@@ -55,9 +55,9 @@ final class AffiliateCommissionData
      */
     public ?string $approvalStatus = null {
         set {
-            if ($value !== null && !in_array($value, ['new', 'approved', 'rejected', 'pending'], true)) {
+            if ($value !== null && ! in_array($value, ['new', 'approved', 'rejected', 'pending'], true)) {
                 throw new \InvalidArgumentException(
-                    "Invalid approval status: $value. Allowed: new, approved, rejected, pending"
+                    "Invalid approval status: $value. Allowed: new, approved, rejected, pending",
                 );
             }
             $this->approvalStatus = $value;
@@ -66,7 +66,7 @@ final class AffiliateCommissionData
 
     /**
      * Create AffiliateCommissionData from array
-     * 
+     *
      * @param array{
      *     commission_rate?: float|null,
      *     commission_fix?: float|null,
@@ -77,39 +77,39 @@ final class AffiliateCommissionData
     public static function fromArray(array $data): self
     {
         $instance = new self();
-        $instance->commissionRate = isset($data['commission_rate']) ? (float) $data['commission_rate'] : null;
-        $instance->commissionFix = isset($data['commission_fix']) ? (float) $data['commission_fix'] : null;
+        $instance->commissionRate = isset($data['commission_rate']) ? (float)$data['commission_rate'] : null;
+        $instance->commissionFix = isset($data['commission_fix']) ? (float)$data['commission_fix'] : null;
         $instance->commissionCurrency = $data['commission_currency'] ?? null;
         $instance->approvalStatus = $data['approval_status'] ?? null;
-        
+
         return $instance;
     }
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
         $data = [];
-        
+
         if ($this->commissionRate !== null) {
             $data['commission_rate'] = $this->commissionRate;
         }
-        
+
         if ($this->commissionFix !== null) {
             $data['commission_fix'] = $this->commissionFix;
         }
-        
+
         if ($this->commissionCurrency !== null) {
             $data['commission_currency'] = $this->commissionCurrency;
         }
-        
+
         if ($this->approvalStatus !== null) {
             $data['approval_status'] = $this->approvalStatus;
         }
-        
+
         return $data;
     }
 }

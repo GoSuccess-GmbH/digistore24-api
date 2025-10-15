@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Product;
 
-use GoSuccess\Digistore24\Api\Response\Product\CreateProductResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Product\CreateProductResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateProductResponseTest extends TestCase
@@ -14,11 +14,11 @@ final class CreateProductResponseTest extends TestCase
     {
         $data = [
             'data' => [
-                'product_id' => 123456
-            ]
+                'product_id' => 123456,
+            ],
         ];
         $response = CreateProductResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateProductResponse::class, $response);
         $this->assertSame(123456, $response->getProductId());
     }
@@ -29,15 +29,15 @@ final class CreateProductResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'product_id' => 789012
-                ]
+                    'product_id' => 789012,
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateProductResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateProductResponse::class, $response);
         $this->assertSame(789012, $response->getProductId());
     }
@@ -48,12 +48,11 @@ final class CreateProductResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateProductResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

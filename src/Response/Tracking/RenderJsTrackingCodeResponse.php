@@ -17,7 +17,8 @@ final class RenderJsTrackingCodeResponse extends AbstractResponse
         private string $result,
         private string $scriptCode,
         private string $scriptUrl,
-    ) {}
+    ) {
+    }
 
     /**
      * Get result status.
@@ -60,9 +61,9 @@ final class RenderJsTrackingCodeResponse extends AbstractResponse
         $trackingData = $data['data'] ?? [];
 
         return new self(
-            result: (string) ($data['result'] ?? 'unknown'),
-            scriptCode: (string) ($trackingData['script_code'] ?? ''),
-            scriptUrl: (string) ($trackingData['script_url'] ?? ''),
+            result: (string)($data['result'] ?? 'unknown'),
+            scriptCode: (string)($trackingData['script_code'] ?? ''),
+            scriptUrl: (string)($trackingData['script_url'] ?? ''),
         );
     }
 }

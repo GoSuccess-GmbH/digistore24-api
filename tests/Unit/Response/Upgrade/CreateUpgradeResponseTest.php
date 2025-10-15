@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Upgrade;
 
-use GoSuccess\Digistore24\Api\Response\Upgrade\CreateUpgradeResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Upgrade\CreateUpgradeResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateUpgradeResponseTest extends TestCase
@@ -22,7 +22,7 @@ final class CreateUpgradeResponseTest extends TestCase
             ],
         ];
         $response = CreateUpgradeResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
         $this->assertSame('UPG123456', $response->getUpgradeId());
@@ -40,11 +40,11 @@ final class CreateUpgradeResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateUpgradeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
     }
@@ -58,12 +58,11 @@ final class CreateUpgradeResponseTest extends TestCase
                 'data' => [],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateUpgradeResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

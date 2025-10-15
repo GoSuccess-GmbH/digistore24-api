@@ -17,7 +17,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $addon = new AddonData(productId: 12345);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: [$addon]
+            addons: [$addon],
         );
 
         $this->assertSame('P12345', $request->purchaseId);
@@ -37,7 +37,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
             purchaseId: 'P12345',
             addons: [$addon],
             tracking: $tracking,
-            placeholders: $placeholders
+            placeholders: $placeholders,
         );
 
         $this->assertSame('P12345', $request->purchaseId);
@@ -52,7 +52,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
         new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: []
+            addons: [],
         );
     }
 
@@ -63,7 +63,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
         new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: ['invalid']
+            addons: ['invalid'],
         );
     }
 
@@ -72,7 +72,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $addon = new AddonData(productId: 12345);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: [$addon]
+            addons: [$addon],
         );
 
         $this->assertSame('/createAddonChangePurchase', $request->getEndpoint());
@@ -83,7 +83,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $addon = new AddonData(productId: 12345, quantity: 2);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: [$addon]
+            addons: [$addon],
         );
 
         $array = $request->toArray();
@@ -100,10 +100,10 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
     {
         $addon1 = new AddonData(productId: 12345);
         $addon2 = new AddonData(productId: 67890, amount: 19.99);
-        
+
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: [$addon1, $addon2]
+            addons: [$addon1, $addon2],
         );
 
         $array = $request->toArray();
@@ -123,7 +123,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
             addons: [$addon],
-            tracking: $tracking
+            tracking: $tracking,
         );
 
         $array = $request->toArray();
@@ -143,7 +143,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
             addons: [$addon],
-            placeholders: $placeholders
+            placeholders: $placeholders,
         );
 
         $array = $request->toArray();
@@ -158,7 +158,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $addon = new AddonData(productId: 12345);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: [$addon]
+            addons: [$addon],
         );
 
         $this->assertTrue($request->isValid());

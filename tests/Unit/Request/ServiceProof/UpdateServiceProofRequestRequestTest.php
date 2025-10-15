@@ -13,44 +13,44 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
     public function test_can_create_instance(): void
     {
         $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided']
+            'data' => ['request_status' => 'proof_provided'],
         ]);
-        
+
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',
-            proofData: $proof
+            proofData: $proof,
         );
-        
+
         $this->assertInstanceOf(UpdateServiceProofRequestRequest::class, $request);
     }
 
     public function test_endpoint_returns_correct_value(): void
     {
         $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided']
+            'data' => ['request_status' => 'proof_provided'],
         ]);
-        
+
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',
-            proofData: $proof
+            proofData: $proof,
         );
-        
+
         $this->assertSame('/updateServiceProofRequest', $request->getEndpoint());
     }
 
     public function test_to_array_includes_id_and_data(): void
     {
         $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided', 'message' => 'Looks good']
+            'data' => ['request_status' => 'proof_provided', 'message' => 'Looks good'],
         ]);
-        
+
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',
-            proofData: $proof
+            proofData: $proof,
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('SPR123', $array['service_proof_request_id']);
         $this->assertSame('proof_provided', $array['data']['request_status']);
@@ -59,18 +59,17 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
     public function test_validate_returns_empty_array(): void
     {
         $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided']
+            'data' => ['request_status' => 'proof_provided'],
         ]);
-        
+
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',
-            proofData: $proof
+            proofData: $proof,
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

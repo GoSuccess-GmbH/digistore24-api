@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Voucher;
 
-use GoSuccess\Digistore24\Api\Response\Voucher\ListVouchersResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Voucher\ListVouchersResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListVouchersResponseTest extends TestCase
@@ -31,7 +31,7 @@ final class ListVouchersResponseTest extends TestCase
             ],
         ];
         $response = ListVouchersResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListVouchersResponse::class, $response);
         $vouchers = $response->getVouchers();
         $this->assertCount(2, $vouchers);
@@ -54,11 +54,11 @@ final class ListVouchersResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListVouchersResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListVouchersResponse::class, $response);
         $this->assertCount(1, $response->getVouchers());
     }
@@ -69,12 +69,11 @@ final class ListVouchersResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => ['vouchers' => []]],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListVouchersResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

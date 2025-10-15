@@ -18,7 +18,7 @@ final class ValidateAffiliateRequest extends AbstractRequest
      * @param string $affiliateId The affiliate ID to validate
      */
     public function __construct(
-        private string $affiliateId
+        private string $affiliateId,
     ) {
     }
 

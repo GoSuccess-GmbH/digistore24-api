@@ -8,7 +8,7 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 
 /**
  * Log Member Access Request
- * 
+ *
  * Notifies Digistore that a buyer has logged into their membership account
  * and accessed the bought content. Important for German refund handling.
  * Only call this if the buyer actually has logged in.

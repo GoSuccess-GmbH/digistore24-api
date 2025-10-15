@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Affiliate;
 
-use GoSuccess\Digistore24\Api\Response\Affiliate\GetAffiliateForEmailResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Affiliate\GetAffiliateForEmailResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetAffiliateForEmailResponseTest extends TestCase
@@ -14,11 +14,11 @@ final class GetAffiliateForEmailResponseTest extends TestCase
     {
         $data = [
             'data' => [
-                'affiliate_id' => 'AFF12345'
-            ]
+                'affiliate_id' => 'AFF12345',
+            ],
         ];
         $response = GetAffiliateForEmailResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetAffiliateForEmailResponse::class, $response);
         $this->assertSame('AFF12345', $response->getAffiliateId());
     }
@@ -29,15 +29,15 @@ final class GetAffiliateForEmailResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'affiliate_id' => 'AFF12345'
-                ]
+                    'affiliate_id' => 'AFF12345',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetAffiliateForEmailResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetAffiliateForEmailResponse::class, $response);
         $this->assertSame('AFF12345', $response->getAffiliateId());
     }
@@ -48,12 +48,11 @@ final class GetAffiliateForEmailResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetAffiliateForEmailResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

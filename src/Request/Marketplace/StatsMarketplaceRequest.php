@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Marketplace;
@@ -17,17 +18,30 @@ final class StatsMarketplaceRequest extends AbstractRequest
      * @param string|null $from Start date for statistics (format: YYYY-MM-DD)
      * @param string|null $to End date for statistics (format: YYYY-MM-DD)
      */
-    public function __construct(private ?string $from = null, private ?string $to = null) {}
+    public function __construct(private ?string $from = null, private ?string $to = null)
+    {
+    }
 
-    public function getEndpoint(): string { return '/statsMarketplace'; }
+    public function getEndpoint(): string
+    {
+        return '/statsMarketplace';
+    }
 
-    public function method(): Method { return Method::GET; }
+    public function method(): Method
+    {
+        return Method::GET;
+    }
 
     public function toArray(): array
     {
         $params = [];
-        if ($this->from !== null) $params['from'] = $this->from;
-        if ($this->to !== null) $params['to'] = $this->to;
+        if ($this->from !== null) {
+            $params['from'] = $this->from;
+        }
+        if ($this->to !== null) {
+            $params['to'] = $this->to;
+        }
+
         return $params;
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\System;
 
-use GoSuccess\Digistore24\Api\Response\System\GetGlobalSettingsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\System\GetGlobalSettingsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetGlobalSettingsResponseTest extends TestCase
@@ -34,7 +34,7 @@ final class GetGlobalSettingsResponseTest extends TestCase
             ],
         ];
         $response = GetGlobalSettingsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetGlobalSettingsResponse::class, $response);
         $this->assertIsArray($response->getImageMetas());
         $this->assertIsArray($response->getTypes());
@@ -63,11 +63,11 @@ final class GetGlobalSettingsResponseTest extends TestCase
                 'types' => [],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetGlobalSettingsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetGlobalSettingsResponse::class, $response);
         $this->assertArrayHasKey('banner', $response->getImageMetas());
     }
@@ -81,12 +81,11 @@ final class GetGlobalSettingsResponseTest extends TestCase
                 'types' => [],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetGlobalSettingsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

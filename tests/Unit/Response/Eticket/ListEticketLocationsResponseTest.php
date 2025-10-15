@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Eticket;
 
-use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketLocationsResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Eticket\ListEticketLocationsResponse;
 use PHPUnit\Framework\TestCase;
 
 final class ListEticketLocationsResponseTest extends TestCase
@@ -19,12 +19,12 @@ final class ListEticketLocationsResponseTest extends TestCase
                     'location_name' => 'Convention Center',
                     'address' => '123 Main St',
                     'city' => 'Berlin',
-                    'country' => 'Germany'
-                ]
-            ]
+                    'country' => 'Germany',
+                ],
+            ],
         ];
         $response = ListEticketLocationsResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(ListEticketLocationsResponse::class, $response);
         $this->assertCount(1, $response->locations);
     }
@@ -37,16 +37,16 @@ final class ListEticketLocationsResponseTest extends TestCase
                 'locations' => [
                     [
                         'location_id' => 'LOC123',
-                        'location_name' => 'Convention Center'
-                    ]
-                ]
+                        'location_name' => 'Convention Center',
+                    ],
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = ListEticketLocationsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(ListEticketLocationsResponse::class, $response);
         $this->assertCount(1, $response->locations);
     }
@@ -57,12 +57,11 @@ final class ListEticketLocationsResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = ListEticketLocationsResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -6,7 +6,7 @@ namespace GoSuccess\Digistore24\Api\DataTransferObject;
 
 /**
  * Placeholder Data
- * 
+ *
  * Represents placeholders for product title and description.
  */
 final class PlaceholderData
@@ -25,6 +25,7 @@ final class PlaceholderData
     public function set(string $key, string $value): self
     {
         $this->values[$key] = $value;
+
         return $this;
     }
 
@@ -38,7 +39,7 @@ final class PlaceholderData
 
     /**
      * Convert to array for API request
-     * 
+     *
      * @return array<string, string>
      */
     public function toArray(): array

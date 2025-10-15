@@ -14,9 +14,9 @@ final class CreateOrderformRequestTest extends TestCase
     {
         $form = new OrderFormData();
         $form->name = 'Test Form';
-        
+
         $request = new CreateOrderformRequest(orderForm: $form);
-        
+
         $this->assertInstanceOf(CreateOrderformRequest::class, $request);
     }
 
@@ -24,9 +24,9 @@ final class CreateOrderformRequestTest extends TestCase
     {
         $form = new OrderFormData();
         $form->name = 'Test Form';
-        
+
         $request = new CreateOrderformRequest(orderForm: $form);
-        
+
         $this->assertSame('/createOrderform', $request->getEndpoint());
     }
 
@@ -34,13 +34,12 @@ final class CreateOrderformRequestTest extends TestCase
     {
         $form = new OrderFormData();
         $form->name = 'Test Form';
-        
+
         $request = new CreateOrderformRequest(orderForm: $form);
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

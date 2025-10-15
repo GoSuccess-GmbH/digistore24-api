@@ -6,14 +6,14 @@ namespace GoSuccess\Digistore24\Api\Util;
 
 /**
  * Array Helper Utility
- * 
+ *
  * Provides array manipulation utilities.
  */
 final class ArrayHelper
 {
     /**
      * Get value from array using dot notation
-     * 
+     *
      * @param array $array Source array
      * @param string $key Key in dot notation (e.g., 'user.address.city')
      * @param mixed $default Default value if key not found
@@ -39,11 +39,10 @@ final class ArrayHelper
 
     /**
      * Set value in array using dot notation
-     * 
+     *
      * @param array $array Target array
      * @param string $key Key in dot notation
      * @param mixed $value Value to set
-     * @return void
      */
     public static function set(array &$array, string $key, mixed $value): void
     {
@@ -51,7 +50,7 @@ final class ArrayHelper
         $current = &$array;
 
         foreach ($keys as $segment) {
-            if (!isset($current[$segment]) || !is_array($current[$segment])) {
+            if (! isset($current[$segment]) || ! is_array($current[$segment])) {
                 $current[$segment] = [];
             }
             $current = &$current[$segment];
@@ -62,7 +61,7 @@ final class ArrayHelper
 
     /**
      * Check if key exists in array using dot notation
-     * 
+     *
      * @param array $array Source array
      * @param string $key Key in dot notation
      * @return bool
@@ -87,15 +86,15 @@ final class ArrayHelper
 
     /**
      * Remove key from array using dot notation
-     * 
+     *
      * @param array $array Target array
      * @param string $key Key in dot notation
-     * @return void
      */
     public static function forget(array &$array, string $key): void
     {
         if (array_key_exists($key, $array)) {
             unset($array[$key]);
+
             return;
         }
 
@@ -104,7 +103,7 @@ final class ArrayHelper
         $current = &$array;
 
         foreach ($keys as $segment) {
-            if (!isset($current[$segment]) || !is_array($current[$segment])) {
+            if (! isset($current[$segment]) || ! is_array($current[$segment])) {
                 return;
             }
             $current = &$current[$segment];
@@ -115,7 +114,7 @@ final class ArrayHelper
 
     /**
      * Flatten multidimensional array to single level using dot notation
-     * 
+     *
      * @param array $array Array to flatten
      * @param string $prefix Key prefix
      * @return array
@@ -127,7 +126,7 @@ final class ArrayHelper
         foreach ($array as $key => $value) {
             $newKey = $prefix === '' ? $key : $prefix . '.' . $key;
 
-            if (is_array($value) && !empty($value)) {
+            if (is_array($value) && ! empty($value)) {
                 $result = array_merge($result, self::flatten($value, $newKey));
             } else {
                 $result[$newKey] = $value;
@@ -139,7 +138,7 @@ final class ArrayHelper
 
     /**
      * Filter array by keys
-     * 
+     *
      * @param array $array Source array
      * @param array $keys Keys to keep
      * @return array
@@ -151,7 +150,7 @@ final class ArrayHelper
 
     /**
      * Filter array excluding specified keys
-     * 
+     *
      * @param array $array Source array
      * @param array $keys Keys to exclude
      * @return array
@@ -163,7 +162,7 @@ final class ArrayHelper
 
     /**
      * Get first element of array that passes truth test
-     * 
+     *
      * @param array $array Source array
      * @param callable|null $callback Truth test function
      * @param mixed $default Default value if no match found
@@ -175,6 +174,7 @@ final class ArrayHelper
             foreach ($array as $item) {
                 return $item;
             }
+
             return $default;
         }
 
@@ -189,7 +189,7 @@ final class ArrayHelper
 
     /**
      * Group array elements by key or callback result
-     * 
+     *
      * @param array $array Source array
      * @param string|callable $groupBy Key name or callback function
      * @return array
@@ -211,7 +211,7 @@ final class ArrayHelper
 
     /**
      * Remove null values from array recursively
-     * 
+     *
      * @param array $array Source array
      * @return array
      */
@@ -219,15 +219,16 @@ final class ArrayHelper
     {
         return array_filter($array, function ($value) {
             if (is_array($value)) {
-                return !empty(self::filterNulls($value));
+                return ! empty(self::filterNulls($value));
             }
+
             return $value !== null;
         });
     }
 
     /**
      * Map array keys using callback
-     * 
+     *
      * @param array $array Source array
      * @param callable $callback Function to transform keys
      * @return array
@@ -246,7 +247,7 @@ final class ArrayHelper
 
     /**
      * Wrap value in array if not already an array
-     * 
+     *
      * @param mixed $value Value to wrap
      * @return array
      */
@@ -261,7 +262,7 @@ final class ArrayHelper
 
     /**
      * Check if array is associative
-     * 
+     *
      * @param array $array Array to check
      * @return bool
      */
@@ -276,29 +277,29 @@ final class ArrayHelper
 
     /**
      * Convert array keys to camelCase
-     * 
+     *
      * @param array $array Source array
      * @return array
      */
     public static function keysToCamelCase(array $array): array
     {
-        return self::mapKeys($array, fn($key) => self::toCamelCase($key));
+        return self::mapKeys($array, fn ($key) => self::toCamelCase($key));
     }
 
     /**
      * Convert array keys to snake_case
-     * 
+     *
      * @param array $array Source array
      * @return array
      */
     public static function keysToSnakeCase(array $array): array
     {
-        return self::mapKeys($array, fn($key) => self::toSnakeCase($key));
+        return self::mapKeys($array, fn ($key) => self::toSnakeCase($key));
     }
 
     /**
      * Convert string to camelCase
-     * 
+     *
      * @param string $value String to convert
      * @return string
      */
@@ -306,12 +307,13 @@ final class ArrayHelper
     {
         // Remove underscores and capitalize first letter of each word except first
         $value = str_replace('_', '', ucwords($value, '_'));
+
         return lcfirst($value);
     }
 
     /**
      * Convert string to snake_case
-     * 
+     *
      * @param string $value String to convert
      * @return string
      */
@@ -323,7 +325,7 @@ final class ArrayHelper
 
     /**
      * Remove null values from array (alias for filterNulls)
-     * 
+     *
      * @param array $array Source array
      * @return array
      */

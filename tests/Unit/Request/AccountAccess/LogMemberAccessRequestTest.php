@@ -17,7 +17,7 @@ final class LogMemberAccessRequestTest extends TestCase
             loginName: 'john.doe',
             loginUrl: 'https://example.com/login',
             numberOfUnlockedLectures: 5,
-            totalNumberOfLectures: 10
+            totalNumberOfLectures: 10,
         );
 
         $this->assertSame('P12345', $request->purchaseId);
@@ -32,7 +32,7 @@ final class LogMemberAccessRequestTest extends TestCase
     public function testCanSetLoginAt(): void
     {
         $loginAt = new \DateTime('2025-10-14 10:30:00');
-        
+
         $request = new LogMemberAccessRequest(
             purchaseId: 'P12345',
             platformName: 'VIP Club',
@@ -40,7 +40,7 @@ final class LogMemberAccessRequestTest extends TestCase
             loginUrl: 'https://example.com/login',
             numberOfUnlockedLectures: 5,
             totalNumberOfLectures: 10,
-            loginAt: $loginAt
+            loginAt: $loginAt,
         );
 
         $this->assertSame($loginAt, $request->loginAt);
@@ -54,7 +54,7 @@ final class LogMemberAccessRequestTest extends TestCase
             loginName: 'john.doe',
             loginUrl: 'https://example.com/login',
             numberOfUnlockedLectures: 5,
-            totalNumberOfLectures: 10
+            totalNumberOfLectures: 10,
         );
 
         $this->assertSame('/logMemberAccess', $request->getEndpoint());
@@ -63,7 +63,7 @@ final class LogMemberAccessRequestTest extends TestCase
     public function testToArrayConvertsCorrectly(): void
     {
         $loginAt = new \DateTime('2025-10-14 10:30:00');
-        
+
         $request = new LogMemberAccessRequest(
             purchaseId: 'P12345',
             platformName: 'VIP Club',
@@ -71,7 +71,7 @@ final class LogMemberAccessRequestTest extends TestCase
             loginUrl: 'https://example.com/login',
             numberOfUnlockedLectures: 5,
             totalNumberOfLectures: 10,
-            loginAt: $loginAt
+            loginAt: $loginAt,
         );
 
         $array = $request->toArray();
@@ -93,7 +93,7 @@ final class LogMemberAccessRequestTest extends TestCase
             loginName: 'john.doe',
             loginUrl: 'https://example.com/login',
             numberOfUnlockedLectures: 5,
-            totalNumberOfLectures: 10
+            totalNumberOfLectures: 10,
         );
 
         $this->assertTrue($request->isValid());
@@ -108,7 +108,7 @@ final class LogMemberAccessRequestTest extends TestCase
             loginName: 'john.doe',
             loginUrl: 'https://example.com/login',
             numberOfUnlockedLectures: 0,
-            totalNumberOfLectures: 0
+            totalNumberOfLectures: 0,
         );
 
         $this->assertTrue($request->isValid());

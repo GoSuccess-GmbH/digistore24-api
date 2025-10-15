@@ -13,9 +13,9 @@ final class RetrieveApiKeyRequestTest extends TestCase
     {
         $request = new RetrieveApiKeyRequest(
             email: 'test@example.com',
-            token: 'abc123token'
+            token: 'abc123token',
         );
-        
+
         $this->assertInstanceOf(RetrieveApiKeyRequest::class, $request);
     }
 
@@ -23,9 +23,9 @@ final class RetrieveApiKeyRequestTest extends TestCase
     {
         $request = new RetrieveApiKeyRequest(
             email: 'test@example.com',
-            token: 'abc123token'
+            token: 'abc123token',
         );
-        
+
         $this->assertSame('/retrieveApiKey', $request->getEndpoint());
     }
 
@@ -33,11 +33,11 @@ final class RetrieveApiKeyRequestTest extends TestCase
     {
         $request = new RetrieveApiKeyRequest(
             email: 'test@example.com',
-            token: 'abc123token'
+            token: 'abc123token',
         );
-        
+
         $array = $request->toArray();
-        
+
         $this->assertIsArray($array);
         $this->assertSame('test@example.com', $array['email']);
         $this->assertSame('abc123token', $array['token']);
@@ -47,13 +47,12 @@ final class RetrieveApiKeyRequestTest extends TestCase
     {
         $request = new RetrieveApiKeyRequest(
             email: 'test@example.com',
-            token: 'abc123token'
+            token: 'abc123token',
         );
-        
+
         $errors = $request->validate();
-        
+
         $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }
-

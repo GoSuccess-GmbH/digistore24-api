@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Upgrade;
@@ -16,11 +17,22 @@ final class DeleteUpgradeRequest extends AbstractRequest
     /**
      * @param string $upgradeId The unique identifier of the upgrade to delete
      */
-    public function __construct(private string $upgradeId) {}
+    public function __construct(private string $upgradeId)
+    {
+    }
 
-    public function getEndpoint(): string { return '/deleteUpgrade'; }
+    public function getEndpoint(): string
+    {
+        return '/deleteUpgrade';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
-    public function toArray(): array { return ['upgrade_id' => $this->upgradeId]; }
+    public function toArray(): array
+    {
+        return ['upgrade_id' => $this->upgradeId];
+    }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\PaymentPlan;
 
-use GoSuccess\Digistore24\Api\Response\PaymentPlan\CreatePaymentplanResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\PaymentPlan\CreatePaymentplanResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreatePaymentplanResponseTest extends TestCase
@@ -15,11 +15,11 @@ final class CreatePaymentplanResponseTest extends TestCase
         $data = [
             'result' => 'success',
             'data' => [
-                'paymentplan_id' => 'PP123456'
-            ]
+                'paymentplan_id' => 'PP123456',
+            ],
         ];
         $response = CreatePaymentplanResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreatePaymentplanResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
         $this->assertSame('PP123456', $response->getPaymentplanId());
@@ -32,15 +32,15 @@ final class CreatePaymentplanResponseTest extends TestCase
             data: [
                 'result' => 'success',
                 'data' => [
-                    'paymentplan_id' => 'PP789012'
-                ]
+                    'paymentplan_id' => 'PP789012',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreatePaymentplanResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreatePaymentplanResponse::class, $response);
         $this->assertSame('PP789012', $response->getPaymentplanId());
     }
@@ -51,12 +51,11 @@ final class CreatePaymentplanResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreatePaymentplanResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

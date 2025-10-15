@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Affiliate;
 
-use GoSuccess\Digistore24\Api\Response\Affiliate\GetReferringAffiliateResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Affiliate\GetReferringAffiliateResponse;
 use PHPUnit\Framework\TestCase;
 
 final class GetReferringAffiliateResponseTest extends TestCase
@@ -14,11 +14,11 @@ final class GetReferringAffiliateResponseTest extends TestCase
     {
         $data = [
             'data' => [
-                'affiliate_id' => 'REF12345'
-            ]
+                'affiliate_id' => 'REF12345',
+            ],
         ];
         $response = GetReferringAffiliateResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(GetReferringAffiliateResponse::class, $response);
         $this->assertSame('REF12345', $response->getAffiliateId());
     }
@@ -29,15 +29,15 @@ final class GetReferringAffiliateResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'affiliate_id' => 'REF12345'
-                ]
+                    'affiliate_id' => 'REF12345',
+                ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = GetReferringAffiliateResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(GetReferringAffiliateResponse::class, $response);
         $this->assertSame('REF12345', $response->getAffiliateId());
     }
@@ -48,12 +48,11 @@ final class GetReferringAffiliateResponseTest extends TestCase
             statusCode: 200,
             data: ['data' => []],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = GetReferringAffiliateResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

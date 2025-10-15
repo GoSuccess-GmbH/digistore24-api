@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Request\Shipping;
@@ -18,11 +19,19 @@ final class UpdateShippingCostPolicyRequest extends AbstractRequest
      * @param string $shippingCostPolicyId The unique identifier of the shipping cost policy to update
      * @param ShippingCostPolicyData $policy The updated shipping cost policy configuration
      */
-    public function __construct(private string $shippingCostPolicyId, private ShippingCostPolicyData $policy) {}
+    public function __construct(private string $shippingCostPolicyId, private ShippingCostPolicyData $policy)
+    {
+    }
 
-    public function getEndpoint(): string { return '/updateShippingCostPolicy'; }
+    public function getEndpoint(): string
+    {
+        return '/updateShippingCostPolicy';
+    }
 
-    public function method(): Method { return Method::POST; }
+    public function method(): Method
+    {
+        return Method::POST;
+    }
 
     public function toArray(): array
     {

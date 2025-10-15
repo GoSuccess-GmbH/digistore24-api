@@ -35,8 +35,8 @@ final class ResendPurchaseConfirmationMailResponse extends AbstractResponse
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            modified: (string) ($data['data']['modified'] ?? 'N'),
-            note: $data['data']['note'] ?? null
+            modified: (string)($data['data']['modified'] ?? 'N'),
+            note: $data['data']['note'] ?? null,
         );
     }
 }

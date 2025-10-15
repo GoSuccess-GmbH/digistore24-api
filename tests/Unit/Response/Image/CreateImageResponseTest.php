@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Image;
 
-use GoSuccess\Digistore24\Api\Response\Image\CreateImageResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Image\CreateImageResponse;
 use PHPUnit\Framework\TestCase;
 
 final class CreateImageResponseTest extends TestCase
@@ -14,10 +14,10 @@ final class CreateImageResponseTest extends TestCase
     {
         $data = [
             'image_id' => 'IMG123',
-            'image_url' => 'https://example.com/images/123.jpg'
+            'image_url' => 'https://example.com/images/123.jpg',
         ];
         $response = CreateImageResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(CreateImageResponse::class, $response);
         $this->assertSame('IMG123', $response->imageId);
         $this->assertSame('https://example.com/images/123.jpg', $response->imageUrl);
@@ -29,14 +29,14 @@ final class CreateImageResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'image_id' => 'IMG456',
-                'image_url' => 'https://example.com/images/456.jpg'
+                'image_url' => 'https://example.com/images/456.jpg',
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = CreateImageResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(CreateImageResponse::class, $response);
         $this->assertSame('IMG456', $response->imageId);
     }
@@ -47,12 +47,11 @@ final class CreateImageResponseTest extends TestCase
             statusCode: 200,
             data: [],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = CreateImageResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Purchase;
 
-use GoSuccess\Digistore24\Api\Response\Purchase\UpdatePurchaseResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\Purchase\UpdatePurchaseResponse;
 use PHPUnit\Framework\TestCase;
 
 final class UpdatePurchaseResponseTest extends TestCase
@@ -18,7 +18,7 @@ final class UpdatePurchaseResponseTest extends TestCase
             ],
         ];
         $response = UpdatePurchaseResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(UpdatePurchaseResponse::class, $response);
         $this->assertSame('Y', $response->getIsModified());
         $this->assertTrue($response->wasModified());
@@ -34,11 +34,11 @@ final class UpdatePurchaseResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = UpdatePurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(UpdatePurchaseResponse::class, $response);
         $this->assertTrue($response->wasModified());
     }
@@ -53,12 +53,11 @@ final class UpdatePurchaseResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = UpdatePurchaseResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-

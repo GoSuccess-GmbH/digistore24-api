@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\System;
 
-use GoSuccess\Digistore24\Api\Response\System\PingResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Response\System\PingResponse;
 use PHPUnit\Framework\TestCase;
 
 final class PingResponseTest extends TestCase
@@ -19,7 +19,7 @@ final class PingResponseTest extends TestCase
             ],
         ];
         $response = PingResponse::fromArray($data);
-        
+
         $this->assertInstanceOf(PingResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertSame('2024-01-15 10:30:45', $response->getServerTime());
@@ -37,11 +37,11 @@ final class PingResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: ''
+            rawBody: '',
         );
-        
+
         $response = PingResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(PingResponse::class, $response);
         $this->assertSame('ok', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
@@ -58,12 +58,11 @@ final class PingResponseTest extends TestCase
                 ],
             ],
             headers: [],
-            rawBody: 'test'
+            rawBody: 'test',
         );
-        
+
         $response = PingResponse::fromResponse($httpResponse);
-        
+
         $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
-
