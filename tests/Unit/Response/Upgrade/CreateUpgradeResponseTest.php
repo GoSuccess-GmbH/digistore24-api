@@ -12,17 +12,33 @@ final class CreateUpgradeResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'upgrade_id' => 'UPG123456',
+                'from_product_id' => '100',
+                'to_product_id' => '200',
+                'price_difference' => 50.00,
+            ],
+        ];
         $response = CreateUpgradeResponse::fromArray($data);
         
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('UPG123456', $response->getUpgradeId());
+        $this->assertIsArray($response->getData());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'upgrade_id' => 'UPG999',
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +46,24 @@ final class CreateUpgradeResponseTest extends TestCase
         $response = CreateUpgradeResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [],
+            ],
             headers: [],
             rawBody: 'test'
         );
         
         $response = CreateUpgradeResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
