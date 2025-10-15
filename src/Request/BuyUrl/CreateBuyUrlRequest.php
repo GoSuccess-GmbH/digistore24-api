@@ -7,7 +7,9 @@ namespace GoSuccess\Digistore24\Api\Request\BuyUrl;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DataTransferObject\SettingsData;
 use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DataTransferObject\UrlsData;
 
 /**
  * Create Buy URL Request
@@ -32,9 +34,9 @@ final class CreateBuyUrlRequest extends AbstractRequest
     public ?PaymentPlanData $paymentPlan = null;
     public ?TrackingData $tracking = null;
     public string $validUntil = '24h';
-    public ?array $urls = null;
+    public ?UrlsData $urls = null;
     public ?array $placeholders = null;
-    public ?array $settings = null;
+    public ?SettingsData $settings = null;
     public ?array $addons = null;
 
     public function getEndpoint(): string
