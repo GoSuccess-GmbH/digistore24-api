@@ -671,7 +671,7 @@ while ($attempt < $maxAttempts) {
 
 ## Migration
 
-Upgrading from `gosuccess/php-ds24-api-wrapper`? See [MIGRATION.md](MIGRATION.md) for detailed instructions on namespace changes, constructor updates, and breaking changes.
+Upgrading from `gosuccess/php-ds24-api-wrapper`? See [MIGRATION.md](docs/MIGRATION.md) for detailed instructions on namespace changes, constructor updates, and breaking changes.
 
 ## Testing
 
@@ -693,7 +693,6 @@ Contributions are welcome! Please read our documentation:
 
 - **[Contributing Guidelines](CONTRIBUTING.md)** - Coding standards and pull request process
 - **[Developer Setup](docs/DEVELOPER_SETUP.md)** - IDE configuration and development environment
-- **[Architecture](ARCHITECTURE.md)** - Project structure and design decisions
 
 ### Quick Start for Contributors
 
@@ -720,4 +719,5 @@ See [DEVELOPER_SETUP.md](docs/DEVELOPER_SETUP.md) for detailed IDE setup instruc
 - **Documentation**: Check the `docs/` directory for endpoint-specific guides
 - **Issues**: Report bugs on [GitHub Issues](https://github.com/GoSuccess-GmbH/digistore24-api/issues)
 - **Security**: Report security vulnerabilities via [SECURITY.md](SECURITY.md)
-- **Migration Guide**: See [MIGRATION.md](MIGRATION.md) for upgrading from v1.x
+- **Migration Guide**: See [MIGRATION.md](docs/MIGRATION.md) for upgrading from v1.x
+- **Changelog**: See [CHANGELOG.md](docs/CHANGELOG.md) for version history

@@ -27,7 +27,7 @@ Relates to #
 -
 
 ## Breaking Changes
-<!-- If this introduces breaking changes, describe them here and update CHANGELOG.md -->
+<!-- If this introduces breaking changes, describe them here and update docs/CHANGELOG.md -->
 
 - [ ] No breaking changes
 - [ ] Breaking changes (describe below):
@@ -66,8 +66,8 @@ Relates to #
 
 - [ ] PHPDoc comments added/updated
 - [ ] README.md updated (if needed)
-- [ ] CHANGELOG.md updated
-- [ ] Endpoint documentation added/updated (if applicable)
+- [ ] docs/CHANGELOG.md updated
+- [ ] Endpoint documentation added/updated in docs/api/ (if applicable)
 - [ ] Examples updated (if applicable)
 
 ## Architecture

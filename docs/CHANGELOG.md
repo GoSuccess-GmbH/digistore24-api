@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - GitHub Actions CI/CD pipeline with automated testing, static analysis, and code style checks
-- CHANGELOG.md with complete version history from git tags
+- docs/CHANGELOG.md with complete version history from git tags
 - CONTRIBUTING.md with comprehensive contribution guidelines
 - SECURITY.md with vulnerability reporting and security best practices
 - Issue and Pull Request templates for GitHub
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHPStan ^2.1 Level 9 static analysis with baseline (1025 errors tracked)
 - PHP CS Fixer ^3.88 with PSR-12 and PHP 8.4 rules
 - Complete API endpoints documentation (122 endpoints organized in 29 categories)
-- MIGRATION.md with detailed upgrade instructions from v1.x
+- docs/MIGRATION.md with detailed upgrade instructions from v1.x
 - 15 typed Data Transfer Objects (DTOs) with PHP 8.4 property hooks
 - OpenAPI specification fetcher script for API documentation
 - README badges for Tests, PHPStan Level 9, and PSR-12 Code Style
