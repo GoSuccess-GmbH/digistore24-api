@@ -321,6 +321,250 @@ try {
 | `vouchers` | Discount codes | 6 | ✅ Complete |
 | **Total** | | **122** | **✅ 100%** |
 
+## API Endpoints Documentation
+
+### Affiliate Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `getAffiliateCommission` | [View](./docs/getAffiliateCommission.md) |
+| `updateAffiliateCommission` | [View](./docs/updateAffiliateCommission.md) |
+| `getAffiliateForEmail` | - |
+| `setAffiliateForEmail` | - |
+| `getReferringAffiliate` | - |
+| `setReferringAffiliate` | - |
+| `validateAffiliate` | - |
+| `statsAffiliateToplist` | - |
+
+### Billing & Invoicing
+| Endpoint | Documentation |
+|----------|---------------|
+| `createBillingOnDemand` | [View](./docs/createBillingOnDemand.md) |
+| `listInvoices` | - |
+| `resendInvoiceMail` | - |
+
+### Buyer Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `getBuyer` | [View](./docs/getBuyer.md) |
+| `updateBuyer` | - |
+| `listBuyers` | - |
+| `getCustomerToAffiliateBuyerDetails` | - |
+
+### Buy URL Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `createBuyUrl` | [View](./docs/createBuyUrl.md) |
+| `listBuyUrls` | [View](./docs/listBuyUrl.md) |
+| `deleteBuyUrl` | [View](./docs/deleteBuyUrl.md) |
+
+### Country & Currency
+| Endpoint | Documentation |
+|----------|---------------|
+| `listCountries` | [View](./docs/listCountries.md) |
+| `listCurrencies` | - |
+
+### Delivery Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `getDelivery` | - |
+| `updateDelivery` | - |
+| `listDeliveries` | - |
+
+### E-Tickets
+| Endpoint | Documentation |
+|----------|---------------|
+| `createEticket` | - |
+| `getEticket` | - |
+| `listEtickets` | - |
+| `validateEticket` | - |
+| `getEticketSettings` | - |
+| `listEticketLocations` | - |
+| `listEticketTemplates` | - |
+
+### Forms & Custom Data
+| Endpoint | Documentation |
+|----------|---------------|
+| `listCustomFormRecords` | - |
+
+### IPN/Webhook Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `ipnSetup` | [View](./docs/ipnSetup.md) |
+| `ipnInfo` | [View](./docs/ipnInfo.md) |
+| `ipnDelete` | [View](./docs/ipnDelete.md) |
+
+### Images
+| Endpoint | Documentation |
+|----------|---------------|
+| `createImage` | - |
+| `getImage` | - |
+| `listImages` | - |
+| `deleteImage` | - |
+
+### Marketplace
+| Endpoint | Documentation |
+|----------|---------------|
+| `getMarketplaceEntry` | - |
+| `listMarketplaceEntries` | - |
+
+### Member Access
+| Endpoint | Documentation |
+|----------|---------------|
+| `listAccountAccess` | - |
+| `logMemberAccess` | - |
+
+### Monitoring
+| Endpoint | Documentation |
+|----------|---------------|
+| `ping` | [View](./docs/ping.md) |
+
+### Order Forms
+| Endpoint | Documentation |
+|----------|---------------|
+| `createOrderform` | - |
+| `getOrderform` | - |
+| `updateOrderform` | - |
+| `deleteOrderform` | - |
+| `listOrderforms` | - |
+| `getOrderformMetas` | - |
+
+### Payment Plans
+| Endpoint | Documentation |
+|----------|---------------|
+| `createPaymentplan` | - |
+| `updatePaymentplan` | - |
+| `deletePaymentplan` | - |
+| `listPaymentPlans` | - |
+
+### Payouts & Commissions
+| Endpoint | Documentation |
+|----------|---------------|
+| `listPayouts` | - |
+| `listCommissions` | - |
+
+### Product Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `createProduct` | [View](./docs/createProduct.md) |
+| `getProduct` | [View](./docs/getProduct.md) |
+| `updateProduct` | - |
+| `deleteProduct` | - |
+| `copyProduct` | [View](./docs/copyProduct.md) |
+| `listProducts` | [View](./docs/listProducts.md) |
+| `listProductTypes` | - |
+
+### Product Groups
+| Endpoint | Documentation |
+|----------|---------------|
+| `createProductGroup` | - |
+| `getProductGroup` | - |
+| `updateProductGroup` | - |
+| `deleteProductGroup` | - |
+| `listProductGroups` | - |
+
+### Purchase Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `getPurchase` | [View](./docs/getPurchase.md) |
+| `updatePurchase` | - |
+| `listPurchases` | [View](./docs/listPurchases.md) |
+| `listPurchasesOfEmail` | - |
+| `getPurchaseTracking` | [View](./docs/getPurchaseTracking.md) |
+| `addBalanceToPurchase` | [View](./docs/addBalanceToPurchase.md) |
+| `createUpgradePurchase` | [View](./docs/createUpgradePurchase.md) |
+| `createAddonChangePurchase` | - |
+| `getPurchaseDownloads` | - |
+| `refundPurchase` | - |
+| `refundPartially` | - |
+| `resendPurchaseConfirmationMail` | - |
+
+### Rebilling/Subscriptions
+| Endpoint | Documentation |
+|----------|---------------|
+| `startRebilling` | [View](./docs/startRebilling.md) |
+| `stopRebilling` | [View](./docs/stopRebilling.md) |
+| `createRebillingPayment` | [View](./docs/createRebillingPayment.md) |
+| `listRebillingStatusChanges` | [View](./docs/listRebillingStatusChanges.md) |
+
+### Service Proof
+| Endpoint | Documentation |
+|----------|---------------|
+| `getServiceProofRequest` | - |
+| `updateServiceProofRequest` | - |
+| `listServiceProofRequests` | - |
+
+### Shipping
+| Endpoint | Documentation |
+|----------|---------------|
+| `createShippingCostPolicy` | - |
+| `getShippingCostPolicy` | - |
+| `updateShippingCostPolicy` | - |
+| `deleteShippingCostPolicy` | - |
+| `listShippingCostPolicies` | - |
+
+### Statistics
+| Endpoint | Documentation |
+|----------|---------------|
+| `statsSales` | - |
+| `statsSalesSummary` | - |
+| `statsDailyAmounts` | - |
+| `statsExpectedPayouts` | - |
+| `statsMarketplace` | - |
+
+### Tracking & Conversion
+| Endpoint | Documentation |
+|----------|---------------|
+| `renderJsTrackingCode` | - |
+| `listConversionTools` | - |
+
+### Transactions
+| Endpoint | Documentation |
+|----------|---------------|
+| `listTransactions` | - |
+| `refundTransaction` | - |
+| `reportFraud` | - |
+
+### Upgrades
+| Endpoint | Documentation |
+|----------|---------------|
+| `createUpgrade` | - |
+| `getUpgrade` | - |
+| `deleteUpgrade` | - |
+| `listUpgrades` | - |
+| `getSmartupgrade` | - |
+| `listSmartUpgrades` | - |
+
+### Upsells
+| Endpoint | Documentation |
+|----------|---------------|
+| `getUpsells` | - |
+| `updateUpsells` | - |
+| `deleteUpsells` | - |
+
+### User/API Key Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `requestApiKey` | [View](./docs/requestApiKey.md) |
+| `retrieveApiKey` | [View](./docs/retrieveApiKey.md) |
+| `unregister` | [View](./docs/unregister.md) |
+| `getUserInfo` | [View](./docs/getUserInfo.md) |
+| `getGlobalSettings` | - |
+
+### Vouchers/Coupons
+| Endpoint | Documentation |
+|----------|---------------|
+| `createVoucher` | - |
+| `getVoucher` | [View](./docs/getVoucher.md) |
+| `updateVoucher` | - |
+| `deleteVoucher` | - |
+| `listVouchers` | - |
+| `validateCouponCode` | - |
+
+### License Keys
+| Endpoint | Documentation |
+|----------|---------------|
+| `validateLicenseKey` | - |
+
 ## Migration
 
 Upgrading from `gosuccess/php-ds24-api-wrapper`? See [MIGRATION.md](MIGRATION.md) for detailed instructions on namespace changes, constructor updates, and breaking changes.
