@@ -12,17 +12,45 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'downloads' => [
+                    [
+                        'download_id' => 'DL001',
+                        'file_name' => 'ebook.pdf',
+                        'download_url' => 'https://example.com/download/ebook.pdf',
+                        'expires_at' => '2024-12-31',
+                    ],
+                    [
+                        'download_id' => 'DL002',
+                        'file_name' => 'video.mp4',
+                        'download_url' => 'https://example.com/download/video.mp4',
+                    ],
+                ],
+            ],
+        ];
         $response = GetPurchaseDownloadsResponse::fromArray($data);
         
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
+        $this->assertIsArray($response->getDownloads());
+        $this->assertCount(2, $response->getDownloads());
+        $this->assertSame('DL001', $response->getDownloads()[0]['download_id']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'downloads' => [
+                        [
+                            'download_id' => 'DL999',
+                            'file_name' => 'bonus.pdf',
+                        ],
+                    ],
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +58,25 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
         $response = GetPurchaseDownloadsResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
+        $this->assertCount(1, $response->getDownloads());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'downloads' => [],
+                ],
+            ],
             headers: [],
             rawBody: 'test'
         );
         
         $response = GetPurchaseDownloadsResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

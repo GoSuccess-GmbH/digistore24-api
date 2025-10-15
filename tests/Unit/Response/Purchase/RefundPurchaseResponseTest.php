@@ -12,17 +12,33 @@ final class RefundPurchaseResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'refund_id' => 'REF123456',
+                'amount_refunded' => 99.99,
+                'currency' => 'EUR',
+            ],
+        ];
         $response = RefundPurchaseResponse::fromArray($data);
         
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertIsArray($response->getData());
+        $this->assertSame('REF123456', $response->getData()['refund_id']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'refund_id' => 'REF999',
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +46,24 @@ final class RefundPurchaseResponseTest extends TestCase
         $response = RefundPurchaseResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [],
+            ],
             headers: [],
             rawBody: 'test'
         );
         
         $response = RefundPurchaseResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
