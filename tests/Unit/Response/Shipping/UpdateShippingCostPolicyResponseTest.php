@@ -12,17 +12,22 @@ final class UpdateShippingCostPolicyResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+        ];
         $response = UpdateShippingCostPolicyResponse::fromArray($data);
         
         $this->assertInstanceOf(UpdateShippingCostPolicyResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +35,21 @@ final class UpdateShippingCostPolicyResponseTest extends TestCase
         $response = UpdateShippingCostPolicyResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(UpdateShippingCostPolicyResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: ['result' => 'success'],
             headers: [],
             rawBody: 'test'
         );
         
         $response = UpdateShippingCostPolicyResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

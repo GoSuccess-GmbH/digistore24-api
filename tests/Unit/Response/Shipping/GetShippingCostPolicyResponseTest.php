@@ -12,17 +12,39 @@ final class GetShippingCostPolicyResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'shipping_cost_policy' => [
+                    'shipping_cost_policy_id' => 'SCP123',
+                    'name' => 'EU Standard Shipping',
+                    'cost' => 5.99,
+                    'currency' => 'EUR',
+                    'countries' => ['DE', 'AT', 'CH'],
+                    'weight_range' => ['min' => 0, 'max' => 2000],
+                ],
+            ],
+        ];
         $response = GetShippingCostPolicyResponse::fromArray($data);
         
         $this->assertInstanceOf(GetShippingCostPolicyResponse::class, $response);
+        $policy = $response->getShippingCostPolicy();
+        $this->assertSame('SCP123', $policy['shipping_cost_policy_id']);
+        $this->assertSame(5.99, $policy['cost']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'shipping_cost_policy' => [
+                        'shipping_cost_policy_id' => 'SCP999',
+                        'name' => 'US Express',
+                        'cost' => 15.00,
+                    ],
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +52,21 @@ final class GetShippingCostPolicyResponseTest extends TestCase
         $response = GetShippingCostPolicyResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetShippingCostPolicyResponse::class, $response);
+        $this->assertSame('SCP999', $response->getShippingCostPolicy()['shipping_cost_policy_id']);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: ['data' => ['shipping_cost_policy' => []]],
             headers: [],
             rawBody: 'test'
         );
         
         $response = GetShippingCostPolicyResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
