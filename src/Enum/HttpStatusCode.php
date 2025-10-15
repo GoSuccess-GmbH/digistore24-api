@@ -9,7 +9,7 @@ namespace GoSuccess\Digistore24\Api\Enum;
  *
  * Type-safe enum for HTTP status codes used in API responses.
  */
-enum StatusCode: int
+enum HttpStatusCode: int
 {
     // Success
     case OK = 200;

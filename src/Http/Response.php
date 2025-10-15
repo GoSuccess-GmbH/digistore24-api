@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Http;
 
-use GoSuccess\Digistore24\Api\Enum\StatusCode;
+use GoSuccess\Digistore24\Api\Enum\HttpStatusCode;
 
 /**
  * HTTP Response
@@ -22,8 +22,8 @@ final class Response
     /**
      * HTTP status code (typed enum, computed)
      */
-    public ?StatusCode $status {
-        get => StatusCode::fromInt($this->statusCode);
+    public ?HttpStatusCode $status {
+        get => HttpStatusCode::fromInt($this->statusCode);
     }
 
     /**

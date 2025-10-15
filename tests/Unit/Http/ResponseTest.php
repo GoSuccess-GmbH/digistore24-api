@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Http;
 
-use GoSuccess\Digistore24\Api\Enum\StatusCode;
+use GoSuccess\Digistore24\Api\Enum\HttpStatusCode;
 use GoSuccess\Digistore24\Api\Http\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -68,7 +68,7 @@ final class ResponseTest extends TestCase
         );
 
         $this->assertSame(200, $response->statusCode);
-        $this->assertSame(StatusCode::OK, $response->status);
+        $this->assertSame(HttpStatusCode::OK, $response->status);
         $this->assertSame($data, $response->data);
         $this->assertSame($headers, $response->headers);
     }
@@ -91,9 +91,9 @@ final class ResponseTest extends TestCase
     public function testStatusPropertyIsComputed(): void
     {
         $response = new Response(statusCode: 201, data: [], headers: []);
-        $this->assertSame(StatusCode::CREATED, $response->status);
+        $this->assertSame(HttpStatusCode::CREATED, $response->status);
 
         $response = new Response(statusCode: 404, data: [], headers: []);
-        $this->assertSame(StatusCode::NOT_FOUND, $response->status);
+        $this->assertSame(HttpStatusCode::NOT_FOUND, $response->status);
     }
 }

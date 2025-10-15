@@ -6,7 +6,7 @@ namespace GoSuccess\Digistore24\Api\Client;
 
 use GoSuccess\Digistore24\Api\Contract\HttpClientInterface;
 use GoSuccess\Digistore24\Api\Enum\HttpMethod;
-use GoSuccess\Digistore24\Api\Enum\StatusCode;
+use GoSuccess\Digistore24\Api\Enum\HttpStatusCode;
 use GoSuccess\Digistore24\Api\Exception\ApiException;
 use GoSuccess\Digistore24\Api\Exception\AuthenticationException;
 use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
@@ -201,29 +201,29 @@ final class ApiClient implements HttpClientInterface
      */
     private function handleHttpErrors(Response $response): void
     {
-        $statusCode = StatusCode::fromInt($response->statusCode);
+        $statusCode = HttpStatusCode::fromInt($response->statusCode);
 
         match ($statusCode) {
-            StatusCode::UNAUTHORIZED => throw new AuthenticationException(
+            HttpStatusCode::UNAUTHORIZED => throw new AuthenticationException(
                 'Invalid or missing API key',
-                StatusCode::UNAUTHORIZED->value,
-                ['status_code' => StatusCode::UNAUTHORIZED->value],
+                HttpStatusCode::UNAUTHORIZED->value,
+                ['status_code' => HttpStatusCode::UNAUTHORIZED->value],
             ),
-            StatusCode::FORBIDDEN => throw new ForbiddenException(
+            HttpStatusCode::FORBIDDEN => throw new ForbiddenException(
                 'Access forbidden - insufficient permissions',
-                StatusCode::FORBIDDEN->value,
-                ['status_code' => StatusCode::FORBIDDEN->value],
+                HttpStatusCode::FORBIDDEN->value,
+                ['status_code' => HttpStatusCode::FORBIDDEN->value],
             ),
-            StatusCode::NOT_FOUND => throw new NotFoundException(
+            HttpStatusCode::NOT_FOUND => throw new NotFoundException(
                 'Resource not found',
-                StatusCode::NOT_FOUND->value,
-                ['status_code' => StatusCode::NOT_FOUND->value],
+                HttpStatusCode::NOT_FOUND->value,
+                ['status_code' => HttpStatusCode::NOT_FOUND->value],
             ),
-            StatusCode::TOO_MANY_REQUESTS => throw new RateLimitException(
+            HttpStatusCode::TOO_MANY_REQUESTS => throw new RateLimitException(
                 'Rate limit exceeded',
-                StatusCode::TOO_MANY_REQUESTS->value,
+                HttpStatusCode::TOO_MANY_REQUESTS->value,
                 [
-                    'status_code' => StatusCode::TOO_MANY_REQUESTS->value,
+                    'status_code' => HttpStatusCode::TOO_MANY_REQUESTS->value,
                     'retry_after' => (int)($response->getHeader('Retry-After') ?? 60),
                 ],
             ),
