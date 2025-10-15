@@ -12,17 +12,25 @@ final class LogMemberAccessResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'success' => true,
+            'message' => 'Access logged successfully'
+        ];
         $response = LogMemberAccessResponse::fromArray($data);
         
         $this->assertInstanceOf(LogMemberAccessResponse::class, $response);
+        $this->assertTrue($response->success);
+        $this->assertSame('Access logged successfully', $response->message);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'success' => true,
+                'message' => 'Member access recorded'
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +38,21 @@ final class LogMemberAccessResponseTest extends TestCase
         $response = LogMemberAccessResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(LogMemberAccessResponse::class, $response);
+        $this->assertTrue($response->success);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = LogMemberAccessResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
