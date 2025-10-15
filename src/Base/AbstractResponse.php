@@ -71,9 +71,10 @@ abstract class AbstractResponse implements ResponseInterface
      * @param array<string, mixed> $data
      * @param string $key
      * @param class-string $itemClass Item class for nested objects
+     * @param Response|null $rawResponse Raw HTTP response to pass to nested objects
      * @return array<mixed>
      */
-    protected static function getArray(array $data, string $key, ?string $itemClass = null): array
+    protected static function getArray(array $data, string $key, ?string $itemClass = null, ?Response $rawResponse = null): array
     {
         $value = $data[$key] ?? [];
 
@@ -88,7 +89,7 @@ abstract class AbstractResponse implements ResponseInterface
         // Convert array items to objects
         return array_map(
             fn($item) => is_subclass_of($itemClass, self::class)
-                ? $itemClass::fromArray($item)
+                ? $itemClass::fromArray($item, $rawResponse)
                 : $item,
             $value
         );
