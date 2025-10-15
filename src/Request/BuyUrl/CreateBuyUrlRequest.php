@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\BuyUrl;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
-use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
-use GoSuccess\Digistore24\Api\DataTransferObject\SettingsData;
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
-use GoSuccess\Digistore24\Api\DataTransferObject\UrlsData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DTO\SettingsData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\UrlsData;
 
 /**
  * Create Buy URL Request

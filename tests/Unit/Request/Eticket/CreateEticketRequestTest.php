@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Eticket;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 use GoSuccess\Digistore24\Api\Request\Eticket\CreateEticketRequest;
 use PHPUnit\Framework\TestCase;
 

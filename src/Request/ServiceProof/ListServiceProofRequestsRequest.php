@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ServiceProof;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * List Service Proof Requests Request
@@ -27,9 +27,9 @@ final class ListServiceProofRequestsRequest extends AbstractRequest
         return '/listServiceProofRequests';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::GET;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array

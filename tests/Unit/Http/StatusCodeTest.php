@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Http;
 
-use GoSuccess\Digistore24\Api\Http\StatusCode;
+use GoSuccess\Digistore24\Api\Enum\StatusCode;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

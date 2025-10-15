@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Upsell;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Get Upsells Request
@@ -26,9 +26,9 @@ final class GetUpsellsRequest extends AbstractRequest
         return '/getUpsells';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::GET;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DTO\SettingsData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\UrlsData;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
-use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
-use GoSuccess\Digistore24\Api\DataTransferObject\UrlsData;
-use GoSuccess\Digistore24\Api\DataTransferObject\SettingsData;
 
 /**
  * Example: Complete Digistore24 API Usage
- * 
+ *
  * Demonstrates the new resource-based architecture with typed requests/responses.
  */
 
@@ -25,7 +25,7 @@ $config = new Configuration(
     language: 'en',
     timeout: 30,
     maxRetries: 3,
-    debug: false
+    debug: false,
 );
 
 $ds24 = new Digistore24($config);
@@ -185,11 +185,12 @@ try {
     echo "ID: {$response->id}\n\n";
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n";
-    echo "Context: " . json_encode($e->getContext(), JSON_PRETTY_PRINT) . "\n\n";
+    echo 'Context: ' . json_encode($e->getContext(), JSON_PRETTY_PRINT) . "\n\n";
 }
 
 // Example 6: Error handling
 echo "=== Example 6: Error Handling ===\n";
+
 try {
     // Invalid email will be caught by property hook
     $buyer = new BuyerData();

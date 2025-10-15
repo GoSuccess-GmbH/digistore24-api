@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Affiliate;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\AffiliateCommissionData;
+use GoSuccess\Digistore24\Api\DTO\AffiliateCommissionData;
 use GoSuccess\Digistore24\Api\Request\Affiliate\UpdateAffiliateCommissionRequest;
 use PHPUnit\Framework\TestCase;
 

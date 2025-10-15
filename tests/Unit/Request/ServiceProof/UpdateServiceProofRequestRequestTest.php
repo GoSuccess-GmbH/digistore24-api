@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\ServiceProof;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\ServiceProofRequestUpdateData;
+use GoSuccess\Digistore24\Api\DTO\ServiceProofRequestUpdateData;
 use GoSuccess\Digistore24\Api\Request\ServiceProof\UpdateServiceProofRequestRequest;
 use PHPUnit\Framework\TestCase;
 

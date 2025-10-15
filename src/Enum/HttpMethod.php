@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Api\Http;
+namespace GoSuccess\Digistore24\Api\Enum;
 
 /**
  * HTTP Methods supported by the API
  */
-enum Method: string
+enum HttpMethod: string
 {
     case GET = 'GET';
     case POST = 'POST';

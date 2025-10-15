@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Upgrade;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\UpgradeData;
+use GoSuccess\Digistore24\Api\DTO\UpgradeData;
 use GoSuccess\Digistore24\Api\Request\Upgrade\CreateUpgradeRequest;
 use PHPUnit\Framework\TestCase;
 

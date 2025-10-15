@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Delivery;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Get Delivery Request
@@ -27,9 +27,9 @@ final class GetDeliveryRequest extends AbstractRequest
         return '/getDelivery';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::GET;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array

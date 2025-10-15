@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Client;
 
 use GoSuccess\Digistore24\Api\Contract\HttpClientInterface;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
+use GoSuccess\Digistore24\Api\Enum\StatusCode;
 use GoSuccess\Digistore24\Api\Exception\ApiException;
 use GoSuccess\Digistore24\Api\Exception\AuthenticationException;
 use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
 use GoSuccess\Digistore24\Api\Exception\NotFoundException;
 use GoSuccess\Digistore24\Api\Exception\RateLimitException;
 use GoSuccess\Digistore24\Api\Exception\RequestException;
-use GoSuccess\Digistore24\Api\Http\Method;
 use GoSuccess\Digistore24\Api\Http\Response;
-use GoSuccess\Digistore24\Api\Http\StatusCode;
 
 /**
  * HTTP Client for Digistore24 API
@@ -50,14 +50,14 @@ final class ApiClient implements HttpClientInterface
      * Send a request to the API
      *
      * @param string $endpoint API endpoint (e.g., 'createBuyUrl')
-     * @param Method $method HTTP method
+     * @param HttpMethod $method HTTP method
      * @param array<string, mixed> $params Request parameters
      * @throws ApiException
      * @return Response
      */
     public function request(
         string $endpoint,
-        Method $method = Method::POST,
+        HttpMethod $method = HttpHttpMethod::POST,
         array $params = [],
     ): Response {
         $url = $this->buildUrl($endpoint);
@@ -102,7 +102,7 @@ final class ApiClient implements HttpClientInterface
      *
      * @throws ApiException
      */
-    private function executeRequest(string $url, Method $method, array $params): Response
+    private function executeRequest(string $url, HttpMethod $method, array $params): Response
     {
         $ch = curl_init();
 
@@ -130,10 +130,10 @@ final class ApiClient implements HttpClientInterface
         ];
 
         // Add body for POST/PUT/PATCH
-        if (in_array($method, [Method::POST, Method::PUT, Method::PATCH], true)) {
+        if (in_array($method, [HttpHttpMethod::POST, HttpHttpMethod::PUT, HttpHttpMethod::PATCH], true)) {
             $options[CURLOPT_POST] = true;
             $options[CURLOPT_POSTFIELDS] = $queryString;
-        } elseif ($method === Method::GET && ! empty($params)) {
+        } elseif ($method === HttpHttpMethod::GET && ! empty($params)) {
             $options[CURLOPT_URL] = "{$url}?{$queryString}";
         }
 

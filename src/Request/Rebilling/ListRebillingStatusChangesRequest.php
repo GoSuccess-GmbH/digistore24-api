@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Rebilling;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * List Rebilling Status Changes Request
@@ -27,9 +27,9 @@ final class ListRebillingStatusChangesRequest extends AbstractRequest
         return '/listRebillingStatusChanges';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::GET;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array

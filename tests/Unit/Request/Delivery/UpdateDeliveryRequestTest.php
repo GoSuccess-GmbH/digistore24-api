@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Delivery;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\DeliveryData;
+use GoSuccess\Digistore24\Api\DTO\DeliveryData;
 use GoSuccess\Digistore24\Api\Request\Delivery\UpdateDeliveryRequest;
 use PHPUnit\Framework\TestCase;
 

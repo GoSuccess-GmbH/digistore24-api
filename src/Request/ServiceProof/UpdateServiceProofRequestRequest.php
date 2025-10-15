@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ServiceProof;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\ServiceProofRequestUpdateData;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\DTO\ServiceProofRequestUpdateData;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Update Service Proof Request Request
@@ -28,9 +28,9 @@ final class UpdateServiceProofRequestRequest extends AbstractRequest
         return '/updateServiceProofRequest';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::POST;
+        return HttpMethod::POST;
     }
 
     public function toArray(): array

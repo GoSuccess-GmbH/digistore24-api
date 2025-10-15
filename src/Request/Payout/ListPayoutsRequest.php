@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Payout;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * List Payouts Request
@@ -23,9 +23,9 @@ final class ListPayoutsRequest extends AbstractRequest
         return '/listPayouts';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::GET;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array

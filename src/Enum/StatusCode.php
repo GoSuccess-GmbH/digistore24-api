@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Api\Http;
+namespace GoSuccess\Digistore24\Api\Enum;
 
 /**
  * HTTP Status Codes

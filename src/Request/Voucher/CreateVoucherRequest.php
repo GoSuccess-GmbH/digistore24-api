@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Voucher;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\VoucherData;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\DTO\VoucherData;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Create Voucher Request
@@ -28,9 +28,9 @@ final class CreateVoucherRequest extends AbstractRequest
         return '/createVoucher';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::POST;
+        return HttpMethod::POST;
     }
 
     public function toArray(): array

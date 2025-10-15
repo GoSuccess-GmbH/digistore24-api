@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Shipping;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\ShippingCostPolicyData;
+use GoSuccess\Digistore24\Api\DTO\ShippingCostPolicyData;
 use GoSuccess\Digistore24\Api\Request\Shipping\UpdateShippingCostPolicyRequest;
 use PHPUnit\Framework\TestCase;
 

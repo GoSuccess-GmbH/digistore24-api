@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Purchase;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\AddonData;
-use GoSuccess\Digistore24\Api\DataTransferObject\PlaceholderData;
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\AddonData;
+use GoSuccess\Digistore24\Api\DTO\PlaceholderData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
 use PHPUnit\Framework\TestCase;
 

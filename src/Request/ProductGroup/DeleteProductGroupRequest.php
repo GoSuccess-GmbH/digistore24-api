@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\ProductGroup;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Delete Product Group Request
@@ -26,9 +26,9 @@ final class DeleteProductGroupRequest extends AbstractRequest
         return '/deleteProductGroup';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::POST;
+        return HttpMethod::POST;
     }
 
     public function toArray(): array

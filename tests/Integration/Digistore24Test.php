@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Integration;
 
 use GoSuccess\Digistore24\Api\Client\Configuration;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

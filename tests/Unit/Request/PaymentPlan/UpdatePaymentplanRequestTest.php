@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\PaymentPlan;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanFullData;
+use GoSuccess\Digistore24\Api\DTO\PaymentPlanFullData;
 use GoSuccess\Digistore24\Api\Request\PaymentPlan\UpdatePaymentplanRequest;
 use PHPUnit\Framework\TestCase;
 

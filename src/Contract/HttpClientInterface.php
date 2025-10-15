@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Contract;
 
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 use GoSuccess\Digistore24\Api\Exception\ApiException;
-use GoSuccess\Digistore24\Api\Http\Method;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
@@ -20,14 +20,14 @@ interface HttpClientInterface
      * Send a request to the API
      *
      * @param string $endpoint API endpoint (e.g., 'createBuyUrl')
-     * @param Method $method HTTP method
+     * @param HttpMethod $method HTTP method
      * @param array<string, mixed> $params Request parameters
      * @throws ApiException When the request fails or returns an error
      * @return Response The API response
      */
     public function request(
         string $endpoint,
-        Method $method = Method::POST,
+        HttpMethod $method = HttpHttpMethod::POST,
         array $params = [],
     ): Response;
 }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Purchase;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\AddonData;
-use GoSuccess\Digistore24\Api\DataTransferObject\PlaceholderData;
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\AddonData;
+use GoSuccess\Digistore24\Api\DTO\PlaceholderData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
 
 /**
  * Create Addon Change Purchase Request

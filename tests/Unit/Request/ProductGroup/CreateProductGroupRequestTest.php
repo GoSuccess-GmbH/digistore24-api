@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\ProductGroup;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\ProductGroupData;
+use GoSuccess\Digistore24\Api\DTO\ProductGroupData;
 use GoSuccess\Digistore24\Api\Request\ProductGroup\CreateProductGroupRequest;
 use PHPUnit\Framework\TestCase;
 

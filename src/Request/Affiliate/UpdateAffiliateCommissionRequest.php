@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\AffiliateCommissionData;
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\DTO\AffiliateCommissionData;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Update Affiliate Commission Request
@@ -32,9 +32,9 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
         return '/updateAffiliateCommission';
     }
 
-    public function method(): Method
+    public function method(): HttpMethod
     {
-        return Method::POST;
+        return HttpMethod::POST;
     }
 
     public function toArray(): array

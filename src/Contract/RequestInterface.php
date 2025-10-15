@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Contract;
 
-use GoSuccess\Digistore24\Api\Http\Method;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 
 /**
  * Request Interface
@@ -25,7 +25,7 @@ interface RequestInterface extends ArrayableInterface, ValidatableInterface
     /**
      * Get the HTTP method for this request
      *
-     * @return Method The HTTP method to use
+     * @return HttpMethod The HTTP method to use
      */
-    public function getMethod(): Method;
+    public function getMethod(): HttpMethod;
 }

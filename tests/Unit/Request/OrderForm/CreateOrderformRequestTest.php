@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\OrderForm;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\OrderFormData;
+use GoSuccess\Digistore24\Api\DTO\OrderFormData;
 use GoSuccess\Digistore24\Api\Request\OrderForm\CreateOrderformRequest;
 use PHPUnit\Framework\TestCase;
 

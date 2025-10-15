@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Request\Voucher;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\VoucherData;
+use GoSuccess\Digistore24\Api\DTO\VoucherData;
 use GoSuccess\Digistore24\Api\Request\Voucher\UpdateVoucherRequest;
 use PHPUnit\Framework\TestCase;
 

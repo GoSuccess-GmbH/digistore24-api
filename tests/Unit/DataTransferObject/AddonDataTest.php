@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\AddonData;
+use GoSuccess\Digistore24\Api\DTO\AddonData;
 use PHPUnit\Framework\TestCase;
 
 final class AddonDataTest extends TestCase

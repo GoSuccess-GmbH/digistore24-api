@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Api\DataTransferObject;
+namespace GoSuccess\Digistore24\Api\DTO;
 
 /**
  * Upgrade Data Transfer Object

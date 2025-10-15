@@ -1,9 +1,12 @@
 {
     "name": "gosuccess/digistore24-api",
     "description": "Modern PHP API client for Digistore24 with PHP 8.4 features",
+    "version": "2.0.0",
     "type": "library",
     "license": "MIT",
-    "keywords": ["digistore24", "api", "client", "payment", "ecommerce", "php8.4"],
+    "keywords": ["digistore24", "api", "client", "payment", "ecommerce", "php8.4", "affiliate", "marketplace"],
+    "homepage": "https://github.com/GoSuccess-GmbH/digistore24-api",
+    "readme": "README.md",
     "autoload": {
         "psr-4": {
             "GoSuccess\\Digistore24\\Api\\": "src/"
@@ -16,11 +19,13 @@
     },
     "authors": [
         {
-            "name": "GoSuccess",
-            "homepage": "https://gosuccess.io"
+            "name": "GoSuccess GmbH",
+            "homepage": "https://gosuccess.io",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "php": ">=8.4"
     },
@@ -48,11 +53,15 @@
     "config": {
         "sort-packages": true,
         "optimize-autoloader": true,
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     },
     "support": {
         "issues": "https://github.com/GoSuccess-GmbH/digistore24-api/issues",
         "source": "https://github.com/GoSuccess-GmbH/digistore24-api",
-        "docs": "https://github.com/GoSuccess-GmbH/digistore24-api#readme"
+        "docs": "https://github.com/GoSuccess-GmbH/digistore24-api#readme",
+        "security": "https://github.com/GoSuccess-GmbH/digistore24-api/security/policy"
     }
 }
