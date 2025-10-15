@@ -12,17 +12,23 @@ final class StopRebillingResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+        ];
         $response = StopRebillingResponse::fromArray($data);
         
         $this->assertInstanceOf(StopRebillingResponse::class, $response);
+        $this->assertSame('success', $response->getResult());
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +36,23 @@ final class StopRebillingResponseTest extends TestCase
         $response = StopRebillingResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(StopRebillingResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+            ],
             headers: [],
             rawBody: 'test'
         );
         
         $response = StopRebillingResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
