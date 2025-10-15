@@ -1,13 +1,28 @@
 <?php
 declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Api\Request\ServiceProof;
+
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
+
+/**
+ * List Service Proof Requests Request
+ *
+ * Retrieves a paginated list of service proof requests.
+ */
 final class ListServiceProofRequestsRequest extends AbstractRequest
 {
+    /**
+     * @param int|null $limit Maximum number of results to return
+     * @param int|null $offset Number of results to skip for pagination
+     */
     public function __construct(private ?int $limit = null, private ?int $offset = null) {}
+
     public function getEndpoint(): string { return 'listServiceProofRequests'; }
+
     public function method(): Method { return Method::GET; }
+
     public function toArray(): array
     {
         $params = [];
