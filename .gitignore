@@ -1,2 +1,5 @@
 vendor/
 .vscode/
+
+# OpenAPI cache (temporary downloads)
+.openapi-cache/
