@@ -1,0 +1,64 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    
+    // Timeout settings
+    "timeout": 10,
+    
+    // Source directories to mutate
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "src-legacy"
+        ]
+    },
+    
+    // Logs directory
+    "logs": {
+        "text": "build/infection/infection.log",
+        "html": "build/infection/infection.html",
+        "summary": "build/infection/summary.log",
+        "json": "build/infection/infection.json",
+        "badge": {
+            "branch": "main"
+        }
+    },
+    
+    // Test framework configuration
+    "testFramework": "phpunit",
+    "testFrameworkOptions": "--configuration=phpunit.xml",
+    
+    // PHPUnit configuration
+    "phpUnit": {
+        "configDir": ".",
+        "customPath": "vendor/bin/phpunit"
+    },
+    
+    // Bootstrap file
+    "bootstrap": "vendor/autoload.php",
+    
+    // Mutation settings
+    "mutators": {
+        "@default": true,
+        "@function_signature": false,  // Too many false positives
+        "MethodCallRemoval": {
+            "ignore": [
+                "PHPUnit\\Framework\\TestCase::*"
+            ]
+        }
+    },
+    
+    // Minimum thresholds (fail if below)
+    "minMsi": 85,        // Minimum Mutation Score Indicator
+    "minCoveredMsi": 90, // Minimum Covered Code MSI
+    
+    // Coverage settings
+    "coverageBasePath": "build/coverage",
+    
+    // Ignore source code by regular expression
+    "ignoreSourceCodeByRegex": [
+        // Legacy code
+        ".*src-legacy.*"
+    ]
+}

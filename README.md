@@ -6,6 +6,7 @@ Modern, type-safe PHP API client for Digistore24 with **PHP 8.4 property hooks**
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://github.com/GoSuccess-GmbH/digistore24-api/workflows/Tests/badge.svg)](https://github.com/GoSuccess-GmbH/digistore24-api/actions)
 [![Coverage](https://img.shields.io/badge/Coverage-98%25-brightgreen.svg)](docs/TESTING.md)
+[![Mutation](https://img.shields.io/badge/Mutation-85%25-brightgreen.svg)](docs/TESTING.md#mutation-testing)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg)](phpstan.neon)
 [![Code Style](https://img.shields.io/badge/code%20style-PSR--12-blue.svg)](https://www.php-fig.org/psr/psr-12/)
 
@@ -685,17 +686,21 @@ composer test
 # Run tests with coverage (requires PCOV or Xdebug)
 composer test:coverage
 
+# Run mutation testing (validates test quality)
+composer mutation
+
 # Run specific test suites
 composer test:unit
 composer test:integration
 ```
 
-**Coverage Statistics:**
-- Lines: ~98%
-- Functions: ~99%
-- Classes: 100%
+**Quality Metrics:**
+- **Tests**: 1035 tests, 2116 assertions
+- **Coverage**: Lines ~98%, Functions ~99%, Classes 100%
+- **Mutation Score**: 85%+ MSI (test quality indicator)
+- **PHPStan**: Level 9 (maximum strictness)
 
-See [TESTING.md](docs/TESTING.md) for detailed testing guide, coverage setup, and best practices.
+See [TESTING.md](docs/TESTING.md) for detailed testing guide, coverage setup, mutation testing, and best practices.
 
 ## License
 

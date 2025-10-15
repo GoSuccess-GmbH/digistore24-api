@@ -29,6 +29,10 @@ build/
 phpstan-baseline.neon
 .phpstan.cache/
 
+# Infection/Mutation Testing
+.infection/
+infection.log
+
 # OS Files
 .DS_Store
 Thumbs.db

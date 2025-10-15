@@ -8,6 +8,7 @@ This document describes the testing strategy and setup for the Digistore24 API C
 - [Test Types](#test-types)
 - [Running Tests](#running-tests)
 - [Code Coverage](#code-coverage)
+- [Mutation Testing](#mutation-testing)
 - [Writing Tests](#writing-tests)
 - [Continuous Integration](#continuous-integration)
 
@@ -18,6 +19,7 @@ The project uses **PHPUnit 11.x** for testing with a comprehensive test suite co
 - **Unit Tests**: 1035+ tests testing individual components
 - **Integration Tests**: Tests with mocked HTTP responses
 - **Code Coverage**: Tracking test coverage metrics
+- **Mutation Testing**: Infection PHP for test quality validation
 - **Static Analysis**: PHPStan Level 9 for type safety
 
 ### Current Test Statistics
@@ -25,6 +27,7 @@ The project uses **PHPUnit 11.x** for testing with a comprehensive test suite co
 - **Tests**: 1035 tests
 - **Assertions**: 2116 assertions
 - **Code Coverage**: ~98% (lines)
+- **Mutation Score**: 85%+ MSI (Mutation Score Indicator)
 - **PHPStan Level**: 9 (maximum)
 
 ## Test Types
@@ -47,7 +50,7 @@ class CreateBuyUrlRequestTest extends TestCase
     {
         $request = new CreateBuyUrlRequest();
         $request->productId = 12345;
-        
+
         $this->assertSame(12345, $request->productId);
     }
 }
@@ -72,7 +75,7 @@ class BuyUrlWorkflowTest extends TestCase
     {
         $config = new Configuration(apiKey: 'test-key');
         $client = new Digistore24($config);
-        
+
         // Mock HTTP client responses
         // Test complete workflow
     }
@@ -209,6 +212,287 @@ The project enforces minimum coverage thresholds in `phpunit.xml`:
 - Functions: 98%+
 - Classes: 100%
 
+## Mutation Testing
+
+Mutation testing validates the **quality of your tests** by intentionally introducing bugs (mutations) into your code and checking if your tests catch them.
+
+### What is Mutation Testing?
+
+Traditional code coverage only tells you which lines were executed, not if your tests actually validate the behavior. Mutation testing goes further:
+
+1. **Infection** modifies your source code (e.g., changes `*` to `+`, `==` to `!=`)
+2. Runs your test suite against the mutated code
+3. If tests **fail** → Good! Your tests caught the bug ✓
+4. If tests **pass** → Bad! Your tests didn't catch the bug ✗ (escaped mutant)
+
+### Example
+
+```php
+// Original code
+public function getTotal(): float
+{
+    return $this->price * $this->quantity;  // Multiplication
+}
+
+// Mutation: * changed to +
+public function getTotal(): float
+{
+    return $this->price + $this->quantity;  // Addition (BUG!)
+}
+
+// Good test (catches mutation):
+$this->assertSame(100.0, $product->getTotal());  // ✓ Fails with mutation
+
+// Bad test (doesn't catch mutation):
+$this->assertIsFloat($product->getTotal());  // ✗ Still passes with mutation
+```
+
+### Prerequisites
+
+Mutation testing requires **PCOV** or **Xdebug** for code coverage (see [Code Coverage](#code-coverage) section).
+
+```bash
+# Verify coverage driver is installed
+php -m | grep -E "pcov|xdebug"
+```
+
+### Running Mutation Tests
+
+```bash
+# Run mutation testing (recommended - shows mutations)
+composer mutation
+
+# Run with detailed report
+composer mutation:report
+
+# Run only on covered code (faster)
+composer mutation:baseline
+
+# Manual execution with custom options
+vendor/bin/infection --threads=4 --show-mutations --min-msi=85
+```
+
+### Understanding Results
+
+After running `composer mutation`, you'll see output like:
+
+```
+735 mutations were generated:
+     519 mutants were killed
+     189 mutants were not covered by tests
+      21 covered mutants were not detected
+       6 errors were encountered
+       0 syntax errors were encountered
+       0 time outs were encountered
+       0 mutants required more time than configured
+
+Metrics:
+         Mutation Score Indicator (MSI): 87%
+         Mutation Code Coverage: 74%
+         Covered Code MSI: 96%
+```
+
+#### Key Metrics
+
+**1. Mutation Score Indicator (MSI)**
+- **What**: Percentage of killed mutants out of all mutants
+- **Formula**: (Killed / Total) × 100
+- **Target**: 85%+
+- **Meaning**: Overall test effectiveness
+
+**2. Mutation Code Coverage**
+- **What**: Percentage of mutants covered by tests
+- **Formula**: (Covered / Total) × 100
+- **Target**: 80%+
+- **Meaning**: How much code is reachable by tests
+
+**3. Covered Code MSI**
+- **What**: Percentage of killed mutants out of covered mutants
+- **Formula**: (Killed / Covered) × 100
+- **Target**: 90%+
+- **Meaning**: Test quality for covered code
+
+### Mutation Types
+
+Infection applies various mutations (mutators):
+
+```php
+// Arithmetic Operators
+$a * $b  →  $a + $b   // Multiplication to Addition
+$a / $b  →  $a * $b   // Division to Multiplication
+$a % $b  →  $a * $b   // Modulus to Multiplication
+
+// Comparison Operators
+$a == $b  →  $a != $b   // Equal to Not Equal
+$a < $b   →  $a <= $b   // Less Than to Less Or Equal
+$a > $b   →  $a >= $b   // Greater Than to Greater Or Equal
+
+// Logical Operators
+$a && $b  →  $a || $b   // AND to OR
+!$a       →  $a         // NOT removed
+
+// Return Values
+return true;   →  return false;
+return $value; →  return null;
+
+// Increments
+$i++;  →  $i--;
+++$i;  →  --$i;
+
+// Array Operations
+$array[]  →  array_pop($array)
+count($a) →  count($a) + 1
+
+// String Operations
+$a . $b  →  $b         // Concatenation removal
+trim($s) →  $s         // Function call removal
+```
+
+### Configuration
+
+The mutation testing configuration is in `infection.json5`:
+
+```json5
+{
+    // Minimum thresholds (fail if below)
+    "minMsi": 85,        // Minimum Mutation Score Indicator
+    "minCoveredMsi": 90, // Minimum Covered Code MSI
+    
+    // Mutators to apply
+    "mutators": {
+        "@default": true,  // All default mutators
+        "@function_signature": false  // Disable (too many false positives)
+    }
+}
+```
+
+### Viewing Reports
+
+After running mutation tests, check the generated reports:
+
+```bash
+# HTML report (detailed, interactive)
+open build/infection/infection.html
+
+# Text log
+cat build/infection/infection.log
+
+# Summary
+cat build/infection/summary.log
+
+# JSON (for CI/CD)
+cat build/infection/infection.json
+```
+
+### Improving Mutation Score
+
+If you have escaped mutants (mutants not detected), improve your tests:
+
+**Example: Escaped Mutant**
+```
+Escaped mutants:
+===============
+
+1) src/Util/Validator.php:42    [M] DecrementInteger
+-    return count($items) > 0;
++    return count($items) - 1 > 0;
+```
+
+**Fix: Add specific assertion**
+```php
+// Before (weak test)
+$this->assertTrue($validator->hasItems());
+
+// After (strong test)
+$this->assertTrue($validator->hasItems());
+$this->assertSame(3, count($items));  // Catches count mutations
+```
+
+### CI/CD Integration
+
+Add to `.github/workflows/mutation-tests.yml`:
+
+```yaml
+name: Mutation Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  mutation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: pcov
+          
+      - run: composer install
+      
+      - name: Run Mutation Tests
+        run: composer mutation:report
+        
+      - name: Upload Mutation Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutation-report
+          path: build/infection/
+```
+
+### Best Practices
+
+1. ✅ **Run regularly** - Include in CI/CD pipeline
+2. ✅ **Focus on critical code** - Payment, validation, security logic
+3. ✅ **Don't aim for 100%** - 85-90% MSI is excellent
+4. ✅ **Review escaped mutants** - Learn from them, improve tests
+5. ✅ **Use `--only-covered`** - Faster feedback loop during development
+6. ✅ **Disable problematic mutators** - If too many false positives
+7. ⚠️ **Expect longer runtime** - 10-30 minutes for full run
+8. ⚠️ **Not a replacement** - Complement to code coverage, not replacement
+
+### Troubleshooting
+
+**"The process has been signaled with signal '9'"**
+```bash
+# Increase timeout
+vendor/bin/infection --timeout=20
+```
+
+**"No mutations generated"**
+```bash
+# Ensure tests have coverage
+composer test:coverage
+```
+
+**Too many false positives from specific mutator**
+```json5
+// infection.json5
+"mutators": {
+    "@default": true,
+    "PregQuote": false,  // Disable specific mutator
+    "ArrayItemRemoval": {
+        "ignore": [
+            "MyClass::myMethod"  // Ignore specific method
+        ]
+    }
+}
+```
+
+**Tests are too slow**
+```bash
+# Use more threads (use CPU core count)
+vendor/bin/infection --threads=8
+
+# Run only on changed files
+vendor/bin/infection --git-diff-lines --git-diff-base=main
+```
+
 ## Writing Tests
 
 ### Test Structure
@@ -227,26 +511,26 @@ use PHPUnit\Framework\Attributes\CoversClass;
 class YourClassTest extends TestCase
 {
     private YourClass $subject;
-    
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->subject = new YourClass();
     }
-    
+
     protected function tearDown(): void
     {
         parent::tearDown();
     }
-    
+
     public function testItDoesSomething(): void
     {
         // Arrange
         $input = 'test';
-        
+
         // Act
         $result = $this->subject->doSomething($input);
-        
+
         // Assert
         $this->assertSame('expected', $result);
     }
@@ -323,10 +607,10 @@ public function testCallsApiClient(): void
                ->method('post')
                ->with('/endpoint', ['data' => 'value'])
                ->willReturn(['result' => 'success']);
-    
+
     $service = new YourService($mockClient);
     $result = $service->doSomething();
-    
+
     $this->assertSame('success', $result);
 }
 ```
