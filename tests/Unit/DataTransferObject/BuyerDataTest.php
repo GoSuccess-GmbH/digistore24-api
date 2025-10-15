@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
 use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \GoSuccess\Digistore24\DataTransferObject\BuyerData
- */
+#[CoversClass(BuyerData::class)]
 final class BuyerDataTest extends TestCase
 {
     public function testCanCreateWithValidEmail(): void

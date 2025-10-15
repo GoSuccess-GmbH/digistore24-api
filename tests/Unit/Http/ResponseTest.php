@@ -6,11 +6,10 @@ namespace GoSuccess\Digistore24\Api\Tests\Unit\Http;
 
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Http\StatusCode;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \GoSuccess\Digistore24\Http\Response
- */
+#[CoversClass(Response::class)]
 final class ResponseTest extends TestCase
 {
     public function testIsSuccessPropertyReturnsTrueFor2xxStatus(): void

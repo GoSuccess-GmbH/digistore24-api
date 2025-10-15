@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Utils;
 
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \GoSuccess\Digistore24\Utils\TypeConverter
- */
+#[CoversClass(TypeConverter::class)]
 final class TypeConverterTest extends TestCase
 {
     public function testToIntConvertsStringToInteger(): void

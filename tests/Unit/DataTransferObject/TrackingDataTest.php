@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
 use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \GoSuccess\Digistore24\DataTransferObject\TrackingData
- */
+#[CoversClass(TrackingData::class)]
 final class TrackingDataTest extends TestCase
 {
     public function testCanCreateWithAllFields(): void

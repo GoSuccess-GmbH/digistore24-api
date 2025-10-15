@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Utils;
 
 use GoSuccess\Digistore24\Api\Util\ArrayHelper;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \GoSuccess\Digistore24\Utils\ArrayHelper
- */
+#[CoversClass(ArrayHelper::class)]
 final class ArrayHelperTest extends TestCase
 {
     public function testGetRetrievesNestedValue(): void

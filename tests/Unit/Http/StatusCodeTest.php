@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Http;
 
 use GoSuccess\Digistore24\Api\Http\StatusCode;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \GoSuccess\Digistore24\Http\StatusCode
- */
+#[CoversClass(StatusCode::class)]
 final class StatusCodeTest extends TestCase
 {
     public function testIsSuccessReturnsTrueFor2xxCodes(): void
