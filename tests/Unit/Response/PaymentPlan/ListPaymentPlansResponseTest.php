@@ -12,17 +12,42 @@ final class ListPaymentPlansResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'payment_plans' => [
+                    [
+                        'paymentplan_id' => 'PP001',
+                        'name' => 'Monthly Plan',
+                        'price' => 29.99
+                    ],
+                    [
+                        'paymentplan_id' => 'PP002',
+                        'name' => 'Yearly Plan',
+                        'price' => 299.99
+                    ]
+                ]
+            ]
+        ];
         $response = ListPaymentPlansResponse::fromArray($data);
         
         $this->assertInstanceOf(ListPaymentPlansResponse::class, $response);
+        $this->assertCount(2, $response->getPaymentPlans());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'payment_plans' => [
+                        [
+                            'paymentplan_id' => 'PP003',
+                            'name' => 'Lifetime Plan'
+                        ]
+                    ]
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +55,21 @@ final class ListPaymentPlansResponseTest extends TestCase
         $response = ListPaymentPlansResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(ListPaymentPlansResponse::class, $response);
+        $this->assertCount(1, $response->getPaymentPlans());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = ListPaymentPlansResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

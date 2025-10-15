@@ -12,17 +12,29 @@ final class CreatePaymentplanResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'paymentplan_id' => 'PP123456'
+            ]
+        ];
         $response = CreatePaymentplanResponse::fromArray($data);
         
         $this->assertInstanceOf(CreatePaymentplanResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('PP123456', $response->getPaymentplanId());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'paymentplan_id' => 'PP789012'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +42,21 @@ final class CreatePaymentplanResponseTest extends TestCase
         $response = CreatePaymentplanResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(CreatePaymentplanResponse::class, $response);
+        $this->assertSame('PP789012', $response->getPaymentplanId());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = CreatePaymentplanResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
