@@ -12,17 +12,27 @@ final class UpdateProductResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'modified' => 'Y'
+            ]
+        ];
         $response = UpdateProductResponse::fromArray($data);
         
         $this->assertInstanceOf(UpdateProductResponse::class, $response);
+        $this->assertTrue($response->wasModified());
+        $this->assertSame('Y', $response->getModified());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'modified' => 'Y'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +40,21 @@ final class UpdateProductResponseTest extends TestCase
         $response = UpdateProductResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(UpdateProductResponse::class, $response);
+        $this->assertTrue($response->wasModified());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = UpdateProductResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

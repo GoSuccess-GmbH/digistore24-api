@@ -12,17 +12,26 @@ final class CreateProductResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'product_id' => 123456
+            ]
+        ];
         $response = CreateProductResponse::fromArray($data);
         
         $this->assertInstanceOf(CreateProductResponse::class, $response);
+        $this->assertSame(123456, $response->getProductId());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'product_id' => 789012
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +39,21 @@ final class CreateProductResponseTest extends TestCase
         $response = CreateProductResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(CreateProductResponse::class, $response);
+        $this->assertSame(789012, $response->getProductId());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = CreateProductResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

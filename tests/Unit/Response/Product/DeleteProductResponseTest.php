@@ -16,13 +16,14 @@ final class DeleteProductResponseTest extends TestCase
         $response = DeleteProductResponse::fromArray($data);
         
         $this->assertInstanceOf(DeleteProductResponse::class, $response);
+        $this->assertTrue($response->getSuccess());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +31,21 @@ final class DeleteProductResponseTest extends TestCase
         $response = DeleteProductResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(DeleteProductResponse::class, $response);
+        $this->assertTrue($response->getSuccess());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = DeleteProductResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
