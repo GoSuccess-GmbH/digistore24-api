@@ -3,3 +3,8 @@ vendor/
 
 # OpenAPI cache (temporary downloads)
 .openapi-cache/
+
+# PHPUnit generated files
+junit.xml
+tests-list.xml
+.phpunit.cache/
