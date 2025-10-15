@@ -4,6 +4,9 @@ Modern, type-safe PHP API client for Digistore24 with **PHP 8.4 property hooks**
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.4%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Tests](https://github.com/GoSuccess-GmbH/digistore24-api/workflows/Tests/badge.svg)](https://github.com/GoSuccess-GmbH/digistore24-api/actions)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg)](phpstan.neon)
+[![Code Style](https://img.shields.io/badge/code%20style-PSR--12-blue.svg)](https://www.php-fig.org/psr/psr-12/)
 
 ## Features
 
@@ -596,4 +599,5 @@ Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTIN
 
 - **Documentation**: Check the `docs/` directory for endpoint-specific guides
 - **Issues**: Report bugs on [GitHub Issues](https://github.com/GoSuccess-GmbH/digistore24-api/issues)
+- **Security**: Report security vulnerabilities via [SECURITY.md](SECURITY.md)
 - **Migration Guide**: See [MIGRATION.md](MIGRATION.md) for upgrading from v1.x
