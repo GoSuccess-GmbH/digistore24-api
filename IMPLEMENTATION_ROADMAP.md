@@ -205,8 +205,9 @@ This document tracks the implementation status of all Digistore24 API endpoints.
 
 ## Summary
 
-- **Total Endpoints**: 123
-- **Implemented**: 123 endpoints across 32 complete categories
+- **Total Endpoints**: 122 (123 listed, but refundPartially counted twice)
+- **Implemented**: 122 unique endpoints across 36 complete categories
+- **Documentation**: 122/122 endpoint documentation files (100%)
 - **Remaining**: 0
 - **Progress**: 100% ✅
 
