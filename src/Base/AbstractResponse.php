@@ -30,7 +30,9 @@ abstract class AbstractResponse implements ResponseInterface
     public static function fromResponse(Response $response): static
     {
         $data = $response->data['data'] ?? $response->data;
-        return static::fromArray($data, $response);
+        $instance = static::fromArray($data, $response);
+        $instance->rawResponse = $response;
+        return $instance;
     }
 
     /**
