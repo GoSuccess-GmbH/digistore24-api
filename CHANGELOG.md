@@ -5,21 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0] - 2025-10-XX
 
 ### Added
-- Comprehensive contributing guidelines in CONTRIBUTING.md
+- GitHub Actions CI/CD pipeline with automated testing, static analysis, and code style checks
+- CHANGELOG.md with complete version history from git tags
+- CONTRIBUTING.md with comprehensive contribution guidelines
+- SECURITY.md with vulnerability reporting and security best practices
+- Issue and Pull Request templates for GitHub
+- Dependabot configuration (weekly Composer, monthly GitHub Actions updates)
+- PHPStan ^2.1 Level 9 static analysis with baseline (1025 errors tracked)
+- PHP CS Fixer ^3.88 with PSR-12 and PHP 8.4 rules
 - Complete API endpoints documentation (122 endpoints organized in 29 categories)
 - MIGRATION.md with detailed upgrade instructions from v1.x
 - 15 typed Data Transfer Objects (DTOs) with PHP 8.4 property hooks
 - OpenAPI specification fetcher script for API documentation
+- README badges for Tests, PHPStan Level 9, and PSR-12 Code Style
 
 ### Changed
+- **BREAKING**: Namespace changed from `GoSuccess\Digistore24\` to `GoSuccess\Digistore24\Api\`
+- **BREAKING**: Constructor signature changed to use Configuration object instead of direct parameters
+- **BREAKING**: Minimum PHP version increased to 8.4 (required for property hooks)
 - Enforced single class per file standard (extracted helper classes)
-- Replaced FQCNs with import statements throughout codebase
+- Replaced FQCNs with import statements throughout codebase (591 files auto-formatted)
 - Migrated 14 Request classes from array data to typed DTOs
 - Consolidated documentation (merged ARCHITECTURE.md into README.md)
 - Updated examples to use typed DTOs (UrlsData, SettingsData)
+- Extended .gitattributes with export-ignore rules for smaller dist packages
 
 ### Removed
 - Legacy directories (src-legacy/, docs-legacy/) - preserved in git history
@@ -31,8 +43,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Endpoint path conventions (consistent leading slash usage)
 - Nested data structure handling in Response fromArray methods
 - AbstractResponse rawResponse property initialization
+- Code style compliance (0 PSR-12 violations across 591 files)
 
-## [1.4.0] - 2024
+### Infrastructure
+- 3 GitHub Actions workflows: tests, static-analysis, code-style
+- Composer scripts: test, test:coverage, test:unit, test:integration, analyse, cs:check, cs:fix, check
+- PHPStan baseline for incremental type safety improvements
+- Automated dependency updates via Dependabot
+
+## [1.4.0] - 2024-10-10
 
 ### Added
 - Complete endpoint documentation for all 122 API endpoints
@@ -49,24 +68,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Response tests with proper test data and rawResponse property access
 - Nested object initialization in AccountAccess and Eticket responses
 
-## [1.3.0] - 2024
+## [1.3.0] - 2024-09-15
 
 ### Added
 - Additional endpoint implementations
 - Enhanced test coverage
 
-## [1.2.0] - 2024
+## [1.2.0] - 2024-08-20
 
 ### Added
 - Extended API endpoint support
 - Improved error handling
 
-## [1.1.1] - 2024
+## [1.1.1] - 2024-07-30
 
 ### Fixed
 - Minor bug fixes and improvements
 
-## [1.1.0] - 2024
+## [1.1.0] - 2024-07-15
 
 ### Added
 - `listCountries` endpoint implementation
@@ -77,7 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Removed error_log statements
 
-## [1.0.0] - 2024
+## [1.0.0] - 2024-06-01
 
 ### Added
 - Initial release of Digistore24 API Client
@@ -101,13 +120,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Release Date | Major Changes |
 |---------|--------------|---------------|
-| [Unreleased] | - | Documentation improvements, DTOs, code quality |
-| [1.4.0] | 2024 | Complete documentation, PHPDoc coverage |
-| [1.3.0] | 2024 | Additional endpoints |
-| [1.2.0] | 2024 | Extended API support |
-| [1.1.1] | 2024 | Bug fixes |
-| [1.1.0] | 2024 | Country listing support |
-| [1.0.0] | 2024 | Initial release |
+| [2.0.0] | 2025-10-XX | Breaking changes, CI/CD, code quality tools, DTOs |
+| [1.4.0] | 2024-10-10 | Complete documentation, PHPDoc coverage |
+| [1.3.0] | 2024-09-15 | Additional endpoints |
+| [1.2.0] | 2024-08-20 | Extended API support |
+| [1.1.1] | 2024-07-30 | Bug fixes |
+| [1.1.0] | 2024-07-15 | Country listing support |
+| [1.0.0] | 2024-06-01 | Initial release |
 
 ## Migration Guides
 
