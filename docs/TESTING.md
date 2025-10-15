@@ -580,15 +580,19 @@ Integration tests can be run manually via GitHub Actions:
 
 1. Go to **Actions** → **Integration Tests**
 2. Click **Run workflow**
-3. Select **Environment**: `sandbox` (recommended) or `production`
+3. Configure inputs:
+   - **Environment**: `sandbox` (recommended) or `production`
+   - **Test Product ID**: Your test product ID (optional)
+   - **Test Purchase ID**: Your test purchase ID (optional)
+   - **Test Buyer Email**: Your test buyer email (optional)
+   - etc.
 4. Click **Run workflow**
 
 **GitHub Secrets Required:**
-- `DS24_SANDBOX_API_KEY`
-- `DS24_PRODUCTION_API_KEY`
-- `DS24_TEST_PRODUCT_ID`
-- `DS24_TEST_PURCHASE_ID`
-- etc. (see `.env.example`)
+- `DS24_SANDBOX_API_KEY` - API key for sandbox environment
+- `DS24_PRODUCTION_API_KEY` - API key for production environment
+
+**Note:** All test data is provided as workflow inputs, not secrets. This allows you to easily update test data without changing repository secrets.
 
 ### Best Practices
 
