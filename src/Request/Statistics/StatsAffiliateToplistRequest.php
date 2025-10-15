@@ -1,17 +1,33 @@
 <?php
 declare(strict_types=1);
+
 namespace GoSuccess\Digistore24\Api\Request\Statistics;
+
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Http\Method;
+
+/**
+ * Stats Affiliate Toplist Request
+ *
+ * Retrieves a ranked list of top-performing affiliates for a date range.
+ */
 final class StatsAffiliateToplistRequest extends AbstractRequest
 {
+    /**
+     * @param string|null $from Start date for statistics (format: YYYY-MM-DD)
+     * @param string|null $to End date for statistics (format: YYYY-MM-DD)
+     * @param int|null $limit Maximum number of affiliates to return
+     */
     public function __construct(
         private ?string $from = null,
         private ?string $to = null,
         private ?int $limit = null,
     ) {}
+
     public function getEndpoint(): string { return 'statsAffiliateToplist'; }
+
     public function method(): Method { return Method::GET; }
+
     public function toArray(): array
     {
         $params = [];
