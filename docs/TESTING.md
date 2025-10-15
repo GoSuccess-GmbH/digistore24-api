@@ -507,7 +507,7 @@ Endpoints like `createBillingOnDemand`, `createRebillingPayment`, `refundPurchas
 - Create real refunds
 - Affect real customer accounts
 
-**Always use TEST/SANDBOX data only!**
+**Always use TEST data only!**
 
 ### Configuration
 
@@ -521,16 +521,16 @@ Integration tests require configuration in `.env.local`:
 2. **Fill in your test data:**
    ```bash
    # .env.local
-   DS24_API_KEY=your-sandbox-api-key-here
+   DS24_API_KEY=your-api-key-here
    DS24_TEST_PRODUCT_ID=12345
    DS24_TEST_PURCHASE_ID=TESTORDER123
    DS24_TEST_PURCHASE_WITH_REBILLING=REBILL456
    # ... see .env.example for all options
    ```
 
-3. **Use SANDBOX/TEST data only:**
+3. **Use TEST data only:**
    - Test products with €0.01 price
-   - Test purchases from sandbox environment
+   - Test purchases from test orders
    - Test buyer accounts (not real customers)
 
 ### Running Integration Tests
@@ -581,7 +581,6 @@ Integration tests can be run manually via GitHub Actions:
 1. Go to **Actions** → **Integration Tests**
 2. Click **Run workflow**
 3. Configure inputs:
-   - **Environment**: `sandbox` (recommended) or `production`
    - **Test Product ID**: Your test product ID (optional)
    - **Test Purchase ID**: Your test purchase ID (optional)
    - **Test Buyer Email**: Your test buyer email (optional)
@@ -589,14 +588,13 @@ Integration tests can be run manually via GitHub Actions:
 4. Click **Run workflow**
 
 **GitHub Secrets Required:**
-- `DS24_SANDBOX_API_KEY` - API key for sandbox environment
-- `DS24_PRODUCTION_API_KEY` - API key for production environment
+- `DS24_API_KEY` - Your Digistore24 API key
 
 **Note:** All test data is provided as workflow inputs, not secrets. This allows you to easily update test data without changing repository secrets.
 
 ### Best Practices
 
-1. ✅ **Always use SANDBOX/TEST data**
+1. ✅ **Always use TEST data**
 2. ✅ **Create dedicated test products** with €0.01 price
 3. ✅ **Use separate test account** for integration testing
 4. ✅ **Review all test data** before running tests

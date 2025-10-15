@@ -3,14 +3,6 @@ name: Integration Tests
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'API Environment'
-        required: true
-        type: choice
-        options:
-          - sandbox
-          - production
-        default: 'sandbox'
       test_product_id:
         description: 'Test Product ID'
         required: false
@@ -76,8 +68,7 @@ jobs:
 
       - name: Run integration tests
         env:
-          DS24_API_KEY: ${{ inputs.environment == 'sandbox' && secrets.DS24_SANDBOX_API_KEY || secrets.DS24_PRODUCTION_API_KEY }}
-          DS24_ENVIRONMENT: ${{ inputs.environment }}
+          DS24_API_KEY: ${{ secrets.DS24_API_KEY }}
           DS24_ALLOW_CI_TESTS: 'true'
           # Test data from workflow inputs
           DS24_TEST_PRODUCT_ID: ${{ inputs.test_product_id }}
