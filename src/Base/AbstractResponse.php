@@ -29,7 +29,11 @@ abstract class AbstractResponse implements ResponseInterface
      */
     public static function fromResponse(Response $response): static
     {
-        $instance = static::fromArray($response->data, $response);
+        // Digistore24 API wraps data in a "data" field
+        // Example: {"api_version": "1.2", "result": "success", "data": {...}}
+        $data = $response->data['data'] ?? $response->data;
+        
+        $instance = static::fromArray($data, $response);
         $instance->rawResponse = $response;
 
         return $instance;

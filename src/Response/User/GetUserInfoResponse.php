@@ -24,6 +24,7 @@ final class GetUserInfoResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
-        return new self(userInfo: $data['data'] ?? []);
+        // Note: $data is already the inner "data" object extracted by AbstractResponse::fromResponse()
+        return new self(userInfo: $data);
     }
 }

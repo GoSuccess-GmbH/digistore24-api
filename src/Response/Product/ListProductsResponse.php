@@ -28,12 +28,12 @@ final class ProductListItem
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
         return new self(
-            productId: $data['product_id'] ?? '',
-            productName: $data['product_name'] ?? '',
-            productType: $data['product_type'] ?? '',
+            productId: (string)($data['id'] ?? ''),
+            productName: $data['name'] ?? '',
+            productType: $data['product_type_id'] ?? '',
             price: (float)($data['price'] ?? 0),
             currency: $data['currency'] ?? 'EUR',
-            isPublished: (bool)($data['is_published'] ?? false),
+            isPublished: ($data['is_active'] ?? 'N') === 'Y',
             createdAt: isset($data['created_at']) ? new \DateTimeImmutable($data['created_at']) : null,
         );
     }
@@ -68,7 +68,7 @@ final class ListProductsResponse extends AbstractResponse
 
         $instance = new self(
             products: $products,
-            totalCount: (int)($data['total_count'] ?? count($products)),
+            totalCount: count($products), // DS24 API doesn't return total_count, so we count the array
         );
 
         return $instance;

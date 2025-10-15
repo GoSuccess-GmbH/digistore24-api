@@ -8,6 +8,7 @@ use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
 use GoSuccess\Digistore24\Api\Response\Product\ListProductsResponse;
+use GoSuccess\Digistore24\Api\Response\Product\ProductListItem;
 use PHPUnit\Framework\Attributes\Group;
 
 #[Group('integration')]
@@ -35,8 +36,19 @@ final class ProductIntegrationTest extends IntegrationTestCase
         $response = $this->client->products->list(new ListProductsRequest());
 
         $this->assertInstanceOf(ListProductsResponse::class, $response);
+        
+        // Validate response structure
         $this->assertIsArray($response->products);
         $this->assertIsInt($response->totalCount);
         $this->assertGreaterThanOrEqual(0, $response->totalCount);
+        
+        // If products exist, validate structure of first product
+        if (!empty($response->products)) {
+            $product = $response->products[0];
+            $this->assertInstanceOf(ProductListItem::class, $product);
+            $this->assertNotEmpty($product->productId);
+            $this->assertNotEmpty($product->productName);
+            $this->assertNotEmpty($product->currency);
+        }
     }
 }

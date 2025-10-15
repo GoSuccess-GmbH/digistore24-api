@@ -49,9 +49,10 @@ final class PingResponse extends AbstractResponse
      */
     public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
     {
+        // Note: $data is already the inner "data" object extracted by AbstractResponse::fromResponse()
         return new self(
-            result: (string)($data['result'] ?? 'unknown'),
-            serverTime: (string)($data['data']['server_time'] ?? ''),
+            result: (string)($rawResponse?->data['result'] ?? 'unknown'),
+            serverTime: (string)($data['server_time'] ?? ''),
         );
     }
 }
