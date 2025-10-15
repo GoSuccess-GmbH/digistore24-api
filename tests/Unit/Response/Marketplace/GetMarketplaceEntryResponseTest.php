@@ -12,17 +12,33 @@ final class GetMarketplaceEntryResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'entry_id' => 'ENTRY001',
+                'product_name' => 'Premium Course',
+                'description' => 'Learn advanced techniques',
+                'price' => 99.99,
+                'status' => 'active'
+            ]
+        ];
         $response = GetMarketplaceEntryResponse::fromArray($data);
         
         $this->assertInstanceOf(GetMarketplaceEntryResponse::class, $response);
+        $this->assertArrayHasKey('entry_id', $response->getData());
+        $this->assertSame('ENTRY001', $response->getData()['entry_id']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'entry_id' => 'ENTRY002',
+                    'product_name' => 'Starter Package',
+                    'price' => 49.99
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +46,21 @@ final class GetMarketplaceEntryResponseTest extends TestCase
         $response = GetMarketplaceEntryResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetMarketplaceEntryResponse::class, $response);
+        $this->assertSame('Starter Package', $response->getData()['product_name']);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = GetMarketplaceEntryResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
