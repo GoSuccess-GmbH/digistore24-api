@@ -20,6 +20,7 @@ junit.xml
 tests-list.xml
 .phpunit.cache/
 coverage/
+build/
 
 # PHP CS Fixer
 .php-cs-fixer.cache

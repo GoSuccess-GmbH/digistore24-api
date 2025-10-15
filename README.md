@@ -5,6 +5,7 @@ Modern, type-safe PHP API client for Digistore24 with **PHP 8.4 property hooks**
 [![PHP Version](https://img.shields.io/badge/PHP-8.4%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://github.com/GoSuccess-GmbH/digistore24-api/workflows/Tests/badge.svg)](https://github.com/GoSuccess-GmbH/digistore24-api/actions)
+[![Coverage](https://img.shields.io/badge/Coverage-98%25-brightgreen.svg)](docs/TESTING.md)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg)](phpstan.neon)
 [![Code Style](https://img.shields.io/badge/code%20style-PSR--12-blue.svg)](https://www.php-fig.org/psr/psr-12/)
 
@@ -675,13 +676,26 @@ Upgrading from `gosuccess/php-ds24-api-wrapper`? See [MIGRATION.md](docs/MIGRATI
 
 ## Testing
 
+The project has comprehensive test coverage with 1035+ tests and 2116 assertions.
+
 ```bash
 # Run all tests
 composer test
 
-# Run tests with coverage
+# Run tests with coverage (requires PCOV or Xdebug)
 composer test:coverage
+
+# Run specific test suites
+composer test:unit
+composer test:integration
 ```
+
+**Coverage Statistics:**
+- Lines: ~98%
+- Functions: ~99%
+- Classes: 100%
+
+See [TESTING.md](docs/TESTING.md) for detailed testing guide, coverage setup, and best practices.
 
 ## License
 
@@ -717,6 +731,7 @@ See [DEVELOPER_SETUP.md](docs/DEVELOPER_SETUP.md) for detailed IDE setup instruc
 ## Support
 
 - **Documentation**: Check the `docs/` directory for endpoint-specific guides
+- **Testing Guide**: See [TESTING.md](docs/TESTING.md) for test setup and coverage
 - **Issues**: Report bugs on [GitHub Issues](https://github.com/GoSuccess-GmbH/digistore24-api/issues)
 - **Security**: Report security vulnerabilities via [SECURITY.md](SECURITY.md)
 - **Migration Guide**: See [MIGRATION.md](docs/MIGRATION.md) for upgrading from v1.x
