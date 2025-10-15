@@ -53,10 +53,6 @@
             "@putenv DS24_INTEGRATION_TESTS=1",
             "phpunit --testsuite Integration"
         ],
-        "test:integration:safe": [
-            "@putenv DS24_INTEGRATION_TESTS=1",
-            "phpunit --testsuite Integration --group safe"
-        ],
         "mutation": "infection --threads=4 --show-mutations",
         "mutation:report": "infection --threads=4 --show-mutations --no-progress",
         "mutation:baseline": "infection --threads=4 --show-mutations --only-covered",

@@ -539,9 +539,6 @@ Integration tests require configuration in `.env.local`:
 # Run all integration tests (skips tests with missing config)
 composer test:integration
 
-# Run only safe tests (read-only endpoints)
-composer test:integration:safe
-
 # Run specific test file
 vendor/bin/phpunit tests/Integration/BillingIntegrationTest.php
 
@@ -583,9 +580,7 @@ Integration tests can be run manually via GitHub Actions:
 
 1. Go to **Actions** → **Integration Tests**
 2. Click **Run workflow**
-3. Select options:
-   - **Test Group**: `safe` (recommended) or `all` (expensive!)
-   - **Environment**: `sandbox` (recommended) or `production`
+3. Select **Environment**: `sandbox` (recommended) or `production`
 4. Click **Run workflow**
 
 **GitHub Secrets Required:**
@@ -600,11 +595,9 @@ Integration tests can be run manually via GitHub Actions:
 1. ✅ **Always use SANDBOX/TEST data**
 2. ✅ **Create dedicated test products** with €0.01 price
 3. ✅ **Use separate test account** for integration testing
-4. ✅ **Review all test data** before running expensive tests
-5. ✅ **Start with safe tests** (`composer test:integration:safe`)
-6. ✅ **Check `.env.example`** for all required configurations
-7. ⚠️ **Never commit `.env.local`** (already in .gitignore)
-8. ⚠️ **Be careful with `@group expensive` tests** - they cost money!
+4. ✅ **Review all test data** before running tests
+5. ✅ **Check `.env.example`** for all required configurations
+6. ⚠️ **Never commit `.env.local`** (already in .gitignore)
 
 ### Writing Integration Tests
 
@@ -624,16 +617,13 @@ class MyIntegrationTest extends IntegrationTestCase
     {
         // Get API key (skips test if not configured)
         $apiKey = $this->getApiKey();
-        
+
         // Get required config (skips test if missing)
         $productId = $this->requireConfig('DS24_TEST_PRODUCT_ID');
-        
+
         // Get optional config with default
         $timeout = $this->getConfig('DS24_TIMEOUT', '30');
-        
-        // Warn about expensive operations
-        $this->warnExpensive('createBillingOnDemand', 'min €0.80');
-        
+
         // Your test code here...
     }
 }

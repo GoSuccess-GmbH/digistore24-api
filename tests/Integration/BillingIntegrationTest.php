@@ -18,46 +18,40 @@ class BillingIntegrationTest extends IntegrationTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $apiKey = $this->getApiKey();
         $config = new Configuration(apiKey: $apiKey);
         $this->client = new Digistore24($config);
     }
 
-    #[Group('expensive')]
     public function testCreateBillingOnDemand(): void
     {
-        $this->warnExpensive('createBillingOnDemand', 'min €0.80');
-        
         $purchaseId = $this->requireConfig(
             'DS24_TEST_PURCHASE_WITH_REBILLING',
             'Test purchase with rebilling capability required'
         );
-        
+
         $productId = $this->requireConfig(
             'DS24_TEST_PRODUCT_ID',
             'Test product ID required'
         );
-        
+
         $request = new CreateBillingOnDemandRequest(
             purchaseId: $purchaseId,
             productId: $productId
         );
-        
+
         $response = $this->client->billing->createOnDemand($request);
-        
+
         $this->assertNotNull($response);
         $this->assertNotEmpty($response->getCreatedPurchaseId());
     }
 
-    #[Group('expensive')]
     public function testCreateBillingOnDemandWithPaymentPlan(): void
     {
-        $this->warnExpensive('createBillingOnDemand with payment plan', 'recurring charges');
-        
         $purchaseId = $this->requireConfig('DS24_TEST_PURCHASE_WITH_REBILLING');
         $productId = $this->requireConfig('DS24_TEST_PRODUCT_WITH_PAYMENT_PLAN');
-        
+
         $request = new CreateBillingOnDemandRequest(
             purchaseId: $purchaseId,
             productId: $productId,
@@ -69,9 +63,9 @@ class BillingIntegrationTest extends IntegrationTestCase
                 'other_billing_intervals' => '1_month',
             ]
         );
-        
+
         $response = $this->client->billing->createOnDemand($request);
-        
+
         $this->assertNotNull($response);
         $this->assertNotEmpty($response->getCreatedPurchaseId());
     }

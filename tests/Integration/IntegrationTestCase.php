@@ -23,7 +23,7 @@ abstract class IntegrationTestCase extends TestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        
+
         if (!self::$configLoaded) {
             self::loadConfiguration();
             self::$configLoaded = true;
@@ -36,22 +36,22 @@ abstract class IntegrationTestCase extends TestCase
     protected static function loadConfiguration(): void
     {
         $envFile = __DIR__ . '/../../.env.local';
-        
+
         if (file_exists($envFile)) {
             $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            
+
             foreach ($lines as $line) {
                 // Skip comments and empty lines
                 if (str_starts_with(trim($line), '#') || empty(trim($line))) {
                     continue;
                 }
-                
+
                 // Parse KEY=VALUE
                 if (str_contains($line, '=')) {
                     [$key, $value] = explode('=', $line, 2);
                     $key = trim($key);
                     $value = trim($value);
-                    
+
                     // Only set if not already in environment
                     if (!isset($_ENV[$key]) && !getenv($key)) {
                         putenv("{$key}={$value}");
@@ -72,7 +72,7 @@ abstract class IntegrationTestCase extends TestCase
     protected function getConfig(string $key, ?string $default = null): ?string
     {
         $value = $_ENV[$key] ?? getenv($key) ?: $default;
-        
+
         return $value !== false && $value !== '' ? $value : $default;
     }
 
@@ -86,22 +86,22 @@ abstract class IntegrationTestCase extends TestCase
     protected function requireConfig(string $key, ?string $reason = null): string
     {
         $value = $this->getConfig($key);
-        
+
         if ($value === null || $value === '') {
             $reason = $reason ?? "Required configuration '{$key}' is not set";
-            
+
             // Track missing config
             if (!in_array($key, self::$missingConfigs, true)) {
                 self::$missingConfigs[] = $key;
             }
-            
+
             $this->markTestSkipped(
                 "⚠️  {$reason}\n" .
                 "   Please set '{$key}' in .env.local or environment variables.\n" .
                 "   See .env.example for all available configuration options."
             );
         }
-        
+
         return $value;
     }
 
@@ -131,25 +131,11 @@ abstract class IntegrationTestCase extends TestCase
     {
         $isCI = getenv('CI') === 'true' || getenv('GITHUB_ACTIONS') === 'true';
         $allowCI = getenv('DS24_ALLOW_CI_TESTS') === 'true';
-        
+
         if ($isCI && !$allowCI) {
             $this->markTestSkipped(
                 'Integration tests are disabled in CI by default. ' .
                 'Set DS24_ALLOW_CI_TESTS=true to enable.'
-            );
-        }
-    }
-
-    /**
-     * Display warning for expensive tests
-     */
-    protected function warnExpensive(string $endpoint, string $cost = 'real money'): void
-    {
-        if (!getenv('DS24_SUPPRESS_WARNINGS')) {
-            fwrite(
-                STDERR,
-                "\n⚠️  WARNING: Testing '{$endpoint}' - This may cost {$cost}!\n" .
-                "   Make sure you're using TEST/SANDBOX data only.\n\n"
             );
         }
     }
@@ -168,7 +154,7 @@ abstract class IntegrationTestCase extends TestCase
     public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
-        
+
         if (!empty(self::$missingConfigs) && !getenv('DS24_SUPPRESS_WARNINGS')) {
             fwrite(
                 STDERR,
@@ -177,11 +163,11 @@ abstract class IntegrationTestCase extends TestCase
                 str_repeat('=', 80) . "\n" .
                 "Some tests were skipped due to missing configuration:\n\n"
             );
-            
+
             foreach (self::$missingConfigs as $key) {
                 fwrite(STDERR, "   - {$key}\n");
             }
-            
+
             fwrite(
                 STDERR,
                 "\nTo run all integration tests:\n" .
