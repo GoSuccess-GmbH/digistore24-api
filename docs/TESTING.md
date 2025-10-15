@@ -357,7 +357,7 @@ The mutation testing configuration is in `infection.json5`:
     // Minimum thresholds (fail if below)
     "minMsi": 85,        // Minimum Mutation Score Indicator
     "minCoveredMsi": 90, // Minimum Covered Code MSI
-    
+
     // Mutators to apply
     "mutators": {
         "@default": true,  // All default mutators
@@ -426,17 +426,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           coverage: pcov
-          
+
       - run: composer install
-      
+
       - name: Run Mutation Tests
         run: composer mutation:report
-        
+
       - name: Upload Mutation Report
         uses: actions/upload-artifact@v4
         if: always()

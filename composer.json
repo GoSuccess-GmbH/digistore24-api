@@ -4,7 +4,16 @@
     "version": "2.0.0",
     "type": "library",
     "license": "MIT",
-    "keywords": ["digistore24", "api", "client", "payment", "ecommerce", "php8.4", "affiliate", "marketplace"],
+    "keywords": [
+        "digistore24",
+        "api",
+        "client",
+        "payment",
+        "ecommerce",
+        "php8.4",
+        "affiliate",
+        "marketplace"
+    ],
     "homepage": "https://github.com/GoSuccess-GmbH/digistore24-api",
     "readme": "README.md",
     "autoload": {
