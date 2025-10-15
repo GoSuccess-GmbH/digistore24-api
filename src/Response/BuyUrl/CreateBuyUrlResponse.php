@@ -28,7 +28,6 @@ final class CreateBuyUrlResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $response = new self();
-        $response->rawResponse = $rawResponse;
         $response->id = self::getValue($data, 'id', 'string');
         $response->url = self::getValue($data, 'url', 'string');
         $response->validUntil = self::getValue($data, 'valid_until', 'datetime_immutable');

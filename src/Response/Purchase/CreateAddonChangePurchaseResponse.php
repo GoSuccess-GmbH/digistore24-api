@@ -42,11 +42,6 @@ final class CreateAddonChangePurchaseResponse extends AbstractResponse
             billingStatusMsg: self::getValue($data, 'billing_status_msg', 'string', ''),
             payUrl: self::getValue($data, 'pay_url', 'string'),
         );
-
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-
         return $instance;
     }
 }

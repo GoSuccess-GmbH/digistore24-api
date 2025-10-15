@@ -30,11 +30,6 @@ final class CreateImageResponse extends AbstractResponse
             imageId: self::getValue($data, 'image_id', 'string', ''),
             imageUrl: self::getValue($data, 'image_url', 'string', ''),
         );
-
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-
         return $instance;
     }
 }

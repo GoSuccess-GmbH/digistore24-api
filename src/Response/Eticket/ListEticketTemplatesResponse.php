@@ -59,11 +59,6 @@ final class ListEticketTemplatesResponse extends AbstractResponse
         }
 
         $instance = new self(templates: $templates);
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

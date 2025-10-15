@@ -74,11 +74,6 @@ final class GetEticketResponse extends AbstractResponse
         $instance = new self(
             ticket: EticketDetail::fromArray($data),
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

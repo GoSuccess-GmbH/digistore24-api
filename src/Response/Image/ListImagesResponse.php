@@ -66,11 +66,6 @@ final class ListImagesResponse extends AbstractResponse
             images: $images,
             totalCount: (int) ($data['total_count'] ?? count($images)),
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

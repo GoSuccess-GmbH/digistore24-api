@@ -62,10 +62,6 @@ final class ListAccountAccessResponse extends AbstractResponse
             }
         }
 
-        $instance = new self(accesses: $accesses);
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        return $instance;
+        return new self(accesses: $accesses);
     }
 }

@@ -61,11 +61,6 @@ final class ListEticketLocationsResponse extends AbstractResponse
         }
 
         $instance = new self(locations: $locations);
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

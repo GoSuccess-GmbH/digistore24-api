@@ -42,11 +42,6 @@ final class GetPurchaseResponse extends AbstractResponse
             createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
             additionalData: $data['additional_data'] ?? [],
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

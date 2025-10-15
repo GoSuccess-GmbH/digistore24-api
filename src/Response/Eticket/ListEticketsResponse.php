@@ -84,11 +84,6 @@ final class ListEticketsResponse extends AbstractResponse
             tickets: $tickets,
             totalCount: (int) ($data['total_count'] ?? count($tickets)),
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

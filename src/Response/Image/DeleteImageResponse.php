@@ -28,11 +28,6 @@ final class DeleteImageResponse extends AbstractResponse
             imageId: $data['image_id'] ?? '',
             message: $data['message'] ?? null,
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

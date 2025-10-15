@@ -34,11 +34,6 @@ final class GetImageResponse extends AbstractResponse
             altTag: $data['alt_tag'] ?? null,
             createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

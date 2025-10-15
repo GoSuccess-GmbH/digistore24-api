@@ -34,11 +34,6 @@ final class GetEticketSettingsResponse extends AbstractResponse
             requireEmailValidation: (bool) ($data['require_email_validation'] ?? false),
             settings: $data['settings'] ?? [],
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

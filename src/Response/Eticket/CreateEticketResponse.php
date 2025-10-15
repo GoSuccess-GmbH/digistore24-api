@@ -60,11 +60,6 @@ final class CreateEticketResponse extends AbstractResponse
         }
 
         $instance = new self(etickets: $etickets);
-
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-
         return $instance;
     }
 }

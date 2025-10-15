@@ -72,11 +72,6 @@ final class ListPurchasesResponse extends AbstractResponse
             purchases: $purchases,
             totalCount: (int) ($data['total_count'] ?? count($purchases)),
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

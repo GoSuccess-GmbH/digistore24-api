@@ -38,11 +38,6 @@ final class ValidateEticketResponse extends AbstractResponse
             wasAlreadyValidated: (bool) ($data['was_already_validated'] ?? false),
             message: $data['message'] ?? null,
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

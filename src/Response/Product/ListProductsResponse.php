@@ -70,11 +70,6 @@ final class ListProductsResponse extends AbstractResponse
             products: $products,
             totalCount: (int) ($data['total_count'] ?? count($products)),
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }

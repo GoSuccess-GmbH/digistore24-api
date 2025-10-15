@@ -40,11 +40,6 @@ final class GetProductResponse extends AbstractResponse
             imageUrl: $data['image_url'] ?? null,
             additionalData: $data['additional_data'] ?? [],
         );
-        
-        if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
-        }
-        
         return $instance;
     }
 }
