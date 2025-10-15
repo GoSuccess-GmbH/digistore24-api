@@ -57,7 +57,7 @@ final class ApiClient implements HttpClientInterface
      */
     public function request(
         string $endpoint,
-        HttpMethod $method = HttpHttpMethod::POST,
+        HttpMethod $method = HttpMethod::POST,
         array $params = [],
     ): Response {
         $url = $this->buildUrl($endpoint);
@@ -130,10 +130,10 @@ final class ApiClient implements HttpClientInterface
         ];
 
         // Add body for POST/PUT/PATCH
-        if (in_array($method, [HttpHttpMethod::POST, HttpHttpMethod::PUT, HttpHttpMethod::PATCH], true)) {
+        if (in_array($method, [HttpMethod::POST, HttpMethod::PUT, HttpMethod::PATCH], true)) {
             $options[CURLOPT_POST] = true;
             $options[CURLOPT_POSTFIELDS] = $queryString;
-        } elseif ($method === HttpHttpMethod::GET && ! empty($params)) {
+        } elseif ($method === HttpMethod::GET && ! empty($params)) {
             $options[CURLOPT_URL] = "{$url}?{$queryString}";
         }
 

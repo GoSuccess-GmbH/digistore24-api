@@ -27,7 +27,7 @@ abstract class AbstractRequest implements RequestInterface
      */
     public function getMethod(): HttpMethod
     {
-        return HttpHttpMethod::POST;
+        return HttpMethod::POST;
     }
 
     /**

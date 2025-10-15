@@ -27,7 +27,7 @@ interface HttpClientInterface
      */
     public function request(
         string $endpoint,
-        HttpMethod $method = HttpHttpMethod::POST,
+        HttpMethod $method = HttpMethod::POST,
         array $params = [],
     ): Response;
 }
