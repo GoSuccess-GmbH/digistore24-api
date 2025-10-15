@@ -54,9 +54,12 @@ The response contains validation details and status information.
 
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\Eticket\ValidateEticketRequest;
 
-$ds24 = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$ds24 = new Digistore24($config);
 
 $request = new ValidateEticketRequest(
     ticketId: 'TICKET123456'

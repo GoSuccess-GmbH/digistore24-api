@@ -73,7 +73,9 @@ The customer's stored payment method is automatically charged for the new order.
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Simple billing with reference purchase
 $request = new CreateBillingOnDemandRequest(
@@ -93,7 +95,9 @@ echo "Payment status: " . $response->getPaymentStatusMsg() . "\n";
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Create subscription-like billing
 $request = new CreateBillingOnDemandRequest(
@@ -173,7 +177,9 @@ Offer additional products to customers who already purchased:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Customer bought basic course, offer advanced course
 $request = new CreateBillingOnDemandRequest(
@@ -206,7 +212,9 @@ Create recurring billing for a one-time purchase:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Create monthly subscription billing
 $request = new CreateBillingOnDemandRequest(
@@ -236,7 +244,9 @@ Bill for additional products with main product:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new CreateBillingOnDemandRequest(
     purchaseId: 'MAIN789',
@@ -269,7 +279,9 @@ Automatically bill for usage-based services:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Calculate usage for the month
 $apiCalls = 15000;
@@ -303,7 +315,9 @@ Apply vouchers to on-demand billing:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new CreateBillingOnDemandRequest(
     purchaseId: 'LOYAL100',
@@ -327,7 +341,9 @@ use GoSuccess\Digistore24\Request\Billing\CreateBillingOnDemandRequest;
 use GoSuccess\Digistore24\Exception\ForbiddenException;
 use GoSuccess\Digistore24\Exception\ApiException;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 try {
     $request = new CreateBillingOnDemandRequest(

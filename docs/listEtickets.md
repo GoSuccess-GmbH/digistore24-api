@@ -85,9 +85,12 @@ The response contains an array of e-tickets and the total count.
 
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketsRequest;
 
-$ds24 = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$ds24 = new Digistore24($config);
 
 $request = new ListEticketsRequest();
 

@@ -53,9 +53,12 @@ The response contains an array of access log entries.
 
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\AccountAccess\ListAccountAccessRequest;
 
-$ds24 = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$ds24 = new Digistore24($config);
 
 $request = new ListAccountAccessRequest(
     purchaseId: 'ABC123XYZ'

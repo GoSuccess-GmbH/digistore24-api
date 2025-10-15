@@ -35,7 +35,9 @@ This is useful when you want to:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new RefundPartiallyRequest(
     purchaseId: 'ABC123',
@@ -97,7 +99,9 @@ Compensate customer for service issues:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Customer experienced 2 days of downtime in monthly subscription
 $monthlyPrice = 29.99;
@@ -129,7 +133,9 @@ Apply a discount after purchase (e.g., price match):
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Customer found lower price, honor price match guarantee
 $originalPrice = 99.00;
@@ -156,7 +162,9 @@ Reward loyal customers with partial refund:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // 10% loyalty cashback for repeat customer
 $purchaseAmount = 149.00;
@@ -183,7 +191,9 @@ Refund for features removed mid-billing cycle:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Customer downgraded from Pro to Basic mid-month
 $proPriceMonthly = 49.99;
@@ -209,7 +219,9 @@ Process multiple partial refunds:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $refunds = [
     ['purchase_id' => 'ABC123', 'amount' => 10.00],
@@ -258,7 +270,9 @@ use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 use GoSuccess\Digistore24\Request\Purchase\GetPurchaseRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 function resolveComplaint(
     Digistore24 $client,
@@ -306,7 +320,9 @@ use GoSuccess\Digistore24\Request\Billing\RefundPartiallyRequest;
 use GoSuccess\Digistore24\Exception\ApiException;
 use GoSuccess\Digistore24\Exception\ValidationException;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 try {
     $request = new RefundPartiallyRequest(

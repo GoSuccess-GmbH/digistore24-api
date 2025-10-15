@@ -28,7 +28,9 @@ This endpoint does not require any parameters.
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new ListProductTypesRequest();
 $response = $client->products()->listProductTypes($request);
@@ -105,7 +107,9 @@ Show available product types when creating a new product:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new ListProductTypesRequest();
 $response = $client->products()->listProductTypes($request);
@@ -135,7 +139,9 @@ use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 use GoSuccess\Digistore24\Request\Product\CreateProductRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 // Get available product types
 $request = new ListProductTypesRequest();
@@ -195,7 +201,9 @@ function getProductTypes(Digistore24 $client, bool $forceRefresh = false): array
 }
 
 // Usage
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 $productTypes = getProductTypes($client);
 ```
 
@@ -207,7 +215,9 @@ Get only digital product types:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new ListProductTypesRequest();
 $response = $client->products()->listProductTypes($request);
@@ -229,7 +239,9 @@ Generate a reference document of all product types:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new ListProductTypesRequest();
 $response = $client->products()->listProductTypes($request);
@@ -258,7 +270,9 @@ Build a dynamic form based on available product types:
 use GoSuccess\Digistore24\Digistore24;
 use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 $request = new ListProductTypesRequest();
 $response = $client->products()->listProductTypes($request);
@@ -309,7 +323,9 @@ use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
 use GoSuccess\Digistore24\Exception\ApiException;
 use GoSuccess\Digistore24\Exception\AuthenticationException;
 
-$client = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$client = new Digistore24($config);
 
 try {
     $request = new ListProductTypesRequest();

@@ -30,8 +30,11 @@ POST /json/ipnDelete
 
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
 
-$api = new Digistore24('your-api-key');
+// Initialize API client
+$config = new Configuration('YOUR-API-KEY');
+$api = new Digistore24($config);
 
 // Delete specific webhook
 $response = $api->ipn()->ipnDelete(
