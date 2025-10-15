@@ -14,6 +14,9 @@ use GoSuccess\Digistore24\Api\Base\AbstractRequest;
  */
 final class ListAccountAccessRequest extends AbstractRequest
 {
+    /**
+     * @param string $purchaseId The unique identifier of the purchase
+     */
     public function __construct(
         public readonly string $purchaseId,
     ) {
@@ -30,6 +33,4 @@ final class ListAccountAccessRequest extends AbstractRequest
             'purchase_id' => $this->purchaseId,
         ];
     }
-
-    
 }
