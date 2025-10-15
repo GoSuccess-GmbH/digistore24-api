@@ -18,7 +18,7 @@ final class CreateOrderformRequest extends AbstractRequest
      */
     public function __construct(private array $data) {}
 
-    public function getEndpoint(): string { return 'createOrderform'; }
+    public function getEndpoint(): string { return '/createOrderform'; }
 
     public function method(): Method { return Method::POST; }
 

@@ -15,7 +15,7 @@ final class ListOrderformsRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'listOrderforms'; }
+    public function getEndpoint(): string { return '/listOrderforms'; }
 
     public function method(): Method { return Method::GET; }
 

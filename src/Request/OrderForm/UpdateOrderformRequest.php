@@ -19,7 +19,7 @@ final class UpdateOrderformRequest extends AbstractRequest
      */
     public function __construct(private string $orderformId, private array $data) {}
 
-    public function getEndpoint(): string { return 'updateOrderform'; }
+    public function getEndpoint(): string { return '/updateOrderform'; }
 
     public function method(): Method { return Method::POST; }
 

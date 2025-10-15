@@ -18,7 +18,7 @@ final class ListCurrenciesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listCurrencies';
+        return '/listCurrencies';
     }
 
     public function method(): Method

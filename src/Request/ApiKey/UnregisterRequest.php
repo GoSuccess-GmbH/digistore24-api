@@ -21,7 +21,7 @@ final class UnregisterRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'unregister';
+        return '/unregister';
     }
 
     public function method(): Method

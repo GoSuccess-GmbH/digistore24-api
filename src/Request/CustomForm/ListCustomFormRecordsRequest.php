@@ -26,7 +26,7 @@ final class ListCustomFormRecordsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listCustomFormRecords';
+        return '/listCustomFormRecords';
     }
 
     public function method(): Method

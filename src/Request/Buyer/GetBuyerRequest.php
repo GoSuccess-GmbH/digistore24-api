@@ -24,7 +24,7 @@ final class GetBuyerRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'getBuyer';
+        return '/getBuyer';
     }
 
     public function method(): Method

@@ -18,7 +18,7 @@ final class DeleteOrderformRequest extends AbstractRequest
      */
     public function __construct(private string $orderformId) {}
 
-    public function getEndpoint(): string { return 'deleteOrderform'; }
+    public function getEndpoint(): string { return '/deleteOrderform'; }
 
     public function method(): Method { return Method::POST; }
 

@@ -24,7 +24,7 @@ final class DeleteVoucherRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'deleteVoucher';
+        return '/deleteVoucher';
     }
 
     public function method(): Method

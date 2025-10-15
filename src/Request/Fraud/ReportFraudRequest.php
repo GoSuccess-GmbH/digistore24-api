@@ -29,7 +29,7 @@ final class ReportFraudRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'reportFraud';
+        return '/reportFraud';
     }
 
     public function method(): Method

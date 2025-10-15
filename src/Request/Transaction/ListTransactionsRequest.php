@@ -32,7 +32,7 @@ final class ListTransactionsRequest extends AbstractRequest
         private ?int $pageSize = null,
     ) {}
 
-    public function getEndpoint(): string { return 'listTransactions'; }
+    public function getEndpoint(): string { return '/listTransactions'; }
 
     public function method(): Method { return Method::POST; }
 

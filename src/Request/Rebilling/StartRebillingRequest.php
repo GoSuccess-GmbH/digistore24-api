@@ -18,7 +18,7 @@ final class StartRebillingRequest extends AbstractRequest
      */
     public function __construct(private string $purchaseId) {}
 
-    public function getEndpoint(): string { return 'startRebilling'; }
+    public function getEndpoint(): string { return '/startRebilling'; }
 
     public function method(): Method { return Method::POST; }
 

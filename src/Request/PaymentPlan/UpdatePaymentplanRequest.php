@@ -19,7 +19,7 @@ final class UpdatePaymentplanRequest extends AbstractRequest
      */
     public function __construct(private string $paymentplanId, private array $data) {}
 
-    public function getEndpoint(): string { return 'updatePaymentplan'; }
+    public function getEndpoint(): string { return '/updatePaymentplan'; }
 
     public function method(): Method { return Method::POST; }
 

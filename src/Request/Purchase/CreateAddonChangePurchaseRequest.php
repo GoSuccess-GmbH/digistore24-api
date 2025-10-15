@@ -43,7 +43,7 @@ final class CreateAddonChangePurchaseRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createAddonChangePurchase';
+        return '/createAddonChangePurchase';
     }
 
     public function toArray(): array

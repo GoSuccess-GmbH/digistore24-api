@@ -15,7 +15,7 @@ final class ListSmartUpgradesRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'listSmartUpgrades'; }
+    public function getEndpoint(): string { return '/listSmartUpgrades'; }
 
     public function method(): Method { return Method::GET; }
 

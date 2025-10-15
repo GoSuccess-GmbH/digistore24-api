@@ -20,7 +20,7 @@ final class IpnDeleteRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'ipnDelete';
+        return '/ipnDelete';
     }
 
     public function method(): Method

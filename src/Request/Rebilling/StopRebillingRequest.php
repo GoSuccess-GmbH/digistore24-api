@@ -18,7 +18,7 @@ final class StopRebillingRequest extends AbstractRequest
      */
     public function __construct(private string $purchaseId) {}
 
-    public function getEndpoint(): string { return 'stopRebilling'; }
+    public function getEndpoint(): string { return '/stopRebilling'; }
 
     public function method(): Method { return Method::POST; }
 

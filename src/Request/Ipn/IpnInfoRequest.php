@@ -20,7 +20,7 @@ final class IpnInfoRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'ipnInfo';
+        return '/ipnInfo';
     }
 
     public function method(): Method

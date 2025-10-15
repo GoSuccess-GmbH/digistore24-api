@@ -18,7 +18,7 @@ final class GetProductGroupRequest extends AbstractRequest
      */
     public function __construct(private string $productGroupId) {}
 
-    public function getEndpoint(): string { return 'getProductGroup'; }
+    public function getEndpoint(): string { return '/getProductGroup'; }
 
     public function method(): Method { return Method::GET; }
 

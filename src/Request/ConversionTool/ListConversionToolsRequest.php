@@ -24,7 +24,7 @@ final class ListConversionToolsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listConversionTools';
+        return '/listConversionTools';
     }
 
     public function method(): Method

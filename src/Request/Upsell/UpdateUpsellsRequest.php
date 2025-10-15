@@ -19,7 +19,7 @@ final class UpdateUpsellsRequest extends AbstractRequest
      */
     public function __construct(private int $productId, private array $data) {}
 
-    public function getEndpoint(): string { return 'updateUpsells'; }
+    public function getEndpoint(): string { return '/updateUpsells'; }
 
     public function method(): Method { return Method::POST; }
 

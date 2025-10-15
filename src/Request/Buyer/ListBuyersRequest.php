@@ -26,7 +26,7 @@ final class ListBuyersRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listBuyers';
+        return '/listBuyers';
     }
 
     public function method(): Method

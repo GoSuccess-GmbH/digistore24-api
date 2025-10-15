@@ -48,6 +48,6 @@ final class CreateUpgradePurchaseRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createUpgradePurchase';
+        return '/createUpgradePurchase';
     }
 }

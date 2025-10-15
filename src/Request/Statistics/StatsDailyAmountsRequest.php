@@ -19,7 +19,7 @@ final class StatsDailyAmountsRequest extends AbstractRequest
      */
     public function __construct(private ?string $from = null, private ?string $to = null) {}
 
-    public function getEndpoint(): string { return 'statsDailyAmounts'; }
+    public function getEndpoint(): string { return '/statsDailyAmounts'; }
 
     public function method(): Method { return Method::GET; }
 

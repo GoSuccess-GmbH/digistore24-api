@@ -26,7 +26,7 @@ final class UpdateVoucherRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'updateVoucher';
+        return '/updateVoucher';
     }
 
     public function method(): Method

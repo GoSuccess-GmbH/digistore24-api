@@ -18,7 +18,7 @@ final class CreateProductGroupRequest extends AbstractRequest
      */
     public function __construct(private array $data) {}
 
-    public function getEndpoint(): string { return 'createProductGroup'; }
+    public function getEndpoint(): string { return '/createProductGroup'; }
 
     public function method(): Method { return Method::POST; }
 

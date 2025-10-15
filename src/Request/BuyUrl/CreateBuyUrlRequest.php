@@ -39,7 +39,7 @@ final class CreateBuyUrlRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createBuyUrl';
+        return '/createBuyUrl';
     }
 
     protected function rules(): array

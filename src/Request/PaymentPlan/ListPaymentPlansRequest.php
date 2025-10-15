@@ -15,7 +15,7 @@ final class ListPaymentPlansRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'listPaymentPlans'; }
+    public function getEndpoint(): string { return '/listPaymentPlans'; }
 
     public function method(): Method { return Method::GET; }
 

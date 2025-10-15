@@ -19,7 +19,7 @@ final class GetSmartupgradeRequest extends AbstractRequest
      */
     public function __construct(private string $smartupgradeId, private ?string $purchaseId = null) {}
 
-    public function getEndpoint(): string { return 'getSmartupgrade'; }
+    public function getEndpoint(): string { return '/getSmartupgrade'; }
 
     public function method(): Method { return Method::GET; }
 

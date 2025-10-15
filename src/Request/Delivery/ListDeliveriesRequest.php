@@ -24,7 +24,7 @@ final class ListDeliveriesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listDeliveries';
+        return '/listDeliveries';
     }
 
     public function method(): Method

@@ -32,7 +32,7 @@ final class RenderJsTrackingCodeRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'renderJsTrackingCode';
+        return '/renderJsTrackingCode';
     }
 
     public function method(): Method

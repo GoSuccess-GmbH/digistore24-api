@@ -15,7 +15,7 @@ final class GetOrderformMetasRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'getOrderformMetas'; }
+    public function getEndpoint(): string { return '/getOrderformMetas'; }
 
     public function method(): Method { return Method::GET; }
 

@@ -16,7 +16,7 @@ final class ListCountriesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listCountries';
+        return '/listCountries';
     }
 
     public function method(): Method

@@ -18,7 +18,7 @@ final class GetUpgradeRequest extends AbstractRequest
      */
     public function __construct(private string $upgradeId) {}
 
-    public function getEndpoint(): string { return 'getUpgrade'; }
+    public function getEndpoint(): string { return '/getUpgrade'; }
 
     public function method(): Method { return Method::GET; }
 

@@ -25,7 +25,7 @@ final class RequestApiKeyRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'requestApiKey';
+        return '/requestApiKey';
     }
 
     public function method(): Method

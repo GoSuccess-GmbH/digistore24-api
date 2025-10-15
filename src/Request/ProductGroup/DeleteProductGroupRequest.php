@@ -18,7 +18,7 @@ final class DeleteProductGroupRequest extends AbstractRequest
      */
     public function __construct(private string $productGroupId) {}
 
-    public function getEndpoint(): string { return 'deleteProductGroup'; }
+    public function getEndpoint(): string { return '/deleteProductGroup'; }
 
     public function method(): Method { return Method::POST; }
 

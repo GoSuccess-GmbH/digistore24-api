@@ -19,7 +19,7 @@ final class UpdateProductGroupRequest extends AbstractRequest
      */
     public function __construct(private string $productGroupId, private array $data) {}
 
-    public function getEndpoint(): string { return 'updateProductGroup'; }
+    public function getEndpoint(): string { return '/updateProductGroup'; }
 
     public function method(): Method { return Method::POST; }
 

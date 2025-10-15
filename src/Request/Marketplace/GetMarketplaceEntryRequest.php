@@ -18,7 +18,7 @@ final class GetMarketplaceEntryRequest extends AbstractRequest
      */
     public function __construct(private string $entryId) {}
 
-    public function getEndpoint(): string { return 'getMarketplaceEntry'; }
+    public function getEndpoint(): string { return '/getMarketplaceEntry'; }
 
     public function method(): Method { return Method::GET; }
 

@@ -44,7 +44,7 @@ final class CreateEticketRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createEticket';
+        return '/createEticket';
     }
 
     public function toArray(): array

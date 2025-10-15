@@ -38,7 +38,7 @@ final class ListCommissionsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listCommissions';
+        return '/listCommissions';
     }
 
     public function method(): Method

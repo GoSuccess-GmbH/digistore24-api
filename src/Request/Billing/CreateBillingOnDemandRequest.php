@@ -42,7 +42,7 @@ final class CreateBillingOnDemandRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createBillingOnDemand';
+        return '/createBillingOnDemand';
     }
 
     public function method(): Method

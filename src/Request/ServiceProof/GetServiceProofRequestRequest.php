@@ -18,7 +18,7 @@ final class GetServiceProofRequestRequest extends AbstractRequest
      */
     public function __construct(private string $serviceProofRequestId) {}
 
-    public function getEndpoint(): string { return 'getServiceProofRequest'; }
+    public function getEndpoint(): string { return '/getServiceProofRequest'; }
 
     public function method(): Method { return Method::GET; }
 

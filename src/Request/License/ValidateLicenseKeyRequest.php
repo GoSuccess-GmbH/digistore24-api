@@ -28,7 +28,7 @@ final class ValidateLicenseKeyRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'validateLicenseKey';
+        return '/validateLicenseKey';
     }
 
     public function method(): Method

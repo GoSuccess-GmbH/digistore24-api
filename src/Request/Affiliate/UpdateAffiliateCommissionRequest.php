@@ -28,7 +28,7 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'updateAffiliateCommission';
+        return '/updateAffiliateCommission';
     }
 
     public function method(): Method

@@ -24,7 +24,7 @@ final class ListInvoicesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listInvoices';
+        return '/listInvoices';
     }
 
     public function method(): Method

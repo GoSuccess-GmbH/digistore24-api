@@ -26,7 +26,7 @@ final class UpdateDeliveryRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'updateDelivery';
+        return '/updateDelivery';
     }
 
     public function method(): Method

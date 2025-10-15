@@ -33,7 +33,7 @@ final class RefundPartiallyRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'refundPartially';
+        return '/refundPartially';
     }
 
     public function method(): Method

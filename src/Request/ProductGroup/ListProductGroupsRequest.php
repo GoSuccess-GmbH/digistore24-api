@@ -15,7 +15,7 @@ final class ListProductGroupsRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'listProductGroups'; }
+    public function getEndpoint(): string { return '/listProductGroups'; }
 
     public function method(): Method { return Method::GET; }
 

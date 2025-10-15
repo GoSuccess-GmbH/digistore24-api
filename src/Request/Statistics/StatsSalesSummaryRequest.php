@@ -19,7 +19,7 @@ final class StatsSalesSummaryRequest extends AbstractRequest
      */
     public function __construct(private ?string $from = null, private ?string $to = null) {}
 
-    public function getEndpoint(): string { return 'statsSalesSummary'; }
+    public function getEndpoint(): string { return '/statsSalesSummary'; }
 
     public function method(): Method { return Method::GET; }
 

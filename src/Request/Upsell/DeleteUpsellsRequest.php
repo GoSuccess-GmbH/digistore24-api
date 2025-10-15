@@ -18,7 +18,7 @@ final class DeleteUpsellsRequest extends AbstractRequest
      */
     public function __construct(private int $productId) {}
 
-    public function getEndpoint(): string { return 'deleteUpsells'; }
+    public function getEndpoint(): string { return '/deleteUpsells'; }
 
     public function method(): Method { return Method::POST; }
 

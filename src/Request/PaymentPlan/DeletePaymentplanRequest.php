@@ -18,7 +18,7 @@ final class DeletePaymentplanRequest extends AbstractRequest
      */
     public function __construct(private string $paymentplanId) {}
 
-    public function getEndpoint(): string { return 'deletePaymentplan'; }
+    public function getEndpoint(): string { return '/deletePaymentplan'; }
 
     public function method(): Method { return Method::POST; }
 

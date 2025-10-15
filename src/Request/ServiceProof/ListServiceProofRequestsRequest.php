@@ -19,7 +19,7 @@ final class ListServiceProofRequestsRequest extends AbstractRequest
      */
     public function __construct(private ?int $limit = null, private ?int $offset = null) {}
 
-    public function getEndpoint(): string { return 'listServiceProofRequests'; }
+    public function getEndpoint(): string { return '/listServiceProofRequests'; }
 
     public function method(): Method { return Method::GET; }
 

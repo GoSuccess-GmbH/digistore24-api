@@ -20,7 +20,7 @@ final class GetUserInfoRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'getUserInfo';
+        return '/getUserInfo';
     }
 
     public function method(): Method

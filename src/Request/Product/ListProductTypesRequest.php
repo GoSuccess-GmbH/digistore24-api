@@ -25,7 +25,7 @@ final class ListProductTypesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listProductTypes';
+        return '/listProductTypes';
     }
 
     public function method(): Method

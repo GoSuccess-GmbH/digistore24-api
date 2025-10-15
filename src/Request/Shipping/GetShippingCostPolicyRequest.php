@@ -18,7 +18,7 @@ final class GetShippingCostPolicyRequest extends AbstractRequest
      */
     public function __construct(private string $shippingCostPolicyId) {}
 
-    public function getEndpoint(): string { return 'getShippingCostPolicy'; }
+    public function getEndpoint(): string { return '/getShippingCostPolicy'; }
 
     public function method(): Method { return Method::GET; }
 

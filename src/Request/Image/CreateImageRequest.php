@@ -32,7 +32,7 @@ final class CreateImageRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createImage';
+        return '/createImage';
     }
 
     public function toArray(): array

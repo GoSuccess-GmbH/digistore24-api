@@ -18,7 +18,7 @@ final class GetUpsellsRequest extends AbstractRequest
      */
     public function __construct(private int $productId) {}
 
-    public function getEndpoint(): string { return 'getUpsells'; }
+    public function getEndpoint(): string { return '/getUpsells'; }
 
     public function method(): Method { return Method::GET; }
 

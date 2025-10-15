@@ -18,7 +18,7 @@ final class DeleteShippingCostPolicyRequest extends AbstractRequest
      */
     public function __construct(private string $shippingCostPolicyId) {}
 
-    public function getEndpoint(): string { return 'deleteShippingCostPolicy'; }
+    public function getEndpoint(): string { return '/deleteShippingCostPolicy'; }
 
     public function method(): Method { return Method::POST; }
 

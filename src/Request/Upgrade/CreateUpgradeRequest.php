@@ -18,7 +18,7 @@ final class CreateUpgradeRequest extends AbstractRequest
      */
     public function __construct(private array $data) {}
 
-    public function getEndpoint(): string { return 'createUpgrade'; }
+    public function getEndpoint(): string { return '/createUpgrade'; }
 
     public function method(): Method { return Method::POST; }
 

@@ -19,7 +19,7 @@ final class ListRebillingStatusChangesRequest extends AbstractRequest
      */
     public function __construct(private ?string $from = null, private ?string $to = null) {}
 
-    public function getEndpoint(): string { return 'listRebillingStatusChanges'; }
+    public function getEndpoint(): string { return '/listRebillingStatusChanges'; }
 
     public function method(): Method { return Method::GET; }
 

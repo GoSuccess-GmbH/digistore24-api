@@ -18,7 +18,7 @@ final class CreatePaymentplanRequest extends AbstractRequest
      */
     public function __construct(private array $data) {}
 
-    public function getEndpoint(): string { return 'createPaymentplan'; }
+    public function getEndpoint(): string { return '/createPaymentplan'; }
 
     public function method(): Method { return Method::POST; }
 

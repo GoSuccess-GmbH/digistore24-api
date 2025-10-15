@@ -26,7 +26,7 @@ final class IpnSetupRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'ipnSetup';
+        return '/ipnSetup';
     }
 
     public function method(): Method

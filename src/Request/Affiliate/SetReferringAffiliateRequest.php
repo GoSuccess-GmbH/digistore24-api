@@ -26,7 +26,7 @@ final class SetReferringAffiliateRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'setReferringAffiliate';
+        return '/setReferringAffiliate';
     }
 
     public function method(): Method

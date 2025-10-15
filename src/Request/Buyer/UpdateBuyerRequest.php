@@ -32,7 +32,7 @@ final class UpdateBuyerRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'updateBuyer';
+        return '/updateBuyer';
     }
 
     public function method(): Method

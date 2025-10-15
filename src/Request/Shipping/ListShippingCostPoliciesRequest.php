@@ -15,7 +15,7 @@ final class ListShippingCostPoliciesRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'listShippingCostPolicies'; }
+    public function getEndpoint(): string { return '/listShippingCostPolicies'; }
 
     public function method(): Method { return Method::GET; }
 

@@ -37,7 +37,7 @@ final class LogMemberAccessRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'logMemberAccess';
+        return '/logMemberAccess';
     }
 
     protected function rules(): array

@@ -24,7 +24,7 @@ final class CreateVoucherRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'createVoucher';
+        return '/createVoucher';
     }
 
     public function method(): Method

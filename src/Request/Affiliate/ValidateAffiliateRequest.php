@@ -24,7 +24,7 @@ final class ValidateAffiliateRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'validateAffiliate';
+        return '/validateAffiliate';
     }
 
     public function method(): Method

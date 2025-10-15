@@ -15,7 +15,7 @@ final class ListMarketplaceEntriesRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'listMarketplaceEntries'; }
+    public function getEndpoint(): string { return '/listMarketplaceEntries'; }
 
     public function method(): Method { return Method::GET; }
 

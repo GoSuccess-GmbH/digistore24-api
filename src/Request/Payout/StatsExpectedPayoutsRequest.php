@@ -15,7 +15,7 @@ final class StatsExpectedPayoutsRequest extends AbstractRequest
 {
     public function __construct() {}
 
-    public function getEndpoint(): string { return 'statsExpectedPayouts'; }
+    public function getEndpoint(): string { return '/statsExpectedPayouts'; }
 
     public function method(): Method { return Method::GET; }
 

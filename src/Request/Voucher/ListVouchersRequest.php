@@ -20,7 +20,7 @@ final class ListVouchersRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listVouchers';
+        return '/listVouchers';
     }
 
     public function method(): Method

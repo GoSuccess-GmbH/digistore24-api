@@ -24,7 +24,7 @@ final class StatsAffiliateToplistRequest extends AbstractRequest
         private ?int $limit = null,
     ) {}
 
-    public function getEndpoint(): string { return 'statsAffiliateToplist'; }
+    public function getEndpoint(): string { return '/statsAffiliateToplist'; }
 
     public function method(): Method { return Method::GET; }
 

@@ -24,7 +24,7 @@ final class RefundTransactionRequest extends AbstractRequest
         private ?string $requestDate = null,
     ) {}
 
-    public function getEndpoint(): string { return 'refundTransaction'; }
+    public function getEndpoint(): string { return '/refundTransaction'; }
 
     public function method(): Method { return Method::POST; }
 

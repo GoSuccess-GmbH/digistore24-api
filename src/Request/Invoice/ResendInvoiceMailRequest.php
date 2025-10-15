@@ -24,7 +24,7 @@ final class ResendInvoiceMailRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'resendInvoiceMail';
+        return '/resendInvoiceMail';
     }
 
     public function method(): Method

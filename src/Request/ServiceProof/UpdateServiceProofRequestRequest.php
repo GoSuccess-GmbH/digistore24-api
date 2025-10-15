@@ -19,7 +19,7 @@ final class UpdateServiceProofRequestRequest extends AbstractRequest
      */
     public function __construct(private string $serviceProofRequestId, private array $data) {}
 
-    public function getEndpoint(): string { return 'updateServiceProofRequest'; }
+    public function getEndpoint(): string { return '/updateServiceProofRequest'; }
 
     public function method(): Method { return Method::POST; }
 

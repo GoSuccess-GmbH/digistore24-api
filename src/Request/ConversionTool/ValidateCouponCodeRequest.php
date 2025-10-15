@@ -24,7 +24,7 @@ final class ValidateCouponCodeRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'validateCouponCode';
+        return '/validateCouponCode';
     }
 
     public function method(): Method

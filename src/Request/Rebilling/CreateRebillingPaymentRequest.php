@@ -19,7 +19,7 @@ final class CreateRebillingPaymentRequest extends AbstractRequest
      */
     public function __construct(private string $purchaseId, private array $data = []) {}
 
-    public function getEndpoint(): string { return 'createRebillingPayment'; }
+    public function getEndpoint(): string { return '/createRebillingPayment'; }
 
     public function method(): Method { return Method::POST; }
 

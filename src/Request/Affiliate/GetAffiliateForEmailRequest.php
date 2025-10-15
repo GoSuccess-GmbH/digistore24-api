@@ -24,7 +24,7 @@ final class GetAffiliateForEmailRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'getAffiliateForEmail';
+        return '/getAffiliateForEmail';
     }
 
     public function method(): Method

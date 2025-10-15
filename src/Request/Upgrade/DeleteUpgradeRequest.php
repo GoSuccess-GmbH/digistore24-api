@@ -18,7 +18,7 @@ final class DeleteUpgradeRequest extends AbstractRequest
      */
     public function __construct(private string $upgradeId) {}
 
-    public function getEndpoint(): string { return 'deleteUpgrade'; }
+    public function getEndpoint(): string { return '/deleteUpgrade'; }
 
     public function method(): Method { return Method::POST; }
 
