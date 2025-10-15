@@ -113,6 +113,6 @@ final class CreateProductRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/createProduct';
+        return 'createProduct';
     }
 }

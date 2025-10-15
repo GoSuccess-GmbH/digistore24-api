@@ -15,7 +15,7 @@ final class GetEticketSettingsRequest extends AbstractRequest
 {
     public function getEndpoint(): string
     {
-        return '/getEticketSettings';
+        return 'getEticketSettings';
     }
 
     public function toArray(): array

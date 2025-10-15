@@ -123,6 +123,6 @@ final class UpdateProductRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/updateProduct';
+        return 'updateProduct';
     }
 }

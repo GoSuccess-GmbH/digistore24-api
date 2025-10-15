@@ -73,6 +73,6 @@ final class CopyProductRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/copyProduct';
+        return 'copyProduct';
     }
 }

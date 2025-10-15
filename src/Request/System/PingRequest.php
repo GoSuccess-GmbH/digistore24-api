@@ -24,7 +24,7 @@ final class PingRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'ping';
+        return '/ping';
     }
 
     public function method(): Method
