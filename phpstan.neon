@@ -1,0 +1,30 @@
+parameters:
+    level: 9
+    paths:
+        - src
+        - tests
+    
+    # Ignore errors from property hooks (PHP 8.4 feature)
+    excludePaths:
+        - vendor
+    
+    # Enable stricter analysis
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkImplicitMixed: true
+    
+    # Report unknown classes
+    reportUnmatchedIgnoredErrors: true
+    
+    # Type coverage
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+    
+    # Bleeding edge features
+    polluteScopeWithLoopInitialAssignments: false
+    polluteScopeWithAlwaysIterableForeach: false
+    
+    ignoreErrors:
+        # Ignore property hooks syntax (PHPStan may not fully support PHP 8.4 yet)
+        - '#Property .* has no type specified#'
+        - '#has unknown class#'
