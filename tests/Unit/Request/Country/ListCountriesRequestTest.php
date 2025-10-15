@@ -20,7 +20,7 @@ final class ListCountriesRequestTest extends TestCase
     {
         $request = new ListCountriesRequest();
         
-        $this->assertSame('listCountries', $request->getEndpoint());
+        $this->assertSame('/listCountries', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

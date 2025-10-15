@@ -26,7 +26,7 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
             data: ['name' => 'Updated Shipping']
         );
         
-        $this->assertSame('updateShippingCostPolicy', $request->getEndpoint());
+        $this->assertSame('/updateShippingCostPolicy', $request->getEndpoint());
     }
 
     public function test_to_array_includes_id_and_data(): void

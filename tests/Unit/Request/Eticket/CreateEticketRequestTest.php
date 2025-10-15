@@ -39,7 +39,7 @@ final class CreateEticketRequestTest extends TestCase
             date: new \DateTime('2025-12-31')
         );
         
-        $this->assertSame('createEticket', $request->getEndpoint());
+        $this->assertSame('/createEticket', $request->getEndpoint());
     }
 
     public function test_validate_returns_empty_array(): void

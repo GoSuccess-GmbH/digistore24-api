@@ -20,7 +20,7 @@ final class GetUpsellsRequestTest extends TestCase
     {
         $request = new GetUpsellsRequest(productId: 12345);
         
-        $this->assertSame('getUpsells', $request->getEndpoint());
+        $this->assertSame('/getUpsells', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_id(): void

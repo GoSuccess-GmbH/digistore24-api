@@ -20,7 +20,7 @@ final class CreateOrderformRequestTest extends TestCase
     {
         $request = new CreateOrderformRequest(data: ['name' => 'Test Form']);
         
-        $this->assertSame('createOrderform', $request->getEndpoint());
+        $this->assertSame('/createOrderform', $request->getEndpoint());
     }
 
     public function test_validate_returns_empty_array(): void

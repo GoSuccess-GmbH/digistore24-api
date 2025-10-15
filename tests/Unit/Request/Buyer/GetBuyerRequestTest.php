@@ -20,7 +20,7 @@ final class GetBuyerRequestTest extends TestCase
     {
         $request = new GetBuyerRequest(buyerId: 'B12345');
         
-        $this->assertSame('getBuyer', $request->getEndpoint());
+        $this->assertSame('/getBuyer', $request->getEndpoint());
     }
 
     public function test_to_array_includes_buyer_id(): void

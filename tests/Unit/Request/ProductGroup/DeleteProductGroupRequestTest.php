@@ -20,7 +20,7 @@ final class DeleteProductGroupRequestTest extends TestCase
     {
         $request = new DeleteProductGroupRequest(productGroupId: 'PG123');
         
-        $this->assertSame('deleteProductGroup', $request->getEndpoint());
+        $this->assertSame('/deleteProductGroup', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_group_id(): void

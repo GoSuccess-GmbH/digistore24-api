@@ -20,7 +20,7 @@ final class GetUpgradeRequestTest extends TestCase
     {
         $request = new GetUpgradeRequest(upgradeId: 'UPG123');
         
-        $this->assertSame('getUpgrade', $request->getEndpoint());
+        $this->assertSame('/getUpgrade', $request->getEndpoint());
     }
 
     public function test_to_array_includes_upgrade_id(): void

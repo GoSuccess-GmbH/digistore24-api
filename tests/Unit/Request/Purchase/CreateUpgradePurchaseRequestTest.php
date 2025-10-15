@@ -20,7 +20,7 @@ final class CreateUpgradePurchaseRequestTest extends TestCase
     {
         $request = new CreateUpgradePurchaseRequest(purchaseIds: 'P12345', upgradeId: 'U123');
         
-        $this->assertSame('createUpgradePurchase', $request->getEndpoint());
+        $this->assertSame('/createUpgradePurchase', $request->getEndpoint());
     }
 
     public function test_to_array_includes_purchase_ids_and_upgrade_id(): void

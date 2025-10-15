@@ -20,7 +20,7 @@ final class GetDeliveryRequestTest extends TestCase
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
         
-        $this->assertSame('getDelivery', $request->getEndpoint());
+        $this->assertSame('/getDelivery', $request->getEndpoint());
     }
 
     public function test_to_array_includes_delivery_id(): void

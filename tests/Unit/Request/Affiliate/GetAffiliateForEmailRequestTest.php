@@ -20,7 +20,7 @@ final class GetAffiliateForEmailRequestTest extends TestCase
     {
         $request = new GetAffiliateForEmailRequest(email: 'test@example.com');
         
-        $this->assertSame('getAffiliateForEmail', $request->getEndpoint());
+        $this->assertSame('/getAffiliateForEmail', $request->getEndpoint());
     }
 
     public function test_to_array_returns_correct_data(): void

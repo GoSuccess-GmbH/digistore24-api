@@ -26,7 +26,7 @@ final class UpdateDeliveryRequestTest extends TestCase
             data: ['status' => 'shipped']
         );
         
-        $this->assertSame('updateDelivery', $request->getEndpoint());
+        $this->assertSame('/updateDelivery', $request->getEndpoint());
     }
 
     public function test_to_array_includes_delivery_id_and_data(): void

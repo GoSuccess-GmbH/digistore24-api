@@ -20,7 +20,7 @@ final class ValidateAffiliateRequestTest extends TestCase
     {
         $request = new ValidateAffiliateRequest(affiliateId: 'AFF123');
         
-        $this->assertSame('validateAffiliate', $request->getEndpoint());
+        $this->assertSame('/validateAffiliate', $request->getEndpoint());
     }
 
     public function test_to_array_includes_affiliate_id(): void

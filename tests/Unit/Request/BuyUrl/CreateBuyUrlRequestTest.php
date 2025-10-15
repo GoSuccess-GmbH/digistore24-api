@@ -22,7 +22,7 @@ final class CreateBuyUrlRequestTest extends TestCase
         $request = new CreateBuyUrlRequest();
         $request->productId = 12345;
         
-        $this->assertSame('createBuyUrl', $request->getEndpoint());
+        $this->assertSame('/createBuyUrl', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_id(): void

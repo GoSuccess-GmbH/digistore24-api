@@ -27,7 +27,7 @@ final class ListCustomFormRecordsRequestTest extends TestCase
     {
         $request = new ListCustomFormRecordsRequest();
         
-        $this->assertSame('listCustomFormRecords', $request->getEndpoint());
+        $this->assertSame('/listCustomFormRecords', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_purchase_id(): void

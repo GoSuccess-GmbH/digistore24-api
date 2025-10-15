@@ -20,7 +20,7 @@ final class GetUserInfoRequestTest extends TestCase
     {
         $request = new GetUserInfoRequest();
         
-        $this->assertSame('getUserInfo', $request->getEndpoint());
+        $this->assertSame('/getUserInfo', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

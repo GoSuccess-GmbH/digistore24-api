@@ -20,7 +20,7 @@ final class GetServiceProofRequestRequestTest extends TestCase
     {
         $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
         
-        $this->assertSame('getServiceProofRequest', $request->getEndpoint());
+        $this->assertSame('/getServiceProofRequest', $request->getEndpoint());
     }
 
     public function test_to_array_includes_service_proof_request_id(): void

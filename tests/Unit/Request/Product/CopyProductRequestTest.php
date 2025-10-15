@@ -20,7 +20,7 @@ final class CopyProductRequestTest extends TestCase
     {
         $request = new CopyProductRequest(productId: 12345);
         
-        $this->assertSame('copyProduct', $request->getEndpoint());
+        $this->assertSame('/copyProduct', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_id(): void

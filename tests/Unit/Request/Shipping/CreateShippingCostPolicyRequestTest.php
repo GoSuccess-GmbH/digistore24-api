@@ -20,7 +20,7 @@ final class CreateShippingCostPolicyRequestTest extends TestCase
     {
         $request = new CreateShippingCostPolicyRequest(data: ['name' => 'Standard Shipping']);
         
-        $this->assertSame('createShippingCostPolicy', $request->getEndpoint());
+        $this->assertSame('/createShippingCostPolicy', $request->getEndpoint());
     }
 
     public function test_to_array_includes_data(): void

@@ -26,7 +26,7 @@ final class RetrieveApiKeyRequestTest extends TestCase
             token: 'abc123token'
         );
         
-        $this->assertSame('retrieveApiKey', $request->getEndpoint());
+        $this->assertSame('/retrieveApiKey', $request->getEndpoint());
     }
 
     public function test_to_array_includes_all_data(): void

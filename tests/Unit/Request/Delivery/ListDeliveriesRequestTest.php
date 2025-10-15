@@ -27,7 +27,7 @@ final class ListDeliveriesRequestTest extends TestCase
     {
         $request = new ListDeliveriesRequest();
         
-        $this->assertSame('listDeliveries', $request->getEndpoint());
+        $this->assertSame('/listDeliveries', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_purchase_id(): void

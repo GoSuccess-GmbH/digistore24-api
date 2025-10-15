@@ -26,7 +26,7 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
             data: ['status' => 'approved']
         );
         
-        $this->assertSame('updateServiceProofRequest', $request->getEndpoint());
+        $this->assertSame('/updateServiceProofRequest', $request->getEndpoint());
     }
 
     public function test_to_array_includes_id_and_data(): void

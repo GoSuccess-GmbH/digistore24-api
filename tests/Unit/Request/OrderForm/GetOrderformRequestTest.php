@@ -20,7 +20,7 @@ final class GetOrderformRequestTest extends TestCase
     {
         $request = new GetOrderformRequest(orderformId: 'OF123');
         
-        $this->assertSame('getOrderform', $request->getEndpoint());
+        $this->assertSame('/getOrderform', $request->getEndpoint());
     }
 
     public function test_to_array_includes_orderform_id(): void

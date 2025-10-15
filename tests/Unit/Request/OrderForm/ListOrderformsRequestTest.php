@@ -20,7 +20,7 @@ final class ListOrderformsRequestTest extends TestCase
     {
         $request = new ListOrderformsRequest();
         
-        $this->assertSame('listOrderforms', $request->getEndpoint());
+        $this->assertSame('/listOrderforms', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

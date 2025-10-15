@@ -20,7 +20,7 @@ final class UnregisterRequestTest extends TestCase
     {
         $request = new UnregisterRequest();
         
-        $this->assertSame('unregister', $request->getEndpoint());
+        $this->assertSame('/unregister', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

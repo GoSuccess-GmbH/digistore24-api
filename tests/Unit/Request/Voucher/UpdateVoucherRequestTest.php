@@ -20,7 +20,7 @@ final class UpdateVoucherRequestTest extends TestCase
     {
         $request = new UpdateVoucherRequest(code: 'SAVE20', data: ['discount' => 25]);
         
-        $this->assertSame('updateVoucher', $request->getEndpoint());
+        $this->assertSame('/updateVoucher', $request->getEndpoint());
     }
 
     public function test_to_array_includes_code_and_data(): void

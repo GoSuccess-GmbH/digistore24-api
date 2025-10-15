@@ -27,7 +27,7 @@ final class ListCurrenciesRequestTest extends TestCase
     {
         $request = new ListCurrenciesRequest();
         
-        $this->assertSame('listCurrencies', $request->getEndpoint());
+        $this->assertSame('/listCurrencies', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_convert_to(): void

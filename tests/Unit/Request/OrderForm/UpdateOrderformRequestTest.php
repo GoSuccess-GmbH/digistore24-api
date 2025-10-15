@@ -26,7 +26,7 @@ final class UpdateOrderformRequestTest extends TestCase
             data: ['name' => 'Updated Form']
         );
         
-        $this->assertSame('updateOrderform', $request->getEndpoint());
+        $this->assertSame('/updateOrderform', $request->getEndpoint());
     }
 
     public function test_validate_returns_empty_array(): void

@@ -26,7 +26,7 @@ final class UpdatePaymentplanRequestTest extends TestCase
             data: ['name' => 'Updated Plan']
         );
         
-        $this->assertSame('updatePaymentplan', $request->getEndpoint());
+        $this->assertSame('/updatePaymentplan', $request->getEndpoint());
     }
 
     public function test_to_array_includes_paymentplan_id_and_data(): void

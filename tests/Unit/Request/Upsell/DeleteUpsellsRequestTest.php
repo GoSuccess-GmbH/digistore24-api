@@ -20,7 +20,7 @@ final class DeleteUpsellsRequestTest extends TestCase
     {
         $request = new DeleteUpsellsRequest(productId: 12345);
         
-        $this->assertSame('deleteUpsells', $request->getEndpoint());
+        $this->assertSame('/deleteUpsells', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_id(): void

@@ -26,7 +26,7 @@ final class ValidateLicenseKeyRequestTest extends TestCase
             licenseKey: 'LIC-ABC-123-XYZ'
         );
         
-        $this->assertSame('validateLicenseKey', $request->getEndpoint());
+        $this->assertSame('/validateLicenseKey', $request->getEndpoint());
     }
 
     public function test_to_array_includes_all_data(): void

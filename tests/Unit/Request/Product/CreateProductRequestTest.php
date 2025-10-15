@@ -20,7 +20,7 @@ final class CreateProductRequestTest extends TestCase
     {
         $request = new CreateProductRequest(nameIntern: 'Test Product');
         
-        $this->assertSame('createProduct', $request->getEndpoint());
+        $this->assertSame('/createProduct', $request->getEndpoint());
     }
 
     public function test_to_array_includes_name_intern(): void

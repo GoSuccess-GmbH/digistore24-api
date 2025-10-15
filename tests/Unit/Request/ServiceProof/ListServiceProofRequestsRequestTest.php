@@ -20,7 +20,7 @@ final class ListServiceProofRequestsRequestTest extends TestCase
     {
         $request = new ListServiceProofRequestsRequest();
         
-        $this->assertSame('listServiceProofRequests', $request->getEndpoint());
+        $this->assertSame('/listServiceProofRequests', $request->getEndpoint());
     }
 
     public function test_to_array_with_pagination(): void

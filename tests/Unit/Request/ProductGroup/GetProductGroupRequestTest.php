@@ -20,7 +20,7 @@ final class GetProductGroupRequestTest extends TestCase
     {
         $request = new GetProductGroupRequest(productGroupId: 'PG123');
         
-        $this->assertSame('getProductGroup', $request->getEndpoint());
+        $this->assertSame('/getProductGroup', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_group_id(): void

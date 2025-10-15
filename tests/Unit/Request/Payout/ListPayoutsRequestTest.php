@@ -20,7 +20,7 @@ final class ListPayoutsRequestTest extends TestCase
     {
         $request = new ListPayoutsRequest();
         
-        $this->assertSame('listPayouts', $request->getEndpoint());
+        $this->assertSame('/listPayouts', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

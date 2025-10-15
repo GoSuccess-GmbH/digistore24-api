@@ -26,7 +26,7 @@ final class UpdateProductGroupRequestTest extends TestCase
             data: ['name' => 'Updated Group']
         );
         
-        $this->assertSame('updateProductGroup', $request->getEndpoint());
+        $this->assertSame('/updateProductGroup', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_group_id_and_data(): void

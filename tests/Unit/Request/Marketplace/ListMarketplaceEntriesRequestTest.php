@@ -20,7 +20,7 @@ final class ListMarketplaceEntriesRequestTest extends TestCase
     {
         $request = new ListMarketplaceEntriesRequest();
         
-        $this->assertSame('listMarketplaceEntries', $request->getEndpoint());
+        $this->assertSame('/listMarketplaceEntries', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

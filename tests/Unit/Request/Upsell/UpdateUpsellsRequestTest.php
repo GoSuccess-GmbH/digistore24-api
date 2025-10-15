@@ -20,7 +20,7 @@ final class UpdateUpsellsRequestTest extends TestCase
     {
         $request = new UpdateUpsellsRequest(productId: 12345, data: ['upsells' => [67890]]);
         
-        $this->assertSame('updateUpsells', $request->getEndpoint());
+        $this->assertSame('/updateUpsells', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_id_and_data(): void

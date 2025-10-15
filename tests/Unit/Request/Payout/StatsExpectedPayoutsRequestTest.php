@@ -20,7 +20,7 @@ final class StatsExpectedPayoutsRequestTest extends TestCase
     {
         $request = new StatsExpectedPayoutsRequest();
         
-        $this->assertSame('statsExpectedPayouts', $request->getEndpoint());
+        $this->assertSame('/statsExpectedPayouts', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

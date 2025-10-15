@@ -26,7 +26,7 @@ final class SetAffiliateForEmailRequestTest extends TestCase
             affiliateId: 'AFF123'
         );
         
-        $this->assertSame('setAffiliateForEmail', $request->getEndpoint());
+        $this->assertSame('/setAffiliateForEmail', $request->getEndpoint());
     }
 
     public function test_to_array_returns_correct_data(): void

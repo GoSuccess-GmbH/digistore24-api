@@ -20,7 +20,7 @@ final class DeleteUpgradeRequestTest extends TestCase
     {
         $request = new DeleteUpgradeRequest(upgradeId: 'UPG123');
         
-        $this->assertSame('deleteUpgrade', $request->getEndpoint());
+        $this->assertSame('/deleteUpgrade', $request->getEndpoint());
     }
 
     public function test_to_array_includes_upgrade_id(): void

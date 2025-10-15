@@ -20,7 +20,7 @@ final class CreatePaymentplanRequestTest extends TestCase
     {
         $request = new CreatePaymentplanRequest(data: ['name' => 'Test Plan']);
         
-        $this->assertSame('createPaymentplan', $request->getEndpoint());
+        $this->assertSame('/createPaymentplan', $request->getEndpoint());
     }
 
     public function test_validate_returns_empty_array(): void

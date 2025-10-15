@@ -20,7 +20,7 @@ final class GetMarketplaceEntryRequestTest extends TestCase
     {
         $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
         
-        $this->assertSame('getMarketplaceEntry', $request->getEndpoint());
+        $this->assertSame('/getMarketplaceEntry', $request->getEndpoint());
     }
 
     public function test_to_array_includes_entry_id(): void

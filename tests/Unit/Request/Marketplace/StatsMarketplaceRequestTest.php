@@ -27,7 +27,7 @@ final class StatsMarketplaceRequestTest extends TestCase
     {
         $request = new StatsMarketplaceRequest();
         
-        $this->assertSame('statsMarketplace', $request->getEndpoint());
+        $this->assertSame('/statsMarketplace', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_dates(): void

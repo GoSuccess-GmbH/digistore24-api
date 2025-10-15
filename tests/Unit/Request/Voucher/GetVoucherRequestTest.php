@@ -20,7 +20,7 @@ final class GetVoucherRequestTest extends TestCase
     {
         $request = new GetVoucherRequest(code: 'SAVE20');
         
-        $this->assertSame('getVoucher', $request->getEndpoint());
+        $this->assertSame('/getVoucher', $request->getEndpoint());
     }
 
     public function test_to_array_includes_code(): void

@@ -20,7 +20,7 @@ final class ListTransactionsRequestTest extends TestCase
     {
         $request = new ListTransactionsRequest();
         
-        $this->assertSame('listTransactions', $request->getEndpoint());
+        $this->assertSame('/listTransactions', $request->getEndpoint());
     }
 
     public function test_to_array_with_parameters(): void

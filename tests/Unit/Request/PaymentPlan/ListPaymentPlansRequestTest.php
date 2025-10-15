@@ -20,7 +20,7 @@ final class ListPaymentPlansRequestTest extends TestCase
     {
         $request = new ListPaymentPlansRequest();
         
-        $this->assertSame('listPaymentPlans', $request->getEndpoint());
+        $this->assertSame('/listPaymentPlans', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

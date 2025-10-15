@@ -20,7 +20,7 @@ final class ListProductTypesRequestTest extends TestCase
     {
         $request = new ListProductTypesRequest();
         
-        $this->assertSame('listProductTypes', $request->getEndpoint());
+        $this->assertSame('/listProductTypes', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

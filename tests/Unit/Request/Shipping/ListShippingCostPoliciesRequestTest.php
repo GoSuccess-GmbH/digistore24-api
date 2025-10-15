@@ -20,7 +20,7 @@ final class ListShippingCostPoliciesRequestTest extends TestCase
     {
         $request = new ListShippingCostPoliciesRequest();
         
-        $this->assertSame('listShippingCostPolicies', $request->getEndpoint());
+        $this->assertSame('/listShippingCostPolicies', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

@@ -20,7 +20,7 @@ final class ListCommissionsRequestTest extends TestCase
     {
         $request = new ListCommissionsRequest();
         
-        $this->assertSame('listCommissions', $request->getEndpoint());
+        $this->assertSame('/listCommissions', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_parameters(): void

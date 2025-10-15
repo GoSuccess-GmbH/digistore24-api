@@ -20,7 +20,7 @@ final class GetShippingCostPolicyRequestTest extends TestCase
     {
         $request = new GetShippingCostPolicyRequest(shippingCostPolicyId: 'SCP123');
         
-        $this->assertSame('getShippingCostPolicy', $request->getEndpoint());
+        $this->assertSame('/getShippingCostPolicy', $request->getEndpoint());
     }
 
     public function test_to_array_includes_shipping_cost_policy_id(): void

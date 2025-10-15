@@ -20,7 +20,7 @@ final class ListConversionToolsRequestTest extends TestCase
     {
         $request = new ListConversionToolsRequest(type: 'upsell');
         
-        $this->assertSame('listConversionTools', $request->getEndpoint());
+        $this->assertSame('/listConversionTools', $request->getEndpoint());
     }
 
     public function test_to_array_includes_type(): void

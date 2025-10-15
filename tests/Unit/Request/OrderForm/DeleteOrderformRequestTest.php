@@ -20,7 +20,7 @@ final class DeleteOrderformRequestTest extends TestCase
     {
         $request = new DeleteOrderformRequest(orderformId: 'OF123');
         
-        $this->assertSame('deleteOrderform', $request->getEndpoint());
+        $this->assertSame('/deleteOrderform', $request->getEndpoint());
     }
 
     public function test_to_array_includes_orderform_id(): void

@@ -20,7 +20,7 @@ final class CreateUpgradeRequestTest extends TestCase
     {
         $request = new CreateUpgradeRequest(data: ['name' => 'Premium Upgrade']);
         
-        $this->assertSame('createUpgrade', $request->getEndpoint());
+        $this->assertSame('/createUpgrade', $request->getEndpoint());
     }
 
     public function test_to_array_includes_data(): void

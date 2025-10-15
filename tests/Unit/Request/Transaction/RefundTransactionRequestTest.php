@@ -20,7 +20,7 @@ final class RefundTransactionRequestTest extends TestCase
     {
         $request = new RefundTransactionRequest(transactionId: 'T12345');
         
-        $this->assertSame('refundTransaction', $request->getEndpoint());
+        $this->assertSame('/refundTransaction', $request->getEndpoint());
     }
 
     public function test_to_array_includes_transaction_id(): void

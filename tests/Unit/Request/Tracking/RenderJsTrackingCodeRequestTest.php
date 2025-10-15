@@ -20,7 +20,7 @@ final class RenderJsTrackingCodeRequestTest extends TestCase
     {
         $request = new RenderJsTrackingCodeRequest();
         
-        $this->assertSame('renderJsTrackingCode', $request->getEndpoint());
+        $this->assertSame('/renderJsTrackingCode', $request->getEndpoint());
     }
 
     public function test_to_array_with_parameters(): void

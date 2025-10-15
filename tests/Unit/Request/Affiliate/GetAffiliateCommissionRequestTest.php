@@ -27,7 +27,7 @@ final class GetAffiliateCommissionRequestTest extends TestCase
             affiliateId: 'ABC123'
         );
         
-        $this->assertSame('getAffiliateCommission', $request->getEndpoint());
+        $this->assertSame('/getAffiliateCommission', $request->getEndpoint());
     }
 
     public function test_to_array_returns_correct_data(): void

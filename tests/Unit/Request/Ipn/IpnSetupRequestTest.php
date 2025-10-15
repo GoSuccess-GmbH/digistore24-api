@@ -20,7 +20,7 @@ final class IpnSetupRequestTest extends TestCase
     {
         $request = new IpnSetupRequest(url: 'https://example.com/ipn');
         
-        $this->assertSame('ipnSetup', $request->getEndpoint());
+        $this->assertSame('/ipnSetup', $request->getEndpoint());
     }
 
     public function test_to_array_includes_url_only(): void

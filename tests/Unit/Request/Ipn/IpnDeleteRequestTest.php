@@ -20,7 +20,7 @@ final class IpnDeleteRequestTest extends TestCase
     {
         $request = new IpnDeleteRequest();
         
-        $this->assertSame('ipnDelete', $request->getEndpoint());
+        $this->assertSame('/ipnDelete', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

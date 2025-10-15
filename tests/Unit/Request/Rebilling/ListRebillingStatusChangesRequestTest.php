@@ -20,7 +20,7 @@ final class ListRebillingStatusChangesRequestTest extends TestCase
     {
         $request = new ListRebillingStatusChangesRequest();
         
-        $this->assertSame('listRebillingStatusChanges', $request->getEndpoint());
+        $this->assertSame('/listRebillingStatusChanges', $request->getEndpoint());
     }
 
     public function test_to_array_with_date_range(): void

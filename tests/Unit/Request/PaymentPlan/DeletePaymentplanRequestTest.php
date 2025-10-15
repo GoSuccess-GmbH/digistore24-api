@@ -20,7 +20,7 @@ final class DeletePaymentplanRequestTest extends TestCase
     {
         $request = new DeletePaymentplanRequest(paymentplanId: 'PP123');
         
-        $this->assertSame('deletePaymentplan', $request->getEndpoint());
+        $this->assertSame('/deletePaymentplan', $request->getEndpoint());
     }
 
     public function test_to_array_includes_paymentplan_id(): void

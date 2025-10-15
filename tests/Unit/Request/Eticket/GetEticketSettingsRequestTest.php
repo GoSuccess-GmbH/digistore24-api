@@ -20,7 +20,7 @@ final class GetEticketSettingsRequestTest extends TestCase
     {
         $request = new GetEticketSettingsRequest();
         
-        $this->assertSame('getEticketSettings', $request->getEndpoint());
+        $this->assertSame('/getEticketSettings', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

@@ -26,7 +26,7 @@ final class RefundPartiallyRequestTest extends TestCase
             amount: 15.50
         );
         
-        $this->assertSame('refundPartially', $request->getEndpoint());
+        $this->assertSame('/refundPartially', $request->getEndpoint());
     }
 
     public function test_to_array_includes_all_data(): void

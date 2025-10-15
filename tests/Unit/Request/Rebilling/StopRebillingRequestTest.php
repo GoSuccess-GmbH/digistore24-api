@@ -20,7 +20,7 @@ final class StopRebillingRequestTest extends TestCase
     {
         $request = new StopRebillingRequest(purchaseId: 'P12345');
         
-        $this->assertSame('stopRebilling', $request->getEndpoint());
+        $this->assertSame('/stopRebilling', $request->getEndpoint());
     }
 
     public function test_to_array_includes_purchase_id(): void

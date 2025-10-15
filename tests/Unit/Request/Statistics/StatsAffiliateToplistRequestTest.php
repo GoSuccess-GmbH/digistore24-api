@@ -20,7 +20,7 @@ final class StatsAffiliateToplistRequestTest extends TestCase
     {
         $request = new StatsAffiliateToplistRequest();
         
-        $this->assertSame('statsAffiliateToplist', $request->getEndpoint());
+        $this->assertSame('/statsAffiliateToplist', $request->getEndpoint());
     }
 
     public function test_to_array_with_parameters(): void

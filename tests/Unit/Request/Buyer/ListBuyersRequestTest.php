@@ -27,7 +27,7 @@ final class ListBuyersRequestTest extends TestCase
     {
         $request = new ListBuyersRequest();
         
-        $this->assertSame('listBuyers', $request->getEndpoint());
+        $this->assertSame('/listBuyers', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array_without_pagination(): void

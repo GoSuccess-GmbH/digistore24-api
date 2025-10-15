@@ -20,7 +20,7 @@ final class CreateProductGroupRequestTest extends TestCase
     {
         $request = new CreateProductGroupRequest(data: ['name' => 'Test Group']);
         
-        $this->assertSame('createProductGroup', $request->getEndpoint());
+        $this->assertSame('/createProductGroup', $request->getEndpoint());
     }
 
     public function test_to_array_includes_data(): void

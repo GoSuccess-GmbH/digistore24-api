@@ -20,7 +20,7 @@ final class IpnInfoRequestTest extends TestCase
     {
         $request = new IpnInfoRequest();
         
-        $this->assertSame('ipnInfo', $request->getEndpoint());
+        $this->assertSame('/ipnInfo', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

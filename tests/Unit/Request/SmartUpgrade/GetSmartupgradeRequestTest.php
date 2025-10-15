@@ -20,7 +20,7 @@ final class GetSmartupgradeRequestTest extends TestCase
     {
         $request = new GetSmartupgradeRequest(smartupgradeId: 'SU123');
         
-        $this->assertSame('getSmartupgrade', $request->getEndpoint());
+        $this->assertSame('/getSmartupgrade', $request->getEndpoint());
     }
 
     public function test_to_array_includes_smartupgrade_id(): void

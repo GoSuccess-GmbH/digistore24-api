@@ -20,7 +20,7 @@ final class RequestApiKeyRequestTest extends TestCase
     {
         $request = new RequestApiKeyRequest(email: 'test@example.com');
         
-        $this->assertSame('requestApiKey', $request->getEndpoint());
+        $this->assertSame('/requestApiKey', $request->getEndpoint());
     }
 
     public function test_to_array_includes_email(): void

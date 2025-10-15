@@ -20,7 +20,7 @@ final class GetReferringAffiliateRequestTest extends TestCase
     {
         $request = new GetReferringAffiliateRequest(purchaseId: 'P12345');
         
-        $this->assertSame('getReferringAffiliate', $request->getEndpoint());
+        $this->assertSame('/getReferringAffiliate', $request->getEndpoint());
     }
 
     public function test_to_array_returns_correct_data(): void

@@ -20,7 +20,7 @@ final class GetOrderformMetasRequestTest extends TestCase
     {
         $request = new GetOrderformMetasRequest();
         
-        $this->assertSame('getOrderformMetas', $request->getEndpoint());
+        $this->assertSame('/getOrderformMetas', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

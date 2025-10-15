@@ -20,7 +20,7 @@ final class DeleteVoucherRequestTest extends TestCase
     {
         $request = new DeleteVoucherRequest(code: 'SAVE20');
         
-        $this->assertSame('deleteVoucher', $request->getEndpoint());
+        $this->assertSame('/deleteVoucher', $request->getEndpoint());
     }
 
     public function test_to_array_includes_code(): void

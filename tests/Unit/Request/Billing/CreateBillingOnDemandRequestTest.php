@@ -26,7 +26,7 @@ final class CreateBillingOnDemandRequestTest extends TestCase
             productId: '67890'
         );
         
-        $this->assertSame('createBillingOnDemand', $request->getEndpoint());
+        $this->assertSame('/createBillingOnDemand', $request->getEndpoint());
     }
 
     public function test_to_array_includes_required_data(): void

@@ -28,7 +28,7 @@ final class ReportFraudRequestTest extends TestCase
             comment: 'Fraudulent purchase'
         );
         
-        $this->assertSame('reportFraud', $request->getEndpoint());
+        $this->assertSame('/reportFraud', $request->getEndpoint());
     }
 
     public function test_to_array_includes_all_data(): void

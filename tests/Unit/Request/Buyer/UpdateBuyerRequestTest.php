@@ -20,7 +20,7 @@ final class UpdateBuyerRequestTest extends TestCase
     {
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
         
-        $this->assertSame('updateBuyer', $request->getEndpoint());
+        $this->assertSame('/updateBuyer', $request->getEndpoint());
     }
 
     public function test_to_array_includes_buyer_id_only(): void

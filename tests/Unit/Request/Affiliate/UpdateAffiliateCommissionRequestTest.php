@@ -28,7 +28,7 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
             data: ['commission' => 10.5]
         );
         
-        $this->assertSame('updateAffiliateCommission', $request->getEndpoint());
+        $this->assertSame('/updateAffiliateCommission', $request->getEndpoint());
     }
 
     public function test_to_array_includes_all_data(): void

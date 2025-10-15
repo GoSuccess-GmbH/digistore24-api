@@ -20,7 +20,7 @@ final class StatsDailyAmountsRequestTest extends TestCase
     {
         $request = new StatsDailyAmountsRequest();
         
-        $this->assertSame('statsDailyAmounts', $request->getEndpoint());
+        $this->assertSame('/statsDailyAmounts', $request->getEndpoint());
     }
 
     public function test_to_array_with_date_range(): void

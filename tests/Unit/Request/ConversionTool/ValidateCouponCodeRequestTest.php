@@ -20,7 +20,7 @@ final class ValidateCouponCodeRequestTest extends TestCase
     {
         $request = new ValidateCouponCodeRequest(code: 'SUMMER2024');
         
-        $this->assertSame('validateCouponCode', $request->getEndpoint());
+        $this->assertSame('/validateCouponCode', $request->getEndpoint());
     }
 
     public function test_to_array_includes_code(): void

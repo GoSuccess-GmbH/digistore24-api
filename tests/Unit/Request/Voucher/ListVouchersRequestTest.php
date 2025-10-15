@@ -20,7 +20,7 @@ final class ListVouchersRequestTest extends TestCase
     {
         $request = new ListVouchersRequest();
         
-        $this->assertSame('listVouchers', $request->getEndpoint());
+        $this->assertSame('/listVouchers', $request->getEndpoint());
     }
 
     public function test_to_array_returns_empty_array(): void

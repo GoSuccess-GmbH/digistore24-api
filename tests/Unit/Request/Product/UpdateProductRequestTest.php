@@ -20,7 +20,7 @@ final class UpdateProductRequestTest extends TestCase
     {
         $request = new UpdateProductRequest(productId: 12345);
         
-        $this->assertSame('updateProduct', $request->getEndpoint());
+        $this->assertSame('/updateProduct', $request->getEndpoint());
     }
 
     public function test_to_array_includes_product_id_and_optional_fields(): void

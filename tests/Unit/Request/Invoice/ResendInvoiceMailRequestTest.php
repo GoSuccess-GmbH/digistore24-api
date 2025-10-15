@@ -20,7 +20,7 @@ final class ResendInvoiceMailRequestTest extends TestCase
     {
         $request = new ResendInvoiceMailRequest(purchaseId: 'P12345');
         
-        $this->assertSame('resendInvoiceMail', $request->getEndpoint());
+        $this->assertSame('/resendInvoiceMail', $request->getEndpoint());
     }
 
     public function test_to_array_includes_purchase_id(): void

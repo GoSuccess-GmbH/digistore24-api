@@ -20,7 +20,7 @@ final class ListInvoicesRequestTest extends TestCase
     {
         $request = new ListInvoicesRequest(purchaseId: 'P12345');
         
-        $this->assertSame('listInvoices', $request->getEndpoint());
+        $this->assertSame('/listInvoices', $request->getEndpoint());
     }
 
     public function test_to_array_includes_purchase_id(): void

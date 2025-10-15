@@ -57,7 +57,7 @@ final class LogMemberAccessRequestTest extends TestCase
             totalNumberOfLectures: 10
         );
 
-        $this->assertSame('logMemberAccess', $request->getEndpoint());
+        $this->assertSame('/logMemberAccess', $request->getEndpoint());
     }
 
     public function testToArrayConvertsCorrectly(): void

@@ -26,7 +26,7 @@ final class SetReferringAffiliateRequestTest extends TestCase
             affiliateId: 'AFF123'
         );
         
-        $this->assertSame('setReferringAffiliate', $request->getEndpoint());
+        $this->assertSame('/setReferringAffiliate', $request->getEndpoint());
     }
 
     public function test_to_array_returns_correct_data(): void
