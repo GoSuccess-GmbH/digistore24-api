@@ -1,0 +1,78 @@
+name: Integration Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_group:
+        description: 'Test Group to Run'
+        required: true
+        type: choice
+        options:
+          - safe
+          - all
+        default: 'safe'
+      environment:
+        description: 'API Environment'
+        required: true
+        type: choice
+        options:
+          - sandbox
+          - production
+        default: 'sandbox'
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      
+      - name: Display warning for all tests
+        if: inputs.test_group == 'all'
+        run: |
+          echo "::warning::⚠️ Running ALL integration tests including EXPENSIVE endpoints!"
+          echo "::warning::This may cost REAL MONEY at Digistore24!"
+          echo "::warning::Make sure you're using TEST/SANDBOX data in secrets!"
+      
+      - name: Run safe integration tests only
+        if: inputs.test_group == 'safe'
+        env:
+          DS24_API_KEY: ${{ inputs.environment == 'sandbox' && secrets.DS24_SANDBOX_API_KEY || secrets.DS24_PRODUCTION_API_KEY }}
+          DS24_ENVIRONMENT: ${{ inputs.environment }}
+          DS24_ALLOW_CI_TESTS: 'true'
+        run: composer test:integration:safe
+      
+      - name: Run all integration tests
+        if: inputs.test_group == 'all'
+        env:
+          DS24_API_KEY: ${{ inputs.environment == 'sandbox' && secrets.DS24_SANDBOX_API_KEY || secrets.DS24_PRODUCTION_API_KEY }}
+          DS24_ENVIRONMENT: ${{ inputs.environment }}
+          DS24_ALLOW_CI_TESTS: 'true'
+          # Add all test data from secrets
+          DS24_TEST_PRODUCT_ID: ${{ secrets.DS24_TEST_PRODUCT_ID }}
+          DS24_TEST_PRODUCT_ID_2: ${{ secrets.DS24_TEST_PRODUCT_ID_2 }}
+          DS24_TEST_PRODUCT_WITH_PAYMENT_PLAN: ${{ secrets.DS24_TEST_PRODUCT_WITH_PAYMENT_PLAN }}
+          DS24_TEST_PURCHASE_ID: ${{ secrets.DS24_TEST_PURCHASE_ID }}
+          DS24_TEST_PURCHASE_WITH_REBILLING: ${{ secrets.DS24_TEST_PURCHASE_WITH_REBILLING }}
+          DS24_TEST_BUYER_EMAIL: ${{ secrets.DS24_TEST_BUYER_EMAIL }}
+          DS24_TEST_BUYER_ID: ${{ secrets.DS24_TEST_BUYER_ID }}
+          DS24_TEST_AFFILIATE_ID: ${{ secrets.DS24_TEST_AFFILIATE_ID }}
+          DS24_TEST_VOUCHER_CODE: ${{ secrets.DS24_TEST_VOUCHER_CODE }}
+        run: composer test:integration
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-test-results
+          path: build/logs/

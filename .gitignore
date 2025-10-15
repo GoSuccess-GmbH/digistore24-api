@@ -33,6 +33,9 @@ phpstan-baseline.neon
 .infection/
 infection.log
 
+# Integration Tests
+.env.local
+
 # OS Files
 .DS_Store
 Thumbs.db

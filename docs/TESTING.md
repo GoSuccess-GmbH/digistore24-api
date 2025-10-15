@@ -9,6 +9,7 @@ This document describes the testing strategy and setup for the Digistore24 API C
 - [Running Tests](#running-tests)
 - [Code Coverage](#code-coverage)
 - [Mutation Testing](#mutation-testing)
+- [Integration Tests](#integration-tests)
 - [Writing Tests](#writing-tests)
 - [Continuous Integration](#continuous-integration)
 
@@ -491,6 +492,151 @@ vendor/bin/infection --threads=8
 
 # Run only on changed files
 vendor/bin/infection --git-diff-lines --git-diff-base=main
+```
+
+## Integration Tests
+
+Integration tests validate the client against the **real Digistore24 API**. Unlike unit tests which use mocks, integration tests make actual HTTP requests.
+
+### ⚠️ IMPORTANT: Cost Warning
+
+**Some endpoints cost REAL MONEY!**
+
+Endpoints like `createBillingOnDemand`, `createRebillingPayment`, `refundPurchase` execute real transactions that:
+- Charge real money (min €0.80 per test)
+- Create real refunds
+- Affect real customer accounts
+
+**Always use TEST/SANDBOX data only!**
+
+### Configuration
+
+Integration tests require configuration in `.env.local`:
+
+1. **Copy the example file:**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. **Fill in your test data:**
+   ```bash
+   # .env.local
+   DS24_API_KEY=your-sandbox-api-key-here
+   DS24_TEST_PRODUCT_ID=12345
+   DS24_TEST_PURCHASE_ID=TESTORDER123
+   DS24_TEST_PURCHASE_WITH_REBILLING=REBILL456
+   # ... see .env.example for all options
+   ```
+
+3. **Use SANDBOX/TEST data only:**
+   - Test products with €0.01 price
+   - Test purchases from sandbox environment
+   - Test buyer accounts (not real customers)
+
+### Running Integration Tests
+
+```bash
+# Run all integration tests (skips tests with missing config)
+composer test:integration
+
+# Run only safe tests (read-only endpoints)
+composer test:integration:safe
+
+# Run specific test file
+vendor/bin/phpunit tests/Integration/BillingIntegrationTest.php
+
+# Run with warnings suppressed
+DS24_SUPPRESS_WARNINGS=1 composer test:integration
+```
+
+### Test Behavior
+
+**Automatic Skipping:**
+- Tests automatically skip if required configuration is missing
+- Clear warning message shows which config key is needed
+- Summary at end shows all missing configurations
+
+**Example:**
+```
+⚠️  Required configuration 'DS24_TEST_PRODUCT_ID' is not set
+   Please set 'DS24_TEST_PRODUCT_ID' in .env.local or environment variables.
+   See .env.example for all available configuration options.
+
+Skipped: 1 test
+```
+
+### Configuration Keys
+
+See `.env.example` for complete list. Key configurations:
+
+| Config Key | Purpose | Required For |
+|------------|---------|--------------|
+| `DS24_API_KEY` | API authentication | All tests |
+| `DS24_TEST_PRODUCT_ID` | Product for testing | Product tests |
+| `DS24_TEST_PURCHASE_ID` | Purchase for testing | Purchase tests |
+| `DS24_TEST_PURCHASE_WITH_REBILLING` | Purchase with rebilling | Billing tests |
+| `DS24_TEST_BUYER_EMAIL` | Test buyer email | Buyer tests |
+
+### GitHub Actions
+
+Integration tests can be run manually via GitHub Actions:
+
+1. Go to **Actions** → **Integration Tests**
+2. Click **Run workflow**
+3. Select options:
+   - **Test Group**: `safe` (recommended) or `all` (expensive!)
+   - **Environment**: `sandbox` (recommended) or `production`
+4. Click **Run workflow**
+
+**GitHub Secrets Required:**
+- `DS24_SANDBOX_API_KEY`
+- `DS24_PRODUCTION_API_KEY`
+- `DS24_TEST_PRODUCT_ID`
+- `DS24_TEST_PURCHASE_ID`
+- etc. (see `.env.example`)
+
+### Best Practices
+
+1. ✅ **Always use SANDBOX/TEST data**
+2. ✅ **Create dedicated test products** with €0.01 price
+3. ✅ **Use separate test account** for integration testing
+4. ✅ **Review all test data** before running expensive tests
+5. ✅ **Start with safe tests** (`composer test:integration:safe`)
+6. ✅ **Check `.env.example`** for all required configurations
+7. ⚠️ **Never commit `.env.local`** (already in .gitignore)
+8. ⚠️ **Be careful with `@group expensive` tests** - they cost money!
+
+### Writing Integration Tests
+
+Extend `IntegrationTestCase` for automatic configuration handling:
+
+```php
+<?php
+
+namespace GoSuccess\Digistore24\Api\Tests\Integration;
+
+use PHPUnit\Framework\Attributes\Group;
+
+#[Group('integration')]
+class MyIntegrationTest extends IntegrationTestCase
+{
+    public function testSomething(): void
+    {
+        // Get API key (skips test if not configured)
+        $apiKey = $this->getApiKey();
+        
+        // Get required config (skips test if missing)
+        $productId = $this->requireConfig('DS24_TEST_PRODUCT_ID');
+        
+        // Get optional config with default
+        $timeout = $this->getConfig('DS24_TIMEOUT', '30');
+        
+        // Warn about expensive operations
+        $this->warnExpensive('createBillingOnDemand', 'min €0.80');
+        
+        // Your test code here...
+    }
+}
 ```
 
 ## Writing Tests
