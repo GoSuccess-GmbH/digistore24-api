@@ -12,17 +12,31 @@ final class GetOrderformResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'orderform_id' => 'OF123',
+                'name' => 'My Order Form',
+                'product_id' => 456,
+                'status' => 'active'
+            ]
+        ];
         $response = GetOrderformResponse::fromArray($data);
         
         $this->assertInstanceOf(GetOrderformResponse::class, $response);
+        $this->assertArrayHasKey('orderform_id', $response->getData());
+        $this->assertSame('OF123', $response->getData()['orderform_id']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'orderform_id' => 'OF456',
+                    'name' => 'Premium Form'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +44,21 @@ final class GetOrderformResponseTest extends TestCase
         $response = GetOrderformResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(GetOrderformResponse::class, $response);
+        $this->assertSame('Premium Form', $response->getData()['name']);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = GetOrderformResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

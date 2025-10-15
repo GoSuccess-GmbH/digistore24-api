@@ -12,17 +12,42 @@ final class ListOrderformsResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'orderforms' => [
+                    [
+                        'orderform_id' => 'OF001',
+                        'name' => 'Standard Form',
+                        'product_id' => 123
+                    ],
+                    [
+                        'orderform_id' => 'OF002',
+                        'name' => 'Premium Form',
+                        'product_id' => 456
+                    ]
+                ]
+            ]
+        ];
         $response = ListOrderformsResponse::fromArray($data);
         
         $this->assertInstanceOf(ListOrderformsResponse::class, $response);
+        $this->assertCount(2, $response->getOrderforms());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'orderforms' => [
+                        [
+                            'orderform_id' => 'OF003',
+                            'name' => 'Basic Form'
+                        ]
+                    ]
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +55,21 @@ final class ListOrderformsResponseTest extends TestCase
         $response = ListOrderformsResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(ListOrderformsResponse::class, $response);
+        $this->assertCount(1, $response->getOrderforms());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = ListOrderformsResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 

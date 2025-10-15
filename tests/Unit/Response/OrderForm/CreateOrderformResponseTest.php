@@ -12,17 +12,29 @@ final class CreateOrderformResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'orderform_id' => 'OF123456'
+            ]
+        ];
         $response = CreateOrderformResponse::fromArray($data);
         
         $this->assertInstanceOf(CreateOrderformResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('OF123456', $response->getOrderformId());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'orderform_id' => 'OF789012'
+                ]
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +42,21 @@ final class CreateOrderformResponseTest extends TestCase
         $response = CreateOrderformResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(CreateOrderformResponse::class, $response);
+        $this->assertSame('OF789012', $response->getOrderformId());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [],
             headers: [],
             rawBody: 'test'
         );
         
         $response = CreateOrderformResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
