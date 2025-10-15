@@ -12,17 +12,36 @@ final class RefundTransactionResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'status' => 'completed',
+                'modified' => 'Y',
+                'transaction_id' => 'TXN123456',
+                'refund_amount' => 99.99,
+                'refund_date' => '2024-01-15',
+            ],
+        ];
         $response = RefundTransactionResponse::fromArray($data);
         
         $this->assertInstanceOf(RefundTransactionResponse::class, $response);
+        $this->assertSame('completed', $response->getStatus());
+        $this->assertSame('Y', $response->getModified());
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertIsArray($response->getData());
+        $this->assertSame('TXN123456', $response->getData()['transaction_id']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'status' => 'completed',
+                    'modified' => 'Y',
+                    'refund_amount' => 49.50,
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +49,27 @@ final class RefundTransactionResponseTest extends TestCase
         $response = RefundTransactionResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(RefundTransactionResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('Y', $response->getModified());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'status' => 'completed',
+                    'modified' => 'Y',
+                ],
+            ],
             headers: [],
             rawBody: 'test'
         );
         
         $response = RefundTransactionResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
