@@ -12,17 +12,22 @@ final class UpdateProductGroupResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'result' => 'success'
+        ];
         $response = UpdateProductGroupResponse::fromArray($data);
         
         $this->assertInstanceOf(UpdateProductGroupResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'result' => 'success'
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,6 +35,7 @@ final class UpdateProductGroupResponseTest extends TestCase
         $response = UpdateProductGroupResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(UpdateProductGroupResponse::class, $response);
+        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void
@@ -43,7 +49,7 @@ final class UpdateProductGroupResponseTest extends TestCase
         
         $response = UpdateProductGroupResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
