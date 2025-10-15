@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "editorconfig.editorconfig",
+        "junstyle.php-cs-fixer",
+        "sanderronde.phpstan-vscode",
+        "neilbrayfield.php-docblocker",
+        "mehedidracula.php-namespace-resolver",
+        "recca0120.vscode-phpunit",
+        "mohamedbenhida.laravel-intellisense"
+    ]
+}

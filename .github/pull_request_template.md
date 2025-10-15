@@ -22,9 +22,9 @@ Relates to #
 ## Changes Made
 <!-- List the main changes made in this PR -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Breaking Changes
 <!-- If this introduces breaking changes, describe them here and update CHANGELOG.md -->
@@ -54,9 +54,12 @@ Relates to #
 - [ ] Code follows project style guidelines (see CONTRIBUTING.md)
 - [ ] PHPStan analysis passes (`composer analyse`)
 - [ ] PHP CS Fixer passes (`composer cs:check`)
+- [ ] All type hints are present (parameters and return types)
+- [ ] PHP 8.4 features used appropriately (property hooks, enums, etc.)
 - [ ] Self-review performed
 - [ ] Comments added for complex logic
 - [ ] No unnecessary code duplication
+- [ ] EditorConfig settings respected
 
 ## Documentation
 <!-- Confirm documentation updates -->
@@ -74,7 +77,13 @@ Relates to #
 - [ ] Uses imports instead of FQCNs
 - [ ] Property hooks used where applicable (PHP 8.4)
 - [ ] DTOs used for structured data
+- [ ] Enums placed in `Enum/` directory
+- [ ] DTOs placed in `DTO/` directory
+- [ ] Request classes extend `AbstractRequest`
+- [ ] Response classes extend `AbstractResponse`
 - [ ] Follows naming conventions (see CONTRIBUTING.md)
+- [ ] Dependency injection used appropriately
+- [ ] SOLID principles followed
 
 ## Checklist
 <!-- Final checklist before submitting -->

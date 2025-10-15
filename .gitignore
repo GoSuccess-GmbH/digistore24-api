@@ -1,5 +1,16 @@
+# Dependencies
 vendor/
-.vscode/
+
+# IDE - VSCode (keep settings, ignore workspace)
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - PHPStorm/IntelliJ (keep code style, ignore workspace)
+.idea/*
+!.idea/codeStyles/
+!.idea/php.xml
 
 # OpenAPI cache (temporary downloads)
 .openapi-cache/
@@ -16,3 +27,7 @@ coverage/
 # PHPStan
 phpstan-baseline.neon
 .phpstan.cache/
+
+# OS Files
+.DS_Store
+Thumbs.db

@@ -226,7 +226,7 @@ final class BuyerData
             $this->email = $value;
         }
     }
-    
+
     public string $country {
         set {
             $upper = strtoupper($value);
@@ -396,11 +396,11 @@ while ($attempt < $maxAttempts) {
     } catch (RateLimitException $e) {
         $attempt++;
         $retryAfter = $e->getContextValue('retry_after') ?? 60;
-        
+
         if ($attempt >= $maxAttempts) {
             throw $e; // Give up
         }
-        
+
         echo "Rate limited. Waiting {$retryAfter}s before retry {$attempt}/{$maxAttempts}...\n";
         sleep($retryAfter);
     }
@@ -689,12 +689,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on:
+Contributions are welcome! Please read our documentation:
 
-- Development setup and coding standards
-- Testing requirements
-- Pull request process
-- Documentation standards
+- **[Contributing Guidelines](CONTRIBUTING.md)** - Coding standards and pull request process
+- **[Developer Setup](docs/DEVELOPER_SETUP.md)** - IDE configuration and development environment
+- **[Architecture](ARCHITECTURE.md)** - Project structure and design decisions
+
+### Quick Start for Contributors
+
+```bash
+# Clone repository
+git clone https://github.com/GoSuccess-GmbH/digistore24-api.git
+cd digistore24-api
+
+# Install dependencies
+composer install
+
+# Run tests
+composer test
+
+# Check code quality
+composer cs:fix
+composer analyse
+```
+
+See [DEVELOPER_SETUP.md](docs/DEVELOPER_SETUP.md) for detailed IDE setup instructions.
 
 ## Support
 
