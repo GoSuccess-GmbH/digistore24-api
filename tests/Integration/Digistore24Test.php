@@ -8,13 +8,13 @@ use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Integration Test for Digistore24 Main Facade
- * 
- * @covers \GoSuccess\Digistore24\Api\Digistore24
  */
+#[CoversClass(Digistore24::class)]
 final class Digistore24Test extends TestCase
 {
     private Digistore24 $client;
