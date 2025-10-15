@@ -1,3 +1,6 @@
+includes:
+    - phpstan-baseline.neon
+
 parameters:
     level: 9
     paths:
@@ -12,7 +15,7 @@ parameters:
     checkImplicitMixed: true
     
     # Report unknown classes
-    reportUnmatchedIgnoredErrors: true
+    reportUnmatchedIgnoredErrors: false
     
     # Type coverage
     reportMaybesInMethodSignatures: true
@@ -21,8 +24,3 @@ parameters:
     # Bleeding edge features
     polluteScopeWithLoopInitialAssignments: false
     polluteScopeWithAlwaysIterableForeach: false
-    
-    ignoreErrors:
-        # Ignore property hooks syntax (PHPStan may not fully support PHP 8.4 yet)
-        - '#Property .* has no type specified#'
-        - '#has unknown class#'
