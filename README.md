@@ -328,63 +328,71 @@ try {
 |----------|---------------|
 | `getAffiliateCommission` | [View](./docs/getAffiliateCommission.md) |
 | `updateAffiliateCommission` | [View](./docs/updateAffiliateCommission.md) |
-| `getAffiliateForEmail` | - |
-| `setAffiliateForEmail` | - |
-| `getReferringAffiliate` | - |
-| `setReferringAffiliate` | - |
-| `validateAffiliate` | - |
-| `statsAffiliateToplist` | - |
+| `getAffiliateForEmail` | [View](./docs/getAffiliateForEmail.md) |
+| `setAffiliateForEmail` | [View](./docs/setAffiliateForEmail.md) |
+| `getReferringAffiliate` | [View](./docs/getReferringAffiliate.md) |
+| `setReferringAffiliate` | [View](./docs/setReferringAffiliate.md) |
+| `validateAffiliate` | [View](./docs/validateAffiliate.md) |
+| `statsAffiliateToplist` | [View](./docs/statsAffiliateToplist.md) |
 
 ### Billing & Invoicing
 | Endpoint | Documentation |
 |----------|---------------|
 | `createBillingOnDemand` | [View](./docs/createBillingOnDemand.md) |
-| `listInvoices` | - |
-| `resendInvoiceMail` | - |
-
-### Buyer Management
-| Endpoint | Documentation |
-|----------|---------------|
-| `getBuyer` | [View](./docs/getBuyer.md) |
-| `updateBuyer` | - |
-| `listBuyers` | - |
-| `getCustomerToAffiliateBuyerDetails` | - |
+| `listInvoices` | [View](./docs/listInvoices.md) |
+| `resendInvoiceMail` | [View](./docs/resendInvoiceMail.md) |
 
 ### Buy URL Management
 | Endpoint | Documentation |
 |----------|---------------|
 | `createBuyUrl` | [View](./docs/createBuyUrl.md) |
-| `listBuyUrls` | [View](./docs/listBuyUrl.md) |
+| `listBuyUrls` | [View](./docs/listBuyUrls.md) |
 | `deleteBuyUrl` | [View](./docs/deleteBuyUrl.md) |
+
+### Buyer Management
+| Endpoint | Documentation |
+|----------|---------------|
+| `getBuyer` | [View](./docs/getBuyer.md) |
+| `updateBuyer` | [View](./docs/updateBuyer.md) |
+| `listBuyers` | [View](./docs/listBuyers.md) |
+| `getCustomerToAffiliateBuyerDetails` | [View](./docs/getCustomerToAffiliateBuyerDetails.md) |
 
 ### Country & Currency
 | Endpoint | Documentation |
 |----------|---------------|
 | `listCountries` | [View](./docs/listCountries.md) |
-| `listCurrencies` | - |
+| `listCurrencies` | [View](./docs/listCurrencies.md) |
 
 ### Delivery Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `getDelivery` | - |
-| `updateDelivery` | - |
-| `listDeliveries` | - |
+| `getDelivery` | [View](./docs/getDelivery.md) |
+| `updateDelivery` | [View](./docs/updateDelivery.md) |
+| `listDeliveries` | [View](./docs/listDeliveries.md) |
 
 ### E-Tickets
 | Endpoint | Documentation |
 |----------|---------------|
-| `createEticket` | - |
-| `getEticket` | - |
-| `listEtickets` | - |
-| `validateEticket` | - |
-| `getEticketSettings` | - |
-| `listEticketLocations` | - |
-| `listEticketTemplates` | - |
+| `createEticket` | [View](./docs/createEticket.md) |
+| `getEticket` | [View](./docs/getEticket.md) |
+| `listEtickets` | [View](./docs/listEtickets.md) |
+| `validateEticket` | [View](./docs/validateEticket.md) |
+| `getEticketSettings` | [View](./docs/getEticketSettings.md) |
+| `listEticketLocations` | [View](./docs/listEticketLocations.md) |
+| `listEticketTemplates` | [View](./docs/listEticketTemplates.md) |
 
 ### Forms & Custom Data
 | Endpoint | Documentation |
 |----------|---------------|
-| `listCustomFormRecords` | - |
+| `listCustomFormRecords` | [View](./docs/listCustomFormRecords.md) |
+
+### Images
+| Endpoint | Documentation |
+|----------|---------------|
+| `createImage` | [View](./docs/createImage.md) |
+| `getImage` | [View](./docs/getImage.md) |
+| `listImages` | [View](./docs/listImages.md) |
+| `deleteImage` | [View](./docs/deleteImage.md) |
 
 ### IPN/Webhook Management
 | Endpoint | Documentation |
@@ -393,25 +401,22 @@ try {
 | `ipnInfo` | [View](./docs/ipnInfo.md) |
 | `ipnDelete` | [View](./docs/ipnDelete.md) |
 
-### Images
+### License Keys
 | Endpoint | Documentation |
 |----------|---------------|
-| `createImage` | - |
-| `getImage` | - |
-| `listImages` | - |
-| `deleteImage` | - |
+| `validateLicenseKey` | [View](./docs/validateLicenseKey.md) |
 
 ### Marketplace
 | Endpoint | Documentation |
 |----------|---------------|
-| `getMarketplaceEntry` | - |
-| `listMarketplaceEntries` | - |
+| `getMarketplaceEntry` | [View](./docs/getMarketplaceEntry.md) |
+| `listMarketplaceEntries` | [View](./docs/listMarketplaceEntries.md) |
 
 ### Member Access
 | Endpoint | Documentation |
 |----------|---------------|
-| `listAccountAccess` | - |
-| `logMemberAccess` | - |
+| `listAccountAccess` | [View](./docs/listAccountAccess.md) |
+| `logMemberAccess` | [View](./docs/logMemberAccess.md) |
 
 ### Monitoring
 | Endpoint | Documentation |
@@ -421,62 +426,62 @@ try {
 ### Order Forms
 | Endpoint | Documentation |
 |----------|---------------|
-| `createOrderform` | - |
-| `getOrderform` | - |
-| `updateOrderform` | - |
-| `deleteOrderform` | - |
-| `listOrderforms` | - |
-| `getOrderformMetas` | - |
+| `createOrderform` | [View](./docs/createOrderform.md) |
+| `getOrderform` | [View](./docs/getOrderform.md) |
+| `updateOrderform` | [View](./docs/updateOrderform.md) |
+| `deleteOrderform` | [View](./docs/deleteOrderform.md) |
+| `listOrderforms` | [View](./docs/listOrderforms.md) |
+| `getOrderformMetas` | [View](./docs/getOrderformMetas.md) |
 
 ### Payment Plans
 | Endpoint | Documentation |
 |----------|---------------|
-| `createPaymentplan` | - |
-| `updatePaymentplan` | - |
-| `deletePaymentplan` | - |
-| `listPaymentPlans` | - |
+| `createPaymentplan` | [View](./docs/createPaymentplan.md) |
+| `updatePaymentplan` | [View](./docs/updatePaymentplan.md) |
+| `deletePaymentplan` | [View](./docs/deletePaymentplan.md) |
+| `listPaymentPlans` | [View](./docs/listPaymentPlans.md) |
 
 ### Payouts & Commissions
 | Endpoint | Documentation |
 |----------|---------------|
-| `listPayouts` | - |
-| `listCommissions` | - |
+| `listPayouts` | [View](./docs/listPayouts.md) |
+| `listCommissions` | [View](./docs/listCommissions.md) |
+
+### Product Groups
+| Endpoint | Documentation |
+|----------|---------------|
+| `createProductGroup` | [View](./docs/createProductGroup.md) |
+| `getProductGroup` | [View](./docs/getProductGroup.md) |
+| `updateProductGroup` | [View](./docs/updateProductGroup.md) |
+| `deleteProductGroup` | [View](./docs/deleteProductGroup.md) |
+| `listProductGroups` | [View](./docs/listProductGroups.md) |
 
 ### Product Management
 | Endpoint | Documentation |
 |----------|---------------|
 | `createProduct` | [View](./docs/createProduct.md) |
 | `getProduct` | [View](./docs/getProduct.md) |
-| `updateProduct` | - |
-| `deleteProduct` | - |
+| `updateProduct` | [View](./docs/updateProduct.md) |
+| `deleteProduct` | [View](./docs/deleteProduct.md) |
 | `copyProduct` | [View](./docs/copyProduct.md) |
 | `listProducts` | [View](./docs/listProducts.md) |
-| `listProductTypes` | - |
-
-### Product Groups
-| Endpoint | Documentation |
-|----------|---------------|
-| `createProductGroup` | - |
-| `getProductGroup` | - |
-| `updateProductGroup` | - |
-| `deleteProductGroup` | - |
-| `listProductGroups` | - |
+| `listProductTypes` | [View](./docs/listProductTypes.md) |
 
 ### Purchase Management
 | Endpoint | Documentation |
 |----------|---------------|
 | `getPurchase` | [View](./docs/getPurchase.md) |
-| `updatePurchase` | - |
+| `updatePurchase` | [View](./docs/updatePurchase.md) |
 | `listPurchases` | [View](./docs/listPurchases.md) |
-| `listPurchasesOfEmail` | - |
+| `listPurchasesOfEmail` | [View](./docs/listPurchasesOfEmail.md) |
 | `getPurchaseTracking` | [View](./docs/getPurchaseTracking.md) |
 | `addBalanceToPurchase` | [View](./docs/addBalanceToPurchase.md) |
 | `createUpgradePurchase` | [View](./docs/createUpgradePurchase.md) |
-| `createAddonChangePurchase` | - |
-| `getPurchaseDownloads` | - |
-| `refundPurchase` | - |
-| `refundPartially` | - |
-| `resendPurchaseConfirmationMail` | - |
+| `createAddonChangePurchase` | [View](./docs/createAddonChangePurchase.md) |
+| `getPurchaseDownloads` | [View](./docs/getPurchaseDownloads.md) |
+| `refundPurchase` | [View](./docs/refundPurchase.md) |
+| `refundPartially` | [View](./docs/refundPartially.md) |
+| `resendPurchaseConfirmationMail` | [View](./docs/resendPurchaseConfirmationMail.md) |
 
 ### Rebilling/Subscriptions
 | Endpoint | Documentation |
@@ -489,57 +494,57 @@ try {
 ### Service Proof
 | Endpoint | Documentation |
 |----------|---------------|
-| `getServiceProofRequest` | - |
-| `updateServiceProofRequest` | - |
-| `listServiceProofRequests` | - |
+| `getServiceProofRequest` | [View](./docs/getServiceProofRequest.md) |
+| `updateServiceProofRequest` | [View](./docs/updateServiceProofRequest.md) |
+| `listServiceProofRequests` | [View](./docs/listServiceProofRequests.md) |
 
 ### Shipping
 | Endpoint | Documentation |
 |----------|---------------|
-| `createShippingCostPolicy` | - |
-| `getShippingCostPolicy` | - |
-| `updateShippingCostPolicy` | - |
-| `deleteShippingCostPolicy` | - |
-| `listShippingCostPolicies` | - |
+| `createShippingCostPolicy` | [View](./docs/createShippingCostPolicy.md) |
+| `getShippingCostPolicy` | [View](./docs/getShippingCostPolicy.md) |
+| `updateShippingCostPolicy` | [View](./docs/updateShippingCostPolicy.md) |
+| `deleteShippingCostPolicy` | [View](./docs/deleteShippingCostPolicy.md) |
+| `listShippingCostPolicies` | [View](./docs/listShippingCostPolicies.md) |
 
 ### Statistics
 | Endpoint | Documentation |
 |----------|---------------|
-| `statsSales` | - |
-| `statsSalesSummary` | - |
-| `statsDailyAmounts` | - |
-| `statsExpectedPayouts` | - |
-| `statsMarketplace` | - |
+| `statsSales` | [View](./docs/statsSales.md) |
+| `statsSalesSummary` | [View](./docs/statsSalesSummary.md) |
+| `statsDailyAmounts` | [View](./docs/statsDailyAmounts.md) |
+| `statsExpectedPayouts` | [View](./docs/statsExpectedPayouts.md) |
+| `statsMarketplace` | [View](./docs/statsMarketplace.md) |
 
 ### Tracking & Conversion
 | Endpoint | Documentation |
 |----------|---------------|
-| `renderJsTrackingCode` | - |
-| `listConversionTools` | - |
+| `renderJsTrackingCode` | [View](./docs/renderJsTrackingCode.md) |
+| `listConversionTools` | [View](./docs/listConversionTools.md) |
 
 ### Transactions
 | Endpoint | Documentation |
 |----------|---------------|
-| `listTransactions` | - |
-| `refundTransaction` | - |
-| `reportFraud` | - |
+| `listTransactions` | [View](./docs/listTransactions.md) |
+| `refundTransaction` | [View](./docs/refundTransaction.md) |
+| `reportFraud` | [View](./docs/reportFraud.md) |
 
 ### Upgrades
 | Endpoint | Documentation |
 |----------|---------------|
-| `createUpgrade` | - |
-| `getUpgrade` | - |
-| `deleteUpgrade` | - |
-| `listUpgrades` | - |
-| `getSmartupgrade` | - |
-| `listSmartUpgrades` | - |
+| `createUpgrade` | [View](./docs/createUpgrade.md) |
+| `getUpgrade` | [View](./docs/getUpgrade.md) |
+| `deleteUpgrade` | [View](./docs/deleteUpgrade.md) |
+| `listUpgrades` | [View](./docs/listUpgrades.md) |
+| `getSmartupgrade` | [View](./docs/getSmartupgrade.md) |
+| `listSmartUpgrades` | [View](./docs/listSmartUpgrades.md) |
 
 ### Upsells
 | Endpoint | Documentation |
 |----------|---------------|
-| `getUpsells` | - |
-| `updateUpsells` | - |
-| `deleteUpsells` | - |
+| `getUpsells` | [View](./docs/getUpsells.md) |
+| `updateUpsells` | [View](./docs/updateUpsells.md) |
+| `deleteUpsells` | [View](./docs/deleteUpsells.md) |
 
 ### User/API Key Management
 | Endpoint | Documentation |
@@ -548,22 +553,17 @@ try {
 | `retrieveApiKey` | [View](./docs/retrieveApiKey.md) |
 | `unregister` | [View](./docs/unregister.md) |
 | `getUserInfo` | [View](./docs/getUserInfo.md) |
-| `getGlobalSettings` | - |
+| `getGlobalSettings` | [View](./docs/getGlobalSettings.md) |
 
 ### Vouchers/Coupons
 | Endpoint | Documentation |
 |----------|---------------|
-| `createVoucher` | - |
+| `createVoucher` | [View](./docs/createVoucher.md) |
 | `getVoucher` | [View](./docs/getVoucher.md) |
-| `updateVoucher` | - |
-| `deleteVoucher` | - |
-| `listVouchers` | - |
-| `validateCouponCode` | - |
-
-### License Keys
-| Endpoint | Documentation |
-|----------|---------------|
-| `validateLicenseKey` | - |
+| `updateVoucher` | [View](./docs/updateVoucher.md) |
+| `deleteVoucher` | [View](./docs/deleteVoucher.md) |
+| `listVouchers` | [View](./docs/listVouchers.md) |
+| `validateCouponCode` | [View](./docs/validateCouponCode.md) |
 
 ## Migration
 
