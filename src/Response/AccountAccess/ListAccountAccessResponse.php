@@ -55,9 +55,12 @@ final class ListAccountAccessResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $accesses = [];
+        
+        // Support both direct and nested data structures
+        $accessData = $data['data']['accesses'] ?? $data['accesses'] ?? [];
 
-        if (isset($data['accesses']) && is_array($data['accesses'])) {
-            foreach ($data['accesses'] as $entry) {
+        if (is_array($accessData)) {
+            foreach ($accessData as $entry) {
                 $accesses[] = AccountAccessEntry::fromArray($entry);
             }
         }

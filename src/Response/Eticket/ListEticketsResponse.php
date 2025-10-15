@@ -73,17 +73,19 @@ final class ListEticketsResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $tickets = [];
+        
+        // Support both direct and nested data structures
+        $ticketsData = $data['data']['tickets'] ?? $data['tickets'] ?? [];
 
-        if (isset($data['tickets']) && is_array($data['tickets'])) {
-            foreach ($data['tickets'] as $ticket) {
+        if (is_array($ticketsData)) {
+            foreach ($ticketsData as $ticket) {
                 $tickets[] = EticketListItem::fromArray($ticket);
             }
         }
 
-        $instance = new self(
+        return new self(
             tickets: $tickets,
-            totalCount: (int) ($data['total_count'] ?? count($tickets)),
+            totalCount: (int) ($data['data']['total_count'] ?? $data['total_count'] ?? count($tickets)),
         );
-        return $instance;
     }
 }

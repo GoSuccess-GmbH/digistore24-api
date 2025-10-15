@@ -71,9 +71,11 @@ final class GetEticketResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $instance = new self(
-            ticket: EticketDetail::fromArray($data),
+        // Support both direct and nested data structures
+        $ticketData = $data['data'] ?? $data;
+        
+        return new self(
+            ticket: EticketDetail::fromArray($ticketData),
         );
-        return $instance;
     }
 }

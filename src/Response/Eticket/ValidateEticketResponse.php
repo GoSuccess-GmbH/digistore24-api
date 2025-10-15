@@ -28,16 +28,18 @@ final class ValidateEticketResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $instance = new self(
-            success: (bool) ($data['success'] ?? true),
-            ticketId: $data['ticket_id'] ?? '',
-            orderId: $data['order_id'] ?? '',
-            productName: $data['product_name'] ?? '',
-            buyerName: $data['buyer_name'] ?? '',
-            validatedAt: new \DateTimeImmutable($data['validated_at'] ?? 'now'),
-            wasAlreadyValidated: (bool) ($data['was_already_validated'] ?? false),
-            message: $data['message'] ?? null,
+        // Support both direct and nested data structures
+        $ticketData = $data['data'] ?? $data;
+        
+        return new self(
+            success: (bool) ($ticketData['success'] ?? true),
+            ticketId: $ticketData['ticket_id'] ?? '',
+            orderId: $ticketData['order_id'] ?? '',
+            productName: $ticketData['product_name'] ?? '',
+            buyerName: $ticketData['buyer_name'] ?? '',
+            validatedAt: new \DateTimeImmutable($ticketData['validated_at'] ?? 'now'),
+            wasAlreadyValidated: (bool) ($ticketData['was_already_validated'] ?? false),
+            message: $ticketData['message'] ?? null,
         );
-        return $instance;
     }
 }
