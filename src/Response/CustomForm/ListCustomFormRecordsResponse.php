@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\CustomForm;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Response containing custom form records.
@@ -47,7 +48,7 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $records = array_map(
             fn($item) => (object) [
