@@ -37,5 +37,6 @@ final class RebillingIntegrationTest extends IntegrationTestCase
         );
 
         $this->assertInstanceOf(ListRebillingStatusChangesResponse::class, $response);
+        $this->assertIsArray($response->getStatusChanges());
     }
 }

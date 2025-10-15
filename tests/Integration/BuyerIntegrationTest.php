@@ -39,7 +39,7 @@ final class BuyerIntegrationTest extends IntegrationTestCase
             'Test buyer email required for buyer tests'
         );
 
-        $request = new GetBuyerRequest(identifier: $buyerEmail);
+        $request = new GetBuyerRequest(buyerId: $buyerEmail);
         $response = $this->client->buyers->get($request);
 
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
@@ -56,5 +56,10 @@ final class BuyerIntegrationTest extends IntegrationTestCase
         $response = $this->client->buyers->list(new ListBuyersRequest());
 
         $this->assertInstanceOf(ListBuyersResponse::class, $response);
+        $this->assertIsArray($response->getData());
+
+        // If we have buyers, validate structure
+        $buyerList = $response->getBuyerList();
+        $this->assertIsArray($buyerList);
     }
 }
