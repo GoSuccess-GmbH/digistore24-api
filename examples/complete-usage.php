@@ -10,6 +10,8 @@ use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
 use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DataTransferObject\UrlsData;
+use GoSuccess\Digistore24\Api\DataTransferObject\SettingsData;
 
 /**
  * Example: Complete Digistore24 API Usage
@@ -157,12 +159,19 @@ $tracking->utmTerm = 'saas+software';
 $tracking->utmContent = 'ad-variant-a';
 $request->tracking = $tracking;
 
-// URLs and placeholders
-$request->urls = [
-    'success_url' => 'https://example.com/success',
-    'error_url' => 'https://example.com/error',
-];
+// URLs
+$urls = new UrlsData();
+$urls->thankyouUrl = 'https://example.com/success';
+$urls->fallbackUrl = 'https://example.com/error';
+$request->urls = $urls;
 
+// Settings (optional)
+$settings = new SettingsData();
+$settings->affiliateCommissionRate = 50.0;  // 50% commission
+$settings->voucherRate = 10.0;  // 10% discount
+$request->settings = $settings;
+
+// Placeholders (custom fields)
 $request->placeholders = [
     'custom_field_1' => 'Value 1',
     'custom_field_2' => 'Value 2',
