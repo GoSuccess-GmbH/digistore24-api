@@ -30,6 +30,6 @@ final class GetPurchaseTrackingRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'getPurchaseTracking';
+        return '/getPurchaseTracking';
     }
 }

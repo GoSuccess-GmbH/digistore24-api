@@ -24,7 +24,7 @@ final class GetGlobalSettingsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'getGlobalSettings';
+        return '/getGlobalSettings';
     }
 
     public function method(): Method

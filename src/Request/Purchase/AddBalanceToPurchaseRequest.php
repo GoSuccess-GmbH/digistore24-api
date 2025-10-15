@@ -33,6 +33,6 @@ final class AddBalanceToPurchaseRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'addBalanceToPurchase';
+        return '/addBalanceToPurchase';
     }
 }

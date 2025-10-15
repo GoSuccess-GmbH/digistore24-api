@@ -20,7 +20,7 @@ final class GetPurchaseRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'getPurchase';
+        return '/getPurchase';
     }
 
     public function toArray(): array

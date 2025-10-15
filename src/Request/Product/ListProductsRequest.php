@@ -21,7 +21,7 @@ final class ListProductsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listProducts';
+        return '/listProducts';
     }
 
     public function toArray(): array

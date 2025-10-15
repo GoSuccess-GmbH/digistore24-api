@@ -33,6 +33,6 @@ final class ListPurchasesOfEmailRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listPurchasesOfEmail';
+        return '/listPurchasesOfEmail';
     }
 }

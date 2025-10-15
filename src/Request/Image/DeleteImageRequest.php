@@ -20,7 +20,7 @@ final class DeleteImageRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'deleteImage';
+        return '/deleteImage';
     }
 
     public function toArray(): array

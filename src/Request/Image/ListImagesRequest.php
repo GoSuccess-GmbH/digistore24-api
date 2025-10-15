@@ -20,7 +20,7 @@ final class ListImagesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'listImages';
+        return '/listImages';
     }
 
     public function toArray(): array

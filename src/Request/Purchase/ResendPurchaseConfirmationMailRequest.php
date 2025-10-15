@@ -30,6 +30,6 @@ final class ResendPurchaseConfirmationMailRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return 'resendPurchaseConfirmationMail';
+        return '/resendPurchaseConfirmationMail';
     }
 }
