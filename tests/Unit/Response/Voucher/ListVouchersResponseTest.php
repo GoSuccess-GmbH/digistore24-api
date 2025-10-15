@@ -12,17 +12,47 @@ final class ListVouchersResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
+        $data = [
+            'data' => [
+                'vouchers' => [
+                    [
+                        'voucher_id' => 'VOU001',
+                        'code' => 'SUMMER2024',
+                        'discount_type' => 'percentage',
+                        'discount_amount' => 20.0,
+                    ],
+                    [
+                        'voucher_id' => 'VOU002',
+                        'code' => 'WINTER2024',
+                        'discount_type' => 'fixed',
+                        'discount_amount' => 10.0,
+                    ],
+                ],
+            ],
+        ];
         $response = ListVouchersResponse::fromArray($data);
         
         $this->assertInstanceOf(ListVouchersResponse::class, $response);
+        $vouchers = $response->getVouchers();
+        $this->assertCount(2, $vouchers);
+        $this->assertSame('VOU001', $vouchers[0]['voucher_id']);
+        $this->assertSame('SUMMER2024', $vouchers[0]['code']);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: [
+                'data' => [
+                    'vouchers' => [
+                        [
+                            'voucher_id' => 'VOU999',
+                            'code' => 'SPRING2024',
+                        ],
+                    ],
+                ],
+            ],
             headers: [],
             rawBody: ''
         );
@@ -30,20 +60,21 @@ final class ListVouchersResponseTest extends TestCase
         $response = ListVouchersResponse::fromResponse($httpResponse);
         
         $this->assertInstanceOf(ListVouchersResponse::class, $response);
+        $this->assertCount(1, $response->getVouchers());
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
+            data: ['data' => ['vouchers' => []]],
             headers: [],
             rawBody: 'test'
         );
         
         $response = ListVouchersResponse::fromResponse($httpResponse);
         
-        $this->assertInstanceOf(Response::class, $response->getRawResponse());
+        $this->assertInstanceOf(Response::class, $response->rawResponse);
     }
 }
 
