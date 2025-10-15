@@ -20,7 +20,7 @@ final class GetProductRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/getProduct';
+        return 'getProduct';
     }
 
     public function toArray(): array

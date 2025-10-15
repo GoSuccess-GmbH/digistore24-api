@@ -17,7 +17,7 @@ final class ListBuyUrlsRequest extends AbstractRequest
 {
     public function getEndpoint(): string
     {
-        return '/listBuyUrls';
+        return 'listBuyUrls';
     }
 
     public function toArray(): array

@@ -20,7 +20,7 @@ final class GetImageRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/getImage';
+        return 'getImage';
     }
 
     public function toArray(): array

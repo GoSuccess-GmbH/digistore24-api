@@ -30,6 +30,6 @@ final class GetCustomerToAffiliateBuyerDetailsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/getCustomerToAffiliateBuyerDetails';
+        return 'getCustomerToAffiliateBuyerDetails';
     }
 }

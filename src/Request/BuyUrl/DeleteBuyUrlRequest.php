@@ -24,7 +24,7 @@ final class DeleteBuyUrlRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/deleteBuyUrl';
+        return 'deleteBuyUrl';
     }
 
     public function toArray(): array

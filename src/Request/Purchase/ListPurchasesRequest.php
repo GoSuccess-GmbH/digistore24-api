@@ -23,7 +23,7 @@ final class ListPurchasesRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/listPurchases';
+        return 'listPurchases';
     }
 
     public function toArray(): array

@@ -24,7 +24,7 @@ final class ListEticketsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/listEtickets';
+        return 'listEtickets';
     }
 
     public function toArray(): array

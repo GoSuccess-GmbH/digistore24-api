@@ -53,6 +53,6 @@ final class UpdatePurchaseRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/updatePurchase';
+        return 'updatePurchase';
     }
 }

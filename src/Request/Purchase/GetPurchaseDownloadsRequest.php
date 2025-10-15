@@ -30,6 +30,6 @@ final class GetPurchaseDownloadsRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/getPurchaseDownloads';
+        return 'getPurchaseDownloads';
     }
 }
