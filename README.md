@@ -711,7 +711,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Contributions are welcome! Please read our documentation:
 
 - **[Contributing Guidelines](CONTRIBUTING.md)** - Coding standards and pull request process
-- **[Developer Setup](docs/DEVELOPER_SETUP.md)** - IDE configuration and development environment
+- **[Developer Setup](docs/DEVELOPER_SETUP.md)** - Complete IDE setup, PHP 8.4 configuration, and development workflow
 
 ### Quick Start for Contributors
 
@@ -720,8 +720,11 @@ Contributions are welcome! Please read our documentation:
 git clone https://github.com/GoSuccess-GmbH/digistore24-api.git
 cd digistore24-api
 
-# Install dependencies
+# Install dependencies (requires PHP 8.4+)
 composer install
+
+# Verify setup
+php -v  # Should show PHP 8.4.x
 
 # Run tests
 composer test

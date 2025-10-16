@@ -8,11 +8,37 @@ This guide helps you set up your development environment for the best experience
 - **Composer** (Package Manager)
 - **Git** (Version Control)
 
+### Verify PHP Version
+
+```bash
+php -v
+# Should output: PHP 8.4.x or higher
+```
+
+If you don't have PHP 8.4, install it:
+
+**Windows (Laragon/XAMPP):**
+- Download PHP 8.4 from [windows.php.net](https://windows.php.net/download/)
+- Or use [Laragon](https://laragon.org/) which includes PHP 8.4
+
+**macOS (Homebrew):**
+```bash
+brew install php@8.4
+brew link php@8.4
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php8.4-cli php8.4-curl php8.4-mbstring
+```
+
 ## 🔧 IDE Setup
 
 ### Visual Studio Code (Recommended)
 
-1. **Install Recommended Extensions**
+#### 1. Install Recommended Extensions
 
    When you open the project, VS Code will prompt you to install recommended extensions. Accept the prompt or install manually:
 
@@ -25,7 +51,46 @@ This guide helps you set up your development environment for the best experience
    - **PHP Namespace Resolver** - Import classes
    - **PHPUnit Test Explorer** - Run tests in sidebar
 
-2. **Settings are Pre-configured**
+#### 2. Configure PHP 8.4 Path
+
+Since this project requires PHP 8.4+, you need to configure VS Code to use the correct PHP version.
+
+**Option 1: User Settings (Recommended for all projects)**
+
+1. Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS)
+2. Type "Preferences: Open User Settings (JSON)"
+3. Add your PHP 8.4 path:
+
+```json
+{
+    "php.validate.executablePath": "/path/to/php8.4"
+}
+```
+
+**Common PHP Paths:**
+- **Laragon (Windows)**: `"C:/laragon/bin/php/php-8.4.12-nts-Win32-vs17-x64/php.exe"`
+- **XAMPP (Windows)**: `"C:/xampp/php/php.exe"`
+- **Homebrew (macOS)**: `"/opt/homebrew/bin/php"`
+- **Linux**: `"/usr/bin/php"`
+
+**Option 2: Workspace Settings (Project-specific)**
+
+```bash
+# Copy the example file
+cp .vscode/settings.local.json.example .vscode/settings.local.json
+
+# Edit .vscode/settings.local.json with your PHP paths
+```
+
+This file is ignored by git, so your local paths won't be committed.
+
+**Option 3: System PATH**
+
+Ensure PHP 8.4 is in your system PATH and VS Code will use it automatically.
+
+See [`.vscode/README.md`](../.vscode/README.md) for detailed configuration.
+
+#### 3. Settings are Pre-configured
 
    The `.vscode/settings.json` file contains:
    - Format on save with PHP CS Fixer
@@ -34,7 +99,7 @@ This guide helps you set up your development environment for the best experience
    - 4-space indentation
    - LF line endings
 
-3. **Debugging Setup**
+#### 4. Debugging Setup
 
    XDebug configuration is ready in `.vscode/launch.json`. Install XDebug and you can:
    - Set breakpoints
