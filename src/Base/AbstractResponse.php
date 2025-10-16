@@ -72,7 +72,7 @@ abstract class AbstractResponse implements ResponseInterface
 
     /**
      * Extract result field from response data or rawResponse
-     * 
+     *
      * Handles both direct fromArray() calls (where $data contains 'result')
      * and fromResponse() calls (where result is in rawResponse->data['result'])
      */
@@ -83,7 +83,7 @@ abstract class AbstractResponse implements ResponseInterface
 
     /**
      * Extract inner data array, handling nested 'data' field
-     * 
+     *
      * When fromArray() is called directly (tests), $data may contain: {'result': ..., 'data': {...}}
      * When called via fromResponse(), $data is already the inner data object
      */
