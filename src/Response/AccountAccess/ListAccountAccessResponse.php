@@ -31,7 +31,11 @@ final class ListAccountAccessResponse extends AbstractResponse
 
         if (is_array($accessData)) {
             foreach ($accessData as $entry) {
-                $accesses[] = AccountAccessEntry::fromArray($entry);
+                if (is_array($entry)) {
+                    /** @var array<string, mixed> $validatedEntry */
+                    $validatedEntry = $entry;
+                    $accesses[] = AccountAccessEntry::fromArray($validatedEntry);
+                }
             }
         }
 

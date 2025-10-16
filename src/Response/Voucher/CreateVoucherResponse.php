@@ -14,6 +14,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreateVoucherResponse extends AbstractResponse
 {
+    /** @param array<string, mixed> $data */
     public function __construct(private string $result, private array $data)
     {
     }
@@ -23,6 +24,7 @@ final class CreateVoucherResponse extends AbstractResponse
         return $this->result;
     }
 
+    /** @return array<string, mixed> */
     public function getData(): array
     {
         return $this->data;
@@ -30,7 +32,9 @@ final class CreateVoucherResponse extends AbstractResponse
 
     public function getVoucherId(): ?string
     {
-        return $this->data['voucher_id'] ?? null;
+        $value = $this->data['voucher_id'] ?? null;
+
+        return is_string($value) ? $value : null;
     }
 
     public function wasSuccessful(): bool
@@ -40,9 +44,16 @@ final class CreateVoucherResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $responseData = $data['data'] ?? [];
+        if (!is_array($responseData)) {
+            $responseData = [];
+        }
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $responseData;
+
         return new self(
             result: self::extractResult($data, $rawResponse),
-            data: $data['data'] ?? [],
+            data: $validatedData,
         );
     }
 }

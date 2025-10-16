@@ -36,10 +36,16 @@ final class ResendInvoiceMailResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $resendData = $data['data'] ?? [];
+        if (!is_array($resendData)) {
+            $resendData = [];
+        }
+
+        $status = $resendData['status'] ?? '';
+        $note = $resendData['note'] ?? '';
 
         return new self(
-            status: (string)($resendData['status'] ?? ''),
-            note: (string)($resendData['note'] ?? ''),
+            status: is_string($status) ? $status : '',
+            note: is_string($note) ? $note : '',
         );
     }
 }

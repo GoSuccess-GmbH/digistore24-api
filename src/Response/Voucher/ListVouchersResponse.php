@@ -14,10 +14,12 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListVouchersResponse extends AbstractResponse
 {
+    /** @param array<string, mixed> $vouchers */
     public function __construct(private array $vouchers)
     {
     }
 
+    /** @return array<string, mixed> */
     public function getVouchers(): array
     {
         return $this->vouchers;
@@ -26,7 +28,13 @@ final class ListVouchersResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
-        
-return new self(vouchers: $innerData['vouchers'] ?? []);
+        $vouchersData = $innerData['vouchers'] ?? [];
+        if (!is_array($vouchersData)) {
+            $vouchersData = [];
+        }
+        /** @var array<string, mixed> $validatedVouchers */
+        $validatedVouchers = $vouchersData;
+
+        return new self(vouchers: $validatedVouchers);
     }
 }

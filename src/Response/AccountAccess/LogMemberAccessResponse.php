@@ -26,9 +26,12 @@ final class LogMemberAccessResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $success = self::getValue($data, 'success', 'bool', true);
+        $message = self::getValue($data, 'message', 'string');
+
         return new self(
-            success: self::getValue($data, 'success', 'bool', true),
-            message: self::getValue($data, 'message', 'string'),
+            success: is_bool($success) ? $success : (bool)$success,
+            message: $message === null || is_string($message) ? $message : null,
         );
     }
 }

@@ -14,6 +14,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class RefundTransactionResponse extends AbstractResponse
 {
+    /** @param array<string, mixed> $data */
     public function __construct(private string $status, private string $modified, private array $data)
     {
     }
@@ -28,6 +29,7 @@ final class RefundTransactionResponse extends AbstractResponse
         return $this->modified;
     }
 
+    /** @return array<string, mixed> */
     public function getData(): array
     {
         return $this->data;
@@ -41,11 +43,19 @@ final class RefundTransactionResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $refundData = $data['data'] ?? [];
+        if (!is_array($refundData)) {
+            $refundData = [];
+        }
+
+        $status = $refundData['status'] ?? '';
+        $modified = $refundData['modified'] ?? 'N';
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $refundData;
 
         return new self(
-            status: (string)($refundData['status'] ?? ''),
-            modified: (string)($refundData['modified'] ?? 'N'),
-            data: $refundData,
+            status: is_string($status) ? $status : '',
+            modified: is_string($modified) ? $modified : 'N',
+            data: $validatedData,
         );
     }
 }

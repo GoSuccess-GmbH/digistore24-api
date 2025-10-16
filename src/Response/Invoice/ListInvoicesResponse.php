@@ -14,6 +14,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListInvoicesResponse extends AbstractResponse
 {
+    /** @param array<string, mixed> $invoiceList */
     public function __construct(private string $purchaseId, private array $invoiceList)
     {
     }
@@ -23,6 +24,7 @@ final class ListInvoicesResponse extends AbstractResponse
         return $this->purchaseId;
     }
 
+    /** @return array<string, mixed> */
     public function getInvoiceList(): array
     {
         return $this->invoiceList;
@@ -31,10 +33,21 @@ final class ListInvoicesResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $invoiceData = $data['data'] ?? [];
+        if (!is_array($invoiceData)) {
+            $invoiceData = [];
+        }
+
+        $purchaseId = $invoiceData['purchase_id'] ?? '';
+        $invoiceList = $invoiceData['invoice_list'] ?? [];
+        if (!is_array($invoiceList)) {
+            $invoiceList = [];
+        }
+        /** @var array<string, mixed> $validatedInvoiceList */
+        $validatedInvoiceList = $invoiceList;
 
         return new self(
-            purchaseId: (string)($invoiceData['purchase_id'] ?? ''),
-            invoiceList: $invoiceData['invoice_list'] ?? [],
+            purchaseId: is_string($purchaseId) ? $purchaseId : '',
+            invoiceList: $validatedInvoiceList,
         );
     }
 }

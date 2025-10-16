@@ -23,15 +23,23 @@ final class AccountAccessEntry
     ) {
     }
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $platformName = $data['platform_name'] ?? '';
+        $loginName = $data['login_name'] ?? '';
+        $loginUrl = $data['login_url'] ?? '';
+        $unlockedLectures = $data['number_of_unlocked_lectures'] ?? 0;
+        $totalLectures = $data['total_number_of_lectures'] ?? 0;
+        $loginAtStr = $data['login_at'] ?? 'now';
+
         return new self(
-            platformName: $data['platform_name'] ?? '',
-            loginName: $data['login_name'] ?? '',
-            loginUrl: $data['login_url'] ?? '',
-            numberOfUnlockedLectures: (int)($data['number_of_unlocked_lectures'] ?? 0),
-            totalNumberOfLectures: (int)($data['total_number_of_lectures'] ?? 0),
-            loginAt: new \DateTimeImmutable($data['login_at'] ?? 'now'),
+            platformName: is_string($platformName) ? $platformName : '',
+            loginName: is_string($loginName) ? $loginName : '',
+            loginUrl: is_string($loginUrl) ? $loginUrl : '',
+            numberOfUnlockedLectures: is_int($unlockedLectures) ? $unlockedLectures : 0,
+            totalNumberOfLectures: is_int($totalLectures) ? $totalLectures : 0,
+            loginAt: new \DateTimeImmutable(is_string($loginAtStr) ? $loginAtStr : 'now'),
         );
     }
 }
