@@ -13,6 +13,7 @@ use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
 use GoSuccess\Digistore24\Api\Exception\NotFoundException;
 use GoSuccess\Digistore24\Api\Exception\RateLimitException;
 use GoSuccess\Digistore24\Api\Exception\RequestException;
+use GoSuccess\Digistore24\Api\Http\Request;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
@@ -60,7 +61,18 @@ final class ApiClient implements HttpClientInterface
         HttpMethod $method = HttpMethod::POST,
         array $params = [],
     ): Response {
-        $url = $this->buildUrl($endpoint);
+        $request = $this->buildRequest($endpoint, $method, $params);
+
+        return $this->send($request);
+    }
+
+    /**
+     * Send an HTTP request with retry logic
+     *
+     * @throws ApiException
+     */
+    public function send(Request $request): Response
+    {
         $attempt = 0;
         $lastException = null;
 
@@ -68,7 +80,7 @@ final class ApiClient implements HttpClientInterface
             $attempt++;
 
             try {
-                return $this->executeRequest($url, $method, $params);
+                return $this->executeRequest($request);
             } catch (RateLimitException $e) {
                 $lastException = $e;
                 $retryAfter = $e->getRetryAfter() ?? 5;
@@ -98,16 +110,64 @@ final class ApiClient implements HttpClientInterface
     }
 
     /**
+     * Build HTTP request from endpoint and parameters
+     */
+    private function buildRequest(string $endpoint, HttpMethod $method, array $params): Request
+    {
+        $url = $this->buildUrl($endpoint);
+        $params = $this->addMetaParams($params);
+
+        $headers = [
+            'Accept' => 'application/json',
+            'Accept-Charset' => 'utf-8',
+            'Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8',
+            'X-DS-API-KEY' => $this->config->apiKey,
+            'User-Agent' => self::USER_AGENT,
+        ];
+
+        // For GET requests, use query parameters
+        if ($method === HttpMethod::GET) {
+            return new Request(
+                method: $method,
+                url: $url,
+                headers: $headers,
+                query: $params,
+            );
+        }
+
+        // For POST/PUT/PATCH, use body
+        return new Request(
+            method: $method,
+            url: $url,
+            body: $params,
+            headers: $headers,
+        );
+    }
+
+    /**
      * Execute single HTTP request
      *
      * @throws ApiException
      */
-    private function executeRequest(string $url, HttpMethod $method, array $params): Response
+    private function executeRequest(Request $request): Response
     {
         $ch = curl_init();
 
-        // Build query string and prepare body
-        $queryString = http_build_query($this->addMetaParams($params), '', '&');
+        // Build query string for body/query
+        $queryString = $request->hasBody
+            ? http_build_query($request->body, '', '&')
+            : http_build_query($request->query, '', '&');
+
+        // Build URL with query parameters for GET requests
+        $url = $request->isGet && $request->hasQuery
+            ? $request->fullUrl
+            : $request->url;
+
+        // Convert headers array to cURL format
+        $curlHeaders = [];
+        foreach ($request->headers as $name => $value) {
+            $curlHeaders[] = "{$name}: {$value}";
+        }
 
         // Set cURL options
         $options = [
@@ -118,23 +178,15 @@ final class ApiClient implements HttpClientInterface
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 0,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => $method->value,
-            CURLOPT_USERAGENT => self::USER_AGENT,
+            CURLOPT_CUSTOMREQUEST => $request->method->value,
             CURLOPT_HEADER => true,
-            CURLOPT_HTTPHEADER => [
-                'Accept: application/json',
-                'Accept-Charset: utf-8',
-                'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
-                "X-DS-API-KEY: {$this->config->apiKey}",
-            ],
+            CURLOPT_HTTPHEADER => $curlHeaders,
         ];
 
         // Add body for POST/PUT/PATCH
-        if (in_array($method, [HttpMethod::POST, HttpMethod::PUT, HttpMethod::PATCH], true)) {
+        if ($request->hasBody && !$request->isGet) {
             $options[CURLOPT_POST] = true;
             $options[CURLOPT_POSTFIELDS] = $queryString;
-        } elseif ($method === HttpMethod::GET && ! empty($params)) {
-            $options[CURLOPT_URL] = "{$url}?{$queryString}";
         }
 
         curl_setopt_array($ch, $options);
