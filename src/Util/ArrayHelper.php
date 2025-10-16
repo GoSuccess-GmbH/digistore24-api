@@ -19,7 +19,7 @@ final class ArrayHelper
      * @param mixed $default Default value if key not found
      * @return mixed
      */
-    public static function get(array $array, string $key, mixed $default = null): mixed
+    public static function get(array $array, string $key, $default = null): mixed
     {
         if (array_key_exists($key, $array)) {
             return $array[$key];
@@ -168,7 +168,7 @@ final class ArrayHelper
      * @param mixed $default Default value if no match found
      * @return mixed
      */
-    public static function first(array $array, ?callable $callback = null, mixed $default = null): mixed
+    public static function first(array $array, ?callable $callback = null, $default = null): mixed
     {
         if ($callback === null) {
             foreach ($array as $item) {

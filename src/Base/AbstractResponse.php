@@ -51,7 +51,7 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * Get a value from data with type conversion
      */
-    protected static function getValue(array $data, string $key, string $type = 'string', mixed $default = null): mixed
+    protected static function getValue(array $data, string $key, string $type = 'string', $default = null): mixed
     {
         $value = $data[$key] ?? $default;
 
