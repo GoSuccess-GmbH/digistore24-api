@@ -25,10 +25,14 @@ final class EticketItem
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $id = $data['id'] ?? '';
+        $url = $data['url'] ?? '';
+        $email = $data['email'] ?? '';
+
         return new self(
-            id: $data['id'] ?? '',
-            url: $data['url'] ?? '',
-            email: $data['email'] ?? '',
+            id: is_string($id) ? $id : '',
+            url: is_string($url) ? $url : '',
+            email: is_string($email) ? $email : '',
         );
     }
 }

@@ -26,10 +26,13 @@ final class CreateEticketResponse extends AbstractResponse
     {
         $etickets = [];
         if (isset($data['etickets']) && is_array($data['etickets'])) {
-            $etickets = array_map(
-                fn (array $item): EticketItem => EticketItem::fromArray($item),
-                $data['etickets'],
-            );
+            foreach ($data['etickets'] as $item) {
+                if (is_array($item)) {
+                    /** @var array<string, mixed> $validatedItem */
+                    $validatedItem = $item;
+                    $etickets[] = EticketItem::fromArray($validatedItem);
+                }
+            }
         }
 
         $instance = new self(etickets: $etickets);
