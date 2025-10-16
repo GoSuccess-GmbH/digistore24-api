@@ -86,16 +86,14 @@ The response contains an array of e-tickets and the total count.
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
-use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketsRequest;
 
 // Initialize API client
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);
 
-$request = new ListEticketsRequest();
-
+// No request object needed for listing all e-tickets
 try {
-    $response = $ds24->eticket->list($request);
+    $response = $ds24->etickets->list();
     
     echo "Total tickets: {$response->totalCount}\n";
     echo "Showing: " . count($response->tickets) . " tickets\n\n";

@@ -47,16 +47,13 @@ No parameters required.
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
-use GoSuccess\Digistore24\Api\Request\Eticket\ListEticketLocationsRequest;
 
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);
 
-// List all e-ticket locations
-$request = new ListEticketLocationsRequest();
-
+// List all e-ticket locations (no parameters needed)
 try {
-    $response = $ds24->etickets->listLocations($request);
+    $response = $ds24->etickets->listLocations();
     
     echo "Available E-Ticket Locations:\n\n";
     
@@ -74,8 +71,8 @@ try {
 ## Example: Find Location by Name
 
 ```php
-$request = new ListEticketLocationsRequest();
-$response = $ds24->etickets->listLocations($request);
+// No request object needed
+$response = $ds24->etickets->listLocations();
 
 $searchName = 'Berlin';
 

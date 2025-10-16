@@ -25,15 +25,15 @@ This endpoint does not require any parameters.
 ### Example Request
 
 ```php
-use GoSuccess\Digistore24\Digistore24;
-use GoSuccess\Digistore24\Request\Product\ListProductTypesRequest;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
 
 // Initialize API client
 $config = new Configuration('YOUR-API-KEY');
 $client = new Digistore24($config);
 
-$request = new ListProductTypesRequest();
-$response = $client->products()->listProductTypes($request);
+// No request object needed - all parameters are optional
+$response = $client->products->listProductTypes();
 ```
 
 ## Response
