@@ -4,8 +4,10 @@ vendor/
 # IDE - VSCode (keep settings, ignore workspace)
 .vscode/*
 !.vscode/settings.json
+!.vscode/settings.local.json.example
 !.vscode/launch.json
 !.vscode/extensions.json
+.vscode/settings.local.json
 
 # IDE - PHPStorm/IntelliJ (keep code style, ignore workspace)
 .idea/*

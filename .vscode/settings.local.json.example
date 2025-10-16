@@ -1,0 +1,21 @@
+{
+    // Local Settings Example
+    // Copy this file to your User Settings (Ctrl+Shift+P -> "Preferences: Open User Settings (JSON)")
+    // or create .vscode/settings.local.json (ignored by git)
+    
+    // For Windows users with Laragon:
+    "php.validate.executablePath": "C:/laragon/bin/php/php-8.4.12-nts-Win32-vs17-x64/php.exe",
+    "php-cs-fixer.executablePathWindows": "C:/laragon/bin/php/php-8.4.12-nts-Win32-vs17-x64/php.exe ${workspaceFolder}/vendor/bin/php-cs-fixer",
+    
+    // For macOS/Linux users with Homebrew:
+    // "php.validate.executablePath": "/opt/homebrew/bin/php",
+    // "php-cs-fixer.executablePath": "/opt/homebrew/bin/php ${workspaceFolder}/vendor/bin/php-cs-fixer",
+    
+    // For XAMPP users:
+    // "php.validate.executablePath": "C:/xampp/php/php.exe",
+    // "php-cs-fixer.executablePathWindows": "C:/xampp/php/php.exe ${workspaceFolder}/vendor/bin/php-cs-fixer",
+    
+    // For Docker users:
+    // "php.validate.executablePath": "docker",
+    // "php.validate.executableArgs": ["exec", "php-container", "php"]
+}
