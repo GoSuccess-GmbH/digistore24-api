@@ -68,12 +68,12 @@ final class ProductIntegrationTest extends IntegrationTestCase
             $this->assertIsString($product->descriptionEn);
             $this->assertIsString($product->optinText);
             $this->assertIsString($product->optinTextDe);
-            
+
             // Validate all boolean flags work correctly
             $this->assertIsBool($product->isFreeUpsellEnabled);
             $this->assertIsBool($product->isVatShown);
             $this->assertIsBool($product->addOrderDataToThankyouPageUrl);
-            
+
             // Validate notification email fields
             $this->assertIsString($product->notifyPaymentEmails);
             $this->assertIsString($product->notifyRefundEmails);
