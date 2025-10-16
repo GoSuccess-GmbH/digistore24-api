@@ -26,13 +26,20 @@ final class GetImageResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $imageId = $data['image_id'] ?? '';
+        $imageUrl = $data['image_url'] ?? '';
+        $name = $data['name'] ?? '';
+        $usageType = $data['usage_type'] ?? null;
+        $altTag = $data['alt_tag'] ?? null;
+        $createdAt = $data['created_at'] ?? 'now';
+
         $instance = new self(
-            imageId: $data['image_id'] ?? '',
-            imageUrl: $data['image_url'] ?? '',
-            name: $data['name'] ?? '',
-            usageType: $data['usage_type'] ?? null,
-            altTag: $data['alt_tag'] ?? null,
-            createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
+            imageId: is_string($imageId) ? $imageId : '',
+            imageUrl: is_string($imageUrl) ? $imageUrl : '',
+            name: is_string($name) ? $name : '',
+            usageType: $usageType === null || is_string($usageType) ? $usageType : null,
+            altTag: $altTag === null || is_string($altTag) ? $altTag : null,
+            createdAt: new \DateTimeImmutable(is_string($createdAt) ? $createdAt : 'now'),
         );
 
         return $instance;

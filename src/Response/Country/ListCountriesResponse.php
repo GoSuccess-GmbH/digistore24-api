@@ -35,6 +35,14 @@ final class ListCountriesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(countries: $data);
+        /** @var array<string, string> $countries */
+        $countries = [];
+        foreach ($data as $code => $name) {
+            if (is_string($name)) {
+                $countries[(string)$code] = $name;
+            }
+        }
+
+        return new self(countries: $countries);
     }
 }

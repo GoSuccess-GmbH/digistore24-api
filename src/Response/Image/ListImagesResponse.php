@@ -30,13 +30,19 @@ final class ListImagesResponse extends AbstractResponse
 
         if (isset($data['images']) && is_array($data['images'])) {
             foreach ($data['images'] as $image) {
-                $images[] = ImageListItem::fromArray($image);
+                if (is_array($image)) {
+                    /** @var array<string, mixed> $validatedImage */
+                    $validatedImage = $image;
+                    $images[] = ImageListItem::fromArray($validatedImage);
+                }
             }
         }
 
+        $totalCount = $data['total_count'] ?? count($images);
+
         $instance = new self(
             images: $images,
-            totalCount: (int)($data['total_count'] ?? count($images)),
+            totalCount: is_int($totalCount) ? $totalCount : count($images),
         );
 
         return $instance;

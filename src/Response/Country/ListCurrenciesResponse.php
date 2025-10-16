@@ -30,17 +30,28 @@ final class ListCurrenciesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $currencies = array_map(
-            fn ($item) => (object)[
-                'id' => (int)$item['id'],
-                'code' => (string)$item['code'],
-                'symbol' => (string)$item['symbol'],
-                'min_price' => (float)$item['min_price'],
-                'max_price' => (float)$item['max_price'],
-                'name' => (string)$item['name'],
-            ],
-            $data,
-        );
+        $currencies = [];
+        foreach ($data as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+
+            $id = $item['id'] ?? 0;
+            $code = $item['code'] ?? '';
+            $symbol = $item['symbol'] ?? '';
+            $minPrice = $item['min_price'] ?? 0.0;
+            $maxPrice = $item['max_price'] ?? 0.0;
+            $name = $item['name'] ?? '';
+
+            $currencies[] = (object)[
+                'id' => is_int($id) ? $id : 0,
+                'code' => is_string($code) ? $code : '',
+                'symbol' => is_string($symbol) ? $symbol : '',
+                'min_price' => is_float($minPrice) ? $minPrice : (is_numeric($minPrice) ? (float)$minPrice : 0.0),
+                'max_price' => is_float($maxPrice) ? $maxPrice : (is_numeric($maxPrice) ? (float)$maxPrice : 0.0),
+                'name' => is_string($name) ? $name : '',
+            ];
+        }
 
         return new self(currencies: $currencies);
     }

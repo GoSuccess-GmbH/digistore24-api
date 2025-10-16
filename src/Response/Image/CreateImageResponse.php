@@ -26,9 +26,12 @@ final class CreateImageResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $imageId = self::getValue($data, 'image_id', 'string', '');
+        $imageUrl = self::getValue($data, 'image_url', 'string', '');
+
         $instance = new self(
-            imageId: self::getValue($data, 'image_id', 'string', ''),
-            imageUrl: self::getValue($data, 'image_url', 'string', ''),
+            imageId: is_string($imageId) ? $imageId : '',
+            imageUrl: is_string($imageUrl) ? $imageUrl : '',
         );
 
         return $instance;

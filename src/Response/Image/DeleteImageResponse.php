@@ -23,10 +23,14 @@ final class DeleteImageResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $success = $data['success'] ?? true;
+        $imageId = $data['image_id'] ?? '';
+        $message = $data['message'] ?? null;
+
         $instance = new self(
-            success: (bool)($data['success'] ?? true),
-            imageId: $data['image_id'] ?? '',
-            message: $data['message'] ?? null,
+            success: is_bool($success) ? $success : (bool)$success,
+            imageId: is_string($imageId) ? $imageId : '',
+            message: $message === null || is_string($message) ? $message : null,
         );
 
         return $instance;

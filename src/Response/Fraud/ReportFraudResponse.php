@@ -80,15 +80,26 @@ final class ReportFraudResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $fraudData = $data['data'] ?? [];
+        if (!is_array($fraudData)) {
+            $fraudData = [];
+        }
+
+        $result = $data['result'] ?? 'unknown';
+        $buyerStatus = $fraudData['buyer_status'] ?? '';
+        $buyerMessage = $fraudData['buyer_message'] ?? '';
+        $buyerCode = $fraudData['buyer_code'] ?? '';
+        $affiliateStatus = $fraudData['affiliate_status'] ?? '';
+        $affiliateMessage = $fraudData['affiliate_message'] ?? '';
+        $affiliateCode = $fraudData['affiliate_code'] ?? '';
 
         return new self(
-            result: (string)($data['result'] ?? 'unknown'),
-            buyerStatus: (string)($fraudData['buyer_status'] ?? ''),
-            buyerMessage: (string)($fraudData['buyer_message'] ?? ''),
-            buyerCode: (string)($fraudData['buyer_code'] ?? ''),
-            affiliateStatus: (string)($fraudData['affiliate_status'] ?? ''),
-            affiliateMessage: (string)($fraudData['affiliate_message'] ?? ''),
-            affiliateCode: (string)($fraudData['affiliate_code'] ?? ''),
+            result: is_string($result) ? $result : 'unknown',
+            buyerStatus: is_string($buyerStatus) ? $buyerStatus : '',
+            buyerMessage: is_string($buyerMessage) ? $buyerMessage : '',
+            buyerCode: is_string($buyerCode) ? $buyerCode : '',
+            affiliateStatus: is_string($affiliateStatus) ? $affiliateStatus : '',
+            affiliateMessage: is_string($affiliateMessage) ? $affiliateMessage : '',
+            affiliateCode: is_string($affiliateCode) ? $affiliateCode : '',
         );
     }
 }

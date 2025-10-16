@@ -24,14 +24,21 @@ final class ImageListItem
     ) {
     }
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $imageId = $data['image_id'] ?? '';
+        $imageUrl = $data['image_url'] ?? '';
+        $name = $data['name'] ?? '';
+        $usageType = $data['usage_type'] ?? null;
+        $createdAt = $data['created_at'] ?? 'now';
+
         return new self(
-            imageId: $data['image_id'] ?? '',
-            imageUrl: $data['image_url'] ?? '',
-            name: $data['name'] ?? '',
-            usageType: $data['usage_type'] ?? null,
-            createdAt: new DateTimeImmutable($data['created_at'] ?? 'now'),
+            imageId: is_string($imageId) ? $imageId : '',
+            imageUrl: is_string($imageUrl) ? $imageUrl : '',
+            name: is_string($name) ? $name : '',
+            usageType: $usageType === null || is_string($usageType) ? $usageType : null,
+            createdAt: new DateTimeImmutable(is_string($createdAt) ? $createdAt : 'now'),
         );
     }
 }
