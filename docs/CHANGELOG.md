@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 15 typed Data Transfer Objects (DTOs) with PHP 8.4 property hooks
 - OpenAPI specification fetcher script for API documentation
 - README badges for Tests, PHPStan Level 9, and PSR-12 Code Style
+- Optional Request parameters for 27 Resources (39+ methods) - allows cleaner API calls without explicit Request objects
 
 ### Changed
 - **BREAKING**: Namespace changed from `GoSuccess\Digistore24\` to `GoSuccess\Digistore24\Api\`
@@ -32,6 +33,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consolidated documentation (merged ARCHITECTURE.md into README.md)
 - Updated examples to use typed DTOs (UrlsData, SettingsData)
 - Extended .gitattributes with export-ignore rules for smaller dist packages
+- API simplification: Methods with all-optional parameters now accept optional Request objects
+  - Example: `$ds24->products->list()` instead of `$ds24->products->list(new ListProductsRequest())`
+  - Backward compatible: explicit Request objects still work
+- User-Agent updated to "GoSuccess-Digistore24-API-Client/2.0 (https://github.com/GoSuccess-GmbH/digistore24-api)"
+- API version corrected to 1.2 (matching actual Digistore24 API)
 
 ### Removed
 - Legacy directories (src-legacy/, docs-legacy/) - preserved in git history

@@ -36,12 +36,12 @@ use GoSuccess\Digistore24\Api\Client\Configuration;
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
-// Test API connection
-$response = $api->system()->ping();
+// Test API connection (no parameters needed)
+$response = $api->system->ping();
 
 if ($response->message === 'pong') {
-    echo "API connection successful";
-    echo "Authenticated: " . ($response->authenticated ? 'Yes' : 'No');
+    echo "API connection successful\n";
+    echo "Authenticated: " . ($response->authenticated ? 'Yes' : 'No') . "\n";
 }
 ```
 

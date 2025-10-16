@@ -75,11 +75,9 @@ use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);
 
-// List all products sorted by name
-$request = new ListProductsRequest(sortBy: 'name');
-
+// Simple: List all products with default sorting
 try {
-    $response = $ds24->products->list($request);
+    $response = $ds24->products->list();
     
     echo "Total Products: " . count($response->products) . "\n\n";
     
@@ -98,14 +96,17 @@ try {
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n";
 }
+
+// Advanced: List products with custom sorting
+$request = new ListProductsRequest(sortBy: 'name');
+$response = $ds24->products->list($request);
 ```
 
 ## Example: Sort by Product Group
 
 ```php
 // List products grouped by folder
-$request = new ListProductsRequest(sortBy: 'group');
-$response = $ds24->products->list($request);
+$response = $ds24->products->list(new ListProductsRequest(sortBy: 'group'));
 
 $grouped = [];
 foreach ($response->products as $product) {
@@ -125,8 +126,8 @@ foreach ($grouped as $groupName => $products) {
 ## Example: Find Products by Language
 
 ```php
-$request = new ListProductsRequest();
-$response = $ds24->products->list($request);
+// No request object needed for simple listing
+$response = $ds24->products->list();
 
 $language = 'en';
 $filtered = array_filter(

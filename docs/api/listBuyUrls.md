@@ -55,16 +55,13 @@ No parameters required.
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
-use GoSuccess\Digistore24\Api\Request\BuyUrl\ListBuyUrlsRequest;
 
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);
 
-// List all buy URLs
-$request = new ListBuyUrlsRequest();
-
+// List all buy URLs (no parameters needed)
 try {
-    $response = $ds24->buyUrls->list($request);
+    $response = $ds24->buyUrls->list();
     
     echo "Found " . count($response->items) . " buy URLs:\n\n";
     
@@ -83,9 +80,8 @@ try {
 ## Example: Filter by Product
 
 ```php
-// List and filter buy URLs for a specific product
-$request = new ListBuyUrlsRequest();
-$response = $ds24->buyUrls->list($request);
+// List and filter buy URLs for a specific product (no request object needed)
+$response = $ds24->buyUrls->list();
 
 $productId = 456;
 $filteredUrls = array_filter(
@@ -102,8 +98,8 @@ foreach ($filteredUrls as $buyUrl) {
 ## Example: Find Recently Created URLs
 
 ```php
-$request = new ListBuyUrlsRequest();
-$response = $ds24->buyUrls->list($request);
+// No request object needed for simple listing
+$response = $ds24->buyUrls->list();
 
 // Find URLs created in the last 7 days
 $sevenDaysAgo = new DateTime('-7 days');

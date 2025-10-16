@@ -77,14 +77,9 @@ use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesRequest;
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);
 
-// List purchases from last 7 days
-$request = new ListPurchasesRequest(
-    fromDate: '-7d',
-    toDate: 'now'
-);
-
+// Simple: List all purchases (no parameters needed)
 try {
-    $response = $ds24->purchases->list($request);
+    $response = $ds24->purchases->list();
     
     echo "Found " . count($response->purchases) . " purchases\n\n";
     
@@ -99,6 +94,14 @@ try {
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n";
 }
+
+// Advanced: List purchases from last 7 days with filters
+$request = new ListPurchasesRequest(
+    fromDate: new DateTime('-7 days'),
+    toDate: new DateTime('now')
+);
+
+$response = $ds24->purchases->list($request);
 ```
 
 ## Example: Filter by Product and Email
@@ -119,10 +122,8 @@ echo "Customer has " . count($response->purchases) . " purchases\n";
 ```php
 // Generate sales report for last month
 $request = new ListPurchasesRequest(
-    fromDate: '-30d',
-    toDate: 'now',
-    sortBy: 'date',
-    sortOrder: 'desc'
+    fromDate: new DateTime('-30 days'),
+    toDate: new DateTime('now')
 );
 
 $response = $ds24->purchases->list($request);

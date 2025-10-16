@@ -54,8 +54,8 @@ use GoSuccess\Digistore24\Api\Client\Configuration;
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
-// Get current user information
-$response = $api->user()->getUserInfo();
+// Get current user information (no parameters needed)
+$response = $api->users->getInfo();
 
 echo "User ID: {$response->userId}\n";
 echo "Vendor ID: {$response->vendorId}\n";

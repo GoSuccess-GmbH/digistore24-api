@@ -52,8 +52,8 @@ use GoSuccess\Digistore24\Api\Client\Configuration;
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
-// Get all countries
-$response = $api->country()->listCountries();
+// Get all countries (no parameters needed)
+$response = $api->countries->listCountries();
 
 foreach ($response->countries as $country) {
     echo "{$country->code}: {$country->name}\n";
