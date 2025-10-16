@@ -11,6 +11,7 @@
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     // PHP Settings
+    "php.validate.executablePath": "C:/laragon/bin/php/php-8.4.12-nts-Win32-vs17-x64/php.exe",
     "[php]": {
         "editor.defaultFormatter": "junstyle.php-cs-fixer",
         "editor.formatOnSave": true,
@@ -18,6 +19,7 @@
     },
     // PHP CS Fixer
     "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
+    "php-cs-fixer.executablePathWindows": "C:/laragon/bin/php/php-8.4.12-nts-Win32-vs17-x64/php.exe ${workspaceFolder}/vendor/bin/php-cs-fixer",
     "php-cs-fixer.onsave": true,
     "php-cs-fixer.rules": "@PSR12",
     "php-cs-fixer.config": "${workspaceFolder}/.php-cs-fixer.dist.php",
