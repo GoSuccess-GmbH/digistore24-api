@@ -50,8 +50,10 @@ abstract class AbstractResponse implements ResponseInterface
 
     /**
      * Get a value from data with type conversion
+     *
+     * @param array<string, mixed> $data
      */
-    protected static function getValue(array $data, string $key, string $type = 'string', $default = null): mixed
+    protected static function getValue(array $data, string $key, string $type = 'string', mixed $default = null): mixed
     {
         $value = $data[$key] ?? $default;
 
@@ -75,6 +77,8 @@ abstract class AbstractResponse implements ResponseInterface
      *
      * Handles both direct fromArray() calls (where $data contains 'result')
      * and fromResponse() calls (where result is in rawResponse->data['result'])
+     *
+     * @param array<string, mixed> $data
      */
     protected static function extractResult(array $data, ?Response $rawResponse, string $default = 'unknown'): string
     {
@@ -86,6 +90,9 @@ abstract class AbstractResponse implements ResponseInterface
      *
      * When fromArray() is called directly (tests), $data may contain: {'result': ..., 'data': {...}}
      * When called via fromResponse(), $data is already the inner data object
+     *
+     * @param array<string, mixed> $data
+     * @return array<string, mixed>
      */
     protected static function extractInnerData(array $data): array
     {

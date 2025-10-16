@@ -16,6 +16,14 @@ class ValidationException extends ApiException
      */
     public function getErrors(): array
     {
-        return $this->getContextValue('errors', []);
+        $errors = $this->getContextValue('errors', []);
+
+        if (! is_array($errors)) {
+            return [];
+        }
+
+        // Ensure proper structure: array<string, string[]>
+        /** @var array<string, string[]> */
+        return $errors;
     }
 }
