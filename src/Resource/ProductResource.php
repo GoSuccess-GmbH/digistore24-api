@@ -47,13 +47,13 @@ final class ProductResource extends AbstractResource
      *
      * Retrieves a list of all products, optionally filtered by type or publish status.
      *
-     * @param ListProductsRequest $request The list products request
+     * @param ListProductsRequest|null $request Optional list products request with filters
      * @throws ApiException
      * @return ListProductsResponse The response with products list
      */
-    public function list(ListProductsRequest $request): ListProductsResponse
+    public function list(?ListProductsRequest $request = null): ListProductsResponse
     {
-        return $this->executeTyped($request, ListProductsResponse::class);
+        return $this->executeTyped($request ?? new ListProductsRequest(), ListProductsResponse::class);
     }
 
     /**

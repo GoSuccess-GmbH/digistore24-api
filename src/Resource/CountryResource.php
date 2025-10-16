@@ -20,24 +20,24 @@ final class CountryResource extends AbstractResource
     /**
      * List all available countries.
      *
-     * @param ListCountriesRequest $request Request to list countries
+     * @param ListCountriesRequest|null $request Optional request to list countries
      * @return ListCountriesResponse Response with list of countries
      * @link https://digistore24.com/api/docs/paths/listCountries.yaml
      */
-    public function listCountries(ListCountriesRequest $request): ListCountriesResponse
+    public function listCountries(?ListCountriesRequest $request = null): ListCountriesResponse
     {
-        return $this->executeTyped($request, ListCountriesResponse::class);
+        return $this->executeTyped($request ?? new ListCountriesRequest(), ListCountriesResponse::class);
     }
 
     /**
      * List all available currencies.
      *
-     * @param ListCurrenciesRequest $request Request to list currencies
+     * @param ListCurrenciesRequest|null $request Optional request to list currencies
      * @return ListCurrenciesResponse Response with list of currencies
      * @link https://digistore24.com/api/docs/paths/listCurrencies.yaml
      */
-    public function listCurrencies(ListCurrenciesRequest $request): ListCurrenciesResponse
+    public function listCurrencies(?ListCurrenciesRequest $request = null): ListCurrenciesResponse
     {
-        return $this->executeTyped($request, ListCurrenciesResponse::class);
+        return $this->executeTyped($request ?? new ListCurrenciesRequest(), ListCurrenciesResponse::class);
     }
 }

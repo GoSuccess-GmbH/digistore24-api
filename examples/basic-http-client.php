@@ -13,10 +13,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Digistore24;
-use GoSuccess\Digistore24\Api\Request\User\GetUserInfoRequest;
-use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
 use GoSuccess\Digistore24\Api\Request\Product\GetProductRequest;
-use GoSuccess\Digistore24\Api\Request\Country\ListCountriesRequest;
 
 // Create configuration
 $config = new Configuration(
@@ -31,14 +28,13 @@ $ds24 = new Digistore24($config);
 // Example 1: Get user information
 echo "=== Get User Info ===\n";
 try {
-    $request = new GetUserInfoRequest();
-    $response = $ds24->users->getInfo($request);
-    
+    $response = $ds24->users->getInfo();
+
     $userInfo = $response->getUserInfo();
     echo "User ID: {$userInfo['user_id']}\n";
     echo "User Name: {$userInfo['user_name']}\n";
     echo "Permissions: {$userInfo['api_key_permissions']}\n\n";
-    
+
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n\n";
 }
@@ -46,29 +42,26 @@ try {
 // Example 2: List products
 echo "=== List Products ===\n";
 try {
-    $request = new ListProductsRequest();
-    $response = $ds24->products->list($request);
-    
+    $response = $ds24->products->list();
+
     echo "Found {$response->totalCount} products:\n";
     foreach ($response->products as $product) {
         echo "- [{$product->id}] {$product->name}\n";
     }
     echo "\n";
-    
+
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n\n";
-}
-
-// Example 3: Get specific product
+}// Example 3: Get specific product
 echo "=== Get Product Details ===\n";
 try {
     $request = new GetProductRequest(productId: '12345');
     $product = $ds24->products->get($request);
-    
+
     echo "Product: {$product->productName}\n";
     echo "Price: {$product->price} {$product->currency}\n";
     echo "Published: " . ($product->isPublished ? 'Yes' : 'No') . "\n\n";
-    
+
 } catch (\GoSuccess\Digistore24\Api\Exception\NotFoundException $e) {
     echo "Product not found!\n\n";
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
@@ -78,9 +71,8 @@ try {
 // Example 4: List countries
 echo "=== List Countries ===\n";
 try {
-    $request = new ListCountriesRequest();
-    $response = $ds24->countries->listCountries($request);
-    
+    $response = $ds24->countries->listCountries();
+
     $countries = $response->getCountries();
     echo "Available countries: " . count($countries) . "\n";
     // Show first 5
@@ -89,12 +81,10 @@ try {
         echo "- {$code}: {$name}\n";
     }
     echo "...\n\n";
-    
+
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
     echo "Error: {$e->getMessage()}\n\n";
-}
-
-echo "=== Examples completed! ===\n";
+}echo "=== Examples completed! ===\n";
 echo "\nNote: Resources automatically handle:\n";
 echo "- Correct HTTP methods (GET for list/get, POST for create, etc.)\n";
 echo "- Request/response type conversion\n";

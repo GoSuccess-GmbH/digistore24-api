@@ -18,11 +18,11 @@ final class UserResource extends AbstractResource
     /**
      * Get user account information.
      *
-     * @param GetUserInfoRequest $request Request to retrieve user information
+     * @param GetUserInfoRequest|null $request Optional request to retrieve user information
      * @return GetUserInfoResponse Response with user account details
      */
-    public function getInfo(GetUserInfoRequest $request): GetUserInfoResponse
+    public function getInfo(?GetUserInfoRequest $request = null): GetUserInfoResponse
     {
-        return $this->executeTyped($request, GetUserInfoResponse::class);
+        return $this->executeTyped($request ?? new GetUserInfoRequest(), GetUserInfoResponse::class);
     }
 }
