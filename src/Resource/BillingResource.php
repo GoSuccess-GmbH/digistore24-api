@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Exception\ApiException;
+use GoSuccess\Digistore24\Api\Exception\ForbiddenException;
 use GoSuccess\Digistore24\Api\Request\Billing\CreateBillingOnDemandRequest;
 use GoSuccess\Digistore24\Api\Request\Billing\RefundPartiallyRequest;
 use GoSuccess\Digistore24\Api\Response\Billing\CreateBillingOnDemandResponse;

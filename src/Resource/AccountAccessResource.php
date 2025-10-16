@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Exception\ApiException;
 use GoSuccess\Digistore24\Api\Request\AccountAccess\ListAccountAccessRequest;
 use GoSuccess\Digistore24\Api\Request\AccountAccess\LogMemberAccessRequest;
 use GoSuccess\Digistore24\Api\Response\AccountAccess\ListAccountAccessResponse;

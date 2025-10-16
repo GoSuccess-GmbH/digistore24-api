@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Exception\ApiException;
+use GoSuccess\Digistore24\Api\Exception\AuthenticationException;
+use GoSuccess\Digistore24\Api\Exception\NotFoundException;
+use GoSuccess\Digistore24\Api\Exception\RateLimitException;
+use GoSuccess\Digistore24\Api\Exception\ValidationException;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\DeleteBuyUrlRequest;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\ListBuyUrlsRequest;
