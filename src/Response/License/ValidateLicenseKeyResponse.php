@@ -126,7 +126,7 @@ final class ValidateLicenseKeyResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $licenseData = $data['data'] ?? [];
 

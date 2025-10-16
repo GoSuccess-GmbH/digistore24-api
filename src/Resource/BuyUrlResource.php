@@ -31,10 +31,10 @@ final class BuyUrlResource extends AbstractResource
      *
      * @param CreateBuyUrlRequest $request Request with product ID and optional parameters
      *
-     * @throws \GoSuccess\Digistore24\Api\Exception\ValidationException If request validation fails
-     * @throws \GoSuccess\Digistore24\Api\Exception\AuthenticationException If API key is invalid
-     * @throws \GoSuccess\Digistore24\Api\Exception\NotFoundException If product not found
-     * @throws \GoSuccess\Digistore24\Api\Exception\RateLimitException If rate limit exceeded
+     * @throws ValidationException If request validation fails
+     * @throws AuthenticationException If API key is invalid
+     * @throws NotFoundException If product not found
+     * @throws RateLimitException If rate limit exceeded
      * @return CreateBuyUrlResponse Response containing the buy URL and metadata
      *
      * @example
@@ -61,7 +61,7 @@ final class BuyUrlResource extends AbstractResource
      * Retrieves a list of all generated buy URLs.
      *
      * @param ListBuyUrlsRequest $request The list buy URLs request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListBuyUrlsResponse The response with buy URLs list
      * @link https://digistore24.com/api/docs/paths/listBuyUrls.yaml
      */
@@ -76,7 +76,7 @@ final class BuyUrlResource extends AbstractResource
      * Deletes a previously generated buy URL.
      *
      * @param DeleteBuyUrlRequest $request The delete buy URL request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return DeleteBuyUrlResponse The response confirming deletion
      * @link https://digistore24.com/api/docs/paths/deleteBuyUrl.yaml
      */

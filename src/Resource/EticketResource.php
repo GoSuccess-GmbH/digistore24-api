@@ -31,7 +31,7 @@ final class EticketResource extends AbstractResource
      * Create free e-tickets for events
      *
      * @param CreateEticketRequest $request The create e-ticket request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return CreateEticketResponse The response with created e-tickets
      */
     public function create(CreateEticketRequest $request): CreateEticketResponse
@@ -45,7 +45,7 @@ final class EticketResource extends AbstractResource
      * Retrieves detailed information about a specific e-ticket by its order ID.
      *
      * @param GetEticketRequest $request The get e-ticket request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return GetEticketResponse The response with e-ticket details
      */
     public function get(GetEticketRequest $request): GetEticketResponse
@@ -59,7 +59,7 @@ final class EticketResource extends AbstractResource
      * Retrieves a list of e-tickets, optionally filtered by product, location, or date range.
      *
      * @param ListEticketsRequest $request The list e-tickets request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListEticketsResponse The response with e-ticket list
      */
     public function list(ListEticketsRequest $request): ListEticketsResponse
@@ -74,7 +74,7 @@ final class EticketResource extends AbstractResource
      * check-in to grant access and prevent duplicate entries.
      *
      * @param ValidateEticketRequest $request The validate e-ticket request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ValidateEticketResponse The response with validation details
      */
     public function validate(ValidateEticketRequest $request): ValidateEticketResponse
@@ -88,7 +88,7 @@ final class EticketResource extends AbstractResource
      * Retrieves the e-ticket configuration settings for the account.
      *
      * @param GetEticketSettingsRequest $request The get e-ticket settings request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return GetEticketSettingsResponse The response with e-ticket settings
      */
     public function getSettings(GetEticketSettingsRequest $request): GetEticketSettingsResponse
@@ -102,7 +102,7 @@ final class EticketResource extends AbstractResource
      * Retrieves all available e-ticket locations.
      *
      * @param ListEticketLocationsRequest $request The list e-ticket locations request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListEticketLocationsResponse The response with locations list
      */
     public function listLocations(ListEticketLocationsRequest $request): ListEticketLocationsResponse
@@ -116,7 +116,7 @@ final class EticketResource extends AbstractResource
      * Retrieves all available e-ticket templates.
      *
      * @param ListEticketTemplatesRequest $request The list e-ticket templates request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListEticketTemplatesResponse The response with templates list
      */
     public function listTemplates(ListEticketTemplatesRequest $request): ListEticketTemplatesResponse

@@ -24,7 +24,7 @@ final class CustomFormResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/listCustomFormRecords.yaml OpenAPI Specification
      *
      * @param ListCustomFormRecordsRequest $request The list custom form records request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListCustomFormRecordsResponse The response with custom form records
      */
     public function listRecords(ListCustomFormRecordsRequest $request): ListCustomFormRecordsResponse

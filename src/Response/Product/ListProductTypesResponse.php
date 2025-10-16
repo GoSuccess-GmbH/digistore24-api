@@ -82,7 +82,7 @@ final class ListProductTypesResponse extends AbstractResponse
     /**
      * {@inheritDoc}
      */
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         // API returns array of product type objects directly
         $productTypes = array_map(

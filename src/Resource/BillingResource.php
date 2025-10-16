@@ -30,8 +30,8 @@ final class BillingResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/createBillingOnDemand.yaml OpenAPI Specification
      *
      * @param CreateBillingOnDemandRequest $request The billing on demand request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
-     * @throws \GoSuccess\Digistore24\Api\Exception\ForbiddenException If billing on demand is not enabled
+     * @throws ApiException
+     * @throws ForbiddenException If billing on demand is not enabled
      * @return CreateBillingOnDemandResponse The response with created order details
      */
     public function createOnDemand(CreateBillingOnDemandRequest $request): CreateBillingOnDemandResponse
@@ -53,7 +53,7 @@ final class BillingResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/refundPartially.yaml OpenAPI Specification
      *
      * @param RefundPartiallyRequest $request The partial refund request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return RefundPartiallyResponse The response with refund result
      */
     public function refundPartially(RefundPartiallyRequest $request): RefundPartiallyResponse

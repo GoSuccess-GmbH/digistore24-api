@@ -22,7 +22,7 @@ final class ListOrderformsResponse extends AbstractResponse
         return $this->orderforms;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(orderforms: $data['data']['orderforms'] ?? []);
     }

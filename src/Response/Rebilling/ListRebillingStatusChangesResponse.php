@@ -22,7 +22,7 @@ final class ListRebillingStatusChangesResponse extends AbstractResponse
         return $this->statusChanges;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(statusChanges: $data['data']['status_changes'] ?? []);
     }

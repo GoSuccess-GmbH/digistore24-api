@@ -24,7 +24,7 @@ final class CommissionResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/listCommissions.yaml OpenAPI Specification
      *
      * @param ListCommissionsRequest $request The list commissions request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListCommissionsResponse The response with commission list
      */
     public function list(ListCommissionsRequest $request): ListCommissionsResponse

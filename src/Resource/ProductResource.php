@@ -33,7 +33,7 @@ final class ProductResource extends AbstractResource
      * Retrieves detailed information about a specific product.
      *
      * @param GetProductRequest $request The get product request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return GetProductResponse The response with product details
      */
     public function get(GetProductRequest $request): GetProductResponse
@@ -47,7 +47,7 @@ final class ProductResource extends AbstractResource
      * Retrieves a list of all products, optionally filtered by type or publish status.
      *
      * @param ListProductsRequest $request The list products request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListProductsResponse The response with products list
      */
     public function list(ListProductsRequest $request): ListProductsResponse
@@ -63,7 +63,7 @@ final class ProductResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/createProduct.yaml OpenAPI Specification
      *
      * @param CreateProductRequest $request The create product request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return CreateProductResponse The response with the new product ID
      */
     public function create(CreateProductRequest $request): CreateProductResponse
@@ -79,7 +79,7 @@ final class ProductResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/copyProduct.yaml OpenAPI Specification
      *
      * @param CopyProductRequest $request The copy product request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return CopyProductResponse The response with the new product ID
      */
     public function copy(CopyProductRequest $request): CopyProductResponse
@@ -95,7 +95,7 @@ final class ProductResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/updateProduct.yaml OpenAPI Specification
      *
      * @param UpdateProductRequest $request The update product request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return UpdateProductResponse The response indicating modification status
      */
     public function update(UpdateProductRequest $request): UpdateProductResponse
@@ -111,7 +111,7 @@ final class ProductResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/deleteProduct.yaml OpenAPI Specification
      *
      * @param DeleteProductRequest $request The delete product request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return DeleteProductResponse The response confirming deletion
      */
     public function delete(DeleteProductRequest $request): DeleteProductResponse
@@ -129,7 +129,7 @@ final class ProductResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/listProductTypes.yaml OpenAPI Specification
      *
      * @param ListProductTypesRequest $request The list product types request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListProductTypesResponse The response with all available product types
      */
     public function listProductTypes(ListProductTypesRequest $request): ListProductTypesResponse

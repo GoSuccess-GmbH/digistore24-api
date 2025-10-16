@@ -22,7 +22,7 @@ final class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
         return $this->details;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(details: $data['data'] ?? []);
     }

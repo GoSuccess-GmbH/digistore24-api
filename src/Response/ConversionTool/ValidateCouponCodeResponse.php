@@ -32,7 +32,7 @@ final class ValidateCouponCodeResponse extends AbstractResponse
         return $this->status === 'success';
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $couponData = $data['data'] ?? [];
 

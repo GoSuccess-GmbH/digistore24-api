@@ -32,7 +32,7 @@ final class AddBalanceToPurchaseResponse extends AbstractResponse
         return $this->newBalance - $this->oldBalance;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(
             oldBalance: (float)($data['data']['old_balance'] ?? 0.0),

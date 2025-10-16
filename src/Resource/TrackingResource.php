@@ -26,7 +26,7 @@ final class TrackingResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/renderJsTrackingCode.yaml OpenAPI Specification
      *
      * @param RenderJsTrackingCodeRequest $request The render JS tracking code request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return RenderJsTrackingCodeResponse The response with JavaScript tracking code
      */
     public function renderJsCode(RenderJsTrackingCodeRequest $request): RenderJsTrackingCodeResponse
@@ -43,7 +43,7 @@ final class TrackingResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/getPurchaseTracking.yaml OpenAPI Specification
      *
      * @param GetPurchaseTrackingRequest $request The get purchase tracking request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return GetPurchaseTrackingResponse The response with tracking data
      */
     public function getPurchaseTracking(GetPurchaseTrackingRequest $request): GetPurchaseTrackingResponse

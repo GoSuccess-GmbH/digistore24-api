@@ -25,7 +25,7 @@ final class AccountAccessResource extends AbstractResource
      * the option to refund (refund_days=0 in IPN).
      *
      * @param LogMemberAccessRequest $request The log access request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return LogMemberAccessResponse The response
      */
     public function logAccess(LogMemberAccessRequest $request): LogMemberAccessResponse
@@ -40,7 +40,7 @@ final class AccountAccessResource extends AbstractResource
      * Shows when buyers have accessed their membership content.
      *
      * @param ListAccountAccessRequest $request The list request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ListAccountAccessResponse The response with access history
      */
     public function listAccesses(ListAccountAccessRequest $request): ListAccountAccessResponse

@@ -22,7 +22,7 @@ final class GetServiceProofRequestResponse extends AbstractResponse
         return $this->serviceProofRequest;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(serviceProofRequest: $data['data']['service_proof_request'] ?? []);
     }

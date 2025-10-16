@@ -26,7 +26,7 @@ final class SystemResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/ping.yaml OpenAPI Specification
      *
      * @param PingRequest $request The ping request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return PingResponse The response with server time
      */
     public function ping(PingRequest $request): PingResponse
@@ -43,7 +43,7 @@ final class SystemResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/getGlobalSettings.yaml OpenAPI Specification
      *
      * @param GetGlobalSettingsRequest $request The get global settings request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return GetGlobalSettingsResponse The response with global settings
      */
     public function getGlobalSettings(GetGlobalSettingsRequest $request): GetGlobalSettingsResponse

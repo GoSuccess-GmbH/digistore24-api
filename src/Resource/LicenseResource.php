@@ -24,7 +24,7 @@ final class LicenseResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/validateLicenseKey.yaml OpenAPI Specification
      *
      * @param ValidateLicenseKeyRequest $request The validate license key request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ValidateLicenseKeyResponse The response with license validation result
      */
     public function validate(ValidateLicenseKeyRequest $request): ValidateLicenseKeyResponse

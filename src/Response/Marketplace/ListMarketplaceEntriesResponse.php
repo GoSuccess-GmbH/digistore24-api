@@ -22,7 +22,7 @@ final class ListMarketplaceEntriesResponse extends AbstractResponse
         return $this->entries;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(entries: $data['data']['entries'] ?? []);
     }

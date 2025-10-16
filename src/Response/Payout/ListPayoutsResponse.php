@@ -22,7 +22,7 @@ final class ListPayoutsResponse extends AbstractResponse
         return $this->payoutList;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(payoutList: $data['data']['payout_list'] ?? []);
     }

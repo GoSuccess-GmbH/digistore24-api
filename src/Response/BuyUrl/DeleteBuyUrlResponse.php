@@ -21,7 +21,7 @@ final class DeleteBuyUrlResponse extends AbstractResponse
     ) {
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         // Successful response (200) means deletion was successful
         return new self(success: true);

@@ -22,7 +22,7 @@ final class GetShippingCostPolicyResponse extends AbstractResponse
         return $this->shippingCostPolicy;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(shippingCostPolicy: $data['data']['shipping_cost_policy'] ?? []);
     }

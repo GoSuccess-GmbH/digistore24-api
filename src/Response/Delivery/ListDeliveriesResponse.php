@@ -22,7 +22,7 @@ final class ListDeliveriesResponse extends AbstractResponse
         return $this->deliveries;
     }
 
-    public static function fromArray(array $data, ?\GoSuccess\Digistore24\Api\Http\Response $rawResponse = null): static
+    public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(deliveries: $data['data']['deliveries'] ?? []);
     }

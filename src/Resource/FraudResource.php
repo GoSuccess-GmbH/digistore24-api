@@ -23,7 +23,7 @@ final class FraudResource extends AbstractResource
      * @link https://digistore24.com/api/docs/paths/reportFraud.yaml OpenAPI Specification
      *
      * @param ReportFraudRequest $request The report fraud request
-     * @throws \GoSuccess\Digistore24\Api\Exception\ApiException
+     * @throws ApiException
      * @return ReportFraudResponse The response with fraud report results
      */
     public function report(ReportFraudRequest $request): ReportFraudResponse
