@@ -99,6 +99,42 @@ Note: `Utils` (plural) → `Util` (singular)
 - **Configuration Object** - Centralized configuration with validation
 - **Computed Properties** - Properties like `$apiUrl` are automatically computed
 - **Type Safety** - Enhanced type hints throughout the codebase
+- **Optional Request Parameters** - Methods with all-optional parameters no longer require explicit Request objects
+
+### New Feature: Optional Request Parameters
+
+In version 2.0, methods with all-optional parameters can now be called without creating a Request object:
+
+**Before (v1.x):**
+```php
+use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
+
+// Always required Request object, even for simple calls
+$request = new ListProductsRequest();
+$products = $ds24->products->list($request);
+```
+
+**After (v2.0):**
+```php
+// Simple: No Request object needed
+$products = $ds24->products->list();
+
+// Advanced: Still works with Request object for filters
+$products = $ds24->products->list(
+    new ListProductsRequest(sortBy: 'name')
+);
+```
+
+**Affected Methods (39+ methods across 27 Resources):**
+- `$ds24->products->list()` - no parameters needed
+- `$ds24->purchases->list()` - optional filters
+- `$ds24->users->getInfo()` - no parameters needed
+- `$ds24->system->ping()` - no parameters needed
+- `$ds24->countries->listCountries()` - no parameters needed
+- `$ds24->statistics->sales()` - optional date ranges
+- And many more...
+
+**Backward Compatibility:** All existing code with explicit Request objects continues to work.
 
 ### Example Migration
 

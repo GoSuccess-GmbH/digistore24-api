@@ -20,6 +20,7 @@ Modern, type-safe PHP API client for Digistore24 with **PHP 8.4 property hooks**
 - 📝 **Fully Documented** - Comprehensive PHPDoc with examples
 - 🧪 **Exception Handling** - Typed exceptions for different error scenarios
 - ✅ **122 Endpoints** - Complete coverage of Digistore24 API
+- 🎉 **Optional Request Parameters** - Clean API calls without explicit Request objects
 
 ## Requirements
 
@@ -258,6 +259,49 @@ $buyer->country = 'invalid';         // ❌ Throws InvalidArgumentException
 ```
 
 ## Examples
+
+### Simple API Calls (No Request Object Needed)
+
+Many methods with all-optional parameters can now be called without creating a Request object:
+
+```php
+// List all products (no parameters needed)
+$products = $ds24->products->list();
+
+// Get user information (no parameters needed)
+$userInfo = $ds24->users->getInfo();
+
+// List all countries (no parameters needed)
+$countries = $ds24->countries->listCountries();
+
+// Test API connection (no parameters needed)
+$ping = $ds24->system->ping();
+
+// List purchases with default filters (no parameters needed)
+$purchases = $ds24->purchases->list();
+```
+
+### Advanced API Calls (With Request Objects for Filters)
+
+When you need filters or custom parameters, use Request objects:
+
+```php
+use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
+use GoSuccess\Digistore24\Api\Request\Purchase\ListPurchasesRequest;
+
+// List products sorted by name
+$products = $ds24->products->list(
+    new ListProductsRequest(sortBy: 'name')
+);
+
+// List purchases from last 7 days
+$purchases = $ds24->purchases->list(
+    new ListPurchasesRequest(
+        fromDate: new DateTime('-7 days'),
+        toDate: new DateTime('now')
+    )
+);
+```
 
 ### Create Buy URL with Payment Plan
 
