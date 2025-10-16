@@ -131,7 +131,7 @@ final class PaymentPlanFullData
         $instance->numberOfInstallments = isset($data['number_of_installments'])
             ? (int)$data['number_of_installments']
             : null;
-        
+
         // Handle isActive: can be bool, string 'Y'/'N', or null
         if (isset($data['is_active'])) {
             $isActiveValue = $data['is_active'];
@@ -141,7 +141,7 @@ final class PaymentPlanFullData
                 $instance->isActive = strtoupper($isActiveValue) === 'Y';
             }
         }
-        
+
         $instance->cancelPolicy = $data['cancel_policy'] ?? null;
 
         return $instance;

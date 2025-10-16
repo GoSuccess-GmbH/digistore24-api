@@ -252,7 +252,7 @@ final class ArrayHelper
 
         foreach ($array as $key => $value) {
             $newKey = $callback($key, $value);
-            
+
             // Ensure key is valid
             if (is_string($newKey) || is_int($newKey)) {
                 $result[$newKey] = $value;
@@ -338,7 +338,7 @@ final class ArrayHelper
     {
         // Insert underscore before uppercase letters and convert to lowercase
         $result = preg_replace('/([a-z])([A-Z])/', '$1_$2', $value);
-        
+
         return $result !== null ? strtolower($result) : strtolower($value);
     }
 
