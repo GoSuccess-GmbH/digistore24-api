@@ -70,11 +70,11 @@ final class VoucherResource extends AbstractResource
     /**
      * List all vouchers with optional filters.
      *
-     * @param ListVouchersRequest $request Request with optional filter criteria
+     * @param ListVouchersRequest|null $request Optional request with filter criteria
      * @return ListVouchersResponse Response with list of vouchers
      */
-    public function list(ListVouchersRequest $request): ListVouchersResponse
+    public function list(?ListVouchersRequest $request = null): ListVouchersResponse
     {
-        return $this->executeTyped($request, ListVouchersResponse::class);
+        return $this->executeTyped($request ?? new ListVouchersRequest(), ListVouchersResponse::class);
     }
 }

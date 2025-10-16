@@ -70,11 +70,11 @@ final class ShippingResource extends AbstractResource
     /**
      * List all shipping cost policies with optional filters.
      *
-     * @param ListShippingCostPoliciesRequest $request Request with optional filter criteria
+     * @param ListShippingCostPoliciesRequest|null $request Optional request with filter criteria
      * @return ListShippingCostPoliciesResponse Response with list of shipping policies
      */
-    public function list(ListShippingCostPoliciesRequest $request): ListShippingCostPoliciesResponse
+    public function list(?ListShippingCostPoliciesRequest $request = null): ListShippingCostPoliciesResponse
     {
-        return $this->executeTyped($request, ListShippingCostPoliciesResponse::class);
+        return $this->executeTyped($request ?? new ListShippingCostPoliciesRequest(), ListShippingCostPoliciesResponse::class);
     }
 }

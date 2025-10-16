@@ -57,11 +57,11 @@ final class PaymentPlanResource extends AbstractResource
     /**
      * List all payment plans with optional filters.
      *
-     * @param ListPaymentPlansRequest $request Request with optional filter criteria
+     * @param ListPaymentPlansRequest|null $request Optional request with filter criteria
      * @return ListPaymentPlansResponse Response with list of payment plans
      */
-    public function list(ListPaymentPlansRequest $request): ListPaymentPlansResponse
+    public function list(?ListPaymentPlansRequest $request = null): ListPaymentPlansResponse
     {
-        return $this->executeTyped($request, ListPaymentPlansResponse::class);
+        return $this->executeTyped($request ?? new ListPaymentPlansRequest(), ListPaymentPlansResponse::class);
     }
 }

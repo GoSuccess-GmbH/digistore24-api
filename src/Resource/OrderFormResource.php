@@ -72,22 +72,22 @@ final class OrderFormResource extends AbstractResource
     /**
      * List all order forms with optional filters.
      *
-     * @param ListOrderformsRequest $request Request with optional filter criteria
+     * @param ListOrderformsRequest|null $request Optional request with filter criteria
      * @return ListOrderformsResponse Response with list of order forms
      */
-    public function list(ListOrderformsRequest $request): ListOrderformsResponse
+    public function list(?ListOrderformsRequest $request = null): ListOrderformsResponse
     {
-        return $this->executeTyped($request, ListOrderformsResponse::class);
+        return $this->executeTyped($request ?? new ListOrderformsRequest(), ListOrderformsResponse::class);
     }
 
     /**
      * Get order form metadata options.
      *
-     * @param GetOrderformMetasRequest $request Request for metadata
+     * @param GetOrderformMetasRequest|null $request Optional request for metadata
      * @return GetOrderformMetasResponse Response with metadata options
      */
-    public function getMetas(GetOrderformMetasRequest $request): GetOrderformMetasResponse
+    public function getMetas(?GetOrderformMetasRequest $request = null): GetOrderformMetasResponse
     {
-        return $this->executeTyped($request, GetOrderformMetasResponse::class);
+        return $this->executeTyped($request ?? new GetOrderformMetasRequest(), GetOrderformMetasResponse::class);
     }
 }

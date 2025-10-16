@@ -70,11 +70,11 @@ final class ProductGroupResource extends AbstractResource
     /**
      * List all product groups with optional filters.
      *
-     * @param ListProductGroupsRequest $request Request with optional filter criteria
+     * @param ListProductGroupsRequest|null $request Optional request with filter criteria
      * @return ListProductGroupsResponse Response with list of product groups
      */
-    public function list(ListProductGroupsRequest $request): ListProductGroupsResponse
+    public function list(?ListProductGroupsRequest $request = null): ListProductGroupsResponse
     {
-        return $this->executeTyped($request, ListProductGroupsResponse::class);
+        return $this->executeTyped($request ?? new ListProductGroupsRequest(), ListProductGroupsResponse::class);
     }
 }

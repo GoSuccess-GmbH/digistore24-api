@@ -22,12 +22,12 @@ final class MarketplaceResource extends AbstractResource
     /**
      * List all marketplace entries with optional filters.
      *
-     * @param ListMarketplaceEntriesRequest $request Request with optional filter criteria
+     * @param ListMarketplaceEntriesRequest|null $request Optional request with filter criteria
      * @return ListMarketplaceEntriesResponse Response with list of marketplace entries
      */
-    public function list(ListMarketplaceEntriesRequest $request): ListMarketplaceEntriesResponse
+    public function list(?ListMarketplaceEntriesRequest $request = null): ListMarketplaceEntriesResponse
     {
-        return $this->executeTyped($request, ListMarketplaceEntriesResponse::class);
+        return $this->executeTyped($request ?? new ListMarketplaceEntriesRequest(), ListMarketplaceEntriesResponse::class);
     }
 
     /**

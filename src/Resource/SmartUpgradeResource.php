@@ -31,11 +31,11 @@ final class SmartUpgradeResource extends AbstractResource
     /**
      * List all smart upgrades with optional filters.
      *
-     * @param ListSmartUpgradesRequest $request Request with optional filter criteria
+     * @param ListSmartUpgradesRequest|null $request Optional request with filter criteria
      * @return ListSmartUpgradesResponse Response with list of smart upgrades
      */
-    public function list(ListSmartUpgradesRequest $request): ListSmartUpgradesResponse
+    public function list(?ListSmartUpgradesRequest $request = null): ListSmartUpgradesResponse
     {
-        return $this->executeTyped($request, ListSmartUpgradesResponse::class);
+        return $this->executeTyped($request ?? new ListSmartUpgradesRequest(), ListSmartUpgradesResponse::class);
     }
 }

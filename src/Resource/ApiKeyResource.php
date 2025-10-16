@@ -44,11 +44,11 @@ final class ApiKeyResource extends AbstractResource
     /**
      * Unregister and revoke API access.
      *
-     * @param UnregisterRequest $request Request to unregister API access
+     * @param UnregisterRequest|null $request Optional request to unregister API access
      * @return UnregisterResponse Response confirming unregistration
      */
-    public function unregister(UnregisterRequest $request): UnregisterResponse
+    public function unregister(?UnregisterRequest $request = null): UnregisterResponse
     {
-        return $this->executeTyped($request, UnregisterResponse::class);
+        return $this->executeTyped($request ?? new UnregisterRequest(), UnregisterResponse::class);
     }
 }

@@ -33,22 +33,22 @@ final class IpnResource extends AbstractResource
     /**
      * Get IPN configuration information.
      *
-     * @param IpnInfoRequest $request Request containing product ID
+     * @param IpnInfoRequest|null $request Optional request containing product ID
      * @return IpnInfoResponse Response with IPN configuration details
      */
-    public function info(IpnInfoRequest $request): IpnInfoResponse
+    public function info(?IpnInfoRequest $request = null): IpnInfoResponse
     {
-        return $this->executeTyped($request, IpnInfoResponse::class);
+        return $this->executeTyped($request ?? new IpnInfoRequest(), IpnInfoResponse::class);
     }
 
     /**
      * Delete IPN endpoint configuration.
      *
-     * @param IpnDeleteRequest $request Request containing product ID
+     * @param IpnDeleteRequest|null $request Optional request containing product ID
      * @return IpnDeleteResponse Response confirming IPN deletion
      */
-    public function delete(IpnDeleteRequest $request): IpnDeleteResponse
+    public function delete(?IpnDeleteRequest $request = null): IpnDeleteResponse
     {
-        return $this->executeTyped($request, IpnDeleteResponse::class);
+        return $this->executeTyped($request ?? new IpnDeleteRequest(), IpnDeleteResponse::class);
     }
 }

@@ -24,12 +24,12 @@ final class CommissionResource extends AbstractResource
      *
      * @link https://digistore24.com/api/docs/paths/listCommissions.yaml OpenAPI Specification
      *
-     * @param ListCommissionsRequest $request The list commissions request
+     * @param ListCommissionsRequest|null $request Optional list commissions request with filters
      * @throws ApiException
      * @return ListCommissionsResponse The response with commission list
      */
-    public function list(ListCommissionsRequest $request): ListCommissionsResponse
+    public function list(?ListCommissionsRequest $request = null): ListCommissionsResponse
     {
-        return $this->executeTyped($request, ListCommissionsResponse::class);
+        return $this->executeTyped($request ?? new ListCommissionsRequest(), ListCommissionsResponse::class);
     }
 }

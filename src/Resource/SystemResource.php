@@ -26,13 +26,13 @@ final class SystemResource extends AbstractResource
      *
      * @link https://digistore24.com/api/docs/paths/ping.yaml OpenAPI Specification
      *
-     * @param PingRequest $request The ping request
+     * @param PingRequest|null $request Optional ping request
      * @throws ApiException
      * @return PingResponse The response with server time
      */
-    public function ping(PingRequest $request): PingResponse
+    public function ping(?PingRequest $request = null): PingResponse
     {
-        return $this->executeTyped($request, PingResponse::class);
+        return $this->executeTyped($request ?? new PingRequest(), PingResponse::class);
     }
 
     /**
@@ -43,12 +43,12 @@ final class SystemResource extends AbstractResource
      *
      * @link https://digistore24.com/api/docs/paths/getGlobalSettings.yaml OpenAPI Specification
      *
-     * @param GetGlobalSettingsRequest $request The get global settings request
+     * @param GetGlobalSettingsRequest|null $request Optional get global settings request
      * @throws ApiException
      * @return GetGlobalSettingsResponse The response with global settings
      */
-    public function getGlobalSettings(GetGlobalSettingsRequest $request): GetGlobalSettingsResponse
+    public function getGlobalSettings(?GetGlobalSettingsRequest $request = null): GetGlobalSettingsResponse
     {
-        return $this->executeTyped($request, GetGlobalSettingsResponse::class);
+        return $this->executeTyped($request ?? new GetGlobalSettingsRequest(), GetGlobalSettingsResponse::class);
     }
 }

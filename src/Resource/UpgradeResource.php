@@ -57,11 +57,11 @@ final class UpgradeResource extends AbstractResource
     /**
      * List all upgrades with optional filters.
      *
-     * @param ListUpgradesRequest $request Request with optional filter criteria
+     * @param ListUpgradesRequest|null $request Optional request with filter criteria
      * @return ListUpgradesResponse Response with list of upgrades
      */
-    public function list(ListUpgradesRequest $request): ListUpgradesResponse
+    public function list(?ListUpgradesRequest $request = null): ListUpgradesResponse
     {
-        return $this->executeTyped($request, ListUpgradesResponse::class);
+        return $this->executeTyped($request ?? new ListUpgradesRequest(), ListUpgradesResponse::class);
     }
 }

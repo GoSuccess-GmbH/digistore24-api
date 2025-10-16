@@ -129,12 +129,12 @@ final class ProductResource extends AbstractResource
      *
      * @link https://digistore24.com/api/docs/paths/listProductTypes.yaml OpenAPI Specification
      *
-     * @param ListProductTypesRequest $request The list product types request
+     * @param ListProductTypesRequest|null $request Optional list product types request
      * @throws ApiException
      * @return ListProductTypesResponse The response with all available product types
      */
-    public function listProductTypes(ListProductTypesRequest $request): ListProductTypesResponse
+    public function listProductTypes(?ListProductTypesRequest $request = null): ListProductTypesResponse
     {
-        return $this->executeTyped($request, ListProductTypesResponse::class);
+        return $this->executeTyped($request ?? new ListProductTypesRequest(), ListProductTypesResponse::class);
     }
 }
