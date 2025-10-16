@@ -30,7 +30,7 @@ final class ApiClient implements HttpClientInterface
 {
     private const string API_VERSION = '1.0';
 
-    private const string USER_AGENT = 'GoSuccess-Digistore24-PHP-SDK/2.0';
+    private const string USER_AGENT = 'GoSuccess-Digistore24-API-Client/2.0';
 
     /**
      * @param Configuration $config API configuration
