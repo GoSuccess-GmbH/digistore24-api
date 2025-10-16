@@ -33,14 +33,14 @@ final class GetUpsellsResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $upsells = $innerData['upsells'] ?? [];
-        
+
         if (!is_array($upsells)) {
             $upsells = [];
         }
-        
+
         /** @var array<string, mixed> $validatedUpsells */
         $validatedUpsells = $upsells;
-        
+
         return new self(upsells: $validatedUpsells);
     }
 }

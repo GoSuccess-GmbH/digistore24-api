@@ -27,7 +27,7 @@ final class RetrieveApiKeyResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $apiKey = $innerData['api_key'] ?? '';
-        
+
         return new self(apiKey: is_string($apiKey) ? $apiKey : '');
     }
 }
