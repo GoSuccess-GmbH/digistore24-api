@@ -14,10 +14,16 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListSmartUpgradesResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $smartupgrades
+     */
     public function __construct(private array $smartupgrades)
     {
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getSmartupgrades(): array
     {
         return $this->smartupgrades;
@@ -25,6 +31,15 @@ final class ListSmartUpgradesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(smartupgrades: $data['smartupgrades'] ?? []);
+        $smartupgrades = $data['smartupgrades'] ?? [];
+        
+        if (!is_array($smartupgrades)) {
+            $smartupgrades = [];
+        }
+        
+        /** @var array<string, mixed> $validatedSmartupgrades */
+        $validatedSmartupgrades = $smartupgrades;
+        
+        return new self(smartupgrades: $validatedSmartupgrades);
     }
 }

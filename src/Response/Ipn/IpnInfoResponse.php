@@ -14,10 +14,16 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class IpnInfoResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $data
+     */
     public function __construct(private array $data)
     {
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getData(): array
     {
         return $this->data;
@@ -25,11 +31,21 @@ final class IpnInfoResponse extends AbstractResponse
 
     public function getUrl(): ?string
     {
-        return $this->data['url'] ?? null;
+        $url = $this->data['url'] ?? null;
+        return is_string($url) ? $url : null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(data: $data['data'] ?? []);
+        $responseData = $data['data'] ?? [];
+        
+        if (!is_array($responseData)) {
+            $responseData = [];
+        }
+        
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $responseData;
+        
+        return new self(data: $validatedData);
     }
 }

@@ -14,10 +14,16 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListDeliveriesResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $deliveries
+     */
     public function __construct(private array $deliveries)
     {
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getDeliveries(): array
     {
         return $this->deliveries;
@@ -26,7 +32,15 @@ final class ListDeliveriesResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
+        $deliveries = $innerData['deliveries'] ?? [];
         
-return new self(deliveries: $innerData['deliveries'] ?? []);
+        if (!is_array($deliveries)) {
+            $deliveries = [];
+        }
+        
+        /** @var array<string, mixed> $validatedDeliveries */
+        $validatedDeliveries = $deliveries;
+        
+        return new self(deliveries: $validatedDeliveries);
     }
 }
