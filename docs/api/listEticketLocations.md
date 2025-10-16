@@ -54,9 +54,9 @@ $ds24 = new Digistore24($config);
 // List all e-ticket locations (no parameters needed)
 try {
     $response = $ds24->etickets->listLocations();
-    
+
     echo "Available E-Ticket Locations:\n\n";
-    
+
     foreach ($response->locations as $location) {
         echo "ID: {$location->locationId}\n";
         echo "Name: {$location->locationName}\n";

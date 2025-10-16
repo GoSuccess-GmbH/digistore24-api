@@ -6,7 +6,7 @@ This package has been renamed and refactored with breaking changes.
 
 ### Package Name Change
 
-**Old:** `gosuccess/php-ds24-api-wrapper`  
+**Old:** `gosuccess/php-ds24-api-wrapper`
 **New:** `gosuccess/digistore24-api`
 
 ### Installation
@@ -23,7 +23,7 @@ composer require gosuccess/digistore24-api
 
 #### 1. Namespace Change
 
-**Old namespace:** `GoSuccess\Digistore24\`  
+**Old namespace:** `GoSuccess\Digistore24\`
 **New namespace:** `GoSuccess\Digistore24\Api\`
 
 **Before:**
@@ -82,14 +82,14 @@ $client = $ds24->client;
 
 #### 4. Utils Directory Renamed
 
-**Old:** `GoSuccess\Digistore24\Utils\`  
+**Old:** `GoSuccess\Digistore24\Utils\`
 **New:** `GoSuccess\Digistore24\Api\Util\`
 
 Note: `Utils` (plural) → `Util` (singular)
 
 #### 5. Exception Namespace
 
-**Old:** `GoSuccess\Digistore24\Exception\`  
+**Old:** `GoSuccess\Digistore24\Exception\`
 **New:** `GoSuccess\Digistore24\Api\Exception\`
 
 ### What's New

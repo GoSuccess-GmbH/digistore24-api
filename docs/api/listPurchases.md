@@ -80,9 +80,9 @@ $ds24 = new Digistore24($config);
 // Simple: List all purchases (no parameters needed)
 try {
     $response = $ds24->purchases->list();
-    
+
     echo "Found " . count($response->purchases) . " purchases\n\n";
-    
+
     foreach ($response->purchases as $purchase) {
         echo "ID: {$purchase->purchaseId}\n";
         echo "Amount: {$purchase->amount} {$purchase->currency}\n";

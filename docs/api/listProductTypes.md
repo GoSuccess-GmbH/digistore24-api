@@ -120,7 +120,7 @@ $categories = $response->getCategories();
 echo "<h2>Select Product Type</h2>";
 foreach ($categories as $category) {
     $types = $response->getProductTypesByCategory($category);
-    
+
     echo "<h3>{$category}</h3>";
     echo "<ul>";
     foreach ($types as $type) {
@@ -176,10 +176,10 @@ function getProductTypes(Digistore24 $client, bool $forceRefresh = false): array
 {
     $cacheKey = 'digistore24_product_types';
     $cacheDuration = 86400; // 24 hours
-    
+
     // Check cache (example using file cache)
     $cacheFile = sys_get_temp_dir() . '/' . $cacheKey . '.json';
-    
+
     if (!$forceRefresh && file_exists($cacheFile)) {
         $cacheAge = time() - filemtime($cacheFile);
         if ($cacheAge < $cacheDuration) {
@@ -187,16 +187,16 @@ function getProductTypes(Digistore24 $client, bool $forceRefresh = false): array
             return $cached;
         }
     }
-    
+
     // Fetch fresh data
     $request = new ListProductTypesRequest();
     $response = $client->products()->listProductTypes($request);
-    
+
     $types = $response->getProductTypes();
-    
+
     // Save to cache
     file_put_contents($cacheFile, json_encode($types));
-    
+
     return $types;
 }
 
@@ -253,7 +253,7 @@ echo "Generated: " . date('Y-m-d H:i:s') . "\n\n";
 
 foreach ($categories as $category) {
     echo "## {$category}\n\n";
-    
+
     $types = $response->getProductTypesByCategory($category);
     foreach ($types as $type) {
         echo "- **{$type->name}** (ID: `{$type->id}`)\n";
@@ -290,7 +290,7 @@ $response = $client->products()->listProductTypes($request);
             <label for="product_name">Product Name:</label>
             <input type="text" id="product_name" name="product_name" required>
         </div>
-        
+
         <div>
             <label for="product_type">Product Type:</label>
             <select id="product_type" name="product_type_id" required>
@@ -308,7 +308,7 @@ $response = $client->products()->listProductTypes($request);
                 ?>
             </select>
         </div>
-        
+
         <button type="submit">Create Product</button>
     </form>
 </body>
@@ -330,19 +330,19 @@ $client = new Digistore24($config);
 try {
     $request = new ListProductTypesRequest();
     $response = $client->products()->listProductTypes($request);
-    
+
     $types = $response->getProductTypes();
-    
+
     if (empty($types)) {
         echo "Warning: No product types returned\n";
     } else {
         echo "Found " . count($types) . " product types\n";
     }
-    
+
 } catch (AuthenticationException $e) {
     echo "Authentication failed: " . $e->getMessage() . "\n";
     echo "Please check your API key.\n";
-    
+
 } catch (ApiException $e) {
     echo "API error: " . $e->getMessage() . "\n";
     echo "Status code: " . $e->getCode() . "\n";

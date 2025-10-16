@@ -78,19 +78,19 @@ $ds24 = new Digistore24($config);
 // Simple: List all products with default sorting
 try {
     $response = $ds24->products->list();
-    
+
     echo "Total Products: " . count($response->products) . "\n\n";
-    
+
     foreach ($response->products as $product) {
         echo "ID: {$product->productId}\n";
         echo "Name: {$product->productName}\n";
         echo "Language: {$product->language}\n";
         echo "Units Left: {$product->unitsLeft}\n";
-        
+
         if ($product->productGroupName) {
             echo "Group: {$product->productGroupName}\n";
         }
-        
+
         echo "---\n";
     }
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {

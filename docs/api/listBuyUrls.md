@@ -62,9 +62,9 @@ $ds24 = new Digistore24($config);
 // List all buy URLs (no parameters needed)
 try {
     $response = $ds24->buyUrls->list();
-    
+
     echo "Found " . count($response->items) . " buy URLs:\n\n";
-    
+
     foreach ($response->items as $buyUrl) {
         echo "ID: {$buyUrl->id}\n";
         echo "Product ID: {$buyUrl->productId}\n";
@@ -85,7 +85,7 @@ $response = $ds24->buyUrls->list();
 
 $productId = 456;
 $filteredUrls = array_filter(
-    $response->items, 
+    $response->items,
     fn($buyUrl) => $buyUrl->productId === $productId
 );
 

@@ -94,10 +94,10 @@ $ds24 = new Digistore24($config);
 // No request object needed for listing all e-tickets
 try {
     $response = $ds24->etickets->list();
-    
+
     echo "Total tickets: {$response->totalCount}\n";
     echo "Showing: " . count($response->tickets) . " tickets\n\n";
-    
+
     foreach ($response->tickets as $ticket) {
         echo "Ticket ID: {$ticket->ticketId}\n";
         echo "Event: {$ticket->productName}\n";
