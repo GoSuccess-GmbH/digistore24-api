@@ -22,14 +22,23 @@ final class EticketLocation
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $locationId = $data['location_id'] ?? '';
+        $locationName = $data['location_name'] ?? '';
+        $address = $data['address'] ?? null;
+        $city = $data['city'] ?? null;
+        $country = $data['country'] ?? null;
+
         return new self(
-            locationId: $data['location_id'] ?? '',
-            locationName: $data['location_name'] ?? '',
-            address: $data['address'] ?? null,
-            city: $data['city'] ?? null,
-            country: $data['country'] ?? null,
+            locationId: is_string($locationId) ? $locationId : '',
+            locationName: is_string($locationName) ? $locationName : '',
+            address: $address !== null && is_string($address) ? $address : null,
+            city: $city !== null && is_string($city) ? $city : null,
+            country: $country !== null && is_string($country) ? $country : null,
         );
     }
 }

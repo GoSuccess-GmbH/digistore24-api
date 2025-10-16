@@ -28,7 +28,12 @@ final class ListEticketTemplatesResponse extends AbstractResponse
 
         if (isset($data['templates']) && is_array($data['templates'])) {
             foreach ($data['templates'] as $template) {
-                $templates[] = EticketTemplate::fromArray($template);
+                if (!is_array($template)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $validatedTemplate */
+                $validatedTemplate = $template;
+                $templates[] = EticketTemplate::fromArray($validatedTemplate);
             }
         }
 

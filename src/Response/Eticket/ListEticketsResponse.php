@@ -33,13 +33,20 @@ final class ListEticketsResponse extends AbstractResponse
 
         if (is_array($ticketsData)) {
             foreach ($ticketsData as $ticket) {
-                $tickets[] = EticketListItem::fromArray($ticket);
+                if (!is_array($ticket)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $validatedTicket */
+                $validatedTicket = $ticket;
+                $tickets[] = EticketListItem::fromArray($validatedTicket);
             }
         }
 
+        $totalCount = $innerData['total_count'] ?? count($tickets);
+
         return new self(
             tickets: $tickets,
-            totalCount: (int)($innerData['total_count'] ?? count($tickets)),
+            totalCount: is_int($totalCount) ? $totalCount : (is_numeric($totalCount) ? (int)$totalCount : count($tickets)),
         );
     }
 }

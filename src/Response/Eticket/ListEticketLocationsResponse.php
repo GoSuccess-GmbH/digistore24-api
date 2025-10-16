@@ -28,7 +28,12 @@ final class ListEticketLocationsResponse extends AbstractResponse
 
         if (isset($data['locations']) && is_array($data['locations'])) {
             foreach ($data['locations'] as $location) {
-                $locations[] = EticketLocation::fromArray($location);
+                if (!is_array($location)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $validatedLocation */
+                $validatedLocation = $location;
+                $locations[] = EticketLocation::fromArray($validatedLocation);
             }
         }
 

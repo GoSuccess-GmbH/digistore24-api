@@ -14,6 +14,9 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetEticketSettingsResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $settings
+     */
     public function __construct(
         public readonly bool $eticketEnabled,
         public readonly ?string $defaultLocationId,
@@ -26,13 +29,23 @@ final class GetEticketSettingsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $defaultLocationId = $data['default_location_id'] ?? null;
+        $defaultTemplateId = $data['default_template_id'] ?? null;
+        $maxTicketsPerOrder = $data['max_tickets_per_order'] ?? 10;
+        $settings = $data['settings'] ?? [];
+        if (!is_array($settings)) {
+            $settings = [];
+        }
+        /** @var array<string, mixed> $validatedSettings */
+        $validatedSettings = $settings;
+
         $instance = new self(
             eticketEnabled: (bool)($data['eticket_enabled'] ?? false),
-            defaultLocationId: $data['default_location_id'] ?? null,
-            defaultTemplateId: $data['default_template_id'] ?? null,
-            maxTicketsPerOrder: (int)($data['max_tickets_per_order'] ?? 10),
+            defaultLocationId: $defaultLocationId !== null && is_string($defaultLocationId) ? $defaultLocationId : null,
+            defaultTemplateId: $defaultTemplateId !== null && is_string($defaultTemplateId) ? $defaultTemplateId : null,
+            maxTicketsPerOrder: is_int($maxTicketsPerOrder) ? $maxTicketsPerOrder : (is_numeric($maxTicketsPerOrder) ? (int)$maxTicketsPerOrder : 10),
             requireEmailValidation: (bool)($data['require_email_validation'] ?? false),
-            settings: $data['settings'] ?? [],
+            settings: $validatedSettings,
         );
 
         return $instance;

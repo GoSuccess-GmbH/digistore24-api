@@ -21,13 +21,21 @@ final class EticketTemplate
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $templateId = $data['template_id'] ?? '';
+        $templateName = $data['template_name'] ?? '';
+        $description = $data['description'] ?? null;
+        $previewUrl = $data['preview_url'] ?? null;
+
         return new self(
-            templateId: $data['template_id'] ?? '',
-            templateName: $data['template_name'] ?? '',
-            description: $data['description'] ?? null,
-            previewUrl: $data['preview_url'] ?? null,
+            templateId: is_string($templateId) ? $templateId : '',
+            templateName: is_string($templateName) ? $templateName : '',
+            description: $description !== null && is_string($description) ? $description : null,
+            previewUrl: $previewUrl !== null && is_string($previewUrl) ? $previewUrl : null,
         );
     }
 }
