@@ -26,7 +26,8 @@ final class CreateProductResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
-        
-return new self(productId: (int)($innerData['product_id'] ?? 0));
+        $productId = $innerData['product_id'] ?? 0;
+
+        return new self(productId: is_int($productId) ? $productId : (is_numeric($productId) ? (int)$productId : 0));
     }
 }

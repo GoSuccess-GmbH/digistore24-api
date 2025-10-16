@@ -30,7 +30,12 @@ final class ListProductsResponse extends AbstractResponse
 
         if (isset($data['products']) && is_array($data['products'])) {
             foreach ($data['products'] as $product) {
-                $products[] = ProductListItem::fromArray($product);
+                if (!is_array($product)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $validatedProduct */
+                $validatedProduct = $product;
+                $products[] = ProductListItem::fromArray($validatedProduct);
             }
         }
 

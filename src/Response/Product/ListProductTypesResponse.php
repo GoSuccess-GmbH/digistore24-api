@@ -86,14 +86,21 @@ final class ListProductTypesResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         // API returns array of product type objects directly
-        $productTypes = array_map(
-            fn ($item) => (object)[
-                'id' => (int)$item['id'],
-                'name' => (string)$item['name'],
-                'category' => (string)$item['category'],
-            ],
-            $data,
-        );
+        $productTypes = [];
+        foreach ($data as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+            $id = $item['id'] ?? 0;
+            $name = $item['name'] ?? '';
+            $category = $item['category'] ?? '';
+            
+            $productTypes[] = (object)[
+                'id' => is_int($id) ? $id : (is_numeric($id) ? (int)$id : 0),
+                'name' => is_string($name) ? $name : '',
+                'category' => is_string($category) ? $category : '',
+            ];
+        }
 
         return new self($productTypes);
     }
