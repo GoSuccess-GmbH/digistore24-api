@@ -94,7 +94,7 @@ final class ListProductTypesResponse extends AbstractResponse
             $id = $item['id'] ?? 0;
             $name = $item['name'] ?? '';
             $category = $item['category'] ?? '';
-            
+
             $productTypes[] = (object)[
                 'id' => is_int($id) ? $id : (is_numeric($id) ? (int)$id : 0),
                 'name' => is_string($name) ? $name : '',

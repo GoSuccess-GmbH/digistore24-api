@@ -38,7 +38,10 @@ enum HttpStatusCode: int
      */
     public function isSuccess(): bool
     {
-        return $this->value >= 200 && $this->value < 300;
+        return match ($this) {
+            self::OK, self::CREATED, self::ACCEPTED, self::NO_CONTENT => true,
+            default => false,
+        };
     }
 
     /**
@@ -46,7 +49,12 @@ enum HttpStatusCode: int
      */
     public function isClientError(): bool
     {
-        return $this->value >= 400 && $this->value < 500;
+        return match ($this) {
+            self::BAD_REQUEST, self::UNAUTHORIZED, self::FORBIDDEN,
+            self::NOT_FOUND, self::METHOD_NOT_ALLOWED,
+            self::CONFLICT, self::UNPROCESSABLE_ENTITY, self::TOO_MANY_REQUESTS => true,
+            default => false,
+        };
     }
 
     /**
@@ -54,7 +62,11 @@ enum HttpStatusCode: int
      */
     public function isServerError(): bool
     {
-        return $this->value >= 500 && $this->value < 600;
+        return match ($this) {
+            self::INTERNAL_SERVER_ERROR, self::BAD_GATEWAY,
+            self::SERVICE_UNAVAILABLE, self::GATEWAY_TIMEOUT => true,
+            default => false,
+        };
     }
 
     /**

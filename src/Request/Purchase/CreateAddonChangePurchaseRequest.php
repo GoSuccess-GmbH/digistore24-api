@@ -34,9 +34,11 @@ final class CreateAddonChangePurchaseRequest extends AbstractRequest
             throw new \InvalidArgumentException('At least one addon is required');
         }
 
+        // Runtime type validation for array items
+        // Note: Type hint @param array<AddonData> enforces static type,
+        // this check provides runtime safety
         foreach ($addons as $addon) {
-            // Type check is technically redundant due to @param array<AddonData>
-            // but provides runtime safety
+            // @phpstan-ignore-next-line - Runtime validation despite @param type hint
             if (! ($addon instanceof AddonData)) {
                 throw new \InvalidArgumentException('All addons must be instances of AddonData');
             }

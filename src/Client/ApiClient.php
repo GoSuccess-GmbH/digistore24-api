@@ -111,6 +111,8 @@ final class ApiClient implements HttpClientInterface
 
     /**
      * Build HTTP request from endpoint and parameters
+     *
+     * @param array<string, mixed> $params
      */
     private function buildRequest(string $endpoint, HttpMethod $method, array $params): Request
     {
@@ -127,11 +129,18 @@ final class ApiClient implements HttpClientInterface
 
         // For GET requests, use query parameters
         if ($method === HttpMethod::GET) {
+            // Filter and ensure only scalar values for query parameters
+            $query = [];
+            foreach ($params as $key => $value) {
+                if (is_bool($value) || is_int($value) || is_string($value)) {
+                    $query[$key] = $value;
+                }
+            }
             return new Request(
                 method: $method,
                 url: $url,
                 headers: $headers,
-                query: $params,
+                query: $query,
             );
         }
 
@@ -230,9 +239,16 @@ final class ApiClient implements HttpClientInterface
             );
         }
 
+        // Ensure data is an array
+        if (!is_array($data)) {
+            $data = [];
+        }
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $data;
+
         $response = new Response(
             statusCode: $httpCode,
-            data: $data ?? [],
+            data: $validatedData,
             headers: $headers,
             rawBody: $body,
         );
@@ -302,11 +318,11 @@ final class ApiClient implements HttpClientInterface
         // Check for error in response
         if (isset($response->data['result']) && $response->data['result'] === 'error') {
             $message = $response->data['message'] ?? 'Unknown API error';
-            $code = (int)($response->data['code'] ?? 0);
+            $code = $response->data['code'] ?? 0;
 
             throw new ApiException(
-                $message,
-                $code,
+                is_string($message) ? $message : 'Unknown API error',
+                is_int($code) ? $code : (is_numeric($code) ? (int)$code : 0),
                 ['api_error' => $response->data],
             );
         }
@@ -356,7 +372,7 @@ final class ApiClient implements HttpClientInterface
      */
     private function calculateBackoff(int $attempt): int
     {
-        return min(2 ** $attempt, 30); // Max 30 seconds
+        return (int)min(2 ** $attempt, 30); // Max 30 seconds
     }
 
     /**
