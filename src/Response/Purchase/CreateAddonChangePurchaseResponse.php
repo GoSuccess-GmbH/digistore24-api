@@ -34,13 +34,20 @@ final class CreateAddonChangePurchaseResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $createdPurchaseId = self::getValue($data, 'created_purchase_id', 'string', '');
+        $paymentStatus = self::getValue($data, 'payment_status', 'string', '');
+        $paymentStatusMsg = self::getValue($data, 'payment_status_msg', 'string', '');
+        $billingStatus = self::getValue($data, 'billing_status', 'string', '');
+        $billingStatusMsg = self::getValue($data, 'billing_status_msg', 'string', '');
+        $payUrl = self::getValue($data, 'pay_url', 'string');
+
         $instance = new self(
-            createdPurchaseId: self::getValue($data, 'created_purchase_id', 'string', ''),
-            paymentStatus: self::getValue($data, 'payment_status', 'string', ''),
-            paymentStatusMsg: self::getValue($data, 'payment_status_msg', 'string', ''),
-            billingStatus: self::getValue($data, 'billing_status', 'string', ''),
-            billingStatusMsg: self::getValue($data, 'billing_status_msg', 'string', ''),
-            payUrl: self::getValue($data, 'pay_url', 'string'),
+            createdPurchaseId: is_string($createdPurchaseId) ? $createdPurchaseId : '',
+            paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',
+            paymentStatusMsg: is_string($paymentStatusMsg) ? $paymentStatusMsg : '',
+            billingStatus: is_string($billingStatus) ? $billingStatus : '',
+            billingStatusMsg: is_string($billingStatusMsg) ? $billingStatusMsg : '',
+            payUrl: $payUrl !== null && is_string($payUrl) ? $payUrl : null,
         );
 
         return $instance;

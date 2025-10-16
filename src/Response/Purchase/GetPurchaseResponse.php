@@ -14,6 +14,9 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetPurchaseResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $additionalData
+     */
     public function __construct(
         public readonly string $purchaseId,
         public readonly string $productId,
@@ -30,17 +33,33 @@ final class GetPurchaseResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $purchaseId = $data['purchase_id'] ?? '';
+        $productId = $data['product_id'] ?? '';
+        $productName = $data['product_name'] ?? '';
+        $buyerEmail = $data['buyer_email'] ?? '';
+        $paymentStatus = $data['payment_status'] ?? '';
+        $billingStatus = $data['billing_status'] ?? '';
+        $amount = $data['amount'] ?? 0;
+        $currency = $data['currency'] ?? 'EUR';
+        $createdAt = $data['created_at'] ?? 'now';
+        $additionalData = $data['additional_data'] ?? [];
+        if (!is_array($additionalData)) {
+            $additionalData = [];
+        }
+        /** @var array<string, mixed> $validatedAdditionalData */
+        $validatedAdditionalData = $additionalData;
+
         $instance = new self(
-            purchaseId: $data['purchase_id'] ?? '',
-            productId: $data['product_id'] ?? '',
-            productName: $data['product_name'] ?? '',
-            buyerEmail: $data['buyer_email'] ?? '',
-            paymentStatus: $data['payment_status'] ?? '',
-            billingStatus: $data['billing_status'] ?? '',
-            amount: (float)($data['amount'] ?? 0),
-            currency: $data['currency'] ?? 'EUR',
-            createdAt: new \DateTimeImmutable($data['created_at'] ?? 'now'),
-            additionalData: $data['additional_data'] ?? [],
+            purchaseId: is_string($purchaseId) ? $purchaseId : '',
+            productId: is_string($productId) ? $productId : '',
+            productName: is_string($productName) ? $productName : '',
+            buyerEmail: is_string($buyerEmail) ? $buyerEmail : '',
+            paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',
+            billingStatus: is_string($billingStatus) ? $billingStatus : '',
+            amount: is_float($amount) ? $amount : (is_numeric($amount) ? (float)$amount : 0.0),
+            currency: is_string($currency) ? $currency : 'EUR',
+            createdAt: new \DateTimeImmutable(is_string($createdAt) ? $createdAt : 'now'),
+            additionalData: $validatedAdditionalData,
         );
 
         return $instance;

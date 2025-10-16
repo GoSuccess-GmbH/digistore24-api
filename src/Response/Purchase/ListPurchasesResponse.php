@@ -30,13 +30,20 @@ final class ListPurchasesResponse extends AbstractResponse
 
         if (isset($data['purchases']) && is_array($data['purchases'])) {
             foreach ($data['purchases'] as $purchase) {
-                $purchases[] = PurchaseListItem::fromArray($purchase);
+                if (!is_array($purchase)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $validatedPurchase */
+                $validatedPurchase = $purchase;
+                $purchases[] = PurchaseListItem::fromArray($validatedPurchase);
             }
         }
 
+        $totalCount = $data['total_count'] ?? count($purchases);
+
         $instance = new self(
             purchases: $purchases,
-            totalCount: (int)($data['total_count'] ?? count($purchases)),
+            totalCount: is_int($totalCount) ? $totalCount : (is_numeric($totalCount) ? (int)$totalCount : count($purchases)),
         );
 
         return $instance;

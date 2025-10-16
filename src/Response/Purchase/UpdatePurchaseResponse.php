@@ -31,7 +31,8 @@ final class UpdatePurchaseResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
-        
-return new self(isModified: (string)($innerData['is_modified'] ?? 'N'));
+        $isModified = $innerData['is_modified'] ?? 'N';
+
+        return new self(isModified: is_string($isModified) ? $isModified : 'N');
     }
 }

@@ -21,6 +21,9 @@ final class ListPurchasesOfEmailResponse extends AbstractResponse
     {
     }
 
+    /**
+     * @return array<int, array<string, mixed>>
+     */
     public function getPurchases(): array
     {
         return $this->purchases;
@@ -28,6 +31,13 @@ final class ListPurchasesOfEmailResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(purchases: $data['data'] ?? []);
+        $purchases = $data['data'] ?? [];
+        if (!is_array($purchases)) {
+            $purchases = [];
+        }
+        /** @var array<int, array<string, mixed>> $validatedPurchases */
+        $validatedPurchases = $purchases;
+
+        return new self(purchases: $validatedPurchases);
     }
 }

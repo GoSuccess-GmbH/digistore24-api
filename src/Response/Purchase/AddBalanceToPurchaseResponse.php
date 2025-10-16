@@ -36,10 +36,12 @@ final class AddBalanceToPurchaseResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
-        
-return new self(
-            oldBalance: (float)($innerData['old_balance'] ?? 0.0),
-            newBalance: (float)($innerData['new_balance'] ?? 0.0),
+        $oldBalance = $innerData['old_balance'] ?? 0.0;
+        $newBalance = $innerData['new_balance'] ?? 0.0;
+
+        return new self(
+            oldBalance: is_float($oldBalance) ? $oldBalance : (is_numeric($oldBalance) ? (float)$oldBalance : 0.0),
+            newBalance: is_float($newBalance) ? $newBalance : (is_numeric($newBalance) ? (float)$newBalance : 0.0),
         );
     }
 }
