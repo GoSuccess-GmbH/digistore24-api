@@ -3,14 +3,20 @@
 declare(strict_types=1);
 
 /**
- * Example usage of the new HTTP Client Layer
+ * Example: Basic usage of the Digistore24 API Client
+ *
+ * This example shows the recommended way to use the API through resource layers.
+ * Resources automatically handle HTTP methods, request/response types, and validation.
  */
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use GoSuccess\Digistore24\Api\Client\ApiClient;
 use GoSuccess\Digistore24\Api\Client\Configuration;
-use GoSuccess\Digistore24\Api\Enum\HttpMethod;
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Request\User\GetUserInfoRequest;
+use GoSuccess\Digistore24\Api\Request\Product\ListProductsRequest;
+use GoSuccess\Digistore24\Api\Request\Product\GetProductRequest;
+use GoSuccess\Digistore24\Api\Request\Country\ListCountriesRequest;
 
 // Create configuration
 $config = new Configuration(
@@ -19,17 +25,78 @@ $config = new Configuration(
     debug: true,
 );
 
-// Create API client
-$client = new ApiClient($config);
+// Create Digistore24 client
+$ds24 = new Digistore24($config);
 
-// Example: Ping endpoint
+// Example 1: Get user information
+echo "=== Get User Info ===\n";
 try {
-    $response = $client->request('ping', HttpMethod::GET);
-
-    echo 'API Version: ' . $response->data['api_version'] . PHP_EOL;
-    echo 'Server Time: ' . $response->data['data']['server_time'] . PHP_EOL;
-
+    $request = new GetUserInfoRequest();
+    $response = $ds24->users->getInfo($request);
+    
+    $userInfo = $response->getUserInfo();
+    echo "User ID: {$userInfo['user_id']}\n";
+    echo "User Name: {$userInfo['user_name']}\n";
+    echo "Permissions: {$userInfo['api_key_permissions']}\n\n";
+    
 } catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
-    echo 'Error: ' . $e->getMessage() . PHP_EOL;
-    print_r($e->getContext());
+    echo "Error: {$e->getMessage()}\n\n";
 }
+
+// Example 2: List products
+echo "=== List Products ===\n";
+try {
+    $request = new ListProductsRequest();
+    $response = $ds24->products->list($request);
+    
+    echo "Found {$response->totalCount} products:\n";
+    foreach ($response->products as $product) {
+        echo "- [{$product->id}] {$product->name}\n";
+    }
+    echo "\n";
+    
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
+    echo "Error: {$e->getMessage()}\n\n";
+}
+
+// Example 3: Get specific product
+echo "=== Get Product Details ===\n";
+try {
+    $request = new GetProductRequest(productId: '12345');
+    $product = $ds24->products->get($request);
+    
+    echo "Product: {$product->productName}\n";
+    echo "Price: {$product->price} {$product->currency}\n";
+    echo "Published: " . ($product->isPublished ? 'Yes' : 'No') . "\n\n";
+    
+} catch (\GoSuccess\Digistore24\Api\Exception\NotFoundException $e) {
+    echo "Product not found!\n\n";
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
+    echo "Error: {$e->getMessage()}\n\n";
+}
+
+// Example 4: List countries
+echo "=== List Countries ===\n";
+try {
+    $request = new ListCountriesRequest();
+    $response = $ds24->countries->listCountries($request);
+    
+    $countries = $response->getCountries();
+    echo "Available countries: " . count($countries) . "\n";
+    // Show first 5
+    $countriesToShow = array_slice($countries, 0, 5, true);
+    foreach ($countriesToShow as $code => $name) {
+        echo "- {$code}: {$name}\n";
+    }
+    echo "...\n\n";
+    
+} catch (\GoSuccess\Digistore24\Api\Exception\ApiException $e) {
+    echo "Error: {$e->getMessage()}\n\n";
+}
+
+echo "=== Examples completed! ===\n";
+echo "\nNote: Resources automatically handle:\n";
+echo "- Correct HTTP methods (GET for list/get, POST for create, etc.)\n";
+echo "- Request/response type conversion\n";
+echo "- Validation and error handling\n";
+echo "- URL construction\n";
