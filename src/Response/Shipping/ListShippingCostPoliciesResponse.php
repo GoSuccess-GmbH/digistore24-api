@@ -14,10 +14,12 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListShippingCostPoliciesResponse extends AbstractResponse
 {
+    /** @param array<string, mixed> $shippingCostPolicies */
     public function __construct(private array $shippingCostPolicies)
     {
     }
 
+    /** @return array<string, mixed> */
     public function getShippingCostPolicies(): array
     {
         return $this->shippingCostPolicies;
@@ -26,7 +28,13 @@ final class ListShippingCostPoliciesResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
-        
-return new self(shippingCostPolicies: $innerData['shipping_cost_policies'] ?? []);
+        $policiesData = $innerData['shipping_cost_policies'] ?? [];
+        if (!is_array($policiesData)) {
+            $policiesData = [];
+        }
+        /** @var array<string, mixed> $validatedPolicies */
+        $validatedPolicies = $policiesData;
+
+        return new self(shippingCostPolicies: $validatedPolicies);
     }
 }
