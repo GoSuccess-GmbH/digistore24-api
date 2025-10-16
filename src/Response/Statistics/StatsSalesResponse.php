@@ -14,22 +14,39 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class StatsSalesResponse extends AbstractResponse
 {
+    /** @param array<string, mixed> $data */
     public function __construct(private array $data)
     {
     }
 
+    /** @return array<string, mixed> */
     public function getData(): array
     {
         return $this->data;
     }
 
+    /** @return array<string, mixed> */
     public function getSales(): array
     {
-        return $this->data['sales'] ?? [];
+        $sales = $this->data['sales'] ?? [];
+        if (!is_array($sales)) {
+            return [];
+        }
+        /** @var array<string, mixed> $validated */
+        $validated = $sales;
+
+        return $validated;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(data: $data['data'] ?? []);
+        $responseData = $data['data'] ?? [];
+        if (!is_array($responseData)) {
+            $responseData = [];
+        }
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $responseData;
+
+        return new self(data: $validatedData);
     }
 }

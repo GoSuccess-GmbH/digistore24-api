@@ -97,25 +97,46 @@ final class ListCommissionsResponse extends AbstractResponse
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $items = array_map(
-            fn ($item) => (object)[
-                'id' => (int)$item['id'],
-                'created_at' => (string)$item['created_at'],
-                'amount' => (float)$item['amount'],
-                'currency' => (string)$item['currency'],
-                'reason' => (string)$item['reason'],
-                'schedule_payout_at' => (string)$item['schedule_payout_at'],
-                'transaction_id' => (int)$item['transaction_id'],
-                'purchase_id' => (string)$item['purchase_id'],
-            ],
-            $data['items'] ?? [],
-        );
+        $items = [];
+        $itemsData = $data['items'] ?? [];
+        if (is_array($itemsData)) {
+            foreach ($itemsData as $item) {
+                if (!is_array($item)) {
+                    continue;
+                }
+
+                $id = $item['id'] ?? 0;
+                $createdAt = $item['created_at'] ?? '';
+                $amount = $item['amount'] ?? 0.0;
+                $currency = $item['currency'] ?? '';
+                $reason = $item['reason'] ?? '';
+                $schedulePayoutAt = $item['schedule_payout_at'] ?? '';
+                $transactionId = $item['transaction_id'] ?? 0;
+                $purchaseId = $item['purchase_id'] ?? '';
+
+                $items[] = (object)[
+                    'id' => is_int($id) ? $id : 0,
+                    'created_at' => is_string($createdAt) ? $createdAt : '',
+                    'amount' => is_float($amount) ? $amount : (is_numeric($amount) ? (float)$amount : 0.0),
+                    'currency' => is_string($currency) ? $currency : '',
+                    'reason' => is_string($reason) ? $reason : '',
+                    'schedule_payout_at' => is_string($schedulePayoutAt) ? $schedulePayoutAt : '',
+                    'transaction_id' => is_int($transactionId) ? $transactionId : 0,
+                    'purchase_id' => is_string($purchaseId) ? $purchaseId : '',
+                ];
+            }
+        }
+
+        $pageNo = $data['page_no'] ?? 1;
+        $pageSize = $data['page_size'] ?? 0;
+        $itemCount = $data['item_count'] ?? 0;
+        $pageCount = $data['page_count'] ?? 0;
 
         return new self(
-            pageNo: (int)($data['page_no'] ?? 1),
-            pageSize: (int)($data['page_size'] ?? 0),
-            itemCount: (int)($data['item_count'] ?? 0),
-            pageCount: (int)($data['page_count'] ?? 0),
+            pageNo: is_int($pageNo) ? $pageNo : 1,
+            pageSize: is_int($pageSize) ? $pageSize : 0,
+            itemCount: is_int($itemCount) ? $itemCount : 0,
+            pageCount: is_int($pageCount) ? $pageCount : 0,
             items: $items,
         );
     }

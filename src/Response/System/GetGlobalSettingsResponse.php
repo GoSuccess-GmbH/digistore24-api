@@ -72,23 +72,51 @@ final class GetGlobalSettingsResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $imageMetas = [];
-        foreach (($data['image_metas'] ?? []) as $key => $meta) {
-            $imageMetas[$key] = [
-                'label' => (string)($meta['label'] ?? ''),
-                'limits' => [
-                    'max_file_size_kb' => (int)($meta['limits']['max_file_size_kb'] ?? 0),
-                    'min_width' => (int)($meta['limits']['min_width'] ?? 0),
-                    'max_width' => (int)($meta['limits']['max_width'] ?? 0),
-                    'min_height' => (int)($meta['limits']['min_height'] ?? 0),
-                    'max_height' => (int)($meta['limits']['max_height'] ?? 0),
-                ],
-                'limits_msg' => (string)($meta['limits_msg'] ?? ''),
-            ];
+        $imageMetasData = $data['image_metas'] ?? [];
+        if (is_array($imageMetasData)) {
+            foreach ($imageMetasData as $key => $meta) {
+                if (!is_array($meta) || !is_string($key)) {
+                    continue;
+                }
+
+                $label = $meta['label'] ?? '';
+                $limits = $meta['limits'] ?? [];
+                $limitsMsg = $meta['limits_msg'] ?? '';
+
+                if (!is_array($limits)) {
+                    $limits = [];
+                }
+
+                $maxFileSizeKb = $limits['max_file_size_kb'] ?? 0;
+                $minWidth = $limits['min_width'] ?? 0;
+                $maxWidth = $limits['max_width'] ?? 0;
+                $minHeight = $limits['min_height'] ?? 0;
+                $maxHeight = $limits['max_height'] ?? 0;
+
+                $imageMetas[$key] = [
+                    'label' => is_string($label) ? $label : '',
+                    'limits' => [
+                        'max_file_size_kb' => is_int($maxFileSizeKb) ? $maxFileSizeKb : 0,
+                        'min_width' => is_int($minWidth) ? $minWidth : 0,
+                        'max_width' => is_int($maxWidth) ? $maxWidth : 0,
+                        'min_height' => is_int($minHeight) ? $minHeight : 0,
+                        'max_height' => is_int($maxHeight) ? $maxHeight : 0,
+                    ],
+                    'limits_msg' => is_string($limitsMsg) ? $limitsMsg : '',
+                ];
+            }
         }
+
+        $types = $data['types'] ?? [];
+        if (!is_array($types)) {
+            $types = [];
+        }
+        /** @var array<string, array<string, string>> $validatedTypes */
+        $validatedTypes = $types;
 
         return new self(
             imageMetas: $imageMetas,
-            types: $data['types'] ?? [],
+            types: $validatedTypes,
         );
     }
 }

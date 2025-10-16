@@ -51,10 +51,11 @@ final class PingResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
+        $serverTime = $innerData['server_time'] ?? '';
 
         return new self(
             result: self::extractResult($data, $rawResponse),
-            serverTime: (string)($innerData['server_time'] ?? ''),
+            serverTime: is_string($serverTime) ? $serverTime : '',
         );
     }
 }

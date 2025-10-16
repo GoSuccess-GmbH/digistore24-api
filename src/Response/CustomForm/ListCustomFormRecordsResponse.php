@@ -51,20 +51,42 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $records = array_map(
-            fn ($item) => (object)[
-                'form_id' => (int)$item['form_id'],
-                'id' => (int)$item['id'],
-                'purchase_id' => (string)$item['purchase_id'],
-                'purchase_item_id' => (int)$item['purchase_item_id'],
-                'product_id' => (int)$item['product_id'],
-                'form_no' => (int)$item['form_no'],
-                'form_count' => (int)$item['form_count'],
-                'data' => (array)($item['data'] ?? []),
-                'address' => (array)($item['address'] ?? []),
-            ],
-            $data['records'] ?? [],
-        );
+        $records = [];
+        $recordsData = $data['records'] ?? [];
+        if (is_array($recordsData)) {
+            foreach ($recordsData as $item) {
+                if (!is_array($item)) {
+                    continue;
+                }
+
+                $formId = $item['form_id'] ?? 0;
+                $id = $item['id'] ?? 0;
+                $purchaseId = $item['purchase_id'] ?? '';
+                $purchaseItemId = $item['purchase_item_id'] ?? 0;
+                $productId = $item['product_id'] ?? 0;
+                $formNo = $item['form_no'] ?? 0;
+                $formCount = $item['form_count'] ?? 0;
+                $itemData = $item['data'] ?? [];
+                $address = $item['address'] ?? [];
+
+                /** @var array<string, string> $validatedData */
+                $validatedData = is_array($itemData) ? $itemData : [];
+                /** @var array<string, string> $validatedAddress */
+                $validatedAddress = is_array($address) ? $address : [];
+
+                $records[] = (object)[
+                    'form_id' => is_int($formId) ? $formId : 0,
+                    'id' => is_int($id) ? $id : 0,
+                    'purchase_id' => is_string($purchaseId) ? $purchaseId : '',
+                    'purchase_item_id' => is_int($purchaseItemId) ? $purchaseItemId : 0,
+                    'product_id' => is_int($productId) ? $productId : 0,
+                    'form_no' => is_int($formNo) ? $formNo : 0,
+                    'form_count' => is_int($formCount) ? $formCount : 0,
+                    'data' => $validatedData,
+                    'address' => $validatedAddress,
+                ];
+            }
+        }
 
         return new self($records);
     }
