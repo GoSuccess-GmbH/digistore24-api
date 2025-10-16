@@ -39,13 +39,17 @@ final class TrackingData
      */
     public function toArray(): array
     {
+        /** @var array<string, string> $data */
         $data = [];
 
         foreach (get_object_vars($this) as $property => $value) {
-            if ($value !== null) {
+            if ($value !== null && is_string($value)) {
                 // Convert camelCase to snake_case for API
-                $key = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $property));
-                $data[$key] = $value;
+                $key = preg_replace('/([a-z])([A-Z])/', '$1_$2', $property);
+                if ($key !== null) {
+                    $key = strtolower($key);
+                    $data[$key] = $value;
+                }
             }
         }
 

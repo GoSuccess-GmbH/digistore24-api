@@ -217,26 +217,26 @@ final class ShippingCostPolicyData
     public static function fromArray(array $data): self
     {
         $instance = new self();
-        $instance->name = $data['name'];
-        $instance->labelXX = $data['label_XX'] ?? null;
-        $instance->position = $data['position'] ?? 100;
-        $instance->isActive = $data['is_active'] ?? true;
-        $instance->forProductIds = $data['for_product_ids'] ?? 'all';
-        $instance->forCountries = $data['for_countries'] ?? 'all';
-        $instance->forCurrencies = $data['for_currencies'] ?? 'all';
-        $instance->feeType = $data['fee_type'] ?? 'total_fee';
-        $instance->billingCycle = $data['billing_cycle'] ?? 'once';
-        $instance->currency = $data['currency'] ?? null;
-        $instance->scaleLevelCount = $data['scale_level_count'] ?? 1;
-        $instance->scale1Amount = isset($data['scale_1_amount']) ? (float)$data['scale_1_amount'] : null;
-        $instance->scale2From = $data['scale_2_from'] ?? null;
-        $instance->scale2Amount = isset($data['scale_2_amount']) ? (float)$data['scale_2_amount'] : null;
-        $instance->scale3From = $data['scale_3_from'] ?? null;
-        $instance->scale3Amount = isset($data['scale_3_amount']) ? (float)$data['scale_3_amount'] : null;
-        $instance->scale4From = $data['scale_4_from'] ?? null;
-        $instance->scale4Amount = isset($data['scale_4_amount']) ? (float)$data['scale_4_amount'] : null;
-        $instance->scale5From = $data['scale_5_from'] ?? null;
-        $instance->scale5Amount = isset($data['scale_5_amount']) ? (float)$data['scale_5_amount'] : null;
+        $instance->name = isset($data['name']) && is_string($data['name']) ? $data['name'] : '';
+        $instance->labelXX = isset($data['label_XX']) && is_string($data['label_XX']) ? $data['label_XX'] : null;
+        $instance->position = isset($data['position']) && is_numeric($data['position']) ? (int)$data['position'] : 100;
+        $instance->isActive = isset($data['is_active']) && is_bool($data['is_active']) ? $data['is_active'] : true;
+        $instance->forProductIds = isset($data['for_product_ids']) && is_string($data['for_product_ids']) ? $data['for_product_ids'] : 'all';
+        $instance->forCountries = isset($data['for_countries']) && is_string($data['for_countries']) ? $data['for_countries'] : 'all';
+        $instance->forCurrencies = isset($data['for_currencies']) && is_string($data['for_currencies']) ? $data['for_currencies'] : 'all';
+        $instance->feeType = isset($data['fee_type']) && is_string($data['fee_type']) ? $data['fee_type'] : 'total_fee';
+        $instance->billingCycle = isset($data['billing_cycle']) && is_string($data['billing_cycle']) ? $data['billing_cycle'] : 'once';
+        $instance->currency = isset($data['currency']) && is_string($data['currency']) ? $data['currency'] : null;
+        $instance->scaleLevelCount = isset($data['scale_level_count']) && is_numeric($data['scale_level_count']) ? (int)$data['scale_level_count'] : 1;
+        $instance->scale1Amount = isset($data['scale_1_amount']) && is_numeric($data['scale_1_amount']) ? (float)$data['scale_1_amount'] : null;
+        $instance->scale2From = isset($data['scale_2_from']) && is_numeric($data['scale_2_from']) ? (int)$data['scale_2_from'] : null;
+        $instance->scale2Amount = isset($data['scale_2_amount']) && is_numeric($data['scale_2_amount']) ? (float)$data['scale_2_amount'] : null;
+        $instance->scale3From = isset($data['scale_3_from']) && is_numeric($data['scale_3_from']) ? (int)$data['scale_3_from'] : null;
+        $instance->scale3Amount = isset($data['scale_3_amount']) && is_numeric($data['scale_3_amount']) ? (float)$data['scale_3_amount'] : null;
+        $instance->scale4From = isset($data['scale_4_from']) && is_numeric($data['scale_4_from']) ? (int)$data['scale_4_from'] : null;
+        $instance->scale4Amount = isset($data['scale_4_amount']) && is_numeric($data['scale_4_amount']) ? (float)$data['scale_4_amount'] : null;
+        $instance->scale5From = isset($data['scale_5_from']) && is_numeric($data['scale_5_from']) ? (int)$data['scale_5_from'] : null;
+        $instance->scale5Amount = isset($data['scale_5_amount']) && is_numeric($data['scale_5_amount']) ? (float)$data['scale_5_amount'] : null;
 
         return $instance;
     }

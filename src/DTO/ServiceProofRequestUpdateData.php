@@ -57,7 +57,7 @@ final class ServiceProofRequestUpdateData
         $instance->requestStatus = $data['data']['request_status'];
         $instance->message = $data['data']['message'] ?? null;
 
-        if (isset($data['files']) && is_array($data['files'])) {
+        if (isset($data['files'])) {
             $instance->files = array_map(
                 fn (array $file) => FileData::fromArray($file),
                 $data['files'],

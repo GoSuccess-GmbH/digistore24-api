@@ -82,15 +82,7 @@ final class PaymentPlanFullData
     /**
      * Whether the payment plan is active
      */
-    public ?bool $isActive = null {
-        set {
-            if (is_string($value)) {
-                $this->isActive = strtoupper($value) === 'Y';
-            } else {
-                $this->isActive = $value;
-            }
-        }
-    }
+    public ?bool $isActive = null;
 
     /**
      * Cancellation policy (minimum term)
@@ -139,7 +131,17 @@ final class PaymentPlanFullData
         $instance->numberOfInstallments = isset($data['number_of_installments'])
             ? (int)$data['number_of_installments']
             : null;
-        $instance->isActive = $data['is_active'] ?? null;
+        
+        // Handle isActive: can be bool, string 'Y'/'N', or null
+        if (isset($data['is_active'])) {
+            $isActiveValue = $data['is_active'];
+            if (is_bool($isActiveValue)) {
+                $instance->isActive = $isActiveValue;
+            } elseif (is_string($isActiveValue)) {
+                $instance->isActive = strtoupper($isActiveValue) === 'Y';
+            }
+        }
+        
         $instance->cancelPolicy = $data['cancel_policy'] ?? null;
 
         return $instance;

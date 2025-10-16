@@ -98,7 +98,7 @@ final class UpgradeData
         if (isset($data['is_active'])) {
             $instance->isActive = is_bool($data['is_active'])
                 ? $data['is_active']
-                : ($data['is_active'] === 'Y' || $data['is_active'] === true);
+                : ($data['is_active'] === 'Y');
         }
 
         $instance->buyerReadonlyKeys = $data['buyer_readonly_keys'] ?? 'none';

@@ -91,9 +91,11 @@ final class DeliveryData
 
         // Handle Digistore24's Y/N format
         if (isset($data['is_shipped'])) {
-            $instance->isShipped = is_bool($data['is_shipped'])
-                ? $data['is_shipped']
-                : ($data['is_shipped'] === 'Y' || $data['is_shipped'] === true);
+            if (is_bool($data['is_shipped'])) {
+                $instance->isShipped = $data['is_shipped'];
+            } else {
+                $instance->isShipped = ($data['is_shipped'] === 'Y');
+            }
         }
 
         $instance->quantityDelivered = $data['quantity_delivered'] ?? null;
