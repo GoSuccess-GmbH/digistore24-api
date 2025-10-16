@@ -37,7 +37,6 @@ final class UserIntegrationTest extends IntegrationTestCase
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
 
         $userInfo = $response->getUserInfo();
-        $this->assertIsArray($userInfo);
         $this->assertNotEmpty($userInfo);
     }
 }

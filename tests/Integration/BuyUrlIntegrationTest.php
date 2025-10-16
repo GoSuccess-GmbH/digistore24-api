@@ -9,6 +9,7 @@ use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\DTO\BuyerData;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\ListBuyUrlsRequest;
+use GoSuccess\Digistore24\Api\Response\BuyUrl\ListBuyUrlsResponse;
 use PHPUnit\Framework\Attributes\Group;
 
 #[Group('integration')]
@@ -36,13 +37,13 @@ class BuyUrlIntegrationTest extends IntegrationTestCase
         $request = new CreateBuyUrlRequest();
         $request->productId = (int)$productId;
         $request->buyer = new BuyerData();
-        $request->buyer->email = $this->getConfig('DS24_TEST_BUYER_EMAIL', 'test@example.com');
+        $request->buyer->email = $this->getConfig('DS24_TEST_BUYER_EMAIL') ?? 'test@example.com';
 
         $response = $this->client->buyUrls->create($request);
 
-        $this->assertNotNull($response);
-        $this->assertNotEmpty($response->url);
-        $this->assertStringStartsWith('https://', $response->url);
+        $url = $response->url ?? '';
+        $this->assertNotEmpty($url);
+        $this->assertStringStartsWith('https://', $url);
     }
 
     public function testListBuyUrls(): void
@@ -50,6 +51,6 @@ class BuyUrlIntegrationTest extends IntegrationTestCase
         $request = new ListBuyUrlsRequest();
         $response = $this->client->buyUrls->list($request);
 
-        $this->assertNotNull($response);
+        $this->assertInstanceOf(ListBuyUrlsResponse::class, $response);
     }
 }

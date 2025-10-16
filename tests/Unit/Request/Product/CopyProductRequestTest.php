@@ -27,10 +27,7 @@ final class CopyProductRequestTest extends TestCase
     {
         $request = new CopyProductRequest(productId: 12345, nameIntern: 'Copied Product');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('12345', $array['product_id']);
+        $array = $request->toArray();        $this->assertSame('12345', $array['product_id']);
         $this->assertSame('Copied Product', $array['name_intern']);
     }
 
@@ -38,9 +35,6 @@ final class CopyProductRequestTest extends TestCase
     {
         $request = new CopyProductRequest(productId: 12345);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

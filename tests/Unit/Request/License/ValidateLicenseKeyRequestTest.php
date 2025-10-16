@@ -36,10 +36,7 @@ final class ValidateLicenseKeyRequestTest extends TestCase
             licenseKey: 'LIC-ABC-123-XYZ',
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame('LIC-ABC-123-XYZ', $array['license_key']);
     }
 
@@ -50,9 +47,6 @@ final class ValidateLicenseKeyRequestTest extends TestCase
             licenseKey: 'LIC-ABC-123-XYZ',
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

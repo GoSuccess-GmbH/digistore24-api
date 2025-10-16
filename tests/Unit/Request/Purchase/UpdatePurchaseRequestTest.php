@@ -31,10 +31,7 @@ final class UpdatePurchaseRequestTest extends TestCase
             unlockInvoices: true,
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame('ref-123', $array['custom']);
         $this->assertSame('Y', $array['unlock_invoices']);
     }
@@ -43,9 +40,6 @@ final class UpdatePurchaseRequestTest extends TestCase
     {
         $request = new UpdatePurchaseRequest(purchaseId: 'P12345');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

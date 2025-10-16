@@ -27,10 +27,7 @@ final class ListPurchasesRequestTest extends TestCase
     {
         $request = new ListPurchasesRequest(productId: '12345', buyerEmail: 'test@example.com');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('12345', $array['product_id']);
+        $array = $request->toArray();        $this->assertSame('12345', $array['product_id']);
         $this->assertSame('test@example.com', $array['buyer_email']);
     }
 
@@ -38,9 +35,6 @@ final class ListPurchasesRequestTest extends TestCase
     {
         $request = new ListPurchasesRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

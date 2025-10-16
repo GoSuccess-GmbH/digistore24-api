@@ -27,10 +27,7 @@ final class RefundTransactionRequestTest extends TestCase
     {
         $request = new RefundTransactionRequest(transactionId: 'T12345', force: true);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('T12345', $array['transaction_id']);
+        $array = $request->toArray();        $this->assertSame('T12345', $array['transaction_id']);
         $this->assertTrue($array['force']);
     }
 
@@ -38,9 +35,6 @@ final class RefundTransactionRequestTest extends TestCase
     {
         $request = new RefundTransactionRequest(transactionId: 'T12345');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

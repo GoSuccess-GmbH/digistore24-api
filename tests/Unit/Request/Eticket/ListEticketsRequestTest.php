@@ -92,10 +92,7 @@ final class ListEticketsRequestTest extends TestCase
     {
         $request = new ListEticketsRequest();
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertEmpty($array);
+        $array = $request->toArray();        $this->assertEmpty($array);
     }
 
     public function test_to_array_with_product_id(): void

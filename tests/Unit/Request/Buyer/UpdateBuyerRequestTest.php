@@ -28,8 +28,6 @@ final class UpdateBuyerRequestTest extends TestCase
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
 
         $array = $request->toArray();
-
-        $this->assertIsArray($array);
         $this->assertSame('B12345', $array['buyer_id']);
         $this->assertCount(1, $array);
     }
@@ -46,13 +44,16 @@ final class UpdateBuyerRequestTest extends TestCase
 
         $array = $request->toArray();
 
-        $this->assertIsArray($array);
         $this->assertSame('B12345', $array['buyer_id']);
         $this->assertSame('updated@example.com', $array['email']);
         $this->assertSame('John', $array['first_name']);
         $this->assertSame('Doe', $array['last_name']);
-        $this->assertIsArray($array['address']);
-        $this->assertSame('Main St', $array['address']['street']);
+
+        $address = $array['address'] ?? null;
+        $this->assertIsArray($address);
+        /** @var array<string, mixed> $validatedAddress */
+        $validatedAddress = $address;
+        $this->assertSame('Main St', $validatedAddress['street']);
     }
 
     public function test_validate_returns_empty_array(): void
@@ -60,8 +61,6 @@ final class UpdateBuyerRequestTest extends TestCase
         $request = new UpdateBuyerRequest(buyerId: 'B12345');
 
         $errors = $request->validate();
-
-        $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }

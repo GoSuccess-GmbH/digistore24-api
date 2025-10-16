@@ -97,6 +97,7 @@ final class TypeConverterTest extends TestCase
     {
         $data = ['key' => 'value', 'number' => 42];
         $json = json_encode($data);
+        $this->assertIsString($json);
 
         // Manual decode in test
         $manualDecode = json_decode($json, true);
@@ -127,10 +128,7 @@ final class TypeConverterTest extends TestCase
                 $manualErrorMsg,
             );
             $this->fail($message);
-        }
-
-        $this->assertIsArray($result);
-        $this->assertArrayHasKey('key', $result);
+        }        $this->assertArrayHasKey('key', $result);
         $this->assertSame('value', $result['key']);
         $this->assertArrayHasKey('number', $result);
         $this->assertSame(42, $result['number']);

@@ -35,6 +35,5 @@ final class IpnIntegrationTest extends IntegrationTestCase
         $response = $this->client->ipn->info(new IpnInfoRequest());
 
         $this->assertInstanceOf(IpnInfoResponse::class, $response);
-        $this->assertIsArray($response->getData());
     }
 }

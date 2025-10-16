@@ -43,7 +43,6 @@ class BillingIntegrationTest extends IntegrationTestCase
 
         $response = $this->client->billing->createOnDemand($request);
 
-        $this->assertNotNull($response);
         $this->assertNotEmpty($response->getCreatedPurchaseId());
     }
 
@@ -66,7 +65,6 @@ class BillingIntegrationTest extends IntegrationTestCase
 
         $response = $this->client->billing->createOnDemand($request);
 
-        $this->assertNotNull($response);
         $this->assertNotEmpty($response->getCreatedPurchaseId());
     }
 }

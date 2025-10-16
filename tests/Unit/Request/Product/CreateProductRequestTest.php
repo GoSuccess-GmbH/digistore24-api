@@ -33,11 +33,14 @@ final class CreateProductRequestTest extends TestCase
 
         $array = $request->toArray();
 
-        $this->assertIsArray($array);
         $this->assertArrayHasKey('data', $array);
-        $this->assertSame('Test Product', $array['data']['name_intern']);
-        $this->assertSame('Testprodukt', $array['data']['name_de']);
-        $this->assertSame(1, $array['data']['product_type_id']);
+        $data = $array['data'] ?? null;
+        $this->assertIsArray($data);
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $data;
+        $this->assertSame('Test Product', $validatedData['name_intern']);
+        $this->assertSame('Testprodukt', $validatedData['name_de']);
+        $this->assertSame(1, $validatedData['product_type_id']);
     }
 
     public function test_validate_returns_empty_array(): void
@@ -45,8 +48,6 @@ final class CreateProductRequestTest extends TestCase
         $request = new CreateProductRequest(nameIntern: 'Test Product');
 
         $errors = $request->validate();
-
-        $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }

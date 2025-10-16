@@ -27,19 +27,13 @@ final class GetAffiliateForEmailRequestTest extends TestCase
     {
         $request = new GetAffiliateForEmailRequest(email: 'test@example.com');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('test@example.com', $array['email']);
+        $array = $request->toArray();        $this->assertSame('test@example.com', $array['email']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetAffiliateForEmailRequest(email: 'test@example.com');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

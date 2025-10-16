@@ -24,7 +24,6 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
         $response = GetCustomerToAffiliateBuyerDetailsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetCustomerToAffiliateBuyerDetailsResponse::class, $response);
-        $this->assertIsArray($response->getDetails());
         $this->assertSame('buyer@example.com', $response->getDetails()['buyer_email']);
         $this->assertSame('John', $response->getDetails()['first_name']);
     }

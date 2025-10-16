@@ -51,9 +51,12 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
 
         $array = $request->toArray();
 
-        $this->assertIsArray($array);
         $this->assertSame('SPR123', $array['service_proof_request_id']);
-        $this->assertSame('proof_provided', $array['data']['request_status']);
+        $data = $array['data'] ?? null;
+        $this->assertIsArray($data);
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $data;
+        $this->assertSame('proof_provided', $validatedData['request_status']);
     }
 
     public function test_validate_returns_empty_array(): void
@@ -68,8 +71,6 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
         );
 
         $errors = $request->validate();
-
-        $this->assertIsArray($errors);
         $this->assertEmpty($errors);
     }
 }

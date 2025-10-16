@@ -27,10 +27,7 @@ final class GetSmartupgradeRequestTest extends TestCase
     {
         $request = new GetSmartupgradeRequest(smartupgradeId: 'SU123', purchaseId: 'P12345');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('SU123', $array['smartupgrade_id']);
+        $array = $request->toArray();        $this->assertSame('SU123', $array['smartupgrade_id']);
         $this->assertSame('P12345', $array['purchase_id']);
     }
 
@@ -38,9 +35,6 @@ final class GetSmartupgradeRequestTest extends TestCase
     {
         $request = new GetSmartupgradeRequest(smartupgradeId: 'SU123');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

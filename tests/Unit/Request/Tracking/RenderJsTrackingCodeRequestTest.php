@@ -31,10 +31,7 @@ final class RenderJsTrackingCodeRequestTest extends TestCase
             callback: 'handleTracking',
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('affiliate', $array['affiliate_input']);
+        $array = $request->toArray();        $this->assertSame('affiliate', $array['affiliate_input']);
         $this->assertSame('campaign', $array['campaignkey_input']);
         $this->assertSame('handleTracking', $array['callback']);
     }
@@ -43,9 +40,6 @@ final class RenderJsTrackingCodeRequestTest extends TestCase
     {
         $request = new RenderJsTrackingCodeRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

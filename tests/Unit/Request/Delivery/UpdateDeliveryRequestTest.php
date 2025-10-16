@@ -47,10 +47,7 @@ final class UpdateDeliveryRequestTest extends TestCase
             delivery: $delivery,
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('D12345', $array['delivery_id']);
+        $array = $request->toArray();        $this->assertSame('D12345', $array['delivery_id']);
         $this->assertSame('delivery', $array['type']);
         $this->assertSame('Y', $array['is_shipped']);
     }
@@ -65,9 +62,6 @@ final class UpdateDeliveryRequestTest extends TestCase
             delivery: $delivery,
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

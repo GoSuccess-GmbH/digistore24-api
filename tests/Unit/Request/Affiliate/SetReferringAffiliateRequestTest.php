@@ -36,10 +36,7 @@ final class SetReferringAffiliateRequestTest extends TestCase
             affiliateId: 'AFF123',
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame('AFF123', $array['affiliate_id']);
     }
 
@@ -50,9 +47,6 @@ final class SetReferringAffiliateRequestTest extends TestCase
             affiliateId: 'AFF123',
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

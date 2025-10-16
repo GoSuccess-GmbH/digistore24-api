@@ -26,7 +26,6 @@ final class CreateRebillingPaymentResponseTest extends TestCase
         $this->assertInstanceOf(CreateRebillingPaymentResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
-        $this->assertIsArray($response->getData());
         $this->assertSame('PAY123456', $response->getData()['payment_id']);
     }
 

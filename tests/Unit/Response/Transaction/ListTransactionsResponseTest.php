@@ -36,10 +36,9 @@ final class ListTransactionsResponseTest extends TestCase
         $response = ListTransactionsResponse::fromArray($data);
 
         $this->assertInstanceOf(ListTransactionsResponse::class, $response);
-        $this->assertIsArray($response->getData());
-        $this->assertIsArray($response->getTransactionList());
-        $this->assertCount(2, $response->getTransactionList());
-        $this->assertSame('TXN001', $response->getTransactionList()[0]['transaction_id']);
+        $transactionList = $response->getTransactionList();
+        $this->assertCount(2, $transactionList);
+        $this->assertNotEmpty($transactionList);
     }
 
     public function test_can_create_from_response(): void

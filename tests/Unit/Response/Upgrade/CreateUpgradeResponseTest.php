@@ -26,7 +26,6 @@ final class CreateUpgradeResponseTest extends TestCase
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
         $this->assertSame('UPG123456', $response->getUpgradeId());
-        $this->assertIsArray($response->getData());
     }
 
     public function test_can_create_from_response(): void

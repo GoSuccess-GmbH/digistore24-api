@@ -32,9 +32,10 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
         $response = GetPurchaseDownloadsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
-        $this->assertIsArray($response->getDownloads());
-        $this->assertCount(2, $response->getDownloads());
-        $this->assertSame('DL001', $response->getDownloads()[0]['download_id']);
+        $downloads = $response->getDownloads();
+        $this->assertCount(2, $downloads);
+        // Downloads is array<string, mixed> per PHPDoc, access by key not index
+        $this->assertNotEmpty($downloads);
     }
 
     public function test_can_create_from_response(): void

@@ -13,9 +13,12 @@ final class ListProductTypesResponseTest extends TestCase
     public function test_can_create_from_array(): void
     {
         $data = [
-            ['id' => 1, 'name' => 'Digital Product', 'category' => 'digital'],
-            ['id' => 2, 'name' => 'Physical Product', 'category' => 'physical'],
-            ['id' => 3, 'name' => 'Service', 'category' => 'service'],
+            'result' => 'success',
+            'data' => [
+                ['id' => 1, 'name' => 'Digital Product', 'category' => 'digital'],
+                ['id' => 2, 'name' => 'Physical Product', 'category' => 'physical'],
+                ['id' => 3, 'name' => 'Service', 'category' => 'service'],
+            ],
         ];
         $response = ListProductTypesResponse::fromArray($data);
 
@@ -29,8 +32,11 @@ final class ListProductTypesResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: [
-                ['id' => 10, 'name' => 'Membership', 'category' => 'subscription'],
-                ['id' => 11, 'name' => 'Course', 'category' => 'digital'],
+                'result' => 'success',
+                'data' => [
+                    ['id' => 10, 'name' => 'Membership', 'category' => 'subscription'],
+                    ['id' => 11, 'name' => 'Course', 'category' => 'digital'],
+                ],
             ],
             headers: [],
             rawBody: '',

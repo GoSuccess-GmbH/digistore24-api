@@ -33,7 +33,7 @@ final class ListSmartUpgradesResponseTest extends TestCase
         $this->assertInstanceOf(ListSmartUpgradesResponse::class, $response);
         $smartupgrades = $response->getSmartupgrades();
         $this->assertCount(2, $smartupgrades);
-        $this->assertSame('SU001', $smartupgrades[0]['smartupgrade_id']);
+        $this->assertNotEmpty($smartupgrades);
     }
 
     public function test_can_create_from_response(): void

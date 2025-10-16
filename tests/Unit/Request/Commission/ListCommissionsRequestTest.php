@@ -27,10 +27,7 @@ final class ListCommissionsRequestTest extends TestCase
     {
         $request = new ListCommissionsRequest();
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertEmpty($array);
+        $array = $request->toArray();        $this->assertEmpty($array);
     }
 
     public function test_to_array_includes_all_optional_parameters(): void
@@ -45,10 +42,7 @@ final class ListCommissionsRequestTest extends TestCase
             purchaseId: 'P12345',
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('2024-01-01', $array['from']);
+        $array = $request->toArray();        $this->assertSame('2024-01-01', $array['from']);
         $this->assertSame('2024-12-31', $array['to']);
         $this->assertSame(2, $array['page_no']);
         $this->assertSame(50, $array['page_size']);
@@ -61,9 +55,6 @@ final class ListCommissionsRequestTest extends TestCase
     {
         $request = new ListCommissionsRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

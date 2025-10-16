@@ -50,6 +50,5 @@ final class AffiliateIntegrationTest extends IntegrationTestCase
         $response = $this->client->affiliates->getCommission($request);
 
         $this->assertInstanceOf(GetAffiliateCommissionResponse::class, $response);
-        $this->assertIsArray($response->getCommission());
     }
 }

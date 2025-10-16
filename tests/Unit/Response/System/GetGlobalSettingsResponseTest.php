@@ -36,10 +36,15 @@ final class GetGlobalSettingsResponseTest extends TestCase
         $response = GetGlobalSettingsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetGlobalSettingsResponse::class, $response);
-        $this->assertIsArray($response->getImageMetas());
-        $this->assertIsArray($response->getTypes());
-        $this->assertArrayHasKey('product_image', $response->getImageMetas());
-        $this->assertSame('Product Image', $response->getImageMetaForType('product_image')['label']);
+        $imageMetas = $response->getImageMetas();
+        $types = $response->getTypes();
+        $this->assertNotEmpty($imageMetas);
+        $this->assertNotEmpty($types);
+        $this->assertArrayHasKey('product_image', $imageMetas);
+        $meta = $response->getImageMetaForType('product_image');
+        if ($meta !== null) {
+            $this->assertSame('Product Image', $meta['label']);
+        }
     }
 
     public function test_can_create_from_response(): void

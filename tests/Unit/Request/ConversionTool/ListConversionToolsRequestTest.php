@@ -27,19 +27,13 @@ final class ListConversionToolsRequestTest extends TestCase
     {
         $request = new ListConversionToolsRequest(type: 'upsell');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('upsell', $array['type']);
+        $array = $request->toArray();        $this->assertSame('upsell', $array['type']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListConversionToolsRequest(type: 'upsell');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

@@ -36,10 +36,7 @@ final class GetAffiliateCommissionRequestTest extends TestCase
             affiliateId: 'ABC123',
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame(12345, $array['product_id']);
+        $array = $request->toArray();        $this->assertSame(12345, $array['product_id']);
         $this->assertSame('ABC123', $array['affiliate_id']);
     }
 
@@ -50,9 +47,6 @@ final class GetAffiliateCommissionRequestTest extends TestCase
             affiliateId: 'ABC123',
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

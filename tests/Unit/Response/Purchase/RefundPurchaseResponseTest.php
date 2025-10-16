@@ -25,7 +25,6 @@ final class RefundPurchaseResponseTest extends TestCase
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
         $this->assertSame('success', $response->getResult());
         $this->assertTrue($response->wasSuccessful());
-        $this->assertIsArray($response->getData());
         $this->assertSame('REF123456', $response->getData()['refund_id']);
     }
 

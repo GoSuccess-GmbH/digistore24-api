@@ -46,9 +46,6 @@ final class UpdateOrderformRequestTest extends TestCase
             orderForm: $form,
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

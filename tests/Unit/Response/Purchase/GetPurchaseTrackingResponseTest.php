@@ -25,7 +25,6 @@ final class GetPurchaseTrackingResponseTest extends TestCase
         $response = GetPurchaseTrackingResponse::fromArray($data);
 
         $this->assertInstanceOf(GetPurchaseTrackingResponse::class, $response);
-        $this->assertIsArray($response->getTracking());
         $this->assertSame('TRK123456', $response->getTracking()['tracking_id']);
         $this->assertSame('google', $response->getTracking()['source']);
     }

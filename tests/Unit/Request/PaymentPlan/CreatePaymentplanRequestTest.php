@@ -40,9 +40,6 @@ final class CreatePaymentplanRequestTest extends TestCase
 
         $request = new CreatePaymentplanRequest(paymentPlan: $plan);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

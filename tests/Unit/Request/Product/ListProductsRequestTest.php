@@ -27,10 +27,7 @@ final class ListProductsRequestTest extends TestCase
     {
         $request = new ListProductsRequest(productType: 'digital', onlyPublished: true);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('digital', $array['product_type']);
+        $array = $request->toArray();        $this->assertSame('digital', $array['product_type']);
         $this->assertSame('y', $array['only_published']);
     }
 
@@ -38,9 +35,6 @@ final class ListProductsRequestTest extends TestCase
     {
         $request = new ListProductsRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

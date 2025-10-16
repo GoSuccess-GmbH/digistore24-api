@@ -27,7 +27,6 @@ final class RefundTransactionResponseTest extends TestCase
         $this->assertSame('completed', $response->getStatus());
         $this->assertSame('Y', $response->getModified());
         $this->assertTrue($response->wasSuccessful());
-        $this->assertIsArray($response->getData());
         $this->assertSame('TXN123456', $response->getData()['transaction_id']);
     }
 

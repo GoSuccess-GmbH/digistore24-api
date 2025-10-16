@@ -84,7 +84,10 @@ final class ResponseTest extends TestCase
             headers: [],
         );
 
-        $this->assertSame('John', $response->data['user']['name']);
+        // Validate nested access
+        $userData = $response->data['user'] ?? null;        /** @var array<string, mixed> $validatedUserData */
+        $validatedUserData = $userData;
+        $this->assertSame('John', $validatedUserData['name']);
         $this->assertSame('success', $response->data['status']);
     }
 

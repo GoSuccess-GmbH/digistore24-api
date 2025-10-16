@@ -27,19 +27,13 @@ final class GetServiceProofRequestRequestTest extends TestCase
     {
         $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('SPR123', $array['service_proof_request_id']);
+        $array = $request->toArray();        $this->assertSame('SPR123', $array['service_proof_request_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetServiceProofRequestRequest(serviceProofRequestId: 'SPR123');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

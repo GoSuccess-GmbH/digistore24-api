@@ -56,10 +56,9 @@ final class BuyerIntegrationTest extends IntegrationTestCase
         $response = $this->client->buyers->list(new ListBuyersRequest());
 
         $this->assertInstanceOf(ListBuyersResponse::class, $response);
-        $this->assertIsArray($response->getData());
 
         // If we have buyers, validate structure
         $buyerList = $response->getBuyerList();
-        $this->assertIsArray($buyerList);
+        $this->assertNotEmpty($buyerList);
     }
 }

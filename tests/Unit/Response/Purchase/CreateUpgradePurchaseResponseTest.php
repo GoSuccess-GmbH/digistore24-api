@@ -29,11 +29,10 @@ final class CreateUpgradePurchaseResponseTest extends TestCase
         $response = CreateUpgradePurchaseResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateUpgradePurchaseResponse::class, $response);
-        $this->assertIsArray($response->getData());
-        $this->assertIsArray($response->getNewPurchase());
-        $this->assertIsArray($response->getUpgradeInfo());
-        $this->assertSame('P123456', $response->getNewPurchase()['purchase_id']);
-        $this->assertSame('P111111', $response->getUpgradeInfo()['old_purchase_id']);
+        $newPurchase = $response->getNewPurchase();
+        $this->assertSame('P123456', $newPurchase['purchase_id'] ?? null);
+        $upgradeInfo = $response->getUpgradeInfo();
+        $this->assertSame('P111111', $upgradeInfo['old_purchase_id'] ?? null);
     }
 
     public function test_can_create_from_response(): void
@@ -58,8 +57,10 @@ final class CreateUpgradePurchaseResponseTest extends TestCase
         $response = CreateUpgradePurchaseResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(CreateUpgradePurchaseResponse::class, $response);
-        $this->assertSame('P654321', $response->getNewPurchase()['purchase_id']);
-        $this->assertSame('2024-01-15', $response->getUpgradeInfo()['upgrade_date']);
+        $newPurchase = $response->getNewPurchase();
+        $this->assertSame('P654321', $newPurchase['purchase_id'] ?? null);
+        $upgradeInfo = $response->getUpgradeInfo();
+        $this->assertSame('2024-01-15', $upgradeInfo['upgrade_date'] ?? null);
     }
 
     public function test_has_raw_response(): void

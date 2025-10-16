@@ -25,7 +25,6 @@ final class GetUserInfoResponseTest extends TestCase
         $response = GetUserInfoResponse::fromArray($data);
 
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
-        $this->assertIsArray($response->getUserInfo());
         $this->assertSame('12345', $response->getUserInfo()['user_id']);
         $this->assertSame('vendor@example.com', $response->getUserInfo()['email']);
         $this->assertSame('premium', $response->getUserInfo()['account_type']);

@@ -27,19 +27,13 @@ final class GetMarketplaceEntryRequestTest extends TestCase
     {
         $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('E12345', $array['entry_id']);
+        $array = $request->toArray();        $this->assertSame('E12345', $array['entry_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetMarketplaceEntryRequest(entryId: 'E12345');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

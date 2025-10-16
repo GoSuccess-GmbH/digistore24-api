@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 abstract class IntegrationTestCase extends TestCase
 {
     protected static bool $configLoaded = false;
+    /** @var array<string> */
     protected static array $missingConfigs = [];
 
     /**
@@ -39,6 +40,9 @@ abstract class IntegrationTestCase extends TestCase
 
         if (file_exists($envFile)) {
             $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            if ($lines === false) {
+                return;
+            }
 
             foreach ($lines as $line) {
                 // Skip comments and empty lines
@@ -71,9 +75,17 @@ abstract class IntegrationTestCase extends TestCase
      */
     protected function getConfig(string $key, ?string $default = null): ?string
     {
-        $value = $_ENV[$key] ?? getenv($key) ?: $default;
+        $envValue = $_ENV[$key] ?? null;
+        if (is_string($envValue) && $envValue !== '') {
+            return $envValue;
+        }
 
-        return $value !== false && $value !== '' ? $value : $default;
+        $getenvValue = getenv($key);
+        if (is_string($getenvValue) && $getenvValue !== '') {
+            return $getenvValue;
+        }
+
+        return $default;
     }
 
     /**
@@ -142,6 +154,8 @@ abstract class IntegrationTestCase extends TestCase
 
     /**
      * Get all missing configurations
+     *
+     * @return array<string>
      */
     public static function getMissingConfigurations(): array
     {

@@ -39,10 +39,7 @@ final class ReportFraudRequestTest extends TestCase
             comment: 'Fraudulent purchase',
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame(12345, $array['transaction_id']);
+        $array = $request->toArray();        $this->assertSame(12345, $array['transaction_id']);
         $this->assertSame('buyer,affiliate', $array['who']);
         $this->assertSame('Fraudulent purchase', $array['comment']);
     }
@@ -55,9 +52,6 @@ final class ReportFraudRequestTest extends TestCase
             comment: 'Fraudulent purchase',
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

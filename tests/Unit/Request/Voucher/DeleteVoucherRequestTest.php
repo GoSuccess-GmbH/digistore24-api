@@ -27,19 +27,13 @@ final class DeleteVoucherRequestTest extends TestCase
     {
         $request = new DeleteVoucherRequest(code: 'SAVE20');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('SAVE20', $array['code']);
+        $array = $request->toArray();        $this->assertSame('SAVE20', $array['code']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new DeleteVoucherRequest(code: 'SAVE20');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

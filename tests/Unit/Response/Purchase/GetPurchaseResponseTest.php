@@ -35,9 +35,7 @@ final class GetPurchaseResponseTest extends TestCase
         $this->assertSame('active', $response->billingStatus);
         $this->assertSame(99.99, $response->amount);
         $this->assertSame('EUR', $response->currency);
-        $this->assertInstanceOf(\DateTimeInterface::class, $response->createdAt);
-        $this->assertIsArray($response->additionalData);
-    }
+        $this->assertInstanceOf(\DateTimeInterface::class, $response->createdAt);    }
 
     public function test_can_create_from_response(): void
     {

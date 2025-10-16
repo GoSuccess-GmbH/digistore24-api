@@ -34,29 +34,20 @@ final class ListCurrenciesRequestTest extends TestCase
     {
         $request = new ListCurrenciesRequest();
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertEmpty($array);
+        $array = $request->toArray();        $this->assertEmpty($array);
     }
 
     public function test_to_array_includes_convert_to_when_set(): void
     {
         $request = new ListCurrenciesRequest(convertTo: 'EUR');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('EUR', $array['convert_to']);
+        $array = $request->toArray();        $this->assertSame('EUR', $array['convert_to']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListCurrenciesRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

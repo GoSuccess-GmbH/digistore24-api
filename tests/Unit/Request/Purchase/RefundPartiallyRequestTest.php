@@ -27,10 +27,7 @@ final class RefundPartiallyRequestTest extends TestCase
     {
         $request = new RefundPartiallyRequest(purchaseId: 'P12345', amount: 15.50, reason: 'Partial refund');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame(15.50, $array['amount']);
         $this->assertSame('Partial refund', $array['reason']);
     }
@@ -39,9 +36,6 @@ final class RefundPartiallyRequestTest extends TestCase
     {
         $request = new RefundPartiallyRequest(purchaseId: 'P12345', amount: 15.50);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

@@ -27,19 +27,13 @@ final class GetOrderformRequestTest extends TestCase
     {
         $request = new GetOrderformRequest(orderformId: 'OF123');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('OF123', $array['orderform_id']);
+        $array = $request->toArray();        $this->assertSame('OF123', $array['orderform_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetOrderformRequest(orderformId: 'OF123');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

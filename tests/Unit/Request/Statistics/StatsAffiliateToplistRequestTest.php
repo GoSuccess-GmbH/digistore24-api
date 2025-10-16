@@ -27,10 +27,7 @@ final class StatsAffiliateToplistRequestTest extends TestCase
     {
         $request = new StatsAffiliateToplistRequest(from: '2024-01-01', to: '2024-12-31', limit: 10);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('2024-01-01', $array['from']);
+        $array = $request->toArray();        $this->assertSame('2024-01-01', $array['from']);
         $this->assertSame('2024-12-31', $array['to']);
         $this->assertSame(10, $array['limit']);
     }
@@ -39,9 +36,6 @@ final class StatsAffiliateToplistRequestTest extends TestCase
     {
         $request = new StatsAffiliateToplistRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

@@ -29,7 +29,6 @@ final class ListPurchasesOfEmailResponseTest extends TestCase
         $response = ListPurchasesOfEmailResponse::fromArray($data);
 
         $this->assertInstanceOf(ListPurchasesOfEmailResponse::class, $response);
-        $this->assertIsArray($response->getPurchases());
         $this->assertCount(2, $response->getPurchases());
         $this->assertSame('P111', $response->getPurchases()[0]['purchase_id']);
     }

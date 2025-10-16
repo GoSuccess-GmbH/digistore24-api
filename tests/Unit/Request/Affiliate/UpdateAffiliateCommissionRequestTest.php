@@ -50,10 +50,7 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
             commission: $commission,
         );
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame(12345, $array['product_id']);
+        $array = $request->toArray();        $this->assertSame(12345, $array['product_id']);
         $this->assertSame('AFF123', $array['affiliate_id']);
         $this->assertSame(10.5, $array['commission_rate']);
         $this->assertSame(5.0, $array['commission_fix']);
@@ -70,9 +67,6 @@ final class UpdateAffiliateCommissionRequestTest extends TestCase
             commission: $commission,
         );
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

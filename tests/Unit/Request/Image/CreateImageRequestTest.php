@@ -78,10 +78,14 @@ final class CreateImageRequestTest extends TestCase
         $array = $request->toArray();
 
         $this->assertArrayHasKey('data', $array);
-        $this->assertSame('Product Image', $array['data']['name']);
-        $this->assertSame('https://example.com/image.jpg', $array['data']['image-url']);
-        $this->assertArrayNotHasKey('usage_type', $array['data']);
-        $this->assertArrayNotHasKey('alt_tag', $array['data']);
+        $data = $array['data'] ?? null;
+        $this->assertIsArray($data);
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $data;
+        $this->assertSame('Product Image', $validatedData['name']);
+        $this->assertSame('https://example.com/image.jpg', $validatedData['image-url']);
+        $this->assertArrayNotHasKey('usage_type', $validatedData);
+        $this->assertArrayNotHasKey('alt_tag', $validatedData);
     }
 
     public function testToArrayWithAllData(): void
@@ -96,10 +100,14 @@ final class CreateImageRequestTest extends TestCase
         $array = $request->toArray();
 
         $this->assertArrayHasKey('data', $array);
-        $this->assertSame('Product Image', $array['data']['name']);
-        $this->assertSame('https://example.com/image.jpg', $array['data']['image-url']);
-        $this->assertSame('product', $array['data']['usage_type']);
-        $this->assertSame('Premium Product Photo', $array['data']['alt_tag']);
+        $data = $array['data'] ?? null;
+        $this->assertIsArray($data);
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $data;
+        $this->assertSame('Product Image', $validatedData['name']);
+        $this->assertSame('https://example.com/image.jpg', $validatedData['image-url']);
+        $this->assertSame('product', $validatedData['usage_type']);
+        $this->assertSame('Premium Product Photo', $validatedData['alt_tag']);
     }
 
     public function testValidationPassesForValidData(): void

@@ -27,29 +27,20 @@ final class DeleteBuyUrlRequestTest extends TestCase
     {
         $request = new DeleteBuyUrlRequest(id: 123);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame(123, $array['id']);
+        $array = $request->toArray();        $this->assertSame(123, $array['id']);
     }
 
     public function test_validate_returns_empty_array_for_valid_id(): void
     {
         $request = new DeleteBuyUrlRequest(id: 123);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 
     public function test_validate_returns_error_for_invalid_id(): void
     {
         $request = new DeleteBuyUrlRequest(id: 0);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertNotEmpty($errors);
+        $errors = $request->validate();        $this->assertNotEmpty($errors);
     }
 }

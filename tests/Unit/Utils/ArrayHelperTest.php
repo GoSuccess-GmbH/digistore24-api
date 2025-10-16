@@ -41,8 +41,17 @@ final class ArrayHelperTest extends TestCase
         ArrayHelper::set($array, 'user.name', 'John');
         ArrayHelper::set($array, 'user.address.city', 'Berlin');
 
-        $this->assertSame('John', $array['user']['name']);
-        $this->assertSame('Berlin', $array['user']['address']['city']);
+        $user = $array['user'] ?? null;
+        $this->assertIsArray($user);
+        /** @var array<string, mixed> $validatedUser */
+        $validatedUser = $user;
+        $this->assertSame('John', $validatedUser['name']);
+
+        $address = $validatedUser['address'] ?? null;
+        $this->assertIsArray($address);
+        /** @var array<string, mixed> $validatedAddress */
+        $validatedAddress = $address;
+        $this->assertSame('Berlin', $validatedAddress['city']);
     }
 
     public function testHasChecksNestedKey(): void

@@ -24,7 +24,6 @@ final class GetSmartupgradeResponseTest extends TestCase
         $response = GetSmartupgradeResponse::fromArray($data);
 
         $this->assertInstanceOf(GetSmartupgradeResponse::class, $response);
-        $this->assertIsArray($response->getData());
         $this->assertSame('SU123', $response->getData()['smartupgrade_id']);
     }
 

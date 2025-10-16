@@ -27,19 +27,13 @@ final class ListEticketTemplatesRequestTest extends TestCase
     {
         $request = new ListEticketTemplatesRequest();
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertEmpty($array);
+        $array = $request->toArray();        $this->assertEmpty($array);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListEticketTemplatesRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

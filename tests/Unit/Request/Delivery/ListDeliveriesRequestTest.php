@@ -34,29 +34,20 @@ final class ListDeliveriesRequestTest extends TestCase
     {
         $request = new ListDeliveriesRequest();
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertEmpty($array);
+        $array = $request->toArray();        $this->assertEmpty($array);
     }
 
     public function test_to_array_includes_purchase_id_when_set(): void
     {
         $request = new ListDeliveriesRequest(purchaseId: 'P12345');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListDeliveriesRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

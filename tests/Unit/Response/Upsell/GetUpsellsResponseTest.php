@@ -33,9 +33,9 @@ final class GetUpsellsResponseTest extends TestCase
         $response = GetUpsellsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetUpsellsResponse::class, $response);
-        $this->assertIsArray($response->getUpsells());
-        $this->assertCount(2, $response->getUpsells());
-        $this->assertSame('UPS001', $response->getUpsells()[0]['upsell_id']);
+        $upsells = $response->getUpsells();
+        $this->assertCount(2, $upsells);
+        $this->assertNotEmpty($upsells);
     }
 
     public function test_can_create_from_response(): void

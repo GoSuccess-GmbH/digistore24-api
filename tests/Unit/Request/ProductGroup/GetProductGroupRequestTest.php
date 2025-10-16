@@ -27,19 +27,13 @@ final class GetProductGroupRequestTest extends TestCase
     {
         $request = new GetProductGroupRequest(productGroupId: 'PG123');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('PG123', $array['product_group_id']);
+        $array = $request->toArray();        $this->assertSame('PG123', $array['product_group_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetProductGroupRequest(productGroupId: 'PG123');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

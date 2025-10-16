@@ -27,19 +27,13 @@ final class GetGlobalSettingsRequestTest extends TestCase
     {
         $request = new GetGlobalSettingsRequest();
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertEmpty($array);
+        $array = $request->toArray();        $this->assertEmpty($array);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetGlobalSettingsRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

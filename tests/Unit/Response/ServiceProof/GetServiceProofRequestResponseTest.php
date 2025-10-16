@@ -26,7 +26,6 @@ final class GetServiceProofRequestResponseTest extends TestCase
         $response = GetServiceProofRequestResponse::fromArray($data);
 
         $this->assertInstanceOf(GetServiceProofRequestResponse::class, $response);
-        $this->assertIsArray($response->getServiceProofRequest());
         $this->assertSame('SPR123456', $response->getServiceProofRequest()['request_id']);
         $this->assertSame('pending', $response->getServiceProofRequest()['status']);
     }

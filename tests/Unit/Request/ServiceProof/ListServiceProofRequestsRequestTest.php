@@ -27,10 +27,7 @@ final class ListServiceProofRequestsRequestTest extends TestCase
     {
         $request = new ListServiceProofRequestsRequest(limit: 50, offset: 10);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame(50, $array['limit']);
+        $array = $request->toArray();        $this->assertSame(50, $array['limit']);
         $this->assertSame(10, $array['offset']);
     }
 
@@ -38,9 +35,6 @@ final class ListServiceProofRequestsRequestTest extends TestCase
     {
         $request = new ListServiceProofRequestsRequest();
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

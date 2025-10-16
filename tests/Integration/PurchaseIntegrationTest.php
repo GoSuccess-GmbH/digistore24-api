@@ -58,6 +58,5 @@ final class PurchaseIntegrationTest extends IntegrationTestCase
         $response = $this->client->purchases->list(new ListPurchasesRequest());
 
         $this->assertInstanceOf(ListPurchasesResponse::class, $response);
-        $this->assertIsArray($response->purchases);
     }
 }

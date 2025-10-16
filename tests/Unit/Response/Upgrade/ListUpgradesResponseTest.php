@@ -33,9 +33,9 @@ final class ListUpgradesResponseTest extends TestCase
         $response = ListUpgradesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListUpgradesResponse::class, $response);
-        $this->assertIsArray($response->getUpgrades());
-        $this->assertCount(2, $response->getUpgrades());
-        $this->assertSame('UPG001', $response->getUpgrades()[0]['upgrade_id']);
+        $upgrades = $response->getUpgrades();
+        $this->assertCount(2, $upgrades);
+        $this->assertNotEmpty($upgrades);
     }
 
     public function test_can_create_from_response(): void

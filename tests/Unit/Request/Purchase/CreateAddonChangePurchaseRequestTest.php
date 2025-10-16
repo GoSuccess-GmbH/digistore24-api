@@ -58,12 +58,12 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testAddonsArrayMustContainAddonDataObjects(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('All addons must be instances of AddonData');
+        $this->expectException(\TypeError::class);
 
+        /** @phpstan-ignore-next-line - Testing invalid type */
         new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
-            addons: ['invalid'],
+            addons: ['invalid'], // @phpstan-ignore-line
         );
     }
 
@@ -89,9 +89,12 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $array = $request->toArray();
 
         $this->assertSame('P12345', $array['purchase_id']);
-        $this->assertIsArray($array['addons']);
-        $this->assertCount(1, $array['addons']);
-        $this->assertSame(12345, $array['addons'][0]['product_id']);
+        $addons = $array['addons'] ?? null;
+        $this->assertIsArray($addons);
+        $this->assertCount(1, $addons);
+        /** @var array<int, array<string, mixed>> $validatedAddons */
+        $validatedAddons = $addons;
+        $this->assertSame(12345, $validatedAddons[0]['product_id']);
         $this->assertArrayNotHasKey('tracking', $array);
         $this->assertArrayNotHasKey('placeholders', $array);
     }
@@ -108,9 +111,15 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
         $array = $request->toArray();
 
-        $this->assertCount(2, $array['addons']);
-        $this->assertSame(12345, $array['addons'][0]['product_id']);
-        $this->assertSame(67890, $array['addons'][1]['product_id']);
+        $addons = $array['addons'] ?? [];
+        $this->assertIsArray($addons);
+        $this->assertCount(2, $addons);
+        if (isset($addons[0], $addons[1])) {
+            /** @var array<int, array<string, mixed>> $validatedAddons */
+            $validatedAddons = $addons;
+            $this->assertSame(12345, $validatedAddons[0]['product_id']);
+            $this->assertSame(67890, $validatedAddons[1]['product_id']);
+        }
     }
 
     public function testToArrayWithTracking(): void
@@ -129,8 +138,12 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $array = $request->toArray();
 
         $this->assertArrayHasKey('tracking', $array);
-        $this->assertSame('ref-123', $array['tracking']['custom']);
-        $this->assertSame('AFF123', $array['tracking']['affiliate']);
+        $tracking = $array['tracking'] ?? null;
+        $this->assertIsArray($tracking);
+        /** @var array<string, mixed> $validatedTracking */
+        $validatedTracking = $tracking;
+        $this->assertSame('ref-123', $validatedTracking['custom']);
+        $this->assertSame('AFF123', $validatedTracking['affiliate']);
     }
 
     public function testToArrayWithPlaceholders(): void
@@ -149,8 +162,12 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
         $array = $request->toArray();
 
         $this->assertArrayHasKey('placeholders', $array);
-        $this->assertSame('John Doe', $array['placeholders']['name']);
-        $this->assertSame('ACME Corp', $array['placeholders']['company']);
+        $placeholders = $array['placeholders'] ?? null;
+        $this->assertIsArray($placeholders);
+        /** @var array<string, mixed> $validatedPlaceholders */
+        $validatedPlaceholders = $placeholders;
+        $this->assertSame('John Doe', $validatedPlaceholders['name']);
+        $this->assertSame('ACME Corp', $validatedPlaceholders['company']);
     }
 
     public function testValidationPassesForValidData(): void

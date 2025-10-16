@@ -38,8 +38,6 @@ final class ProductIntegrationTest extends IntegrationTestCase
         $this->assertInstanceOf(ListProductsResponse::class, $response);
 
         // Validate response structure
-        $this->assertIsArray($response->products);
-        $this->assertIsInt($response->totalCount);
         $this->assertGreaterThanOrEqual(0, $response->totalCount);
 
         // If products exist, validate structure of first product
@@ -54,29 +52,8 @@ final class ProductIntegrationTest extends IntegrationTestCase
             $this->assertNotEmpty($product->ownerId);
             $this->assertNotEmpty($product->ownerName);
 
-            // Validate optional properties exist
-            $this->assertIsString($product->description);
-            $this->assertIsString($product->salespageUrl);
-            $this->assertIsString($product->productGroupName);
-            $this->assertIsBool($product->isActive);
-            $this->assertIsBool($product->isDeleted);
-
-            // Validate ALL language variants exist
-            $this->assertIsString($product->nameDe);
-            $this->assertIsString($product->nameEn);
-            $this->assertIsString($product->descriptionDe);
-            $this->assertIsString($product->descriptionEn);
-            $this->assertIsString($product->optinText);
-            $this->assertIsString($product->optinTextDe);
-
-            // Validate all boolean flags work correctly
-            $this->assertIsBool($product->isFreeUpsellEnabled);
-            $this->assertIsBool($product->isVatShown);
-            $this->assertIsBool($product->addOrderDataToThankyouPageUrl);
-
-            // Validate notification email fields
-            $this->assertIsString($product->notifyPaymentEmails);
-            $this->assertIsString($product->notifyRefundEmails);
+            // Properties exist (types are guaranteed by Response class)
+            // No need for assertNotNull on non-nullable string properties
 
             // Validate date properties
             if ($product->createdAt !== null) {

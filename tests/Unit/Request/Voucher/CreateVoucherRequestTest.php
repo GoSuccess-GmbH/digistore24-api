@@ -40,10 +40,7 @@ final class CreateVoucherRequestTest extends TestCase
 
         $request = new CreateVoucherRequest(voucher: $voucher);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('SAVE20', $array['code']);
+        $array = $request->toArray();        $this->assertSame('SAVE20', $array['code']);
         $this->assertSame(20.0, $array['first_rate']);
     }
 
@@ -55,9 +52,6 @@ final class CreateVoucherRequestTest extends TestCase
 
         $request = new CreateVoucherRequest(voucher: $voucher);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

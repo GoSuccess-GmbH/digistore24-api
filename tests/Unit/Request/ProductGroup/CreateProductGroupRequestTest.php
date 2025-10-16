@@ -38,10 +38,7 @@ final class CreateProductGroupRequestTest extends TestCase
 
         $request = new CreateProductGroupRequest(productGroup: $group);
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('Test Group', $array['name']);
+        $array = $request->toArray();        $this->assertSame('Test Group', $array['name']);
         $this->assertSame(20, $array['position']);
     }
 
@@ -52,9 +49,6 @@ final class CreateProductGroupRequestTest extends TestCase
 
         $request = new CreateProductGroupRequest(productGroup: $group);
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }

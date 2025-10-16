@@ -27,19 +27,13 @@ final class ValidateCouponCodeRequestTest extends TestCase
     {
         $request = new ValidateCouponCodeRequest(code: 'SUMMER2024');
 
-        $array = $request->toArray();
-
-        $this->assertIsArray($array);
-        $this->assertSame('SUMMER2024', $array['code']);
+        $array = $request->toArray();        $this->assertSame('SUMMER2024', $array['code']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ValidateCouponCodeRequest(code: 'SUMMER2024');
 
-        $errors = $request->validate();
-
-        $this->assertIsArray($errors);
-        $this->assertEmpty($errors);
+        $errors = $request->validate();        $this->assertEmpty($errors);
     }
 }
