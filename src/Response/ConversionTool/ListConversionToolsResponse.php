@@ -32,14 +32,14 @@ final class ListConversionToolsResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $smartupgrades = $data['smartupgrades'] ?? [];
-        
+
         if (!is_array($smartupgrades)) {
             $smartupgrades = [];
         }
-        
+
         /** @var array<string, mixed> $validatedSmartupgrades */
         $validatedSmartupgrades = $smartupgrades;
-        
+
         return new self(smartupgrades: $validatedSmartupgrades);
     }
 }

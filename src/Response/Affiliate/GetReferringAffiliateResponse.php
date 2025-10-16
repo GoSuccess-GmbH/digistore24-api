@@ -27,7 +27,7 @@ final class GetReferringAffiliateResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $affiliateId = $innerData['affiliate_id'] ?? null;
-        
+
         return new self(affiliateId: is_string($affiliateId) ? $affiliateId : null);
     }
 }

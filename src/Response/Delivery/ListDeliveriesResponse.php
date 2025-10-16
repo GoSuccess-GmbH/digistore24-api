@@ -33,14 +33,14 @@ final class ListDeliveriesResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $deliveries = $innerData['deliveries'] ?? [];
-        
+
         if (!is_array($deliveries)) {
             $deliveries = [];
         }
-        
+
         /** @var array<string, mixed> $validatedDeliveries */
         $validatedDeliveries = $deliveries;
-        
+
         return new self(deliveries: $validatedDeliveries);
     }
 }

@@ -33,14 +33,14 @@ final class ListPayoutsResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $payoutList = $innerData['payout_list'] ?? [];
-        
+
         if (!is_array($payoutList)) {
             $payoutList = [];
         }
-        
+
         /** @var array<string, mixed> $validatedPayoutList */
         $validatedPayoutList = $payoutList;
-        
+
         return new self(payoutList: $validatedPayoutList);
     }
 }

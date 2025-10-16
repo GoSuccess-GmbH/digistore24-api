@@ -61,14 +61,14 @@ final class RefundPartiallyResponse extends AbstractResponse
     {
         $result = $data['result'] ?? 'unknown';
         $responseData = $data['data'] ?? [];
-        
+
         if (!is_array($responseData)) {
             $responseData = [];
         }
-        
+
         /** @var array<string, mixed> $validatedData */
         $validatedData = $responseData;
-        
+
         return new self(
             result: is_string($result) ? $result : 'unknown',
             data: $validatedData,

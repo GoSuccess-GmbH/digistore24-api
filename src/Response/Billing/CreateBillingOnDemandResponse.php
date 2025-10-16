@@ -84,7 +84,7 @@ final class CreateBillingOnDemandResponse extends AbstractResponse
         $paymentStatusMsg = $data['payment_status_msg'] ?? '';
         $billingStatus = $data['billing_status'] ?? '';
         $billingStatusMsg = $data['billing_status_msg'] ?? '';
-        
+
         return new self(
             createdPurchaseId: is_string($createdPurchaseId) ? $createdPurchaseId : '',
             paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',

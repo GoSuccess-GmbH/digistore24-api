@@ -42,14 +42,14 @@ final class ValidateCouponCodeResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $couponData = $data['data'] ?? [];
-        
+
         if (!is_array($couponData)) {
             $couponData = [];
         }
-        
+
         /** @var array<string, mixed> $validatedCouponData */
         $validatedCouponData = $couponData;
-        
+
         $status = $validatedCouponData['status'] ?? '';
 
         return new self(

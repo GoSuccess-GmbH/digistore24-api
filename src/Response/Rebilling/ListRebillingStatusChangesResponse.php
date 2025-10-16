@@ -33,14 +33,14 @@ final class ListRebillingStatusChangesResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $statusChanges = $innerData['status_changes'] ?? [];
-        
+
         if (!is_array($statusChanges)) {
             $statusChanges = [];
         }
-        
+
         /** @var array<string, mixed> $validatedStatusChanges */
         $validatedStatusChanges = $statusChanges;
-        
+
         return new self(statusChanges: $validatedStatusChanges);
     }
 }

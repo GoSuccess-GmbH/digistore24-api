@@ -38,14 +38,14 @@ final class ValidateAffiliateResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $responseData = $data['data'] ?? [];
-        
+
         if (!is_array($responseData)) {
             $responseData = [];
         }
-        
+
         /** @var array<string, mixed> $validatedData */
         $validatedData = $responseData;
-        
+
         return new self(
             isValid: (bool)($innerData['is_valid'] ?? false),
             data: $validatedData,
