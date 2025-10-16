@@ -17,7 +17,7 @@ final class ListTransactionsRequest extends AbstractRequest
     /**
      * @param string|null $from Start date for transactions (format: YYYY-MM-DD)
      * @param string|null $to End date for transactions (format: YYYY-MM-DD)
-     * @param array|null $search Search criteria (buyer name, email, product, etc.)
+     * @param array<string, mixed>|null $search Search criteria (buyer name, email, product, etc.)
      * @param string|null $sortBy Field to sort by
      * @param string|null $sortOrder Sort order ('asc' or 'desc')
      * @param int|null $pageNo Page number for pagination

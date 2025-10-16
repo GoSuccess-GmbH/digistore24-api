@@ -35,7 +35,9 @@ final class CreateAddonChangePurchaseRequest extends AbstractRequest
         }
 
         foreach ($addons as $addon) {
-            if (! $addon instanceof AddonData) {
+            // Type check is technically redundant due to @param array<AddonData>
+            // but provides runtime safety
+            if (! ($addon instanceof AddonData)) {
                 throw new \InvalidArgumentException('All addons must be instances of AddonData');
             }
         }

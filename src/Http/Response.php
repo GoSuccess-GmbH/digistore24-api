@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Http;
 
-use GoSuccess\Digistore24\Enum\HttpStatusCode;
+use GoSuccess\Digistore24\Api\Enum\HttpStatusCode;
 
 /**
  * HTTP Response
@@ -23,7 +23,10 @@ final class Response
      * HTTP status code (typed enum, computed)
      */
     public ?HttpStatusCode $status {
-        get => HttpStatusCode::fromInt($this->statusCode);
+        get {
+            $enum = HttpStatusCode::fromInt($this->statusCode);
+            return $enum instanceof HttpStatusCode ? $enum : null;
+        }
     }
 
     /**
@@ -49,21 +52,36 @@ final class Response
      * Check if response was successful (2xx status code)
      */
     public bool $isSuccess {
-        get => $this->status?->isSuccess() ?? ($this->statusCode >= 200 && $this->statusCode < 300);
+        get {
+            $status = $this->status;
+            return $status instanceof HttpStatusCode && $status->isSuccess() 
+                ? true 
+                : ($this->statusCode >= 200 && $this->statusCode < 300);
+        }
     }
 
     /**
      * Check if response is a client error (4xx status code)
      */
     public bool $isClientError {
-        get => $this->status?->isClientError() ?? ($this->statusCode >= 400 && $this->statusCode < 500);
+        get {
+            $status = $this->status;
+            return $status instanceof HttpStatusCode && $status->isClientError() 
+                ? true 
+                : ($this->statusCode >= 400 && $this->statusCode < 500);
+        }
     }
 
     /**
      * Check if response is a server error (5xx status code)
      */
     public bool $isServerError {
-        get => $this->status?->isServerError() ?? ($this->statusCode >= 500 && $this->statusCode < 600);
+        get {
+            $status = $this->status;
+            return $status instanceof HttpStatusCode && $status->isServerError() 
+                ? true 
+                : ($this->statusCode >= 500 && $this->statusCode < 600);
+        }
     }
 
     /**

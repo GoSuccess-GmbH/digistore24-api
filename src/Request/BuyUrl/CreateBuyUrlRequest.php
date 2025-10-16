@@ -40,10 +40,12 @@ final class CreateBuyUrlRequest extends AbstractRequest
 
     public ?UrlsData $urls = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $placeholders = null;
 
     public ?SettingsData $settings = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $addons = null;
 
     public function getEndpoint(): string

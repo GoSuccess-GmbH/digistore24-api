@@ -16,7 +16,7 @@ final class UpdateUpsellsRequest extends AbstractRequest
 {
     /**
      * @param int $productId The unique identifier of the product
-     * @param array $data The upsell configuration (upsell products, order, conditions, etc.)
+     * @param array<string, mixed> $data The upsell configuration (upsell products, order, conditions, etc.)
      */
     public function __construct(private int $productId, private array $data)
     {
@@ -32,6 +32,9 @@ final class UpdateUpsellsRequest extends AbstractRequest
         return HttpMethod::POST;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return array_merge(['product_id' => $this->productId], $this->data);

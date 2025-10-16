@@ -19,7 +19,7 @@ final class UpdateBuyerRequest extends AbstractRequest
      * @param string|null $email New email address
      * @param string|null $firstName New first name
      * @param string|null $lastName New last name
-     * @param array|null $address New address data
+     * @param array<string, mixed>|null $address New address data
      */
     public function __construct(
         private string $buyerId,

@@ -35,12 +35,15 @@ final class DeleteBuyUrlRequest extends AbstractRequest
         ];
     }
 
+    /**
+     * @return array<string, array<string>>
+     */
     public function validate(): array
     {
         $errors = [];
 
         if ($this->id <= 0) {
-            $errors[] = 'Buy URL ID must be greater than 0';
+            $errors['id'] = ['Buy URL ID must be greater than 0'];
         }
 
         return $errors;

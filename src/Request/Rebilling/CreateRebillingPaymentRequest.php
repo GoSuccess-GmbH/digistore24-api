@@ -16,7 +16,7 @@ final class CreateRebillingPaymentRequest extends AbstractRequest
 {
     /**
      * @param string $purchaseId The unique identifier of the purchase
-     * @param array $data Optional payment data (amount, date, etc.)
+     * @param array<string, mixed> $data Optional payment data (amount, date, etc.)
      */
     public function __construct(private string $purchaseId, private array $data = [])
     {
@@ -32,6 +32,9 @@ final class CreateRebillingPaymentRequest extends AbstractRequest
         return HttpMethod::POST;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return array_merge(['purchase_id' => $this->purchaseId], $this->data);
