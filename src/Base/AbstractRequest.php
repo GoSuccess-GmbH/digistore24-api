@@ -104,7 +104,27 @@ abstract class AbstractRequest implements RequestInterface
             return [];
         }
 
-        return Validator::validate($this->toArray(), $rules);
+        // Convert complex rules format to simple string format for Validator
+        /** @var array<string, string|array<int, string>> $simpleRules */
+        $simpleRules = [];
+        foreach ($rules as $field => $ruleConfig) {
+            if (is_string($ruleConfig)) {
+                $simpleRules[$field] = $ruleConfig;
+            } elseif (is_array($ruleConfig)) {
+                // Handle complex rule format with 'rule' key
+                $simpleRules[$field] = $ruleConfig['rule'];
+            }
+        }
+
+        $validationErrors = Validator::validate($this->toArray(), $simpleRules);
+
+        // Convert array<string, string> to array<string, string[]> for interface compatibility
+        $errors = [];
+        foreach ($validationErrors as $field => $error) {
+            $errors[$field] = [$error];
+        }
+
+        return $errors;
     }
 
     /**
@@ -112,7 +132,7 @@ abstract class AbstractRequest implements RequestInterface
      *
      * Override in subclasses to define validation rules.
      *
-     * @return array<string, array{rule: string, params?: array<mixed>, message?: string}>
+     * @return array<string, string|array{rule: string, params?: array<mixed>, message?: string}>
      */
     protected function rules(): array
     {

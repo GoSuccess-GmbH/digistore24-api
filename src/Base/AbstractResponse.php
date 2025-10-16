@@ -31,9 +31,17 @@ abstract class AbstractResponse implements ResponseInterface
     {
         // Digistore24 API wraps data in a "data" field
         // Example: {"api_version": "1.2", "result": "success", "data": {...}}
-        $data = $response->data['data'] ?? $response->data;
+        $responseData = $response->data['data'] ?? $response->data;
 
-        $instance = static::fromArray($data, $response);
+        if (!is_array($responseData)) {
+            $responseData = [];
+        }
+
+        // Ensure string keys for array<string, mixed>
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $responseData;
+
+        $instance = static::fromArray($validatedData, $response);
         $instance->rawResponse = $response;
 
         return $instance;
@@ -82,7 +90,8 @@ abstract class AbstractResponse implements ResponseInterface
      */
     protected static function extractResult(array $data, ?Response $rawResponse, string $default = 'unknown'): string
     {
-        return (string)($rawResponse?->data['result'] ?? $data['result'] ?? $default);
+        $result = $rawResponse?->data['result'] ?? $data['result'] ?? $default;
+        return is_string($result) ? $result : $default;
     }
 
     /**
@@ -97,7 +106,15 @@ abstract class AbstractResponse implements ResponseInterface
     protected static function extractInnerData(array $data): array
     {
         // If data has a nested 'data' field, use that, otherwise use data directly
-        return $data['data'] ?? $data;
+        $innerData = $data['data'] ?? $data;
+
+        if (!is_array($innerData)) {
+            return [];
+        }
+
+        // Ensure string keys
+        /** @var array<string, mixed> */
+        return $innerData;
     }
 
     /**
@@ -123,9 +140,19 @@ abstract class AbstractResponse implements ResponseInterface
 
         // Convert array items to objects
         return array_map(
-            fn ($item) => is_subclass_of($itemClass, self::class)
-                ? $itemClass::fromArray($item, $rawResponse)
-                : $item,
+            function ($item) use ($itemClass, $rawResponse) {
+                if (!is_array($item)) {
+                    return $item;
+                }
+
+                // Ensure string keys for array<string, mixed>
+                /** @var array<string, mixed> $validatedItem */
+                $validatedItem = $item;
+
+                return is_subclass_of($itemClass, self::class)
+                    ? $itemClass::fromArray($validatedItem, $rawResponse)
+                    : $validatedItem;
+            },
             $value,
         );
     }
