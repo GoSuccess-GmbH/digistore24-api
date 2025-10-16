@@ -8,34 +8,6 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
- * E-Ticket Location
- *
- * Represents an e-ticket location.
- */
-final class EticketLocation
-{
-    public function __construct(
-        public readonly string $locationId,
-        public readonly string $locationName,
-        public readonly ?string $address,
-        public readonly ?string $city,
-        public readonly ?string $country,
-    ) {
-    }
-
-    public static function fromArray(array $data, ?Response $rawResponse = null): static
-    {
-        return new self(
-            locationId: $data['location_id'] ?? '',
-            locationName: $data['location_name'] ?? '',
-            address: $data['address'] ?? null,
-            city: $data['city'] ?? null,
-            country: $data['country'] ?? null,
-        );
-    }
-}
-
-/**
  * List E-Ticket Locations Response
  *
  * Response containing a list of e-ticket locations.
