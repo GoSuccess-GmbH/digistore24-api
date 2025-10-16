@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Http;
 
-use GoSuccess\Digistore24\Api\Enum\HttpStatusCode;
+use GoSuccess\Digistore24\Enum\HttpStatusCode;
 
 /**
  * HTTP Response
