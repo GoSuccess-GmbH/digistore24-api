@@ -14,10 +14,16 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetAffiliateCommissionResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $commission
+     */
     public function __construct(private array $commission)
     {
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getCommission(): array
     {
         return $this->commission;
@@ -26,7 +32,15 @@ final class GetAffiliateCommissionResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
+        $commission = $innerData['commission'] ?? [];
+        
+        if (!is_array($commission)) {
+            $commission = [];
+        }
+        
+        /** @var array<string, mixed> $validatedCommission */
+        $validatedCommission = $commission;
 
-        return new self(commission: $innerData['commission'] ?? []);
+        return new self(commission: $validatedCommission);
     }
 }

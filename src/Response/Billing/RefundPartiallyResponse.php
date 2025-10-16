@@ -59,9 +59,19 @@ final class RefundPartiallyResponse extends AbstractResponse
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $result = $data['result'] ?? 'unknown';
+        $responseData = $data['data'] ?? [];
+        
+        if (!is_array($responseData)) {
+            $responseData = [];
+        }
+        
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $responseData;
+        
         return new self(
-            result: (string)($data['result'] ?? 'unknown'),
-            data: $data['data'] ?? [],
+            result: is_string($result) ? $result : 'unknown',
+            data: $validatedData,
         );
     }
 }

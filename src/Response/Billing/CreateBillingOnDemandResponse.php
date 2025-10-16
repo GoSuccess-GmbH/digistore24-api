@@ -79,12 +79,18 @@ final class CreateBillingOnDemandResponse extends AbstractResponse
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $createdPurchaseId = $data['created_purchase_id'] ?? '';
+        $paymentStatus = $data['payment_status'] ?? '';
+        $paymentStatusMsg = $data['payment_status_msg'] ?? '';
+        $billingStatus = $data['billing_status'] ?? '';
+        $billingStatusMsg = $data['billing_status_msg'] ?? '';
+        
         return new self(
-            createdPurchaseId: (string)$data['created_purchase_id'],
-            paymentStatus: (string)$data['payment_status'],
-            paymentStatusMsg: (string)$data['payment_status_msg'],
-            billingStatus: (string)$data['billing_status'],
-            billingStatusMsg: (string)$data['billing_status_msg'],
+            createdPurchaseId: is_string($createdPurchaseId) ? $createdPurchaseId : '',
+            paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',
+            paymentStatusMsg: is_string($paymentStatusMsg) ? $paymentStatusMsg : '',
+            billingStatus: is_string($billingStatus) ? $billingStatus : '',
+            billingStatusMsg: is_string($billingStatusMsg) ? $billingStatusMsg : '',
         );
     }
 }

@@ -14,6 +14,9 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ValidateAffiliateResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $data
+     */
     public function __construct(private bool $isValid, private array $data)
     {
     }
@@ -23,6 +26,9 @@ final class ValidateAffiliateResponse extends AbstractResponse
         return $this->isValid;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getData(): array
     {
         return $this->data;
@@ -31,10 +37,18 @@ final class ValidateAffiliateResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
+        $responseData = $data['data'] ?? [];
         
-return new self(
+        if (!is_array($responseData)) {
+            $responseData = [];
+        }
+        
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $responseData;
+        
+        return new self(
             isValid: (bool)($innerData['is_valid'] ?? false),
-            data: $data['data'] ?? [],
+            data: $validatedData,
         );
     }
 }

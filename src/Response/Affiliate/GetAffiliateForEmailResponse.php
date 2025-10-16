@@ -26,7 +26,8 @@ final class GetAffiliateForEmailResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
+        $affiliateId = $innerData['affiliate_id'] ?? null;
         
-return new self(affiliateId: $innerData['affiliate_id'] ?? null);
+        return new self(affiliateId: is_string($affiliateId) ? $affiliateId : null);
     }
 }

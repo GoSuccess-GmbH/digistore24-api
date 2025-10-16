@@ -14,6 +14,9 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ValidateCouponCodeResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $data
+     */
     public function __construct(private string $status, private array $data)
     {
     }
@@ -23,6 +26,9 @@ final class ValidateCouponCodeResponse extends AbstractResponse
         return $this->status;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getData(): array
     {
         return $this->data;
@@ -36,10 +42,19 @@ final class ValidateCouponCodeResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $couponData = $data['data'] ?? [];
+        
+        if (!is_array($couponData)) {
+            $couponData = [];
+        }
+        
+        /** @var array<string, mixed> $validatedCouponData */
+        $validatedCouponData = $couponData;
+        
+        $status = $validatedCouponData['status'] ?? '';
 
         return new self(
-            status: (string)($couponData['status'] ?? ''),
-            data: $couponData,
+            status: is_string($status) ? $status : '',
+            data: $validatedCouponData,
         );
     }
 }
