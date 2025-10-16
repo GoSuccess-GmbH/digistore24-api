@@ -28,7 +28,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ApiClient implements HttpClientInterface
 {
-    private const string API_VERSION = '1.0';
+    private const string API_VERSION = '1.2';
 
     private const string USER_AGENT = 'GoSuccess-Digistore24-API-Client/2.0';
 
