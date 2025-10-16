@@ -88,8 +88,6 @@ This file is ignored by git, so your local paths won't be committed.
 
 Ensure PHP 8.4 is in your system PATH and VS Code will use it automatically.
 
-See [`.vscode/README.md`](../.vscode/README.md) for detailed configuration.
-
 #### 3. Settings are Pre-configured
 
    The `.vscode/settings.json` file contains:
