@@ -71,6 +71,29 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
+     * Extract result field from response data or rawResponse
+     * 
+     * Handles both direct fromArray() calls (where $data contains 'result')
+     * and fromResponse() calls (where result is in rawResponse->data['result'])
+     */
+    protected static function extractResult(array $data, ?Response $rawResponse, string $default = 'unknown'): string
+    {
+        return (string)($rawResponse?->data['result'] ?? $data['result'] ?? $default);
+    }
+
+    /**
+     * Extract inner data array, handling nested 'data' field
+     * 
+     * When fromArray() is called directly (tests), $data may contain: {'result': ..., 'data': {...}}
+     * When called via fromResponse(), $data is already the inner data object
+     */
+    protected static function extractInnerData(array $data): array
+    {
+        // If data has a nested 'data' field, use that, otherwise use data directly
+        return $data['data'] ?? $data;
+    }
+
+    /**
      * Get array of values with type conversion
      *
      * @param array<string, mixed> $data

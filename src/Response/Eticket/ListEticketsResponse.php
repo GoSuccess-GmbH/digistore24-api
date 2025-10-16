@@ -26,10 +26,10 @@ final class ListEticketsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $innerData = self::extractInnerData($data);
         $tickets = [];
 
-        // Support both direct and nested data structures
-        $ticketsData = $data['data']['tickets'] ?? $data['tickets'] ?? [];
+        $ticketsData = $innerData['tickets'] ?? [];
 
         if (is_array($ticketsData)) {
             foreach ($ticketsData as $ticket) {
@@ -39,7 +39,7 @@ final class ListEticketsResponse extends AbstractResponse
 
         return new self(
             tickets: $tickets,
-            totalCount: (int)($data['data']['total_count'] ?? $data['total_count'] ?? count($tickets)),
+            totalCount: (int)($innerData['total_count'] ?? count($tickets)),
         );
     }
 }

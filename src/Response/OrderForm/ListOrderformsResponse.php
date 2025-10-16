@@ -25,6 +25,8 @@ final class ListOrderformsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(orderforms: $data['data']['orderforms'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(orderforms: $innerData['orderforms'] ?? []);
     }
 }

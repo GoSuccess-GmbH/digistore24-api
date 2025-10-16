@@ -30,8 +30,10 @@ final class ValidateAffiliateResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(
-            isValid: (bool)($data['data']['is_valid'] ?? false),
+        $innerData = self::extractInnerData($data);
+        
+return new self(
+            isValid: (bool)($innerData['is_valid'] ?? false),
             data: $data['data'] ?? [],
         );
     }

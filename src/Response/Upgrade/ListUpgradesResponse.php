@@ -25,6 +25,8 @@ final class ListUpgradesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(upgrades: $data['data']['upgrades'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(upgrades: $innerData['upgrades'] ?? []);
     }
 }

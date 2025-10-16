@@ -36,7 +36,7 @@ final class IpnSetupResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         return new self(
-            result: (string)($data['result'] ?? ''),
+            result: self::extractResult($data, $rawResponse),
             data: $data['data'] ?? [],
         );
     }

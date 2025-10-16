@@ -25,6 +25,8 @@ final class CopyProductResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(productId: (int)($data['data']['product_id'] ?? 0));
+        $innerData = self::extractInnerData($data);
+        
+return new self(productId: (int)($innerData['product_id'] ?? 0));
     }
 }

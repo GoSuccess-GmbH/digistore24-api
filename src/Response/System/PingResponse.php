@@ -50,10 +50,11 @@ final class PingResponse extends AbstractResponse
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        // Note: $data is already the inner "data" object extracted by AbstractResponse::fromResponse()
+        $innerData = self::extractInnerData($data);
+
         return new self(
-            result: (string)($rawResponse?->data['result'] ?? 'unknown'),
-            serverTime: (string)($data['server_time'] ?? ''),
+            result: self::extractResult($data, $rawResponse),
+            serverTime: (string)($innerData['server_time'] ?? ''),
         );
     }
 }

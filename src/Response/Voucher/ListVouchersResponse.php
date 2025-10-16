@@ -25,6 +25,8 @@ final class ListVouchersResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(vouchers: $data['data']['vouchers'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(vouchers: $innerData['vouchers'] ?? []);
     }
 }

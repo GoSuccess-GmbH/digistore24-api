@@ -25,6 +25,8 @@ final class GetUpsellsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(upsells: $data['data']['upsells'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(upsells: $innerData['upsells'] ?? []);
     }
 }

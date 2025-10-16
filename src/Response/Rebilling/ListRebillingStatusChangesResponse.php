@@ -25,6 +25,8 @@ final class ListRebillingStatusChangesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(statusChanges: $data['data']['status_changes'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(statusChanges: $innerData['status_changes'] ?? []);
     }
 }

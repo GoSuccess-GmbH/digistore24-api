@@ -24,10 +24,10 @@ final class ListAccountAccessResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $innerData = self::extractInnerData($data);
         $accesses = [];
 
-        // Support both direct and nested data structures
-        $accessData = $data['data']['accesses'] ?? $data['accesses'] ?? [];
+        $accessData = $innerData['accesses'] ?? [];
 
         if (is_array($accessData)) {
             foreach ($accessData as $entry) {

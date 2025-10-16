@@ -25,6 +25,8 @@ final class ListMarketplaceEntriesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(entries: $data['data']['entries'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(entries: $innerData['entries'] ?? []);
     }
 }

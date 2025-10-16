@@ -25,6 +25,8 @@ final class ListServiceProofRequestsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(serviceProofRequests: $data['data']['service_proof_requests'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(serviceProofRequests: $innerData['service_proof_requests'] ?? []);
     }
 }

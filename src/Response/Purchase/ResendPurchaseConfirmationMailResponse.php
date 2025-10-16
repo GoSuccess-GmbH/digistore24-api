@@ -35,9 +35,11 @@ final class ResendPurchaseConfirmationMailResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(
-            modified: (string)($data['data']['modified'] ?? 'N'),
-            note: $data['data']['note'] ?? null,
+        $innerData = self::extractInnerData($data);
+        
+return new self(
+            modified: (string)($innerData['modified'] ?? 'N'),
+            note: $innerData['note'] ?? null,
         );
     }
 }

@@ -25,6 +25,8 @@ final class GetPurchaseDownloadsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(downloads: $data['data']['downloads'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(downloads: $innerData['downloads'] ?? []);
     }
 }

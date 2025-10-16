@@ -25,6 +25,8 @@ final class ListProductGroupsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(productGroups: $data['data']['product_groups'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(productGroups: $innerData['product_groups'] ?? []);
     }
 }

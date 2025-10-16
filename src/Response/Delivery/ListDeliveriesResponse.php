@@ -25,6 +25,8 @@ final class ListDeliveriesResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(deliveries: $data['data']['deliveries'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(deliveries: $innerData['deliveries'] ?? []);
     }
 }

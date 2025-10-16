@@ -25,6 +25,8 @@ final class ListPaymentPlansResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(paymentPlans: $data['data']['payment_plans'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(paymentPlans: $innerData['payment_plans'] ?? []);
     }
 }

@@ -25,6 +25,8 @@ final class GetAffiliateCommissionResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(commission: $data['data']['commission'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+        return new self(commission: $innerData['commission'] ?? []);
     }
 }

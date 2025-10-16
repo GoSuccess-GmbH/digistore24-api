@@ -25,7 +25,8 @@ final class GetUserInfoResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        // Note: $data is already the inner "data" object extracted by AbstractResponse::fromResponse()
-        return new self(userInfo: $data);
+        $innerData = self::extractInnerData($data);
+        
+        return new self(userInfo: $innerData);
     }
 }

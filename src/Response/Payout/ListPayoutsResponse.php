@@ -25,6 +25,8 @@ final class ListPayoutsResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(payoutList: $data['data']['payout_list'] ?? []);
+        $innerData = self::extractInnerData($data);
+        
+return new self(payoutList: $innerData['payout_list'] ?? []);
     }
 }
