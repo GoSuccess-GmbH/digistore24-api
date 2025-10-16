@@ -33,12 +33,12 @@ final class BuyerResource extends AbstractResource
     /**
      * List all buyers with optional filters.
      *
-     * @param ListBuyersRequest $request Request with optional filter criteria
+     * @param ListBuyersRequest|null $request Optional request with filter criteria
      * @return ListBuyersResponse Response with list of buyers
      */
-    public function list(ListBuyersRequest $request): ListBuyersResponse
+    public function list(?ListBuyersRequest $request = null): ListBuyersResponse
     {
-        return $this->executeTyped($request, ListBuyersResponse::class);
+        return $this->executeTyped($request ?? new ListBuyersRequest(), ListBuyersResponse::class);
     }
 
     /**

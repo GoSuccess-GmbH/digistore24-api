@@ -44,11 +44,11 @@ final class ServiceProofResource extends AbstractResource
     /**
      * List all service proof requests with optional filters.
      *
-     * @param ListServiceProofRequestsRequest $request Request with optional filter criteria
+     * @param ListServiceProofRequestsRequest|null $request Optional request with filter criteria
      * @return ListServiceProofRequestsResponse Response with list of service proof requests
      */
-    public function list(ListServiceProofRequestsRequest $request): ListServiceProofRequestsResponse
+    public function list(?ListServiceProofRequestsRequest $request = null): ListServiceProofRequestsResponse
     {
-        return $this->executeTyped($request, ListServiceProofRequestsResponse::class);
+        return $this->executeTyped($request ?? new ListServiceProofRequestsRequest(), ListServiceProofRequestsResponse::class);
     }
 }

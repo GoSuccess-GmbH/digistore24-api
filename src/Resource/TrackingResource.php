@@ -26,13 +26,13 @@ final class TrackingResource extends AbstractResource
      *
      * @link https://digistore24.com/api/docs/paths/renderJsTrackingCode.yaml OpenAPI Specification
      *
-     * @param RenderJsTrackingCodeRequest $request The render JS tracking code request
+     * @param RenderJsTrackingCodeRequest|null $request Optional render JS tracking code request
      * @throws ApiException
      * @return RenderJsTrackingCodeResponse The response with JavaScript tracking code
      */
-    public function renderJsCode(RenderJsTrackingCodeRequest $request): RenderJsTrackingCodeResponse
+    public function renderJsCode(?RenderJsTrackingCodeRequest $request = null): RenderJsTrackingCodeResponse
     {
-        return $this->executeTyped($request, RenderJsTrackingCodeResponse::class);
+        return $this->executeTyped($request ?? new RenderJsTrackingCodeRequest(), RenderJsTrackingCodeResponse::class);
     }
 
     /**

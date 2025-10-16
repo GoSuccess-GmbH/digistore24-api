@@ -77,14 +77,14 @@ final class PurchaseResource extends AbstractResource
      *
      * Retrieves a list of all purchases, optionally filtered by product, buyer, or date range.
      *
-     * @param ListPurchasesRequest $request The list purchases request
+     * @param ListPurchasesRequest|null $request Optional list purchases request with filters
      * @throws ApiException
      * @return ListPurchasesResponse The response with purchases list
      * @link https://digistore24.com/api/docs/paths/listPurchases.yaml
      */
-    public function list(ListPurchasesRequest $request): ListPurchasesResponse
+    public function list(?ListPurchasesRequest $request = null): ListPurchasesResponse
     {
-        return $this->executeTyped($request, ListPurchasesResponse::class);
+        return $this->executeTyped($request ?? new ListPurchasesRequest(), ListPurchasesResponse::class);
     }
 
     /**

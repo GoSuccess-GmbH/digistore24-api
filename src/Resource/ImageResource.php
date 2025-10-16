@@ -22,14 +22,14 @@ use GoSuccess\Digistore24\Api\Response\Image\ListImagesResponse;
  */
 final class ImageResource extends AbstractResource
 {
-    /**
-     * Create an image
+        /**
+     * Upload a new image
      *
-     * Creates an image on Digistore24 by copying from a provided URL.
+     * Uploads a new image and assigns it to a specific usage context (e.g., product image, logo, etc.).
      *
      * @param CreateImageRequest $request The create image request
      * @throws ApiException
-     * @return CreateImageResponse The response with image ID and URL
+     * @return CreateImageResponse The response with image details
      */
     public function create(CreateImageRequest $request): CreateImageResponse
     {
@@ -55,13 +55,13 @@ final class ImageResource extends AbstractResource
      *
      * Retrieves a list of all images, optionally filtered by usage type.
      *
-     * @param ListImagesRequest $request The list images request
+     * @param ListImagesRequest|null $request Optional list images request with filters
      * @throws ApiException
      * @return ListImagesResponse The response with image list
      */
-    public function list(ListImagesRequest $request): ListImagesResponse
+    public function list(?ListImagesRequest $request = null): ListImagesResponse
     {
-        return $this->executeTyped($request, ListImagesResponse::class);
+        return $this->executeTyped($request ?? new ListImagesRequest(), ListImagesResponse::class);
     }
 
     /**

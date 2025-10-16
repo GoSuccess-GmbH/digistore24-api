@@ -57,11 +57,11 @@ final class RebillingResource extends AbstractResource
     /**
      * List rebilling status changes with optional filters.
      *
-     * @param ListRebillingStatusChangesRequest $request Request with optional filter criteria
+     * @param ListRebillingStatusChangesRequest|null $request Optional request with filter criteria
      * @return ListRebillingStatusChangesResponse Response with list of status changes
      */
-    public function listStatusChanges(ListRebillingStatusChangesRequest $request): ListRebillingStatusChangesResponse
+    public function listStatusChanges(?ListRebillingStatusChangesRequest $request = null): ListRebillingStatusChangesResponse
     {
-        return $this->executeTyped($request, ListRebillingStatusChangesResponse::class);
+        return $this->executeTyped($request ?? new ListRebillingStatusChangesRequest(), ListRebillingStatusChangesResponse::class);
     }
 }

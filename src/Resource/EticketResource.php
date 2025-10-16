@@ -59,13 +59,13 @@ final class EticketResource extends AbstractResource
      *
      * Retrieves a list of e-tickets, optionally filtered by product, location, or date range.
      *
-     * @param ListEticketsRequest $request The list e-tickets request
+     * @param ListEticketsRequest|null $request Optional list e-tickets request with filters
      * @throws ApiException
      * @return ListEticketsResponse The response with e-ticket list
      */
-    public function list(ListEticketsRequest $request): ListEticketsResponse
+    public function list(?ListEticketsRequest $request = null): ListEticketsResponse
     {
-        return $this->executeTyped($request, ListEticketsResponse::class);
+        return $this->executeTyped($request ?? new ListEticketsRequest(), ListEticketsResponse::class);
     }
 
     /**
@@ -88,13 +88,13 @@ final class EticketResource extends AbstractResource
      *
      * Retrieves the e-ticket configuration settings for the account.
      *
-     * @param GetEticketSettingsRequest $request The get e-ticket settings request
+     * @param GetEticketSettingsRequest|null $request Optional get e-ticket settings request
      * @throws ApiException
      * @return GetEticketSettingsResponse The response with e-ticket settings
      */
-    public function getSettings(GetEticketSettingsRequest $request): GetEticketSettingsResponse
+    public function getSettings(?GetEticketSettingsRequest $request = null): GetEticketSettingsResponse
     {
-        return $this->executeTyped($request, GetEticketSettingsResponse::class);
+        return $this->executeTyped($request ?? new GetEticketSettingsRequest(), GetEticketSettingsResponse::class);
     }
 
     /**
@@ -102,13 +102,13 @@ final class EticketResource extends AbstractResource
      *
      * Retrieves all available e-ticket locations.
      *
-     * @param ListEticketLocationsRequest $request The list e-ticket locations request
+     * @param ListEticketLocationsRequest|null $request Optional list e-ticket locations request
      * @throws ApiException
      * @return ListEticketLocationsResponse The response with locations list
      */
-    public function listLocations(ListEticketLocationsRequest $request): ListEticketLocationsResponse
+    public function listLocations(?ListEticketLocationsRequest $request = null): ListEticketLocationsResponse
     {
-        return $this->executeTyped($request, ListEticketLocationsResponse::class);
+        return $this->executeTyped($request ?? new ListEticketLocationsRequest(), ListEticketLocationsResponse::class);
     }
 
     /**
@@ -116,12 +116,12 @@ final class EticketResource extends AbstractResource
      *
      * Retrieves all available e-ticket templates.
      *
-     * @param ListEticketTemplatesRequest $request The list e-ticket templates request
+     * @param ListEticketTemplatesRequest|null $request Optional list e-ticket templates request
      * @throws ApiException
      * @return ListEticketTemplatesResponse The response with templates list
      */
-    public function listTemplates(ListEticketTemplatesRequest $request): ListEticketTemplatesResponse
+    public function listTemplates(?ListEticketTemplatesRequest $request = null): ListEticketTemplatesResponse
     {
-        return $this->executeTyped($request, ListEticketTemplatesResponse::class);
+        return $this->executeTyped($request ?? new ListEticketTemplatesRequest(), ListEticketTemplatesResponse::class);
     }
 }

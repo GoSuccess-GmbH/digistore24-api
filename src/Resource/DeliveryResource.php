@@ -44,11 +44,11 @@ final class DeliveryResource extends AbstractResource
     /**
      * List all deliveries with optional filters.
      *
-     * @param ListDeliveriesRequest $request Request with optional filter criteria
+     * @param ListDeliveriesRequest|null $request Optional request with filter criteria
      * @return ListDeliveriesResponse Response with list of deliveries
      */
-    public function list(ListDeliveriesRequest $request): ListDeliveriesResponse
+    public function list(?ListDeliveriesRequest $request = null): ListDeliveriesResponse
     {
-        return $this->executeTyped($request, ListDeliveriesResponse::class);
+        return $this->executeTyped($request ?? new ListDeliveriesRequest(), ListDeliveriesResponse::class);
     }
 }

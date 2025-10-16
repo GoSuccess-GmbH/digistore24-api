@@ -24,44 +24,44 @@ final class StatisticsResource extends AbstractResource
     /**
      * Get affiliate toplist statistics.
      *
-     * @param StatsAffiliateToplistRequest $request Request with filter criteria
+     * @param StatsAffiliateToplistRequest|null $request Optional request with filter criteria
      * @return StatsAffiliateToplistResponse Response with top affiliates
      */
-    public function affiliateToplist(StatsAffiliateToplistRequest $request): StatsAffiliateToplistResponse
+    public function affiliateToplist(?StatsAffiliateToplistRequest $request = null): StatsAffiliateToplistResponse
     {
-        return $this->executeTyped($request, StatsAffiliateToplistResponse::class);
+        return $this->executeTyped($request ?? new StatsAffiliateToplistRequest(), StatsAffiliateToplistResponse::class);
     }
 
     /**
      * Get daily sales amounts.
      *
-     * @param StatsDailyAmountsRequest $request Request with date range
+     * @param StatsDailyAmountsRequest|null $request Optional request with date range
      * @return StatsDailyAmountsResponse Response with daily revenue data
      */
-    public function dailyAmounts(StatsDailyAmountsRequest $request): StatsDailyAmountsResponse
+    public function dailyAmounts(?StatsDailyAmountsRequest $request = null): StatsDailyAmountsResponse
     {
-        return $this->executeTyped($request, StatsDailyAmountsResponse::class);
+        return $this->executeTyped($request ?? new StatsDailyAmountsRequest(), StatsDailyAmountsResponse::class);
     }
 
     /**
      * Get detailed sales statistics.
      *
-     * @param StatsSalesRequest $request Request with filter criteria
+     * @param StatsSalesRequest|null $request Optional request with filter criteria
      * @return StatsSalesResponse Response with sales details
      */
-    public function sales(StatsSalesRequest $request): StatsSalesResponse
+    public function sales(?StatsSalesRequest $request = null): StatsSalesResponse
     {
-        return $this->executeTyped($request, StatsSalesResponse::class);
+        return $this->executeTyped($request ?? new StatsSalesRequest(), StatsSalesResponse::class);
     }
 
     /**
      * Get sales summary statistics.
      *
-     * @param StatsSalesSummaryRequest $request Request with filter criteria
+     * @param StatsSalesSummaryRequest|null $request Optional request with filter criteria
      * @return StatsSalesSummaryResponse Response with aggregated sales data
      */
-    public function salesSummary(StatsSalesSummaryRequest $request): StatsSalesSummaryResponse
+    public function salesSummary(?StatsSalesSummaryRequest $request = null): StatsSalesSummaryResponse
     {
-        return $this->executeTyped($request, StatsSalesSummaryResponse::class);
+        return $this->executeTyped($request ?? new StatsSalesSummaryRequest(), StatsSalesSummaryResponse::class);
     }
 }
