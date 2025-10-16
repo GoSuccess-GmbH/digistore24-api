@@ -90,13 +90,9 @@ final class Validator
     }
 
     /**
-     * Validate array with rules
+     * Validate data against rules
      *
-     * @param array $data Data to validate
-     * @param array $rules Validation rules
-     * @return array Validation errors (empty if valid)
-     *
-     * Supported rules:
+     * Rules syntax:
      * - 'required': Field must be present and not empty
      * - 'email': Field must be valid email
      * - 'url': Field must be valid URL
@@ -105,16 +101,20 @@ final class Validator
      * - 'integer': Field must be integer
      * - 'numeric': Field must be numeric
      * - 'array': Field must be array
+     *
+     * @param array<string, mixed> $data Data to validate
+     * @param array<string, string|array<int, string>> $rules Validation rules
+     * @return array<string, string> Array of field => error message
      */
     public static function validate(array $data, array $rules): array
     {
         $errors = [];
 
         foreach ($rules as $field => $fieldRules) {
-            $fieldRules = is_string($fieldRules) ? explode('|', $fieldRules) : $fieldRules;
+            $fieldRulesArray = is_string($fieldRules) ? explode('|', $fieldRules) : $fieldRules;
             $value = $data[$field] ?? null;
 
-            foreach ($fieldRules as $rule) {
+            foreach ($fieldRulesArray as $rule) {
                 $ruleParts = explode(':', $rule, 2);
                 $ruleName = $ruleParts[0];
                 $ruleParam = $ruleParts[1] ?? null;
@@ -128,9 +128,7 @@ final class Validator
         }
 
         return $errors;
-    }
-
-    /**
+    }    /**
      * Validate single rule
      *
      * @param string $field Field name
@@ -149,13 +147,19 @@ final class Validator
                 break;
 
             case 'email':
-                if ($value !== null && ! self::isEmail((string)$value)) {
+                if ($value !== null && !is_string($value)) {
+                    return "The {$field} field must be a string";
+                }
+                if ($value !== null && ! self::isEmail($value)) {
                     return "The {$field} field must be a valid email address";
                 }
                 break;
 
             case 'url':
-                if ($value !== null && ! self::isUrl((string)$value)) {
+                if ($value !== null && !is_string($value)) {
+                    return "The {$field} field must be a string";
+                }
+                if ($value !== null && ! self::isUrl($value)) {
                     return "The {$field} field must be a valid URL";
                 }
                 break;
@@ -179,8 +183,10 @@ final class Validator
                 break;
 
             case 'integer':
-                if ($value !== null && ! is_int($value) && ! ctype_digit((string)$value)) {
-                    return "The {$field} field must be an integer";
+                if ($value !== null && !is_int($value)) {
+                    if (!is_string($value) || !ctype_digit($value)) {
+                        return "The {$field} field must be an integer";
+                    }
                 }
                 break;
 

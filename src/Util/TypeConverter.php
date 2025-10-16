@@ -131,7 +131,11 @@ final class TypeConverter
         }
 
         if (is_int($value)) {
-            return new DateTimeImmutable()->setTimestamp($value);
+            try {
+                return (new DateTimeImmutable())->setTimestamp($value);
+            } catch (\Exception) {
+                return $default;
+            }
         }
 
         if (is_string($value)) {
@@ -149,8 +153,8 @@ final class TypeConverter
      * Convert value to array
      *
      * @param mixed $value Value to convert
-     * @param array|null $default Default value if conversion fails
-     * @return array|null
+     * @param array<int|string, mixed>|null $default Default value if conversion fails
+     * @return array<int|string, mixed>|null
      */
     public static function toArray(mixed $value, ?array $default = null): ?array
     {
