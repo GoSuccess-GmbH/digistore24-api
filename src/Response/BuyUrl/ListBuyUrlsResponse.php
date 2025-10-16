@@ -31,14 +31,23 @@ final readonly class BuyUrlListItem
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $id = TypeConverter::toInt($data['id']);
+        $productId = TypeConverter::toInt($data['product_id'] ?? null);
+        $url = $data['url'] ?? '';
+        $createdAt = TypeConverter::toDateTime($data['created_at'] ?? null);
+        $modifiedAt = TypeConverter::toDateTime($data['modified_at'] ?? null);
+
         return new self(
-            id: TypeConverter::toInt($data['id']) ?? 0,
-            productId: TypeConverter::toInt($data['product_id'] ?? null),
-            url: (string)($data['url'] ?? ''),
-            createdAt: TypeConverter::toDateTime($data['created_at'] ?? null),
-            modifiedAt: TypeConverter::toDateTime($data['modified_at'] ?? null),
+            id: is_int($id) ? $id : 0,
+            productId: is_int($productId) ? $productId : null,
+            url: is_string($url) ? $url : '',
+            createdAt: $createdAt,
+            modifiedAt: $modifiedAt,
         );
     }
 }
@@ -63,7 +72,12 @@ final class ListBuyUrlsResponse extends AbstractResponse
         $items = [];
         if (isset($data['items']) && is_array($data['items'])) {
             foreach ($data['items'] as $itemData) {
-                $items[] = BuyUrlListItem::fromArray($itemData);
+                if (!is_array($itemData)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $validatedItemData */
+                $validatedItemData = $itemData;
+                $items[] = BuyUrlListItem::fromArray($validatedItemData);
             }
         }
 

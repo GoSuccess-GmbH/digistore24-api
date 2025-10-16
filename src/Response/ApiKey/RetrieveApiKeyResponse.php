@@ -26,7 +26,8 @@ final class RetrieveApiKeyResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
+        $apiKey = $innerData['api_key'] ?? '';
         
-return new self(apiKey: (string)($innerData['api_key'] ?? ''));
+        return new self(apiKey: is_string($apiKey) ? $apiKey : '');
     }
 }

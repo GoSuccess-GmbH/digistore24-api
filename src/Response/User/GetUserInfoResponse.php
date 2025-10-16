@@ -14,10 +14,16 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetUserInfoResponse extends AbstractResponse
 {
+    /**
+     * @param array<string, mixed> $userInfo
+     */
     public function __construct(private array $userInfo)
     {
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getUserInfo(): array
     {
         return $this->userInfo;

@@ -60,11 +60,19 @@ final class RenderJsTrackingCodeResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $trackingData = $data['data'] ?? [];
+        
+        if (!is_array($trackingData)) {
+            $trackingData = [];
+        }
+
+        $result = $data['result'] ?? 'unknown';
+        $scriptCode = $trackingData['script_code'] ?? '';
+        $scriptUrl = $trackingData['script_url'] ?? '';
 
         return new self(
-            result: (string)($data['result'] ?? 'unknown'),
-            scriptCode: (string)($trackingData['script_code'] ?? ''),
-            scriptUrl: (string)($trackingData['script_url'] ?? ''),
+            result: is_string($result) ? $result : 'unknown',
+            scriptCode: is_string($scriptCode) ? $scriptCode : '',
+            scriptUrl: is_string($scriptUrl) ? $scriptUrl : '',
         );
     }
 }

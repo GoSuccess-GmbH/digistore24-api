@@ -31,10 +31,18 @@ final class CreateBuyUrlResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $response = new self();
-        $response->id = self::getValue($data, 'id', 'string');
-        $response->url = self::getValue($data, 'url', 'string');
-        $response->validUntil = self::getValue($data, 'valid_until', 'datetime_immutable');
-        $response->upgradeStatus = self::getValue($data, 'upgrade_status', 'string');
+
+        $id = self::getValue($data, 'id', 'string');
+        $response->id = is_string($id) ? $id : null;
+
+        $url = self::getValue($data, 'url', 'string');
+        $response->url = is_string($url) ? $url : null;
+
+        $validUntil = self::getValue($data, 'valid_until', 'datetime_immutable');
+        $response->validUntil = $validUntil instanceof \DateTimeImmutable ? $validUntil : null;
+
+        $upgradeStatus = self::getValue($data, 'upgrade_status', 'string');
+        $response->upgradeStatus = is_string($upgradeStatus) ? $upgradeStatus : null;
 
         return $response;
     }
