@@ -61,6 +61,23 @@ final class ProductIntegrationTest extends IntegrationTestCase
             $this->assertIsBool($product->isActive);
             $this->assertIsBool($product->isDeleted);
 
+            // Validate ALL language variants exist
+            $this->assertIsString($product->nameDe);
+            $this->assertIsString($product->nameEn);
+            $this->assertIsString($product->descriptionDe);
+            $this->assertIsString($product->descriptionEn);
+            $this->assertIsString($product->optinText);
+            $this->assertIsString($product->optinTextDe);
+            
+            // Validate all boolean flags work correctly
+            $this->assertIsBool($product->isFreeUpsellEnabled);
+            $this->assertIsBool($product->isVatShown);
+            $this->assertIsBool($product->addOrderDataToThankyouPageUrl);
+            
+            // Validate notification email fields
+            $this->assertIsString($product->notifyPaymentEmails);
+            $this->assertIsString($product->notifyRefundEmails);
+
             // Validate date properties
             if ($product->createdAt !== null) {
                 $this->assertInstanceOf(\DateTimeInterface::class, $product->createdAt);
