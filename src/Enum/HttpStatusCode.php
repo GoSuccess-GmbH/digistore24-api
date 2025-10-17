@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Enum;
 
+use GoSuccess\Digistore24\Api\Contract\IntBackedEnum;
+use GoSuccess\Digistore24\Api\Trait\IntBackedEnumTrait;
+
 /**
  * HTTP Status Codes
  *
  * Type-safe enum for HTTP status codes used in API responses.
  */
-enum HttpStatusCode: int
+enum HttpStatusCode: int implements IntBackedEnum
 {
+    use IntBackedEnumTrait;
+
     // Success
     case OK = 200;
     case CREATED = 201;
@@ -70,9 +75,11 @@ enum HttpStatusCode: int
     }
 
     /**
-     * Get human-readable description
+     * Get human-readable label
+     *
+     * @return string The display label
      */
-    public function description(): string
+    public function label(): string
     {
         return match ($this) {
             self::OK => 'OK',
@@ -95,10 +102,13 @@ enum HttpStatusCode: int
     }
 
     /**
-     * Create from integer (safe)
+     * Get human-readable description
+     *
+     * @deprecated Use label() instead
+     * @return string The display label
      */
-    public static function fromInt(int $code): ?self
+    public function description(): string
     {
-        return self::tryFrom($code);
+        return $this->label();
     }
 }

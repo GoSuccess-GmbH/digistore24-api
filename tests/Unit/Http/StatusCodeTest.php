@@ -55,14 +55,21 @@ final class StatusCodeTest extends TestCase
         $this->assertFalse(HttpStatusCode::BAD_REQUEST->isServerError());
     }
 
-    public function testDescriptionReturnsCorrectStrings(): void
+    public function testLabelReturnsCorrectStrings(): void
     {
+        $this->assertSame('OK', HttpStatusCode::OK->label());
+        $this->assertSame('Created', HttpStatusCode::CREATED->label());
+        $this->assertSame('Bad Request', HttpStatusCode::BAD_REQUEST->label());
+        $this->assertSame('Unauthorized', HttpStatusCode::UNAUTHORIZED->label());
+        $this->assertSame('Not Found', HttpStatusCode::NOT_FOUND->label());
+        $this->assertSame('Internal Server Error', HttpStatusCode::INTERNAL_SERVER_ERROR->label());
+    }
+
+    public function testDescriptionIsDeprecatedAliasForLabel(): void
+    {
+        // description() is deprecated but should still work
         $this->assertSame('OK', HttpStatusCode::OK->description());
-        $this->assertSame('Created', HttpStatusCode::CREATED->description());
-        $this->assertSame('Bad Request', HttpStatusCode::BAD_REQUEST->description());
-        $this->assertSame('Unauthorized', HttpStatusCode::UNAUTHORIZED->description());
-        $this->assertSame('Not Found', HttpStatusCode::NOT_FOUND->description());
-        $this->assertSame('Internal Server Error', HttpStatusCode::INTERNAL_SERVER_ERROR->description());
+        $this->assertSame(HttpStatusCode::OK->label(), HttpStatusCode::OK->description());
     }
 
     public function testValueReturnsCorrectInteger(): void
