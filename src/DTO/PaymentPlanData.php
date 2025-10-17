@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -10,7 +10,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  * Represents payment plan information for API requests and responses.
  * Uses PHP 8.4 property hooks for automatic validation.
  */
-final class PaymentPlanData
+final class PaymentPlanData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     public ?float $firstAmount = null;
 

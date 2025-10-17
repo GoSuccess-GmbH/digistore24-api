@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -12,7 +12,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateAffiliateCommission.yaml
  */
-final class AffiliateCommissionData
+final class AffiliateCommissionData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Percentage of the affiliate commission
@@ -56,33 +56,10 @@ final class AffiliateCommissionData
     public ?string $approvalStatus = null {
         set {
             if ($value !== null && ! in_array($value, ['new', 'approved', 'rejected', 'pending'], true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid approval status: $value. Allowed: new, approved, rejected, pending",
-                );
+                throw new \InvalidArgumentException("Invalid approval status: {$value}. Allowed: new, approved, rejected, pending");
             }
             $this->approvalStatus = $value;
         }
-    }
-
-    /**
-     * Create AffiliateCommissionData from array
-     *
-     * @param array{
-     *     commission_rate?: float|null,
-     *     commission_fix?: float|null,
-     *     commission_currency?: string|null,
-     *     approval_status?: string|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->commissionRate = isset($data['commission_rate']) ? (float)$data['commission_rate'] : null;
-        $instance->commissionFix = isset($data['commission_fix']) ? (float)$data['commission_fix'] : null;
-        $instance->commissionCurrency = $data['commission_currency'] ?? null;
-        $instance->approvalStatus = $data['approval_status'] ?? null;
-
-        return $instance;
     }
 
     /**
@@ -93,19 +70,15 @@ final class AffiliateCommissionData
     public function toArray(): array
     {
         $data = [];
-
         if ($this->commissionRate !== null) {
             $data['commission_rate'] = $this->commissionRate;
         }
-
         if ($this->commissionFix !== null) {
             $data['commission_fix'] = $this->commissionFix;
         }
-
         if ($this->commissionCurrency !== null) {
             $data['commission_currency'] = $this->commissionCurrency;
         }
-
         if ($this->approvalStatus !== null) {
             $data['approval_status'] = $this->approvalStatus;
         }

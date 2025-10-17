@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -12,24 +12,15 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateDelivery.yaml
  */
-final class DeliveryData
+final class DeliveryData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * The type of delivery status
      */
     public ?string $type = null {
         set {
-            if ($value !== null && ! in_array($value, [
-                'request',
-                'in_progress',
-                'delivery',
-                'partial_delivery',
-                'return',
-                'cancel',
-            ], true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid delivery type: $value. Allowed: request, in_progress, delivery, partial_delivery, return, cancel",
-                );
+            if ($value !== null && ! in_array($value, ['request', 'in_progress', 'delivery', 'partial_delivery', 'return', 'cancel'], true)) {
+                throw new \InvalidArgumentException("Invalid delivery type: {$value}. Allowed: request, in_progress, delivery, partial_delivery, return, cancel");
             }
             $this->type = $value;
         }
@@ -74,38 +65,6 @@ final class DeliveryData
     public ?string $isShippedByResellerFrom = null;
 
     /**
-     * Create DeliveryData from array
-     *
-     * @param array{
-     *     type?: string|null,
-     *     is_shipped?: bool|string|null,
-     *     quantity_delivered?: int|null,
-     *     add_quantity_delivered?: int|null,
-     *     is_shipped_by_reseller_from?: string|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->type = $data['type'] ?? null;
-
-        // Handle Digistore24's Y/N format
-        if (isset($data['is_shipped'])) {
-            if (is_bool($data['is_shipped'])) {
-                $instance->isShipped = $data['is_shipped'];
-            } else {
-                $instance->isShipped = ($data['is_shipped'] === 'Y');
-            }
-        }
-
-        $instance->quantityDelivered = $data['quantity_delivered'] ?? null;
-        $instance->addQuantityDelivered = $data['add_quantity_delivered'] ?? null;
-        $instance->isShippedByResellerFrom = $data['is_shipped_by_reseller_from'] ?? null;
-
-        return $instance;
-    }
-
-    /**
      * Convert to array for API request
      *
      * @return array<string, mixed>
@@ -113,24 +72,19 @@ final class DeliveryData
     public function toArray(): array
     {
         $data = [];
-
         if ($this->type !== null) {
             $data['type'] = $this->type;
         }
-
         if ($this->isShipped !== null) {
             // Convert boolean to Digistore24's Y/N format
             $data['is_shipped'] = $this->isShipped ? 'Y' : 'N';
         }
-
         if ($this->quantityDelivered !== null) {
             $data['quantity_delivered'] = $this->quantityDelivered;
         }
-
         if ($this->addQuantityDelivered !== null) {
             $data['add_quantity_delivered'] = $this->addQuantityDelivered;
         }
-
         if ($this->isShippedByResellerFrom !== null) {
             $data['is_shipped_by_reseller_from'] = $this->isShippedByResellerFrom;
         }

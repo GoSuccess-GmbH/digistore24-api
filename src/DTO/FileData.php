@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -14,7 +14,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  *
  * @link https://digistore24.com/api/docs/paths/updateServiceProofRequest.yaml
  */
-final class FileData
+final class FileData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Download URL for file contents
@@ -34,23 +34,6 @@ final class FileData
     public ?string $filename = null;
 
     /**
-     * Create FileData from array
-     *
-     * @param array{
-     *     url: string,
-     *     filename?: string|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->url = $data['url'];
-        $instance->filename = $data['filename'] ?? null;
-
-        return $instance;
-    }
-
-    /**
      * Convert to array for API request
      *
      * @return array<string, string>
@@ -58,7 +41,6 @@ final class FileData
     public function toArray(): array
     {
         $data = ['url' => $this->url];
-
         if ($this->filename !== null) {
             $data['filename'] = $this->filename;
         }

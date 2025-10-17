@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -13,7 +13,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  * @link https://digistore24.com/api/docs/paths/createProductGroup.yaml
  * @link https://digistore24.com/api/docs/paths/updateProductGroup.yaml
  */
-final class ProductGroupData
+final class ProductGroupData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Product group name
@@ -44,37 +44,4 @@ final class ProductGroupData
      * If true, the group is displayed as a tab in the product list
      */
     public bool $isShownAsTab = false;
-
-    /**
-     * Create ProductGroupData from array
-     *
-     * @param array{
-     *     name: string,
-     *     position?: int,
-     *     is_shown_as_tab?: bool
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->name = $data['name'];
-        $instance->position = $data['position'] ?? 10;
-        $instance->isShownAsTab = $data['is_shown_as_tab'] ?? false;
-
-        return $instance;
-    }
-
-    /**
-     * Convert to array for API request
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(): array
-    {
-        return [
-            'name' => $this->name,
-            'position' => $this->position,
-            'is_shown_as_tab' => $this->isShownAsTab,
-        ];
-    }
 }

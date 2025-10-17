@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -12,7 +12,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateDelivery.yaml
  */
-final class TrackingInfoData
+final class TrackingInfoData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * The parcel service key
@@ -32,9 +32,7 @@ final class TrackingInfoData
     public ?string $expectDeliveryAt = null {
         set {
             if ($value !== null && ! preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
-                throw new \InvalidArgumentException(
-                    'Expected delivery date must be in YYYY-MM-DD format',
-                );
+                throw new \InvalidArgumentException('Expected delivery date must be in YYYY-MM-DD format');
             }
             $this->expectDeliveryAt = $value;
         }
@@ -58,35 +56,10 @@ final class TrackingInfoData
     public string $operation = 'create_or_update' {
         set {
             if (! in_array($value, ['create_or_update', 'delete'], true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid operation: $value. Allowed: create_or_update, delete",
-                );
+                throw new \InvalidArgumentException("Invalid operation: {$value}. Allowed: create_or_update, delete");
             }
             $this->operation = $value;
         }
-    }
-
-    /**
-     * Create TrackingInfoData from array
-     *
-     * @param array{
-     *     parcel_service?: string|null,
-     *     tracking_id?: string|null,
-     *     expect_delivery_at?: string|null,
-     *     quantity?: int|null,
-     *     operation?: string
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->parcelService = $data['parcel_service'] ?? null;
-        $instance->trackingId = $data['tracking_id'] ?? null;
-        $instance->expectDeliveryAt = $data['expect_delivery_at'] ?? null;
-        $instance->quantity = $data['quantity'] ?? null;
-        $instance->operation = $data['operation'] ?? 'create_or_update';
-
-        return $instance;
     }
 
     /**
@@ -97,19 +70,15 @@ final class TrackingInfoData
     public function toArray(): array
     {
         $data = ['operation' => $this->operation];
-
         if ($this->parcelService !== null) {
             $data['parcel_service'] = $this->parcelService;
         }
-
         if ($this->trackingId !== null) {
             $data['tracking_id'] = $this->trackingId;
         }
-
         if ($this->expectDeliveryAt !== null) {
             $data['expect_delivery_at'] = $this->expectDeliveryAt;
         }
-
         if ($this->quantity !== null) {
             $data['quantity'] = $this->quantity;
         }

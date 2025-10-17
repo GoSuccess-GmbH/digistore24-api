@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -12,7 +12,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateServiceProofRequest.yaml
  */
-final class ServiceProofData
+final class ServiceProofData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Status of the request - either providing proof or executing the refund
@@ -20,9 +20,7 @@ final class ServiceProofData
     public string $requestStatus {
         set {
             if (! in_array($value, ['proof_provided', 'exec_refund'], true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid request status: $value. Allowed: proof_provided, exec_refund",
-                );
+                throw new \InvalidArgumentException("Invalid request status: {$value}. Allowed: proof_provided, exec_refund");
             }
             $this->requestStatus = $value;
         }
@@ -34,23 +32,6 @@ final class ServiceProofData
     public ?string $message = null;
 
     /**
-     * Create ServiceProofData from array
-     *
-     * @param array{
-     *     request_status: string,
-     *     message?: string|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->requestStatus = $data['request_status'];
-        $instance->message = $data['message'] ?? null;
-
-        return $instance;
-    }
-
-    /**
      * Convert to array for API request
      *
      * @return array<string, string>
@@ -58,7 +39,6 @@ final class ServiceProofData
     public function toArray(): array
     {
         $data = ['request_status' => $this->requestStatus];
-
         if ($this->message !== null) {
             $data['message'] = $this->message;
         }

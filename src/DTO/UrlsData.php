@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -14,7 +14,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  *
  * @link https://digistore24.com/api/docs/paths/createBuyUrl.yaml
  */
-final class UrlsData
+final class UrlsData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Custom thank you page URL
@@ -59,25 +59,6 @@ final class UrlsData
     }
 
     /**
-     * Create UrlsData from array
-     *
-     * @param array{
-     *     thankyou_url?: string|null,
-     *     fallback_url?: string|null,
-     *     upgrade_error_url?: string|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->thankyouUrl = $data['thankyou_url'] ?? null;
-        $instance->fallbackUrl = $data['fallback_url'] ?? null;
-        $instance->upgradeErrorUrl = $data['upgrade_error_url'] ?? null;
-
-        return $instance;
-    }
-
-    /**
      * Convert to array for API request
      *
      * @return array<string, string>
@@ -85,15 +66,12 @@ final class UrlsData
     public function toArray(): array
     {
         $data = [];
-
         if ($this->thankyouUrl !== null) {
             $data['thankyou_url'] = $this->thankyouUrl;
         }
-
         if ($this->fallbackUrl !== null) {
             $data['fallback_url'] = $this->fallbackUrl;
         }
-
         if ($this->upgradeErrorUrl !== null) {
             $data['upgrade_error_url'] = $this->upgradeErrorUrl;
         }

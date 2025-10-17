@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -13,7 +13,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  * @link https://digistore24.com/api/docs/paths/createVoucher.yaml
  * @link https://digistore24.com/api/docs/paths/updateVoucher.yaml
  */
-final class VoucherData
+final class VoucherData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * The voucher code
@@ -125,49 +125,10 @@ final class VoucherData
     public string $upgradePolicy = 'valid' {
         set {
             if (! in_array($value, ['valid', 'other_only', 'not_valid'], true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid upgrade policy: $value. Allowed: valid, other_only, not_valid",
-                );
+                throw new \InvalidArgumentException("Invalid upgrade policy: {$value}. Allowed: valid, other_only, not_valid");
             }
             $this->upgradePolicy = $value;
         }
-    }
-
-    /**
-     * Create VoucherData from array
-     *
-     * @param array{
-     *     code: string,
-     *     product_ids?: string,
-     *     valid_from?: string|null,
-     *     expires_at?: string|null,
-     *     first_rate?: float|null,
-     *     other_rates?: float|null,
-     *     first_amount?: float|null,
-     *     other_amounts?: float|null,
-     *     currency?: string|null,
-     *     is_count_limited?: bool,
-     *     count_left?: int,
-     *     upgrade_policy?: string
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->code = $data['code'];
-        $instance->productIds = $data['product_ids'] ?? 'all';
-        $instance->validFrom = $data['valid_from'] ?? null;
-        $instance->expiresAt = $data['expires_at'] ?? null;
-        $instance->firstRate = isset($data['first_rate']) ? (float)$data['first_rate'] : null;
-        $instance->otherRates = isset($data['other_rates']) ? (float)$data['other_rates'] : null;
-        $instance->firstAmount = isset($data['first_amount']) ? (float)$data['first_amount'] : null;
-        $instance->otherAmounts = isset($data['other_amounts']) ? (float)$data['other_amounts'] : null;
-        $instance->currency = $data['currency'] ?? null;
-        $instance->isCountLimited = $data['is_count_limited'] ?? false;
-        $instance->countLeft = $data['count_left'] ?? 1;
-        $instance->upgradePolicy = $data['upgrade_policy'] ?? 'valid';
-
-        return $instance;
     }
 
     /**
@@ -177,38 +138,25 @@ final class VoucherData
      */
     public function toArray(): array
     {
-        $data = [
-            'code' => $this->code,
-            'product_ids' => $this->productIds,
-            'is_count_limited' => $this->isCountLimited,
-            'count_left' => $this->countLeft,
-            'upgrade_policy' => $this->upgradePolicy,
-        ];
-
+        $data = ['code' => $this->code, 'product_ids' => $this->productIds, 'is_count_limited' => $this->isCountLimited, 'count_left' => $this->countLeft, 'upgrade_policy' => $this->upgradePolicy];
         if ($this->validFrom !== null) {
             $data['valid_from'] = $this->validFrom;
         }
-
         if ($this->expiresAt !== null) {
             $data['expires_at'] = $this->expiresAt;
         }
-
         if ($this->firstRate !== null) {
             $data['first_rate'] = $this->firstRate;
         }
-
         if ($this->otherRates !== null) {
             $data['other_rates'] = $this->otherRates;
         }
-
         if ($this->firstAmount !== null) {
             $data['first_amount'] = $this->firstAmount;
         }
-
         if ($this->otherAmounts !== null) {
             $data['other_amounts'] = $this->otherAmounts;
         }
-
         if ($this->currency !== null) {
             $data['currency'] = $this->currency;
         }

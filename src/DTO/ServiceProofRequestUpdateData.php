@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -12,7 +12,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateServiceProofRequest.yaml
  */
-final class ServiceProofRequestUpdateData
+final class ServiceProofRequestUpdateData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Status of the request - either providing proof or executing the refund
@@ -21,9 +21,7 @@ final class ServiceProofRequestUpdateData
     public string $requestStatus {
         set {
             if (! in_array($value, ['proof_provided', 'exec_refund'], true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid request_status: $value. Allowed: proof_provided, exec_refund",
-                );
+                throw new \InvalidArgumentException("Invalid request_status: {$value}. Allowed: proof_provided, exec_refund");
             }
             $this->requestStatus = $value;
         }
@@ -41,54 +39,18 @@ final class ServiceProofRequestUpdateData
     public ?array $files = null;
 
     /**
-     * Create ServiceProofRequestUpdateData from array
-     *
-     * @param array{
-     *     data: array{
-     *         request_status: string,
-     *         message?: string|null
-     *     },
-     *     files?: array<array{url: string, filename?: string}>|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->requestStatus = $data['data']['request_status'];
-        $instance->message = $data['data']['message'] ?? null;
-
-        if (isset($data['files'])) {
-            $instance->files = array_map(
-                fn (array $file) => FileData::fromArray($file),
-                $data['files'],
-            );
-        }
-
-        return $instance;
-    }
-
-    /**
      * Convert to array for API request
      *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
-        $result = [
-            'data' => [
-                'request_status' => $this->requestStatus,
-            ],
-        ];
-
+        $result = ['data' => ['request_status' => $this->requestStatus]];
         if ($this->message !== null) {
             $result['data']['message'] = $this->message;
         }
-
         if ($this->files !== null) {
-            $result['files'] = array_map(
-                fn (FileData $file) => $file->toArray(),
-                $this->files,
-            );
+            $result['files'] = array_map(fn (FileData $file) => $file->toArray(), $this->files);
         }
 
         return $result;

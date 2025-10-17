@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
@@ -14,7 +14,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  * @link https://digistore24.com/api/docs/paths/createPaymentplan.yaml
  * @link https://digistore24.com/api/docs/paths/updatePaymentplan.yaml
  */
-final class PaymentPlanFullData
+final class PaymentPlanFullData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
      * Amount of first payment
@@ -91,60 +91,12 @@ final class PaymentPlanFullData
      */
     public ?string $cancelPolicy = null {
         set {
-            $allowedPolicies = [
-                '6m_0', '6m_6m', '6m_12m',
-                '12m_0', '12m_3m', '12m_6m', '12m_12m',
-                '24m_0', '24m_6m', '24m_12m',
-            ];
-
+            $allowedPolicies = ['6m_0', '6m_6m', '6m_12m', '12m_0', '12m_3m', '12m_6m', '12m_12m', '24m_0', '24m_6m', '24m_12m'];
             if ($value !== null && ! in_array($value, $allowedPolicies, true)) {
-                throw new \InvalidArgumentException(
-                    "Invalid cancel policy: $value. Allowed: " . implode(', ', $allowedPolicies),
-                );
+                throw new \InvalidArgumentException("Invalid cancel policy: {$value}. Allowed: " . implode(', ', $allowedPolicies));
             }
             $this->cancelPolicy = $value;
         }
-    }
-
-    /**
-     * Create PaymentPlanFullData from array
-     *
-     * @param array{
-     *     first_amount?: float|null,
-     *     first_billing_interval?: string|null,
-     *     currency?: string|null,
-     *     other_amounts?: float|null,
-     *     other_billing_intervals?: string|null,
-     *     number_of_installments?: int|null,
-     *     is_active?: bool|string|null,
-     *     cancel_policy?: string|null
-     * } $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $instance = new self();
-        $instance->firstAmount = isset($data['first_amount']) ? (float)$data['first_amount'] : null;
-        $instance->firstBillingInterval = $data['first_billing_interval'] ?? null;
-        $instance->currency = $data['currency'] ?? null;
-        $instance->otherAmounts = isset($data['other_amounts']) ? (float)$data['other_amounts'] : null;
-        $instance->otherBillingIntervals = $data['other_billing_intervals'] ?? null;
-        $instance->numberOfInstallments = isset($data['number_of_installments'])
-            ? (int)$data['number_of_installments']
-            : null;
-
-        // Handle isActive: can be bool, string 'Y'/'N', or null
-        if (isset($data['is_active'])) {
-            $isActiveValue = $data['is_active'];
-            if (is_bool($isActiveValue)) {
-                $instance->isActive = $isActiveValue;
-            } elseif (is_string($isActiveValue)) {
-                $instance->isActive = strtoupper($isActiveValue) === 'Y';
-            }
-        }
-
-        $instance->cancelPolicy = $data['cancel_policy'] ?? null;
-
-        return $instance;
     }
 
     /**
@@ -155,35 +107,27 @@ final class PaymentPlanFullData
     public function toArray(): array
     {
         $data = [];
-
         if ($this->firstAmount !== null) {
             $data['first_amount'] = $this->firstAmount;
         }
-
         if ($this->firstBillingInterval !== null) {
             $data['first_billing_interval'] = $this->firstBillingInterval;
         }
-
         if ($this->currency !== null) {
             $data['currency'] = $this->currency;
         }
-
         if ($this->otherAmounts !== null) {
             $data['other_amounts'] = $this->otherAmounts;
         }
-
         if ($this->otherBillingIntervals !== null) {
             $data['other_billing_intervals'] = $this->otherBillingIntervals;
         }
-
         if ($this->numberOfInstallments !== null) {
             $data['number_of_installments'] = $this->numberOfInstallments;
         }
-
         if ($this->isActive !== null) {
             $data['is_active'] = $this->isActive ? 'Y' : 'N';
         }
-
         if ($this->cancelPolicy !== null) {
             $data['cancel_policy'] = $this->cancelPolicy;
         }
