@@ -59,9 +59,13 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * Get a value from data with type conversion
      *
-     * @param array<string, mixed> $data
+     * @param array<string, mixed> $data Source data array
+     * @param string $key Key to retrieve
+     * @param string $type Expected type for conversion
+     * @param mixed $default Default value if key not found (explicitly pass null if no default needed)
+     * @return mixed
      */
-    protected static function getValue(array $data, string $key, string $type = 'string', mixed $default = null): mixed
+    protected static function getValue(array $data, string $key, string $type, mixed $default): mixed
     {
         $value = $data[$key] ?? $default;
 

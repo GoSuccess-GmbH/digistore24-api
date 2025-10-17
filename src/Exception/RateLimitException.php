@@ -14,7 +14,7 @@ class RateLimitException extends ApiException
      */
     public function getRetryAfter(): ?int
     {
-        $retryAfter = $this->getContextValue('retry_after');
+        $retryAfter = $this->getContextValue('retry_after', null);
 
         return is_int($retryAfter) ? $retryAfter : null;
     }

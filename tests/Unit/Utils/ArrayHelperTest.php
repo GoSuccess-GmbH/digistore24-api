@@ -22,8 +22,8 @@ final class ArrayHelperTest extends TestCase
             ],
         ];
 
-        $this->assertSame('John', ArrayHelper::get($array, 'user.name'));
-        $this->assertSame('Berlin', ArrayHelper::get($array, 'user.address.city'));
+        $this->assertSame('John', ArrayHelper::get($array, 'user.name', null));
+        $this->assertSame('Berlin', ArrayHelper::get($array, 'user.address.city', null));
     }
 
     public function testGetReturnsDefaultForMissingKey(): void
@@ -31,7 +31,7 @@ final class ArrayHelperTest extends TestCase
         $array = ['key' => 'value'];
 
         $this->assertSame('default', ArrayHelper::get($array, 'missing', 'default'));
-        $this->assertNull(ArrayHelper::get($array, 'missing'));
+        $this->assertNull(ArrayHelper::get($array, 'missing', null));
     }
 
     public function testSetCreatesNestedArray(): void

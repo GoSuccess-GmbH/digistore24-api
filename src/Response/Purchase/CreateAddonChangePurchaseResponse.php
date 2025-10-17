@@ -39,7 +39,7 @@ final class CreateAddonChangePurchaseResponse extends AbstractResponse
         $paymentStatusMsg = self::getValue($data, 'payment_status_msg', 'string', '');
         $billingStatus = self::getValue($data, 'billing_status', 'string', '');
         $billingStatusMsg = self::getValue($data, 'billing_status_msg', 'string', '');
-        $payUrl = self::getValue($data, 'pay_url', 'string');
+        $payUrl = self::getValue($data, 'pay_url', 'string', null);
 
         $instance = new self(
             createdPurchaseId: is_string($createdPurchaseId) ? $createdPurchaseId : '',

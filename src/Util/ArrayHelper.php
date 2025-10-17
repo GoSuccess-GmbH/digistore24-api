@@ -16,10 +16,10 @@ final class ArrayHelper
      *
      * @param array<string, mixed> $array Source array
      * @param string $key Key in dot notation (e.g., 'user.address.city')
-     * @param mixed $default Default value if key not found
+     * @param mixed $default Default value if key not found (explicitly pass null if no default needed)
      * @return mixed
      */
-    public static function get(array $array, string $key, mixed $default = null): mixed
+    public static function get(array $array, string $key, mixed $default): mixed
     {
         if (array_key_exists($key, $array)) {
             return $array[$key];
@@ -169,10 +169,10 @@ final class ArrayHelper
      *
      * @param array<string, mixed> $array Source array
      * @param callable|null $callback Truth test function
-     * @param mixed $default Default value if no match found
+     * @param mixed $default Default value if no match found (explicitly pass null if no default needed)
      * @return mixed
      */
-    public static function first(array $array, ?callable $callback = null, mixed $default = null): mixed
+    public static function first(array $array, ?callable $callback, mixed $default): mixed
     {
         if ($callback === null) {
             foreach ($array as $item) {

@@ -14,7 +14,7 @@ class RequestException extends ApiException
      */
     public function getCurlError(): ?int
     {
-        $error = $this->getContextValue('curl_errno');
+        $error = $this->getContextValue('curl_errno', null);
 
         return is_int($error) ? $error : null;
     }

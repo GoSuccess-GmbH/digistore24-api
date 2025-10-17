@@ -32,16 +32,16 @@ final class CreateBuyUrlResponse extends AbstractResponse
     {
         $response = new self();
 
-        $id = self::getValue($data, 'id', 'string');
+        $id = self::getValue($data, 'id', 'string', null);
         $response->id = is_string($id) ? $id : null;
 
-        $url = self::getValue($data, 'url', 'string');
+        $url = self::getValue($data, 'url', 'string', null);
         $response->url = is_string($url) ? $url : null;
 
-        $validUntil = self::getValue($data, 'valid_until', 'datetime_immutable');
+        $validUntil = self::getValue($data, 'valid_until', 'datetime_immutable', null);
         $response->validUntil = $validUntil instanceof \DateTimeImmutable ? $validUntil : null;
 
-        $upgradeStatus = self::getValue($data, 'upgrade_status', 'string');
+        $upgradeStatus = self::getValue($data, 'upgrade_status', 'string', null);
         $response->upgradeStatus = is_string($upgradeStatus) ? $upgradeStatus : null;
 
         return $response;

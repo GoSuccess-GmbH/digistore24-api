@@ -38,8 +38,12 @@ class ApiException extends \Exception
 
     /**
      * Get specific context value
+     *
+     * @param string $key Context key to retrieve
+     * @param mixed $default Default value if key not found (explicitly pass null if no default needed)
+     * @return mixed The context value or default
      */
-    public function getContextValue(string $key, mixed $default = null): mixed
+    public function getContextValue(string $key, mixed $default): mixed
     {
         return $this->context[$key] ?? $default;
     }
