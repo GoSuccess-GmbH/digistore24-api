@@ -46,9 +46,9 @@ final class BuyerData extends AbstractDataTransferObject
     }
 
     /**
-     * Salutation (raw string from API)
+     * Salutation (enum)
      */
-    public ?string $salutation {
+    public ?Salutation $salutation {
         get => $this->salutation;
     }
 
@@ -182,7 +182,7 @@ final class BuyerData extends AbstractDataTransferObject
         ?string $id = null,
         ?string $addressId = null,
         string $email = '',
-        ?string $salutation = null,
+        ?Salutation $salutation = null,
         ?string $salutationMsg = null,
         ?string $title = null,
         ?string $firstName = null,
@@ -233,11 +233,16 @@ final class BuyerData extends AbstractDataTransferObject
      */
     public static function fromArray(array $data): self
     {
+        $salutation = null;
+        if (isset($data['salutation']) && is_string($data['salutation'])) {
+            $salutation = Salutation::fromString($data['salutation']);
+        }
+        
         return new self(
             id: TypeConverter::toString($data['id'] ?? null),
             addressId: TypeConverter::toString($data['address_id'] ?? null),
             email: TypeConverter::toString($data['email'] ?? null) ?? '',
-            salutation: TypeConverter::toString($data['salutation'] ?? null),
+            salutation: $salutation,
             salutationMsg: TypeConverter::toString($data['salutation_msg'] ?? null),
             title: TypeConverter::toString($data['title'] ?? null),
             firstName: TypeConverter::toString($data['first_name'] ?? null),
