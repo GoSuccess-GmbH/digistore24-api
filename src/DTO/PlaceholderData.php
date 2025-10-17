@@ -4,12 +4,27 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Contract\DataTransferObjectInterface;
+
 /**
  * Placeholder Data
  *
- * Represents placeholders for product title and description.
+ * Represents flexible key-value placeholders for product title and description.
+ * Placeholders are vendor-specific and completely dynamic - no fixed properties.
+ *
+ * Usage:
+ * ```php
+ * $placeholders = new PlaceholderData();
+ * $placeholders->set('servicename', 'Software Development');
+ * $placeholders->set('description', 'Research, Development, Debugging');
+ * ```
+ *
+ * Or use array access (for backwards compatibility):
+ * ```php
+ * $data->placeholders = ['servicename' => 'Software Development'];
+ * ```
  */
-final class PlaceholderData
+final class PlaceholderData implements DataTransferObjectInterface
 {
     /**
      * @param array<string, string> $values Key-value pairs of placeholders
@@ -35,6 +50,24 @@ final class PlaceholderData
     public function get(string $key): ?string
     {
         return $this->values[$key] ?? null;
+    }
+
+    /**
+     * Create from array
+     *
+     * @param array<string, mixed> $data
+     */
+    public static function fromArray(array $data): static
+    {
+        // PlaceholderData is just a key-value store, convert all values to strings
+        $stringData = [];
+        foreach ($data as $key => $value) {
+            if (is_scalar($value) || is_null($value)) {
+                $stringData[$key] = (string)$value;
+            }
+        }
+
+        return new self($stringData);
     }
 
     /**
