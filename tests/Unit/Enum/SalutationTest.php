@@ -14,32 +14,32 @@ final class SalutationTest extends TestCase
 {
     public function testMrsHasCorrectValue(): void
     {
-        $this->assertSame('F', Salutation::Mrs->value);
+        $this->assertSame('F', Salutation::MRS->value);
     }
 
     public function testMrHasCorrectValue(): void
     {
-        $this->assertSame('M', Salutation::Mr->value);
+        $this->assertSame('M', Salutation::MR->value);
     }
 
     public function testNoneHasCorrectValue(): void
     {
-        $this->assertSame('', Salutation::None->value);
+        $this->assertSame('', Salutation::NONE->value);
     }
 
     public function testMrsLabelIsCorrect(): void
     {
-        $this->assertSame('Mrs', Salutation::Mrs->label());
+        $this->assertSame('Mrs', Salutation::MRS->label());
     }
 
     public function testMrLabelIsCorrect(): void
     {
-        $this->assertSame('Mr', Salutation::Mr->label());
+        $this->assertSame('Mr', Salutation::MR->label());
     }
 
     public function testNoneLabelIsCorrect(): void
     {
-        $this->assertSame('None', Salutation::None->label());
+        $this->assertSame('None', Salutation::NONE->label());
     }
 
     /**
@@ -59,12 +59,12 @@ final class SalutationTest extends TestCase
     public static function fromStringProvider(): array
     {
         return [
-            'uppercase F' => ['input' => 'F', 'expected' => Salutation::Mrs],
-            'lowercase f' => ['input' => 'f', 'expected' => Salutation::Mrs],
-            'uppercase M' => ['input' => 'M', 'expected' => Salutation::Mr],
-            'lowercase m' => ['input' => 'm', 'expected' => Salutation::Mr],
-            'empty string' => ['input' => '', 'expected' => Salutation::None],
-            'whitespace only' => ['input' => '   ', 'expected' => Salutation::None],
+            'uppercase F' => ['input' => 'F', 'expected' => Salutation::MRS],
+            'lowercase f' => ['input' => 'f', 'expected' => Salutation::MRS],
+            'uppercase M' => ['input' => 'M', 'expected' => Salutation::MR],
+            'lowercase m' => ['input' => 'm', 'expected' => Salutation::MR],
+            'empty string' => ['input' => '', 'expected' => Salutation::NONE],
+            'whitespace only' => ['input' => '   ', 'expected' => Salutation::NONE],
             'invalid value X' => ['input' => 'X', 'expected' => null],
             'invalid value Mrs' => ['input' => 'Mrs', 'expected' => null],
             'invalid value Mr' => ['input' => 'Mr', 'expected' => null],
@@ -124,8 +124,8 @@ final class SalutationTest extends TestCase
     public function testEnumCasesAreCorrect(): void
     {
         $cases = Salutation::cases();
-        $this->assertContains(Salutation::Mrs, $cases);
-        $this->assertContains(Salutation::Mr, $cases);
-        $this->assertContains(Salutation::None, $cases);
+        $this->assertContains(Salutation::MRS, $cases);
+        $this->assertContains(Salutation::MR, $cases);
+        $this->assertContains(Salutation::NONE, $cases);
     }
 }

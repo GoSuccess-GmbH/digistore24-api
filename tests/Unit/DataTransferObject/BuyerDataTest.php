@@ -52,7 +52,7 @@ final class BuyerDataTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        $buyer->salutation = Salutation::Mr;
+        $buyer->salutation = Salutation::MR;
         $buyer->title = 'Dr';
         $buyer->firstName = 'John';
         $buyer->lastName = 'Doe';
@@ -65,7 +65,7 @@ final class BuyerDataTest extends TestCase
         $buyer->phoneNo = '+49-30-12345678';
         $buyer->taxId = 'DE123456789';
 
-        $this->assertSame(Salutation::Mr, $buyer->salutation);
+        $this->assertSame(Salutation::MR, $buyer->salutation);
         $this->assertSame('Dr', $buyer->title);
         $this->assertSame('John', $buyer->firstName);
         $this->assertSame('Doe', $buyer->lastName);
@@ -93,9 +93,9 @@ final class BuyerDataTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        $buyer->salutation = Salutation::Mrs;
+        $buyer->salutation = Salutation::MRS;
 
-        $this->assertSame(Salutation::Mrs, $buyer->salutation);
+        $this->assertSame(Salutation::MRS, $buyer->salutation);
         $this->assertSame('F', $buyer->salutation->value);
         $this->assertSame('Mrs', $buyer->salutation->label());
     }
@@ -104,9 +104,9 @@ final class BuyerDataTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        $buyer->salutation = Salutation::Mr;
+        $buyer->salutation = Salutation::MR;
 
-        $this->assertSame(Salutation::Mr, $buyer->salutation);
+        $this->assertSame(Salutation::MR, $buyer->salutation);
         $this->assertSame('M', $buyer->salutation->value);
         $this->assertSame('Mr', $buyer->salutation->label());
     }
@@ -115,9 +115,9 @@ final class BuyerDataTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        $buyer->salutation = Salutation::None;
+        $buyer->salutation = Salutation::NONE;
 
-        $this->assertSame(Salutation::None, $buyer->salutation);
+        $this->assertSame(Salutation::NONE, $buyer->salutation);
         $this->assertSame('', $buyer->salutation->value);
         $this->assertSame('None', $buyer->salutation->label());
     }

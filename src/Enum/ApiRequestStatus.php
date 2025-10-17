@@ -11,7 +11,7 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum ApiRequestStatus: string
 {
-    case Pending = 'pending';
-    case Aborted = 'aborted';
-    case Completed = 'completed';
+    case PENDING = 'pending';
+    case ABORTED = 'aborted';
+    case COMPLETED = 'completed';
 }

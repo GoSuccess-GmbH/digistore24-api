@@ -13,7 +13,7 @@ echo "=== Salutation Enum Usage Examples ===\n\n";
 echo "1. Using Enum values directly:\n";
 $buyer1 = new BuyerData();
 $buyer1->email = 'john.doe@example.com';
-$buyer1->salutation = Salutation::Mr;
+$buyer1->salutation = Salutation::MR;
 $buyer1->firstName = 'John';
 $buyer1->lastName = 'Doe';
 
@@ -24,7 +24,7 @@ echo "   Salutation label: " . $buyer1->salutation->label() . "\n\n";
 echo "2. Female salutation:\n";
 $buyer2 = new BuyerData();
 $buyer2->email = 'jane.smith@example.com';
-$buyer2->salutation = Salutation::Mrs;
+$buyer2->salutation = Salutation::MRS;
 $buyer2->firstName = 'Jane';
 $buyer2->lastName = 'Smith';
 
@@ -35,7 +35,7 @@ echo "   Salutation label: " . $buyer2->salutation->label() . "\n\n";
 echo "3. No salutation:\n";
 $buyer3 = new BuyerData();
 $buyer3->email = 'alex.jones@example.com';
-$buyer3->salutation = Salutation::None;
+$buyer3->salutation = Salutation::NONE;
 $buyer3->firstName = 'Alex';
 $buyer3->lastName = 'Jones';
 
@@ -77,7 +77,7 @@ $buyer->salutation = Salutation::fromString($apiResponse['salutation']);
 $buyer->firstName = $apiResponse['first_name'] ?? null;
 $buyer->lastName = $apiResponse['last_name'] ?? null;
 
-echo "   Processed: " . $buyer->salutation?->label() . " " . 
+echo "   Processed: " . $buyer->salutation?->label() . " " .
      $buyer->firstName . " " . $buyer->lastName . "\n";
 echo "   Email: " . $buyer->email . "\n\n";
 
@@ -85,12 +85,12 @@ echo "   Email: " . $buyer->email . "\n\n";
 echo "7. Using match expression:\n";
 $buyer4 = new BuyerData();
 $buyer4->email = 'test@example.com';
-$buyer4->salutation = Salutation::Mrs;
+$buyer4->salutation = Salutation::MRS;
 
 $greeting = match ($buyer4->salutation) {
-    Salutation::Mr => 'Dear Sir',
-    Salutation::Mrs => 'Dear Madam',
-    Salutation::None => 'Dear Customer',
+    Salutation::MR => 'Dear Sir',
+    Salutation::MRS => 'Dear Madam',
+    Salutation::NONE => 'Dear Customer',
 };
 
 echo "   Greeting: $greeting\n\n";

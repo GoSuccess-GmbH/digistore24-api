@@ -11,8 +11,8 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum BillingRebillingStatus: string
 {
-    case Paying = 'paying';
-    case Aborted = 'aborted';
-    case Unpaid = 'unpaid';
-    case Completed = 'completed';
+    case PAYING = 'paying';
+    case ABORTED = 'aborted';
+    case UNPAID = 'unpaid';
+    case COMPLETED = 'completed';
 }

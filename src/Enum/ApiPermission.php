@@ -11,6 +11,6 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum ApiPermission: string
 {
-    case ReadOnly = 'read-only';
-    case Writable = 'writable';
+    case READ_ONLY = 'read-only';
+    case WRITABLE = 'writable';
 }

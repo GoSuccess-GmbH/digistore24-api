@@ -11,6 +11,6 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum IpnTiming: string
 {
-    case BeforeThankYou = 'before_thankyou';
-    case Delayed = 'delayed';
+    case BEFORE_THANKYOU = 'before_thankyou';
+    case DELAYED = 'delayed';
 }

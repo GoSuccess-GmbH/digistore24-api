@@ -11,7 +11,7 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum BillingRebillingCode: string
 {
-    case StoppedNow = 'stopped_now';
-    case StoppedLater = 'stopped_later';
-    case StoppedManualRebilling = 'stopped_manual_rebilling';
+    case STOPPED_NOW = 'stopped_now';
+    case STOPPED_LATER = 'stopped_later';
+    case STOPPED_MANUAL_REBILLING = 'stopped_manual_rebilling';
 }

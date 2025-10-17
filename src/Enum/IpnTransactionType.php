@@ -11,13 +11,13 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum IpnTransactionType: string
 {
-    case All = 'all';
-    case Payment = 'payment';
-    case Refund = 'refund';
-    case Chargeback = 'chargeback';
-    case PaymentMissed = 'payment_missed';
-    case PaymentDenial = 'payment_denial';
-    case RebillCancelled = 'rebill_cancelled';
-    case RebillResumed = 'rebill_resumed';
-    case LastPaidDay = 'last_paid_day';
+    case ALL = 'all';
+    case PAYMENT = 'payment';
+    case REFUND = 'refund';
+    case CHARGEBACK = 'chargeback';
+    case PAYMENT_MISSED = 'payment_missed';
+    case PAYMENT_DENIAL = 'payment_denial';
+    case REBILL_CANCELLED = 'rebill_cancelled';
+    case REBILL_RESUMED = 'rebill_resumed';
+    case LAST_PAID_DAY = 'last_paid_day';
 }

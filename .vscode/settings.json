@@ -1,5 +1,5 @@
 {
-    "php.version": "8.3.10",
+    "php.version": "8.4",
     "editor.formatOnSave": true,
     "editor.rulers": [
         120

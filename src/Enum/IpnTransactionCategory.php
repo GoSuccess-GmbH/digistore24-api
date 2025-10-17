@@ -11,9 +11,9 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum IpnTransactionCategory: string
 {
-    case Orders = 'orders';
-    case Affiliations = 'affiliations';
-    case Etickets = 'etickets';
-    case Customforms = 'customforms';
-    case Orderform = 'orderform';
+    case ORDERS = 'orders';
+    case AFFILIATIONS = 'affiliations';
+    case ETICKETS = 'etickets';
+    case CUSTOMFORMS = 'customforms';
+    case ORDERFORM = 'orderform';
 }

@@ -14,17 +14,17 @@ enum Salutation: string
     /**
      * Female salutation (Mrs)
      */
-    case Mrs = 'F';
+    case MRS = 'F';
 
     /**
      * Male salutation (Mr)
      */
-    case Mr = 'M';
+    case MR = 'M';
 
     /**
      * No salutation
      */
-    case None = '';
+    case NONE = '';
 
     /**
      * Get human-readable label
@@ -32,9 +32,9 @@ enum Salutation: string
     public function label(): string
     {
         return match ($this) {
-            self::Mrs => 'Mrs',
-            self::Mr => 'Mr',
-            self::None => 'None',
+            self::MRS => 'Mrs',
+            self::MR => 'Mr',
+            self::NONE => 'None',
         };
     }
 
@@ -53,9 +53,9 @@ enum Salutation: string
         $normalized = strtoupper(trim($value));
 
         return match ($normalized) {
-            'F' => self::Mrs,
-            'M' => self::Mr,
-            '' => self::None,
+            'F' => self::MRS,
+            'M' => self::MR,
+            '' => self::NONE,
             default => null,
         };
     }

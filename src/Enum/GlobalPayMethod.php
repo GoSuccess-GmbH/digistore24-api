@@ -11,11 +11,11 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum GlobalPayMethod: string
 {
-    case Test = 'test';
-    case PayPal = 'paypal';
-    case Sezzle = 'sezzle';
-    case Creditcard = 'creditcard';
+    case TEST = 'test';
+    case PAYPAL = 'paypal';
+    case SEZZLE = 'sezzle';
+    case CREDITCARD = 'creditcard';
     case ELV = 'ELV';
-    case Banktransfer = 'banktransfer';
-    case Klarna = 'klarna';
+    case BANKTRANSFER = 'banktransfer';
+    case KLARNA = 'klarna';
 }

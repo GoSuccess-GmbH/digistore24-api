@@ -11,8 +11,8 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum AffiliateApprovalStatus: string
 {
-    case New = 'new';
-    case Approved = 'approved';
-    case Rejected = 'rejected';
-    case Pending = 'pending';
+    case NEW = 'new';
+    case APPROVED = 'approved';
+    case REJECTED = 'rejected';
+    case PENDING = 'pending';
 }

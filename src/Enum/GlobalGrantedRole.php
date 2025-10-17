@@ -11,10 +11,10 @@ namespace GoSuccess\Digistore24\Api\Enum;
  */
 enum GlobalGrantedRole: string
 {
-    case User = 'user';
-    case Affiliate = 'affiliate';
-    case Vendor = 'vendor';
-    case Operator = 'operator';
-    case Admin = 'admin';
-    case Merchant = 'merchant';
+    case USER = 'user';
+    case AFFILIATE = 'affiliate';
+    case VENDOR = 'vendor';
+    case OPERATOR = 'operator';
+    case ADMIN = 'admin';
+    case MERCHANT = 'merchant';
 }
