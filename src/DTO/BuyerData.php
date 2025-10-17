@@ -21,14 +21,14 @@ final class BuyerData extends AbstractDataTransferObject
     /**
      * Buyer ID
      */
-    public ?string $id {
+    public ?int $id {
         get => $this->id;
     }
 
     /**
      * Address ID
      */
-    public ?string $addressId {
+    public ?int $addressId {
         get => $this->addressId;
     }
 
@@ -179,8 +179,8 @@ final class BuyerData extends AbstractDataTransferObject
     }
 
     public function __construct(
-        ?string $id = null,
-        ?string $addressId = null,
+        ?int $id = null,
+        ?int $addressId = null,
         string $email = '',
         ?Salutation $salutation = null,
         ?string $salutationMsg = null,
@@ -238,9 +238,14 @@ final class BuyerData extends AbstractDataTransferObject
             $salutation = Salutation::fromString($data['salutation']);
         }
         
+        /** @var int|null $id */
+        $id = TypeConverter::toInt($data['id'] ?? null);
+        /** @var int|null $addressId */
+        $addressId = TypeConverter::toInt($data['address_id'] ?? null);
+        
         return new self(
-            id: TypeConverter::toString($data['id'] ?? null),
-            addressId: TypeConverter::toString($data['address_id'] ?? null),
+            id: $id,
+            addressId: $addressId,
             email: TypeConverter::toString($data['email'] ?? null) ?? '',
             salutation: $salutation,
             salutationMsg: TypeConverter::toString($data['salutation_msg'] ?? null),
