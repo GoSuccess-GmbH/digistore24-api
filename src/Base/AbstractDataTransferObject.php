@@ -45,13 +45,13 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
 
         // If no constructor, create empty instance and set properties
         if ($constructor === null || $constructor->getNumberOfParameters() === 0) {
+            /** @var static $instance */
             $instance = $reflection->newInstanceWithoutConstructor();
-            // Cast to generic object reflection to satisfy type requirements
+            // Create reflection from base class to avoid covariance issues
+            /** @var ReflectionClass<object> $objectReflection */
             $objectReflection = new ReflectionClass($instance);
-            // @phpstan-ignore-next-line argument.type (ReflectionClass covariance issue)
             self::setPropertiesFromArray($instance, $data, $objectReflection);
 
-            /** @var static */
             return $instance;
         }
 
@@ -74,7 +74,7 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
             }
         }
 
-        /** @phpstan-ignore-next-line instantiate static class */
+        // @phpstan-ignore-next-line method.nonObject (Abstract class may not have constructor)
         return new static(...$args);
     }
 
@@ -216,39 +216,43 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
                 if (! is_scalar($value) && ! is_null($value)) {
                     return null;
                 }
-                $stringValue = is_string($value) ? $value : strval($value);
-                // PHPStan: We know this is a StringBackedEnum class-string
-                return $typeName::fromString($stringValue); // @phpstan-ignore-line
+                $stringValue = is_string($value) ? $value : (string)$value;
+
+                // @phpstan-ignore-next-line method.nonObject (enum_exists validated)
+                return $typeName::fromString($stringValue);
             }
             if (is_subclass_of($typeName, IntBackedEnum::class)) {
-                if (! is_scalar($value) && ! is_null($value) && ! is_array($value) && ! is_resource($value)) {
+                if (! is_scalar($value) && ! is_null($value)) {
                     return null;
                 }
-                $intValue = is_int($value) ? $value : intval($value);
-                // PHPStan: We know this is an IntBackedEnum class-string
-                return $typeName::fromInt($intValue); // @phpstan-ignore-line
+                $intValue = is_int($value) ? $value : (int)$value;
+
+                // @phpstan-ignore-next-line method.nonObject (enum_exists validated)
+                return $typeName::fromInt($intValue);
             }
             // Fallback for standard backed enums
-            if (method_exists($typeName, 'from') && (is_int($value) || is_string($value))) {
+            if (method_exists($typeName, 'from')) {
+                if (! is_int($value) && ! is_string($value)) {
+                    return null;
+                }
                 /** @var class-string<\BackedEnum> $enumClass */
                 $enumClass = $typeName;
-                /** @var int|string $scalarValue */
-                $scalarValue = $value;
-                return $enumClass::from($scalarValue);
+
+                return $enumClass::from($value);
             }
         }
 
         // Check if it's a DTO
         if (is_subclass_of($typeName, DataTransferObjectInterface::class) && is_array($value)) {
-            // Ensure array has string keys
+            // Ensure array has string keys for fromArray
+            /** @var array<string, mixed> $arrayValue */
             $arrayValue = [];
             foreach ($value as $k => $v) {
-                if (is_string($k)) {
-                    $arrayValue[$k] = $v;
-                }
+                $arrayValue[(string)$k] = $v;
             }
             /** @var class-string<DataTransferObjectInterface> $dtoClass */
             $dtoClass = $typeName;
+
             return $dtoClass::fromArray($arrayValue);
         }
 
@@ -264,6 +268,4 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
 
         return $result !== null ? strtolower($result) : $input;
     }
-
-
 }
