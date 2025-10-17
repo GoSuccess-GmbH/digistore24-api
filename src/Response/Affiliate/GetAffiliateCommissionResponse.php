@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\DataTransferObject\AffiliationData;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
@@ -15,32 +16,74 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class GetAffiliateCommissionResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $commission
+     * Array of affiliation commission data
+     *
+     * @var AffiliationData[]
      */
-    public function __construct(private array $commission)
-    {
+    public array $affiliations {
+        get => $this->affiliations;
     }
 
     /**
-     * @return array<string, mixed>
+     * Affiliate ID
      */
-    public function getCommission(): array
-    {
-        return $this->commission;
+    public string $affiliateId {
+        get => $this->affiliateId;
+    }
+
+    /**
+     * Affiliate name
+     */
+    public string $affiliateName {
+        get => $this->affiliateName;
+    }
+
+    /**
+     * @param AffiliationData[] $affiliations
+     * @param string $affiliateId
+     * @param string $affiliateName
+     */
+    public function __construct(
+        array $affiliations,
+        string $affiliateId,
+        string $affiliateName,
+    ) {
+        $this->affiliations = $affiliations;
+        $this->affiliateId = $affiliateId;
+        $this->affiliateName = $affiliateName;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $innerData = self::extractInnerData($data);
-        $commission = $innerData['commission'] ?? [];
 
-        if (! is_array($commission)) {
-            $commission = [];
+        $affiliationsData = $innerData['affiliations'] ?? [];
+        $affiliations = [];
+
+        if (is_array($affiliationsData)) {
+            foreach ($affiliationsData as $affiliationItem) {
+                if (is_array($affiliationItem)) {
+                    /** @var array<string, mixed> $validAffiliationItem */
+                    $validAffiliationItem = $affiliationItem;
+                    $affiliations[] = AffiliationData::fromArray($validAffiliationItem);
+                }
+            }
         }
 
-        /** @var array<string, mixed> $validatedCommission */
-        $validatedCommission = $commission;
+        $affiliateId = '';
+        if (isset($innerData['affiliate_id']) && is_string($innerData['affiliate_id'])) {
+            $affiliateId = $innerData['affiliate_id'];
+        }
 
-        return new self(commission: $validatedCommission);
+        $affiliateName = '';
+        if (isset($innerData['affiliate_name']) && is_string($innerData['affiliate_name'])) {
+            $affiliateName = $innerData['affiliate_name'];
+        }
+
+        return new self(
+            affiliations: $affiliations,
+            affiliateId: $affiliateId,
+            affiliateName: $affiliateName,
+        );
     }
 }
