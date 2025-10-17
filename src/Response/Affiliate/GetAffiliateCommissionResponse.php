@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
-use GoSuccess\Digistore24\Api\DataTransferObject\AffiliationData;
+use GoSuccess\Digistore24\Api\DTO\AffiliationData;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Get Affiliate Commission Response
@@ -70,20 +71,10 @@ final class GetAffiliateCommissionResponse extends AbstractResponse
             }
         }
 
-        $affiliateId = '';
-        if (isset($innerData['affiliate_id']) && is_string($innerData['affiliate_id'])) {
-            $affiliateId = $innerData['affiliate_id'];
-        }
-
-        $affiliateName = '';
-        if (isset($innerData['affiliate_name']) && is_string($innerData['affiliate_name'])) {
-            $affiliateName = $innerData['affiliate_name'];
-        }
-
         return new self(
             affiliations: $affiliations,
-            affiliateId: $affiliateId,
-            affiliateName: $affiliateName,
+            affiliateId: TypeConverter::toString($innerData['affiliate_id'] ?? null) ?? '',
+            affiliateName: TypeConverter::toString($innerData['affiliate_name'] ?? null) ?? '',
         );
     }
 }

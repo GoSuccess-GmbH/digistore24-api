@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GoSuccess\Digistore24\Api\DataTransferObject;
+namespace GoSuccess\Digistore24\Api\DTO;
 
 use GoSuccess\Digistore24\Api\Enum\AffiliateApprovalStatus;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Affiliation Data
@@ -20,9 +21,9 @@ final readonly class AffiliationData
      * @param string $defaultCommissionFix Default fixed commission amount
      * @param string $defaultCommissionCurrency Default commission currency code
      * @param string $commissionFix Fixed commission amount
-     * @param string $isOnFirstPmntOnly Whether commission applies only to first payment
+     * @param bool $isOnFirstPmntOnly Whether commission applies only to first payment
      * @param string $productId Product ID
-     * @param string $productIsActive Whether product is active ("Y" or "N")
+     * @param bool $productIsActive Whether product is active
      * @param AffiliateApprovalStatus $approvalStatus Approval status
      * @param string $approvalStatusMsg Human-readable approval status message
      */
@@ -33,9 +34,9 @@ final readonly class AffiliationData
         public string $defaultCommissionFix,
         public string $defaultCommissionCurrency,
         public string $commissionFix,
-        public string $isOnFirstPmntOnly,
+        public bool $isOnFirstPmntOnly,
         public string $productId,
-        public string $productIsActive,
+        public bool $productIsActive,
         public AffiliateApprovalStatus $approvalStatus,
         public string $approvalStatusMsg,
     ) {
@@ -57,17 +58,17 @@ final readonly class AffiliationData
         }
 
         return new self(
-            commissionRate: is_string($data['commission_rate'] ?? null) ? $data['commission_rate'] : '',
-            commissionCurrency: is_string($data['commission_currency'] ?? null) ? $data['commission_currency'] : '',
-            defaultCommissionRate: is_string($data['default_commission_rate'] ?? null) ? $data['default_commission_rate'] : '',
-            defaultCommissionFix: is_string($data['default_commission_fix'] ?? null) ? $data['default_commission_fix'] : '',
-            defaultCommissionCurrency: is_string($data['default_commission_currency'] ?? null) ? $data['default_commission_currency'] : '',
-            commissionFix: is_string($data['commission_fix'] ?? null) ? $data['commission_fix'] : '',
-            isOnFirstPmntOnly: is_string($data['is_on_first_pmnt_only'] ?? null) ? $data['is_on_first_pmnt_only'] : '',
-            productId: is_string($data['product_id'] ?? null) ? $data['product_id'] : '',
-            productIsActive: is_string($data['product_is_active'] ?? null) ? $data['product_is_active'] : '',
+            commissionRate: TypeConverter::toString($data['commission_rate'] ?? null) ?? '',
+            commissionCurrency: TypeConverter::toString($data['commission_currency'] ?? null) ?? '',
+            defaultCommissionRate: TypeConverter::toString($data['default_commission_rate'] ?? null) ?? '',
+            defaultCommissionFix: TypeConverter::toString($data['default_commission_fix'] ?? null) ?? '',
+            defaultCommissionCurrency: TypeConverter::toString($data['default_commission_currency'] ?? null) ?? '',
+            commissionFix: TypeConverter::toString($data['commission_fix'] ?? null) ?? '',
+            isOnFirstPmntOnly: TypeConverter::toBool($data['is_on_first_pmnt_only'] ?? null) ?? false,
+            productId: TypeConverter::toString($data['product_id'] ?? null) ?? '',
+            productIsActive: TypeConverter::toBool($data['product_is_active'] ?? null) ?? false,
             approvalStatus: $approvalStatus,
-            approvalStatusMsg: is_string($data['approval_status_msg'] ?? null) ? $data['approval_status_msg'] : '',
+            approvalStatusMsg: TypeConverter::toString($data['approval_status_msg'] ?? null) ?? '',
         );
     }
 }
