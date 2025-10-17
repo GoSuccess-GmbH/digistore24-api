@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
 use GoSuccess\Digistore24\Api\DTO\BuyerData;
+use GoSuccess\Digistore24\Api\Enum\Salutation;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -51,7 +52,7 @@ final class BuyerDataTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        $buyer->salutation = 'Mr';
+        $buyer->salutation = Salutation::Mr;
         $buyer->title = 'Dr';
         $buyer->firstName = 'John';
         $buyer->lastName = 'Doe';
@@ -64,7 +65,7 @@ final class BuyerDataTest extends TestCase
         $buyer->phoneNo = '+49-30-12345678';
         $buyer->taxId = 'DE123456789';
 
-        $this->assertSame('Mr', $buyer->salutation);
+        $this->assertSame(Salutation::Mr, $buyer->salutation);
         $this->assertSame('Dr', $buyer->title);
         $this->assertSame('John', $buyer->firstName);
         $this->assertSame('Doe', $buyer->lastName);
@@ -86,5 +87,38 @@ final class BuyerDataTest extends TestCase
         $this->assertNull($buyer->salutation);
         $this->assertNull($buyer->firstName);
         $this->assertNull($buyer->country);
+    }
+
+    public function testSalutationCanBeSetToMrs(): void
+    {
+        $buyer = new BuyerData();
+        $buyer->email = 'test@example.com';
+        $buyer->salutation = Salutation::Mrs;
+
+        $this->assertSame(Salutation::Mrs, $buyer->salutation);
+        $this->assertSame('F', $buyer->salutation->value);
+        $this->assertSame('Mrs', $buyer->salutation->label());
+    }
+
+    public function testSalutationCanBeSetToMr(): void
+    {
+        $buyer = new BuyerData();
+        $buyer->email = 'test@example.com';
+        $buyer->salutation = Salutation::Mr;
+
+        $this->assertSame(Salutation::Mr, $buyer->salutation);
+        $this->assertSame('M', $buyer->salutation->value);
+        $this->assertSame('Mr', $buyer->salutation->label());
+    }
+
+    public function testSalutationCanBeSetToNone(): void
+    {
+        $buyer = new BuyerData();
+        $buyer->email = 'test@example.com';
+        $buyer->salutation = Salutation::None;
+
+        $this->assertSame(Salutation::None, $buyer->salutation);
+        $this->assertSame('', $buyer->salutation->value);
+        $this->assertSame('None', $buyer->salutation->label());
     }
 }
