@@ -4,6 +4,10 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+
+
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+
 /**
  * Service Proof Data Transfer Object
  *
@@ -12,7 +16,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateServiceProofRequest.yaml
  */
-final class ServiceProofData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class ServiceProofData extends AbstractDataTransferObject
 {
     /**
      * Status of the request - either providing proof or executing the refund

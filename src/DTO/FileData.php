@@ -4,6 +4,7 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
@@ -14,7 +15,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  *
  * @link https://digistore24.com/api/docs/paths/updateServiceProofRequest.yaml
  */
-final class FileData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class FileData extends AbstractDataTransferObject
 {
     /**
      * Download URL for file contents

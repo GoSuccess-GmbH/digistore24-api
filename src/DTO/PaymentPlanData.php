@@ -4,6 +4,7 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
@@ -12,7 +13,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  * Represents payment plan information for API requests and responses.
  * Uses PHP 8.4 property hooks for automatic validation.
  */
-final class PaymentPlanData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class PaymentPlanData extends AbstractDataTransferObject
 {
     public ?float $firstAmount = null {
         set {

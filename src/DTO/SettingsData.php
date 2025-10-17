@@ -4,6 +4,10 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+
+
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+
 /**
  * Settings Data Transfer Object
  *
@@ -12,7 +16,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/createBuyUrl.yaml
  */
-final class SettingsData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class SettingsData extends AbstractDataTransferObject
 {
     /**
      * ID of the order form to use

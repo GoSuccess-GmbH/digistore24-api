@@ -4,6 +4,7 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
@@ -15,7 +16,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  * @link https://digistore24.com/api/docs/paths/createProductGroup.yaml
  * @link https://digistore24.com/api/docs/paths/updateProductGroup.yaml
  */
-final class ProductGroupData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class ProductGroupData extends AbstractDataTransferObject
 {
     /**
      * Product group name

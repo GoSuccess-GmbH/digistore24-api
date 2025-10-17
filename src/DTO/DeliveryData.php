@@ -4,6 +4,10 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+
+
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+
 /**
  * Delivery Data Transfer Object
  *
@@ -12,7 +16,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateDelivery.yaml
  */
-final class DeliveryData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class DeliveryData extends AbstractDataTransferObject
 {
     /**
      * The type of delivery status

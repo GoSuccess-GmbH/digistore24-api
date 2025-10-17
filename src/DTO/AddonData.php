@@ -4,6 +4,7 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Util\ArrayHelper;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
@@ -13,7 +14,7 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  * Represents an add-on product for addon change purchases.
  * Uses PHP 8.4 property hooks for automatic validation.
  */
-final class AddonData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class AddonData extends AbstractDataTransferObject
 {
     /**
      * Digistore24 product ID

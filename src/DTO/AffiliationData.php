@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Enum\AffiliateApprovalStatus;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
@@ -13,7 +14,7 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  * Represents affiliate commission data for a specific product.
  * Uses PHP 8.4 property hooks for read-only access.
  */
-final class AffiliationData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class AffiliationData extends AbstractDataTransferObject
 {
     /**
      * Commission rate as percentage

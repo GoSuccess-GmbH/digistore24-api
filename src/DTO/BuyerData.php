@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use DateTimeImmutable;
 use GoSuccess\Digistore24\Api\Enum\Salutation;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
@@ -15,7 +16,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  * Represents buyer information for API requests and responses.
  * Uses PHP 8.4 property hooks for automatic validation.
  */
-final class BuyerData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class BuyerData extends AbstractDataTransferObject
 {
     /**
      * Buyer ID

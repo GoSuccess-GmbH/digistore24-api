@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Util\ArrayHelper;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
@@ -13,7 +14,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  * Represents tracking information for purchase events.
  * Uses PHP 8.4 property hooks for automatic validation.
  */
-final class TrackingData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class TrackingData extends AbstractDataTransferObject
 {
     /**
      * Thank you page URL

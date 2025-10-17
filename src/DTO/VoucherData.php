@@ -4,6 +4,7 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
@@ -15,7 +16,7 @@ use GoSuccess\Digistore24\Api\Util\Validator;
  * @link https://digistore24.com/api/docs/paths/createVoucher.yaml
  * @link https://digistore24.com/api/docs/paths/updateVoucher.yaml
  */
-final class VoucherData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class VoucherData extends AbstractDataTransferObject
 {
     /**
      * The voucher code

@@ -4,6 +4,10 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+
+
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+
 /**
  * Tracking Info Data Transfer Object
  *
@@ -12,7 +16,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
  *
  * @link https://digistore24.com/api/docs/paths/updateDelivery.yaml
  */
-final class TrackingInfoData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
+final class TrackingInfoData extends AbstractDataTransferObject
 {
     /**
      * The parcel service key
