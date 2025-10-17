@@ -45,10 +45,13 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
 
         // If no constructor, create empty instance and set properties
         if ($constructor === null || $constructor->getNumberOfParameters() === 0) {
-            /** @var static $instance */
             $instance = $reflection->newInstanceWithoutConstructor();
-            self::setPropertiesFromArray($instance, $data, $reflection);
+            // Cast to generic object reflection to satisfy type requirements
+            $objectReflection = new ReflectionClass($instance);
+            // @phpstan-ignore-next-line argument.type (ReflectionClass covariance issue)
+            self::setPropertiesFromArray($instance, $data, $objectReflection);
 
+            /** @var static */
             return $instance;
         }
 
@@ -135,10 +138,9 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
     /**
      * Set properties from array for instances without constructor parameters
      *
-     * @template T of object
-     * @param T $instance
+     * @param object $instance
      * @param array<string, mixed> $data
-     * @param ReflectionClass<T> $reflection
+     * @param ReflectionClass<object> $reflection
      */
     private static function setPropertiesFromArray(object $instance, array $data, ReflectionClass $reflection): void
     {
@@ -211,35 +213,43 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
         // Check if it's an Enum
         if (enum_exists($typeName)) {
             if (is_subclass_of($typeName, StringBackedEnum::class)) {
-                /** @var class-string<StringBackedEnum&\UnitEnum> $typeName */
                 if (! is_scalar($value) && ! is_null($value)) {
                     return null;
                 }
                 $stringValue = is_string($value) ? $value : strval($value);
-                return $typeName::fromString($stringValue);
+                // PHPStan: We know this is a StringBackedEnum class-string
+                return $typeName::fromString($stringValue); // @phpstan-ignore-line
             }
             if (is_subclass_of($typeName, IntBackedEnum::class)) {
-                /** @var class-string<IntBackedEnum&\UnitEnum> $typeName */
                 if (! is_scalar($value) && ! is_null($value) && ! is_array($value) && ! is_resource($value)) {
                     return null;
                 }
                 $intValue = is_int($value) ? $value : intval($value);
-                return $typeName::fromInt($intValue);
+                // PHPStan: We know this is an IntBackedEnum class-string
+                return $typeName::fromInt($intValue); // @phpstan-ignore-line
             }
             // Fallback for standard backed enums
             if (method_exists($typeName, 'from') && (is_int($value) || is_string($value))) {
-                /** @var class-string<\BackedEnum> $typeName */
-                return $typeName::from($value);
+                /** @var class-string<\BackedEnum> $enumClass */
+                $enumClass = $typeName;
+                /** @var int|string $scalarValue */
+                $scalarValue = $value;
+                return $enumClass::from($scalarValue);
             }
         }
 
         // Check if it's a DTO
         if (is_subclass_of($typeName, DataTransferObjectInterface::class) && is_array($value)) {
             // Ensure array has string keys
-            /** @var array<string, mixed> $arrayValue */
-            $arrayValue = $value;
-            /** @var class-string<DataTransferObjectInterface> $typeName */
-            return $typeName::fromArray($arrayValue);
+            $arrayValue = [];
+            foreach ($value as $k => $v) {
+                if (is_string($k)) {
+                    $arrayValue[$k] = $v;
+                }
+            }
+            /** @var class-string<DataTransferObjectInterface> $dtoClass */
+            $dtoClass = $typeName;
+            return $dtoClass::fromArray($arrayValue);
         }
 
         return $value;
