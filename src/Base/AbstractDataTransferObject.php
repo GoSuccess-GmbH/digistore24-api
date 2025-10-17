@@ -46,8 +46,8 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
         // If no constructor, create empty instance and set properties
         if ($constructor === null || $constructor->getNumberOfParameters() === 0) {
             $instance = $reflection->newInstanceWithoutConstructor();
-            /** @var ReflectionClass<object> $instanceReflection */
             $instanceReflection = new ReflectionClass($instance);
+            // @phpstan-ignore argument.type (ReflectionClass<static> cannot be covariant to ReflectionClass<object>)
             self::setPropertiesFromArray($instance, $data, $instanceReflection);
 
             /** @var static */
