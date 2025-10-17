@@ -70,12 +70,12 @@ final class PaymentPlanDataTest extends TestCase
     {
         $plan = new PaymentPlanData();
         $plan->upgradeOrderId = 'ORDER123';
-        $plan->upgradeType = 'full';
+        $plan->upgradeType = 'upgrade';
         $plan->template = 'standard';
         $plan->taxMode = 'net';
 
         $this->assertSame('ORDER123', $plan->upgradeOrderId);
-        $this->assertSame('full', $plan->upgradeType);
+        $this->assertSame('upgrade', $plan->upgradeType);
         $this->assertSame('standard', $plan->template);
         $this->assertSame('net', $plan->taxMode);
     }

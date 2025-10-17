@@ -17,12 +17,26 @@ final class UpgradeData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
     /**
      * Name of the new upgrade
      */
-    public string $name;
+    public string $name {
+        set {
+            if (strlen($value) > 255) {
+                throw new \InvalidArgumentException('Name must not exceed 255 characters');
+            }
+            $this->name = $value;
+        }
+    }
 
     /**
      * The product ID being sold as the upgrade
      */
-    public int $toProductId;
+    public int $toProductId {
+        set {
+            if ($value < 1) {
+                throw new \InvalidArgumentException('Product ID must be positive');
+            }
+            $this->toProductId = $value;
+        }
+    }
 
     /**
      * Comma-separated list of product IDs that can be upgraded from
@@ -44,7 +58,14 @@ final class UpgradeData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
     /**
      * Product ID to offer if upgrade is not possible
      */
-    public ?int $fallbackProductId = null;
+    public ?int $fallbackProductId = null {
+        set {
+            if ($value !== null && $value < 1) {
+                throw new \InvalidArgumentException('Fallback product ID must be positive');
+            }
+            $this->fallbackProductId = $value;
+        }
+    }
 
     /**
      * Whether the upgrade is active and purchasable

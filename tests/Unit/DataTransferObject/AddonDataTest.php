@@ -11,7 +11,7 @@ final class AddonDataTest extends TestCase
 {
     public function testCanCreateWithRequiredFields(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
 
         $this->assertSame(12345, $addon->productId);
         $this->assertNull($addon->amount);
@@ -21,12 +21,7 @@ final class AddonDataTest extends TestCase
 
     public function testCanCreateWithAllFields(): void
     {
-        $addon = new AddonData(
-            productId: 12345,
-            amount: 29.99,
-            quantity: 3,
-            isQuantityEditableAfterPurchase: true,
-        );
+        $addon = AddonData::fromArray(['product_id' => 12345, 'amount' => 29.99, 'quantity' => 3, 'is_quantity_editable_after_purchase' => true]);
 
         $this->assertSame(12345, $addon->productId);
         $this->assertSame(29.99, $addon->amount);
@@ -39,12 +34,12 @@ final class AddonDataTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Quantity must be at least 1');
 
-        new AddonData(productId: 12345, quantity: 0);
+        AddonData::fromArray(['product_id' => 12345, 'quantity' => 0]);
     }
 
     public function testToArrayWithMinimalData(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $array = $addon->toArray();
 
         $this->assertSame(12345, $array['product_id']);
@@ -55,12 +50,7 @@ final class AddonDataTest extends TestCase
 
     public function testToArrayWithAllData(): void
     {
-        $addon = new AddonData(
-            productId: 12345,
-            amount: 29.99,
-            quantity: 2,
-            isQuantityEditableAfterPurchase: true,
-        );
+        $addon = AddonData::fromArray(['product_id' => 12345, 'amount' => 29.99, 'quantity' => 2, 'is_quantity_editable_after_purchase' => true]);
         $array = $addon->toArray();
 
         $this->assertSame(12345, $array['product_id']);
@@ -71,8 +61,8 @@ final class AddonDataTest extends TestCase
 
     public function testIsQuantityEditableConvertsToYN(): void
     {
-        $addonYes = new AddonData(productId: 12345, isQuantityEditableAfterPurchase: true);
-        $addonNo = new AddonData(productId: 12345, isQuantityEditableAfterPurchase: false);
+        $addonYes = AddonData::fromArray(['product_id' => 12345, 'is_quantity_editable_after_purchase' => true]);
+        $addonNo = AddonData::fromArray(['product_id' => 12345, 'is_quantity_editable_after_purchase' => false]);
 
         $this->assertSame('Y', $addonYes->toArray()['is_quantity_editable_after_purchase']);
         $this->assertSame('N', $addonNo->toArray()['is_quantity_editable_after_purchase']);

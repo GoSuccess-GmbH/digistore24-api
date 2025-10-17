@@ -14,7 +14,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 {
     public function testCanCreateWithRequiredFields(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
             addons: [$addon],
@@ -28,7 +28,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testCanCreateWithAllFields(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $tracking = new TrackingData();
         $tracking->custom = 'ref-123';
         $placeholders = new PlaceholderData(['key' => 'value']);
@@ -58,7 +58,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testAddonsArrayMustContainAddonDataObjects(): void
     {
-        $this->expectException(\TypeError::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         /** @phpstan-ignore-next-line - Testing invalid type */
         new CreateAddonChangePurchaseRequest(
@@ -69,7 +69,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testEndpointReturnsCorrectValue(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
             addons: [$addon],
@@ -80,7 +80,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testToArrayWithMinimalData(): void
     {
-        $addon = new AddonData(productId: 12345, quantity: 2);
+        $addon = AddonData::fromArray(['product_id' => 12345, 'quantity' => 2]);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
             addons: [$addon],
@@ -101,8 +101,8 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testToArrayWithMultipleAddons(): void
     {
-        $addon1 = new AddonData(productId: 12345);
-        $addon2 = new AddonData(productId: 67890, amount: 19.99);
+        $addon1 = AddonData::fromArray(['product_id' => 12345]);
+        $addon2 = AddonData::fromArray(['product_id' => 67890, 'amount' => 19.99]);
 
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
@@ -124,7 +124,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testToArrayWithTracking(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $tracking = new TrackingData();
         $tracking->custom = 'ref-123';
         $tracking->affiliate = 'AFF123';
@@ -148,7 +148,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testToArrayWithPlaceholders(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $placeholders = new PlaceholderData();
         $placeholders->set('name', 'John Doe');
         $placeholders->set('company', 'ACME Corp');
@@ -172,7 +172,7 @@ final class CreateAddonChangePurchaseRequestTest extends TestCase
 
     public function testValidationPassesForValidData(): void
     {
-        $addon = new AddonData(productId: 12345);
+        $addon = AddonData::fromArray(['product_id' => 12345]);
         $request = new CreateAddonChangePurchaseRequest(
             purchaseId: 'P12345',
             addons: [$addon],

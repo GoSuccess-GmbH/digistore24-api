@@ -18,7 +18,17 @@ final class VoucherData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
     /**
      * The voucher code
      */
-    public string $code;
+    public string $code {
+        set {
+            if (strlen($value) === 0) {
+                throw new \InvalidArgumentException('Voucher code cannot be empty');
+            }
+            if (strlen($value) > 255) {
+                throw new \InvalidArgumentException('Voucher code must not exceed 255 characters');
+            }
+            $this->code = $value;
+        }
+    }
 
     /**
      * Comma-separated list of product IDs this voucher applies to
@@ -30,13 +40,27 @@ final class VoucherData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
      * Point in time from when the code becomes valid
      * Format: YYYY-MM-DD HH:MM:SS (e.g., 2017-12-31 12:00:00)
      */
-    public ?string $validFrom = null;
+    public ?string $validFrom = null {
+        set {
+            if ($value !== null && !preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
+                throw new \InvalidArgumentException('Valid from must be in YYYY-MM-DD HH:MM:SS format');
+            }
+            $this->validFrom = $value;
+        }
+    }
 
     /**
      * Point in time when the code becomes invalid
      * Format: YYYY-MM-DD HH:MM:SS
      */
-    public ?string $expiresAt = null;
+    public ?string $expiresAt = null {
+        set {
+            if ($value !== null && !preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
+                throw new \InvalidArgumentException('Expires at must be in YYYY-MM-DD HH:MM:SS format');
+            }
+            $this->expiresAt = $value;
+        }
+    }
 
     /**
      * Discount percentage on first payment (subscriptions/installments) or single payment

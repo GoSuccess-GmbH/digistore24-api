@@ -12,9 +12,23 @@ namespace GoSuccess\Digistore24\Api\DTO;
  */
 final class PaymentPlanData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
-    public ?float $firstAmount = null;
+    public ?float $firstAmount = null {
+        set {
+            if ($value !== null && $value < 0) {
+                throw new \InvalidArgumentException('First amount must be positive');
+            }
+            $this->firstAmount = $value;
+        }
+    }
 
-    public ?float $otherAmounts = null;
+    public ?float $otherAmounts = null {
+        set {
+            if ($value !== null && $value < 0) {
+                throw new \InvalidArgumentException('Other amounts must be positive');
+            }
+            $this->otherAmounts = $value;
+        }
+    }
 
     public ?string $currency = null {
         set {
@@ -25,7 +39,14 @@ final class PaymentPlanData extends \GoSuccess\Digistore24\Api\Base\AbstractData
         }
     }
 
-    public ?int $numberOfInstallments = null;
+    public ?int $numberOfInstallments = null {
+        set {
+            if ($value !== null && $value < 0) {
+                throw new \InvalidArgumentException('Number of installments must be non-negative');
+            }
+            $this->numberOfInstallments = $value;
+        }
+    }
 
     public ?string $firstBillingInterval = null;
 
@@ -37,7 +58,21 @@ final class PaymentPlanData extends \GoSuccess\Digistore24\Api\Base\AbstractData
 
     public ?string $upgradeOrderId = null;
 
-    public ?string $upgradeType = null;
+    public ?string $upgradeType = null {
+        set {
+            if ($value !== null && !in_array($value, ['upgrade', 'downgrade', 'special_offer'], true)) {
+                throw new \InvalidArgumentException("Invalid upgrade type: {$value}. Allowed: upgrade, downgrade, special_offer");
+            }
+            $this->upgradeType = $value;
+        }
+    }
 
-    public ?string $taxMode = null;
+    public ?string $taxMode = null {
+        set {
+            if ($value !== null && !in_array($value, ['net', 'gross'], true)) {
+                throw new \InvalidArgumentException("Invalid tax mode: {$value}. Allowed: net, gross");
+            }
+            $this->taxMode = $value;
+        }
+    }
 }
