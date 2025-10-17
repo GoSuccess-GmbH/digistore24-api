@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Eticket;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * List E-Tickets Response
@@ -46,7 +47,7 @@ final class ListEticketsResponse extends AbstractResponse
 
         return new self(
             tickets: $tickets,
-            totalCount: is_int($totalCount) ? $totalCount : (is_numeric($totalCount) ? (int)$totalCount : count($tickets)),
+            totalCount: TypeConverter::toInt($totalCount) ?? count($tickets),
         );
     }
 }

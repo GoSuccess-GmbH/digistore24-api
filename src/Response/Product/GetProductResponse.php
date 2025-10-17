@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Product;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Get Product Response
@@ -47,14 +48,14 @@ final class GetProductResponse extends AbstractResponse
         $validatedAdditionalData = $additionalData;
 
         $instance = new self(
-            productId: is_string($productId) ? $productId : '',
-            productName: is_string($productName) ? $productName : '',
-            productType: is_string($productType) ? $productType : '',
-            price: is_float($price) ? $price : (is_numeric($price) ? (float)$price : 0.0),
-            currency: is_string($currency) ? $currency : 'EUR',
-            description: $description !== null && is_string($description) ? $description : null,
-            isPublished: (bool)($data['is_published'] ?? false),
-            imageUrl: $imageUrl !== null && is_string($imageUrl) ? $imageUrl : null,
+            productId: TypeConverter::toString($productId) ?? '',
+            productName: TypeConverter::toString($productName) ?? '',
+            productType: TypeConverter::toString($productType) ?? '',
+            price: TypeConverter::toFloat($price) ?? 0.0,
+            currency: TypeConverter::toString($currency) ?? 'EUR',
+            description: $description !== null ? TypeConverter::toString($description) : null,
+            isPublished: TypeConverter::toBool($data['is_published'] ?? false) ?? false,
+            imageUrl: $imageUrl !== null ? TypeConverter::toString($imageUrl) : null,
             additionalData: $validatedAdditionalData,
         );
 

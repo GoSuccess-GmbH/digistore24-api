@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Image;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Delete Image Response
@@ -28,9 +29,9 @@ final class DeleteImageResponse extends AbstractResponse
         $message = $data['message'] ?? null;
 
         $instance = new self(
-            success: is_bool($success) ? $success : (bool)$success,
-            imageId: is_string($imageId) ? $imageId : '',
-            message: $message === null || is_string($message) ? $message : null,
+            success: TypeConverter::toBool($success) ?? true,
+            imageId: TypeConverter::toString($imageId) ?? '',
+            message: $message === null ? null : TypeConverter::toString($message),
         );
 
         return $instance;

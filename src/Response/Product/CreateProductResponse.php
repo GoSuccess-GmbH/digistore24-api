@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Product;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Create Product Response
@@ -28,6 +29,6 @@ final class CreateProductResponse extends AbstractResponse
         $innerData = self::extractInnerData($data);
         $productId = $innerData['product_id'] ?? 0;
 
-        return new self(productId: is_int($productId) ? $productId : (is_numeric($productId) ? (int)$productId : 0));
+        return new self(productId: TypeConverter::toInt($productId) ?? 0);
     }
 }

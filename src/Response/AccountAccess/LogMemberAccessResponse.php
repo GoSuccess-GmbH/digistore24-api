@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\AccountAccess;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Log Member Access Response
@@ -30,8 +31,8 @@ final class LogMemberAccessResponse extends AbstractResponse
         $message = self::getValue($data, 'message', 'string');
 
         return new self(
-            success: is_bool($success) ? $success : (bool)$success,
-            message: $message === null || is_string($message) ? $message : null,
+            success: TypeConverter::toBool($success) ?? true,
+            message: $message === null ? null : TypeConverter::toString($message),
         );
     }
 }

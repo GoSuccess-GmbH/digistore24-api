@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * File Data Transfer Object
  *
@@ -19,7 +21,7 @@ final class FileData
      */
     public string $url {
         set {
-            if (! filter_var($value, FILTER_VALIDATE_URL)) {
+            if (! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('URL must be a valid URL');
             }
             $this->url = $value;

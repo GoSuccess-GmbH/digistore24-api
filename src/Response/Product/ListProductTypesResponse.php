@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Product;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Response containing list of available product types.
@@ -96,9 +97,9 @@ final class ListProductTypesResponse extends AbstractResponse
             $category = $item['category'] ?? '';
 
             $productTypes[] = (object)[
-                'id' => is_int($id) ? $id : (is_numeric($id) ? (int)$id : 0),
-                'name' => is_string($name) ? $name : '',
-                'category' => is_string($category) ? $category : '',
+                'id' => TypeConverter::toInt($id) ?? 0,
+                'name' => TypeConverter::toString($name) ?? '',
+                'category' => TypeConverter::toString($category) ?? '',
             ];
         }
 

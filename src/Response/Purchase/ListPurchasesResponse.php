@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * List Purchases Response
@@ -43,7 +44,7 @@ final class ListPurchasesResponse extends AbstractResponse
 
         $instance = new self(
             purchases: $purchases,
-            totalCount: is_int($totalCount) ? $totalCount : (is_numeric($totalCount) ? (int)$totalCount : count($purchases)),
+            totalCount: TypeConverter::toInt($totalCount) ?? count($purchases),
         );
 
         return $instance;

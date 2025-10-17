@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Add Balance To Purchase Response
@@ -40,8 +41,8 @@ final class AddBalanceToPurchaseResponse extends AbstractResponse
         $newBalance = $innerData['new_balance'] ?? 0.0;
 
         return new self(
-            oldBalance: is_float($oldBalance) ? $oldBalance : (is_numeric($oldBalance) ? (float)$oldBalance : 0.0),
-            newBalance: is_float($newBalance) ? $newBalance : (is_numeric($newBalance) ? (float)$newBalance : 0.0),
+            oldBalance: TypeConverter::toFloat($oldBalance) ?? 0.0,
+            newBalance: TypeConverter::toFloat($newBalance) ?? 0.0,
         );
     }
 }

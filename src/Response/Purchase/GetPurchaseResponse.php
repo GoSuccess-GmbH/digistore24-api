@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Purchase;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Get Purchase Response
@@ -50,15 +51,15 @@ final class GetPurchaseResponse extends AbstractResponse
         $validatedAdditionalData = $additionalData;
 
         $instance = new self(
-            purchaseId: is_string($purchaseId) ? $purchaseId : '',
-            productId: is_string($productId) ? $productId : '',
-            productName: is_string($productName) ? $productName : '',
-            buyerEmail: is_string($buyerEmail) ? $buyerEmail : '',
-            paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',
-            billingStatus: is_string($billingStatus) ? $billingStatus : '',
-            amount: is_float($amount) ? $amount : (is_numeric($amount) ? (float)$amount : 0.0),
-            currency: is_string($currency) ? $currency : 'EUR',
-            createdAt: new \DateTimeImmutable(is_string($createdAt) ? $createdAt : 'now'),
+            purchaseId: TypeConverter::toString($purchaseId) ?? '',
+            productId: TypeConverter::toString($productId) ?? '',
+            productName: TypeConverter::toString($productName) ?? '',
+            buyerEmail: TypeConverter::toString($buyerEmail) ?? '',
+            paymentStatus: TypeConverter::toString($paymentStatus) ?? '',
+            billingStatus: TypeConverter::toString($billingStatus) ?? '',
+            amount: TypeConverter::toFloat($amount) ?? 0.0,
+            currency: TypeConverter::toString($currency) ?? 'EUR',
+            createdAt: TypeConverter::toDateTime($createdAt) ?? new \DateTimeImmutable(),
             additionalData: $validatedAdditionalData,
         );
 

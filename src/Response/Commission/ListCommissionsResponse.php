@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Commission;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Response containing list of affiliate commissions.
@@ -115,14 +116,14 @@ final class ListCommissionsResponse extends AbstractResponse
                 $purchaseId = $item['purchase_id'] ?? '';
 
                 $items[] = (object)[
-                    'id' => is_int($id) ? $id : 0,
-                    'created_at' => is_string($createdAt) ? $createdAt : '',
-                    'amount' => is_float($amount) ? $amount : (is_numeric($amount) ? (float)$amount : 0.0),
-                    'currency' => is_string($currency) ? $currency : '',
-                    'reason' => is_string($reason) ? $reason : '',
-                    'schedule_payout_at' => is_string($schedulePayoutAt) ? $schedulePayoutAt : '',
-                    'transaction_id' => is_int($transactionId) ? $transactionId : 0,
-                    'purchase_id' => is_string($purchaseId) ? $purchaseId : '',
+                    'id' => TypeConverter::toInt($id) ?? 0,
+                    'created_at' => TypeConverter::toString($createdAt) ?? '',
+                    'amount' => TypeConverter::toFloat($amount) ?? 0.0,
+                    'currency' => TypeConverter::toString($currency) ?? '',
+                    'reason' => TypeConverter::toString($reason) ?? '',
+                    'schedule_payout_at' => TypeConverter::toString($schedulePayoutAt) ?? '',
+                    'transaction_id' => TypeConverter::toInt($transactionId) ?? 0,
+                    'purchase_id' => TypeConverter::toString($purchaseId) ?? '',
                 ];
             }
         }
@@ -133,10 +134,10 @@ final class ListCommissionsResponse extends AbstractResponse
         $pageCount = $data['page_count'] ?? 0;
 
         return new self(
-            pageNo: is_int($pageNo) ? $pageNo : 1,
-            pageSize: is_int($pageSize) ? $pageSize : 0,
-            itemCount: is_int($itemCount) ? $itemCount : 0,
-            pageCount: is_int($pageCount) ? $pageCount : 0,
+            pageNo: TypeConverter::toInt($pageNo) ?? 1,
+            pageSize: TypeConverter::toInt($pageSize) ?? 0,
+            itemCount: TypeConverter::toInt($itemCount) ?? 0,
+            pageCount: TypeConverter::toInt($pageCount) ?? 0,
             items: $items,
         );
     }

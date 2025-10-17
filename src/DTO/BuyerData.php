@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Buyer Data Transfer Object
  *
@@ -14,7 +16,7 @@ final class BuyerData
 {
     public string $email {
         set {
-            if (! filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            if (! Validator::isEmail($value)) {
                 throw new \InvalidArgumentException("Invalid email address: {$value}");
             }
             $this->email = $value;
@@ -41,10 +43,15 @@ final class BuyerData
 
     public ?string $country = null {
         set {
-            if ($value !== null && strlen($value) !== 2) {
-                throw new \InvalidArgumentException("Country must be 2-letter code: {$value}");
+            if ($value !== null) {
+                $upperValue = strtoupper($value);
+                if (! Validator::isCountryCode($upperValue)) {
+                    throw new \InvalidArgumentException("Country must be 2-letter code: {$value}");
+                }
+                $this->country = $upperValue;
+            } else {
+                $this->country = null;
             }
-            $this->country = $value !== null ? strtoupper($value) : null;
         }
     }
 

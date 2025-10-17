@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Eticket;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Get E-Ticket Settings Response
@@ -40,11 +41,11 @@ final class GetEticketSettingsResponse extends AbstractResponse
         $validatedSettings = $settings;
 
         $instance = new self(
-            eticketEnabled: (bool)($data['eticket_enabled'] ?? false),
-            defaultLocationId: $defaultLocationId !== null && is_string($defaultLocationId) ? $defaultLocationId : null,
-            defaultTemplateId: $defaultTemplateId !== null && is_string($defaultTemplateId) ? $defaultTemplateId : null,
-            maxTicketsPerOrder: is_int($maxTicketsPerOrder) ? $maxTicketsPerOrder : (is_numeric($maxTicketsPerOrder) ? (int)$maxTicketsPerOrder : 10),
-            requireEmailValidation: (bool)($data['require_email_validation'] ?? false),
+            eticketEnabled: TypeConverter::toBool($data['eticket_enabled'] ?? false) ?? false,
+            defaultLocationId: $defaultLocationId !== null ? TypeConverter::toString($defaultLocationId) : null,
+            defaultTemplateId: $defaultTemplateId !== null ? TypeConverter::toString($defaultTemplateId) : null,
+            maxTicketsPerOrder: TypeConverter::toInt($maxTicketsPerOrder) ?? 10,
+            requireEmailValidation: TypeConverter::toBool($data['require_email_validation'] ?? false) ?? false,
             settings: $validatedSettings,
         );
 

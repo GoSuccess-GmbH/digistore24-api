@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * URLs Data Transfer Object
  *
@@ -21,7 +23,7 @@ final class UrlsData
      */
     public ?string $thankyouUrl = null {
         set {
-            if ($value !== null && ! filter_var($value, FILTER_VALIDATE_URL)) {
+            if ($value !== null && ! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Thank you URL must be a valid URL');
             }
             $this->thankyouUrl = $value;
@@ -35,7 +37,7 @@ final class UrlsData
      */
     public ?string $fallbackUrl = null {
         set {
-            if ($value !== null && ! filter_var($value, FILTER_VALIDATE_URL)) {
+            if ($value !== null && ! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Fallback URL must be a valid URL');
             }
             $this->fallbackUrl = $value;
@@ -49,7 +51,7 @@ final class UrlsData
      */
     public ?string $upgradeErrorUrl = null {
         set {
-            if ($value !== null && ! filter_var($value, FILTER_VALIDATE_URL)) {
+            if ($value !== null && ! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Upgrade error URL must be a valid URL');
             }
             $this->upgradeErrorUrl = $value;

@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\Country;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * @see https://digistore24.com/api/docs/paths/listCurrencies.yaml
@@ -44,12 +45,12 @@ final class ListCurrenciesResponse extends AbstractResponse
             $name = $item['name'] ?? '';
 
             $currencies[] = (object)[
-                'id' => is_int($id) ? $id : 0,
-                'code' => is_string($code) ? $code : '',
-                'symbol' => is_string($symbol) ? $symbol : '',
-                'min_price' => is_float($minPrice) ? $minPrice : (is_numeric($minPrice) ? (float)$minPrice : 0.0),
-                'max_price' => is_float($maxPrice) ? $maxPrice : (is_numeric($maxPrice) ? (float)$maxPrice : 0.0),
-                'name' => is_string($name) ? $name : '',
+                'id' => TypeConverter::toInt($id) ?? 0,
+                'code' => TypeConverter::toString($code) ?? '',
+                'symbol' => TypeConverter::toString($symbol) ?? '',
+                'min_price' => TypeConverter::toFloat($minPrice) ?? 0.0,
+                'max_price' => TypeConverter::toFloat($maxPrice) ?? 0.0,
+                'name' => TypeConverter::toString($name) ?? '',
             ];
         }
 
