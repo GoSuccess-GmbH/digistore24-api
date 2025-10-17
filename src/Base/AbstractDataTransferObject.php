@@ -45,7 +45,8 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
 
         // If no constructor, create empty instance and set properties
         if ($constructor === null || $constructor->getNumberOfParameters() === 0) {
-            $instance = new static();
+            /** @var static $instance */
+            $instance = $reflection->newInstanceWithoutConstructor();
             self::setPropertiesFromArray($instance, $data, $reflection);
 
             return $instance;
@@ -134,9 +135,10 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
     /**
      * Set properties from array for instances without constructor parameters
      *
-     * @param object $instance
+     * @template T of object
+     * @param T $instance
      * @param array<string, mixed> $data
-     * @param ReflectionClass<object> $reflection
+     * @param ReflectionClass<T> $reflection
      */
     private static function setPropertiesFromArray(object $instance, array $data, ReflectionClass $reflection): void
     {
@@ -209,26 +211,35 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
         // Check if it's an Enum
         if (enum_exists($typeName)) {
             if (is_subclass_of($typeName, StringBackedEnum::class)) {
-                /** @var class-string<StringBackedEnum> $typeName */
-                return $typeName::fromString((string)$value);
+                /** @var class-string<StringBackedEnum&\UnitEnum> $typeName */
+                if (! is_scalar($value) && ! is_null($value)) {
+                    return null;
+                }
+                $stringValue = is_string($value) ? $value : strval($value);
+                return $typeName::fromString($stringValue);
             }
             if (is_subclass_of($typeName, IntBackedEnum::class)) {
-                /** @var class-string<IntBackedEnum> $typeName */
-                return $typeName::fromInt((int)$value);
+                /** @var class-string<IntBackedEnum&\UnitEnum> $typeName */
+                if (! is_scalar($value) && ! is_null($value) && ! is_array($value) && ! is_resource($value)) {
+                    return null;
+                }
+                $intValue = is_int($value) ? $value : intval($value);
+                return $typeName::fromInt($intValue);
             }
             // Fallback for standard backed enums
-            if (method_exists($typeName, 'from')) {
+            if (method_exists($typeName, 'from') && (is_int($value) || is_string($value))) {
                 /** @var class-string<\BackedEnum> $typeName */
                 return $typeName::from($value);
             }
         }
 
         // Check if it's a DTO
-        if (is_subclass_of($typeName, DataTransferObjectInterface::class)) {
-            if (is_array($value)) {
-                /** @var class-string<DataTransferObjectInterface> $typeName */
-                return $typeName::fromArray($value);
-            }
+        if (is_subclass_of($typeName, DataTransferObjectInterface::class) && is_array($value)) {
+            // Ensure array has string keys
+            /** @var array<string, mixed> $arrayValue */
+            $arrayValue = $value;
+            /** @var class-string<DataTransferObjectInterface> $typeName */
+            return $typeName::fromArray($arrayValue);
         }
 
         return $value;
@@ -244,11 +255,5 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
         return $result !== null ? strtolower($result) : $input;
     }
 
-    /**
-     * Convert snake_case to camelCase
-     */
-    private static function snakeToCamel(string $input): string
-    {
-        return lcfirst(str_replace('_', '', ucwords($input, '_')));
-    }
+
 }
