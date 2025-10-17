@@ -38,6 +38,9 @@ infection.log
 # Integration Tests
 .env.local
 
+# AI Assistant Context (internal reference, not for repo)
+.ai-context/
+
 # OS Files
 .DS_Store
 Thumbs.db
