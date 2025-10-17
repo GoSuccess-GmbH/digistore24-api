@@ -62,7 +62,7 @@ final class RefundPartiallyResponse extends AbstractResponse
         $result = $data['result'] ?? 'unknown';
         $responseData = $data['data'] ?? [];
 
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
 

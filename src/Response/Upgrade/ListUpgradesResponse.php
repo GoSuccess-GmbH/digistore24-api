@@ -29,7 +29,7 @@ final class ListUpgradesResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $upgradesData = $innerData['upgrades'] ?? [];
-        if (!is_array($upgradesData)) {
+        if (! is_array($upgradesData)) {
             $upgradesData = [];
         }
         /** @var array<string, mixed> $validatedUpgrades */

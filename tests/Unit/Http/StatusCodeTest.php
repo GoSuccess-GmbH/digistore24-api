@@ -65,13 +65,6 @@ final class StatusCodeTest extends TestCase
         $this->assertSame('Internal Server Error', HttpStatusCode::INTERNAL_SERVER_ERROR->label());
     }
 
-    public function testDescriptionIsDeprecatedAliasForLabel(): void
-    {
-        // description() is deprecated but should still work
-        $this->assertSame('OK', HttpStatusCode::OK->description());
-        $this->assertSame(HttpStatusCode::OK->label(), HttpStatusCode::OK->description());
-    }
-
     public function testValueReturnsCorrectInteger(): void
     {
         $this->assertSame(200, HttpStatusCode::OK->value);

@@ -45,7 +45,7 @@ final class CreateUpgradeResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $responseData = $data['data'] ?? [];
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
         /** @var array<string, mixed> $validatedData */

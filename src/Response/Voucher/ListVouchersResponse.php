@@ -29,7 +29,7 @@ final class ListVouchersResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $vouchersData = $innerData['vouchers'] ?? [];
-        if (!is_array($vouchersData)) {
+        if (! is_array($vouchersData)) {
             $vouchersData = [];
         }
         /** @var array<string, mixed> $validatedVouchers */

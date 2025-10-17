@@ -33,7 +33,8 @@ final class GetEticketRequestTest extends TestCase
             orderId: 'ORDER123',
         );
 
-        $array = $request->toArray();        $this->assertSame('ORDER123', $array['order_id']);
+        $array = $request->toArray();
+        $this->assertSame('ORDER123', $array['order_id']);
     }
 
     public function test_validation_passes_for_valid_data(): void

@@ -32,7 +32,7 @@ final class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $details = $data['data'] ?? [];
-        if (!is_array($details)) {
+        if (! is_array($details)) {
             $details = [];
         }
         /** @var array<string, mixed> $validatedDetails */

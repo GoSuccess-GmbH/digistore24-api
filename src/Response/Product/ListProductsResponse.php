@@ -30,7 +30,7 @@ final class ListProductsResponse extends AbstractResponse
 
         if (isset($data['products']) && is_array($data['products'])) {
             foreach ($data['products'] as $product) {
-                if (!is_array($product)) {
+                if (! is_array($product)) {
                     continue;
                 }
                 /** @var array<string, mixed> $validatedProduct */

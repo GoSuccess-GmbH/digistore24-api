@@ -32,6 +32,7 @@ final class IpnInfoResponse extends AbstractResponse
     public function getUrl(): ?string
     {
         $url = $this->data['url'] ?? null;
+
         return is_string($url) ? $url : null;
     }
 
@@ -39,7 +40,7 @@ final class IpnInfoResponse extends AbstractResponse
     {
         $responseData = $data['data'] ?? [];
 
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
 

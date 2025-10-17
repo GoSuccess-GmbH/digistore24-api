@@ -34,7 +34,7 @@ final class ListEticketsResponse extends AbstractResponse
 
         if (is_array($ticketsData)) {
             foreach ($ticketsData as $ticket) {
-                if (!is_array($ticket)) {
+                if (! is_array($ticket)) {
                     continue;
                 }
                 /** @var array<string, mixed> $validatedTicket */

@@ -41,7 +41,7 @@ final class GetProductResponse extends AbstractResponse
         $description = $data['description'] ?? null;
         $imageUrl = $data['image_url'] ?? null;
         $additionalData = $data['additional_data'] ?? [];
-        if (!is_array($additionalData)) {
+        if (! is_array($additionalData)) {
             $additionalData = [];
         }
         /** @var array<string, mixed> $validatedAdditionalData */

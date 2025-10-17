@@ -22,7 +22,7 @@ use GoSuccess\Digistore24\Api\Response\Image\ListImagesResponse;
  */
 final class ImageResource extends AbstractResource
 {
-        /**
+    /**
      * Upload a new image
      *
      * Uploads a new image and assigns it to a specific usage context (e.g., product image, logo, etc.).

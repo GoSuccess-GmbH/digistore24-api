@@ -63,7 +63,7 @@ trait StringBackedEnumTrait
     {
         return array_map(
             static fn (self $case): string => $case->value,
-            static::cases()
+            static::cases(),
         );
     }
 

@@ -33,7 +33,8 @@ final class ListAccountAccessRequestTest extends TestCase
             purchaseId: 'ABC123',
         );
 
-        $array = $request->toArray();        $this->assertSame('ABC123', $array['purchase_id']);
+        $array = $request->toArray();
+        $this->assertSame('ABC123', $array['purchase_id']);
     }
 
     public function test_validation_passes_for_valid_data(): void

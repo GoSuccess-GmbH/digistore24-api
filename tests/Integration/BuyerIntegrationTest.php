@@ -29,14 +29,12 @@ final class BuyerIntegrationTest extends IntegrationTestCase
 
     /**
      * Test getting a buyer by email
-     *
-     * @return void
      */
     public function testGetBuyerByEmail(): void
     {
         $buyerEmail = $this->requireConfig(
             'DS24_TEST_BUYER_EMAIL',
-            'Test buyer email required for buyer tests'
+            'Test buyer email required for buyer tests',
         );
 
         $request = new GetBuyerRequest(buyerId: $buyerEmail);
@@ -48,8 +46,6 @@ final class BuyerIntegrationTest extends IntegrationTestCase
 
     /**
      * Test listing buyers
-     *
-     * @return void
      */
     public function testListBuyers(): void
     {

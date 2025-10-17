@@ -38,7 +38,8 @@ final class UpdateVoucherRequestTest extends TestCase
 
         $request = new UpdateVoucherRequest(code: 'SAVE20', voucher: $voucher);
 
-        $array = $request->toArray();        $this->assertSame('SAVE20', $array['code']);
+        $array = $request->toArray();
+        $this->assertSame('SAVE20', $array['code']);
         $this->assertSame(25.0, $array['first_rate']);
     }
 
@@ -49,6 +50,7 @@ final class UpdateVoucherRequestTest extends TestCase
 
         $request = new UpdateVoucherRequest(code: 'SAVE20', voucher: $voucher);
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

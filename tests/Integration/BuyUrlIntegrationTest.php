@@ -31,7 +31,7 @@ class BuyUrlIntegrationTest extends IntegrationTestCase
     {
         $productId = $this->requireConfig(
             'DS24_TEST_PRODUCT_ID',
-            'Test product ID required for buy URL tests'
+            'Test product ID required for buy URL tests',
         );
 
         $request = new CreateBuyUrlRequest();

@@ -34,14 +34,16 @@ final class StatsMarketplaceRequestTest extends TestCase
     {
         $request = new StatsMarketplaceRequest();
 
-        $array = $request->toArray();        $this->assertEmpty($array);
+        $array = $request->toArray();
+        $this->assertEmpty($array);
     }
 
     public function test_to_array_includes_dates_when_set(): void
     {
         $request = new StatsMarketplaceRequest(from: '2024-01-01', to: '2024-12-31');
 
-        $array = $request->toArray();        $this->assertSame('2024-01-01', $array['from']);
+        $array = $request->toArray();
+        $this->assertSame('2024-01-01', $array['from']);
         $this->assertSame('2024-12-31', $array['to']);
     }
 
@@ -49,6 +51,7 @@ final class StatsMarketplaceRequestTest extends TestCase
     {
         $request = new StatsMarketplaceRequest();
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

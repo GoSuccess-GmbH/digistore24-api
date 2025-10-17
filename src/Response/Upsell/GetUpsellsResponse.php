@@ -34,7 +34,7 @@ final class GetUpsellsResponse extends AbstractResponse
         $innerData = self::extractInnerData($data);
         $upsells = $innerData['upsells'] ?? [];
 
-        if (!is_array($upsells)) {
+        if (! is_array($upsells)) {
             $upsells = [];
         }
 

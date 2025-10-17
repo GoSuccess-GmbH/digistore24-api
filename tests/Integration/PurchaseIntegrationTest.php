@@ -29,14 +29,12 @@ final class PurchaseIntegrationTest extends IntegrationTestCase
 
     /**
      * Test getting a specific purchase
-     *
-     * @return void
      */
     public function testGetPurchase(): void
     {
         $purchaseId = $this->requireConfig(
             'DS24_TEST_PURCHASE_ID',
-            'Test purchase ID required for purchase tests'
+            'Test purchase ID required for purchase tests',
         );
 
         $request = new GetPurchaseRequest(purchaseId: $purchaseId);
@@ -50,8 +48,6 @@ final class PurchaseIntegrationTest extends IntegrationTestCase
 
     /**
      * Test listing purchases
-     *
-     * @return void
      */
     public function testListPurchases(): void
     {

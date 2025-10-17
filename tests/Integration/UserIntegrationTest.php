@@ -27,8 +27,6 @@ final class UserIntegrationTest extends IntegrationTestCase
 
     /**
      * Test getting user info
-     *
-     * @return void
      */
     public function testGetUserInfo(): void
     {

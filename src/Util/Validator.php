@@ -128,7 +128,9 @@ final class Validator
         }
 
         return $errors;
-    }    /**
+    }
+
+    /**
      * Validate single rule
      *
      * @param string $field Field name
@@ -147,7 +149,7 @@ final class Validator
                 break;
 
             case 'email':
-                if ($value !== null && !is_string($value)) {
+                if ($value !== null && ! is_string($value)) {
                     return "The {$field} field must be a string";
                 }
                 if ($value !== null && ! self::isEmail($value)) {
@@ -156,7 +158,7 @@ final class Validator
                 break;
 
             case 'url':
-                if ($value !== null && !is_string($value)) {
+                if ($value !== null && ! is_string($value)) {
                     return "The {$field} field must be a string";
                 }
                 if ($value !== null && ! self::isUrl($value)) {
@@ -183,8 +185,8 @@ final class Validator
                 break;
 
             case 'integer':
-                if ($value !== null && !is_int($value)) {
-                    if (!is_string($value) || !ctype_digit($value)) {
+                if ($value !== null && ! is_int($value)) {
+                    if (! is_string($value) || ! ctype_digit($value)) {
                         return "The {$field} field must be an integer";
                     }
                 }

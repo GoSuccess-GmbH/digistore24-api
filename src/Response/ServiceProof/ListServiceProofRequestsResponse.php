@@ -34,7 +34,7 @@ final class ListServiceProofRequestsResponse extends AbstractResponse
         $innerData = self::extractInnerData($data);
         $serviceProofRequests = $innerData['service_proof_requests'] ?? [];
 
-        if (!is_array($serviceProofRequests)) {
+        if (! is_array($serviceProofRequests)) {
             $serviceProofRequests = [];
         }
 

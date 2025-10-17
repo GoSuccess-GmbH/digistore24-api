@@ -29,7 +29,7 @@ final class GetProductGroupResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $productGroupData = $innerData['product_group'] ?? [];
-        if (!is_array($productGroupData)) {
+        if (! is_array($productGroupData)) {
             $productGroupData = [];
         }
         /** @var array<string, mixed> $validatedProductGroup */

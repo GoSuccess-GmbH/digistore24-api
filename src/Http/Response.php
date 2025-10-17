@@ -25,6 +25,7 @@ final class Response
     public ?HttpStatusCode $status {
         get {
             $enum = HttpStatusCode::fromInt($this->statusCode);
+
             return $enum instanceof HttpStatusCode ? $enum : null;
         }
     }
@@ -54,6 +55,7 @@ final class Response
     public bool $isSuccess {
         get {
             $status = $this->status;
+
             return $status instanceof HttpStatusCode && $status->isSuccess()
                 ? true
                 : ($this->statusCode >= 200 && $this->statusCode < 300);
@@ -66,6 +68,7 @@ final class Response
     public bool $isClientError {
         get {
             $status = $this->status;
+
             return $status instanceof HttpStatusCode && $status->isClientError()
                 ? true
                 : ($this->statusCode >= 400 && $this->statusCode < 500);
@@ -78,6 +81,7 @@ final class Response
     public bool $isServerError {
         get {
             $status = $this->status;
+
             return $status instanceof HttpStatusCode && $status->isServerError()
                 ? true
                 : ($this->statusCode >= 500 && $this->statusCode < 600);

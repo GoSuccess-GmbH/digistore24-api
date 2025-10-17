@@ -205,7 +205,7 @@ final class ArrayHelper
         foreach ($array as $item) {
             if (is_string($groupBy)) {
                 // Access array key - need to check if $item is array
-                if (!is_array($item)) {
+                if (! is_array($item)) {
                     continue;
                 }
                 $key = $item[$groupBy] ?? null;

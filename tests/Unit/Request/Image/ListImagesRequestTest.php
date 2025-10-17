@@ -34,20 +34,23 @@ final class ListImagesRequestTest extends TestCase
     {
         $request = new ListImagesRequest();
 
-        $array = $request->toArray();        $this->assertEmpty($array);
+        $array = $request->toArray();
+        $this->assertEmpty($array);
     }
 
     public function test_to_array_includes_usage_type_when_set(): void
     {
         $request = new ListImagesRequest(usageType: 'product');
 
-        $array = $request->toArray();        $this->assertSame('product', $array['usage_type']);
+        $array = $request->toArray();
+        $this->assertSame('product', $array['usage_type']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListImagesRequest();
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

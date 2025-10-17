@@ -27,8 +27,6 @@ final class IpnIntegrationTest extends IntegrationTestCase
 
     /**
      * Test getting IPN information
-     *
-     * @return void
      */
     public function testGetIpnInfo(): void
     {

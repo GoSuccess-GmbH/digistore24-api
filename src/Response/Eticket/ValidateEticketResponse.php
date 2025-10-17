@@ -30,7 +30,7 @@ final class ValidateEticketResponse extends AbstractResponse
     {
         // Support both direct and nested data structures
         $ticketData = $data['data'] ?? $data;
-        if (!is_array($ticketData)) {
+        if (! is_array($ticketData)) {
             $ticketData = [];
         }
 

@@ -27,7 +27,8 @@ final class IpnSetupRequestTest extends TestCase
     {
         $request = new IpnSetupRequest(url: 'https://example.com/ipn');
 
-        $array = $request->toArray();        $this->assertSame('https://example.com/ipn', $array['url']);
+        $array = $request->toArray();
+        $this->assertSame('https://example.com/ipn', $array['url']);
         $this->assertCount(1, $array);
     }
 
@@ -38,7 +39,8 @@ final class IpnSetupRequestTest extends TestCase
             ipnPassword: 'secret123',
         );
 
-        $array = $request->toArray();        $this->assertSame('https://example.com/ipn', $array['url']);
+        $array = $request->toArray();
+        $this->assertSame('https://example.com/ipn', $array['url']);
         $this->assertSame('secret123', $array['ipn_password']);
     }
 
@@ -46,6 +48,7 @@ final class IpnSetupRequestTest extends TestCase
     {
         $request = new IpnSetupRequest(url: 'https://example.com/ipn');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

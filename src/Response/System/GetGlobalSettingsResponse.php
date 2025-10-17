@@ -75,7 +75,7 @@ final class GetGlobalSettingsResponse extends AbstractResponse
         $imageMetasData = $data['image_metas'] ?? [];
         if (is_array($imageMetasData)) {
             foreach ($imageMetasData as $key => $meta) {
-                if (!is_array($meta) || !is_string($key)) {
+                if (! is_array($meta) || ! is_string($key)) {
                     continue;
                 }
 
@@ -83,7 +83,7 @@ final class GetGlobalSettingsResponse extends AbstractResponse
                 $limits = $meta['limits'] ?? [];
                 $limitsMsg = $meta['limits_msg'] ?? '';
 
-                if (!is_array($limits)) {
+                if (! is_array($limits)) {
                     $limits = [];
                 }
 
@@ -108,7 +108,7 @@ final class GetGlobalSettingsResponse extends AbstractResponse
         }
 
         $types = $data['types'] ?? [];
-        if (!is_array($types)) {
+        if (! is_array($types)) {
             $types = [];
         }
         /** @var array<string, array<string, string>> $validatedTypes */

@@ -55,6 +55,7 @@ final class CreateEticketRequestTest extends TestCase
             date: new \DateTime('2025-12-31'),
         );
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

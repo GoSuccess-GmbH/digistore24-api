@@ -27,13 +27,11 @@ final class RebillingIntegrationTest extends IntegrationTestCase
 
     /**
      * Test listing rebilling status changes
-     *
-     * @return void
      */
     public function testListRebillingStatusChanges(): void
     {
         $response = $this->client->rebilling->listStatusChanges(
-            new ListRebillingStatusChangesRequest()
+            new ListRebillingStatusChangesRequest(),
         );
 
         $this->assertInstanceOf(ListRebillingStatusChangesResponse::class, $response);

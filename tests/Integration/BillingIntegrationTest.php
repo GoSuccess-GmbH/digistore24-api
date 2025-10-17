@@ -28,17 +28,17 @@ class BillingIntegrationTest extends IntegrationTestCase
     {
         $purchaseId = $this->requireConfig(
             'DS24_TEST_PURCHASE_WITH_REBILLING',
-            'Test purchase with rebilling capability required'
+            'Test purchase with rebilling capability required',
         );
 
         $productId = $this->requireConfig(
             'DS24_TEST_PRODUCT_ID',
-            'Test product ID required'
+            'Test product ID required',
         );
 
         $request = new CreateBillingOnDemandRequest(
             purchaseId: $purchaseId,
-            productId: $productId
+            productId: $productId,
         );
 
         $response = $this->client->billing->createOnDemand($request);
@@ -60,7 +60,7 @@ class BillingIntegrationTest extends IntegrationTestCase
                 'currency' => 'EUR',
                 'number_of_installments' => 2,
                 'other_billing_intervals' => '1_month',
-            ]
+            ],
         );
 
         $response = $this->client->billing->createOnDemand($request);

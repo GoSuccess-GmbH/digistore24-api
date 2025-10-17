@@ -39,7 +39,8 @@ final class ListPurchasesResponseTest extends TestCase
         ];
         $response = ListPurchasesResponse::fromArray($data);
 
-        $this->assertInstanceOf(ListPurchasesResponse::class, $response);        $this->assertCount(2, $response->purchases);
+        $this->assertInstanceOf(ListPurchasesResponse::class, $response);
+        $this->assertCount(2, $response->purchases);
         $this->assertSame(2, $response->totalCount);
         $this->assertSame('P111111', $response->purchases[0]->purchaseId);
         $this->assertSame('Course A', $response->purchases[0]->productName);

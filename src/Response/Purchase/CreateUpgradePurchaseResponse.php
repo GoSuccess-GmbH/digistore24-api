@@ -35,7 +35,7 @@ final class CreateUpgradePurchaseResponse extends AbstractResponse
     public function getNewPurchase(): ?array
     {
         $newPurchase = $this->data['new_purchase'] ?? null;
-        if ($newPurchase !== null && !is_array($newPurchase)) {
+        if ($newPurchase !== null && ! is_array($newPurchase)) {
             return null;
         }
         if ($newPurchase === null) {
@@ -43,6 +43,7 @@ final class CreateUpgradePurchaseResponse extends AbstractResponse
         }
         /** @var array<string, mixed> $validated */
         $validated = $newPurchase;
+
         return $validated;
     }
 
@@ -52,7 +53,7 @@ final class CreateUpgradePurchaseResponse extends AbstractResponse
     public function getUpgradeInfo(): ?array
     {
         $upgradeInfo = $this->data['upgrade_info'] ?? null;
-        if ($upgradeInfo !== null && !is_array($upgradeInfo)) {
+        if ($upgradeInfo !== null && ! is_array($upgradeInfo)) {
             return null;
         }
         if ($upgradeInfo === null) {
@@ -60,13 +61,14 @@ final class CreateUpgradePurchaseResponse extends AbstractResponse
         }
         /** @var array<string, mixed> $validated */
         $validated = $upgradeInfo;
+
         return $validated;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $responseData = $data['data'] ?? [];
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
         /** @var array<string, mixed> $validatedData */

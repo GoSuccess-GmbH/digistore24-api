@@ -27,13 +27,15 @@ final class GetBuyerRequestTest extends TestCase
     {
         $request = new GetBuyerRequest(buyerId: 'B12345');
 
-        $array = $request->toArray();        $this->assertSame('B12345', $array['buyer_id']);
+        $array = $request->toArray();
+        $this->assertSame('B12345', $array['buyer_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetBuyerRequest(buyerId: 'B12345');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

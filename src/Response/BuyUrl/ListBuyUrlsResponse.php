@@ -72,7 +72,7 @@ final class ListBuyUrlsResponse extends AbstractResponse
         $items = [];
         if (isset($data['items']) && is_array($data['items'])) {
             foreach ($data['items'] as $itemData) {
-                if (!is_array($itemData)) {
+                if (! is_array($itemData)) {
                     continue;
                 }
                 /** @var array<string, mixed> $validatedItemData */

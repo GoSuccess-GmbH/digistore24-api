@@ -130,7 +130,7 @@ final class ValidateLicenseKeyResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $licenseData = $data['data'] ?? [];
-        if (!is_array($licenseData)) {
+        if (! is_array($licenseData)) {
             $licenseData = [];
         }
 

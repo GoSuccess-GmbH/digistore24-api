@@ -27,24 +27,22 @@ final class AffiliateIntegrationTest extends IntegrationTestCase
 
     /**
      * Test getting affiliate commission
-     *
-     * @return void
      */
     public function testGetAffiliateCommission(): void
     {
         $affiliateId = $this->requireConfig(
             'DS24_TEST_AFFILIATE_ID',
-            'Test affiliate ID required for affiliate tests'
+            'Test affiliate ID required for affiliate tests',
         );
 
         $productId = $this->requireConfig(
             'DS24_TEST_PRODUCT_ID',
-            'Test product ID required for affiliate tests'
+            'Test product ID required for affiliate tests',
         );
 
         $request = new GetAffiliateCommissionRequest(
             productId: (int)$productId,
-            affiliateId: $affiliateId
+            affiliateId: $affiliateId,
         );
 
         $response = $this->client->affiliates->getCommission($request);

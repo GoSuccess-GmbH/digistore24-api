@@ -44,7 +44,7 @@ final class GetPurchaseResponse extends AbstractResponse
         $currency = $data['currency'] ?? 'EUR';
         $createdAt = $data['created_at'] ?? 'now';
         $additionalData = $data['additional_data'] ?? [];
-        if (!is_array($additionalData)) {
+        if (! is_array($additionalData)) {
             $additionalData = [];
         }
         /** @var array<string, mixed> $validatedAdditionalData */

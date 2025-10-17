@@ -43,7 +43,7 @@ final class ValidateCouponCodeResponse extends AbstractResponse
     {
         $couponData = $data['data'] ?? [];
 
-        if (!is_array($couponData)) {
+        if (! is_array($couponData)) {
             $couponData = [];
         }
 

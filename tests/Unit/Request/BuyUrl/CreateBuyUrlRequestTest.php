@@ -30,7 +30,8 @@ final class CreateBuyUrlRequestTest extends TestCase
         $request = new CreateBuyUrlRequest();
         $request->productId = 12345;
 
-        $array = $request->toArray();        $this->assertSame(12345, $array['product_id']);
+        $array = $request->toArray();
+        $this->assertSame(12345, $array['product_id']);
     }
 
     public function test_to_array_includes_optional_data(): void
@@ -40,7 +41,8 @@ final class CreateBuyUrlRequestTest extends TestCase
         $request->validUntil = '48h';
         $request->placeholders = ['title' => 'Custom Title'];
 
-        $array = $request->toArray();        $this->assertSame('48h', $array['valid_until']);
+        $array = $request->toArray();
+        $this->assertSame('48h', $array['valid_until']);
         $this->assertArrayHasKey('placeholders', $array);
     }
 
@@ -48,7 +50,8 @@ final class CreateBuyUrlRequestTest extends TestCase
     {
         $request = new CreateBuyUrlRequest();
 
-        $errors = $request->validate();        $this->assertNotEmpty($errors);
+        $errors = $request->validate();
+        $this->assertNotEmpty($errors);
     }
 
     public function test_validate_succeeds_with_product_id(): void
@@ -56,6 +59,7 @@ final class CreateBuyUrlRequestTest extends TestCase
         $request = new CreateBuyUrlRequest();
         $request->productId = 12345;
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

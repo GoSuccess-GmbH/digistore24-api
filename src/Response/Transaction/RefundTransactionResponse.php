@@ -43,7 +43,7 @@ final class RefundTransactionResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $refundData = $data['data'] ?? [];
-        if (!is_array($refundData)) {
+        if (! is_array($refundData)) {
             $refundData = [];
         }
 

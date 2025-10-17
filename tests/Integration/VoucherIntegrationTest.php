@@ -29,14 +29,12 @@ final class VoucherIntegrationTest extends IntegrationTestCase
 
     /**
      * Test getting a voucher
-     *
-     * @return void
      */
     public function testGetVoucher(): void
     {
         $voucherCode = $this->requireConfig(
             'DS24_TEST_VOUCHER_CODE',
-            'Test voucher code required for voucher tests'
+            'Test voucher code required for voucher tests',
         );
 
         $response = $this->client->vouchers->get(new GetVoucherRequest(code: $voucherCode));
@@ -46,8 +44,6 @@ final class VoucherIntegrationTest extends IntegrationTestCase
 
     /**
      * Test listing vouchers
-     *
-     * @return void
      */
     public function testListVouchers(): void
     {

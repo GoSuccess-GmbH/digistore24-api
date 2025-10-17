@@ -34,7 +34,7 @@ final class ListPaymentPlansResponse extends AbstractResponse
         $innerData = self::extractInnerData($data);
         $paymentPlans = $innerData['payment_plans'] ?? [];
 
-        if (!is_array($paymentPlans)) {
+        if (! is_array($paymentPlans)) {
             $paymentPlans = [];
         }
 

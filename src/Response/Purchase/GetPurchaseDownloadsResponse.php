@@ -33,7 +33,7 @@ final class GetPurchaseDownloadsResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $downloads = $innerData['downloads'] ?? [];
-        if (!is_array($downloads)) {
+        if (! is_array($downloads)) {
             $downloads = [];
         }
         /** @var array<string, mixed> $validatedDownloads */

@@ -27,8 +27,6 @@ final class SystemIntegrationTest extends IntegrationTestCase
 
     /**
      * Test ping endpoint
-     *
-     * @return void
      */
     public function testPing(): void
     {

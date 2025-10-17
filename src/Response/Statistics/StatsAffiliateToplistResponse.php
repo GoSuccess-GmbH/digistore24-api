@@ -29,7 +29,7 @@ final class StatsAffiliateToplistResponse extends AbstractResponse
     public function getToplist(): array
     {
         $toplist = $this->data['toplist'] ?? [];
-        if (!is_array($toplist)) {
+        if (! is_array($toplist)) {
             return [];
         }
         /** @var array<string, mixed> $validated */
@@ -41,7 +41,7 @@ final class StatsAffiliateToplistResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $responseData = $data['data'] ?? [];
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
         /** @var array<string, mixed> $validatedData */

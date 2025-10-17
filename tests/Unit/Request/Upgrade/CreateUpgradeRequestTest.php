@@ -39,7 +39,8 @@ final class CreateUpgradeRequestTest extends TestCase
 
         $request = new CreateUpgradeRequest(upgrade: $upgrade);
 
-        $array = $request->toArray();        $this->assertSame('Premium Upgrade', $array['name']);
+        $array = $request->toArray();
+        $this->assertSame('Premium Upgrade', $array['name']);
         $this->assertSame(12345, $array['to_product_id']);
         $this->assertSame('100,200', $array['upgrade_from']);
     }
@@ -51,6 +52,7 @@ final class CreateUpgradeRequestTest extends TestCase
 
         $request = new CreateUpgradeRequest(upgrade: $upgrade);
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

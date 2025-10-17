@@ -33,7 +33,7 @@ abstract class AbstractResponse implements ResponseInterface
         // Example: {"api_version": "1.2", "result": "success", "data": {...}}
         $responseData = $response->data['data'] ?? $response->data;
 
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
 
@@ -95,6 +95,7 @@ abstract class AbstractResponse implements ResponseInterface
     protected static function extractResult(array $data, ?Response $rawResponse, string $default = 'unknown'): string
     {
         $result = $rawResponse?->data['result'] ?? $data['result'] ?? $default;
+
         return is_string($result) ? $result : $default;
     }
 
@@ -112,7 +113,7 @@ abstract class AbstractResponse implements ResponseInterface
         // If data has a nested 'data' field, use that, otherwise use data directly
         $innerData = $data['data'] ?? $data;
 
-        if (!is_array($innerData)) {
+        if (! is_array($innerData)) {
             return [];
         }
 
@@ -145,7 +146,7 @@ abstract class AbstractResponse implements ResponseInterface
         // Convert array items to objects
         return array_map(
             function ($item) use ($itemClass, $rawResponse) {
-                if (!is_array($item)) {
+                if (! is_array($item)) {
                     return $item;
                 }
 

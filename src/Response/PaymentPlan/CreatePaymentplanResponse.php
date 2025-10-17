@@ -37,6 +37,7 @@ final class CreatePaymentplanResponse extends AbstractResponse
     public function getPaymentplanId(): ?string
     {
         $id = $this->data['paymentplan_id'] ?? null;
+
         return is_string($id) ? $id : null;
     }
 
@@ -49,7 +50,7 @@ final class CreatePaymentplanResponse extends AbstractResponse
     {
         $responseData = $data['data'] ?? [];
 
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
 

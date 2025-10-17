@@ -54,7 +54,7 @@ trait IntBackedEnumTrait
     {
         return array_map(
             static fn (self $case): int => $case->value,
-            static::cases()
+            static::cases(),
         );
     }
 
@@ -66,11 +66,11 @@ trait IntBackedEnumTrait
     public static function labels(): array
     {
         $labels = [];
-        
+
         foreach (static::cases() as $case) {
             $labels[$case->value] = $case->label();
         }
-        
+
         return $labels;
     }
 }

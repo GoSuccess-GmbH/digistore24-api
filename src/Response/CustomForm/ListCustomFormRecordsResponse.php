@@ -55,7 +55,7 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
         $recordsData = $data['records'] ?? [];
         if (is_array($recordsData)) {
             foreach ($recordsData as $item) {
-                if (!is_array($item)) {
+                if (! is_array($item)) {
                     continue;
                 }
 

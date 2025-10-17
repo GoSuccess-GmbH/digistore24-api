@@ -29,7 +29,7 @@ final class ListOrderformsResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $orderformsData = $innerData['orderforms'] ?? [];
-        if (!is_array($orderformsData)) {
+        if (! is_array($orderformsData)) {
             $orderformsData = [];
         }
         /** @var array<string, mixed> $validatedOrderforms */

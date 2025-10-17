@@ -36,7 +36,8 @@ final class SetAffiliateForEmailRequestTest extends TestCase
             affiliateId: 'AFF123',
         );
 
-        $array = $request->toArray();        $this->assertSame('test@example.com', $array['email']);
+        $array = $request->toArray();
+        $this->assertSame('test@example.com', $array['email']);
         $this->assertSame('AFF123', $array['affiliate_id']);
     }
 
@@ -47,6 +48,7 @@ final class SetAffiliateForEmailRequestTest extends TestCase
             affiliateId: 'AFF123',
         );
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

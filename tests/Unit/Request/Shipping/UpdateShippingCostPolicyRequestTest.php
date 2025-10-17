@@ -46,7 +46,8 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
             policy: $policy,
         );
 
-        $array = $request->toArray();        $this->assertSame('SCP123', $array['shipping_cost_policy_id']);
+        $array = $request->toArray();
+        $this->assertSame('SCP123', $array['shipping_cost_policy_id']);
         $this->assertSame('Updated Shipping', $array['name']);
     }
 
@@ -60,6 +61,7 @@ final class UpdateShippingCostPolicyRequestTest extends TestCase
             policy: $policy,
         );
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

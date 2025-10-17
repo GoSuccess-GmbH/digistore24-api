@@ -27,13 +27,15 @@ final class DeleteShippingCostPolicyRequestTest extends TestCase
     {
         $request = new DeleteShippingCostPolicyRequest(shippingCostPolicyId: 'SCP123');
 
-        $array = $request->toArray();        $this->assertSame('SCP123', $array['shipping_cost_policy_id']);
+        $array = $request->toArray();
+        $this->assertSame('SCP123', $array['shipping_cost_policy_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new DeleteShippingCostPolicyRequest(shippingCostPolicyId: 'SCP123');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

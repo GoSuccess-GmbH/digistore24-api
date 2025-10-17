@@ -32,7 +32,7 @@ final class GetPurchaseTrackingResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $tracking = $data['data'] ?? [];
-        if (!is_array($tracking)) {
+        if (! is_array($tracking)) {
             $tracking = [];
         }
         /** @var array<string, mixed> $validatedTracking */

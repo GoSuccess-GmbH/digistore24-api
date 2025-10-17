@@ -27,8 +27,6 @@ final class CountryIntegrationTest extends IntegrationTestCase
 
     /**
      * Test listing countries
-     *
-     * @return void
      */
     public function testListCountries(): void
     {

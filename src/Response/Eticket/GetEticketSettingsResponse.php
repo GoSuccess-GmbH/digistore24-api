@@ -34,7 +34,7 @@ final class GetEticketSettingsResponse extends AbstractResponse
         $defaultTemplateId = $data['default_template_id'] ?? null;
         $maxTicketsPerOrder = $data['max_tickets_per_order'] ?? 10;
         $settings = $data['settings'] ?? [];
-        if (!is_array($settings)) {
+        if (! is_array($settings)) {
             $settings = [];
         }
         /** @var array<string, mixed> $validatedSettings */

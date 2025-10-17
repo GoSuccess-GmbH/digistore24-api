@@ -33,7 +33,7 @@ final class ListSmartUpgradesResponse extends AbstractResponse
     {
         $smartupgrades = $data['smartupgrades'] ?? [];
 
-        if (!is_array($smartupgrades)) {
+        if (! is_array($smartupgrades)) {
             $smartupgrades = [];
         }
 

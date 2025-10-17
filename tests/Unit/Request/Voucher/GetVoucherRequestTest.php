@@ -27,13 +27,15 @@ final class GetVoucherRequestTest extends TestCase
     {
         $request = new GetVoucherRequest(code: 'SAVE20');
 
-        $array = $request->toArray();        $this->assertSame('SAVE20', $array['code']);
+        $array = $request->toArray();
+        $this->assertSame('SAVE20', $array['code']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetVoucherRequest(code: 'SAVE20');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

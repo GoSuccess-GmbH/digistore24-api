@@ -36,7 +36,8 @@ final class CreateBillingOnDemandRequestTest extends TestCase
             productId: '67890',
         );
 
-        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();
+        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame('67890', $array['product_id']);
     }
 
@@ -52,7 +53,8 @@ final class CreateBillingOnDemandRequestTest extends TestCase
             addons: [['product_id' => '999']],
         );
 
-        $array = $request->toArray();        $this->assertArrayHasKey('payment_plan', $array);
+        $array = $request->toArray();
+        $this->assertArrayHasKey('payment_plan', $array);
         $this->assertArrayHasKey('tracking', $array);
         $this->assertArrayHasKey('placeholders', $array);
         $this->assertArrayHasKey('settings', $array);
@@ -66,6 +68,7 @@ final class CreateBillingOnDemandRequestTest extends TestCase
             productId: '67890',
         );
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

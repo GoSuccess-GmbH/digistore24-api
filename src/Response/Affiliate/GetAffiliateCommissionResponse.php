@@ -34,7 +34,7 @@ final class GetAffiliateCommissionResponse extends AbstractResponse
         $innerData = self::extractInnerData($data);
         $commission = $innerData['commission'] ?? [];
 
-        if (!is_array($commission)) {
+        if (! is_array($commission)) {
             $commission = [];
         }
 

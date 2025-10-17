@@ -27,13 +27,15 @@ final class GetOrderformMetasRequestTest extends TestCase
     {
         $request = new GetOrderformMetasRequest();
 
-        $array = $request->toArray();        $this->assertEmpty($array);
+        $array = $request->toArray();
+        $this->assertEmpty($array);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetOrderformMetasRequest();
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

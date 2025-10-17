@@ -29,7 +29,7 @@ final class StatsSalesResponse extends AbstractResponse
     public function getSales(): array
     {
         $sales = $this->data['sales'] ?? [];
-        if (!is_array($sales)) {
+        if (! is_array($sales)) {
             return [];
         }
         /** @var array<string, mixed> $validated */
@@ -41,7 +41,7 @@ final class StatsSalesResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $responseData = $data['data'] ?? [];
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
         /** @var array<string, mixed> $validatedData */

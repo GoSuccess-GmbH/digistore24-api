@@ -28,8 +28,6 @@ final class ProductIntegrationTest extends IntegrationTestCase
 
     /**
      * Test listing products
-     *
-     * @return void
      */
     public function testListProducts(): void
     {
@@ -41,7 +39,7 @@ final class ProductIntegrationTest extends IntegrationTestCase
         $this->assertGreaterThanOrEqual(0, $response->totalCount);
 
         // If products exist, validate structure of first product
-        if (!empty($response->products)) {
+        if (! empty($response->products)) {
             $product = $response->products[0];
             $this->assertInstanceOf(ProductListItem::class, $product);
 

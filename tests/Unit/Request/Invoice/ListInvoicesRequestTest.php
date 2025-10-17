@@ -27,13 +27,15 @@ final class ListInvoicesRequestTest extends TestCase
     {
         $request = new ListInvoicesRequest(purchaseId: 'P12345');
 
-        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();
+        $this->assertSame('P12345', $array['purchase_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ListInvoicesRequest(purchaseId: 'P12345');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

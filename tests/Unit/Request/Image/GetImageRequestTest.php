@@ -27,13 +27,15 @@ final class GetImageRequestTest extends TestCase
     {
         $request = new GetImageRequest(imageId: 'IMG123');
 
-        $array = $request->toArray();        $this->assertSame('IMG123', $array['image_id']);
+        $array = $request->toArray();
+        $this->assertSame('IMG123', $array['image_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetImageRequest(imageId: 'IMG123');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 abstract class IntegrationTestCase extends TestCase
 {
     protected static bool $configLoaded = false;
+
     /** @var array<string> */
     protected static array $missingConfigs = [];
 
@@ -25,7 +26,7 @@ abstract class IntegrationTestCase extends TestCase
     {
         parent::setUpBeforeClass();
 
-        if (!self::$configLoaded) {
+        if (! self::$configLoaded) {
             self::loadConfiguration();
             self::$configLoaded = true;
         }
@@ -57,7 +58,7 @@ abstract class IntegrationTestCase extends TestCase
                     $value = trim($value);
 
                     // Only set if not already in environment
-                    if (!isset($_ENV[$key]) && !getenv($key)) {
+                    if (! isset($_ENV[$key]) && ! getenv($key)) {
                         putenv("{$key}={$value}");
                         $_ENV[$key] = $value;
                     }
@@ -100,17 +101,17 @@ abstract class IntegrationTestCase extends TestCase
         $value = $this->getConfig($key);
 
         if ($value === null || $value === '') {
-            $reason = $reason ?? "Required configuration '{$key}' is not set";
+            $reason ??= "Required configuration '{$key}' is not set";
 
             // Track missing config
-            if (!in_array($key, self::$missingConfigs, true)) {
+            if (! in_array($key, self::$missingConfigs, true)) {
                 self::$missingConfigs[] = $key;
             }
 
             $this->markTestSkipped(
                 "⚠️  {$reason}\n" .
                 "   Please set '{$key}' in .env.local or environment variables.\n" .
-                "   See .env.example for all available configuration options."
+                '   See .env.example for all available configuration options.',
             );
         }
 
@@ -132,7 +133,7 @@ abstract class IntegrationTestCase extends TestCase
     {
         return $this->requireConfig(
             'DS24_API_KEY',
-            'Digistore24 API key is required for integration tests'
+            'Digistore24 API key is required for integration tests',
         );
     }
 
@@ -144,10 +145,10 @@ abstract class IntegrationTestCase extends TestCase
         $isCI = getenv('CI') === 'true' || getenv('GITHUB_ACTIONS') === 'true';
         $allowCI = getenv('DS24_ALLOW_CI_TESTS') === 'true';
 
-        if ($isCI && !$allowCI) {
+        if ($isCI && ! $allowCI) {
             $this->markTestSkipped(
                 'Integration tests are disabled in CI by default. ' .
-                'Set DS24_ALLOW_CI_TESTS=true to enable.'
+                'Set DS24_ALLOW_CI_TESTS=true to enable.',
             );
         }
     }
@@ -169,13 +170,13 @@ abstract class IntegrationTestCase extends TestCase
     {
         parent::tearDownAfterClass();
 
-        if (!empty(self::$missingConfigs) && !getenv('DS24_SUPPRESS_WARNINGS')) {
+        if (! empty(self::$missingConfigs) && ! getenv('DS24_SUPPRESS_WARNINGS')) {
             fwrite(
                 STDERR,
                 "\n" . str_repeat('=', 80) . "\n" .
                 "⚠️  INTEGRATION TEST CONFIGURATION SUMMARY\n" .
                 str_repeat('=', 80) . "\n" .
-                "Some tests were skipped due to missing configuration:\n\n"
+                "Some tests were skipped due to missing configuration:\n\n",
             );
 
             foreach (self::$missingConfigs as $key) {
@@ -189,7 +190,7 @@ abstract class IntegrationTestCase extends TestCase
                 "2. Fill in your test data (use SANDBOX/TEST data only!)\n" .
                 "3. Run: composer test:integration\n" .
                 "\nSee .env.example for all available configuration options.\n" .
-                str_repeat('=', 80) . "\n\n"
+                str_repeat('=', 80) . "\n\n",
             );
         }
     }

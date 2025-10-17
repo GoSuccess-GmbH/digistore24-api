@@ -27,7 +27,8 @@ final class ListPurchasesOfEmailRequestTest extends TestCase
     {
         $request = new ListPurchasesOfEmailRequest(email: 'test@example.com', limit: 50);
 
-        $array = $request->toArray();        $this->assertSame('test@example.com', $array['email']);
+        $array = $request->toArray();
+        $this->assertSame('test@example.com', $array['email']);
         $this->assertSame(50, $array['limit']);
     }
 
@@ -35,6 +36,7 @@ final class ListPurchasesOfEmailRequestTest extends TestCase
     {
         $request = new ListPurchasesOfEmailRequest(email: 'test@example.com');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

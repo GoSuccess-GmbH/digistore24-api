@@ -27,7 +27,8 @@ final class AddBalanceToPurchaseRequestTest extends TestCase
     {
         $request = new AddBalanceToPurchaseRequest(purchaseId: 'P12345', amount: 50.00);
 
-        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();
+        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertSame(50.00, $array['amount']);
     }
 
@@ -35,6 +36,7 @@ final class AddBalanceToPurchaseRequestTest extends TestCase
     {
         $request = new AddBalanceToPurchaseRequest(purchaseId: 'P12345', amount: 50.00);
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

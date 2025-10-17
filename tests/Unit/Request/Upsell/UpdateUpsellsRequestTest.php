@@ -27,7 +27,8 @@ final class UpdateUpsellsRequestTest extends TestCase
     {
         $request = new UpdateUpsellsRequest(productId: 12345, data: ['upsells' => [67890]]);
 
-        $array = $request->toArray();        $this->assertSame(12345, $array['product_id']);
+        $array = $request->toArray();
+        $this->assertSame(12345, $array['product_id']);
         $this->assertSame([67890], $array['upsells']);
     }
 
@@ -35,6 +36,7 @@ final class UpdateUpsellsRequestTest extends TestCase
     {
         $request = new UpdateUpsellsRequest(productId: 12345, data: ['upsells' => [67890]]);
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

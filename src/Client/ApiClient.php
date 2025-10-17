@@ -136,6 +136,7 @@ final class ApiClient implements HttpClientInterface
                     $query[$key] = $value;
                 }
             }
+
             return new Request(
                 method: $method,
                 url: $url,
@@ -193,7 +194,7 @@ final class ApiClient implements HttpClientInterface
         ];
 
         // Add body for POST/PUT/PATCH
-        if ($request->hasBody && !$request->isGet) {
+        if ($request->hasBody && ! $request->isGet) {
             $options[CURLOPT_POST] = true;
             $options[CURLOPT_POSTFIELDS] = $queryString;
         }
@@ -240,7 +241,7 @@ final class ApiClient implements HttpClientInterface
         }
 
         // Ensure data is an array
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             $data = [];
         }
         /** @var array<string, mixed> $validatedData */

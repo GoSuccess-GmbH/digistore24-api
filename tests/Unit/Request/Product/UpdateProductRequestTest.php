@@ -31,7 +31,8 @@ final class UpdateProductRequestTest extends TestCase
             nameEn: 'Updated Product',
         );
 
-        $array = $request->toArray();        $this->assertSame(12345, $array['product_id']);
+        $array = $request->toArray();
+        $this->assertSame(12345, $array['product_id']);
         $this->assertSame('Aktualisiertes Produkt', $array['name_de']);
     }
 
@@ -39,6 +40,7 @@ final class UpdateProductRequestTest extends TestCase
     {
         $request = new UpdateProductRequest(productId: 12345);
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

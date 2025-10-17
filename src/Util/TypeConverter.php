@@ -132,7 +132,7 @@ final class TypeConverter
 
         if (is_int($value)) {
             try {
-                return (new DateTimeImmutable())->setTimestamp($value);
+                return new DateTimeImmutable()->setTimestamp($value);
             } catch (\Exception) {
                 return $default;
             }

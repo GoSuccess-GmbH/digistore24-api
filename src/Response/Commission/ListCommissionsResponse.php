@@ -102,7 +102,7 @@ final class ListCommissionsResponse extends AbstractResponse
         $itemsData = $data['items'] ?? [];
         if (is_array($itemsData)) {
             foreach ($itemsData as $item) {
-                if (!is_array($item)) {
+                if (! is_array($item)) {
                     continue;
                 }
 

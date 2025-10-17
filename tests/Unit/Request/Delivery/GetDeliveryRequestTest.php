@@ -27,13 +27,15 @@ final class GetDeliveryRequestTest extends TestCase
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
 
-        $array = $request->toArray();        $this->assertSame('D12345', $array['delivery_id']);
+        $array = $request->toArray();
+        $this->assertSame('D12345', $array['delivery_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetDeliveryRequest(deliveryId: 'D12345');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

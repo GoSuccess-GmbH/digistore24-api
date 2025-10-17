@@ -43,7 +43,7 @@ final class CreateRebillingPaymentResponse extends AbstractResponse
     {
         $responseData = $data['data'] ?? [];
 
-        if (!is_array($responseData)) {
+        if (! is_array($responseData)) {
             $responseData = [];
         }
 

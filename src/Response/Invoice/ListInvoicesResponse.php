@@ -33,13 +33,13 @@ final class ListInvoicesResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $invoiceData = $data['data'] ?? [];
-        if (!is_array($invoiceData)) {
+        if (! is_array($invoiceData)) {
             $invoiceData = [];
         }
 
         $purchaseId = $invoiceData['purchase_id'] ?? '';
         $invoiceList = $invoiceData['invoice_list'] ?? [];
-        if (!is_array($invoiceList)) {
+        if (! is_array($invoiceList)) {
             $invoiceList = [];
         }
         /** @var array<string, mixed> $validatedInvoiceList */

@@ -27,13 +27,15 @@ final class GetUpgradeRequestTest extends TestCase
     {
         $request = new GetUpgradeRequest(upgradeId: 'UPG123');
 
-        $array = $request->toArray();        $this->assertSame('UPG123', $array['upgrade_id']);
+        $array = $request->toArray();
+        $this->assertSame('UPG123', $array['upgrade_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new GetUpgradeRequest(upgradeId: 'UPG123');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

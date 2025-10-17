@@ -27,13 +27,15 @@ final class DeleteProductGroupRequestTest extends TestCase
     {
         $request = new DeleteProductGroupRequest(productGroupId: 'PG123');
 
-        $array = $request->toArray();        $this->assertSame('PG123', $array['product_group_id']);
+        $array = $request->toArray();
+        $this->assertSame('PG123', $array['product_group_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new DeleteProductGroupRequest(productGroupId: 'PG123');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

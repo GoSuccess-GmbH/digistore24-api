@@ -32,7 +32,8 @@ final class ListTransactionsRequestTest extends TestCase
             pageSize: 50,
         );
 
-        $array = $request->toArray();        $this->assertSame('2024-01-01', $array['from']);
+        $array = $request->toArray();
+        $this->assertSame('2024-01-01', $array['from']);
         $this->assertSame('2024-12-31', $array['to']);
         $this->assertSame(2, $array['page_no']);
         $this->assertSame(50, $array['page_size']);
@@ -42,6 +43,7 @@ final class ListTransactionsRequestTest extends TestCase
     {
         $request = new ListTransactionsRequest();
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

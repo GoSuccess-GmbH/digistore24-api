@@ -46,7 +46,8 @@ final class UpdatePaymentplanRequestTest extends TestCase
             paymentPlan: $plan,
         );
 
-        $array = $request->toArray();        $this->assertSame('PP123', $array['paymentplan_id']);
+        $array = $request->toArray();
+        $this->assertSame('PP123', $array['paymentplan_id']);
         $this->assertSame(29.99, $array['first_amount']);
     }
 
@@ -60,6 +61,7 @@ final class UpdatePaymentplanRequestTest extends TestCase
             paymentPlan: $plan,
         );
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

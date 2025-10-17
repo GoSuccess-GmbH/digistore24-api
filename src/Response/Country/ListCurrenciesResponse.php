@@ -33,7 +33,7 @@ final class ListCurrenciesResponse extends AbstractResponse
     {
         $currencies = [];
         foreach ($data as $item) {
-            if (!is_array($item)) {
+            if (! is_array($item)) {
                 continue;
             }
 

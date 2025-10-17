@@ -29,7 +29,7 @@ final class GetShippingCostPolicyResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $policyData = $innerData['shipping_cost_policy'] ?? [];
-        if (!is_array($policyData)) {
+        if (! is_array($policyData)) {
             $policyData = [];
         }
         /** @var array<string, mixed> $validatedPolicy */

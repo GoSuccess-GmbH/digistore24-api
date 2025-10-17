@@ -27,13 +27,15 @@ final class ValidateAffiliateRequestTest extends TestCase
     {
         $request = new ValidateAffiliateRequest(affiliateId: 'AFF123');
 
-        $array = $request->toArray();        $this->assertSame('AFF123', $array['affiliate_id']);
+        $array = $request->toArray();
+        $this->assertSame('AFF123', $array['affiliate_id']);
     }
 
     public function test_validate_returns_empty_array(): void
     {
         $request = new ValidateAffiliateRequest(affiliateId: 'AFF123');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

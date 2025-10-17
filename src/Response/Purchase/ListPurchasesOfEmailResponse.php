@@ -32,7 +32,7 @@ final class ListPurchasesOfEmailResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $purchases = $data['data'] ?? [];
-        if (!is_array($purchases)) {
+        if (! is_array($purchases)) {
             $purchases = [];
         }
         /** @var array<int, array<string, mixed>> $validatedPurchases */

@@ -27,7 +27,8 @@ final class StatsSalesRequestTest extends TestCase
     {
         $request = new StatsSalesRequest(from: '2024-01-01', to: '2024-12-31');
 
-        $array = $request->toArray();        $this->assertSame('2024-01-01', $array['from']);
+        $array = $request->toArray();
+        $this->assertSame('2024-01-01', $array['from']);
         $this->assertSame('2024-12-31', $array['to']);
     }
 
@@ -35,6 +36,7 @@ final class StatsSalesRequestTest extends TestCase
     {
         $request = new StatsSalesRequest();
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

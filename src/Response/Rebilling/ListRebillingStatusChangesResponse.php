@@ -34,7 +34,7 @@ final class ListRebillingStatusChangesResponse extends AbstractResponse
         $innerData = self::extractInnerData($data);
         $statusChanges = $innerData['status_changes'] ?? [];
 
-        if (!is_array($statusChanges)) {
+        if (! is_array($statusChanges)) {
             $statusChanges = [];
         }
 

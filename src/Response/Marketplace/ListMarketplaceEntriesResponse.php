@@ -29,7 +29,7 @@ final class ListMarketplaceEntriesResponse extends AbstractResponse
     {
         $innerData = self::extractInnerData($data);
         $entriesData = $innerData['entries'] ?? [];
-        if (!is_array($entriesData)) {
+        if (! is_array($entriesData)) {
             $entriesData = [];
         }
         /** @var array<string, mixed> $validatedEntries */

@@ -27,7 +27,8 @@ final class RefundPurchaseRequestTest extends TestCase
     {
         $request = new RefundPurchaseRequest(purchaseId: 'P12345', force: true);
 
-        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_id']);
+        $array = $request->toArray();
+        $this->assertSame('P12345', $array['purchase_id']);
         $this->assertTrue($array['force']);
     }
 
@@ -35,6 +36,7 @@ final class RefundPurchaseRequestTest extends TestCase
     {
         $request = new RefundPurchaseRequest(purchaseId: 'P12345');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

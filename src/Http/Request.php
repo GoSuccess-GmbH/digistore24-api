@@ -49,14 +49,14 @@ final class Request
      * Check if request has a body
      */
     public bool $hasBody {
-        get => !empty($this->body);
+        get => ! empty($this->body);
     }
 
     /**
      * Check if request has query parameters
      */
     public bool $hasQuery {
-        get => !empty($this->query);
+        get => ! empty($this->query);
     }
 
     /**
@@ -64,7 +64,7 @@ final class Request
      */
     public string $fullUrl {
         get {
-            if (!$this->hasQuery) {
+            if (! $this->hasQuery) {
                 return $this->url;
             }
 

@@ -27,7 +27,8 @@ final class CreateUpgradePurchaseRequestTest extends TestCase
     {
         $request = new CreateUpgradePurchaseRequest(purchaseIds: 'P12345', upgradeId: 'U123');
 
-        $array = $request->toArray();        $this->assertSame('P12345', $array['purchase_ids']);
+        $array = $request->toArray();
+        $this->assertSame('P12345', $array['purchase_ids']);
         $this->assertSame('U123', $array['upgrade_id']);
     }
 
@@ -35,6 +36,7 @@ final class CreateUpgradePurchaseRequestTest extends TestCase
     {
         $request = new CreateUpgradePurchaseRequest(purchaseIds: 'P12345', upgradeId: 'U123');
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

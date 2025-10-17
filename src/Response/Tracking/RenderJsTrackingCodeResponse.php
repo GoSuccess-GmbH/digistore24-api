@@ -61,7 +61,7 @@ final class RenderJsTrackingCodeResponse extends AbstractResponse
     {
         $trackingData = $data['data'] ?? [];
 
-        if (!is_array($trackingData)) {
+        if (! is_array($trackingData)) {
             $trackingData = [];
         }
 

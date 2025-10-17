@@ -36,7 +36,8 @@ final class RetrieveApiKeyRequestTest extends TestCase
             token: 'abc123token',
         );
 
-        $array = $request->toArray();        $this->assertSame('test@example.com', $array['email']);
+        $array = $request->toArray();
+        $this->assertSame('test@example.com', $array['email']);
         $this->assertSame('abc123token', $array['token']);
     }
 
@@ -47,6 +48,7 @@ final class RetrieveApiKeyRequestTest extends TestCase
             token: 'abc123token',
         );
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

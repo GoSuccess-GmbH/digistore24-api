@@ -31,7 +31,7 @@ final class ListPurchasesResponse extends AbstractResponse
 
         if (isset($data['purchases']) && is_array($data['purchases'])) {
             foreach ($data['purchases'] as $purchase) {
-                if (!is_array($purchase)) {
+                if (! is_array($purchase)) {
                     continue;
                 }
                 /** @var array<string, mixed> $validatedPurchase */

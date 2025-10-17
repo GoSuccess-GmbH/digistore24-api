@@ -34,14 +34,16 @@ final class ListBuyersRequestTest extends TestCase
     {
         $request = new ListBuyersRequest();
 
-        $array = $request->toArray();        $this->assertEmpty($array);
+        $array = $request->toArray();
+        $this->assertEmpty($array);
     }
 
     public function test_to_array_includes_pagination_data(): void
     {
         $request = new ListBuyersRequest(pageNo: 2, pageSize: 50);
 
-        $array = $request->toArray();        $this->assertSame(2, $array['page_no']);
+        $array = $request->toArray();
+        $this->assertSame(2, $array['page_no']);
         $this->assertSame(50, $array['page_size']);
     }
 
@@ -49,6 +51,7 @@ final class ListBuyersRequestTest extends TestCase
     {
         $request = new ListBuyersRequest();
 
-        $errors = $request->validate();        $this->assertEmpty($errors);
+        $errors = $request->validate();
+        $this->assertEmpty($errors);
     }
 }

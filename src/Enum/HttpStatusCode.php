@@ -100,15 +100,4 @@ enum HttpStatusCode: int implements IntBackedEnum
             self::GATEWAY_TIMEOUT => 'Gateway Timeout',
         };
     }
-
-    /**
-     * Get human-readable description
-     *
-     * @deprecated Use label() instead
-     * @return string The display label
-     */
-    public function description(): string
-    {
-        return $this->label();
-    }
 }

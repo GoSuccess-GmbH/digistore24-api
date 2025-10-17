@@ -89,7 +89,7 @@ final class ListProductTypesResponse extends AbstractResponse
         // API returns array of product type objects directly
         $productTypes = [];
         foreach ($data as $item) {
-            if (!is_array($item)) {
+            if (! is_array($item)) {
                 continue;
             }
             $id = $item['id'] ?? 0;
