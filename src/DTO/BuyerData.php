@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
-use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use DateTimeImmutable;
+use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Enum\Salutation;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
 use GoSuccess\Digistore24\Api\Util\Validator;
@@ -38,7 +38,7 @@ final class BuyerData extends AbstractDataTransferObject
     public string $email {
         get => $this->email;
         set {
-            if ($value !== '' && !Validator::isEmail($value)) {
+            if ($value !== '' && ! Validator::isEmail($value)) {
                 throw new \InvalidArgumentException('Invalid email format');
             }
             $this->email = $value;
@@ -237,12 +237,12 @@ final class BuyerData extends AbstractDataTransferObject
         if (isset($data['salutation']) && is_string($data['salutation'])) {
             $salutation = Salutation::fromString($data['salutation']);
         }
-        
+
         /** @var int|null $id */
         $id = TypeConverter::toInt($data['id'] ?? null);
         /** @var int|null $addressId */
         $addressId = TypeConverter::toInt($data['address_id'] ?? null);
-        
+
         return new self(
             id: $id,
             addressId: $addressId,

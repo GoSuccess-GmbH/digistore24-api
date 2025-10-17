@@ -21,7 +21,7 @@ final class TrackingData extends AbstractDataTransferObject
      */
     public ?string $thankyou_url = null {
         set {
-            if ($value !== null && !Validator::isUrl($value)) {
+            if ($value !== null && ! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Thank you URL must be a valid URL');
             }
             $this->thankyou_url = $value;
@@ -33,7 +33,7 @@ final class TrackingData extends AbstractDataTransferObject
      */
     public ?string $cancellation_url = null {
         set {
-            if ($value !== null && !Validator::isUrl($value)) {
+            if ($value !== null && ! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Cancellation URL must be a valid URL');
             }
             $this->cancellation_url = $value;
@@ -45,7 +45,7 @@ final class TrackingData extends AbstractDataTransferObject
      */
     public ?string $billing_failure_url = null {
         set {
-            if ($value !== null && !Validator::isUrl($value)) {
+            if ($value !== null && ! Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Billing failure URL must be a valid URL');
             }
             $this->billing_failure_url = $value;
@@ -57,7 +57,7 @@ final class TrackingData extends AbstractDataTransferObject
      */
     public ?string $ga_tid = null {
         set {
-            if ($value !== null && !preg_match('/^(UA|G|GT|AW)-/', $value)) {
+            if ($value !== null && ! preg_match('/^(UA|G|GT|AW)-/', $value)) {
                 throw new \InvalidArgumentException('Google Analytics Tracking ID must start with UA-, G-, GT-, or AW-');
             }
             $this->ga_tid = $value;
@@ -69,7 +69,7 @@ final class TrackingData extends AbstractDataTransferObject
      */
     public ?string $fb_pixel_id = null {
         set {
-            if ($value !== null && !preg_match('/^\d+$/', $value)) {
+            if ($value !== null && ! preg_match('/^\d+$/', $value)) {
                 throw new \InvalidArgumentException('Facebook Pixel ID must be numeric');
             }
             $this->fb_pixel_id = $value;

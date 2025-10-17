@@ -24,7 +24,7 @@ final class ShippingCostPolicyData extends AbstractDataTransferObject
      */
     public string $name {
         set {
-            if (!Validator::isLength($value, null, 63)) {
+            if (! Validator::isLength($value, null, 63)) {
                 throw new \InvalidArgumentException('Name must not exceed 63 characters');
             }
             $this->name = $value;
@@ -38,7 +38,7 @@ final class ShippingCostPolicyData extends AbstractDataTransferObject
      */
     public ?string $labelXX = null {
         set {
-            if ($value !== null && !Validator::isLength($value, null, 63)) {
+            if ($value !== null && ! Validator::isLength($value, null, 63)) {
                 throw new \InvalidArgumentException('Label must not exceed 63 characters');
             }
             $this->labelXX = $value;
@@ -109,7 +109,7 @@ final class ShippingCostPolicyData extends AbstractDataTransferObject
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && !Validator::isCurrencyCode($value)) {
+            if ($value !== null && ! Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

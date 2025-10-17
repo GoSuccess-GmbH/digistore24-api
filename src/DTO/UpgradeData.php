@@ -22,7 +22,7 @@ final class UpgradeData extends AbstractDataTransferObject
      */
     public string $name {
         set {
-            if (!Validator::isLength($value, null, 255)) {
+            if (! Validator::isLength($value, null, 255)) {
                 throw new \InvalidArgumentException('Name must not exceed 255 characters');
             }
             $this->name = $value;

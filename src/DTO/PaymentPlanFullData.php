@@ -42,7 +42,7 @@ final class PaymentPlanFullData extends AbstractDataTransferObject
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && !Validator::isCurrencyCode($value)) {
+            if ($value !== null && ! Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

@@ -26,7 +26,7 @@ final class VoucherData extends AbstractDataTransferObject
             if (strlen($value) === 0) {
                 throw new \InvalidArgumentException('Voucher code cannot be empty');
             }
-            if (!Validator::isLength($value, null, 255)) {
+            if (! Validator::isLength($value, null, 255)) {
                 throw new \InvalidArgumentException('Voucher code must not exceed 255 characters');
             }
             $this->code = $value;
@@ -45,7 +45,7 @@ final class VoucherData extends AbstractDataTransferObject
      */
     public ?string $validFrom = null {
         set {
-            if ($value !== null && !preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
+            if ($value !== null && ! preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
                 throw new \InvalidArgumentException('Valid from must be in YYYY-MM-DD HH:MM:SS format');
             }
             $this->validFrom = $value;
@@ -58,7 +58,7 @@ final class VoucherData extends AbstractDataTransferObject
      */
     public ?string $expiresAt = null {
         set {
-            if ($value !== null && !preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
+            if ($value !== null && ! preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $value)) {
                 throw new \InvalidArgumentException('Expires at must be in YYYY-MM-DD HH:MM:SS format');
             }
             $this->expiresAt = $value;
@@ -118,7 +118,7 @@ final class VoucherData extends AbstractDataTransferObject
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && !Validator::isCurrencyCode($value)) {
+            if ($value !== null && ! Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code (e.g., USD, EUR)');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

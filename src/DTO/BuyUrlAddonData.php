@@ -100,7 +100,7 @@ final class BuyUrlAddonData extends AbstractDataTransferObject
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && !Validator::isCurrencyCode($value)) {
+            if ($value !== null && ! Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code (e.g., USD, EUR)');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

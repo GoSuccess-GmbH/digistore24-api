@@ -46,7 +46,7 @@ final class AffiliateCommissionData extends AbstractDataTransferObject
      */
     public ?string $commissionCurrency = null {
         set {
-            if ($value !== null && !Validator::isCurrencyCode($value)) {
+            if ($value !== null && ! Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Commission currency must be 3-character code');
             }
             $this->commissionCurrency = $value !== null ? strtoupper($value) : null;

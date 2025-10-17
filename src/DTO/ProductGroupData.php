@@ -24,7 +24,7 @@ final class ProductGroupData extends AbstractDataTransferObject
      */
     public string $name {
         set {
-            if (!Validator::isLength($value, null, 31)) {
+            if (! Validator::isLength($value, null, 31)) {
                 throw new \InvalidArgumentException('Product group name must not exceed 31 characters');
             }
             $this->name = $value;

@@ -35,7 +35,7 @@ final class PaymentPlanData extends AbstractDataTransferObject
 
     public ?string $currency = null {
         set {
-            if ($value !== null && !Validator::isCurrencyCode($value)) {
+            if ($value !== null && ! Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException("Currency must be 3-letter code: {$value}");
             }
             $this->currency = $value !== null ? strtoupper($value) : null;
@@ -63,7 +63,7 @@ final class PaymentPlanData extends AbstractDataTransferObject
 
     public ?string $upgradeType = null {
         set {
-            if ($value !== null && !in_array($value, ['upgrade', 'downgrade', 'special_offer'], true)) {
+            if ($value !== null && ! in_array($value, ['upgrade', 'downgrade', 'special_offer'], true)) {
                 throw new \InvalidArgumentException("Invalid upgrade type: {$value}. Allowed: upgrade, downgrade, special_offer");
             }
             $this->upgradeType = $value;
@@ -72,7 +72,7 @@ final class PaymentPlanData extends AbstractDataTransferObject
 
     public ?string $taxMode = null {
         set {
-            if ($value !== null && !in_array($value, ['net', 'gross'], true)) {
+            if ($value !== null && ! in_array($value, ['net', 'gross'], true)) {
                 throw new \InvalidArgumentException("Invalid tax mode: {$value}. Allowed: net, gross");
             }
             $this->taxMode = $value;

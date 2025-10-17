@@ -23,7 +23,7 @@ final class OrderFormData extends AbstractDataTransferObject
      */
     public ?string $name = null {
         set {
-            if ($value !== null && !Validator::isLength($value, null, 63)) {
+            if ($value !== null && ! Validator::isLength($value, null, 63)) {
                 throw new \InvalidArgumentException('Order form name must not exceed 63 characters');
             }
             $this->name = $value;
