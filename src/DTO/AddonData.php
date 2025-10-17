@@ -5,6 +5,7 @@ declare (strict_types=1);
 namespace GoSuccess\Digistore24\Api\DTO;
 
 use GoSuccess\Digistore24\Api\Util\ArrayHelper;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Addon Data
@@ -58,7 +59,7 @@ final class AddonData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransf
         $data = [
             'productId' => $this->productId,
             'quantity' => $this->quantity,
-            'isQuantityEditableAfterPurchase' => $this->isQuantityEditableAfterPurchase ? 'Y' : 'N',
+            'isQuantityEditableAfterPurchase' => TypeConverter::fromBool($this->isQuantityEditableAfterPurchase),
         ];
 
         if ($this->amount !== null) {

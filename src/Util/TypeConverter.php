@@ -110,6 +110,19 @@ final class TypeConverter
     }
 
     /**
+     * Convert boolean to Digistore24 format
+     *
+     * Converts boolean to 'Y' or 'N' string for API requests.
+     *
+     * @param bool|null $value Boolean value to convert
+     * @return string 'Y' for true, 'N' for false or null
+     */
+    public static function fromBool(?bool $value): string
+    {
+        return $value ? 'Y' : 'N';
+    }
+
+    /**
      * Convert value to DateTime
      *
      * @param mixed $value Value to convert (timestamp, string, or DateTime object)
