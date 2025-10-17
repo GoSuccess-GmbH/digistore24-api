@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Enum\Salutation;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
@@ -23,7 +24,7 @@ final class BuyerData
         }
     }
 
-    public ?string $salutation = null;
+    public ?Salutation $salutation = null;
 
     public ?string $title = null;
 
