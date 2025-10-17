@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\ArrayHelper;
+
 /**
  * Addon Data
  *
@@ -53,11 +55,17 @@ final class AddonData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransf
      */
     public function toArray(): array
     {
-        $data = ['product_id' => $this->productId, 'quantity' => $this->quantity, 'is_quantity_editable_after_purchase' => $this->isQuantityEditableAfterPurchase ? 'Y' : 'N'];
+        $data = [
+            'productId' => $this->productId,
+            'quantity' => $this->quantity,
+            'isQuantityEditableAfterPurchase' => $this->isQuantityEditableAfterPurchase ? 'Y' : 'N',
+        ];
+
         if ($this->amount !== null) {
             $data['amount'] = $this->amount;
         }
 
-        return $data;
+        /** @var array<string, mixed> */
+        return ArrayHelper::keysToSnakeCase($data);
     }
 }
