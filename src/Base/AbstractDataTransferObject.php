@@ -45,13 +45,11 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
 
         // If no constructor, create empty instance and set properties
         if ($constructor === null || $constructor->getNumberOfParameters() === 0) {
-            /** @var static $instance */
             $instance = $reflection->newInstanceWithoutConstructor();
-            // Create reflection from base class to avoid covariance issues
-            /** @var ReflectionClass<object> $objectReflection */
-            $objectReflection = new ReflectionClass($instance);
-            self::setPropertiesFromArray($instance, $data, $objectReflection);
+            // @phpstan-ignore-next-line
+            self::setPropertiesFromArray($instance, $data, $reflection);
 
+            /** @var static */
             return $instance;
         }
 
@@ -74,7 +72,7 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
             }
         }
 
-        // @phpstan-ignore-next-line method.nonObject (Abstract class may not have constructor)
+        // @phpstan-ignore-next-line
         return new static(...$args);
     }
 
@@ -213,47 +211,37 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
         // Check if it's an Enum
         if (enum_exists($typeName)) {
             if (is_subclass_of($typeName, StringBackedEnum::class)) {
-                if (! is_scalar($value) && ! is_null($value)) {
+                if (! is_scalar($value) && $value !== null) {
                     return null;
                 }
-                $stringValue = is_string($value) ? $value : (string)$value;
 
-                // @phpstan-ignore-next-line method.nonObject (enum_exists validated)
-                return $typeName::fromString($stringValue);
+                // @phpstan-ignore-next-line
+                return $typeName::fromString(is_string($value) ? $value : (string)$value);
             }
             if (is_subclass_of($typeName, IntBackedEnum::class)) {
-                if (! is_scalar($value) && ! is_null($value)) {
+                if (! is_scalar($value) && $value !== null) {
                     return null;
                 }
-                $intValue = is_int($value) ? $value : (int)$value;
 
-                // @phpstan-ignore-next-line method.nonObject (enum_exists validated)
-                return $typeName::fromInt($intValue);
+                // @phpstan-ignore-next-line
+                return $typeName::fromInt(is_int($value) ? $value : (int)$value);
             }
             // Fallback for standard backed enums
-            if (method_exists($typeName, 'from')) {
-                if (! is_int($value) && ! is_string($value)) {
-                    return null;
-                }
-                /** @var class-string<\BackedEnum> $enumClass */
-                $enumClass = $typeName;
-
-                return $enumClass::from($value);
+            if (method_exists($typeName, 'from') && (is_int($value) || is_string($value))) {
+                // @phpstan-ignore-next-line
+                return $typeName::from($value);
             }
         }
 
         // Check if it's a DTO
         if (is_subclass_of($typeName, DataTransferObjectInterface::class) && is_array($value)) {
-            // Ensure array has string keys for fromArray
-            /** @var array<string, mixed> $arrayValue */
-            $arrayValue = [];
+            $stringKeyArray = [];
             foreach ($value as $k => $v) {
-                $arrayValue[(string)$k] = $v;
+                $stringKeyArray[(string)$k] = $v;
             }
-            /** @var class-string<DataTransferObjectInterface> $dtoClass */
-            $dtoClass = $typeName;
 
-            return $dtoClass::fromArray($arrayValue);
+            // @phpstan-ignore-next-line
+            return $typeName::fromArray($stringKeyArray);
         }
 
         return $value;

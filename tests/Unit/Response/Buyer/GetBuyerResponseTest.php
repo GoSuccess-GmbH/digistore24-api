@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Buyer;
 
 use GoSuccess\Digistore24\Api\DTO\BuyerData;
+use GoSuccess\Digistore24\Api\Enum\BuyerType;
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Response\Buyer\GetBuyerResponse;
 use PHPUnit\Framework\TestCase;
@@ -50,7 +51,7 @@ final class GetBuyerResponseTest extends TestCase
         $this->assertSame('Paul', $response->buyer->firstName);
         $this->assertSame('Gossen', $response->buyer->lastName);
         $this->assertSame('Testfirma', $response->buyer->company);
-        $this->assertSame('business', $response->buyer->buyerType);
+        $this->assertSame(BuyerType::BUSINESS, $response->buyer->buyerType);
         $this->assertSame('Starße 1', $response->buyer->street);
         $this->assertSame('Starße', $response->buyer->streetName);
         $this->assertSame('1', $response->buyer->streetNumber);
@@ -87,7 +88,7 @@ final class GetBuyerResponseTest extends TestCase
         $this->assertSame('buyer@example.com', $response->buyer->email);
         $this->assertSame('John', $response->buyer->firstName);
         $this->assertSame('Doe', $response->buyer->lastName);
-        $this->assertSame('private', $response->buyer->buyerType);
+        $this->assertSame(BuyerType::PRIVATE, $response->buyer->buyerType);
     }
 
     public function test_has_raw_response(): void
