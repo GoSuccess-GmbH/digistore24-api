@@ -46,8 +46,9 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
         // If no constructor, create empty instance and set properties
         if ($constructor === null || $constructor->getNumberOfParameters() === 0) {
             $instance = $reflection->newInstanceWithoutConstructor();
-            // @phpstan-ignore-next-line
-            self::setPropertiesFromArray($instance, $data, $reflection);
+            /** @var ReflectionClass<object> $instanceReflection */
+            $instanceReflection = new ReflectionClass($instance);
+            self::setPropertiesFromArray($instance, $data, $instanceReflection);
 
             /** @var static */
             return $instance;
@@ -72,8 +73,8 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
             }
         }
 
-        // @phpstan-ignore-next-line
-        return new static(...$args);
+        /** @var static */
+        return $reflection->newInstanceArgs($args);
     }
 
     /**
@@ -210,41 +211,68 @@ abstract class AbstractDataTransferObject implements DataTransferObjectInterface
 
         // Check if it's an Enum
         if (enum_exists($typeName)) {
-            if (is_subclass_of($typeName, StringBackedEnum::class)) {
-                if (! is_scalar($value) && $value !== null) {
-                    return null;
-                }
-
-                // @phpstan-ignore-next-line
-                return $typeName::fromString(is_string($value) ? $value : (string)$value);
-            }
-            if (is_subclass_of($typeName, IntBackedEnum::class)) {
-                if (! is_scalar($value) && $value !== null) {
-                    return null;
-                }
-
-                // @phpstan-ignore-next-line
-                return $typeName::fromInt(is_int($value) ? $value : (int)$value);
-            }
-            // Fallback for standard backed enums
-            if (method_exists($typeName, 'from') && (is_int($value) || is_string($value))) {
-                // @phpstan-ignore-next-line
-                return $typeName::from($value);
-            }
+            return self::convertEnumValue($value, $typeName);
         }
 
         // Check if it's a DTO
         if (is_subclass_of($typeName, DataTransferObjectInterface::class) && is_array($value)) {
-            $stringKeyArray = [];
-            foreach ($value as $k => $v) {
-                $stringKeyArray[(string)$k] = $v;
-            }
-
-            // @phpstan-ignore-next-line
-            return $typeName::fromArray($stringKeyArray);
+            return self::convertDtoValue($value, $typeName);
         }
 
         return $value;
+    }
+
+    /**
+     * Convert value to enum instance
+     *
+     * @param mixed $value
+     * @param class-string $enumClass
+     * @return mixed
+     */
+    private static function convertEnumValue(mixed $value, string $enumClass): mixed
+    {
+        if (is_subclass_of($enumClass, StringBackedEnum::class)) {
+            if (! is_scalar($value) && $value !== null) {
+                return null;
+            }
+            $stringValue = is_string($value) ? $value : (string)$value;
+
+            return $enumClass::fromString($stringValue);
+        }
+
+        if (is_subclass_of($enumClass, IntBackedEnum::class)) {
+            if (! is_scalar($value) && $value !== null) {
+                return null;
+            }
+            $intValue = is_int($value) ? $value : (int)$value;
+
+            return $enumClass::fromInt($intValue);
+        }
+
+        // Fallback for standard backed enums
+        if (method_exists($enumClass, 'from') && (is_int($value) || is_string($value))) {
+            return $enumClass::from($value);
+        }
+
+        return null;
+    }
+
+    /**
+     * Convert array to DTO instance
+     *
+     * @param array<mixed, mixed> $value
+     * @param class-string<DataTransferObjectInterface> $dtoClass
+     * @return DataTransferObjectInterface
+     */
+    private static function convertDtoValue(array $value, string $dtoClass): DataTransferObjectInterface
+    {
+        /** @var array<string, mixed> $stringKeyArray */
+        $stringKeyArray = [];
+        foreach ($value as $k => $v) {
+            $stringKeyArray[(string)$k] = $v;
+        }
+
+        return $dtoClass::fromArray($stringKeyArray);
     }
 
     /**
