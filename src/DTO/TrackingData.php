@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\ArrayHelper;
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Tracking Data Transfer Object
  *
@@ -17,7 +20,7 @@ final class TrackingData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTra
      */
     public ?string $thankyou_url = null {
         set {
-            if ($value !== null && !filter_var($value, FILTER_VALIDATE_URL)) {
+            if ($value !== null && !Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Thank you URL must be a valid URL');
             }
             $this->thankyou_url = $value;
@@ -29,7 +32,7 @@ final class TrackingData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTra
      */
     public ?string $cancellation_url = null {
         set {
-            if ($value !== null && !filter_var($value, FILTER_VALIDATE_URL)) {
+            if ($value !== null && !Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Cancellation URL must be a valid URL');
             }
             $this->cancellation_url = $value;
@@ -41,7 +44,7 @@ final class TrackingData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTra
      */
     public ?string $billing_failure_url = null {
         set {
-            if ($value !== null && !filter_var($value, FILTER_VALIDATE_URL)) {
+            if ($value !== null && !Validator::isUrl($value)) {
                 throw new \InvalidArgumentException('Billing failure URL must be a valid URL');
             }
             $this->billing_failure_url = $value;
@@ -129,16 +132,15 @@ final class TrackingData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTra
      */
     public function toArray(): array
     {
-        $result = [];
-        
+        $data = [];
+
         foreach (get_object_vars($this) as $property => $value) {
             if ($value !== null) {
-                // Convert camelCase to snake_case
-                $snakeCase = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $property));
-                $result[$snakeCase] = $value;
+                $data[$property] = $value;
             }
         }
-        
-        return $result;
+
+        /** @var array<string, mixed> */
+        return ArrayHelper::keysToSnakeCase($data);
     }
 }

@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Buy URL Addon Data Transfer Object
  *
@@ -97,7 +99,7 @@ final class BuyUrlAddonData extends \GoSuccess\Digistore24\Api\Base\AbstractData
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && strlen($value) !== 3) {
+            if ($value !== null && !Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code (e.g., USD, EUR)');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

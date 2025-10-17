@@ -7,6 +7,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
 use DateTimeImmutable;
 use GoSuccess\Digistore24\Api\Enum\Salutation;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
+use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
  * Buyer Data Transfer Object
@@ -14,56 +15,214 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  * Represents buyer information for API requests and responses.
  * Uses PHP 8.4 property hooks for automatic validation.
  */
-final readonly class BuyerData
+final class BuyerData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
-     * @param string|null $id Buyer ID
-     * @param string|null $addressId Address ID
-     * @param string $email Email address
-     * @param string|null $salutation Salutation (raw string from API)
-     * @param string|null $salutationMsg Salutation message
-     * @param string|null $title Title (e.g., Dr., Prof.)
-     * @param string|null $firstName First name
-     * @param string|null $lastName Last name
-     * @param string|null $company Company name
-     * @param string|null $street Full street address
-     * @param string|null $streetName Street name (without number)
-     * @param string|null $streetNumber Street number
-     * @param string|null $street2 Additional address line
-     * @param string|null $city City
-     * @param string|null $zipcode ZIP/Postal code
-     * @param string|null $state State/Province
-     * @param string|null $country Country code (ISO 3166-1 alpha-2)
-     * @param string|null $phoneNo Phone number
-     * @param string|null $taxId Tax ID
-     * @param string|null $buyerType Buyer type (business or private)
-     * @param DateTimeImmutable|null $createdAt Creation timestamp
-     * @param string|null $readonlyKeys Readonly keys (comma-separated)
+     * Buyer ID
      */
+    public ?string $id {
+        get => $this->id;
+    }
+
+    /**
+     * Address ID
+     */
+    public ?string $addressId {
+        get => $this->addressId;
+    }
+
+    /**
+     * Email address
+     */
+    public string $email {
+        get => $this->email;
+        set {
+            if ($value !== '' && !Validator::isEmail($value)) {
+                throw new \InvalidArgumentException('Invalid email format');
+            }
+            $this->email = $value;
+        }
+    }
+
+    /**
+     * Salutation (raw string from API)
+     */
+    public ?string $salutation {
+        get => $this->salutation;
+    }
+
+    /**
+     * Salutation message
+     */
+    public ?string $salutationMsg {
+        get => $this->salutationMsg;
+    }
+
+    /**
+     * Title (e.g., Dr., Prof.)
+     */
+    public ?string $title {
+        get => $this->title;
+    }
+
+    /**
+     * First name
+     */
+    public ?string $firstName {
+        get => $this->firstName;
+    }
+
+    /**
+     * Last name
+     */
+    public ?string $lastName {
+        get => $this->lastName;
+    }
+
+    /**
+     * Company name
+     */
+    public ?string $company {
+        get => $this->company;
+    }
+
+    /**
+     * Full street address
+     */
+    public ?string $street {
+        get => $this->street;
+    }
+
+    /**
+     * Street name (without number)
+     */
+    public ?string $streetName {
+        get => $this->streetName;
+    }
+
+    /**
+     * Street number
+     */
+    public ?string $streetNumber {
+        get => $this->streetNumber;
+    }
+
+    /**
+     * Additional address line
+     */
+    public ?string $street2 {
+        get => $this->street2;
+    }
+
+    /**
+     * City
+     */
+    public ?string $city {
+        get => $this->city;
+    }
+
+    /**
+     * ZIP/Postal code
+     */
+    public ?string $zipcode {
+        get => $this->zipcode;
+    }
+
+    /**
+     * State/Province
+     */
+    public ?string $state {
+        get => $this->state;
+    }
+
+    /**
+     * Country code (ISO 3166-1 alpha-2)
+     */
+    public ?string $country {
+        get => $this->country;
+    }
+
+    /**
+     * Phone number
+     */
+    public ?string $phoneNo {
+        get => $this->phoneNo;
+    }
+
+    /**
+     * Tax ID
+     */
+    public ?string $taxId {
+        get => $this->taxId;
+    }
+
+    /**
+     * Buyer type (business or private)
+     */
+    public ?string $buyerType {
+        get => $this->buyerType;
+    }
+
+    /**
+     * Creation timestamp
+     */
+    public ?DateTimeImmutable $createdAt {
+        get => $this->createdAt;
+    }
+
+    /**
+     * Readonly keys (comma-separated)
+     */
+    public ?string $readonlyKeys {
+        get => $this->readonlyKeys;
+    }
+
     public function __construct(
-        public ?string $id = null,
-        public ?string $addressId = null,
-        public string $email = '',
-        public ?string $salutation = null,
-        public ?string $salutationMsg = null,
-        public ?string $title = null,
-        public ?string $firstName = null,
-        public ?string $lastName = null,
-        public ?string $company = null,
-        public ?string $street = null,
-        public ?string $streetName = null,
-        public ?string $streetNumber = null,
-        public ?string $street2 = null,
-        public ?string $city = null,
-        public ?string $zipcode = null,
-        public ?string $state = null,
-        public ?string $country = null,
-        public ?string $phoneNo = null,
-        public ?string $taxId = null,
-        public ?string $buyerType = null,
-        public ?DateTimeImmutable $createdAt = null,
-        public ?string $readonlyKeys = null,
+        ?string $id = null,
+        ?string $addressId = null,
+        string $email = '',
+        ?string $salutation = null,
+        ?string $salutationMsg = null,
+        ?string $title = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $company = null,
+        ?string $street = null,
+        ?string $streetName = null,
+        ?string $streetNumber = null,
+        ?string $street2 = null,
+        ?string $city = null,
+        ?string $zipcode = null,
+        ?string $state = null,
+        ?string $country = null,
+        ?string $phoneNo = null,
+        ?string $taxId = null,
+        ?string $buyerType = null,
+        ?DateTimeImmutable $createdAt = null,
+        ?string $readonlyKeys = null,
     ) {
+        $this->id = $id;
+        $this->addressId = $addressId;
+        $this->email = $email;
+        $this->salutation = $salutation;
+        $this->salutationMsg = $salutationMsg;
+        $this->title = $title;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->company = $company;
+        $this->street = $street;
+        $this->streetName = $streetName;
+        $this->streetNumber = $streetNumber;
+        $this->street2 = $street2;
+        $this->city = $city;
+        $this->zipcode = $zipcode;
+        $this->state = $state;
+        $this->country = $country;
+        $this->phoneNo = $phoneNo;
+        $this->taxId = $taxId;
+        $this->buyerType = $buyerType;
+        $this->createdAt = $createdAt;
+        $this->readonlyKeys = $readonlyKeys;
     }
 
     /**

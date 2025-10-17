@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Order Form Data Transfer Object
  *
@@ -20,7 +22,7 @@ final class OrderFormData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTr
      */
     public ?string $name = null {
         set {
-            if ($value !== null && strlen($value) > 63) {
+            if ($value !== null && !Validator::isLength($value, null, 63)) {
                 throw new \InvalidArgumentException('Order form name must not exceed 63 characters');
             }
             $this->name = $value;

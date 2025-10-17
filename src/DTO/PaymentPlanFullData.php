@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Payment Plan Full Data Transfer Object
  *
@@ -39,7 +41,7 @@ final class PaymentPlanFullData extends \GoSuccess\Digistore24\Api\Base\Abstract
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && strlen($value) !== 3) {
+            if ($value !== null && !Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

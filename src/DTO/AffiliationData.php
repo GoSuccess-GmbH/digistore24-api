@@ -11,35 +11,111 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  * Affiliation Data
  *
  * Represents affiliate commission data for a specific product.
+ * Uses PHP 8.4 property hooks for read-only access.
  */
-final readonly class AffiliationData
+final class AffiliationData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject
 {
     /**
-     * @param string $commissionRate Commission rate as percentage
-     * @param string $commissionCurrency Currency code for commission
-     * @param string $defaultCommissionRate Default commission rate as percentage
-     * @param string $defaultCommissionFix Default fixed commission amount
-     * @param string $defaultCommissionCurrency Default commission currency code
-     * @param string $commissionFix Fixed commission amount
-     * @param bool $isOnFirstPmntOnly Whether commission applies only to first payment
-     * @param string $productId Product ID
-     * @param bool $productIsActive Whether product is active
-     * @param AffiliateApprovalStatus $approvalStatus Approval status
-     * @param string $approvalStatusMsg Human-readable approval status message
+     * Commission rate as percentage
      */
+    public string $commissionRate {
+        get => $this->commissionRate;
+    }
+
+    /**
+     * Currency code for commission
+     */
+    public string $commissionCurrency {
+        get => $this->commissionCurrency;
+    }
+
+    /**
+     * Default commission rate as percentage
+     */
+    public string $defaultCommissionRate {
+        get => $this->defaultCommissionRate;
+    }
+
+    /**
+     * Default fixed commission amount
+     */
+    public string $defaultCommissionFix {
+        get => $this->defaultCommissionFix;
+    }
+
+    /**
+     * Default commission currency code
+     */
+    public string $defaultCommissionCurrency {
+        get => $this->defaultCommissionCurrency;
+    }
+
+    /**
+     * Fixed commission amount
+     */
+    public string $commissionFix {
+        get => $this->commissionFix;
+    }
+
+    /**
+     * Whether commission applies only to first payment
+     */
+    public bool $isOnFirstPmntOnly {
+        get => $this->isOnFirstPmntOnly;
+    }
+
+    /**
+     * Product ID
+     */
+    public string $productId {
+        get => $this->productId;
+    }
+
+    /**
+     * Whether product is active
+     */
+    public bool $productIsActive {
+        get => $this->productIsActive;
+    }
+
+    /**
+     * Approval status
+     */
+    public AffiliateApprovalStatus $approvalStatus {
+        get => $this->approvalStatus;
+    }
+
+    /**
+     * Human-readable approval status message
+     */
+    public string $approvalStatusMsg {
+        get => $this->approvalStatusMsg;
+    }
+
     public function __construct(
-        public string $commissionRate,
-        public string $commissionCurrency,
-        public string $defaultCommissionRate,
-        public string $defaultCommissionFix,
-        public string $defaultCommissionCurrency,
-        public string $commissionFix,
-        public bool $isOnFirstPmntOnly,
-        public string $productId,
-        public bool $productIsActive,
-        public AffiliateApprovalStatus $approvalStatus,
-        public string $approvalStatusMsg,
+        string $commissionRate,
+        string $commissionCurrency,
+        string $defaultCommissionRate,
+        string $defaultCommissionFix,
+        string $defaultCommissionCurrency,
+        string $commissionFix,
+        bool $isOnFirstPmntOnly,
+        string $productId,
+        bool $productIsActive,
+        AffiliateApprovalStatus $approvalStatus,
+        string $approvalStatusMsg,
     ) {
+        $this->commissionRate = $commissionRate;
+        $this->commissionCurrency = $commissionCurrency;
+        $this->defaultCommissionRate = $defaultCommissionRate;
+        $this->defaultCommissionFix = $defaultCommissionFix;
+        $this->defaultCommissionCurrency = $defaultCommissionCurrency;
+        $this->commissionFix = $commissionFix;
+        $this->isOnFirstPmntOnly = $isOnFirstPmntOnly;
+        $this->productId = $productId;
+        $this->productIsActive = $productIsActive;
+        $this->approvalStatus = $approvalStatus;
+        $this->approvalStatusMsg = $approvalStatusMsg;
     }
 
     /**

@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Voucher Data Transfer Object
  *
@@ -23,7 +25,7 @@ final class VoucherData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
             if (strlen($value) === 0) {
                 throw new \InvalidArgumentException('Voucher code cannot be empty');
             }
-            if (strlen($value) > 255) {
+            if (!Validator::isLength($value, null, 255)) {
                 throw new \InvalidArgumentException('Voucher code must not exceed 255 characters');
             }
             $this->code = $value;
@@ -115,7 +117,7 @@ final class VoucherData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
      */
     public ?string $currency = null {
         set {
-            if ($value !== null && strlen($value) !== 3) {
+            if ($value !== null && !Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Currency must be 3-character code (e.g., USD, EUR)');
             }
             $this->currency = $value !== null ? strtoupper($value) : null;

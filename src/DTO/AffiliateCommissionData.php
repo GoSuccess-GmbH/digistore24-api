@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Affiliate Commission Data Transfer Object
  *
@@ -43,7 +45,7 @@ final class AffiliateCommissionData extends \GoSuccess\Digistore24\Api\Base\Abst
      */
     public ?string $commissionCurrency = null {
         set {
-            if ($value !== null && strlen($value) !== 3) {
+            if ($value !== null && !Validator::isCurrencyCode($value)) {
                 throw new \InvalidArgumentException('Commission currency must be 3-character code');
             }
             $this->commissionCurrency = $value !== null ? strtoupper($value) : null;

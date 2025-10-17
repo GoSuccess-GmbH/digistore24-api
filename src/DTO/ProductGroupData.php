@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Product Group Data Transfer Object
  *
@@ -21,7 +23,7 @@ final class ProductGroupData extends \GoSuccess\Digistore24\Api\Base\AbstractDat
      */
     public string $name {
         set {
-            if (strlen($value) > 31) {
+            if (!Validator::isLength($value, null, 31)) {
                 throw new \InvalidArgumentException('Product group name must not exceed 31 characters');
             }
             $this->name = $value;

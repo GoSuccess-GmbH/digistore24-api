@@ -4,6 +4,8 @@ declare (strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\DTO;
 
+use GoSuccess\Digistore24\Api\Util\Validator;
+
 /**
  * Upgrade Data Transfer Object
  *
@@ -19,7 +21,7 @@ final class UpgradeData extends \GoSuccess\Digistore24\Api\Base\AbstractDataTran
      */
     public string $name {
         set {
-            if (strlen($value) > 255) {
+            if (!Validator::isLength($value, null, 255)) {
                 throw new \InvalidArgumentException('Name must not exceed 255 characters');
             }
             $this->name = $value;
