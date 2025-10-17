@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Digistore24 API SDK uses a standardized approach for all string-backed enums through an **Interface + Trait pattern**. This ensures consistency, type-safety, and reduces code duplication.
+The Digistore24 API Client uses a standardized approach for all string-backed enums through an **Interface + Trait pattern**. This ensures consistency, type-safety, and reduces code duplication.
 
 ## Architecture
 

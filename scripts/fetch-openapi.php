@@ -204,7 +204,7 @@ YAML;
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
-                'header' => "User-Agent: Digistore24-PHP-SDK-OpenAPI-Fetcher/1.0\r\n",
+                'header' => "User-Agent: Digistore24-PHP-Client-OpenAPI-Fetcher/1.0\r\n",
                 'timeout' => 30,
             ],
         ]);

@@ -6,7 +6,7 @@ declare(strict_types=1);
  * String-Backed Enum Interface & Trait Example
  *
  * This example demonstrates the standardized approach for all string-backed enums
- * in the Digistore24 API SDK.
+ * in the Digistore24 API Client.
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';

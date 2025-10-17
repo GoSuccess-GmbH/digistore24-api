@@ -196,9 +196,9 @@ function generateLabelMethod(string $enumFile): string
     // Parse enum cases from file
     preg_match_all('/case\s+(\w+)\s*=/', file_get_contents($enumFile), $matches);
     $cases = $matches[1];
-    
+
     $labels = array_map(fn($case) => "            self::$case => '" . snakeToTitle($case) . "',", $cases);
-    
+
     return "    public function label(): string\n" .
            "    {\n" .
            "        return match (\$this) {\n" .
@@ -219,7 +219,7 @@ After each migration:
 
 2. ✅ **Manual testing**
    ```php
-   php -r "require 'vendor/autoload.php'; 
+   php -r "require 'vendor/autoload.php';
    use YourNamespace\YourEnum;
    var_dump(YourEnum::cases());
    var_dump(YourEnum::fromString('value'));
