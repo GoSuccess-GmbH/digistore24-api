@@ -64,7 +64,7 @@ final class Configuration
      * Full API endpoint URL (computed property)
      */
     public string $apiUrl {
-        get => $this->baseUrl . '/api/call';
+        get => "{$this->baseUrl}/api/call";
     }
 
     public function __construct(string $apiKey)
