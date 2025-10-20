@@ -88,7 +88,7 @@ final class GetBuyerResponseTest extends TestCase
         $this->assertSame('buyer@example.com', $response->buyer->email);
         $this->assertSame('John', $response->buyer->firstName);
         $this->assertSame('Doe', $response->buyer->lastName);
-        $this->assertSame(BuyerType::PRIVATE, $response->buyer->buyerType);
+        $this->assertSame(BuyerType::CONSUMER, $response->buyer->buyerType);
     }
 
     public function test_has_raw_response(): void
