@@ -1,136 +1,270 @@
-# getDelivery# getDelivery
+# getDelivery# getDelivery# getDelivery
 
 
 
-Get details of a specific delivery.Get details of a specific delivery.
+Get details of a specific delivery.
 
 
 
-## Endpoint## Endpoint
+## EndpointGet details of a specific delivery.Get details of a specific delivery.
 
 
 
-``````
+```
 
-GET /json/getDeliveryPOST /json/getDelivery
+GET /api/getDelivery
 
-``````
-
-
-
-## Request Parameters## Request Parameters
+```## Endpoint## Endpoint
 
 
 
-| Parameter | Type | Required | Description || Parameter | Type | Required | Description |
+## Request Parameters
 
-|-----------|------|----------|-------------||-----------|------|----------|-------------|
 
-| `delivery_id` | int | Yes | Delivery ID || `delivery_id` | int | Yes | Delivery ID |
+
+| Parameter | Type | Required | Description |``````
+
+|-----------|------|----------|-------------|
+
+| `delivery_id` | int | Yes | Delivery ID |GET /json/getDeliveryPOST /json/getDelivery
 
 | `set_in_progress` | bool | No | Set delivery status to "in progress" (default: false) |
 
-## Response
+``````
 
 ## Response Structure (PHP)
 
+
+
 ```php
 
-```php[
+GoSuccess\Digistore24\Api\Response\Delivery\GetDeliveryResponse:## Request Parameters## Request Parameters
 
-GoSuccess\Digistore24\Api\Response\Delivery\GetDeliveryResponse:    'result' => 'success',
+  delivery: DeliveryDetailsData
 
-  delivery: DeliveryDetailsData    'data' => [
+    id: int
 
-    id: int        'delivery_id' => 123,
+    purchaseId: string
 
-    purchaseId: string        'purchase_id' => 'ABC123XYZ',
+    purchaseCreatedAt: ?DateTimeImmutable| Parameter | Type | Required | Description || Parameter | Type | Required | Description |
 
-    orderLineId: int        'tracking_number' => 'TRACK123456',
+    purchaseItemId: int
 
-    productId: int        'carrier' => 'DHL',
+    buyerAddressId: int|-----------|------|----------|-------------||-----------|------|----------|-------------|
 
-    productName: string        'status' => 'shipped',
+    type: string
 
-    isTestOrder: bool        'shipped_at' => '2025-10-10 10:00:00',
+    processedAt: ?DateTimeImmutable| `delivery_id` | int | Yes | Delivery ID || `delivery_id` | int | Yes | Delivery ID |
 
-    quantityOrdered: int        'delivered_at' => null,
+    processedBy: string
 
-    quantityDelivered: int        'recipient' => [
+    productId: int| `set_in_progress` | bool | No | Set delivery status to "in progress" (default: false) |
 
-    quantityOpen: int            'name' => 'John Doe',
+    productName: string
 
-    priceCurrency: string            'street' => '123 Main St',
+    productTypeId: int## Response
 
-    price: float            'zipcode' => '12345',
+    productTypeName: string
 
-    deliveredAt: ?DateTimeImmutable            'city' => 'Berlin',
+    variantLabel: string## Response Structure (PHP)
 
-    shippingPriceNet: ?float            'country' => 'DE'
+    variantName: string
 
-    shippingPriceVat: ?float        ]
+    variantKey: string```php
 
-    shippingPriceGross: ?float    ]
+    variantId: int
 
-    deliveryAddress: DeliveryAddressData]
+    quantityDelivered: int```php[
 
-      title: string```
+    quantityTotal: int
+
+    isShippmentByResellerId: stringGoSuccess\Digistore24\Api\Response\Delivery\GetDeliveryResponse:    'result' => 'success',
+
+    isTestOrder: bool
+
+    deliveryType: string  delivery: DeliveryDetailsData    'data' => [
+
+    invoiceUrl: string
+
+    deliverySlipUrl: string    id: int        'delivery_id' => 123,
+
+    deliveryAddress: DeliveryAddressData
+
+      title: string    purchaseId: string        'purchase_id' => 'ABC123XYZ',
 
       salutation: string
 
-      company: string## Usage Example
+      company: string    orderLineId: int        'tracking_number' => 'TRACK123456',
 
       firstName: string
 
-      lastName: string```php
+      lastName: string    productId: int        'carrier' => 'DHL',
 
-      street: stringuse GoSuccess\Digistore24\Api\Digistore24;
+      street: string
 
-      street2: stringuse GoSuccess\Digistore24\Api\Client\Configuration;
+      street2: string    productName: string        'status' => 'shipped',
 
-      zipcode: string
+      streetNumber: string
 
-      city: string// Initialize API client
+      zipcode: string    isTestOrder: bool        'shipped_at' => '2025-10-10 10:00:00',
 
-      state: string$config = new Configuration('YOUR-API-KEY');
+      city: string
 
-      country: string$api = new Digistore24($config);
+      state: string    quantityOrdered: int        'delivered_at' => null,
 
-      email: string
+      country: string
 
-      phone: string// Get delivery details
+      email: string    quantityDelivered: int        'recipient' => [
 
-      taxId: string$response = $api->delivery()->getDelivery(
+      phoneNo: string
 
-      countryName: string    deliveryId: 123
+      taxId: string    quantityOpen: int            'name' => 'John Doe',
 
-    tracking: array<DeliveryTrackingData>);
+      countryName: string
+
+    tracking: array<DeliveryTrackingData>    priceCurrency: string            'street' => '123 Main St',
 
       deliveryId: int
 
-      parcelServiceType: stringecho "Status: {$response->status}\n";
+      parcelServiceType: string    price: float            'zipcode' => '12345',
+
+      serviceLabel: string
+
+      trackingId: string    deliveredAt: ?DateTimeImmutable            'city' => 'Berlin',
+
+      trackingUrl: string
+
+      quantity: int    shippingPriceNet: ?float            'country' => 'DE'
+
+      ipnConfigId: string
+
+  isSetInProgress: bool    shippingPriceVat: ?float        ]
+
+  setInProgressFailReason: ?string
+
+```    shippingPriceGross: ?float    ]
+
+
+
+## Usage Example    deliveryAddress: DeliveryAddressData]
+
+
+
+```php      title: string```
+
+use GoSuccess\Digistore24\Api\Digistore24;
+
+use GoSuccess\Digistore24\Api\Client\Configuration;      salutation: string
+
+
+
+// Initialize API client      company: string## Usage Example
+
+$config = new Configuration('YOUR-API-KEY');
+
+$api = new Digistore24($config);      firstName: string
+
+
+
+// Get delivery details      lastName: string```php
+
+$response = $api->delivery()->getDelivery(
+
+    deliveryId: 3634      street: stringuse GoSuccess\Digistore24\Api\Digistore24;
+
+);
+
+      street2: stringuse GoSuccess\Digistore24\Api\Client\Configuration;
+
+// Access delivery information
+
+$delivery = $response->delivery;      zipcode: string
+
+echo "Product: {$delivery->productName}\n";
+
+echo "Purchase ID: {$delivery->purchaseId}\n";      city: string// Initialize API client
+
+echo "Type: {$delivery->deliveryType}\n";
+
+      state: string$config = new Configuration('YOUR-API-KEY');
+
+// Access delivery address
+
+$address = $delivery->deliveryAddress;      country: string$api = new Digistore24($config);
+
+echo "Ship to: {$address->firstName} {$address->lastName}\n";
+
+echo "City: {$address->city}, {$address->countryName}\n";      email: string
+
+
+
+// Access tracking information      phone: string// Get delivery details
+
+foreach ($delivery->tracking as $track) {
+
+    echo "Service: {$track->serviceLabel}\n";      taxId: string$response = $api->delivery()->getDelivery(
+
+    echo "Tracking ID: {$track->trackingId}\n";
+
+    echo "URL: {$track->trackingUrl}\n";      countryName: string    deliveryId: 123
+
+}
+
+    tracking: array<DeliveryTrackingData>);
+
+// Optionally set delivery status to "in progress"
+
+$response = $api->delivery()->getDelivery(      deliveryId: int
+
+    deliveryId: 3634,
+
+    setInProgress: true      parcelServiceType: stringecho "Status: {$response->status}\n";
+
+);
 
       serviceLabel: stringecho "Tracking: {$response->trackingNumber}\n";
 
-      trackingId: stringecho "Carrier: {$response->carrier}\n";
+if ($response->isSetInProgress) {
 
-      trackingUrl: string```
+    echo "Delivery status updated to in progress\n";      trackingId: stringecho "Carrier: {$response->carrier}\n";
 
-      quantity: int
+} else {
 
-      ipnConfigId: ?int## Error Responses
+    echo "Failed: {$response->setInProgressFailReason}\n";      trackingUrl: string```
 
-    shippedAt: ?DateTimeImmutable
+}
 
-    deliveryStatus: string| Code | Message | Description |
+```      quantity: int
+
+
+
+## Error Responses      ipnConfigId: ?int## Error Responses
+
+
+
+| Code | Message | Description |    shippedAt: ?DateTimeImmutable
+
+|------|---------|-------------|
+
+| 404 | Delivery not found | Delivery ID does not exist |    deliveryStatus: string| Code | Message | Description |
+
+| 403 | Access denied | Not authorized to access this delivery |
 
     deliveryNote: string|------|---------|-------------|
 
+## Notes
+
   isSetInProgress: bool| 404 | Delivery not found | Delivery ID does not exist |
 
-  setInProgressFailReason: ?string| 403 | Access denied | Not authorized to access this delivery |
+- Returns comprehensive delivery information including address, tracking, and product details
 
-```
+- The `set_in_progress` parameter automatically updates the delivery status  setInProgressFailReason: ?string| 403 | Access denied | Not authorized to access this delivery |
+
+- Multiple tracking entries are supported (array of tracking data)
+
+- Test orders are indicated by the `isTestOrder` flag```
+
+- Timestamps are returned as DateTimeImmutable objects
 
 ## Notes
 
