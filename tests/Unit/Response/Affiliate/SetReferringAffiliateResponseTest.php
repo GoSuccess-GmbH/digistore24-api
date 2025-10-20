@@ -12,41 +12,66 @@ final class SetReferringAffiliateResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = ['result' => 'success'];
-        $response = SetReferringAffiliateResponse::fromArray($data);
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'email' => 'customer@example.com',
+                'affiliate_id' => 789,
+                'affiliate_code' => 'AFFILIATE123',
+                'set_at' => '2025-10-15 14:30:00',
+            ],
+        ];
+
+        $response = SetReferringAffiliateResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(SetReferringAffiliateResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
+        $this->assertSame('customer@example.com', $response->email);
+        $this->assertSame(789, $response->affiliateId);
+        $this->assertSame('AFFILIATE123', $response->affiliateCode);
+        $this->assertInstanceOf(\DateTimeInterface::class, $response->setAt);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['result' => 'success'],
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'email' => 'test@example.com',
+                    'affiliate_id' => 456,
+                    'set_at' => '2025-10-15 14:30:00',
+                ],
+            ],
             headers: [],
-            rawBody: '',
+            rawBody: '{"result":"success"}',
         );
 
-        $response = SetReferringAffiliateResponse::fromResponse($httpResponse);
+        $response = SetReferringAffiliateResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(SetReferringAffiliateResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
+        $this->assertSame('test@example.com', $response->email);
+        $this->assertSame(456, $response->affiliateId);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['result' => 'success'],
-            headers: [],
-            rawBody: 'test',
+            data: [
+                'result' => 'success',
+                'data' => ['email' => 'test@example.com'],
+            ],
+            headers: ['Content-Type' => 'application/json'],
+            rawBody: 'test body',
         );
 
-        $response = SetReferringAffiliateResponse::fromResponse($httpResponse);
+        $response = SetReferringAffiliateResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(Response::class, $response->rawResponse);
+        $this->assertSame(200, $response->rawResponse->statusCode);
+        $this->assertSame('test body', $response->rawResponse->rawBody);
     }
 }
