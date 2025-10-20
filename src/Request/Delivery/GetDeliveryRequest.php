@@ -16,9 +16,11 @@ final class GetDeliveryRequest extends AbstractRequest
 {
     /**
      * @param string $deliveryId The delivery ID
+     * @param bool $setInProgress If true, marks the delivery as in progress if not already marked
      */
     public function __construct(
         private string $deliveryId,
+        private bool $setInProgress = false,
     ) {
     }
 
@@ -29,11 +31,14 @@ final class GetDeliveryRequest extends AbstractRequest
 
     public function getMethod(): HttpMethod
     {
-        return HttpMethod::POST;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array
     {
-        return ['delivery_id' => $this->deliveryId];
+        return [
+            'delivery_id' => $this->deliveryId,
+            'set_in_progress' => $this->setInProgress ? 'true' : 'false',
+        ];
     }
 }
