@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
 
 use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
 use GoSuccess\Digistore24\Api\Enum\DeliveryStatus;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Delivery Data Transfer Object
@@ -72,8 +73,7 @@ final class DeliveryData extends AbstractDataTransferObject
             $data['type'] = $this->type->value;
         }
         if ($this->isShipped !== null) {
-            // Convert boolean to Digistore24's Y/N format
-            $data['is_shipped'] = $this->isShipped ? 'Y' : 'N';
+            $data['is_shipped'] = TypeConverter::fromBool($this->isShipped);
         }
         if ($this->quantityDelivered !== null) {
             $data['quantity_delivered'] = $this->quantityDelivered;

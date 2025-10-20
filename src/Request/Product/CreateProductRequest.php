@@ -7,6 +7,7 @@ namespace GoSuccess\Digistore24\Api\Request\Product;
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
 use GoSuccess\Digistore24\Api\Enum\AffiliateApprovalStatus;
 use GoSuccess\Digistore24\Api\Enum\BuyerType;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Request to create a new product
@@ -104,10 +105,10 @@ final class CreateProductRequest extends AbstractRequest
             $data['buyer_type'] = $this->buyerType->value;
         }
         if ($this->isAddressInputMandatory !== null) {
-            $data['is_address_input_mandatory'] = $this->isAddressInputMandatory ? 'Y' : 'N';
+            $data['is_address_input_mandatory'] = TypeConverter::fromBool($this->isAddressInputMandatory);
         }
         if ($this->addOrderDataToThankyouPageUrl !== null) {
-            $data['add_order_data_to_thankyou_page_url'] = $this->addOrderDataToThankyouPageUrl ? 'Y' : 'N';
+            $data['add_order_data_to_thankyou_page_url'] = TypeConverter::fromBool($this->addOrderDataToThankyouPageUrl);
         }
 
         return ['data' => $data];

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Product;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Request to copy an existing product
@@ -53,7 +54,7 @@ final class CopyProductRequest extends AbstractRequest
             $data['language'] = $this->language;
         }
         if ($this->isActive !== null) {
-            $data['is_active'] = $this->isActive ? 'Y' : 'N';
+            $data['is_active'] = TypeConverter::fromBool($this->isActive);
         }
         if ($this->productGroupId !== null) {
             $data['product_group_id'] = $this->productGroupId;
