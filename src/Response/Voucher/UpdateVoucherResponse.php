@@ -6,30 +6,55 @@ namespace GoSuccess\Digistore24\Api\Response\Voucher;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Update Voucher Response
  *
- * Response object for the Voucher API endpoint.
+ * Response object for the updateVoucher API endpoint.
+ * Returns the ID, code, and modification status of the updated voucher.
  */
 final class UpdateVoucherResponse extends AbstractResponse
 {
-    public function __construct(private string $result)
-    {
+    /**
+     * ID of the updated voucher
+     */
+    public int $discountCodeId {
+        get => $this->discountCodeId;
     }
 
-    public function getResult(): string
-    {
-        return $this->result;
+    /**
+     * The voucher code
+     */
+    public string $code {
+        get => $this->code;
     }
 
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
+    /**
+     * Whether the voucher was modified
+     */
+    public bool $isModified {
+        get => $this->isModified;
     }
 
+    /**
+     * Create response from API data
+     *
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(result: self::extractResult($data, $rawResponse));
+        $instance = new self();
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        $innerData = self::extractInnerData(data: $data);
+        $instance->discountCodeId = TypeConverter::toInt(value: $innerData['discount_code_id'] ?? 0) ?? 0;
+        $instance->code = TypeConverter::toString(value: $innerData['code'] ?? '') ?? '';
+        $instance->isModified = TypeConverter::toBool(value: $innerData['modified'] ?? 'N') ?? false;
+
+        return $instance;
     }
 }
