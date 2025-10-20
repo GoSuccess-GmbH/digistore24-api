@@ -12,39 +12,46 @@ final class DeleteBuyUrlResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [];
-        $response = DeleteBuyUrlResponse::fromArray($data);
+        $data = [
+            'result' => 'success',
+        ];
+
+        $response = DeleteBuyUrlResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(DeleteBuyUrlResponse::class, $response);
-        $this->assertTrue($response->success);
+        $this->assertSame('success', $response->result);
     }
 
     public function test_can_create_from_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: [],
+            data: [
+                'result' => 'success',
+            ],
             headers: [],
-            rawBody: '',
+            rawBody: '{"result":"success"}',
         );
 
-        $response = DeleteBuyUrlResponse::fromResponse($httpResponse);
+        $response = DeleteBuyUrlResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(DeleteBuyUrlResponse::class, $response);
-        $this->assertTrue($response->success);
+        $this->assertSame('success', $response->result);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: [],
-            headers: [],
-            rawBody: 'test',
+            data: ['result' => 'success'],
+            headers: ['Content-Type' => 'application/json'],
+            rawBody: 'test body',
         );
 
-        $response = DeleteBuyUrlResponse::fromResponse($httpResponse);
+        $response = DeleteBuyUrlResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(Response::class, $response->rawResponse);
+        $this->assertSame(200, $response->rawResponse->statusCode);
+        $this->assertSame('test body', $response->rawResponse->rawBody);
     }
 }

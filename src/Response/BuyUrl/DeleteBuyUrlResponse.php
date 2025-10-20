@@ -10,21 +10,33 @@ use GoSuccess\Digistore24\Api\Http\Response;
 /**
  * Delete Buy URL Response
  *
- * Confirms deletion of a buy URL.
+ * Response object for the deleteBuyUrl API endpoint.
+ * Indicates successful deletion of a BuyUrl.
  */
 final class DeleteBuyUrlResponse extends AbstractResponse
 {
     /**
-     * @param bool $success Whether deletion was successful
+     * Result of the delete operation
      */
-    public function __construct(
-        public bool $success = true,
-    ) {
+    public string $result {
+        get => $this->result;
     }
 
+    /**
+     * Create response from API data
+     *
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        // Successful response (200) means deletion was successful
-        return new self(success: true);
+        $instance = new self();
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        $instance->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+
+        return $instance;
     }
 }
