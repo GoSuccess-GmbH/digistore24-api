@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Rebilling;
 
+use GoSuccess\Digistore24\Api\DTO\RebillingData;
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Response\Rebilling\StartRebillingResponse;
 use PHPUnit\Framework\TestCase;
@@ -14,12 +15,25 @@ final class StartRebillingResponseTest extends TestCase
     {
         $data = [
             'result' => 'success',
+            'data' => [
+                'modified' => 'Y',
+                'note' => 'Rebilling started',
+                'billing_status' => 'paying',
+                'billing_status_msg' => 'Currently paying',
+                'next_payment_at' => '2025-12-31 14:47:00',
+                'rebilling_active' => 'Y',
+            ],
         ];
+
         $response = StartRebillingResponse::fromArray($data);
 
         $this->assertInstanceOf(StartRebillingResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
+        $this->assertSame('success', $response->result);
         $this->assertTrue($response->wasSuccessful());
+        $this->assertInstanceOf(RebillingData::class, $response->data);
+        $this->assertTrue($response->data->modified);
+        $this->assertTrue($response->data->rebillingActive);
+        $this->assertSame('paying', $response->data->billingStatus);
     }
 
     public function test_can_create_from_response(): void
@@ -28,6 +42,11 @@ final class StartRebillingResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'result' => 'success',
+                'data' => [
+                    'modified' => 'N',
+                    'note' => 'Already active',
+                    'rebilling_active' => 'Y',
+                ],
             ],
             headers: [],
             rawBody: '',
@@ -37,6 +56,8 @@ final class StartRebillingResponseTest extends TestCase
 
         $this->assertInstanceOf(StartRebillingResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
+        $this->assertNotNull($response->data);
+        $this->assertFalse($response->data->modified);
     }
 
     public function test_has_raw_response(): void
@@ -45,6 +66,7 @@ final class StartRebillingResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'result' => 'success',
+                'data' => [],
             ],
             headers: [],
             rawBody: 'test',
