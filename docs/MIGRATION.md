@@ -58,9 +58,6 @@ $ds24 = new Digistore24(
 ```php
 $config = new Configuration(
     apiKey: 'YOUR-API-KEY',
-    language: 'en',
-    timeout: 30,
-    debug: false
 );
 
 $ds24 = new Digistore24($config);
@@ -148,7 +145,6 @@ use GoSuccess\Digistore24\DataTransferObject\BuyerData;
 
 $ds24 = new Digistore24(
     apiKey: 'YOUR-API-KEY',
-    language: 'en'
 );
 
 $request = new CreateBuyUrlRequest();
@@ -167,7 +163,6 @@ use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
 
 $config = new Configuration(
     apiKey: 'YOUR-API-KEY',
-    language: 'en'
 );
 
 $ds24 = new Digistore24($config);
