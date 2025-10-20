@@ -22,7 +22,7 @@ final class ListCurrenciesRequest extends AbstractRequest
         return '/listCurrencies';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

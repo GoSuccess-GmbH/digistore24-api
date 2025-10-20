@@ -27,7 +27,7 @@ final class CreateProductGroupRequest extends AbstractRequest
         return '/createProductGroup';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

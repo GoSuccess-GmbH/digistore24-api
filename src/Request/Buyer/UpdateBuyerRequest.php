@@ -35,7 +35,7 @@ final class UpdateBuyerRequest extends AbstractRequest
         return '/updateBuyer';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

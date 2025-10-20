@@ -27,7 +27,7 @@ final class StatsSalesSummaryRequest extends AbstractRequest
         return '/statsSalesSummary';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

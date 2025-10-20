@@ -33,7 +33,7 @@ final class ReportFraudRequest extends AbstractRequest
         return '/reportFraud';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

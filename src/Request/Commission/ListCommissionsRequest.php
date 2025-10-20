@@ -42,7 +42,7 @@ final class ListCommissionsRequest extends AbstractRequest
         return '/listCommissions';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

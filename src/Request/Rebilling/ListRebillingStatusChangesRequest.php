@@ -27,7 +27,7 @@ final class ListRebillingStatusChangesRequest extends AbstractRequest
         return '/listRebillingStatusChanges';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

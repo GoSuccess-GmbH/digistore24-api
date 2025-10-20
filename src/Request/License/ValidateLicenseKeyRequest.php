@@ -32,7 +32,7 @@ final class ValidateLicenseKeyRequest extends AbstractRequest
         return '/validateLicenseKey';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

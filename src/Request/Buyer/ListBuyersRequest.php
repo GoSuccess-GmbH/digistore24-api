@@ -29,7 +29,7 @@ final class ListBuyersRequest extends AbstractRequest
         return '/listBuyers';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

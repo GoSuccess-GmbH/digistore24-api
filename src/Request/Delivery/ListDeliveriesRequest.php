@@ -27,7 +27,7 @@ final class ListDeliveriesRequest extends AbstractRequest
         return '/listDeliveries';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

@@ -26,7 +26,7 @@ final class DeleteProductGroupRequest extends AbstractRequest
         return '/deleteProductGroup';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

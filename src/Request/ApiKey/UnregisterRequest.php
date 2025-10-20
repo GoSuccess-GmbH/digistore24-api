@@ -24,7 +24,7 @@ final class UnregisterRequest extends AbstractRequest
         return '/unregister';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

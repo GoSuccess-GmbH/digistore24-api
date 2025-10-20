@@ -28,7 +28,7 @@ final class UpdateOrderformRequest extends AbstractRequest
         return '/updateOrderform';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

@@ -23,7 +23,7 @@ final class ListPayoutsRequest extends AbstractRequest
         return '/listPayouts';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

@@ -23,7 +23,7 @@ final class IpnDeleteRequest extends AbstractRequest
         return '/ipnDelete';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

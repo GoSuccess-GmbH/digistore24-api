@@ -27,7 +27,7 @@ final class GetReferringAffiliateRequest extends AbstractRequest
         return '/getReferringAffiliate';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

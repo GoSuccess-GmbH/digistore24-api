@@ -27,7 +27,7 @@ final class ListConversionToolsRequest extends AbstractRequest
         return '/listConversionTools';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

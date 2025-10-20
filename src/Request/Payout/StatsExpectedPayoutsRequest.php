@@ -23,7 +23,7 @@ final class StatsExpectedPayoutsRequest extends AbstractRequest
         return '/statsExpectedPayouts';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

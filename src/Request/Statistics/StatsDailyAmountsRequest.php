@@ -27,7 +27,7 @@ final class StatsDailyAmountsRequest extends AbstractRequest
         return '/statsDailyAmounts';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

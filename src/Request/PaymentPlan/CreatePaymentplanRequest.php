@@ -27,7 +27,7 @@ final class CreatePaymentplanRequest extends AbstractRequest
         return '/createPaymentplan';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

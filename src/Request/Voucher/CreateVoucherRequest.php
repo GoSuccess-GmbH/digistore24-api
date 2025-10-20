@@ -28,7 +28,7 @@ final class CreateVoucherRequest extends AbstractRequest
         return '/createVoucher';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

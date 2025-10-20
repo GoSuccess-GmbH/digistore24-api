@@ -26,7 +26,7 @@ final class DeleteOrderformRequest extends AbstractRequest
         return '/deleteOrderform';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

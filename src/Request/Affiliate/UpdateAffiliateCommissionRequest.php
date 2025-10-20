@@ -32,7 +32,7 @@ final class UpdateAffiliateCommissionRequest extends AbstractRequest
         return '/updateAffiliateCommission';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

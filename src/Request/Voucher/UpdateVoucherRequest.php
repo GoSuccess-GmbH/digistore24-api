@@ -30,7 +30,7 @@ final class UpdateVoucherRequest extends AbstractRequest
         return '/updateVoucher';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

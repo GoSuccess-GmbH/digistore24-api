@@ -27,7 +27,7 @@ final class DeleteVoucherRequest extends AbstractRequest
         return '/deleteVoucher';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

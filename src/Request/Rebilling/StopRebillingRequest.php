@@ -26,7 +26,7 @@ final class StopRebillingRequest extends AbstractRequest
         return '/stopRebilling';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

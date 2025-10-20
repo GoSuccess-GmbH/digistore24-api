@@ -27,7 +27,7 @@ final class GetGlobalSettingsRequest extends AbstractRequest
         return '/getGlobalSettings';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

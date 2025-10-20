@@ -29,7 +29,7 @@ final class GetAffiliateCommissionRequest extends AbstractRequest
         return '/getAffiliateCommission';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::GET;
     }

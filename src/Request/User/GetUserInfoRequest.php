@@ -23,7 +23,7 @@ final class GetUserInfoRequest extends AbstractRequest
         return '/getUserInfo';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

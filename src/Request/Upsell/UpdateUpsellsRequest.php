@@ -27,7 +27,7 @@ final class UpdateUpsellsRequest extends AbstractRequest
         return '/updateUpsells';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

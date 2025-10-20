@@ -27,7 +27,7 @@ final class ValidateCouponCodeRequest extends AbstractRequest
         return '/validateCouponCode';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

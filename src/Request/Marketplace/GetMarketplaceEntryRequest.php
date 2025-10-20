@@ -26,7 +26,7 @@ final class GetMarketplaceEntryRequest extends AbstractRequest
         return '/getMarketplaceEntry';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

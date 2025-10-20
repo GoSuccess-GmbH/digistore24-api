@@ -23,7 +23,7 @@ final class ListVouchersRequest extends AbstractRequest
         return '/listVouchers';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

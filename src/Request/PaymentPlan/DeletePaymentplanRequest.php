@@ -26,7 +26,7 @@ final class DeletePaymentplanRequest extends AbstractRequest
         return '/deletePaymentplan';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

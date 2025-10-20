@@ -26,7 +26,7 @@ final class DeleteShippingCostPolicyRequest extends AbstractRequest
         return '/deleteShippingCostPolicy';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

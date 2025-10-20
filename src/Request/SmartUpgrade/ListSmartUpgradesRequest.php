@@ -23,7 +23,7 @@ final class ListSmartUpgradesRequest extends AbstractRequest
         return '/listSmartUpgrades';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

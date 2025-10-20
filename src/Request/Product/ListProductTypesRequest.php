@@ -28,7 +28,7 @@ final class ListProductTypesRequest extends AbstractRequest
         return '/listProductTypes';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

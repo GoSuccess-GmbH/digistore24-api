@@ -23,7 +23,7 @@ final class ListMarketplaceEntriesRequest extends AbstractRequest
         return '/listMarketplaceEntries';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

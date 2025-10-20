@@ -39,7 +39,7 @@ final class ListTransactionsRequest extends AbstractRequest
         return '/listTransactions';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

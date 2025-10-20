@@ -28,7 +28,7 @@ final class RequestApiKeyRequest extends AbstractRequest
         return '/requestApiKey';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

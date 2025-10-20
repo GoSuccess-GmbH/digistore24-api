@@ -23,7 +23,7 @@ final class ListPaymentPlansRequest extends AbstractRequest
         return '/listPaymentPlans';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

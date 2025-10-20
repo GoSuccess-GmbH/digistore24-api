@@ -27,7 +27,7 @@ final class StatsMarketplaceRequest extends AbstractRequest
         return '/statsMarketplace';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

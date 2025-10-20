@@ -28,7 +28,7 @@ final class UpdatePaymentplanRequest extends AbstractRequest
         return '/updatePaymentplan';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

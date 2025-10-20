@@ -26,7 +26,7 @@ final class GetShippingCostPolicyRequest extends AbstractRequest
         return '/getShippingCostPolicy';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

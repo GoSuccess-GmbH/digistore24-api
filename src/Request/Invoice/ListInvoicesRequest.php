@@ -27,7 +27,7 @@ final class ListInvoicesRequest extends AbstractRequest
         return '/listInvoices';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

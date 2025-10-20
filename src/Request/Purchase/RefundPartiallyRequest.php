@@ -28,7 +28,7 @@ final class RefundPartiallyRequest extends AbstractRequest
         return '/refundPartially';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

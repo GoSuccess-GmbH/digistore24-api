@@ -23,7 +23,7 @@ final class ListUpgradesRequest extends AbstractRequest
         return '/listUpgrades';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

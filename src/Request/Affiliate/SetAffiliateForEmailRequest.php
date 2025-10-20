@@ -29,7 +29,7 @@ final class SetAffiliateForEmailRequest extends AbstractRequest
         return '/setAffiliateForEmail';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

@@ -27,7 +27,7 @@ final class ListServiceProofRequestsRequest extends AbstractRequest
         return '/listServiceProofRequests';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

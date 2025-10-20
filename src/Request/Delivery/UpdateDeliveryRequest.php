@@ -30,7 +30,7 @@ final class UpdateDeliveryRequest extends AbstractRequest
         return '/updateDelivery';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

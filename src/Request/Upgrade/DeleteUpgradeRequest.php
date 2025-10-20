@@ -26,7 +26,7 @@ final class DeleteUpgradeRequest extends AbstractRequest
         return '/deleteUpgrade';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

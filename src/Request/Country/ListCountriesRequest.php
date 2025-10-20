@@ -21,7 +21,7 @@ final class ListCountriesRequest extends AbstractRequest
         return '/listCountries';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

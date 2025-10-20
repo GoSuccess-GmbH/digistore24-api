@@ -46,7 +46,7 @@ final class CreateBillingOnDemandRequest extends AbstractRequest
         return '/createBillingOnDemand';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

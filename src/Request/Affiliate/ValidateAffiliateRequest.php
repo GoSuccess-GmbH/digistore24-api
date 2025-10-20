@@ -27,7 +27,7 @@ final class ValidateAffiliateRequest extends AbstractRequest
         return '/validateAffiliate';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

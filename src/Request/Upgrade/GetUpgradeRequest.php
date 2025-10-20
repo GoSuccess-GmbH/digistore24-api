@@ -26,7 +26,7 @@ final class GetUpgradeRequest extends AbstractRequest
         return '/getUpgrade';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

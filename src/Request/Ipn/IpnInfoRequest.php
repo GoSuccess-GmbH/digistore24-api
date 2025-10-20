@@ -23,7 +23,7 @@ final class IpnInfoRequest extends AbstractRequest
         return '/ipnInfo';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

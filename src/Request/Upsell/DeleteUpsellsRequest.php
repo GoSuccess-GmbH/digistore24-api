@@ -26,7 +26,7 @@ final class DeleteUpsellsRequest extends AbstractRequest
         return '/deleteUpsells';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

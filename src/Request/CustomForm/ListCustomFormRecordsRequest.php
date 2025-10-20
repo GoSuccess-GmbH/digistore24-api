@@ -30,7 +30,7 @@ final class ListCustomFormRecordsRequest extends AbstractRequest
         return '/listCustomFormRecords';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }

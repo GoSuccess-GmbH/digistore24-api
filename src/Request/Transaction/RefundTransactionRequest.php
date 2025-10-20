@@ -31,7 +31,7 @@ final class RefundTransactionRequest extends AbstractRequest
         return '/refundTransaction';
     }
 
-    public function method(): HttpMethod
+    public function getMethod(): HttpMethod
     {
         return HttpMethod::POST;
     }
