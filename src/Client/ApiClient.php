@@ -170,6 +170,11 @@ final class ApiClient implements HttpClientInterface
             ? $request->fullUrl
             : $request->url;
 
+        // Ensure URL is not empty
+        if ($url === '') {
+            throw new RequestException('URL cannot be empty', 0, ['url' => $url]);
+        }
+
         // Convert headers array to cURL format
         $curlHeaders = [];
         foreach ($request->headers as $name => $value) {
@@ -177,6 +182,7 @@ final class ApiClient implements HttpClientInterface
         }
 
         // Set cURL options
+        /** @var array<int, mixed> */
         $options = [
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
@@ -192,7 +198,7 @@ final class ApiClient implements HttpClientInterface
 
         // Add body for POST/PUT/PATCH
         if ($request->hasBody && ! $request->isGet) {
-            $options[CURLOPT_POST] = true;
+            $options[CURLOPT_POST] = $request->method === HttpMethod::POST;
             $options[CURLOPT_POSTFIELDS] = $queryString;
         }
 
