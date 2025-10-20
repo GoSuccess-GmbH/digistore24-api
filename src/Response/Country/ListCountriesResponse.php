@@ -8,26 +8,32 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
- * @see https://digistore24.com/api/docs/paths/listCountries.yaml
+ * List Countries Response
+ *
+ * Contains a map of country codes to country names.
  */
 final class ListCountriesResponse extends AbstractResponse
 {
     /**
-     * @param array<string, string> $countries Country code => Country name
+     * Country code => Country name map
+     *
+     * @var array<string, string>
      */
-    public function __construct(
-        private array $countries,
-    ) {
+    public array $countries = [] {
+        get => $this->countries;
     }
 
     /**
-     * @return array<string, string>
+     * @param array<string, string> $countries
      */
-    public function getCountries(): array
+    public function __construct(array $countries = [])
     {
-        return $this->countries;
+        $this->countries = $countries;
     }
 
+    /**
+     * Get country name by code
+     */
     public function getCountryName(string $code): ?string
     {
         return $this->countries[$code] ?? null;
@@ -43,6 +49,12 @@ final class ListCountriesResponse extends AbstractResponse
             }
         }
 
-        return new self(countries: $countries);
+        $instance = new self(countries: $countries);
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        return $instance;
     }
 }

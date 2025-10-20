@@ -33,12 +33,10 @@ final class CountryIntegrationTest extends IntegrationTestCase
         $response = $this->client->countries->listCountries(new ListCountriesRequest());
 
         $this->assertInstanceOf(ListCountriesResponse::class, $response);
-
-        $countries = $response->getCountries();
-        $this->assertNotEmpty($countries);
+        $this->assertNotEmpty($response->countries);
 
         // Check that Germany exists
-        $this->assertArrayHasKey('DE', $countries);
+        $this->assertArrayHasKey('DE', $response->countries);
         $this->assertNotEmpty($response->getCountryName('DE'));
     }
 }

@@ -20,8 +20,9 @@ final class ListCountriesResponseTest extends TestCase
         $response = ListCountriesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListCountriesResponse::class, $response);
-        $this->assertCount(3, $response->getCountries());
+        $this->assertCount(3, $response->countries);
         $this->assertSame('Germany', $response->getCountryName('DE'));
+        $this->assertSame('Germany', $response->countries['DE']);
     }
 
     public function test_can_create_from_response(): void
@@ -39,7 +40,7 @@ final class ListCountriesResponseTest extends TestCase
         $response = ListCountriesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListCountriesResponse::class, $response);
-        $this->assertCount(2, $response->getCountries());
+        $this->assertCount(2, $response->countries);
     }
 
     public function test_has_raw_response(): void
