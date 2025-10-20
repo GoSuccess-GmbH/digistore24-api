@@ -16,36 +16,71 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class UpdateBuyerResponse extends AbstractResponse
 {
     /**
-     * Whether the buyer was modified
+     * Request result status
      */
-    public bool $isModified = false {
-        get => $this->isModified;
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function __construct(bool $isModified = false)
-    {
-        $this->isModified = $isModified;
+    /**
+     * Buyer ID
+     */
+    public ?int $buyerId {
+        get => $this->buyerId ?? null;
+    }
+
+    /**
+     * Email address
+     */
+    public string $email {
+        get => $this->email ?? '';
+    }
+
+    /**
+     * First name
+     */
+    public ?string $firstName {
+        get => $this->firstName ?? null;
+    }
+
+    /**
+     * Last name
+     */
+    public ?string $lastName {
+        get => $this->lastName ?? null;
+    }
+
+    /**
+     * Company name
+     */
+    public ?string $company {
+        get => $this->company ?? null;
+    }
+
+    /**
+     * Updated timestamp
+     */
+    public ?\DateTimeInterface $updatedAt {
+        get => $this->updatedAt ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? $data;
+        $innerData = self::extractInnerData(data: $data);
 
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
-
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
-
-        $isModified = TypeConverter::toBool($validatedData['is_modified'] ?? 'N') ?? false;
-
-        $instance = new self(isModified: $isModified);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->buyerId = TypeConverter::toInt($innerData['buyer_id'] ?? null);
+        $response->email = is_string($innerData['email'] ?? null) ? $innerData['email'] : '';
+        $response->firstName = is_string($innerData['first_name'] ?? null) ? $innerData['first_name'] : null;
+        $response->lastName = is_string($innerData['last_name'] ?? null) ? $innerData['last_name'] : null;
+        $response->company = is_string($innerData['company'] ?? null) ? $innerData['company'] : null;
+        $response->updatedAt = TypeConverter::toDateTime($innerData['updated_at'] ?? null);
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }

@@ -16,23 +16,22 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class GetBuyerResponse extends AbstractResponse
 {
     /**
-     * Buyer data
+     * Request result status
      */
-    public BuyerData $buyer {
-        get => $this->buyer;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @param BuyerData $buyer
+     * Buyer data
      */
-    public function __construct(BuyerData $buyer)
-    {
-        $this->buyer = $buyer;
+    public ?BuyerData $buyer {
+        get => $this->buyer ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
 
         $buyerData = $innerData['buyer'] ?? [];
 
@@ -43,8 +42,14 @@ final class GetBuyerResponse extends AbstractResponse
         /** @var array<string, mixed> $validBuyerData */
         $validBuyerData = $buyerData;
 
-        return new self(
-            buyer: BuyerData::fromArray($validBuyerData),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->buyer = BuyerData::fromArray($validBuyerData);
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

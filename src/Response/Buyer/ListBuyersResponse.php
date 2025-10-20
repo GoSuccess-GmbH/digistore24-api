@@ -18,31 +18,10 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class ListBuyersResponse extends AbstractResponse
 {
     /**
-     * Current page number
+     * Request result status
      */
-    public int $pageNo = 1 {
-        get => $this->pageNo;
-    }
-
-    /**
-     * Number of items per page
-     */
-    public int $pageSize = 100 {
-        get => $this->pageSize;
-    }
-
-    /**
-     * Total number of items
-     */
-    public int $itemCount = 0 {
-        get => $this->itemCount;
-    }
-
-    /**
-     * Total number of pages
-     */
-    public int $pageCount = 0 {
-        get => $this->pageCount;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
@@ -50,45 +29,42 @@ final class ListBuyersResponse extends AbstractResponse
      *
      * @var array<int, BuyerData>
      */
-    public array $items = [] {
-        get => $this->items;
+    public array $buyers {
+        get => $this->buyers ?? [];
     }
 
     /**
-     * @param array<int, BuyerData> $items
+     * Total number of buyers
      */
-    public function __construct(
-        int $pageNo = 1,
-        int $pageSize = 100,
-        int $itemCount = 0,
-        int $pageCount = 0,
-        array $items = [],
-    ) {
-        $this->pageNo = $pageNo;
-        $this->pageSize = $pageSize;
-        $this->itemCount = $itemCount;
-        $this->pageCount = $pageCount;
-        $this->items = $items;
+    public int $total {
+        get => $this->total ?? 0;
+    }
+
+    /**
+     * Result limit
+     */
+    public int $limit {
+        get => $this->limit ?? 100;
+    }
+
+    /**
+     * Result offset
+     */
+    public int $offset {
+        get => $this->offset ?? 0;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? $data;
+        $innerData = self::extractInnerData(data: $data);
 
-        if (! is_array($responseData)) {
-            $responseData = [];
+        $buyersData = $innerData['buyers'] ?? [];
+        if (! is_array($buyersData)) {
+            $buyersData = [];
         }
 
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
-
-        $itemsData = $validatedData['items'] ?? [];
-        if (! is_array($itemsData)) {
-            $itemsData = [];
-        }
-
-        /** @var array<int, BuyerData> $items */
-        $items = array_values(array_map(
+        /** @var array<int, BuyerData> $buyers */
+        $buyers = array_values(array_map(
             function (mixed $item): BuyerData {
                 if (! is_array($item)) {
                     return new BuyerData();
@@ -99,21 +75,20 @@ final class ListBuyersResponse extends AbstractResponse
 
                 return BuyerData::fromArray($itemData);
             },
-            $itemsData,
+            $buyersData,
         ));
 
-        $instance = new self(
-            pageNo: TypeConverter::toInt($validatedData['page_no'] ?? null) ?? 1,
-            pageSize: TypeConverter::toInt($validatedData['page_size'] ?? null) ?? 100,
-            itemCount: TypeConverter::toInt($validatedData['item_count'] ?? null) ?? 0,
-            pageCount: TypeConverter::toInt($validatedData['page_count'] ?? null) ?? 0,
-            items: $items,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->buyers = $buyers;
+        $response->total = TypeConverter::toInt($innerData['total'] ?? null) ?? 0;
+        $response->limit = TypeConverter::toInt($innerData['limit'] ?? null) ?? 100;
+        $response->offset = TypeConverter::toInt($innerData['offset'] ?? null) ?? 0;
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }
