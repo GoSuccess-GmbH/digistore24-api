@@ -56,23 +56,6 @@ final class Configuration
     }
 
     /**
-     * Response language ('de' or 'en')
-     */
-    public string $language {
-        set {
-            if (! in_array($value, ['de', 'en'], true)) {
-                throw new \InvalidArgumentException('Language must be either "de" or "en"');
-            }
-            $this->language = $value;
-        }
-    }
-
-    /**
-     * Optional operator name for audit logging
-     */
-    public ?string $operatorName;
-
-    /**
      * Enable debug mode with detailed logging
      */
     public bool $debug;
@@ -89,16 +72,12 @@ final class Configuration
         string $baseUrl = 'https://www.digistore24.com',
         int $timeout = 30,
         int $maxRetries = 3,
-        string $language = 'en',
-        ?string $operatorName = null,
         bool $debug = false,
     ) {
         $this->apiKey = $apiKey;
         $this->baseUrl = $baseUrl;
         $this->timeout = $timeout;
         $this->maxRetries = $maxRetries;
-        $this->language = $language;
-        $this->operatorName = $operatorName;
         $this->debug = $debug;
     }
 }
