@@ -6,49 +6,81 @@ namespace GoSuccess\Digistore24\Api\Response\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Validate Affiliate Response
  *
- * Response object for the Affiliate API endpoint.
+ * Response object for validating affiliate credentials.
  */
 final class ValidateAffiliateResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $data
+     * Request result status
      */
-    public function __construct(private bool $isValid, private array $data)
-    {
-    }
-
-    public function isValid(): bool
-    {
-        return $this->isValid;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * Whether the affiliate is valid
      */
-    public function getData(): array
-    {
-        return $this->data;
+    public bool $valid {
+        get => $this->valid ?? false;
+    }
+
+    /**
+     * Affiliate ID
+     */
+    public ?int $affiliateId {
+        get => $this->affiliateId ?? null;
+    }
+
+    /**
+     * Affiliate code
+     */
+    public ?string $affiliateCode {
+        get => $this->affiliateCode ?? null;
+    }
+
+    /**
+     * Whether the affiliate is active
+     */
+    public bool $isActive {
+        get => $this->isActive ?? false;
+    }
+
+    /**
+     * Affiliate email
+     */
+    public ?string $email {
+        get => $this->email ?? null;
+    }
+
+    /**
+     * Affiliate name
+     */
+    public ?string $name {
+        get => $this->name ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
-        $responseData = $data['data'] ?? [];
+        $innerData = self::extractInnerData(data: $data);
 
-        if (! is_array($responseData)) {
-            $responseData = [];
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->valid = (bool)($innerData['valid'] ?? false);
+        $response->affiliateId = TypeConverter::toInt($innerData['affiliate_id'] ?? null);
+        $response->affiliateCode = is_string($innerData['affiliate_code'] ?? null) ? $innerData['affiliate_code'] : null;
+        $response->isActive = (bool)($innerData['is_active'] ?? false);
+        $response->email = is_string($innerData['email'] ?? null) ? $innerData['email'] : null;
+        $response->name = is_string($innerData['name'] ?? null) ? $innerData['name'] : null;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
         }
 
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
-
-        return new self(
-            isValid: (bool)($innerData['is_valid'] ?? false),
-            data: $validatedData,
-        );
+        return $response;
     }
 }
