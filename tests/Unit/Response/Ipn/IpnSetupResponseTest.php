@@ -22,8 +22,9 @@ final class IpnSetupResponseTest extends TestCase
         $response = IpnSetupResponse::fromArray($data);
 
         $this->assertInstanceOf(IpnSetupResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
+        $this->assertSame('success', $response->result);
         $this->assertTrue($response->wasSuccessful());
+        $this->assertArrayHasKey('ipn_id', $response->data);
     }
 
     public function test_can_create_from_response(): void
@@ -43,7 +44,7 @@ final class IpnSetupResponseTest extends TestCase
         $response = IpnSetupResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(IpnSetupResponse::class, $response);
-        $this->assertArrayHasKey('ipn_id', $response->getData());
+        $this->assertArrayHasKey('ipn_id', $response->data);
     }
 
     public function test_has_raw_response(): void

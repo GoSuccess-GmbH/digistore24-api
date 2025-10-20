@@ -23,7 +23,7 @@ final class IpnInfoResponseTest extends TestCase
 
         $this->assertInstanceOf(IpnInfoResponse::class, $response);
         $this->assertSame('https://example.com/webhook', $response->getUrl());
-        $this->assertArrayHasKey('active', $response->getData());
+        $this->assertArrayHasKey('active', $response->data);
     }
 
     public function test_can_create_from_response(): void
@@ -44,6 +44,7 @@ final class IpnInfoResponseTest extends TestCase
 
         $this->assertInstanceOf(IpnInfoResponse::class, $response);
         $this->assertSame('https://api.example.com/notifications', $response->getUrl());
+        $this->assertArrayHasKey('ipn_id', $response->data);
     }
 
     public function test_has_raw_response(): void

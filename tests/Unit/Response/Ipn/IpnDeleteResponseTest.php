@@ -18,7 +18,7 @@ final class IpnDeleteResponseTest extends TestCase
         $response = IpnDeleteResponse::fromArray($data);
 
         $this->assertInstanceOf(IpnDeleteResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
+        $this->assertSame('success', $response->result);
         $this->assertTrue($response->wasSuccessful());
     }
 
@@ -36,6 +36,7 @@ final class IpnDeleteResponseTest extends TestCase
         $response = IpnDeleteResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(IpnDeleteResponse::class, $response);
+        $this->assertSame('success', $response->result);
         $this->assertTrue($response->wasSuccessful());
     }
 

@@ -8,21 +8,27 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
- * Ipn Delete Response
+ * IPN Delete Response
  *
- * Response object for the Ipn API endpoint.
+ * Response for deleting an IPN connection.
  */
 final class IpnDeleteResponse extends AbstractResponse
 {
-    public function __construct(private string $result)
-    {
+    /**
+     * Result status
+     */
+    public string $result = '' {
+        get => $this->result;
     }
 
-    public function getResult(): string
+    public function __construct(string $result = '')
     {
-        return $this->result;
+        $this->result = $result;
     }
 
+    /**
+     * Check if deletion was successful
+     */
     public function wasSuccessful(): bool
     {
         return $this->result === 'success';
@@ -30,6 +36,12 @@ final class IpnDeleteResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(result: self::extractResult($data, $rawResponse));
+        $instance = new self(result: self::extractResult($data, $rawResponse));
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        return $instance;
     }
 }

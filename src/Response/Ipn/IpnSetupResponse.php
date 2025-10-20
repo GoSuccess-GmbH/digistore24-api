@@ -8,32 +8,40 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
- * Ipn Setup Response
+ * IPN Setup Response
  *
- * Response object for the Ipn API endpoint.
+ * Response for creating an IPN connection.
  */
 final class IpnSetupResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $data
+     * Result status
      */
-    public function __construct(private string $result, private array $data)
-    {
-    }
-
-    public function getResult(): string
-    {
-        return $this->result;
+    public string $result = '' {
+        get => $this->result;
     }
 
     /**
-     * @return array<string, mixed>
+     * Response data containing setup details
+     *
+     * @var array<string, mixed>
      */
-    public function getData(): array
-    {
-        return $this->data;
+    public array $data = [] {
+        get => $this->data;
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function __construct(string $result = '', array $data = [])
+    {
+        $this->result = $result;
+        $this->data = $data;
+    }
+
+    /**
+     * Check if setup was successful
+     */
     public function wasSuccessful(): bool
     {
         return $this->result === 'success';
@@ -41,18 +49,18 @@ final class IpnSetupResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
+        // Extract inner data (handles both direct calls and fromResponse calls)
+        $responseData = self::extractInnerData($data);
 
-        if (! is_array($responseData)) {
-            $responseData = [];
+        $instance = new self(
+            result: self::extractResult($data, $rawResponse),
+            data: $responseData,
+        );
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
         }
 
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
-
-        return new self(
-            result: self::extractResult($data, $rawResponse),
-            data: $validatedData,
-        );
+        return $instance;
     }
 }

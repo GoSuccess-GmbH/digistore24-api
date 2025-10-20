@@ -8,27 +8,33 @@ use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
- * Ipn Info Response
+ * IPN Info Response
  *
- * Response object for the Ipn API endpoint.
+ * Response containing IPN connection settings.
+ * Returns the settings that were transferred when the connection was created.
  */
 final class IpnInfoResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $data
+     * IPN connection settings
+     *
+     * @var array<string, mixed>
      */
-    public function __construct(private array $data)
-    {
+    public array $data = [] {
+        get => $this->data;
     }
 
     /**
-     * @return array<string, mixed>
+     * @param array<string, mixed> $data
      */
-    public function getData(): array
+    public function __construct(array $data = [])
     {
-        return $this->data;
+        $this->data = $data;
     }
 
+    /**
+     * Get IPN URL
+     */
     public function getUrl(): ?string
     {
         $url = $this->data['url'] ?? null;
@@ -38,15 +44,15 @@ final class IpnInfoResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
+        // Extract inner data (handles both direct calls and fromResponse calls)
+        $responseData = self::extractInnerData($data);
 
-        if (! is_array($responseData)) {
-            $responseData = [];
+        $instance = new self(data: $responseData);
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
         }
 
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
-
-        return new self(data: $validatedData);
+        return $instance;
     }
 }
