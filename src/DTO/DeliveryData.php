@@ -5,6 +5,7 @@ declare (strict_types=1);
 namespace GoSuccess\Digistore24\Api\DTO;
 
 use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+use GoSuccess\Digistore24\Api\Enum\DeliveryStatus;
 
 /**
  * Delivery Data Transfer Object
@@ -19,14 +20,7 @@ final class DeliveryData extends AbstractDataTransferObject
     /**
      * The type of delivery status
      */
-    public ?string $type = null {
-        set {
-            if ($value !== null && ! in_array($value, ['request', 'in_progress', 'delivery', 'partial_delivery', 'return', 'cancel'], true)) {
-                throw new \InvalidArgumentException("Invalid delivery type: {$value}. Allowed: request, in_progress, delivery, partial_delivery, return, cancel");
-            }
-            $this->type = $value;
-        }
-    }
+    public ?DeliveryStatus $type = null;
 
     /**
      * Whether the product has been shipped
@@ -75,7 +69,7 @@ final class DeliveryData extends AbstractDataTransferObject
     {
         $data = [];
         if ($this->type !== null) {
-            $data['type'] = $this->type;
+            $data['type'] = $this->type->value;
         }
         if ($this->isShipped !== null) {
             // Convert boolean to Digistore24's Y/N format

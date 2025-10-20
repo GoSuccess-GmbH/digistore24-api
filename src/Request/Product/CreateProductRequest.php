@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Product;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Enum\AffiliateApprovalStatus;
+use GoSuccess\Digistore24\Api\Enum\BuyerType;
 
 /**
  * Request to create a new product
@@ -26,11 +28,11 @@ final class CreateProductRequest extends AbstractRequest
      * @param string|null $thankyouUrl Thank you page URL (max 255 chars)
      * @param string|null $imageUrl Product image URL (max 255 chars)
      * @param int|null $productTypeId Product type ID (from getGlobalSettings)
-     * @param string|null $approvalStatus Product approval status: 'new' or 'pending'
+     * @param AffiliateApprovalStatus|null $approvalStatus Product approval status
      * @param float|null $affiliateCommission Affiliate commission amount
-     * @param string|null $buyerType 'consumer' (prices incl. VAT) or 'business' (prices excl. VAT)
-     * @param string|null $isAddressInputMandatory 'Y' or 'N' - must buyer enter address
-     * @param string|null $addOrderDataToThankyouPageUrl 'Y' or 'N' - add order data to thankyou URL
+     * @param BuyerType|null $buyerType Buyer type (business, consumer, common, vendor)
+     * @param bool|null $isAddressInputMandatory Must buyer enter address
+     * @param bool|null $addOrderDataToThankyouPageUrl Add order data to thankyou URL
      */
     public function __construct(
         public string $nameIntern,
@@ -45,11 +47,11 @@ final class CreateProductRequest extends AbstractRequest
         public ?string $thankyouUrl = null,
         public ?string $imageUrl = null,
         public ?int $productTypeId = null,
-        public ?string $approvalStatus = null,
+        public ?AffiliateApprovalStatus $approvalStatus = null,
         public ?float $affiliateCommission = null,
-        public ?string $buyerType = null,
-        public ?string $isAddressInputMandatory = null,
-        public ?string $addOrderDataToThankyouPageUrl = null,
+        public ?BuyerType $buyerType = null,
+        public ?bool $isAddressInputMandatory = null,
+        public ?bool $addOrderDataToThankyouPageUrl = null,
     ) {
     }
 
@@ -93,19 +95,19 @@ final class CreateProductRequest extends AbstractRequest
             $data['product_type_id'] = $this->productTypeId;
         }
         if ($this->approvalStatus !== null) {
-            $data['approval_status'] = $this->approvalStatus;
+            $data['approval_status'] = $this->approvalStatus->value;
         }
         if ($this->affiliateCommission !== null) {
             $data['affiliate_commission'] = $this->affiliateCommission;
         }
         if ($this->buyerType !== null) {
-            $data['buyer_type'] = $this->buyerType;
+            $data['buyer_type'] = $this->buyerType->value;
         }
         if ($this->isAddressInputMandatory !== null) {
-            $data['is_address_input_mandatory'] = $this->isAddressInputMandatory;
+            $data['is_address_input_mandatory'] = $this->isAddressInputMandatory ? 'Y' : 'N';
         }
         if ($this->addOrderDataToThankyouPageUrl !== null) {
-            $data['add_order_data_to_thankyou_page_url'] = $this->addOrderDataToThankyouPageUrl;
+            $data['add_order_data_to_thankyou_page_url'] = $this->addOrderDataToThankyouPageUrl ? 'Y' : 'N';
         }
 
         return ['data' => $data];

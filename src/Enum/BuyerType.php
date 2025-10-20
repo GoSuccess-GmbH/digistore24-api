@@ -10,14 +10,16 @@ use GoSuccess\Digistore24\Api\Trait\StringBackedEnumTrait;
 /**
  * Buyer Type
  *
- * Represents the type of buyer (business or private/consumer).
+ * Represents the type of buyer.
  */
 enum BuyerType: string implements StringBackedEnum
 {
     use StringBackedEnumTrait;
 
     case BUSINESS = 'business';
-    case PRIVATE = 'private';
+    case CONSUMER = 'consumer';
+    case COMMON = 'common';
+    case VENDOR = 'vendor';
 
     /**
      * Get human-readable label
@@ -26,7 +28,9 @@ enum BuyerType: string implements StringBackedEnum
     {
         return match ($this) {
             self::BUSINESS => 'Business',
-            self::PRIVATE => 'Private',
+            self::CONSUMER => 'Consumer',
+            self::COMMON => 'Common',
+            self::VENDOR => 'Vendor',
         };
     }
 }

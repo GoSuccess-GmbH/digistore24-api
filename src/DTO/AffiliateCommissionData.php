@@ -5,6 +5,7 @@ declare (strict_types=1);
 namespace GoSuccess\Digistore24\Api\DTO;
 
 use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+use GoSuccess\Digistore24\Api\Enum\AffiliateApprovalStatus;
 use GoSuccess\Digistore24\Api\Util\Validator;
 
 /**
@@ -56,14 +57,7 @@ final class AffiliateCommissionData extends AbstractDataTransferObject
     /**
      * Approval status of the affiliation
      */
-    public ?string $approvalStatus = null {
-        set {
-            if ($value !== null && ! in_array($value, ['new', 'approved', 'rejected', 'pending'], true)) {
-                throw new \InvalidArgumentException("Invalid approval status: {$value}. Allowed: new, approved, rejected, pending");
-            }
-            $this->approvalStatus = $value;
-        }
-    }
+    public ?AffiliateApprovalStatus $approvalStatus = null;
 
     /**
      * Convert to array for API request
@@ -83,7 +77,7 @@ final class AffiliateCommissionData extends AbstractDataTransferObject
             $data['commission_currency'] = $this->commissionCurrency;
         }
         if ($this->approvalStatus !== null) {
-            $data['approval_status'] = $this->approvalStatus;
+            $data['approval_status'] = $this->approvalStatus->value;
         }
 
         return $data;

@@ -18,7 +18,7 @@ final class CopyProductRequest extends AbstractRequest
      * @param string|null $nameIntern Internal product name (max 63 chars)
      * @param int|null $productTypeId Product type ID (from getGlobalSettings)
      * @param string|null $language Comma separated list of languages (e.g. "en,de")
-     * @param string|null $isActive Product activation status: 'Y' or 'N'
+     * @param bool|null $isActive Product activation status
      * @param int|null $productGroupId Product group ID
      * @param string|null $nameDe German product name (max 63 chars)
      * @param string|null $nameEn English product name (max 63 chars)
@@ -29,7 +29,7 @@ final class CopyProductRequest extends AbstractRequest
         public ?string $nameIntern = null,
         public ?int $productTypeId = null,
         public ?string $language = null,
-        public ?string $isActive = null,
+        public ?bool $isActive = null,
         public ?int $productGroupId = null,
         public ?string $nameDe = null,
         public ?string $nameEn = null,
@@ -53,7 +53,7 @@ final class CopyProductRequest extends AbstractRequest
             $data['language'] = $this->language;
         }
         if ($this->isActive !== null) {
-            $data['is_active'] = $this->isActive;
+            $data['is_active'] = $this->isActive ? 'Y' : 'N';
         }
         if ($this->productGroupId !== null) {
             $data['product_group_id'] = $this->productGroupId;

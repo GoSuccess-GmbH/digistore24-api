@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\Product;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Enum\AffiliateApprovalStatus;
+use GoSuccess\Digistore24\Api\Enum\BuyerType;
 
 /**
  * Request to update an existing product
@@ -28,9 +30,9 @@ final class UpdateProductRequest extends AbstractRequest
      * @param string|null $imageUrl URL of the product image (max 255 chars)
      * @param int|null $productTypeId Product type ID (from getGlobalSettings)
      * @param string|null $currency List of possible currencies (e.g., "USD,EUR")
-     * @param string|null $approvalStatus Approval status: 'new' or 'pending'
+     * @param AffiliateApprovalStatus|null $approvalStatus Approval status
      * @param float|null $affiliateCommission Commission for affiliates
-     * @param string|null $buyerType 'consumer' (prices incl. VAT) or 'business' (prices excl. VAT)
+     * @param BuyerType|null $buyerType Buyer type (business, consumer, common, vendor)
      * @param bool|null $isAddressInputMandatory True if buyer must always enter address
      * @param bool|null $addOrderDataToThankyouPageUrl True if order data is added to thankyou URL
      */
@@ -49,9 +51,9 @@ final class UpdateProductRequest extends AbstractRequest
         public ?string $imageUrl = null,
         public ?int $productTypeId = null,
         public ?string $currency = null,
-        public ?string $approvalStatus = null,
+        public ?AffiliateApprovalStatus $approvalStatus = null,
         public ?float $affiliateCommission = null,
-        public ?string $buyerType = null,
+        public ?BuyerType $buyerType = null,
         public ?bool $isAddressInputMandatory = null,
         public ?bool $addOrderDataToThankyouPageUrl = null,
     ) {
@@ -103,13 +105,13 @@ final class UpdateProductRequest extends AbstractRequest
             $data['currency'] = $this->currency;
         }
         if ($this->approvalStatus !== null) {
-            $data['approval_status'] = $this->approvalStatus;
+            $data['approval_status'] = $this->approvalStatus->value;
         }
         if ($this->affiliateCommission !== null) {
             $data['affiliate_commission'] = $this->affiliateCommission;
         }
         if ($this->buyerType !== null) {
-            $data['buyer_type'] = $this->buyerType;
+            $data['buyer_type'] = $this->buyerType->value;
         }
         if ($this->isAddressInputMandatory !== null) {
             $data['is_address_input_mandatory'] = $this->isAddressInputMandatory ? 'Y' : 'N';

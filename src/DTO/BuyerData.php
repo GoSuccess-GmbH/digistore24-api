@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\DTO;
 
 use DateTimeImmutable;
 use GoSuccess\Digistore24\Api\Base\AbstractDataTransferObject;
+use GoSuccess\Digistore24\Api\Enum\BuyerType;
 use GoSuccess\Digistore24\Api\Enum\Salutation;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
 use GoSuccess\Digistore24\Api\Util\Validator;
@@ -158,9 +159,9 @@ final class BuyerData extends AbstractDataTransferObject
     }
 
     /**
-     * Buyer type (business or private)
+     * Buyer type (business, consumer, common, vendor)
      */
-    public ?string $buyerType {
+    public ?BuyerType $buyerType {
         get => $this->buyerType;
     }
 
@@ -198,7 +199,7 @@ final class BuyerData extends AbstractDataTransferObject
         ?string $country = null,
         ?string $phoneNo = null,
         ?string $taxId = null,
-        ?string $buyerType = null,
+        ?BuyerType $buyerType = null,
         ?DateTimeImmutable $createdAt = null,
         ?string $readonlyKeys = null,
     ) {
@@ -263,7 +264,7 @@ final class BuyerData extends AbstractDataTransferObject
             country: TypeConverter::toString($data['country'] ?? null),
             phoneNo: TypeConverter::toString($data['phone_no'] ?? null),
             taxId: TypeConverter::toString($data['tax_id'] ?? null),
-            buyerType: TypeConverter::toString($data['buyer_type'] ?? null),
+            buyerType: BuyerType::fromString(TypeConverter::toString($data['buyer_type'] ?? null)),
             createdAt: TypeConverter::toDateTime($data['created_at'] ?? null),
             readonlyKeys: TypeConverter::toString($data['readonly_keys'] ?? null),
         );
