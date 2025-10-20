@@ -5,7 +5,7 @@ Get affiliate commission settings for one or more products.
 ## Endpoint
 
 ```
-GET /json/getAffiliateCommission
+GET /getAffiliateCommission
 ```
 
 ## Request Parameters
@@ -15,41 +15,7 @@ GET /json/getAffiliateCommission
 | `affiliate_id` | string | Yes | Affiliate ID to get commission settings for |
 | `product_ids` | string | No | Product IDs (comma-separated) or "all" for all products (default: "all") |
 
-## Response
-
-```json
-{
-    "api_version": "1.2",
-    "current_time": "2025-10-20 13:03:47",
-    "timezone": "CEST",
-    "utc_offset": "7200",
-    "runtime_seconds": "0.0",
-    "result": "success",
-    "data": {
-        "affiliations": [
-            {
-                "commission_rate": "50.00",
-                "commission_currency": "EUR",
-                "default_commission_rate": "50.00",
-                "default_commission_fix": "0.00",
-                "default_commission_currency": "EUR",
-                "commission_fix": "0.00",
-                "is_on_first_pmnt_only": "",
-                "product_id": "406040",
-                "product_is_active": "Y",
-                "approval_status": "approved",
-                "approval_status_msg": "Genehmigt"
-            }
-        ],
-        "affiliate_id": "918",
-        "affiliate_name": "GoSuccess"
-    }
-}
-```
-
 ## Response Fields
-
-### Root Data
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -80,7 +46,6 @@ use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\Affiliate\GetAffiliateCommissionRequest;
 
-// Initialize API client
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
@@ -91,6 +56,7 @@ $request = new GetAffiliateCommissionRequest(
 );
 $response = $api->affiliate()->getCommission($request);
 
+// Access response data
 echo "Affiliate: {$response->affiliateName} (ID: {$response->affiliateId})\n";
 echo "Total Products: " . count($response->affiliations) . "\n\n";
 
@@ -108,13 +74,6 @@ $request = new GetAffiliateCommissionRequest(
 );
 $response = $api->affiliate()->getCommission($request);
 ```
-
-## Error Responses
-
-| Code | Message | Description |
-|------|---------|-------------|
-| 404 | Affiliate not found | Affiliate does not exist |
-| 403 | Access denied | Not authorized to access this affiliate |
 
 ## Notes
 

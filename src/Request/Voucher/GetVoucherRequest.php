@@ -29,7 +29,7 @@ final class GetVoucherRequest extends AbstractRequest
 
     public function method(): HttpMethod
     {
-        return HttpMethod::GET;
+        return HttpMethod::POST;
     }
 
     public function toArray(): array
