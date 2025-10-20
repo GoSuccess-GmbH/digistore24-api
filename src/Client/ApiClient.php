@@ -357,13 +357,8 @@ final class ApiClient implements HttpClientInterface
     private function addMetaParams(array $params): array
     {
         $meta = [
-            'language' => $this->config->language,
             'ds24ver' => self::API_VERSION,
         ];
-
-        if ($this->config->operatorName !== null) {
-            $meta['operator'] = $this->config->operatorName;
-        }
 
         return array_merge($params, $meta);
     }

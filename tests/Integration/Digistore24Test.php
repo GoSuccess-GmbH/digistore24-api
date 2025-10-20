@@ -22,11 +22,9 @@ final class Digistore24Test extends TestCase
     protected function setUp(): void
     {
         // Use test API key for integration tests
-        $config = new Configuration(
-            apiKey: 'TEST-API-KEY-123456789',
-            timeout: 5,
-            maxRetries: 0, // Disable retries for faster tests
-        );
+        $config = new Configuration(apiKey: 'TEST-API-KEY-123456789');
+        $config->timeout = 5;
+        $config->maxRetries = 0; // Disable retries for faster tests
 
         $this->client = new Digistore24($config);
     }
@@ -59,11 +57,12 @@ final class Digistore24Test extends TestCase
 
     public function testCanCreateBuyerDataWithValidation(): void
     {
-        $buyer = new BuyerData();
-        $buyer->email = 'test@example.com';
-        $buyer->firstName = 'John';
-        $buyer->lastName = 'Doe';
-        $buyer->country = 'de'; // Should be auto-uppercased
+        $buyer = BuyerData::fromArray([
+            'email' => 'test@example.com',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'country' => 'DE',
+        ]);
 
         $this->assertSame('test@example.com', $buyer->email);
         $this->assertSame('John', $buyer->firstName);
@@ -76,8 +75,7 @@ final class Digistore24Test extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid email');
 
-        $buyer = new BuyerData();
-        $buyer->email = 'invalid-email';
+        BuyerData::fromArray(['email' => 'invalid-email']);
     }
 
     public function testPropertyHookValidationThrowsExceptionForEmptyProductId(): void
