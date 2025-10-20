@@ -42,7 +42,7 @@ $data = [
 ];
 
 // Dot notation access
-echo ArrayHelper::get($data, 'user.address.city') . PHP_EOL; // Berlin
+echo ArrayHelper::get($data, 'user.address.city', null) . PHP_EOL; // Berlin
 echo ArrayHelper::get($data, 'user.phone', 'N/A') . PHP_EOL; // N/A
 
 // Snake case to camelCase conversion
