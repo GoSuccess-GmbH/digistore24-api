@@ -15,10 +15,11 @@ final class DeleteVoucherResponseTest extends TestCase
         $data = [
             'result' => 'success',
         ];
-        $response = DeleteVoucherResponse::fromArray($data);
+
+        $response = DeleteVoucherResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(DeleteVoucherResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
     }
 
     public function test_can_create_from_response(): void
@@ -29,13 +30,13 @@ final class DeleteVoucherResponseTest extends TestCase
                 'result' => 'success',
             ],
             headers: [],
-            rawBody: '',
+            rawBody: '{"result":"success"}',
         );
 
-        $response = DeleteVoucherResponse::fromResponse($httpResponse);
+        $response = DeleteVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(DeleteVoucherResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
     }
 
     public function test_has_raw_response(): void
@@ -43,12 +44,14 @@ final class DeleteVoucherResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: ['result' => 'success'],
-            headers: [],
-            rawBody: 'test',
+            headers: ['Content-Type' => 'application/json'],
+            rawBody: 'test body',
         );
 
-        $response = DeleteVoucherResponse::fromResponse($httpResponse);
+        $response = DeleteVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(Response::class, $response->rawResponse);
+        $this->assertSame(200, $response->rawResponse->statusCode);
+        $this->assertSame('test body', $response->rawResponse->rawBody);
     }
 }

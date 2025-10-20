@@ -10,26 +10,33 @@ use GoSuccess\Digistore24\Api\Http\Response;
 /**
  * Delete Voucher Response
  *
- * Response object for the Voucher API endpoint.
+ * Response object for the deleteVoucher API endpoint.
+ * Indicates successful deletion of a voucher.
  */
 final class DeleteVoucherResponse extends AbstractResponse
 {
-    public function __construct(private string $result)
-    {
+    /**
+     * Result of the delete operation
+     */
+    public string $result {
+        get => $this->result;
     }
 
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
-    }
-
+    /**
+     * Create response from API data
+     *
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(result: self::extractResult($data, $rawResponse));
+        $instance = new self();
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        $instance->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+
+        return $instance;
     }
 }
