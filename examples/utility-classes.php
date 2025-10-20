@@ -88,8 +88,6 @@ use GoSuccess\Digistore24\Api\Client\Configuration;
 // Configuration with property hooks
 $config = new Configuration(
     apiKey: '123-ABCDEFGHIJ1234567890',
-    baseUrl: 'https://www.digistore24.com/',  // Trailing slash removed automatically
-    language: 'de',
 );
 
 // Computed property (no method call needed!)
@@ -97,10 +95,8 @@ echo 'API URL: ' . $config->apiUrl . PHP_EOL;  // Uses property hook!
 
 // Validation in setters
 try {
-    new Configuration(
-        apiKey: '123-TEST',
-        timeout: -5,  // Invalid! Will throw exception
-    );
+    $invalidConfig = new Configuration(apiKey: '123-TEST');
+    $invalidConfig->timeout = -5;  // Invalid! Will throw exception
 } catch (\InvalidArgumentException $e) {
     echo 'Caught expected error: ' . $e->getMessage() . PHP_EOL;
 }

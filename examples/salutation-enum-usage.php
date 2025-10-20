@@ -17,8 +17,8 @@ $buyer1->salutation = Salutation::MR;
 $buyer1->firstName = 'John';
 $buyer1->lastName = 'Doe';
 
-echo "   Salutation value: " . $buyer1->salutation->value . "\n";
-echo "   Salutation label: " . $buyer1->salutation->label() . "\n\n";
+echo '   Salutation value: ' . $buyer1->salutation->value . "\n";
+echo '   Salutation label: ' . $buyer1->salutation->label() . "\n\n";
 
 // Example 2: Female salutation
 echo "2. Female salutation:\n";
@@ -28,8 +28,8 @@ $buyer2->salutation = Salutation::MRS;
 $buyer2->firstName = 'Jane';
 $buyer2->lastName = 'Smith';
 
-echo "   Salutation value: " . $buyer2->salutation->value . "\n";
-echo "   Salutation label: " . $buyer2->salutation->label() . "\n\n";
+echo '   Salutation value: ' . $buyer2->salutation->value . "\n";
+echo '   Salutation label: ' . $buyer2->salutation->label() . "\n\n";
 
 // Example 3: No salutation
 echo "3. No salutation:\n";
@@ -60,7 +60,7 @@ echo "   'F' is valid: " . (Salutation::isValid('F') ? 'Yes' : 'No') . "\n";
 echo "   'M' is valid: " . (Salutation::isValid('M') ? 'Yes' : 'No') . "\n";
 echo "   '' is valid: " . (Salutation::isValid('') ? 'Yes' : 'No') . "\n";
 echo "   'X' is valid: " . (Salutation::isValid('X') ? 'Yes' : 'No') . "\n";
-echo "   null is valid: " . (Salutation::isValid(null) ? 'Yes' : 'No') . "\n\n";
+echo '   null is valid: ' . (Salutation::isValid(null) ? 'Yes' : 'No') . "\n\n";
 
 // Example 6: Using in API context (simulated)
 echo "6. Simulating API response processing:\n";
@@ -77,9 +77,9 @@ $buyer->salutation = Salutation::fromString($apiResponse['salutation']);
 $buyer->firstName = $apiResponse['first_name'] ?? null;
 $buyer->lastName = $apiResponse['last_name'] ?? null;
 
-echo "   Processed: " . $buyer->salutation?->label() . " " .
-     $buyer->firstName . " " . $buyer->lastName . "\n";
-echo "   Email: " . $buyer->email . "\n\n";
+echo '   Processed: ' . $buyer->salutation?->label() . ' ' .
+     $buyer->firstName . ' ' . $buyer->lastName . "\n";
+echo '   Email: ' . $buyer->email . "\n\n";
 
 // Example 7: Matching on enum
 echo "7. Using match expression:\n";

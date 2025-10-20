@@ -22,10 +22,6 @@ use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
 // Initialize the Digistore24 client
 $config = new Configuration(
     apiKey: 'YOUR-API-KEY',
-    language: 'en',
-    timeout: 30,
-    maxRetries: 3,
-    debug: false,
 );
 
 $ds24 = new Digistore24($config);

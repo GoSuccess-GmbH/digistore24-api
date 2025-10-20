@@ -18,8 +18,6 @@ use GoSuccess\Digistore24\Api\Request\Product\GetProductRequest;
 // Create configuration
 $config = new Configuration(
     apiKey: 'YOUR-API-KEY-HERE',
-    language: 'en',
-    debug: true,
 );
 
 // Create Digistore24 client
@@ -27,6 +25,7 @@ $ds24 = new Digistore24($config);
 
 // Example 1: Get user information
 echo "=== Get User Info ===\n";
+
 try {
     $response = $ds24->users->getInfo();
 
@@ -41,6 +40,7 @@ try {
 
 // Example 2: List products
 echo "=== List Products ===\n";
+
 try {
     $response = $ds24->products->list();
 
@@ -54,13 +54,14 @@ try {
     echo "Error: {$e->getMessage()}\n\n";
 }// Example 3: Get specific product
 echo "=== Get Product Details ===\n";
+
 try {
     $request = new GetProductRequest(productId: '12345');
     $product = $ds24->products->get($request);
 
     echo "Product: {$product->productName}\n";
     echo "Price: {$product->price} {$product->currency}\n";
-    echo "Published: " . ($product->isPublished ? 'Yes' : 'No') . "\n\n";
+    echo 'Published: ' . ($product->isPublished ? 'Yes' : 'No') . "\n\n";
 
 } catch (\GoSuccess\Digistore24\Api\Exception\NotFoundException $e) {
     echo "Product not found!\n\n";
@@ -70,11 +71,12 @@ try {
 
 // Example 4: List countries
 echo "=== List Countries ===\n";
+
 try {
     $response = $ds24->countries->listCountries();
 
     $countries = $response->getCountries();
-    echo "Available countries: " . count($countries) . "\n";
+    echo 'Available countries: ' . count($countries) . "\n";
     // Show first 5
     $countriesToShow = array_slice($countries, 0, 5, true);
     foreach ($countriesToShow as $code => $name) {

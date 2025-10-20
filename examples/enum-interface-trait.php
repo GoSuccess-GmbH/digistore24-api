@@ -17,9 +17,9 @@ echo "=== String-Backed Enum Interface & Trait Example ===\n\n";
 
 // 1. Using label() method - Human-readable display
 echo "1. Get human-readable labels:\n";
-echo "   Salutation::MRS->label() = " . Salutation::MRS->label() . "\n";
-echo "   Salutation::MR->label() = " . Salutation::MR->label() . "\n";
-echo "   Salutation::NONE->label() = " . Salutation::NONE->label() . "\n\n";
+echo '   Salutation::MRS->label() = ' . Salutation::MRS->label() . "\n";
+echo '   Salutation::MR->label() = ' . Salutation::MR->label() . "\n";
+echo '   Salutation::NONE->label() = ' . Salutation::NONE->label() . "\n\n";
 
 // 2. Using fromString() - Convert string to enum (case-insensitive)
 echo "2. Convert string to enum (case-insensitive):\n";
