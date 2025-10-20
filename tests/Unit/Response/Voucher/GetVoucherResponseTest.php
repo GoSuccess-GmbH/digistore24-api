@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\Response\Voucher;
 
+use GoSuccess\Digistore24\Api\DTO\VoucherData;
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Response\Voucher\GetVoucherResponse;
 use PHPUnit\Framework\TestCase;
@@ -13,23 +14,65 @@ final class GetVoucherResponseTest extends TestCase
     public function test_can_create_from_array(): void
     {
         $data = [
+            'result' => 'success',
             'data' => [
-                'voucher_id' => 'VOU123',
-                'code' => 'SUMMER2024',
-                'discount_type' => 'percentage',
-                'discount_amount' => 20.0,
-                'valid_from' => '2024-06-01',
-                'valid_until' => '2024-08-31',
-                'max_uses' => 100,
-                'used_count' => 45,
+                'coupon' => [
+                    'id' => 12345,
+                    'code' => 'SUMMER2024',
+                    'product_ids' => 'all',
+                    'valid_from' => '2024-01-01 00:00:00',
+                    'valid_until' => '2024-12-31 23:59:59',
+                    'expires_at' => '2024-12-31 23:59:59',
+                    'first_rate' => 20.0,
+                    'other_rates' => 15.0,
+                    'first_amount' => 10.0,
+                    'other_amounts' => 5.0,
+                    'currency' => 'EUR',
+                    'is_count_limited' => 'Y',
+                    'count_left' => 50,
+                    'upgrade_policy' => 'valid',
+                ],
             ],
         ];
-        $response = GetVoucherResponse::fromArray($data);
+        
+        $response = GetVoucherResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(GetVoucherResponse::class, $response);
-        $voucherData = $response->getData();
-        $this->assertSame('VOU123', $voucherData['voucher_id']);
-        $this->assertSame('SUMMER2024', $response->getCode());
+        $this->assertInstanceOf(VoucherData::class, $response->voucher);
+        $this->assertSame(12345, $response->voucher->id);
+        $this->assertSame('SUMMER2024', $response->voucher->code);
+        $this->assertSame('all', $response->voucher->productIds);
+        $this->assertSame('2024-01-01 00:00:00', $response->voucher->validFrom);
+        $this->assertSame('2024-12-31 23:59:59', $response->voucher->validUntil);
+        $this->assertSame('2024-12-31 23:59:59', $response->voucher->expiresAt);
+        $this->assertSame(20.0, $response->voucher->firstRate);
+        $this->assertSame(15.0, $response->voucher->otherRates);
+        $this->assertSame(10.0, $response->voucher->firstAmount);
+        $this->assertSame(5.0, $response->voucher->otherAmounts);
+        $this->assertSame('EUR', $response->voucher->currency);
+        $this->assertTrue($response->voucher->isCountLimited);
+        $this->assertSame(50, $response->voucher->countLeft);
+        $this->assertSame('valid', $response->voucher->upgradePolicy);
+    }
+
+    public function test_can_create_with_minimal_data(): void
+    {
+        $data = [
+            'result' => 'success',
+            'data' => [
+                'coupon' => [
+                    'code' => 'MINIMAL',
+                ],
+            ],
+        ];
+        
+        $response = GetVoucherResponse::fromArray(data: $data);
+
+        $this->assertInstanceOf(GetVoucherResponse::class, $response);
+        $this->assertSame('MINIMAL', $response->voucher->code);
+        $this->assertNull($response->voucher->id);
+        $this->assertSame('all', $response->voucher->productIds);
+        $this->assertFalse($response->voucher->isCountLimited);
     }
 
     public function test_can_create_from_response(): void
@@ -37,34 +80,78 @@ final class GetVoucherResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: [
+                'result' => 'success',
                 'data' => [
-                    'voucher_id' => 'VOU999',
-                    'code' => 'WINTER2024',
-                    'discount_type' => 'fixed',
-                    'discount_amount' => 10.0,
+                    'coupon' => [
+                        'id' => 99999,
+                        'code' => 'WINTER2024',
+                        'first_rate' => 25.0,
+                    ],
                 ],
             ],
             headers: [],
-            rawBody: '',
+            rawBody: '{"result":"success"}',
         );
 
-        $response = GetVoucherResponse::fromResponse($httpResponse);
+        $response = GetVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(GetVoucherResponse::class, $response);
-        $this->assertSame('WINTER2024', $response->getCode());
+        $this->assertSame(99999, $response->voucher->id);
+        $this->assertSame('WINTER2024', $response->voucher->code);
+        $this->assertSame(25.0, $response->voucher->firstRate);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => []],
-            headers: [],
-            rawBody: 'test',
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'coupon' => [
+                        'code' => 'TEST',
+                    ],
+                ],
+            ],
+            headers: ['Content-Type' => 'application/json'],
+            rawBody: 'test body',
         );
 
-        $response = GetVoucherResponse::fromResponse($httpResponse);
+        $response = GetVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(Response::class, $response->rawResponse);
+        $this->assertSame(200, $response->rawResponse->statusCode);
+        $this->assertSame('test body', $response->rawResponse->rawBody);
+    }
+
+    public function test_handles_count_limited_flag(): void
+    {
+        $dataYes = [
+            'result' => 'success',
+            'data' => [
+                'coupon' => [
+                    'code' => 'LIMITED',
+                    'is_count_limited' => 'Y',
+                    'count_left' => 10,
+                ],
+            ],
+        ];
+        
+        $responseYes = GetVoucherResponse::fromArray(data: $dataYes);
+        $this->assertTrue($responseYes->voucher->isCountLimited);
+        $this->assertSame(10, $responseYes->voucher->countLeft);
+
+        $dataNo = [
+            'result' => 'success',
+            'data' => [
+                'coupon' => [
+                    'code' => 'UNLIMITED',
+                    'is_count_limited' => 'N',
+                ],
+            ],
+        ];
+        
+        $responseNo = GetVoucherResponse::fromArray(data: $dataNo);
+        $this->assertFalse($responseNo->voucher->isCountLimited);
     }
 }
