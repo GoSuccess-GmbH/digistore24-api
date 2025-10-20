@@ -28,8 +28,6 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ApiClient implements HttpClientInterface
 {
-    private const string API_VERSION = '1.2';
-
     private const string USER_AGENT = 'GoSuccess-Digistore24-API-Client/2.0 (https://github.com/GoSuccess-GmbH/digistore24-api)';
 
     /**
@@ -117,7 +115,6 @@ final class ApiClient implements HttpClientInterface
     private function buildRequest(string $endpoint, HttpMethod $method, array $params): Request
     {
         $url = $this->buildUrl($endpoint);
-        $params = $this->addMetaParams($params);
 
         $headers = [
             'Accept' => 'application/json',
@@ -346,21 +343,6 @@ final class ApiClient implements HttpClientInterface
         $cleanEndpoint = ltrim($endpoint, '/');
 
         return "{$this->config->apiUrl}/{$cleanEndpoint}";
-    }
-
-    /**
-     * Add meta parameters to request
-     *
-     * @param array<string, mixed> $params
-     * @return array<string, mixed>
-     */
-    private function addMetaParams(array $params): array
-    {
-        $meta = [
-            'ds24ver' => self::API_VERSION,
-        ];
-
-        return array_merge($params, $meta);
     }
 
     /**
