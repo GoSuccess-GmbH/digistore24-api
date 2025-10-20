@@ -6,54 +6,47 @@ namespace GoSuccess\Digistore24\Api\Response\Voucher;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Create Voucher Response
  *
- * Response object for the Voucher API endpoint.
+ * Response object for the createVoucher API endpoint.
+ * Returns the ID and code of the newly created voucher.
  */
 final class CreateVoucherResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private string $result, private array $data)
-    {
+    /**
+     * ID of the created voucher
+     */
+    public int $discountCodeId {
+        get => $this->discountCodeId;
     }
 
-    public function getResult(): string
-    {
-        return $this->result;
+    /**
+     * The voucher code
+     */
+    public string $code {
+        get => $this->code;
     }
 
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    public function getVoucherId(): ?string
-    {
-        $value = $this->data['voucher_id'] ?? null;
-
-        return is_string($value) ? $value : null;
-    }
-
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
-    }
-
+    /**
+     * Create response from API data
+     *
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $instance = new self();
 
-        return new self(
-            result: self::extractResult($data, $rawResponse),
-            data: $validatedData,
-        );
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        $innerData = self::extractInnerData(data: $data);
+        $instance->discountCodeId = TypeConverter::toInt(value: $innerData['discount_code_id'] ?? 0) ?? 0;
+        $instance->code = TypeConverter::toString(value: $innerData['code'] ?? '') ?? '';
+
+        return $instance;
     }
 }

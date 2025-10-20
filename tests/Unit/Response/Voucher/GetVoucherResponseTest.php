@@ -34,7 +34,7 @@ final class GetVoucherResponseTest extends TestCase
                 ],
             ],
         ];
-        
+
         $response = GetVoucherResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(GetVoucherResponse::class, $response);
@@ -65,7 +65,7 @@ final class GetVoucherResponseTest extends TestCase
                 ],
             ],
         ];
-        
+
         $response = GetVoucherResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(GetVoucherResponse::class, $response);
@@ -136,7 +136,7 @@ final class GetVoucherResponseTest extends TestCase
                 ],
             ],
         ];
-        
+
         $responseYes = GetVoucherResponse::fromArray(data: $dataYes);
         $this->assertTrue($responseYes->voucher->isCountLimited);
         $this->assertSame(10, $responseYes->voucher->countLeft);
@@ -150,7 +150,7 @@ final class GetVoucherResponseTest extends TestCase
                 ],
             ],
         ];
-        
+
         $responseNo = GetVoucherResponse::fromArray(data: $dataNo);
         $this->assertFalse($responseNo->voucher->isCountLimited);
     }

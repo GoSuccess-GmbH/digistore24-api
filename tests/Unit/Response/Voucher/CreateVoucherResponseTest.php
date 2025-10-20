@@ -15,17 +15,30 @@ final class CreateVoucherResponseTest extends TestCase
         $data = [
             'result' => 'success',
             'data' => [
-                'voucher_id' => 'VOU123',
+                'discount_code_id' => 12345,
                 'code' => 'SUMMER2024',
-                'discount_type' => 'percentage',
-                'discount_amount' => 20.0,
             ],
         ];
-        $response = CreateVoucherResponse::fromArray($data);
+
+        $response = CreateVoucherResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(CreateVoucherResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('VOU123', $response->getVoucherId());
+        $this->assertSame(12345, $response->discountCodeId);
+        $this->assertSame('SUMMER2024', $response->code);
+    }
+
+    public function test_can_create_with_minimal_data(): void
+    {
+        $data = [
+            'result' => 'success',
+            'data' => [],
+        ];
+
+        $response = CreateVoucherResponse::fromArray(data: $data);
+
+        $this->assertInstanceOf(CreateVoucherResponse::class, $response);
+        $this->assertSame(0, $response->discountCodeId);
+        $this->assertSame('', $response->code);
     }
 
     public function test_can_create_from_response(): void
@@ -35,30 +48,40 @@ final class CreateVoucherResponseTest extends TestCase
             data: [
                 'result' => 'success',
                 'data' => [
-                    'voucher_id' => 'VOU999',
+                    'discount_code_id' => 99999,
+                    'code' => 'WINTER2024',
                 ],
             ],
             headers: [],
-            rawBody: '',
+            rawBody: '{"result":"success"}',
         );
 
-        $response = CreateVoucherResponse::fromResponse($httpResponse);
+        $response = CreateVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(CreateVoucherResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame(99999, $response->discountCodeId);
+        $this->assertSame('WINTER2024', $response->code);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['result' => 'success', 'data' => []],
-            headers: [],
-            rawBody: 'test',
+            data: [
+                'result' => 'success',
+                'data' => [
+                    'discount_code_id' => 123,
+                    'code' => 'TEST',
+                ],
+            ],
+            headers: ['Content-Type' => 'application/json'],
+            rawBody: 'test body',
         );
 
-        $response = CreateVoucherResponse::fromResponse($httpResponse);
+        $response = CreateVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(Response::class, $response->rawResponse);
+        $this->assertSame(200, $response->rawResponse->statusCode);
+        $this->assertSame('test body', $response->rawResponse->rawBody);
     }
 }
