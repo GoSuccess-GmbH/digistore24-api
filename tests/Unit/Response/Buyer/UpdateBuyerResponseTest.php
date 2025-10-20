@@ -10,17 +10,31 @@ use PHPUnit\Framework\TestCase;
 
 final class UpdateBuyerResponseTest extends TestCase
 {
-    public function test_can_create_from_array(): void
+    public function test_can_create_from_array_modified(): void
     {
         $data = [
-            'result' => 'success',
-            'data' => ['buyer_id' => 'BUY123'],
+            'data' => [
+                'is_modified' => 'Y',
+            ],
         ];
+
         $response = UpdateBuyerResponse::fromArray($data);
 
         $this->assertInstanceOf(UpdateBuyerResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertTrue($response->isModified);
+    }
+
+    public function test_can_create_from_array_not_modified(): void
+    {
+        $data = [
+            'data' => [
+                'is_modified' => 'N',
+            ],
+        ];
+
+        $response = UpdateBuyerResponse::fromArray($data);
+
+        $this->assertFalse($response->isModified);
     }
 
     public function test_can_create_from_response(): void
@@ -29,7 +43,9 @@ final class UpdateBuyerResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'result' => 'success',
-                'data' => ['buyer_id' => 'BUY123'],
+                'data' => [
+                    'is_modified' => 'Y',
+                ],
             ],
             headers: [],
             rawBody: '',
@@ -38,14 +54,23 @@ final class UpdateBuyerResponseTest extends TestCase
         $response = UpdateBuyerResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(UpdateBuyerResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertTrue($response->isModified);
+    }
+
+    public function test_handles_missing_data(): void
+    {
+        $data = ['data' => []];
+
+        $response = UpdateBuyerResponse::fromArray($data);
+
+        $this->assertFalse($response->isModified);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['result' => 'success'],
+            data: ['data' => ['is_modified' => 'N']],
             headers: [],
             rawBody: 'test',
         );
