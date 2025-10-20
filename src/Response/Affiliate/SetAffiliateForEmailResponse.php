@@ -6,30 +6,89 @@ namespace GoSuccess\Digistore24\Api\Response\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Set Affiliate For Email Response
  *
- * Response object for the Affiliate API endpoint.
+ * Response object for creating or updating affiliate by email.
  */
 final class SetAffiliateForEmailResponse extends AbstractResponse
 {
-    public function __construct(private string $result)
-    {
+    /**
+     * Request result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function getResult(): string
-    {
-        return $this->result;
+    /**
+     * Affiliate ID
+     */
+    public ?int $affiliateId {
+        get => $this->affiliateId ?? null;
     }
 
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
+    /**
+     * Email address
+     */
+    public string $email {
+        get => $this->email ?? '';
+    }
+
+    /**
+     * First name
+     */
+    public ?string $firstName {
+        get => $this->firstName ?? null;
+    }
+
+    /**
+     * Last name
+     */
+    public ?string $lastName {
+        get => $this->lastName ?? null;
+    }
+
+    /**
+     * Affiliate code
+     */
+    public ?string $affiliateCode {
+        get => $this->affiliateCode ?? null;
+    }
+
+    /**
+     * Whether affiliate is active
+     */
+    public bool $isActive {
+        get => $this->isActive ?? false;
+    }
+
+    /**
+     * Creation timestamp
+     */
+    public ?\DateTimeInterface $createdAt {
+        get => $this->createdAt ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(result: self::extractResult($data, $rawResponse));
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->affiliateId = TypeConverter::toInt($innerData['affiliate_id'] ?? null);
+        $response->email = is_string($innerData['email'] ?? null) ? $innerData['email'] : '';
+        $response->firstName = is_string($innerData['first_name'] ?? null) ? $innerData['first_name'] : null;
+        $response->lastName = is_string($innerData['last_name'] ?? null) ? $innerData['last_name'] : null;
+        $response->affiliateCode = is_string($innerData['affiliate_code'] ?? null) ? $innerData['affiliate_code'] : null;
+        $response->isActive = (bool)($innerData['is_active'] ?? false);
+        $response->createdAt = TypeConverter::toDateTime($innerData['created_at'] ?? null);
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
