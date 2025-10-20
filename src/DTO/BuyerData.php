@@ -232,7 +232,7 @@ final class BuyerData extends AbstractDataTransferObject
      *
      * @param array<string, mixed> $data
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data): static
     {
         $salutation = null;
         if (isset($data['salutation']) && is_string($data['salutation'])) {

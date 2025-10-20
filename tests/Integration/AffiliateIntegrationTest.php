@@ -35,18 +35,14 @@ final class AffiliateIntegrationTest extends IntegrationTestCase
             'Test affiliate ID required for affiliate tests',
         );
 
-        $productId = $this->requireConfig(
-            'DS24_TEST_PRODUCT_ID',
-            'Test product ID required for affiliate tests',
-        );
-
         $request = new GetAffiliateCommissionRequest(
-            productId: (int)$productId,
             affiliateId: $affiliateId,
+            productIds: 'all',
         );
 
         $response = $this->client->affiliates->getCommission($request);
 
         $this->assertInstanceOf(GetAffiliateCommissionResponse::class, $response);
+        $this->assertSame($affiliateId, $response->affiliateId);
     }
 }

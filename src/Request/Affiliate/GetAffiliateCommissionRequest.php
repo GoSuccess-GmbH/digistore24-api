@@ -10,17 +10,17 @@ use GoSuccess\Digistore24\Api\Enum\HttpMethod;
 /**
  * Get Affiliate Commission Request
  *
- * Retrieves commission settings for a specific affiliate and product.
+ * Retrieves commission settings for a specific affiliate and product(s).
  */
 final class GetAffiliateCommissionRequest extends AbstractRequest
 {
     /**
-     * @param int $productId The product ID
      * @param string $affiliateId The affiliate ID
+     * @param string $productIds Product IDs (comma-separated) or "all" for all products
      */
     public function __construct(
-        private int $productId,
         private string $affiliateId,
+        private string $productIds = 'all',
     ) {
     }
 
@@ -37,8 +37,8 @@ final class GetAffiliateCommissionRequest extends AbstractRequest
     public function toArray(): array
     {
         return [
-            'product_id' => $this->productId,
             'affiliate_id' => $this->affiliateId,
+            'product_ids' => $this->productIds,
         ];
     }
 }

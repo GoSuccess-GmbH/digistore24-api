@@ -124,7 +124,7 @@ final class AffiliationData extends AbstractDataTransferObject
      *
      * @param array<string, mixed> $data
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data): static
     {
         $approvalStatus = AffiliateApprovalStatus::PENDING;
         if (isset($data['approval_status']) && is_string($data['approval_status'])) {

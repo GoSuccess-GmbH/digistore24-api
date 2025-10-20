@@ -12,8 +12,17 @@ final class GetAffiliateCommissionRequestTest extends TestCase
     public function test_can_create_instance_with_required_parameters(): void
     {
         $request = new GetAffiliateCommissionRequest(
-            productId: 12345,
-            affiliateId: 'ABC123',
+            affiliateId: 'GoSuccess',
+        );
+
+        $this->assertInstanceOf(GetAffiliateCommissionRequest::class, $request);
+    }
+
+    public function test_can_create_instance_with_product_ids(): void
+    {
+        $request = new GetAffiliateCommissionRequest(
+            affiliateId: 'GoSuccess',
+            productIds: '406040,406042',
         );
 
         $this->assertInstanceOf(GetAffiliateCommissionRequest::class, $request);
@@ -22,30 +31,39 @@ final class GetAffiliateCommissionRequestTest extends TestCase
     public function test_endpoint_returns_correct_value(): void
     {
         $request = new GetAffiliateCommissionRequest(
-            productId: 12345,
-            affiliateId: 'ABC123',
+            affiliateId: 'GoSuccess',
         );
 
         $this->assertSame('/getAffiliateCommission', $request->getEndpoint());
     }
 
-    public function test_to_array_returns_correct_data(): void
+    public function test_to_array_returns_correct_data_with_default_product_ids(): void
     {
         $request = new GetAffiliateCommissionRequest(
-            productId: 12345,
-            affiliateId: 'ABC123',
+            affiliateId: 'GoSuccess',
         );
 
         $array = $request->toArray();
-        $this->assertSame(12345, $array['product_id']);
-        $this->assertSame('ABC123', $array['affiliate_id']);
+        $this->assertSame('GoSuccess', $array['affiliate_id']);
+        $this->assertSame('all', $array['product_ids']);
+    }
+
+    public function test_to_array_returns_correct_data_with_specific_product_ids(): void
+    {
+        $request = new GetAffiliateCommissionRequest(
+            affiliateId: 'GoSuccess',
+            productIds: '406040,406042,406043',
+        );
+
+        $array = $request->toArray();
+        $this->assertSame('GoSuccess', $array['affiliate_id']);
+        $this->assertSame('406040,406042,406043', $array['product_ids']);
     }
 
     public function test_validate_returns_empty_array_for_valid_data(): void
     {
         $request = new GetAffiliateCommissionRequest(
-            productId: 12345,
-            affiliateId: 'ABC123',
+            affiliateId: 'GoSuccess',
         );
 
         $errors = $request->validate();
