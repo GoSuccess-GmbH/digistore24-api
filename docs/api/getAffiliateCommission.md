@@ -39,6 +39,30 @@ GET /getAffiliateCommission
 | `approval_status` | string | Approval status: "new", "approved", "rejected", "pending" |
 | `approval_status_msg` | string | Human-readable approval status message |
 
+## Response Structure (PHP)
+
+```php
+GetAffiliateCommissionResponse {
+  +affiliations: array<AffiliationData> [
+    AffiliationData {
+      +commissionRate: string
+      +commissionCurrency: string
+      +defaultCommissionRate: string
+      +defaultCommissionFix: string
+      +defaultCommissionCurrency: string
+      +commissionFix: string
+      +isOnFirstPmntOnly: bool
+      +productId: string
+      +productIsActive: bool
+      +approvalStatus: AffiliateApprovalStatus
+      +approvalStatusMsg: string
+    }
+  ]
+  +affiliateId: string
+  +affiliateName: string
+}
+```
+
 ## Usage Example
 
 ```php
@@ -74,6 +98,14 @@ $request = new GetAffiliateCommissionRequest(
 );
 $response = $api->affiliate()->getCommission($request);
 ```
+
+## Error Responses
+
+| Code | Message | Description |
+|------|---------|-------------|
+| 401 | Unauthorized | Invalid or missing API key |
+| 403 | Forbidden | Insufficient access rights |
+| 404 | Not found | Affiliate not found |
 
 ## Notes
 

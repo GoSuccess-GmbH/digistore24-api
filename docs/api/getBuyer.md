@@ -5,42 +5,73 @@ Get detailed information about a buyer.
 ## Endpoint
 
 ```
-POST /json/getBuyer
+GET /getBuyer
 ```
 
 ## Request Parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `email` | string | Yes* | Buyer's email address |
-| `buyer_id` | int | Yes* | Buyer's ID |
+| `buyer_id` | string | Yes | Buyer ID or email address |
 
-*One of `email` or `buyer_id` is required.
+## Response Fields
 
-## Response
+| Field | Type | Description |
+|-------|------|-------------|
+| `buyer` | object | Buyer data object |
+
+### Buyer Object
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Buyer ID |
+| `address_id` | string | Address ID |
+| `email` | string | Email address |
+| `salutation` | string | Salutation code (M, F, or empty) |
+| `salutation_msg` | string | Salutation message |
+| `title` | string | Academic or professional title |
+| `first_name` | string | First name |
+| `last_name` | string | Last name |
+| `company` | string | Company name |
+| `street` | string | Full street address |
+| `street_name` | string | Street name (without number) |
+| `street_number` | string | Street number |
+| `street2` | string | Additional address line |
+| `zipcode` | string | ZIP/Postal code |
+| `city` | string | City name |
+| `state` | string | State/Province |
+| `country` | string | Country code (ISO 3166-1 alpha-2) |
+| `phone_no` | string | Phone number |
+| `buyer_type` | string | Buyer type: "business", "consumer", "common", "vendor" |
+| `created_at` | string | Creation timestamp (YYYY-MM-DD HH:MM:SS) |
+
+## Response Structure (PHP)
 
 ```php
-[
-    'result' => 'success',
-    'data' => [
-        'buyer_id' => 12345,
-        'email' => 'buyer@example.com',
-        'first_name' => 'John',
-        'last_name' => 'Doe',
-        'company' => 'Acme Corp',
-        'street' => '123 Main St',
-        'zipcode' => '12345',
-        'city' => 'Berlin',
-        'state' => 'Berlin',
-        'country' => 'DE',
-        'phone' => '+49 30 12345678',
-        'language' => 'de',
-        'created_at' => '2024-01-15 10:30:00',
-        'total_purchases' => 5,
-        'total_amount' => 499.95,
-        'is_affiliate' => false
-    ]
-]
+GetBuyerResponse {
+  +buyer: BuyerData {
+    +id: ?int
+    +addressId: ?int
+    +email: string
+    +salutation: ?Salutation
+    +salutationMsg: ?string
+    +title: ?string
+    +firstName: ?string
+    +lastName: ?string
+    +company: ?string
+    +street: ?string
+    +streetName: ?string
+    +streetNumber: ?string
+    +street2: ?string
+    +zipcode: ?string
+    +city: ?string
+    +state: ?string
+    +country: ?string
+    +phoneNo: ?string
+    +buyerType: ?BuyerType
+    +createdAt: ?DateTimeImmutable
+  }
+}
 ```
 
 ## Usage Example
@@ -48,37 +79,40 @@ POST /json/getBuyer
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Request\Buyer\GetBuyerRequest;
 
-// Initialize API client
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
+// Get buyer by ID
+$request = new GetBuyerRequest(buyerId: '18141656');
+$response = $api->buyer()->get($request);
+
+// Access buyer data
+$buyer = $response->buyer;
+echo "Buyer: {$buyer->firstName} {$buyer->lastName}\n";
+echo "Email: {$buyer->email}\n";
+echo "Company: {$buyer->company}\n";
+echo "Type: {$buyer->buyerType?->value}\n";
+echo "Created: {$buyer->createdAt?->format('Y-m-d H:i:s')}\n";
+
 // Get buyer by email
-$response = $api->buyer()->getBuyer(
-    email: 'buyer@example.com'
-);
-
-echo "Buyer: {$response->firstName} {$response->lastName}";
-echo "Total purchases: {$response->totalPurchases}";
-echo "Total amount: € {$response->totalAmount}";
-
-// Or get buyer by ID
-$response = $api->buyer()->getBuyer(
-    buyerId: 12345
-);
+$request = new GetBuyerRequest(buyerId: 'paul@gosuccess.io');
+$response = $api->buyer()->get($request);
 ```
 
 ## Error Responses
 
 | Code | Message | Description |
 |------|---------|-------------|
-| 400 | Missing parameter | Neither email nor buyer_id provided |
-| 404 | Buyer not found | Buyer does not exist |
-| 403 | Access denied | Not authorized to access buyer data |
+| 401 | Unauthorized | Invalid or missing API key |
+| 403 | Forbidden | Insufficient access rights |
+| 404 | Not found | Buyer with specified ID does not exist |
 
 ## Notes
 
-- Returns comprehensive buyer information including purchase history
-- Can be used for customer support and analytics
-- Supports lookup by email or buyer ID
-- Includes affiliate status if applicable
+- Accepts buyer ID or email address as `buyer_id` parameter
+- Returns comprehensive buyer and address information
+- Country codes follow ISO 3166-1 alpha-2 standard
+- Buyer type indicates whether buyer is business or consumer
+- Created timestamp is in the format YYYY-MM-DD HH:MM:SS

@@ -29,7 +29,7 @@ final class GetBuyerRequest extends AbstractRequest
 
     public function method(): HttpMethod
     {
-        return HttpMethod::POST;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array

@@ -31,7 +31,7 @@ final class GetAffiliateCommissionRequest extends AbstractRequest
 
     public function method(): HttpMethod
     {
-        return HttpMethod::POST;
+        return HttpMethod::GET;
     }
 
     public function toArray(): array
