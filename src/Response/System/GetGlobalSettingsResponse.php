@@ -9,114 +9,160 @@ use GoSuccess\Digistore24\Api\Http\Response;
 
 /**
  * Response containing global Digistore24 settings.
- *
- * @see https://digistore24.com/api/docs/paths/getGlobalSettings.yaml
  */
 final class GetGlobalSettingsResponse extends AbstractResponse
 {
     /**
-     * @param array<string, array{label: string, limits: array{max_file_size_kb: int, min_width: int, max_width: int, min_height: int, max_height: int}, limits_msg: string}> $imageMetas
-     * @param array<string, array<string, string>> $types
+     * Request result status
      */
-    public function __construct(
-        private array $imageMetas,
-        private array $types,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * Get image metadata for different image types.
+     * Available product types
      *
-     * @return array<string, array{label: string, limits: array{max_file_size_kb: int, min_width: int, max_width: int, min_height: int, max_height: int}, limits_msg: string}>
+     * @var array<array{id: int, name: string}>
      */
-    public function getImageMetas(): array
-    {
-        return $this->imageMetas;
+    public array $productTypes {
+        get => $this->productTypes ?? [];
     }
 
     /**
-     * Get available values for various system fields.
+     * Available countries
      *
-     * @return array<string, array<string, string>>
+     * @var array<array{code: string, name: string}>
      */
-    public function getTypes(): array
-    {
-        return $this->types;
+    public array $countries {
+        get => $this->countries ?? [];
     }
 
     /**
-     * Get image metadata for a specific image type.
+     * Available currencies
      *
-     * @param string $imageType
-     * @return array{label: string, limits: array{max_file_size_kb: int, min_width: int, max_width: int, min_height: int, max_height: int}, limits_msg: string}|null
+     * @var array<array{code: string, symbol: string, name: string}>
      */
-    public function getImageMetaForType(string $imageType): ?array
-    {
-        return $this->imageMetas[$imageType] ?? null;
+    public array $currencies {
+        get => $this->currencies ?? [];
     }
 
     /**
-     * Get available values for a specific system field type.
+     * Available languages
      *
-     * @param string $fieldType
-     * @return array<string, string>|null
+     * @var array<array{code: string, name: string}>
      */
-    public function getTypesForField(string $fieldType): ?array
-    {
-        return $this->types[$fieldType] ?? null;
+    public array $languages {
+        get => $this->languages ?? [];
     }
 
     /**
-     * {@inheritDoc}
+     * Available payment methods
+     *
+     * @var array<string>
      */
+    public array $paymentMethods {
+        get => $this->paymentMethods ?? [];
+    }
+
+    /**
+     * VAT rates by country code
+     *
+     * @var array<string, float>
+     */
+    public array $vatRates {
+        get => $this->vatRates ?? [];
+    }
+
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $imageMetas = [];
-        $imageMetasData = $data['image_metas'] ?? [];
-        if (is_array($imageMetasData)) {
-            foreach ($imageMetasData as $key => $meta) {
-                if (! is_array($meta) || ! is_string($key)) {
-                    continue;
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+
+        // Product types
+        $productTypes = [];
+        if (isset($innerData['product_types']) && is_array($innerData['product_types'])) {
+            foreach ($innerData['product_types'] as $type) {
+                if (is_array($type) && isset($type['id'], $type['name']) && is_int($type['id']) && is_string($type['name'])) {
+                    $productTypes[] = [
+                        'id' => $type['id'],
+                        'name' => $type['name'],
+                    ];
                 }
-
-                $label = $meta['label'] ?? '';
-                $limits = $meta['limits'] ?? [];
-                $limitsMsg = $meta['limits_msg'] ?? '';
-
-                if (! is_array($limits)) {
-                    $limits = [];
-                }
-
-                $maxFileSizeKb = $limits['max_file_size_kb'] ?? 0;
-                $minWidth = $limits['min_width'] ?? 0;
-                $maxWidth = $limits['max_width'] ?? 0;
-                $minHeight = $limits['min_height'] ?? 0;
-                $maxHeight = $limits['max_height'] ?? 0;
-
-                $imageMetas[$key] = [
-                    'label' => is_string($label) ? $label : '',
-                    'limits' => [
-                        'max_file_size_kb' => is_int($maxFileSizeKb) ? $maxFileSizeKb : 0,
-                        'min_width' => is_int($minWidth) ? $minWidth : 0,
-                        'max_width' => is_int($maxWidth) ? $maxWidth : 0,
-                        'min_height' => is_int($minHeight) ? $minHeight : 0,
-                        'max_height' => is_int($maxHeight) ? $maxHeight : 0,
-                    ],
-                    'limits_msg' => is_string($limitsMsg) ? $limitsMsg : '',
-                ];
             }
         }
+        $response->productTypes = $productTypes;
 
-        $types = $data['types'] ?? [];
-        if (! is_array($types)) {
-            $types = [];
+        // Countries
+        $countries = [];
+        if (isset($innerData['countries']) && is_array($innerData['countries'])) {
+            foreach ($innerData['countries'] as $country) {
+                if (is_array($country) && isset($country['code'], $country['name']) && is_string($country['code']) && is_string($country['name'])) {
+                    $countries[] = [
+                        'code' => $country['code'],
+                        'name' => $country['name'],
+                    ];
+                }
+            }
         }
-        /** @var array<string, array<string, string>> $validatedTypes */
-        $validatedTypes = $types;
+        $response->countries = $countries;
 
-        return new self(
-            imageMetas: $imageMetas,
-            types: $validatedTypes,
-        );
+        // Currencies
+        $currencies = [];
+        if (isset($innerData['currencies']) && is_array($innerData['currencies'])) {
+            foreach ($innerData['currencies'] as $currency) {
+                if (is_array($currency) && isset($currency['code'], $currency['symbol'], $currency['name']) && is_string($currency['code']) && is_string($currency['symbol']) && is_string($currency['name'])) {
+                    $currencies[] = [
+                        'code' => $currency['code'],
+                        'symbol' => $currency['symbol'],
+                        'name' => $currency['name'],
+                    ];
+                }
+            }
+        }
+        $response->currencies = $currencies;
+
+        // Languages
+        $languages = [];
+        if (isset($innerData['languages']) && is_array($innerData['languages'])) {
+            foreach ($innerData['languages'] as $language) {
+                if (is_array($language) && isset($language['code'], $language['name']) && is_string($language['code']) && is_string($language['name'])) {
+                    $languages[] = [
+                        'code' => $language['code'],
+                        'name' => $language['name'],
+                    ];
+                }
+            }
+        }
+        $response->languages = $languages;
+
+        // Payment methods
+        $paymentMethods = [];
+        if (isset($innerData['payment_methods']) && is_array($innerData['payment_methods'])) {
+            foreach ($innerData['payment_methods'] as $method) {
+                if (is_string($method)) {
+                    $paymentMethods[] = $method;
+                }
+            }
+        }
+        $response->paymentMethods = $paymentMethods;
+
+        // VAT rates
+        $vatRates = [];
+        if (isset($innerData['vat_rates']) && is_array($innerData['vat_rates'])) {
+            foreach ($innerData['vat_rates'] as $countryCode => $rate) {
+                if (is_string($countryCode) && (is_float($rate) || is_int($rate))) {
+                    $vatRates[$countryCode] = (float)$rate;
+                }
+            }
+        }
+        $response->vatRates = $vatRates;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
