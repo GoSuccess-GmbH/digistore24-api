@@ -17,80 +17,64 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreateBillingOnDemandResponse extends AbstractResponse
 {
-    public function __construct(
-        private string $createdPurchaseId,
-        private string $paymentStatus,
-        private string $paymentStatusMsg,
-        private string $billingStatus,
-        private string $billingStatusMsg,
-    ) {
+    /**
+     * Request result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * Get the ID of the newly created order.
+     * The ID of the newly created order
      */
-    public function getCreatedPurchaseId(): string
-    {
-        return $this->createdPurchaseId;
+    public string $createdPurchaseId {
+        get => $this->createdPurchaseId ?? '';
     }
 
     /**
-     * Get the payment status code.
+     * Payment status code
      */
-    public function getPaymentStatus(): string
-    {
-        return $this->paymentStatus;
+    public string $paymentStatus {
+        get => $this->paymentStatus ?? '';
     }
 
     /**
-     * Get the payment status in readable form.
+     * Payment status in readable form
      */
-    public function getPaymentStatusMsg(): string
-    {
-        return $this->paymentStatusMsg;
+    public string $paymentStatusMsg {
+        get => $this->paymentStatusMsg ?? '';
     }
 
     /**
-     * Get the billing status code.
+     * Billing status code
      */
-    public function getBillingStatus(): string
-    {
-        return $this->billingStatus;
+    public string $billingStatus {
+        get => $this->billingStatus ?? '';
     }
 
     /**
-     * Get the billing status in readable form.
+     * Billing status in readable form
      */
-    public function getBillingStatusMsg(): string
-    {
-        return $this->billingStatusMsg;
+    public string $billingStatusMsg {
+        get => $this->billingStatusMsg ?? '';
     }
 
-    /**
-     * Check if the billing was successful.
-     */
-    public function wasSuccessful(): bool
-    {
-        return $this->billingStatus === 'completed' || $this->billingStatus === 'success';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $createdPurchaseId = $data['created_purchase_id'] ?? '';
-        $paymentStatus = $data['payment_status'] ?? '';
-        $paymentStatusMsg = $data['payment_status_msg'] ?? '';
-        $billingStatus = $data['billing_status'] ?? '';
-        $billingStatusMsg = $data['billing_status_msg'] ?? '';
+        $innerData = self::extractInnerData(data: $data);
 
-        return new self(
-            createdPurchaseId: is_string($createdPurchaseId) ? $createdPurchaseId : '',
-            paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',
-            paymentStatusMsg: is_string($paymentStatusMsg) ? $paymentStatusMsg : '',
-            billingStatus: is_string($billingStatus) ? $billingStatus : '',
-            billingStatusMsg: is_string($billingStatusMsg) ? $billingStatusMsg : '',
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->createdPurchaseId = is_string($innerData['created_purchase_id'] ?? null) ? $innerData['created_purchase_id'] : '';
+        $response->paymentStatus = is_string($innerData['payment_status'] ?? null) ? $innerData['payment_status'] : '';
+        $response->paymentStatusMsg = is_string($innerData['payment_status_msg'] ?? null) ? $innerData['payment_status_msg'] : '';
+        $response->billingStatus = is_string($innerData['billing_status'] ?? null) ? $innerData['billing_status'] : '';
+        $response->billingStatusMsg = is_string($innerData['billing_status_msg'] ?? null) ? $innerData['billing_status_msg'] : '';
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

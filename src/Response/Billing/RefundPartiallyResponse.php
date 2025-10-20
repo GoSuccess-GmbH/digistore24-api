@@ -18,60 +18,21 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class RefundPartiallyResponse extends AbstractResponse
 {
     /**
-     * @param string $result Result status of the refund
-     * @param array<string, mixed> $data Additional response data
+     * Request result status
      */
-    public function __construct(
-        private string $result,
-        private array $data,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    /**
-     * Get the result status.
-     */
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get additional response data.
-     *
-     * @return array<string, mixed>
-     */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    /**
-     * Check if the partial refund was successful.
-     */
-    public function wasSuccessful(): bool
-    {
-        return strtolower($this->result) === 'success'
-            || strtolower($this->result) === 'ok';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $result = $data['result'] ?? 'unknown';
-        $responseData = $data['data'] ?? [];
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
 
-        if (! is_array($responseData)) {
-            $responseData = [];
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
         }
 
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
-
-        return new self(
-            result: is_string($result) ? $result : 'unknown',
-            data: $validatedData,
-        );
+        return $response;
     }
 }
