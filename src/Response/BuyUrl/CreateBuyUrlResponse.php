@@ -4,46 +4,69 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Response\BuyUrl;
 
+use DateTimeImmutable;
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Create Buy URL Response
  *
  * Response object for createBuyUrl endpoint.
- * Uses PHP 8.4 property hooks for automatic type conversion.
+ * Returns the created BuyUrl ID, URL, expiration, and upgrade status.
  *
  * @link https://digistore24.com/api/docs/paths/createBuyUrl.yaml
  */
 final class CreateBuyUrlResponse extends AbstractResponse
 {
-    public ?string $id = null;
+    /**
+     * ID of the BuyUrl object
+     */
+    public ?string $id = null {
+        get => $this->id;
+    }
 
-    public ?string $url = null;
+    /**
+     * Order URL for purchase
+     */
+    public ?string $url = null {
+        get => $this->url;
+    }
 
-    public ?\DateTimeImmutable $validUntil = null;
+    /**
+     * Expiration date of the URL
+     */
+    public ?DateTimeImmutable $validUntil = null {
+        get => $this->validUntil;
+    }
 
-    public ?string $upgradeStatus = null;
+    /**
+     * Status of upgrade possibility (none, ok, error)
+     */
+    public ?string $upgradeStatus = null {
+        get => $this->upgradeStatus;
+    }
 
     /**
      * Create response from array data
+     *
+     * @param array<string, mixed> $data
      */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $response = new self();
+        $instance = new self();
 
-        $id = self::getValue($data, 'id', 'string', null);
-        $response->id = is_string($id) ? $id : null;
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
 
-        $url = self::getValue($data, 'url', 'string', null);
-        $response->url = is_string($url) ? $url : null;
+        $innerData = self::extractInnerData(data: $data);
 
-        $validUntil = self::getValue($data, 'valid_until', 'datetime_immutable', null);
-        $response->validUntil = $validUntil instanceof \DateTimeImmutable ? $validUntil : null;
+        $instance->id = isset($innerData['id']) && is_string($innerData['id']) ? $innerData['id'] : null;
+        $instance->url = isset($innerData['url']) && is_string($innerData['url']) ? $innerData['url'] : null;
+        $instance->validUntil = TypeConverter::toDateTime(value: $innerData['valid_until'] ?? null);
+        $instance->upgradeStatus = isset($innerData['upgrade_status']) && is_string($innerData['upgrade_status']) ? $innerData['upgrade_status'] : null;
 
-        $upgradeStatus = self::getValue($data, 'upgrade_status', 'string', null);
-        $response->upgradeStatus = is_string($upgradeStatus) ? $upgradeStatus : null;
-
-        return $response;
+        return $instance;
     }
 }
