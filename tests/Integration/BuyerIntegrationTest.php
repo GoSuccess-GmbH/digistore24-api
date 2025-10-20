@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Tests\Integration;
 
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 use GoSuccess\Digistore24\Api\Request\Buyer\GetBuyerRequest;
 use GoSuccess\Digistore24\Api\Request\Buyer\ListBuyersRequest;
 use GoSuccess\Digistore24\Api\Response\Buyer\GetBuyerResponse;
@@ -41,7 +42,8 @@ final class BuyerIntegrationTest extends IntegrationTestCase
         $response = $this->client->buyers->get($request);
 
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
-        $this->assertNotEmpty($response->getData());
+        $this->assertInstanceOf(BuyerData::class, $response->buyer);
+        $this->assertNotEmpty($response->buyer->email);
     }
 
     /**
