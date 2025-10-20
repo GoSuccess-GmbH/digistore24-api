@@ -5,36 +5,62 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\Voucher;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\DTO\VoucherData;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * List Vouchers Response
  *
- * Response object for the Voucher API endpoint.
+ * Response object for the listVouchers API endpoint.
+ * Returns a list of all vouchers/coupons.
  */
 final class ListVouchersResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $vouchers */
-    public function __construct(private array $vouchers)
-    {
+    /**
+     * List of vouchers
+     *
+     * @var array<int, VoucherData>
+     */
+    public array $coupons {
+        get => $this->coupons;
     }
 
-    /** @return array<string, mixed> */
-    public function getVouchers(): array
-    {
-        return $this->vouchers;
+    /**
+     * Whether returned data is public
+     */
+    public bool $areReturnedDataPublic {
+        get => $this->areReturnedDataPublic;
     }
 
+    /**
+     * Create response from API data
+     *
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
-        $vouchersData = $innerData['vouchers'] ?? [];
-        if (! is_array($vouchersData)) {
-            $vouchersData = [];
-        }
-        /** @var array<string, mixed> $validatedVouchers */
-        $validatedVouchers = $vouchersData;
+        $instance = new self();
 
-        return new self(vouchers: $validatedVouchers);
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        $innerData = self::extractInnerData(data: $data);
+        $couponsData = is_array($innerData['coupons'] ?? null) ? $innerData['coupons'] : [];
+
+        $coupons = [];
+        foreach ($couponsData as $couponData) {
+            if (is_array($couponData)) {
+                /** @var array<string, mixed> $validCouponData */
+                $validCouponData = $couponData;
+                $coupons[] = VoucherData::fromArray(data: $validCouponData);
+            }
+        }
+        $instance->coupons = $coupons;
+
+        $instance->areReturnedDataPublic = TypeConverter::toBool(value: $innerData['are_returned_data_public'] ?? 'N') ?? false;
+
+        return $instance;
     }
 }
