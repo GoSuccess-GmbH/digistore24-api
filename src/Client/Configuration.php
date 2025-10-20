@@ -27,14 +27,14 @@ final class Configuration
     /**
      * Base URL for the API (automatically trimmed)
      */
-    public string $baseUrl {
+    public string $baseUrl = 'https://www.digistore24.com' {
         set => rtrim($value, '/');
     }
 
     /**
      * Request timeout in seconds (minimum 1)
      */
-    public int $timeout {
+    public int $timeout = 30 {
         set {
             if ($value < 1) {
                 throw new \InvalidArgumentException('Timeout must be at least 1 second');
@@ -46,7 +46,7 @@ final class Configuration
     /**
      * Maximum number of retry attempts (minimum 0)
      */
-    public int $maxRetries {
+    public int $maxRetries = 3 {
         set {
             if ($value < 0) {
                 throw new \InvalidArgumentException('Max retries cannot be negative');
@@ -58,7 +58,7 @@ final class Configuration
     /**
      * Enable debug mode with detailed logging
      */
-    public bool $debug;
+    public bool $debug = false;
 
     /**
      * Full API endpoint URL (computed property)
@@ -67,17 +67,8 @@ final class Configuration
         get => $this->baseUrl . '/api/call';
     }
 
-    public function __construct(
-        string $apiKey,
-        string $baseUrl = 'https://www.digistore24.com',
-        int $timeout = 30,
-        int $maxRetries = 3,
-        bool $debug = false,
-    ) {
+    public function __construct(string $apiKey)
+    {
         $this->apiKey = $apiKey;
-        $this->baseUrl = $baseUrl;
-        $this->timeout = $timeout;
-        $this->maxRetries = $maxRetries;
-        $this->debug = $debug;
     }
 }
