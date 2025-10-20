@@ -26,7 +26,7 @@ final class GetDeliveryRequest extends AbstractRequest
 
     public function getEndpoint(): string
     {
-        return '/api/getDelivery';
+        return '/getDelivery';
     }
 
     public function getMethod(): HttpMethod
