@@ -4,40 +4,69 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Response\System;
 
+use DateTimeImmutable;
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Response from pinging the Digistore24 server.
  *
- * @see https://digistore24.com/api/docs/paths/ping.yaml
+ * Contains server time, API version, and runtime information.
  */
 final class PingResponse extends AbstractResponse
 {
+    /**
+     * API version
+     */
+    public string $apiVersion = '' {
+        get => $this->apiVersion;
+    }
+
+    /**
+     * Current server time
+     */
+    public ?DateTimeImmutable $currentTime = null {
+        get => $this->currentTime;
+    }
+
+    /**
+     * Runtime in seconds
+     */
+    public float $runtimeSeconds = 0.0 {
+        get => $this->runtimeSeconds;
+    }
+
+    /**
+     * Result status
+     */
+    public string $result = '' {
+        get => $this->result;
+    }
+
+    /**
+     * Server time from data field
+     */
+    public ?DateTimeImmutable $serverTime = null {
+        get => $this->serverTime;
+    }
+
     public function __construct(
-        private string $result,
-        private string $serverTime,
+        string $apiVersion = '',
+        ?DateTimeImmutable $currentTime = null,
+        float $runtimeSeconds = 0.0,
+        string $result = '',
+        ?DateTimeImmutable $serverTime = null,
     ) {
+        $this->apiVersion = $apiVersion;
+        $this->currentTime = $currentTime;
+        $this->runtimeSeconds = $runtimeSeconds;
+        $this->result = $result;
+        $this->serverTime = $serverTime;
     }
 
     /**
-     * Get result status.
-     */
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    /**
-     * Get server time.
-     */
-    public function getServerTime(): string
-    {
-        return $this->serverTime;
-    }
-
-    /**
-     * Check if ping was successful.
+     * Check if ping was successful
      */
     public function wasSuccessful(): bool
     {
@@ -45,17 +74,24 @@ final class PingResponse extends AbstractResponse
             || strtolower($this->result) === 'ok';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        // For ping, we need top-level fields from rawResponse if available
+        $topLevel = $rawResponse !== null ? $rawResponse->data : $data;
         $innerData = self::extractInnerData($data);
-        $serverTime = $innerData['server_time'] ?? '';
 
-        return new self(
+        $instance = new self(
+            apiVersion: TypeConverter::toString($topLevel['api_version'] ?? null) ?? '',
+            currentTime: TypeConverter::toDateTime($topLevel['current_time'] ?? null),
+            runtimeSeconds: TypeConverter::toFloat($topLevel['runtime_seconds'] ?? null) ?? 0.0,
             result: self::extractResult($data, $rawResponse),
-            serverTime: is_string($serverTime) ? $serverTime : '',
+            serverTime: TypeConverter::toDateTime($innerData['server_time'] ?? null),
         );
+
+        if ($rawResponse !== null) {
+            $instance->rawResponse = $rawResponse;
+        }
+
+        return $instance;
     }
 }

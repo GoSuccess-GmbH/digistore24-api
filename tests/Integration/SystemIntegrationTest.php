@@ -34,6 +34,7 @@ final class SystemIntegrationTest extends IntegrationTestCase
 
         $this->assertInstanceOf(PingResponse::class, $response);
         $this->assertTrue($response->wasSuccessful());
-        $this->assertNotEmpty($response->getServerTime());
+        $this->assertNotEmpty($response->apiVersion);
+        $this->assertInstanceOf(\DateTimeInterface::class, $response->serverTime);
     }
 }
