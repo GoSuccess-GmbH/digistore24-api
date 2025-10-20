@@ -6,28 +6,105 @@ namespace GoSuccess\Digistore24\Api\Response\Affiliate;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Get Affiliate For Email Response
  *
- * Response object for the Affiliate API endpoint.
+ * Response object for retrieving affiliate information by email.
  */
 final class GetAffiliateForEmailResponse extends AbstractResponse
 {
-    public function __construct(private ?string $affiliateId)
-    {
+    /**
+     * Request result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function getAffiliateId(): ?string
-    {
-        return $this->affiliateId;
+    /**
+     * Affiliate ID
+     */
+    public ?int $affiliateId {
+        get => $this->affiliateId ?? null;
+    }
+
+    /**
+     * Affiliate email
+     */
+    public string $email {
+        get => $this->email ?? '';
+    }
+
+    /**
+     * First name
+     */
+    public ?string $firstName {
+        get => $this->firstName ?? null;
+    }
+
+    /**
+     * Last name
+     */
+    public ?string $lastName {
+        get => $this->lastName ?? null;
+    }
+
+    /**
+     * Affiliate code
+     */
+    public ?string $affiliateCode {
+        get => $this->affiliateCode ?? null;
+    }
+
+    /**
+     * Whether affiliate is active
+     */
+    public bool $isActive {
+        get => $this->isActive ?? false;
+    }
+
+    /**
+     * Commission balance
+     */
+    public ?float $commissionBalance {
+        get => $this->commissionBalance ?? null;
+    }
+
+    /**
+     * Total sales
+     */
+    public ?float $totalSales {
+        get => $this->totalSales ?? null;
+    }
+
+    /**
+     * Account creation date
+     */
+    public ?\DateTimeInterface $createdAt {
+        get => $this->createdAt ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
-        $affiliateId = $innerData['affiliate_id'] ?? null;
+        $innerData = self::extractInnerData(data: $data);
 
-        return new self(affiliateId: is_string($affiliateId) ? $affiliateId : null);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->affiliateId = TypeConverter::toInt($innerData['affiliate_id'] ?? null);
+        $response->email = is_string($innerData['email'] ?? null) ? $innerData['email'] : '';
+        $response->firstName = is_string($innerData['first_name'] ?? null) ? $innerData['first_name'] : null;
+        $response->lastName = is_string($innerData['last_name'] ?? null) ? $innerData['last_name'] : null;
+        $response->affiliateCode = is_string($innerData['affiliate_code'] ?? null) ? $innerData['affiliate_code'] : null;
+        $response->isActive = (bool)($innerData['is_active'] ?? false);
+        $response->commissionBalance = TypeConverter::toFloat($innerData['commission_balance'] ?? null);
+        $response->totalSales = TypeConverter::toFloat($innerData['total_sales'] ?? null);
+        $response->createdAt = TypeConverter::toDateTime($innerData['created_at'] ?? null);
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
