@@ -14,24 +14,20 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListServiceProofRequestsResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $serviceProofRequests
-     */
-    public function __construct(private array $serviceProofRequests)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * @var array<string, mixed>
      */
-    public function getServiceProofRequests(): array
-    {
-        return $this->serviceProofRequests;
+    public array $serviceProofRequests {
+        get => $this->serviceProofRequests ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $serviceProofRequests = $innerData['service_proof_requests'] ?? [];
 
         if (! is_array($serviceProofRequests)) {
@@ -41,6 +37,14 @@ final class ListServiceProofRequestsResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedRequests */
         $validatedRequests = $serviceProofRequests;
 
-        return new self(serviceProofRequests: $validatedRequests);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->serviceProofRequests = $validatedRequests;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
