@@ -56,7 +56,7 @@ final class GetAffiliateForEmailResponseTest extends TestCase
                     'is_active' => false,
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -76,7 +76,7 @@ final class GetAffiliateForEmailResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['affiliate_id' => 123, 'email' => 'test@test.com'],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

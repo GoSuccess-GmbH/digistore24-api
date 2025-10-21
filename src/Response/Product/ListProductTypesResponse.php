@@ -75,7 +75,15 @@ final class ListProductTypesResponse extends AbstractResponse
     {
         // API returns array of product type objects directly
         $productTypes = [];
-        foreach ($data as $item) {
+
+        // Check if $data is an indexed array (list of product types)
+        // or an associative array (wrapped response)
+        $items = $data;
+        if (isset($data['data']) && is_array($data['data'])) {
+            $items = $data['data'];
+        }
+
+        foreach ($items as $item) {
             if (! is_array($item)) {
                 continue;
             }

@@ -51,7 +51,7 @@ final class ValidateAffiliateResponseTest extends TestCase
                     'name' => 'Jane Smith',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -92,7 +92,7 @@ final class ValidateAffiliateResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['valid' => true, 'affiliate_id' => 123],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

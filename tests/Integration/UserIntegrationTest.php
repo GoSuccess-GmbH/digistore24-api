@@ -33,8 +33,6 @@ final class UserIntegrationTest extends IntegrationTestCase
         $response = $this->client->users->getInfo(new GetUserInfoRequest());
 
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
-
-        $userInfo = $response->getUserInfo();
-        $this->assertNotEmpty($userInfo);
+        $this->assertNotEmpty($response->userInfo);
     }
 }

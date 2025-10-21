@@ -109,7 +109,7 @@ final class ListVouchersResponseTest extends TestCase
                     'are_returned_data_public' => 'Y',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -133,7 +133,7 @@ final class ListVouchersResponseTest extends TestCase
                     'are_returned_data_public' => 'N',
                 ],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

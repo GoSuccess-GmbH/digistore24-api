@@ -75,7 +75,7 @@ final class UpdateVoucherResponseTest extends TestCase
                     'modified' => 'Y',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -99,7 +99,7 @@ final class UpdateVoucherResponseTest extends TestCase
                     'modified' => 'N',
                 ],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

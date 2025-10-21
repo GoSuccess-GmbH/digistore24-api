@@ -49,7 +49,7 @@ final class GetReferringAffiliateResponseTest extends TestCase
                     'commission_earned' => 25.50,
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -87,7 +87,7 @@ final class GetReferringAffiliateResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['affiliate_id' => 123],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

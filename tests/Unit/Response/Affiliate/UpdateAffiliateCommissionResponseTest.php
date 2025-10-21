@@ -49,7 +49,7 @@ final class UpdateAffiliateCommissionResponseTest extends TestCase
                     'updated_at' => '2025-10-15 14:30:00',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -91,7 +91,7 @@ final class UpdateAffiliateCommissionResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['product_id' => 123, 'is_affiliate_enabled' => true],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

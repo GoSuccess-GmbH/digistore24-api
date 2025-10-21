@@ -12,12 +12,12 @@ final class ListProductTypesResponseTest extends TestCase
 {
     public function test_can_create_from_array(): void
     {
-        $data = [
+        // @phpstan-ignore argument.type
+        $response = ListProductTypesResponse::fromArray([
             ['id' => 1, 'name' => 'Digital Product', 'category' => 'digital'],
             ['id' => 2, 'name' => 'Physical Product', 'category' => 'physical'],
             ['id' => 3, 'name' => 'Service', 'category' => 'service'],
-        ];
-        $response = ListProductTypesResponse::fromArray($data);
+        ]);
 
         $this->assertInstanceOf(ListProductTypesResponse::class, $response);
         $this->assertCount(3, $response->productTypes);

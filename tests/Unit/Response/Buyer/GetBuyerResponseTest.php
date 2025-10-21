@@ -84,6 +84,7 @@ final class GetBuyerResponseTest extends TestCase
         $response = GetBuyerResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
+        $this->assertInstanceOf(BuyerData::class, $response->buyer);
         $this->assertSame(123, $response->buyer->id);
         $this->assertSame('buyer@example.com', $response->buyer->email);
         $this->assertSame('John', $response->buyer->firstName);

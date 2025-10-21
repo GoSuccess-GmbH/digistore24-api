@@ -29,7 +29,7 @@ final class CreateBuyUrlResponseTest extends TestCase
         $this->assertSame('BU12345', $response->id);
         $this->assertSame('https://www.digistore24.com/buy/12345/abc123', $response->url);
         $this->assertInstanceOf(DateTimeImmutable::class, $response->validUntil);
-        $this->assertSame('2024-12-31 23:59:59', $response->validUntil?->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-12-31 23:59:59', $response->validUntil->format('Y-m-d H:i:s'));
         $this->assertSame('ok', $response->upgradeStatus);
     }
 
@@ -82,7 +82,7 @@ final class CreateBuyUrlResponseTest extends TestCase
                     'upgrade_status' => 'ok',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -105,7 +105,7 @@ final class CreateBuyUrlResponseTest extends TestCase
                     'url' => 'https://test.com',
                 ],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

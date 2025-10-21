@@ -44,7 +44,7 @@ final class SetReferringAffiliateResponseTest extends TestCase
                     'set_at' => '2025-10-15 14:30:00',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -64,7 +64,7 @@ final class SetReferringAffiliateResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['email' => 'test@example.com'],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

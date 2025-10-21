@@ -69,6 +69,7 @@ final class GetVoucherResponseTest extends TestCase
         $response = GetVoucherResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(GetVoucherResponse::class, $response);
+        $this->assertInstanceOf(VoucherData::class, $response->voucher);
         $this->assertSame('MINIMAL', $response->voucher->code);
         $this->assertNull($response->voucher->id);
         $this->assertSame('all', $response->voucher->productIds);
@@ -89,13 +90,14 @@ final class GetVoucherResponseTest extends TestCase
                     ],
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
         $response = GetVoucherResponse::fromResponse(response: $httpResponse);
 
         $this->assertInstanceOf(GetVoucherResponse::class, $response);
+        $this->assertInstanceOf(VoucherData::class, $response->voucher);
         $this->assertSame(99999, $response->voucher->id);
         $this->assertSame('WINTER2024', $response->voucher->code);
         $this->assertSame(25.0, $response->voucher->firstRate);
@@ -113,7 +115,7 @@ final class GetVoucherResponseTest extends TestCase
                     ],
                 ],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 
@@ -138,6 +140,7 @@ final class GetVoucherResponseTest extends TestCase
         ];
 
         $responseYes = GetVoucherResponse::fromArray(data: $dataYes);
+        $this->assertInstanceOf(VoucherData::class, $responseYes->voucher);
         $this->assertTrue($responseYes->voucher->isCountLimited);
         $this->assertSame(10, $responseYes->voucher->countLeft);
 
@@ -152,6 +155,7 @@ final class GetVoucherResponseTest extends TestCase
         ];
 
         $responseNo = GetVoucherResponse::fromArray(data: $dataNo);
+        $this->assertInstanceOf(VoucherData::class, $responseNo->voucher);
         $this->assertFalse($responseNo->voucher->isCountLimited);
     }
 }

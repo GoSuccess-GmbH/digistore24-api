@@ -35,7 +35,6 @@ final class RetrieveApiKeyResponseTest extends TestCase
         $this->assertInstanceOf(\DateTimeInterface::class, $response->createdAt);
         $this->assertInstanceOf(\DateTimeInterface::class, $response->lastUsedAt);
         $this->assertTrue($response->isActive);
-        $this->assertIsArray($response->permissions);
         $this->assertContains('read', $response->permissions);
         $this->assertContains('write', $response->permissions);
         $this->assertSame(1000, $response->rateLimit);
@@ -57,7 +56,7 @@ final class RetrieveApiKeyResponseTest extends TestCase
                     'rate_limit' => 500,
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -88,7 +87,6 @@ final class RetrieveApiKeyResponseTest extends TestCase
         $this->assertNull($response->description);
         $this->assertNull($response->createdAt);
         $this->assertNull($response->lastUsedAt);
-        $this->assertIsArray($response->permissions);
         $this->assertEmpty($response->permissions);
         $this->assertNull($response->rateLimit);
         $this->assertNull($response->requestsToday);
@@ -102,7 +100,7 @@ final class RetrieveApiKeyResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['api_key_id' => 'TEST', 'is_active' => true],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

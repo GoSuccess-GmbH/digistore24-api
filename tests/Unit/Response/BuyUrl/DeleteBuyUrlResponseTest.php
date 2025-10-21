@@ -29,7 +29,7 @@ final class DeleteBuyUrlResponseTest extends TestCase
             data: [
                 'result' => 'success',
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -44,7 +44,7 @@ final class DeleteBuyUrlResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: ['result' => 'success'],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

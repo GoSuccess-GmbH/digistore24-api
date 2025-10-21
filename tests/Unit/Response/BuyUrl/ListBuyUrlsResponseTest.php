@@ -68,7 +68,7 @@ final class ListBuyUrlsResponseTest extends TestCase
                     ],
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"items":[]}',
         );
 
@@ -88,7 +88,6 @@ final class ListBuyUrlsResponseTest extends TestCase
 
         $this->assertInstanceOf(ListBuyUrlsResponse::class, $response);
         $this->assertCount(0, $response->items);
-        $this->assertIsArray($response->items);
     }
 
     public function test_has_raw_response(): void
@@ -96,7 +95,7 @@ final class ListBuyUrlsResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: ['items' => []],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

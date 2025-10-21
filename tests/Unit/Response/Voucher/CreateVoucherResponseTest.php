@@ -52,7 +52,7 @@ final class CreateVoucherResponseTest extends TestCase
                     'code' => 'WINTER2024',
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -74,7 +74,7 @@ final class CreateVoucherResponseTest extends TestCase
                     'code' => 'TEST',
                 ],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

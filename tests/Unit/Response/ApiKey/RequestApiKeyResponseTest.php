@@ -30,7 +30,6 @@ final class RequestApiKeyResponseTest extends TestCase
         $this->assertSame('test-api-key-12345', $response->apiKey);
         $this->assertInstanceOf(\DateTimeInterface::class, $response->createdAt);
         $this->assertSame('Production Server', $response->description);
-        $this->assertIsArray($response->permissions);
         $this->assertContains('read', $response->permissions);
         $this->assertContains('write', $response->permissions);
         $this->assertSame(1000, $response->rateLimit);
@@ -50,7 +49,7 @@ final class RequestApiKeyResponseTest extends TestCase
                     'rate_limit' => 500,
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -78,7 +77,6 @@ final class RequestApiKeyResponseTest extends TestCase
         $this->assertSame('minimal-key', $response->apiKey);
         $this->assertNull($response->description);
         $this->assertNull($response->createdAt);
-        $this->assertIsArray($response->permissions);
         $this->assertEmpty($response->permissions);
         $this->assertNull($response->rateLimit);
     }
@@ -91,7 +89,7 @@ final class RequestApiKeyResponseTest extends TestCase
                 'result' => 'success',
                 'data' => ['api_key' => 'test-key'],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 

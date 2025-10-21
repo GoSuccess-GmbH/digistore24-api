@@ -54,12 +54,11 @@ final class BuyerIntegrationTest extends IntegrationTestCase
         $response = $this->client->buyers->list(new ListBuyersRequest());
 
         $this->assertInstanceOf(ListBuyersResponse::class, $response);
-        $this->assertGreaterThanOrEqual(0, $response->pageNo);
-        $this->assertGreaterThanOrEqual(0, $response->itemCount);
+        $this->assertGreaterThanOrEqual(0, $response->total);
 
         // If we have buyers, validate structure
-        if (count($response->items) > 0) {
-            $this->assertInstanceOf(\GoSuccess\Digistore24\Api\DTO\BuyerData::class, $response->items[0]);
+        if (count($response->buyers) > 0) {
+            $this->assertInstanceOf(\GoSuccess\Digistore24\Api\DTO\BuyerData::class, $response->buyers[0]);
         }
     }
 }

@@ -81,7 +81,7 @@ final class GetGlobalSettingsResponseTest extends TestCase
                     'vat_rates' => ['FR' => 20.0],
                 ],
             ],
-            headers: [],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: '{"result":"success"}',
         );
 
@@ -105,17 +105,11 @@ final class GetGlobalSettingsResponseTest extends TestCase
         $response = GetGlobalSettingsResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(GetGlobalSettingsResponse::class, $response);
-        $this->assertIsArray($response->productTypes);
         $this->assertEmpty($response->productTypes);
-        $this->assertIsArray($response->countries);
         $this->assertEmpty($response->countries);
-        $this->assertIsArray($response->currencies);
         $this->assertEmpty($response->currencies);
-        $this->assertIsArray($response->languages);
         $this->assertEmpty($response->languages);
-        $this->assertIsArray($response->paymentMethods);
         $this->assertEmpty($response->paymentMethods);
-        $this->assertIsArray($response->vatRates);
         $this->assertEmpty($response->vatRates);
     }
 
@@ -134,7 +128,7 @@ final class GetGlobalSettingsResponseTest extends TestCase
                     'vat_rates' => [],
                 ],
             ],
-            headers: ['Content-Type' => 'application/json'],
+            headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
         );
 
