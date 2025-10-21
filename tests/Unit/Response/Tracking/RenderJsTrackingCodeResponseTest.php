@@ -22,10 +22,9 @@ final class RenderJsTrackingCodeResponseTest extends TestCase
         $response = RenderJsTrackingCodeResponse::fromArray($data);
 
         $this->assertInstanceOf(RenderJsTrackingCodeResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertStringContainsString('script', $response->getScriptCode());
-        $this->assertSame('https://digistore24.com/tracking.js', $response->getScriptUrl());
+        $this->assertSame('success', $response->result);
+        $this->assertStringContainsString('script', $response->scriptCode);
+        $this->assertSame('https://digistore24.com/tracking.js', $response->scriptUrl);
     }
 
     public function test_can_create_from_response(): void
@@ -46,8 +45,7 @@ final class RenderJsTrackingCodeResponseTest extends TestCase
         $response = RenderJsTrackingCodeResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(RenderJsTrackingCodeResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertStringContainsString('console.log', $response->getScriptCode());
+        $this->assertStringContainsString('console.log', $response->scriptCode);
     }
 
     public function test_has_raw_response(): void

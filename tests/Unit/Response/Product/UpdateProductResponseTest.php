@@ -21,7 +21,7 @@ final class UpdateProductResponseTest extends TestCase
 
         $this->assertInstanceOf(UpdateProductResponse::class, $response);
         $this->assertTrue($response->wasModified());
-        $this->assertSame('Y', $response->getModified());
+        $this->assertSame('Y', $response->modified);
     }
 
     public function test_can_create_from_response(): void

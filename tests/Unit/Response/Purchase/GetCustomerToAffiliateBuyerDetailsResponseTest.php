@@ -24,8 +24,8 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
         $response = GetCustomerToAffiliateBuyerDetailsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetCustomerToAffiliateBuyerDetailsResponse::class, $response);
-        $this->assertSame('buyer@example.com', $response->getDetails()['buyer_email']);
-        $this->assertSame('John', $response->getDetails()['first_name']);
+        $this->assertSame('buyer@example.com', $response->details['buyer_email']);
+        $this->assertSame('John', $response->details['first_name']);
     }
 
     public function test_can_create_from_response(): void
@@ -45,7 +45,7 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
         $response = GetCustomerToAffiliateBuyerDetailsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetCustomerToAffiliateBuyerDetailsResponse::class, $response);
-        $this->assertSame('customer@test.com', $response->getDetails()['buyer_email']);
+        $this->assertSame('customer@test.com', $response->details['buyer_email']);
     }
 
     public function test_has_raw_response(): void

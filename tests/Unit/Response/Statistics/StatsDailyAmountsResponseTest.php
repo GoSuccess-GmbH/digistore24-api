@@ -33,7 +33,7 @@ final class StatsDailyAmountsResponseTest extends TestCase
         $response = StatsDailyAmountsResponse::fromArray($data);
 
         $this->assertInstanceOf(StatsDailyAmountsResponse::class, $response);
-        $dailyAmounts = $response->getDailyAmounts();
+        $dailyAmounts = $response->dailyAmounts;
         $this->assertCount(2, $dailyAmounts);
         $this->assertNotEmpty($dailyAmounts);
     }
@@ -60,7 +60,7 @@ final class StatsDailyAmountsResponseTest extends TestCase
         $response = StatsDailyAmountsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StatsDailyAmountsResponse::class, $response);
-        $this->assertCount(1, $response->getDailyAmounts());
+        $this->assertCount(1, $response->dailyAmounts);
     }
 
     public function test_has_raw_response(): void

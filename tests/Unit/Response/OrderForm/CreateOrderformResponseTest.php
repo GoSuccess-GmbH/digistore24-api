@@ -21,7 +21,6 @@ final class CreateOrderformResponseTest extends TestCase
         $response = CreateOrderformResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateOrderformResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertSame('OF123456', $response->getOrderformId());
     }
 

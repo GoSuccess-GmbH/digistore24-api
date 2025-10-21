@@ -45,8 +45,8 @@ final class GetBuyerResponseTest extends TestCase
 
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
         $this->assertInstanceOf(BuyerData::class, $response->buyer);
-        $this->assertSame('18141656', $response->buyer->id);
-        $this->assertSame('35288471', $response->buyer->addressId);
+        $this->assertSame(18141656, $response->buyer->id);
+        $this->assertSame(35288471, $response->buyer->addressId);
         $this->assertSame('paul@gosuccess.io', $response->buyer->email);
         $this->assertSame('Paul', $response->buyer->firstName);
         $this->assertSame('Gossen', $response->buyer->lastName);
@@ -73,7 +73,7 @@ final class GetBuyerResponseTest extends TestCase
                         'email' => 'buyer@example.com',
                         'first_name' => 'John',
                         'last_name' => 'Doe',
-                        'buyer_type' => 'private',
+                        'buyer_type' => 'consumer',
                     ],
                 ],
             ],
@@ -84,7 +84,7 @@ final class GetBuyerResponseTest extends TestCase
         $response = GetBuyerResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetBuyerResponse::class, $response);
-        $this->assertSame('123', $response->buyer->id);
+        $this->assertSame(123, $response->buyer->id);
         $this->assertSame('buyer@example.com', $response->buyer->email);
         $this->assertSame('John', $response->buyer->firstName);
         $this->assertSame('Doe', $response->buyer->lastName);

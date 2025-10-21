@@ -36,7 +36,7 @@ final class ListTransactionsResponseTest extends TestCase
         $response = ListTransactionsResponse::fromArray($data);
 
         $this->assertInstanceOf(ListTransactionsResponse::class, $response);
-        $transactionList = $response->getTransactionList();
+        $transactionList = $response->transactionList;
         $this->assertCount(2, $transactionList);
         $this->assertNotEmpty($transactionList);
     }
@@ -62,7 +62,7 @@ final class ListTransactionsResponseTest extends TestCase
         $response = ListTransactionsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListTransactionsResponse::class, $response);
-        $this->assertCount(1, $response->getTransactionList());
+        $this->assertCount(1, $response->transactionList);
     }
 
     public function test_has_raw_response(): void

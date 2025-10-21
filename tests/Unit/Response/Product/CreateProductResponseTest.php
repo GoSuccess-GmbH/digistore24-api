@@ -20,7 +20,7 @@ final class CreateProductResponseTest extends TestCase
         $response = CreateProductResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateProductResponse::class, $response);
-        $this->assertSame(123456, $response->getProductId());
+        $this->assertSame(123456, $response->productId);
     }
 
     public function test_can_create_from_response(): void
@@ -39,7 +39,7 @@ final class CreateProductResponseTest extends TestCase
         $response = CreateProductResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(CreateProductResponse::class, $response);
-        $this->assertSame(789012, $response->getProductId());
+        $this->assertSame(789012, $response->productId);
     }
 
     public function test_has_raw_response(): void

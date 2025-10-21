@@ -20,7 +20,7 @@ final class UpdatePurchaseResponseTest extends TestCase
         $response = UpdatePurchaseResponse::fromArray($data);
 
         $this->assertInstanceOf(UpdatePurchaseResponse::class, $response);
-        $this->assertSame('Y', $response->getIsModified());
+        $this->assertSame('Y', $response->isModified);
         $this->assertTrue($response->wasModified());
     }
 

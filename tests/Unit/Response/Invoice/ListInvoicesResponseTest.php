@@ -32,8 +32,8 @@ final class ListInvoicesResponseTest extends TestCase
         $response = ListInvoicesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListInvoicesResponse::class, $response);
-        $this->assertSame('P123456', $response->getPurchaseId());
-        $this->assertCount(2, $response->getInvoiceList());
+        $this->assertSame('P123456', $response->purchaseId);
+        $this->assertCount(2, $response->invoiceList);
     }
 
     public function test_can_create_from_response(): void
@@ -58,7 +58,7 @@ final class ListInvoicesResponseTest extends TestCase
         $response = ListInvoicesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListInvoicesResponse::class, $response);
-        $this->assertSame('P789012', $response->getPurchaseId());
+        $this->assertSame('P789012', $response->purchaseId);
     }
 
     public function test_has_raw_response(): void

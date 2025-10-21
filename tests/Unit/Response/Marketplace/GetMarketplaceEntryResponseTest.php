@@ -24,8 +24,8 @@ final class GetMarketplaceEntryResponseTest extends TestCase
         $response = GetMarketplaceEntryResponse::fromArray($data);
 
         $this->assertInstanceOf(GetMarketplaceEntryResponse::class, $response);
-        $this->assertArrayHasKey('entry_id', $response->getData());
-        $this->assertSame('ENTRY001', $response->getData()['entry_id']);
+        $this->assertArrayHasKey('entry_id', $response->data);
+        $this->assertSame('ENTRY001', $response->data['entry_id']);
     }
 
     public function test_can_create_from_response(): void
@@ -46,7 +46,7 @@ final class GetMarketplaceEntryResponseTest extends TestCase
         $response = GetMarketplaceEntryResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetMarketplaceEntryResponse::class, $response);
-        $this->assertSame('Starter Package', $response->getData()['product_name']);
+        $this->assertSame('Starter Package', $response->data['product_name']);
     }
 
     public function test_has_raw_response(): void

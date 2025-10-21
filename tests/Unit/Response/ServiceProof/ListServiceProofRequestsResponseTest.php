@@ -23,7 +23,7 @@ final class ListServiceProofRequestsResponseTest extends TestCase
         $response = ListServiceProofRequestsResponse::fromArray($data);
 
         $this->assertInstanceOf(ListServiceProofRequestsResponse::class, $response);
-        $this->assertCount(2, $response->getServiceProofRequests());
+        $this->assertCount(2, $response->serviceProofRequests);
     }
 
     public function test_can_create_from_response(): void
@@ -44,7 +44,7 @@ final class ListServiceProofRequestsResponseTest extends TestCase
         $response = ListServiceProofRequestsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListServiceProofRequestsResponse::class, $response);
-        $this->assertCount(1, $response->getServiceProofRequests());
+        $this->assertCount(1, $response->serviceProofRequests);
     }
 
     public function test_has_raw_response(): void

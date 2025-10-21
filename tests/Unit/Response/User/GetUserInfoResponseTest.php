@@ -25,9 +25,9 @@ final class GetUserInfoResponseTest extends TestCase
         $response = GetUserInfoResponse::fromArray($data);
 
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
-        $this->assertSame('12345', $response->getUserInfo()['user_id']);
-        $this->assertSame('vendor@example.com', $response->getUserInfo()['email']);
-        $this->assertSame('premium', $response->getUserInfo()['account_type']);
+        $this->assertSame('12345', $response->userInfo['user_id']);
+        $this->assertSame('vendor@example.com', $response->userInfo['email']);
+        $this->assertSame('premium', $response->userInfo['account_type']);
     }
 
     public function test_can_create_from_response(): void
@@ -48,8 +48,8 @@ final class GetUserInfoResponseTest extends TestCase
         $response = GetUserInfoResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetUserInfoResponse::class, $response);
-        $this->assertSame('67890', $response->getUserInfo()['user_id']);
-        $this->assertSame('Jane', $response->getUserInfo()['first_name']);
+        $this->assertSame('67890', $response->userInfo['user_id']);
+        $this->assertSame('Jane', $response->userInfo['first_name']);
     }
 
     public function test_has_raw_response(): void

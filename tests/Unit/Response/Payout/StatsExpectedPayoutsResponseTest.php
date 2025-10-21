@@ -22,8 +22,8 @@ final class StatsExpectedPayoutsResponseTest extends TestCase
         $response = StatsExpectedPayoutsResponse::fromArray($data);
 
         $this->assertInstanceOf(StatsExpectedPayoutsResponse::class, $response);
-        $this->assertArrayHasKey('total_expected', $response->getData());
-        $this->assertSame(5000.00, $response->getData()['total_expected']);
+        $this->assertArrayHasKey('total_expected', $response->data);
+        $this->assertSame(5000.00, $response->data['total_expected']);
     }
 
     public function test_can_create_from_response(): void
@@ -43,7 +43,7 @@ final class StatsExpectedPayoutsResponseTest extends TestCase
         $response = StatsExpectedPayoutsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StatsExpectedPayoutsResponse::class, $response);
-        $this->assertSame(7500.00, $response->getData()['total_expected']);
+        $this->assertSame(7500.00, $response->data['total_expected']);
     }
 
     public function test_has_raw_response(): void

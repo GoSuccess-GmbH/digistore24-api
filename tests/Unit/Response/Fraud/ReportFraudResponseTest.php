@@ -26,9 +26,8 @@ final class ReportFraudResponseTest extends TestCase
         $response = ReportFraudResponse::fromArray($data);
 
         $this->assertInstanceOf(ReportFraudResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('created_entry', $response->getBuyerCode());
+        $this->assertSame('success', $response->result);
+        $this->assertSame('created_entry', $response->buyerCode);
     }
 
     public function test_can_create_from_response(): void
@@ -53,7 +52,6 @@ final class ReportFraudResponseTest extends TestCase
         $response = ReportFraudResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ReportFraudResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

@@ -16,8 +16,7 @@ final class UpdateDeliveryResponseTest extends TestCase
         $response = UpdateDeliveryResponse::fromArray($data);
 
         $this->assertInstanceOf(UpdateDeliveryResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
     }
 
     public function test_can_create_from_response(): void
@@ -32,7 +31,7 @@ final class UpdateDeliveryResponseTest extends TestCase
         $response = UpdateDeliveryResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(UpdateDeliveryResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
     }
 
     public function test_has_raw_response(): void

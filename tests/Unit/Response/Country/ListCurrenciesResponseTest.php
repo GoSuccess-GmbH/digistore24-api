@@ -36,7 +36,7 @@ final class ListCurrenciesResponseTest extends TestCase
         $response = ListCurrenciesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListCurrenciesResponse::class, $response);
-        $this->assertCount(2, $response->getCurrencies());
+        $this->assertCount(2, $response->currencies);
     }
 
     public function test_can_create_from_response(): void
@@ -63,7 +63,7 @@ final class ListCurrenciesResponseTest extends TestCase
         $response = ListCurrenciesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListCurrenciesResponse::class, $response);
-        $this->assertCount(1, $response->getCurrencies());
+        $this->assertCount(1, $response->currencies);
     }
 
     public function test_has_raw_response(): void

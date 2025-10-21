@@ -35,7 +35,7 @@ final class StatsAffiliateToplistResponseTest extends TestCase
         $response = StatsAffiliateToplistResponse::fromArray($data);
 
         $this->assertInstanceOf(StatsAffiliateToplistResponse::class, $response);
-        $toplist = $response->getToplist();
+        $toplist = $response->toplist;
         $this->assertCount(2, $toplist);
         $this->assertNotEmpty($toplist);
     }
@@ -62,7 +62,7 @@ final class StatsAffiliateToplistResponseTest extends TestCase
         $response = StatsAffiliateToplistResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StatsAffiliateToplistResponse::class, $response);
-        $this->assertCount(1, $response->getToplist());
+        $this->assertCount(1, $response->toplist);
     }
 
     public function test_has_raw_response(): void

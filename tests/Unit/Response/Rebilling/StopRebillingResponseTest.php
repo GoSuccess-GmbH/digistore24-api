@@ -32,7 +32,6 @@ final class StopRebillingResponseTest extends TestCase
 
         $this->assertInstanceOf(StopRebillingResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertInstanceOf(RebillingData::class, $response->data);
         $this->assertTrue($response->data->modified);
         $this->assertFalse($response->data->rebillingActive);
@@ -62,7 +61,6 @@ final class StopRebillingResponseTest extends TestCase
         $response = StopRebillingResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StopRebillingResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertNotNull($response->data);
         $this->assertTrue($response->data->rebillingActive);
         $this->assertFalse($response->data->isCancelledNow);

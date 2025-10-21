@@ -31,7 +31,7 @@ final class ListSmartUpgradesResponseTest extends TestCase
         $response = ListSmartUpgradesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListSmartUpgradesResponse::class, $response);
-        $smartupgrades = $response->getSmartupgrades();
+        $smartupgrades = $response->smartupgrades;
         $this->assertCount(2, $smartupgrades);
         $this->assertNotEmpty($smartupgrades);
     }
@@ -55,7 +55,7 @@ final class ListSmartUpgradesResponseTest extends TestCase
         $response = ListSmartUpgradesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListSmartUpgradesResponse::class, $response);
-        $this->assertCount(1, $response->getSmartupgrades());
+        $this->assertCount(1, $response->smartupgrades);
     }
 
     public function test_has_raw_response(): void

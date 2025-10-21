@@ -18,7 +18,6 @@ final class DeleteShippingCostPolicyResponseTest extends TestCase
         $response = DeleteShippingCostPolicyResponse::fromArray($data);
 
         $this->assertInstanceOf(DeleteShippingCostPolicyResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
@@ -35,7 +34,6 @@ final class DeleteShippingCostPolicyResponseTest extends TestCase
         $response = DeleteShippingCostPolicyResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(DeleteShippingCostPolicyResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

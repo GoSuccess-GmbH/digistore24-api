@@ -35,7 +35,7 @@ final class ListRebillingStatusChangesResponseTest extends TestCase
         $response = ListRebillingStatusChangesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListRebillingStatusChangesResponse::class, $response);
-        $changes = $response->getStatusChanges();
+        $changes = $response->statusChanges;
         $this->assertCount(2, $changes);
         $this->assertNotEmpty($changes);
     }
@@ -61,7 +61,7 @@ final class ListRebillingStatusChangesResponseTest extends TestCase
         $response = ListRebillingStatusChangesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListRebillingStatusChangesResponse::class, $response);
-        $this->assertCount(1, $response->getStatusChanges());
+        $this->assertCount(1, $response->statusChanges);
     }
 
     public function test_has_raw_response(): void

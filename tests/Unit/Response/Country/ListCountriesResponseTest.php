@@ -13,16 +13,20 @@ final class ListCountriesResponseTest extends TestCase
     public function test_can_create_from_array(): void
     {
         $data = [
-            'DE' => 'Germany',
-            'US' => 'United States',
-            'FR' => 'France',
+            'data' => [
+                'countries' => [
+                    ['code' => 'DE', 'name' => 'Germany'],
+                    ['code' => 'US', 'name' => 'United States'],
+                    ['code' => 'FR', 'name' => 'France'],
+                ],
+                'total' => 3,
+            ],
         ];
         $response = ListCountriesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListCountriesResponse::class, $response);
         $this->assertCount(3, $response->countries);
-        $this->assertSame('Germany', $response->getCountryName('DE'));
-        $this->assertSame('Germany', $response->countries['DE']);
+        $this->assertSame(3, $response->total);
     }
 
     public function test_can_create_from_response(): void
@@ -30,8 +34,13 @@ final class ListCountriesResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: [
-                'DE' => 'Germany',
-                'US' => 'United States',
+                'data' => [
+                    'countries' => [
+                        ['code' => 'DE', 'name' => 'Germany'],
+                        ['code' => 'US', 'name' => 'United States'],
+                    ],
+                    'total' => 2,
+                ],
             ],
             headers: [],
             rawBody: '',

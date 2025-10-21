@@ -33,8 +33,8 @@ final class ListCommissionsResponseTest extends TestCase
         $response = ListCommissionsResponse::fromArray($data);
 
         $this->assertInstanceOf(ListCommissionsResponse::class, $response);
-        $this->assertSame(1, $response->getPageNo());
-        $this->assertCount(1, $response->getItems());
+        $this->assertSame(1, $response->pageNo);
+        $this->assertCount(1, $response->items);
         $this->assertTrue($response->hasMorePages());
     }
 
@@ -56,7 +56,7 @@ final class ListCommissionsResponseTest extends TestCase
         $response = ListCommissionsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListCommissionsResponse::class, $response);
-        $this->assertSame(1, $response->getPageNo());
+        $this->assertSame(1, $response->pageNo);
     }
 
     public function test_has_raw_response(): void

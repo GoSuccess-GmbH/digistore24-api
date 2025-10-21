@@ -21,8 +21,8 @@ final class AddBalanceToPurchaseResponseTest extends TestCase
         $response = AddBalanceToPurchaseResponse::fromArray($data);
 
         $this->assertInstanceOf(AddBalanceToPurchaseResponse::class, $response);
-        $this->assertSame(25.50, $response->getOldBalance());
-        $this->assertSame(75.50, $response->getNewBalance());
+        $this->assertSame(25.50, $response->oldBalance);
+        $this->assertSame(75.50, $response->newBalance);
         $this->assertSame(50.00, $response->getBalanceChange());
     }
 

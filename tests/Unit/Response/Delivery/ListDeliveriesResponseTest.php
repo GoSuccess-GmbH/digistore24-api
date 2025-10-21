@@ -23,7 +23,7 @@ final class ListDeliveriesResponseTest extends TestCase
         $response = ListDeliveriesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListDeliveriesResponse::class, $response);
-        $this->assertCount(2, $response->getDeliveries());
+        $this->assertCount(2, $response->deliveries);
     }
 
     public function test_can_create_from_response(): void
@@ -44,7 +44,7 @@ final class ListDeliveriesResponseTest extends TestCase
         $response = ListDeliveriesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListDeliveriesResponse::class, $response);
-        $this->assertCount(1, $response->getDeliveries());
+        $this->assertCount(1, $response->deliveries);
     }
 
     public function test_has_raw_response(): void

@@ -32,7 +32,7 @@ final class ValidateLicenseKeyResponseTest extends TestCase
         $this->assertInstanceOf(ValidateLicenseKeyResponse::class, $response);
         $this->assertTrue($response->isValid());
         $this->assertTrue($response->isFound());
-        $this->assertSame('P123456', $response->getPurchaseId());
+        $this->assertSame('P123456', $response->purchaseId);
     }
 
     public function test_can_create_from_response(): void
@@ -58,7 +58,7 @@ final class ValidateLicenseKeyResponseTest extends TestCase
         $response = ValidateLicenseKeyResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ValidateLicenseKeyResponse::class, $response);
-        $this->assertSame('Basic Software', $response->getProductName());
+        $this->assertSame('Basic Software', $response->productName);
     }
 
     public function test_has_raw_response(): void

@@ -23,8 +23,8 @@ final class GetOrderformResponseTest extends TestCase
         $response = GetOrderformResponse::fromArray($data);
 
         $this->assertInstanceOf(GetOrderformResponse::class, $response);
-        $this->assertArrayHasKey('orderform_id', $response->getData());
-        $this->assertSame('OF123', $response->getData()['orderform_id']);
+        $this->assertArrayHasKey('orderform_id', $response->data);
+        $this->assertSame('OF123', $response->data['orderform_id']);
     }
 
     public function test_can_create_from_response(): void
@@ -44,7 +44,7 @@ final class GetOrderformResponseTest extends TestCase
         $response = GetOrderformResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetOrderformResponse::class, $response);
-        $this->assertSame('Premium Form', $response->getData()['name']);
+        $this->assertSame('Premium Form', $response->data['name']);
     }
 
     public function test_has_raw_response(): void

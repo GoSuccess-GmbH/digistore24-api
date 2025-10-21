@@ -18,7 +18,6 @@ final class DeleteProductGroupResponseTest extends TestCase
         $response = DeleteProductGroupResponse::fromArray($data);
 
         $this->assertInstanceOf(DeleteProductGroupResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
@@ -35,7 +34,6 @@ final class DeleteProductGroupResponseTest extends TestCase
         $response = DeleteProductGroupResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(DeleteProductGroupResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

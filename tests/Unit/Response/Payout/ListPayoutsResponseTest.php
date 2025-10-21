@@ -31,7 +31,7 @@ final class ListPayoutsResponseTest extends TestCase
         $response = ListPayoutsResponse::fromArray($data);
 
         $this->assertInstanceOf(ListPayoutsResponse::class, $response);
-        $this->assertCount(2, $response->getPayoutList());
+        $this->assertCount(2, $response->payoutList);
     }
 
     public function test_can_create_from_response(): void
@@ -55,7 +55,7 @@ final class ListPayoutsResponseTest extends TestCase
         $response = ListPayoutsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListPayoutsResponse::class, $response);
-        $this->assertCount(1, $response->getPayoutList());
+        $this->assertCount(1, $response->payoutList);
     }
 
     public function test_has_raw_response(): void

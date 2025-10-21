@@ -37,7 +37,7 @@ final class StatsSalesResponseTest extends TestCase
         $response = StatsSalesResponse::fromArray($data);
 
         $this->assertInstanceOf(StatsSalesResponse::class, $response);
-        $sales = $response->getSales();
+        $sales = $response->sales;
         $this->assertCount(2, $sales);
         $this->assertNotEmpty($sales);
     }
@@ -64,7 +64,7 @@ final class StatsSalesResponseTest extends TestCase
         $response = StatsSalesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StatsSalesResponse::class, $response);
-        $this->assertCount(1, $response->getSales());
+        $this->assertCount(1, $response->sales);
     }
 
     public function test_has_raw_response(): void

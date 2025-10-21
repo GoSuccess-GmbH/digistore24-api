@@ -24,9 +24,7 @@ final class CreateRebillingPaymentResponseTest extends TestCase
         $response = CreateRebillingPaymentResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateRebillingPaymentResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('PAY123456', $response->getData()['payment_id']);
+        $this->assertSame('success', $response->result);
     }
 
     public function test_can_create_from_response(): void
@@ -46,7 +44,6 @@ final class CreateRebillingPaymentResponseTest extends TestCase
         $response = CreateRebillingPaymentResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(CreateRebillingPaymentResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

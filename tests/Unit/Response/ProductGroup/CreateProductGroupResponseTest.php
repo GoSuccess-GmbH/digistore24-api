@@ -21,7 +21,6 @@ final class CreateProductGroupResponseTest extends TestCase
         $response = CreateProductGroupResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateProductGroupResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertSame('PG123456', $response->getProductGroupId());
     }
 

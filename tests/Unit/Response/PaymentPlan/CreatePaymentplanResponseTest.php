@@ -21,7 +21,6 @@ final class CreatePaymentplanResponseTest extends TestCase
         $response = CreatePaymentplanResponse::fromArray($data);
 
         $this->assertInstanceOf(CreatePaymentplanResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertSame('PP123456', $response->getPaymentplanId());
     }
 

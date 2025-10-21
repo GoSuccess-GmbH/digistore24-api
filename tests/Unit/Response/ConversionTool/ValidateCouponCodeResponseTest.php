@@ -22,7 +22,7 @@ final class ValidateCouponCodeResponseTest extends TestCase
         $response = ValidateCouponCodeResponse::fromArray($data);
 
         $this->assertInstanceOf(ValidateCouponCodeResponse::class, $response);
-        $this->assertSame('success', $response->getStatus());
+        $this->assertSame('success', $response->status);
         $this->assertTrue($response->isValid());
     }
 

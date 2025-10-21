@@ -33,7 +33,7 @@ final class GetUpsellsResponseTest extends TestCase
         $response = GetUpsellsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetUpsellsResponse::class, $response);
-        $upsells = $response->getUpsells();
+        $upsells = $response->upsells;
         $this->assertCount(2, $upsells);
         $this->assertNotEmpty($upsells);
     }
@@ -56,7 +56,7 @@ final class GetUpsellsResponseTest extends TestCase
         $response = GetUpsellsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetUpsellsResponse::class, $response);
-        $this->assertCount(1, $response->getUpsells());
+        $this->assertCount(1, $response->upsells);
     }
 
     public function test_has_raw_response(): void

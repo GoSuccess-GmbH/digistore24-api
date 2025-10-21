@@ -15,11 +15,8 @@ final class ListBuyersResponseTest extends TestCase
     {
         $data = [
             'data' => [
-                'page_no' => 1,
-                'page_size' => 100,
-                'item_count' => 2,
-                'page_count' => 1,
-                'items' => [
+                'total' => 2,
+                'buyers' => [
                     [
                         'id' => 20,
                         'address_id' => 25,
@@ -64,16 +61,13 @@ final class ListBuyersResponseTest extends TestCase
 
         $response = ListBuyersResponse::fromArray($data);
 
-        $this->assertSame(1, $response->pageNo);
-        $this->assertSame(100, $response->pageSize);
-        $this->assertSame(2, $response->itemCount);
-        $this->assertSame(1, $response->pageCount);
-        $this->assertCount(2, $response->items);
-        $this->assertInstanceOf(BuyerData::class, $response->items[0]);
-        $this->assertSame(20, $response->items[0]->id);
-        $this->assertSame('buyer1@example.com', $response->items[0]->email);
-        $this->assertSame('John', $response->items[0]->firstName);
-        $this->assertSame('Jane', $response->items[1]->firstName);
+        $this->assertSame(2, $response->total);
+        $this->assertCount(2, $response->buyers);
+        $this->assertInstanceOf(BuyerData::class, $response->buyers[0]);
+        $this->assertSame(20, $response->buyers[0]->id);
+        $this->assertSame('buyer1@example.com', $response->buyers[0]->email);
+        $this->assertSame('John', $response->buyers[0]->firstName);
+        $this->assertSame('Jane', $response->buyers[1]->firstName);
     }
 
     public function test_can_create_from_response(): void
@@ -82,11 +76,8 @@ final class ListBuyersResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'page_no' => 2,
-                    'page_size' => 50,
-                    'item_count' => 120,
-                    'page_count' => 3,
-                    'items' => [
+                    'total' => 1,
+                    'buyers' => [
                         [
                             'id' => 100,
                             'address_id' => 150,
@@ -109,30 +100,23 @@ final class ListBuyersResponseTest extends TestCase
 
         $response = ListBuyersResponse::fromResponse($httpResponse);
 
-        $this->assertSame(2, $response->pageNo);
-        $this->assertSame(50, $response->pageSize);
-        $this->assertSame(120, $response->itemCount);
-        $this->assertSame(3, $response->pageCount);
-        $this->assertCount(1, $response->items);
-        $this->assertSame(100, $response->items[0]->id);
+        $this->assertCount(1, $response->buyers);
+        $this->assertSame(100, $response->buyers[0]->id);
     }
 
     public function test_handles_empty_items(): void
     {
         $data = [
             'data' => [
-                'page_no' => 1,
-                'page_size' => 100,
-                'item_count' => 0,
-                'page_count' => 0,
-                'items' => [],
+                'total' => 0,
+                'buyers' => [],
             ],
         ];
 
         $response = ListBuyersResponse::fromArray($data);
 
-        $this->assertCount(0, $response->items);
-        $this->assertSame(0, $response->itemCount);
+        $this->assertCount(0, $response->buyers);
+        $this->assertSame(0, $response->total);
     }
 
     public function test_handles_missing_data(): void
@@ -141,16 +125,14 @@ final class ListBuyersResponseTest extends TestCase
 
         $response = ListBuyersResponse::fromArray($data);
 
-        $this->assertSame(1, $response->pageNo);
-        $this->assertSame(100, $response->pageSize);
-        $this->assertCount(0, $response->items);
+        $this->assertCount(0, $response->buyers);
     }
 
     public function test_has_raw_response(): void
     {
         $httpResponse = new Response(
             statusCode: 200,
-            data: ['data' => ['page_no' => 1, 'items' => []]],
+            data: ['data' => ['buyers' => []]],
             headers: [],
             rawBody: 'test',
         );

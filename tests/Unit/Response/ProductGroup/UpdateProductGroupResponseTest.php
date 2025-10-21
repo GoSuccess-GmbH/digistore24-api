@@ -18,7 +18,6 @@ final class UpdateProductGroupResponseTest extends TestCase
         $response = UpdateProductGroupResponse::fromArray($data);
 
         $this->assertInstanceOf(UpdateProductGroupResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
@@ -35,7 +34,6 @@ final class UpdateProductGroupResponseTest extends TestCase
         $response = UpdateProductGroupResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(UpdateProductGroupResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

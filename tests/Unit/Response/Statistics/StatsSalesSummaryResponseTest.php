@@ -27,7 +27,7 @@ final class StatsSalesSummaryResponseTest extends TestCase
         $response = StatsSalesSummaryResponse::fromArray($data);
 
         $this->assertInstanceOf(StatsSalesSummaryResponse::class, $response);
-        $summary = $response->getSummary();
+        $summary = $response->summary;
         $this->assertSame(450, $summary['total_sales']);
         $this->assertSame(45000.50, $summary['total_revenue']);
         $this->assertSame('EUR', $summary['currency']);
@@ -53,7 +53,7 @@ final class StatsSalesSummaryResponseTest extends TestCase
         $response = StatsSalesSummaryResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StatsSalesSummaryResponse::class, $response);
-        $summary = $response->getSummary();
+        $summary = $response->summary;
         $this->assertSame(100, $summary['total_sales']);
     }
 

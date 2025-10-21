@@ -21,9 +21,8 @@ final class ResendPurchaseConfirmationMailResponseTest extends TestCase
         $response = ResendPurchaseConfirmationMailResponse::fromArray($data);
 
         $this->assertInstanceOf(ResendPurchaseConfirmationMailResponse::class, $response);
-        $this->assertSame('Y', $response->getModified());
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('Confirmation email resent successfully', $response->getNote());
+        $this->assertSame('Y', $response->modified);
+        $this->assertSame('Confirmation email resent successfully', $response->note);
     }
 
     public function test_can_create_from_response(): void
@@ -43,8 +42,7 @@ final class ResendPurchaseConfirmationMailResponseTest extends TestCase
         $response = ResendPurchaseConfirmationMailResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ResendPurchaseConfirmationMailResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertNull($response->getNote());
+        $this->assertNull($response->note);
     }
 
     public function test_has_raw_response(): void

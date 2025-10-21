@@ -33,7 +33,7 @@ final class ListShippingCostPoliciesResponseTest extends TestCase
         $response = ListShippingCostPoliciesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListShippingCostPoliciesResponse::class, $response);
-        $policies = $response->getShippingCostPolicies();
+        $policies = $response->shippingCostPolicies;
         $this->assertCount(2, $policies);
         $this->assertNotEmpty($policies);
     }
@@ -59,7 +59,7 @@ final class ListShippingCostPoliciesResponseTest extends TestCase
         $response = ListShippingCostPoliciesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListShippingCostPoliciesResponse::class, $response);
-        $this->assertCount(1, $response->getShippingCostPolicies());
+        $this->assertCount(1, $response->shippingCostPolicies);
     }
 
     public function test_has_raw_response(): void

@@ -26,8 +26,8 @@ final class GetServiceProofRequestResponseTest extends TestCase
         $response = GetServiceProofRequestResponse::fromArray($data);
 
         $this->assertInstanceOf(GetServiceProofRequestResponse::class, $response);
-        $this->assertSame('SPR123456', $response->getServiceProofRequest()['request_id']);
-        $this->assertSame('pending', $response->getServiceProofRequest()['status']);
+        $this->assertSame('SPR123456', $response->serviceProofRequest['request_id']);
+        $this->assertSame('pending', $response->serviceProofRequest['status']);
     }
 
     public function test_can_create_from_response(): void
@@ -49,7 +49,7 @@ final class GetServiceProofRequestResponseTest extends TestCase
         $response = GetServiceProofRequestResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetServiceProofRequestResponse::class, $response);
-        $this->assertSame('SPR999', $response->getServiceProofRequest()['request_id']);
+        $this->assertSame('SPR999', $response->serviceProofRequest['request_id']);
     }
 
     public function test_has_raw_response(): void

@@ -31,7 +31,7 @@ final class ListMarketplaceEntriesResponseTest extends TestCase
         $response = ListMarketplaceEntriesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListMarketplaceEntriesResponse::class, $response);
-        $this->assertCount(2, $response->getEntries());
+        $this->assertCount(2, $response->entries);
     }
 
     public function test_can_create_from_response(): void
@@ -55,7 +55,7 @@ final class ListMarketplaceEntriesResponseTest extends TestCase
         $response = ListMarketplaceEntriesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListMarketplaceEntriesResponse::class, $response);
-        $this->assertCount(1, $response->getEntries());
+        $this->assertCount(1, $response->entries);
     }
 
     public function test_has_raw_response(): void

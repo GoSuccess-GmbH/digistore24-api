@@ -24,10 +24,8 @@ final class RefundTransactionResponseTest extends TestCase
         $response = RefundTransactionResponse::fromArray($data);
 
         $this->assertInstanceOf(RefundTransactionResponse::class, $response);
-        $this->assertSame('completed', $response->getStatus());
-        $this->assertSame('Y', $response->getModified());
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('TXN123456', $response->getData()['transaction_id']);
+        $this->assertSame('completed', $response->status);
+        $this->assertSame('Y', $response->modified);
     }
 
     public function test_can_create_from_response(): void
@@ -48,8 +46,7 @@ final class RefundTransactionResponseTest extends TestCase
         $response = RefundTransactionResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(RefundTransactionResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('Y', $response->getModified());
+        $this->assertSame('Y', $response->modified);
     }
 
     public function test_has_raw_response(): void

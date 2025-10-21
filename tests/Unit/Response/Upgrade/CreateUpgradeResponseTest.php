@@ -24,7 +24,6 @@ final class CreateUpgradeResponseTest extends TestCase
         $response = CreateUpgradeResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertSame('UPG123456', $response->getUpgradeId());
     }
 
@@ -45,7 +44,6 @@ final class CreateUpgradeResponseTest extends TestCase
         $response = CreateUpgradeResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(CreateUpgradeResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

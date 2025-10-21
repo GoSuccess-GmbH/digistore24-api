@@ -31,7 +31,7 @@ final class ListPaymentPlansResponseTest extends TestCase
         $response = ListPaymentPlansResponse::fromArray($data);
 
         $this->assertInstanceOf(ListPaymentPlansResponse::class, $response);
-        $this->assertCount(2, $response->getPaymentPlans());
+        $this->assertCount(2, $response->paymentPlans);
     }
 
     public function test_can_create_from_response(): void
@@ -55,7 +55,7 @@ final class ListPaymentPlansResponseTest extends TestCase
         $response = ListPaymentPlansResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListPaymentPlansResponse::class, $response);
-        $this->assertCount(1, $response->getPaymentPlans());
+        $this->assertCount(1, $response->paymentPlans);
     }
 
     public function test_has_raw_response(): void

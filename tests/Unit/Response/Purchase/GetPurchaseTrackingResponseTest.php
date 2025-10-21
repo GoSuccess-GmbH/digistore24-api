@@ -25,8 +25,8 @@ final class GetPurchaseTrackingResponseTest extends TestCase
         $response = GetPurchaseTrackingResponse::fromArray($data);
 
         $this->assertInstanceOf(GetPurchaseTrackingResponse::class, $response);
-        $this->assertSame('TRK123456', $response->getTracking()['tracking_id']);
-        $this->assertSame('google', $response->getTracking()['source']);
+        $this->assertSame('TRK123456', $response->tracking['tracking_id']);
+        $this->assertSame('google', $response->tracking['source']);
     }
 
     public function test_can_create_from_response(): void
@@ -47,7 +47,7 @@ final class GetPurchaseTrackingResponseTest extends TestCase
         $response = GetPurchaseTrackingResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetPurchaseTrackingResponse::class, $response);
-        $this->assertSame('facebook', $response->getTracking()['source']);
+        $this->assertSame('facebook', $response->tracking['source']);
     }
 
     public function test_has_raw_response(): void

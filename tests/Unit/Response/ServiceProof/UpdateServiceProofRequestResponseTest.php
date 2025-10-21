@@ -18,7 +18,6 @@ final class UpdateServiceProofRequestResponseTest extends TestCase
         $response = UpdateServiceProofRequestResponse::fromArray($data);
 
         $this->assertInstanceOf(UpdateServiceProofRequestResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
@@ -35,7 +34,6 @@ final class UpdateServiceProofRequestResponseTest extends TestCase
         $response = UpdateServiceProofRequestResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(UpdateServiceProofRequestResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

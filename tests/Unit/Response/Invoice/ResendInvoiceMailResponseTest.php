@@ -21,8 +21,7 @@ final class ResendInvoiceMailResponseTest extends TestCase
         $response = ResendInvoiceMailResponse::fromArray($data);
 
         $this->assertInstanceOf(ResendInvoiceMailResponse::class, $response);
-        $this->assertSame('success', $response->getStatus());
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->status);
     }
 
     public function test_can_create_from_response(): void
@@ -42,7 +41,7 @@ final class ResendInvoiceMailResponseTest extends TestCase
         $response = ResendInvoiceMailResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ResendInvoiceMailResponse::class, $response);
-        $this->assertSame('Email sent to recipient', $response->getNote());
+        $this->assertSame('Email sent to recipient', $response->note);
     }
 
     public function test_has_raw_response(): void

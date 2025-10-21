@@ -23,9 +23,8 @@ final class RefundPurchaseResponseTest extends TestCase
         $response = RefundPurchaseResponse::fromArray($data);
 
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('REF123456', $response->getData()['refund_id']);
+        $this->assertSame('success', $response->result);
+        $this->assertSame('REF123456', $response->data['refund_id']);
     }
 
     public function test_can_create_from_response(): void
@@ -45,7 +44,6 @@ final class RefundPurchaseResponseTest extends TestCase
         $response = RefundPurchaseResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(RefundPurchaseResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

@@ -31,7 +31,6 @@ final class PingResponseTest extends TestCase
         $this->assertSame(0.123, $response->runtimeSeconds);
         $this->assertSame('success', $response->result);
         $this->assertInstanceOf(DateTimeImmutable::class, $response->serverTime);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_can_create_from_response(): void
@@ -56,7 +55,6 @@ final class PingResponseTest extends TestCase
         $this->assertInstanceOf(PingResponse::class, $response);
         $this->assertSame('ok', $response->result);
         $this->assertSame('1.3', $response->apiVersion);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_handles_missing_data(): void

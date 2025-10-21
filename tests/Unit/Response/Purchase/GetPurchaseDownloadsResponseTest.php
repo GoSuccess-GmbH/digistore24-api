@@ -32,7 +32,7 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
         $response = GetPurchaseDownloadsResponse::fromArray($data);
 
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
-        $downloads = $response->getDownloads();
+        $downloads = $response->downloads;
         $this->assertCount(2, $downloads);
         // Downloads is array<string, mixed> per PHPDoc, access by key not index
         $this->assertNotEmpty($downloads);
@@ -59,7 +59,7 @@ final class GetPurchaseDownloadsResponseTest extends TestCase
         $response = GetPurchaseDownloadsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(GetPurchaseDownloadsResponse::class, $response);
-        $this->assertCount(1, $response->getDownloads());
+        $this->assertCount(1, $response->downloads);
     }
 
     public function test_has_raw_response(): void

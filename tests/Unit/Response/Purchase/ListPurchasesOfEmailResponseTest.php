@@ -29,8 +29,8 @@ final class ListPurchasesOfEmailResponseTest extends TestCase
         $response = ListPurchasesOfEmailResponse::fromArray($data);
 
         $this->assertInstanceOf(ListPurchasesOfEmailResponse::class, $response);
-        $this->assertCount(2, $response->getPurchases());
-        $this->assertSame('P111', $response->getPurchases()[0]['purchase_id']);
+        $this->assertCount(2, $response->purchases);
+        $this->assertSame('P111', $response->purchases[0]['purchase_id']);
     }
 
     public function test_can_create_from_response(): void
@@ -52,7 +52,7 @@ final class ListPurchasesOfEmailResponseTest extends TestCase
         $response = ListPurchasesOfEmailResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListPurchasesOfEmailResponse::class, $response);
-        $this->assertCount(1, $response->getPurchases());
+        $this->assertCount(1, $response->purchases);
     }
 
     public function test_has_raw_response(): void

@@ -18,8 +18,7 @@ final class RefundPartiallyResponseTest extends TestCase
         $response = RefundPartiallyResponse::fromArray($data);
 
         $this->assertInstanceOf(RefundPartiallyResponse::class, $response);
-        $this->assertSame('success', $response->getResult());
-        $this->assertTrue($response->wasSuccessful());
+        $this->assertSame('success', $response->result);
     }
 
     public function test_can_create_from_response(): void
@@ -36,7 +35,6 @@ final class RefundPartiallyResponseTest extends TestCase
         $response = RefundPartiallyResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(RefundPartiallyResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

@@ -24,7 +24,6 @@ final class CreateShippingCostPolicyResponseTest extends TestCase
         $response = CreateShippingCostPolicyResponse::fromArray($data);
 
         $this->assertInstanceOf(CreateShippingCostPolicyResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertSame('SCP123', $response->getShippingCostPolicyId());
     }
 
@@ -45,7 +44,6 @@ final class CreateShippingCostPolicyResponseTest extends TestCase
         $response = CreateShippingCostPolicyResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(CreateShippingCostPolicyResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

@@ -29,7 +29,6 @@ final class StartRebillingResponseTest extends TestCase
 
         $this->assertInstanceOf(StartRebillingResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertInstanceOf(RebillingData::class, $response->data);
         $this->assertTrue($response->data->modified);
         $this->assertTrue($response->data->rebillingActive);
@@ -55,7 +54,6 @@ final class StartRebillingResponseTest extends TestCase
         $response = StartRebillingResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StartRebillingResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
         $this->assertNotNull($response->data);
         $this->assertFalse($response->data->modified);
     }

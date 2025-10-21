@@ -18,8 +18,7 @@ final class DeletePaymentplanResponseTest extends TestCase
         $response = DeletePaymentplanResponse::fromArray($data);
 
         $this->assertInstanceOf(DeletePaymentplanResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
-        $this->assertSame('success', $response->getResult());
+        $this->assertSame('success', $response->result);
     }
 
     public function test_can_create_from_response(): void
@@ -36,7 +35,6 @@ final class DeletePaymentplanResponseTest extends TestCase
         $response = DeletePaymentplanResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(DeletePaymentplanResponse::class, $response);
-        $this->assertTrue($response->wasSuccessful());
     }
 
     public function test_has_raw_response(): void

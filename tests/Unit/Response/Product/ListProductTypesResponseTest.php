@@ -23,7 +23,7 @@ final class ListProductTypesResponseTest extends TestCase
         $response = ListProductTypesResponse::fromArray($data);
 
         $this->assertInstanceOf(ListProductTypesResponse::class, $response);
-        $this->assertCount(3, $response->getProductTypes());
+        $this->assertCount(3, $response->productTypes);
         $this->assertNotNull($response->getProductTypeById(1));
     }
 
@@ -45,7 +45,7 @@ final class ListProductTypesResponseTest extends TestCase
         $response = ListProductTypesResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListProductTypesResponse::class, $response);
-        $this->assertCount(2, $response->getProductTypes());
+        $this->assertCount(2, $response->productTypes);
     }
 
     public function test_has_raw_response(): void

@@ -23,8 +23,8 @@ final class StatsMarketplaceResponseTest extends TestCase
         $response = StatsMarketplaceResponse::fromArray($data);
 
         $this->assertInstanceOf(StatsMarketplaceResponse::class, $response);
-        $this->assertArrayHasKey('total_entries', $response->getData());
-        $this->assertSame(50, $response->getData()['total_entries']);
+        $this->assertArrayHasKey('total_entries', $response->data);
+        $this->assertSame(50, $response->data['total_entries']);
     }
 
     public function test_can_create_from_response(): void
@@ -44,7 +44,7 @@ final class StatsMarketplaceResponseTest extends TestCase
         $response = StatsMarketplaceResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(StatsMarketplaceResponse::class, $response);
-        $this->assertSame(100, $response->getData()['total_entries']);
+        $this->assertSame(100, $response->data['total_entries']);
     }
 
     public function test_has_raw_response(): void

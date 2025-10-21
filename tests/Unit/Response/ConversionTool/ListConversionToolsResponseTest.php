@@ -21,7 +21,7 @@ final class ListConversionToolsResponseTest extends TestCase
         $response = ListConversionToolsResponse::fromArray($data);
 
         $this->assertInstanceOf(ListConversionToolsResponse::class, $response);
-        $this->assertCount(2, $response->getSmartupgrades());
+        $this->assertCount(2, $response->smartupgrades);
     }
 
     public function test_can_create_from_response(): void
@@ -40,7 +40,7 @@ final class ListConversionToolsResponseTest extends TestCase
         $response = ListConversionToolsResponse::fromResponse($httpResponse);
 
         $this->assertInstanceOf(ListConversionToolsResponse::class, $response);
-        $this->assertCount(1, $response->getSmartupgrades());
+        $this->assertCount(1, $response->smartupgrades);
     }
 
     public function test_has_raw_response(): void
