@@ -17,24 +17,31 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class UpdateVoucherResponse extends AbstractResponse
 {
     /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
      * ID of the updated voucher
      */
     public int $discountCodeId {
-        get => $this->discountCodeId;
+        get => $this->discountCodeId ?? 0;
     }
 
     /**
      * The voucher code
      */
     public string $code {
-        get => $this->code;
+        get => $this->code ?? '';
     }
 
     /**
      * Whether the voucher was modified
      */
     public bool $isModified {
-        get => $this->isModified;
+        get => $this->isModified ?? false;
     }
 
     /**
@@ -45,6 +52,7 @@ final class UpdateVoucherResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $instance = new self();
+        $instance->result = self::extractResult(data: $data, rawResponse: $rawResponse);
 
         if ($rawResponse !== null) {
             $instance->rawResponse = $rawResponse;

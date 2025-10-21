@@ -17,10 +17,17 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class GetVoucherResponse extends AbstractResponse
 {
     /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
      * The voucher data
      */
-    public VoucherData $voucher {
-        get => $this->voucher;
+    public ?VoucherData $voucher {
+        get => $this->voucher ?? null;
     }
 
     /**
@@ -31,6 +38,7 @@ final class GetVoucherResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $instance = new self();
+        $instance->result = self::extractResult(data: $data, rawResponse: $rawResponse);
 
         if ($rawResponse !== null) {
             $instance->rawResponse = $rawResponse;

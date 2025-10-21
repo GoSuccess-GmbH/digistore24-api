@@ -18,19 +18,26 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class ListVouchersResponse extends AbstractResponse
 {
     /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
      * List of vouchers
      *
      * @var array<int, VoucherData>
      */
     public array $coupons {
-        get => $this->coupons;
+        get => $this->coupons ?? [];
     }
 
     /**
      * Whether returned data is public
      */
     public bool $areReturnedDataPublic {
-        get => $this->areReturnedDataPublic;
+        get => $this->areReturnedDataPublic ?? false;
     }
 
     /**
@@ -41,6 +48,7 @@ final class ListVouchersResponse extends AbstractResponse
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $instance = new self();
+        $instance->result = self::extractResult(data: $data, rawResponse: $rawResponse);
 
         if ($rawResponse !== null) {
             $instance->rawResponse = $rawResponse;

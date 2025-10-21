@@ -19,7 +19,7 @@ final class DeleteVoucherResponse extends AbstractResponse
      * Result of the delete operation
      */
     public string $result {
-        get => $this->result;
+        get => $this->result ?? '';
     }
 
     /**
