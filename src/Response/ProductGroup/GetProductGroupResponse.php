@@ -14,20 +14,18 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetProductGroupResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $productGroup */
-    public function __construct(private array $productGroup)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    /** @return array<string, mixed> */
-    public function getProductGroup(): array
-    {
-        return $this->productGroup;
+    /** @var array<string, mixed> */
+    public array $productGroup {
+        get => $this->productGroup ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $productGroupData = $innerData['product_group'] ?? [];
         if (! is_array($productGroupData)) {
             $productGroupData = [];
@@ -35,6 +33,14 @@ final class GetProductGroupResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedProductGroup */
         $validatedProductGroup = $productGroupData;
 
-        return new self(productGroup: $validatedProductGroup);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->productGroup = $validatedProductGroup;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

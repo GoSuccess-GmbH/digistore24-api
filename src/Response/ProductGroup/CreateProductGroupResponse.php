@@ -14,20 +14,13 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreateProductGroupResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private string $result, private array $data)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
+    /** @var array<string, mixed> */
+    public array $data {
+        get => $this->data ?? [];
     }
 
     public function getProductGroupId(): ?string
@@ -37,23 +30,21 @@ final class CreateProductGroupResponse extends AbstractResponse
         return is_string($value) ? $value : null;
     }
 
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
-    }
-
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $innerData = self::extractInnerData(data: $data);
 
-        return new self(
-            result: self::extractResult($data, $rawResponse),
-            data: $validatedData,
-        );
+        /** @var array<string, mixed> $validatedData */
+        $validatedData = $innerData;
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->data = $validatedData;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
