@@ -15,25 +15,31 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ValidateCouponCodeResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $data
+     * Result status
      */
-    public function __construct(private string $status, private array $data)
-    {
-    }
-
-    public function getStatus(): string
-    {
-        return $this->status;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * Validation status
      */
-    public function getData(): array
-    {
-        return $this->data;
+    public string $status {
+        get => $this->status ?? '';
     }
 
+    /**
+     * Coupon data
+     *
+     * @var array<string, mixed>
+     */
+    public array $data {
+        get => $this->data ?? [];
+    }
+
+    /**
+     * Check if coupon is valid
+     */
     public function isValid(): bool
     {
         return $this->status === 'success';
@@ -41,20 +47,22 @@ final class ValidateCouponCodeResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $couponData = $data['data'] ?? [];
-
-        if (! is_array($couponData)) {
-            $couponData = [];
-        }
+        $innerData = self::extractInnerData(data: $data);
 
         /** @var array<string, mixed> $validatedCouponData */
-        $validatedCouponData = $couponData;
+        $validatedCouponData = $innerData;
 
         $status = $validatedCouponData['status'] ?? '';
 
-        return new self(
-            status: is_string($status) ? $status : '',
-            data: $validatedCouponData,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->status = is_string($status) ? $status : '';
+        $response->data = $validatedCouponData;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

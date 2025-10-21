@@ -15,24 +15,26 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ListConversionToolsResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $smartupgrades
+     * Result status
      */
-    public function __construct(private array $smartupgrades)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * Smart upgrades data
+     *
+     * @var array<string, mixed>
      */
-    public function getSmartupgrades(): array
-    {
-        return $this->smartupgrades;
+    public array $smartupgrades {
+        get => $this->smartupgrades ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $smartupgrades = $data['smartupgrades'] ?? [];
+        $innerData = self::extractInnerData(data: $data);
 
+        $smartupgrades = $innerData['smartupgrades'] ?? [];
         if (! is_array($smartupgrades)) {
             $smartupgrades = [];
         }
@@ -40,6 +42,14 @@ final class ListConversionToolsResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedSmartupgrades */
         $validatedSmartupgrades = $smartupgrades;
 
-        return new self(smartupgrades: $validatedSmartupgrades);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->smartupgrades = $validatedSmartupgrades;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
