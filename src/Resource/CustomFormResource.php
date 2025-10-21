@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace GoSuccess\Digistore24\Api\Resource;
+
+use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Exception\ApiException;
+use GoSuccess\Digistore24\Api\Request\CustomForm\ListCustomFormRecordsRequest;
+use GoSuccess\Digistore24\Api\Response\CustomForm\ListCustomFormRecordsResponse;
+
+/**
+ * Custom Form Resource
+ *
+ * Retrieve custom form data collected during checkout.
+ */
+final class CustomFormResource extends AbstractResource
+{
+    /**
+     * List custom form records
+     *
+     * Returns a list with data from additional input fields collected
+     * during the checkout process.
+     *
+     * @link https://digistore24.com/api/docs/paths/listCustomFormRecords.yaml OpenAPI Specification
+     *
+     * @param ListCustomFormRecordsRequest|null $request Optional list custom form records request
+     * @throws ApiException
+     * @return ListCustomFormRecordsResponse The response with custom form records
+     */
+    public function listRecords(?ListCustomFormRecordsRequest $request = null): ListCustomFormRecordsResponse
+    {
+        return $this->executeTyped($request ?? new ListCustomFormRecordsRequest(), ListCustomFormRecordsResponse::class);
+    }
+}
