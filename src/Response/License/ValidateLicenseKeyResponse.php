@@ -14,24 +14,72 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ValidateLicenseKeyResponse extends AbstractResponse
 {
-    public function __construct(
-        private string $isLicenseValid,
-        private string $isLicenseKeyFound,
-        private string $purchaseId,
-        private string $licenseKey,
-        private int $productId,
-        private string $productName,
-        private string $billingStatus,
-        private string $billingStatusMsg,
-        private ?string $lastPaymentAt,
-        private ?string $lastPaymentAtMsg,
-        private ?string $nextPaymentAt,
-        private ?string $nextPaymentAtMsg,
-        private ?string $lastTransactionType,
-        private ?string $lastTransactionTypeMsg,
-        private ?string $paidUntil,
-        private ?string $paidUntilMsg,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    public string $isLicenseValid {
+        get => $this->isLicenseValid ?? 'N';
+    }
+
+    public string $isLicenseKeyFound {
+        get => $this->isLicenseKeyFound ?? 'N';
+    }
+
+    public string $purchaseId {
+        get => $this->purchaseId ?? '';
+    }
+
+    public string $licenseKey {
+        get => $this->licenseKey ?? '';
+    }
+
+    public int $productId {
+        get => $this->productId ?? 0;
+    }
+
+    public string $productName {
+        get => $this->productName ?? '';
+    }
+
+    public string $billingStatus {
+        get => $this->billingStatus ?? '';
+    }
+
+    public string $billingStatusMsg {
+        get => $this->billingStatusMsg ?? '';
+    }
+
+    public ?string $lastPaymentAt {
+        get => $this->lastPaymentAt ?? null;
+    }
+
+    public ?string $lastPaymentAtMsg {
+        get => $this->lastPaymentAtMsg ?? null;
+    }
+
+    public ?string $nextPaymentAt {
+        get => $this->nextPaymentAt ?? null;
+    }
+
+    public ?string $nextPaymentAtMsg {
+        get => $this->nextPaymentAtMsg ?? null;
+    }
+
+    public ?string $lastTransactionType {
+        get => $this->lastTransactionType ?? null;
+    }
+
+    public ?string $lastTransactionTypeMsg {
+        get => $this->lastTransactionTypeMsg ?? null;
+    }
+
+    public ?string $paidUntil {
+        get => $this->paidUntil ?? null;
+    }
+
+    public ?string $paidUntilMsg {
+        get => $this->paidUntilMsg ?? null;
     }
 
     public function isValid(): bool
@@ -44,130 +92,33 @@ final class ValidateLicenseKeyResponse extends AbstractResponse
         return $this->isLicenseKeyFound === 'Y';
     }
 
-    public function getIsLicenseValid(): string
-    {
-        return $this->isLicenseValid;
-    }
-
-    public function getIsLicenseKeyFound(): string
-    {
-        return $this->isLicenseKeyFound;
-    }
-
-    public function getPurchaseId(): string
-    {
-        return $this->purchaseId;
-    }
-
-    public function getLicenseKey(): string
-    {
-        return $this->licenseKey;
-    }
-
-    public function getProductId(): int
-    {
-        return $this->productId;
-    }
-
-    public function getProductName(): string
-    {
-        return $this->productName;
-    }
-
-    public function getBillingStatus(): string
-    {
-        return $this->billingStatus;
-    }
-
-    public function getBillingStatusMsg(): string
-    {
-        return $this->billingStatusMsg;
-    }
-
-    public function getLastPaymentAt(): ?string
-    {
-        return $this->lastPaymentAt;
-    }
-
-    public function getLastPaymentAtMsg(): ?string
-    {
-        return $this->lastPaymentAtMsg;
-    }
-
-    public function getNextPaymentAt(): ?string
-    {
-        return $this->nextPaymentAt;
-    }
-
-    public function getNextPaymentAtMsg(): ?string
-    {
-        return $this->nextPaymentAtMsg;
-    }
-
-    public function getLastTransactionType(): ?string
-    {
-        return $this->lastTransactionType;
-    }
-
-    public function getLastTransactionTypeMsg(): ?string
-    {
-        return $this->lastTransactionTypeMsg;
-    }
-
-    public function getPaidUntil(): ?string
-    {
-        return $this->paidUntil;
-    }
-
-    public function getPaidUntilMsg(): ?string
-    {
-        return $this->paidUntilMsg;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $licenseData = $data['data'] ?? [];
-        if (! is_array($licenseData)) {
-            $licenseData = [];
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->isLicenseValid = is_string($innerData['is_license_valid'] ?? null) ? $innerData['is_license_valid'] : 'N';
+        $response->isLicenseKeyFound = is_string($innerData['is_license_key_found'] ?? null) ? $innerData['is_license_key_found'] : 'N';
+        $response->purchaseId = is_string($innerData['purchase_id'] ?? null) ? $innerData['purchase_id'] : '';
+        $response->licenseKey = is_string($innerData['license_key'] ?? null) ? $innerData['license_key'] : '';
+        $response->productId = is_int($innerData['product_id'] ?? null) ? $innerData['product_id'] : 0;
+        $response->productName = is_string($innerData['product_name'] ?? null) ? $innerData['product_name'] : '';
+        $response->billingStatus = is_string($innerData['billing_tatus'] ?? null) ? $innerData['billing_tatus'] : '';
+        $response->billingStatusMsg = is_string($innerData['billing_tatus_msg'] ?? null) ? $innerData['billing_tatus_msg'] : '';
+        $response->lastPaymentAt = isset($innerData['last_payment_at']) && is_string($innerData['last_payment_at']) ? $innerData['last_payment_at'] : null;
+        $response->lastPaymentAtMsg = isset($innerData['last_payment_at_msg']) && is_string($innerData['last_payment_at_msg']) ? $innerData['last_payment_at_msg'] : null;
+        $response->nextPaymentAt = isset($innerData['next_payment_at']) && is_string($innerData['next_payment_at']) ? $innerData['next_payment_at'] : null;
+        $response->nextPaymentAtMsg = isset($innerData['next_payment_at_msg']) && is_string($innerData['next_payment_at_msg']) ? $innerData['next_payment_at_msg'] : null;
+        $response->lastTransactionType = isset($innerData['last_transaction_type']) && is_string($innerData['last_transaction_type']) ? $innerData['last_transaction_type'] : null;
+        $response->lastTransactionTypeMsg = isset($innerData['last_transaction_type_msg']) && is_string($innerData['last_transaction_type_msg']) ? $innerData['last_transaction_type_msg'] : null;
+        $response->paidUntil = isset($innerData['paid_until']) && is_string($innerData['paid_until']) ? $innerData['paid_until'] : null;
+        $response->paidUntilMsg = isset($innerData['paid_until_msg']) && is_string($innerData['paid_until_msg']) ? $innerData['paid_until_msg'] : null;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
         }
 
-        $isLicenseValid = $licenseData['is_license_valid'] ?? 'N';
-        $isLicenseKeyFound = $licenseData['is_license_key_found'] ?? 'N';
-        $purchaseId = $licenseData['purchase_id'] ?? '';
-        $licenseKey = $licenseData['license_key'] ?? '';
-        $productId = $licenseData['product_id'] ?? 0;
-        $productName = $licenseData['product_name'] ?? '';
-        $billingStatus = $licenseData['billing_tatus'] ?? '';
-        $billingStatusMsg = $licenseData['billing_tatus_msg'] ?? '';
-        $lastPaymentAt = $licenseData['last_payment_at'] ?? null;
-        $lastPaymentAtMsg = $licenseData['last_payment_at_msg'] ?? null;
-        $nextPaymentAt = $licenseData['next_payment_at'] ?? null;
-        $nextPaymentAtMsg = $licenseData['next_payment_at_msg'] ?? null;
-        $lastTransactionType = $licenseData['last_transaction_type'] ?? null;
-        $lastTransactionTypeMsg = $licenseData['last_transaction_type_msg'] ?? null;
-        $paidUntil = $licenseData['paid_until'] ?? null;
-        $paidUntilMsg = $licenseData['paid_until_msg'] ?? null;
-
-        return new self(
-            isLicenseValid: is_string($isLicenseValid) ? $isLicenseValid : 'N',
-            isLicenseKeyFound: is_string($isLicenseKeyFound) ? $isLicenseKeyFound : 'N',
-            purchaseId: is_string($purchaseId) ? $purchaseId : '',
-            licenseKey: is_string($licenseKey) ? $licenseKey : '',
-            productId: is_int($productId) ? $productId : 0,
-            productName: is_string($productName) ? $productName : '',
-            billingStatus: is_string($billingStatus) ? $billingStatus : '',
-            billingStatusMsg: is_string($billingStatusMsg) ? $billingStatusMsg : '',
-            lastPaymentAt: $lastPaymentAt !== null && is_string($lastPaymentAt) ? $lastPaymentAt : null,
-            lastPaymentAtMsg: $lastPaymentAtMsg !== null && is_string($lastPaymentAtMsg) ? $lastPaymentAtMsg : null,
-            nextPaymentAt: $nextPaymentAt !== null && is_string($nextPaymentAt) ? $nextPaymentAt : null,
-            nextPaymentAtMsg: $nextPaymentAtMsg !== null && is_string($nextPaymentAtMsg) ? $nextPaymentAtMsg : null,
-            lastTransactionType: $lastTransactionType !== null && is_string($lastTransactionType) ? $lastTransactionType : null,
-            lastTransactionTypeMsg: $lastTransactionTypeMsg !== null && is_string($lastTransactionTypeMsg) ? $lastTransactionTypeMsg : null,
-            paidUntil: $paidUntil !== null && is_string($paidUntil) ? $paidUntil : null,
-            paidUntilMsg: $paidUntilMsg !== null && is_string($paidUntilMsg) ? $paidUntilMsg : null,
-        );
+        return $response;
     }
 }
