@@ -16,34 +16,36 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ListAccountAccessResponse extends AbstractResponse
 {
     /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * Accounts you have granted access to
+     *
      * @var AccountAccessData[]
      */
     public array $byMe {
-        get => $this->byMe;
+        get => $this->byMe ?? [];
     }
 
     /**
+     * Accounts you have been granted access to
+     *
      * @var AccountAccessData[]
      */
     public array $toMe {
-        get => $this->toMe;
-    }
-
-    /**
-     * @param AccountAccessData[] $byMe Accounts you have granted access to
-     * @param AccountAccessData[] $toMe Accounts you have been granted access to
-     */
-    public function __construct(
-        array $byMe = [],
-        array $toMe = [],
-    ) {
-        $this->byMe = $byMe;
-        $this->toMe = $toMe;
+        get => $this->toMe ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
 
         $byMe = [];
         $byMeData = $innerData['by_me'] ?? [];
@@ -56,6 +58,7 @@ final class ListAccountAccessResponse extends AbstractResponse
                 }
             }
         }
+        $response->byMe = $byMe;
 
         $toMe = [];
         $toMeData = $innerData['to_me'] ?? [];
@@ -68,10 +71,12 @@ final class ListAccountAccessResponse extends AbstractResponse
                 }
             }
         }
+        $response->toMe = $toMe;
 
-        return new self(
-            byMe: $byMe,
-            toMe: $toMe,
-        );
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

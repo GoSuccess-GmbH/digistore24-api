@@ -16,23 +16,39 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class LogMemberAccessResponse extends AbstractResponse
 {
     /**
-     * @param bool $success Whether the access was successfully logged
-     * @param string|null $message Optional message from the API
+     * Result status
      */
-    public function __construct(
-        public readonly bool $success,
-        public readonly ?string $message = null,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * Whether the access was successfully logged
+     */
+    public bool $success {
+        get => $this->success ?? true;
+    }
+
+    /**
+     * Optional message from the API
+     */
+    public ?string $message {
+        get => $this->message ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $success = self::getValue($data, 'success', 'bool', true);
-        $message = self::getValue($data, 'message', 'string', null);
+        $innerData = self::extractInnerData(data: $data);
 
-        return new self(
-            success: TypeConverter::toBool($success) ?? true,
-            message: $message === null ? null : TypeConverter::toString($message),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->success = TypeConverter::toBool($innerData['success'] ?? true) ?? true;
+        $response->message = isset($innerData['message']) ? TypeConverter::toString($innerData['message']) : null;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
