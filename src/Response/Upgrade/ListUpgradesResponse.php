@@ -14,20 +14,14 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListUpgradesResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $upgrades */
-    public function __construct(private array $upgrades)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    /** @return array<string, mixed> */
-    public function getUpgrades(): array
-    {
-        return $this->upgrades;
-    }
+    /** @var array<string, mixed> */
+    public array $upgrades { get => $this->upgrades ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $upgradesData = $innerData['upgrades'] ?? [];
         if (! is_array($upgradesData)) {
             $upgradesData = [];
@@ -35,6 +29,13 @@ final class ListUpgradesResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedUpgrades */
         $validatedUpgrades = $upgradesData;
 
-        return new self(upgrades: $validatedUpgrades);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->upgrades = $validatedUpgrades;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

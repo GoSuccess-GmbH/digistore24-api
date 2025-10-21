@@ -14,21 +14,10 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreateOrderformResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private string $result, private array $data)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
-    }
+    /** @var array<string, mixed> */
+    public array $data { get => $this->data ?? []; }
 
     public function getOrderformId(): ?string
     {
@@ -51,9 +40,13 @@ final class CreateOrderformResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedData */
         $validatedData = $responseData;
 
-        return new self(
-            result: self::extractResult($data, $rawResponse),
-            data: $validatedData,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->data = $validatedData;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
