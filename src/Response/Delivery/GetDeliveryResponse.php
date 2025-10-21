@@ -17,39 +17,36 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class GetDeliveryResponse extends AbstractResponse
 {
     /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
      * Delivery details
      */
-    public DeliveryDetailsData $delivery {
-        get => $this->delivery;
+    public ?DeliveryDetailsData $delivery {
+        get => $this->delivery ?? null;
     }
 
     /**
      * Whether delivery was marked as in progress
      */
     public bool $isSetInProgress {
-        get => $this->isSetInProgress;
+        get => $this->isSetInProgress ?? false;
     }
 
     /**
      * Reason why setting in progress failed, if applicable
      */
     public ?string $setInProgressFailReason {
-        get => $this->setInProgressFailReason;
-    }
-
-    public function __construct(
-        DeliveryDetailsData $delivery,
-        bool $isSetInProgress,
-        ?string $setInProgressFailReason = null,
-    ) {
-        $this->delivery = $delivery;
-        $this->isSetInProgress = $isSetInProgress;
-        $this->setInProgressFailReason = $setInProgressFailReason;
+        get => $this->setInProgressFailReason ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
 
         $deliveryData = $innerData['delivery'] ?? [];
         if (! is_array($deliveryData)) {
@@ -59,10 +56,16 @@ final class GetDeliveryResponse extends AbstractResponse
         /** @var array<string, mixed> $validDeliveryData */
         $validDeliveryData = $deliveryData;
 
-        return new self(
-            delivery: DeliveryDetailsData::fromArray($validDeliveryData),
-            isSetInProgress: TypeConverter::toBool($innerData['is_set_in_progress'] ?? null) ?? false,
-            setInProgressFailReason: TypeConverter::toString($innerData['set_in_progress_fail_reason'] ?? null),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->delivery = empty($validDeliveryData) ? null : DeliveryDetailsData::fromArray($validDeliveryData);
+        $response->isSetInProgress = TypeConverter::toBool($innerData['is_set_in_progress'] ?? null) ?? false;
+        $response->setInProgressFailReason = TypeConverter::toString($innerData['set_in_progress_fail_reason'] ?? null);
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
