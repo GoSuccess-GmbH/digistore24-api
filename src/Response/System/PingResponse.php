@@ -51,20 +51,6 @@ final class PingResponse extends AbstractResponse
         get => $this->serverTime;
     }
 
-    public function __construct(
-        string $apiVersion = '',
-        ?DateTimeImmutable $currentTime = null,
-        float $runtimeSeconds = 0.0,
-        string $result = '',
-        ?DateTimeImmutable $serverTime = null,
-    ) {
-        $this->apiVersion = $apiVersion;
-        $this->currentTime = $currentTime;
-        $this->runtimeSeconds = $runtimeSeconds;
-        $this->result = $result;
-        $this->serverTime = $serverTime;
-    }
-
     /**
      * Check if ping was successful
      */
@@ -78,20 +64,19 @@ final class PingResponse extends AbstractResponse
     {
         // For ping, we need top-level fields from rawResponse if available
         $topLevel = $rawResponse !== null ? $rawResponse->data : $data;
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
 
-        $instance = new self(
-            apiVersion: TypeConverter::toString($topLevel['api_version'] ?? null) ?? '',
-            currentTime: TypeConverter::toDateTime($topLevel['current_time'] ?? null),
-            runtimeSeconds: TypeConverter::toFloat($topLevel['runtime_seconds'] ?? null) ?? 0.0,
-            result: self::extractResult($data, $rawResponse),
-            serverTime: TypeConverter::toDateTime($innerData['server_time'] ?? null),
-        );
+        $response = new self();
+        $response->apiVersion = TypeConverter::toString($topLevel['api_version'] ?? null) ?? '';
+        $response->currentTime = TypeConverter::toDateTime($topLevel['current_time'] ?? null);
+        $response->runtimeSeconds = TypeConverter::toFloat($topLevel['runtime_seconds'] ?? null) ?? 0.0;
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->serverTime = TypeConverter::toDateTime($innerData['server_time'] ?? null);
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }
