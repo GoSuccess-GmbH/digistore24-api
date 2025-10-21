@@ -15,24 +15,33 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class GetUserInfoResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $userInfo
+     * Result status
      */
-    public function __construct(private array $userInfo)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * User info data
+     *
+     * @var array<string, mixed>
      */
-    public function getUserInfo(): array
-    {
-        return $this->userInfo;
+    public array $userInfo {
+        get => $this->userInfo ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
 
-        return new self(userInfo: $innerData);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->userInfo = $innerData;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
