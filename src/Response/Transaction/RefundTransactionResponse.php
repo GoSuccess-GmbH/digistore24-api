@@ -14,48 +14,40 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class RefundTransactionResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private string $status, private string $modified, private array $data)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function getStatus(): string
-    {
-        return $this->status;
+    /**
+     * Refund status
+     */
+    public string $status {
+        get => $this->status ?? '';
     }
 
-    public function getModified(): string
-    {
-        return $this->modified;
-    }
-
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    public function wasSuccessful(): bool
-    {
-        return $this->status === 'completed';
+    /**
+     * Whether transaction was modified
+     */
+    public string $modified {
+        get => $this->modified ?? 'N';
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $refundData = $data['data'] ?? [];
-        if (! is_array($refundData)) {
-            $refundData = [];
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->status = is_string($innerData['status'] ?? null) ? $innerData['status'] : '';
+        $response->modified = is_string($innerData['modified'] ?? null) ? $innerData['modified'] : 'N';
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
         }
 
-        $status = $refundData['status'] ?? '';
-        $modified = $refundData['modified'] ?? 'N';
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $refundData;
-
-        return new self(
-            status: is_string($status) ? $status : '',
-            modified: is_string($modified) ? $modified : 'N',
-            data: $validatedData,
-        );
+        return $response;
     }
 }
