@@ -1,0 +1,91 @@
+name: Integration Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_product_id:
+        description: 'Test Product ID'
+        required: false
+        type: string
+        default: ''
+      test_product_id_2:
+        description: 'Test Product ID 2'
+        required: false
+        type: string
+        default: ''
+      test_product_with_payment_plan:
+        description: 'Test Product with Payment Plan'
+        required: false
+        type: string
+        default: ''
+      test_purchase_id:
+        description: 'Test Purchase ID'
+        required: false
+        type: string
+        default: ''
+      test_purchase_with_rebilling:
+        description: 'Test Purchase with Rebilling'
+        required: false
+        type: string
+        default: ''
+      test_buyer_email:
+        description: 'Test Buyer Email'
+        required: false
+        type: string
+        default: ''
+      test_buyer_id:
+        description: 'Test Buyer ID'
+        required: false
+        type: string
+        default: ''
+      test_affiliate_id:
+        description: 'Test Affiliate ID'
+        required: false
+        type: string
+        default: ''
+      test_voucher_code:
+        description: 'Test Voucher Code'
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run integration tests
+        env:
+          DS24_API_KEY: ${{ secrets.DS24_API_KEY }}
+          DS24_ALLOW_CI_TESTS: 'true'
+          # Test data from workflow inputs
+          DS24_TEST_PRODUCT_ID: ${{ inputs.test_product_id }}
+          DS24_TEST_PRODUCT_ID_2: ${{ inputs.test_product_id_2 }}
+          DS24_TEST_PRODUCT_WITH_PAYMENT_PLAN: ${{ inputs.test_product_with_payment_plan }}
+          DS24_TEST_PURCHASE_ID: ${{ inputs.test_purchase_id }}
+          DS24_TEST_PURCHASE_WITH_REBILLING: ${{ inputs.test_purchase_with_rebilling }}
+          DS24_TEST_BUYER_EMAIL: ${{ inputs.test_buyer_email }}
+          DS24_TEST_BUYER_ID: ${{ inputs.test_buyer_id }}
+          DS24_TEST_AFFILIATE_ID: ${{ inputs.test_affiliate_id }}
+          DS24_TEST_VOUCHER_CODE: ${{ inputs.test_voucher_code }}
+        run: composer test:integration
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-test-results
+          path: build/logs/
+
