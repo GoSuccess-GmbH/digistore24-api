@@ -14,39 +14,41 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class StatsAffiliateToplistResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private array $data)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    /** @return array<string, mixed> */
-    public function getToplist(): array
-    {
-        $toplist = $this->data['toplist'] ?? [];
-        if (! is_array($toplist)) {
-            return [];
-        }
-        /** @var array<string, mixed> $validated */
-        $validated = $toplist;
-
-        return $validated;
+    /**
+     * Toplist data
+     *
+     * @var array<string, mixed>
+     */
+    public array $toplist {
+        get => $this->toplist ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $innerData = self::extractInnerData(data: $data);
+        $toplist = $innerData['toplist'] ?? [];
 
-        return new self(data: $validatedData);
+        if (! is_array($toplist)) {
+            $toplist = [];
+        }
+        /** @var array<string, mixed> $validatedToplist */
+        $validatedToplist = $toplist;
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->toplist = $validatedToplist;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

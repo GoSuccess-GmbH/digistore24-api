@@ -14,39 +14,41 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class StatsDailyAmountsResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private array $data)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    /** @return array<string, mixed> */
-    public function getDailyAmounts(): array
-    {
-        $dailyAmounts = $this->data['daily_amounts'] ?? [];
-        if (! is_array($dailyAmounts)) {
-            return [];
-        }
-        /** @var array<string, mixed> $validated */
-        $validated = $dailyAmounts;
-
-        return $validated;
+    /**
+     * Daily amounts data
+     *
+     * @var array<string, mixed>
+     */
+    public array $dailyAmounts {
+        get => $this->dailyAmounts ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $innerData = self::extractInnerData(data: $data);
+        $dailyAmounts = $innerData['daily_amounts'] ?? [];
 
-        return new self(data: $validatedData);
+        if (! is_array($dailyAmounts)) {
+            $dailyAmounts = [];
+        }
+        /** @var array<string, mixed> $validatedAmounts */
+        $validatedAmounts = $dailyAmounts;
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->dailyAmounts = $validatedAmounts;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

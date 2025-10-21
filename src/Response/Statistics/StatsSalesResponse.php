@@ -14,39 +14,41 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class StatsSalesResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $data */
-    public function __construct(private array $data)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    /** @return array<string, mixed> */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    /** @return array<string, mixed> */
-    public function getSales(): array
-    {
-        $sales = $this->data['sales'] ?? [];
-        if (! is_array($sales)) {
-            return [];
-        }
-        /** @var array<string, mixed> $validated */
-        $validated = $sales;
-
-        return $validated;
+    /**
+     * Sales data
+     *
+     * @var array<string, mixed>
+     */
+    public array $sales {
+        get => $this->sales ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
-        /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $innerData = self::extractInnerData(data: $data);
+        $sales = $innerData['sales'] ?? [];
 
-        return new self(data: $validatedData);
+        if (! is_array($sales)) {
+            $sales = [];
+        }
+        /** @var array<string, mixed> $validatedSales */
+        $validatedSales = $sales;
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->sales = $validatedSales;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
