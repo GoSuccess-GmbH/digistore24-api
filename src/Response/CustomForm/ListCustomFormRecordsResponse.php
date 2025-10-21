@@ -15,27 +15,24 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ListCustomFormRecordsResponse extends AbstractResponse
 {
     /**
-     * @param array<int, object{form_id: int, id: int, purchase_id: string, purchase_item_id: int, product_id: int, form_no: int, form_count: int, data: array<string, string>, address: array<string, string>}> $records
+     * Result status
      */
-    public function __construct(
-        private array $records,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * Get all custom form records.
+     * Custom form records
      *
-     * @return array<int, object{form_id: int, id: int, purchase_id: string, purchase_item_id: int, product_id: int, form_no: int, form_count: int, data: array<string, string>, address: array<string, string>}>
+     * @var array<int, object{form_id: int, id: int, purchase_id: string, purchase_item_id: int, product_id: int, form_no: int, form_count: int, data: array<string, string>, address: array<string, string>}>
      */
-    public function getRecords(): array
-    {
-        return $this->records;
+    public array $records {
+        get => $this->records ?? [];
     }
 
     /**
      * Get records for a specific purchase.
      *
-     * @param string $purchaseId
      * @return array<int, object{form_id: int, id: int, purchase_id: string, purchase_item_id: int, product_id: int, form_no: int, form_count: int, data: array<string, string>, address: array<string, string>}>
      */
     public function getRecordsByPurchaseId(string $purchaseId): array
@@ -46,13 +43,12 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $innerData = self::extractInnerData(data: $data);
+
         $records = [];
-        $recordsData = $data['records'] ?? [];
+        $recordsData = $innerData['records'] ?? [];
         if (is_array($recordsData)) {
             foreach ($recordsData as $item) {
                 if (! is_array($item)) {
@@ -88,6 +84,14 @@ final class ListCustomFormRecordsResponse extends AbstractResponse
             }
         }
 
-        return new self($records);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->records = $records;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
