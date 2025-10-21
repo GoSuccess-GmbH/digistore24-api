@@ -15,21 +15,26 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class GetProductResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $additionalData
-     */
-    public function __construct(
-        public readonly string $productId,
-        public readonly string $productName,
-        public readonly string $productType,
-        public readonly float $price,
-        public readonly string $currency,
-        public readonly ?string $description,
-        public readonly bool $isPublished,
-        public readonly ?string $imageUrl,
-        public readonly array $additionalData,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    public string $productId { get => $this->productId ?? ''; }
+
+    public string $productName { get => $this->productName ?? ''; }
+
+    public string $productType { get => $this->productType ?? ''; }
+
+    public float $price { get => $this->price ?? 0.0; }
+
+    public string $currency { get => $this->currency ?? 'EUR'; }
+
+    public ?string $description { get => $this->description ?? null; }
+
+    public bool $isPublished { get => $this->isPublished ?? false; }
+
+    public ?string $imageUrl { get => $this->imageUrl ?? null; }
+
+    /** @var array<string, mixed> */
+    public array $additionalData { get => $this->additionalData ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -47,18 +52,21 @@ final class GetProductResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedAdditionalData */
         $validatedAdditionalData = $additionalData;
 
-        $instance = new self(
-            productId: TypeConverter::toString($productId) ?? '',
-            productName: TypeConverter::toString($productName) ?? '',
-            productType: TypeConverter::toString($productType) ?? '',
-            price: TypeConverter::toFloat($price) ?? 0.0,
-            currency: TypeConverter::toString($currency) ?? 'EUR',
-            description: $description !== null ? TypeConverter::toString($description) : null,
-            isPublished: TypeConverter::toBool($data['is_published'] ?? false) ?? false,
-            imageUrl: $imageUrl !== null ? TypeConverter::toString($imageUrl) : null,
-            additionalData: $validatedAdditionalData,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->productId = TypeConverter::toString($productId) ?? '';
+        $response->productName = TypeConverter::toString($productName) ?? '';
+        $response->productType = TypeConverter::toString($productType) ?? '';
+        $response->price = TypeConverter::toFloat($price) ?? 0.0;
+        $response->currency = TypeConverter::toString($currency) ?? 'EUR';
+        $response->description = $description !== null ? TypeConverter::toString($description) : null;
+        $response->isPublished = TypeConverter::toBool($data['is_published'] ?? false) ?? false;
+        $response->imageUrl = $imageUrl !== null ? TypeConverter::toString($imageUrl) : null;
+        $response->additionalData = $validatedAdditionalData;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }

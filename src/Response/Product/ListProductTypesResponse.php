@@ -20,23 +20,10 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class ListProductTypesResponse extends AbstractResponse
 {
-    /**
-     * @param array<int, object{id: int, name: string, category: string}> $productTypes
-     */
-    public function __construct(
-        private array $productTypes,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    /**
-     * Get all product types.
-     *
-     * @return array<int, object{id: int, name: string, category: string}>
-     */
-    public function getProductTypes(): array
-    {
-        return $this->productTypes;
-    }
+    /** @var array<int, object{id: int, name: string, category: string}> */
+    public array $productTypes { get => $this->productTypes ?? []; }
 
     /**
      * Get a specific product type by ID.
@@ -103,6 +90,13 @@ final class ListProductTypesResponse extends AbstractResponse
             ];
         }
 
-        return new self($productTypes);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->productTypes = $productTypes;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

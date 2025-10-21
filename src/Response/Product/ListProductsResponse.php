@@ -14,15 +14,13 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListProductsResponse extends AbstractResponse
 {
-    /**
-     * @param array<ProductListItem> $products Array of product list items
-     * @param int $totalCount Total number of products
-     */
-    public function __construct(
-        public readonly array $products,
-        public readonly int $totalCount,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    /** @var array<ProductListItem> Array of product list items */
+    public array $products { get => $this->products ?? []; }
+
+    /** Total number of products */
+    public int $totalCount { get => $this->totalCount ?? 0; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -39,11 +37,14 @@ final class ListProductsResponse extends AbstractResponse
             }
         }
 
-        $instance = new self(
-            products: $products,
-            totalCount: count($products), // DS24 API doesn't return total_count, so we count the array
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->products = $products;
+        $response->totalCount = count($products); // DS24 API doesn't return total_count, so we count the array
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }

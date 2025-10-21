@@ -14,14 +14,9 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class UpdateProductResponse extends AbstractResponse
 {
-    public function __construct(private string $modified)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    public function getModified(): string
-    {
-        return $this->modified;
-    }
+    public string $modified { get => $this->modified ?? 'N'; }
 
     public function wasModified(): bool
     {
@@ -30,9 +25,16 @@ final class UpdateProductResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $modified = $innerData['modified'] ?? 'N';
 
-        return new self(modified: is_string($modified) ? $modified : 'N');
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->modified = is_string($modified) ? $modified : 'N';
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

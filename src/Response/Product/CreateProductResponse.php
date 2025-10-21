@@ -15,20 +15,22 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class CreateProductResponse extends AbstractResponse
 {
-    public function __construct(private int $productId)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    public function getProductId(): int
-    {
-        return $this->productId;
-    }
+    public int $productId { get => $this->productId ?? 0; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $productId = $innerData['product_id'] ?? 0;
 
-        return new self(productId: TypeConverter::toInt($productId) ?? 0);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->productId = TypeConverter::toInt($productId) ?? 0;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
