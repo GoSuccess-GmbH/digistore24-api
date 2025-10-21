@@ -69,19 +69,16 @@ final class SettingsDataTest extends TestCase
 
     public function testFromArrayCreatesInstanceCorrectly(): void
     {
-        $data = [
-            'orderform_id' => '12345',
-            'img' => 'image_123',
-            'affiliate_commission_rate' => 15.5,
-            'affiliate_commission_fix' => 10.0,
-            'voucher_code' => 'SAVE20',
-            'voucher_1st_rate' => 20.0,
-            'voucher_oth_rates' => 15.0,
-            'force_rebilling' => true,
-            'pay_methods' => ['paypal', 'creditcard'],
-        ];
-
-        $settings = SettingsData::fromArray($data);
+        $settings = new SettingsData();
+        $settings->orderformId = '12345';
+        $settings->img = 'image_123';
+        $settings->affiliateCommissionRate = 15.5;
+        $settings->affiliateCommissionFix = 10.0;
+        $settings->voucherCode = 'SAVE20';
+        $settings->voucher1stRate = 20.0;
+        $settings->voucherOthRates = 15.0;
+        $settings->forceRebilling = true;
+        $settings->payMethods = ['paypal', 'creditcard'];
 
         $this->assertSame('12345', $settings->orderformId);
         $this->assertSame('image_123', $settings->img);

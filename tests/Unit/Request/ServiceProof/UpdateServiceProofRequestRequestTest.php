@@ -12,9 +12,8 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
 {
     public function test_can_create_instance(): void
     {
-        $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided'],
-        ]);
+        $proof = new ServiceProofRequestUpdateData();
+        $proof->requestStatus = 'proof_provided';
 
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',
@@ -26,9 +25,8 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
 
     public function test_endpoint_returns_correct_value(): void
     {
-        $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided'],
-        ]);
+        $proof = new ServiceProofRequestUpdateData();
+        $proof->requestStatus = 'proof_provided';
 
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',
@@ -40,9 +38,9 @@ final class UpdateServiceProofRequestRequestTest extends TestCase
 
     public function test_to_array_includes_id_and_data(): void
     {
-        $proof = ServiceProofRequestUpdateData::fromArray([
-            'data' => ['request_status' => 'proof_provided', 'message' => 'Looks good'],
-        ]);
+        $proof = new ServiceProofRequestUpdateData();
+        $proof->requestStatus = 'proof_provided';
+        $proof->message = 'Looks good';
 
         $request = new UpdateServiceProofRequestRequest(
             serviceProofRequestId: 'SPR123',

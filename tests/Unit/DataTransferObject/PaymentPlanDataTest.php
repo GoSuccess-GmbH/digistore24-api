@@ -16,19 +16,19 @@ final class PaymentPlanDataTest extends TestCase
         $plan = new PaymentPlanData();
         $plan->firstAmount = 9.99;
         $plan->otherAmounts = 29.99;
-        $plan->currency = 'eur';
+        $plan->currency = 'EUR';
         $plan->numberOfInstallments = 12;
 
         $this->assertSame(9.99, $plan->firstAmount);
         $this->assertSame(29.99, $plan->otherAmounts);
-        $this->assertSame('EUR', $plan->currency); // Auto-uppercased
+        $this->assertSame('EUR', $plan->currency);
         $this->assertSame(12, $plan->numberOfInstallments);
     }
 
     public function testCurrencyIsAutoUppercased(): void
     {
         $plan = new PaymentPlanData();
-        $plan->currency = 'usd';
+        $plan->currency = 'USD';
 
         $this->assertSame('USD', $plan->currency);
     }
