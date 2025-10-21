@@ -14,38 +14,40 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ResendInvoiceMailResponse extends AbstractResponse
 {
-    public function __construct(private string $status, private string $note)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function getStatus(): string
-    {
-        return $this->status;
+    /**
+     * Status
+     */
+    public string $status {
+        get => $this->status ?? '';
     }
 
-    public function getNote(): string
-    {
-        return $this->note;
-    }
-
-    public function wasSuccessful(): bool
-    {
-        return $this->status === 'success';
+    /**
+     * Note
+     */
+    public string $note {
+        get => $this->note ?? '';
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $resendData = $data['data'] ?? [];
-        if (! is_array($resendData)) {
-            $resendData = [];
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->status = is_string($innerData['status'] ?? null) ? $innerData['status'] : '';
+        $response->note = is_string($innerData['note'] ?? null) ? $innerData['note'] : '';
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
         }
 
-        $status = $resendData['status'] ?? '';
-        $note = $resendData['note'] ?? '';
-
-        return new self(
-            status: is_string($status) ? $status : '',
-            note: is_string($note) ? $note : '',
-        );
+        return $response;
     }
 }

@@ -14,40 +14,49 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListInvoicesResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $invoiceList */
-    public function __construct(private string $purchaseId, private array $invoiceList)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    public function getPurchaseId(): string
-    {
-        return $this->purchaseId;
+    /**
+     * Purchase ID
+     */
+    public string $purchaseId {
+        get => $this->purchaseId ?? '';
     }
 
-    /** @return array<string, mixed> */
-    public function getInvoiceList(): array
-    {
-        return $this->invoiceList;
+    /**
+     * Invoice list
+     *
+     * @var array<string, mixed>
+     */
+    public array $invoiceList {
+        get => $this->invoiceList ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $invoiceData = $data['data'] ?? [];
-        if (! is_array($invoiceData)) {
-            $invoiceData = [];
-        }
+        $innerData = self::extractInnerData(data: $data);
 
-        $purchaseId = $invoiceData['purchase_id'] ?? '';
-        $invoiceList = $invoiceData['invoice_list'] ?? [];
+        $invoiceList = $innerData['invoice_list'] ?? [];
         if (! is_array($invoiceList)) {
             $invoiceList = [];
         }
         /** @var array<string, mixed> $validatedInvoiceList */
         $validatedInvoiceList = $invoiceList;
 
-        return new self(
-            purchaseId: is_string($purchaseId) ? $purchaseId : '',
-            invoiceList: $validatedInvoiceList,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->purchaseId = is_string($innerData['purchase_id'] ?? null) ? $innerData['purchase_id'] : '';
+        $response->invoiceList = $validatedInvoiceList;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
