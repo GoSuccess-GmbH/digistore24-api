@@ -15,19 +15,11 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class AddBalanceToPurchaseResponse extends AbstractResponse
 {
-    public function __construct(private float $oldBalance, private float $newBalance)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    public function getOldBalance(): float
-    {
-        return $this->oldBalance;
-    }
+    public float $oldBalance { get => $this->oldBalance ?? 0.0; }
 
-    public function getNewBalance(): float
-    {
-        return $this->newBalance;
-    }
+    public float $newBalance { get => $this->newBalance ?? 0.0; }
 
     public function getBalanceChange(): float
     {
@@ -36,13 +28,18 @@ final class AddBalanceToPurchaseResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $oldBalance = $innerData['old_balance'] ?? 0.0;
         $newBalance = $innerData['new_balance'] ?? 0.0;
 
-        return new self(
-            oldBalance: TypeConverter::toFloat($oldBalance) ?? 0.0,
-            newBalance: TypeConverter::toFloat($newBalance) ?? 0.0,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->oldBalance = TypeConverter::toFloat($oldBalance) ?? 0.0;
+        $response->newBalance = TypeConverter::toFloat($newBalance) ?? 0.0;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

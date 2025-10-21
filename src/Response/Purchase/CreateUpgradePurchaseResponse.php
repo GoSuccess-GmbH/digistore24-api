@@ -14,20 +14,10 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreateUpgradePurchaseResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $data
-     */
-    public function __construct(private array $data)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    /**
-     * @return array<string, mixed>
-     */
-    public function getData(): array
-    {
-        return $this->data;
-    }
+    /** @var array<string, mixed> */
+    public array $data { get => $this->data ?? []; }
 
     /**
      * @return array<string, mixed>|null
@@ -74,6 +64,13 @@ final class CreateUpgradePurchaseResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedData */
         $validatedData = $responseData;
 
-        return new self(data: $validatedData);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->data = $validatedData;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

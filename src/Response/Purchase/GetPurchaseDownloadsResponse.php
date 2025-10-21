@@ -14,24 +14,14 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetPurchaseDownloadsResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $downloads
-     */
-    public function __construct(private array $downloads)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    /**
-     * @return array<string, mixed>
-     */
-    public function getDownloads(): array
-    {
-        return $this->downloads;
-    }
+    /** @var array<string, mixed> */
+    public array $downloads { get => $this->downloads ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $downloads = $innerData['downloads'] ?? [];
         if (! is_array($downloads)) {
             $downloads = [];
@@ -39,6 +29,13 @@ final class GetPurchaseDownloadsResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedDownloads */
         $validatedDownloads = $downloads;
 
-        return new self(downloads: $validatedDownloads);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->downloads = $validatedDownloads;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

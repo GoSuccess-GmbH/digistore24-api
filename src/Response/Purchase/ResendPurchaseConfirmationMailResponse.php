@@ -14,19 +14,11 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ResendPurchaseConfirmationMailResponse extends AbstractResponse
 {
-    public function __construct(private string $modified, private ?string $note)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    public function getModified(): string
-    {
-        return $this->modified;
-    }
+    public string $modified { get => $this->modified ?? 'N'; }
 
-    public function getNote(): ?string
-    {
-        return $this->note;
-    }
+    public ?string $note { get => $this->note ?? null; }
 
     public function wasSuccessful(): bool
     {
@@ -35,13 +27,18 @@ final class ResendPurchaseConfirmationMailResponse extends AbstractResponse
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $modified = $innerData['modified'] ?? 'N';
         $note = $innerData['note'] ?? null;
 
-        return new self(
-            modified: is_string($modified) ? $modified : 'N',
-            note: $note !== null && is_string($note) ? $note : null,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->modified = is_string($modified) ? $modified : 'N';
+        $response->note = $note !== null && is_string($note) ? $note : null;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

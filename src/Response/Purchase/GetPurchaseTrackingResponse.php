@@ -14,20 +14,10 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetPurchaseTrackingResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $tracking
-     */
-    public function __construct(private array $tracking)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    /**
-     * @return array<string, mixed>
-     */
-    public function getTracking(): array
-    {
-        return $this->tracking;
-    }
+    /** @var array<string, mixed> */
+    public array $tracking { get => $this->tracking ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -38,6 +28,13 @@ final class GetPurchaseTrackingResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedTracking */
         $validatedTracking = $tracking;
 
-        return new self(tracking: $validatedTracking);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->tracking = $validatedTracking;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

@@ -15,15 +15,13 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class ListPurchasesResponse extends AbstractResponse
 {
-    /**
-     * @param array<PurchaseListItem> $purchases Array of purchase list items
-     * @param int $totalCount Total number of purchases
-     */
-    public function __construct(
-        public readonly array $purchases,
-        public readonly int $totalCount,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    /** @var array<PurchaseListItem> Array of purchase list items */
+    public array $purchases { get => $this->purchases ?? []; }
+
+    /** Total number of purchases */
+    public int $totalCount { get => $this->totalCount ?? 0; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -42,11 +40,14 @@ final class ListPurchasesResponse extends AbstractResponse
 
         $totalCount = $data['total_count'] ?? count($purchases);
 
-        $instance = new self(
-            purchases: $purchases,
-            totalCount: TypeConverter::toInt($totalCount) ?? count($purchases),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->purchases = $purchases;
+        $response->totalCount = TypeConverter::toInt($totalCount) ?? count($purchases);
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }

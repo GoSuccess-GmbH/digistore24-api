@@ -14,20 +14,10 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $details
-     */
-    public function __construct(private array $details)
-    {
-    }
+    public string $result { get => $this->result ?? ''; }
 
-    /**
-     * @return array<string, mixed>
-     */
-    public function getDetails(): array
-    {
-        return $this->details;
-    }
+    /** @var array<string, mixed> */
+    public array $details { get => $this->details ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -38,6 +28,13 @@ final class GetCustomerToAffiliateBuyerDetailsResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedDetails */
         $validatedDetails = $details;
 
-        return new self(details: $validatedDetails);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->details = $validatedDetails;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

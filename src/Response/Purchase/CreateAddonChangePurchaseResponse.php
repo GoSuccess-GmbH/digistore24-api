@@ -14,42 +14,47 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreateAddonChangePurchaseResponse extends AbstractResponse
 {
-    /**
-     * @param string $createdPurchaseId The ID of the new order
-     * @param string $paymentStatus The payment status
-     * @param string $paymentStatusMsg Payment status in readable form
-     * @param string $billingStatus Status of the new order
-     * @param string $billingStatusMsg Order status in readable form
-     * @param string|null $payUrl URL to restart payments if payment failed
-     */
-    public function __construct(
-        public readonly string $createdPurchaseId,
-        public readonly string $paymentStatus,
-        public readonly string $paymentStatusMsg,
-        public readonly string $billingStatus,
-        public readonly string $billingStatusMsg,
-        public readonly ?string $payUrl = null,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    /** The ID of the new order */
+    public string $createdPurchaseId { get => $this->createdPurchaseId ?? ''; }
+
+    /** The payment status */
+    public string $paymentStatus { get => $this->paymentStatus ?? ''; }
+
+    /** Payment status in readable form */
+    public string $paymentStatusMsg { get => $this->paymentStatusMsg ?? ''; }
+
+    /** Status of the new order */
+    public string $billingStatus { get => $this->billingStatus ?? ''; }
+
+    /** Order status in readable form */
+    public string $billingStatusMsg { get => $this->billingStatusMsg ?? ''; }
+
+    /** URL to restart payments if payment failed */
+    public ?string $payUrl { get => $this->payUrl ?? null; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $createdPurchaseId = self::getValue($data, 'created_purchase_id', 'string', '');
-        $paymentStatus = self::getValue($data, 'payment_status', 'string', '');
-        $paymentStatusMsg = self::getValue($data, 'payment_status_msg', 'string', '');
-        $billingStatus = self::getValue($data, 'billing_status', 'string', '');
-        $billingStatusMsg = self::getValue($data, 'billing_status_msg', 'string', '');
-        $payUrl = self::getValue($data, 'pay_url', 'string', null);
+        $createdPurchaseId = self::getValue(data: $data, key: 'created_purchase_id', type: 'string', default: '');
+        $paymentStatus = self::getValue(data: $data, key: 'payment_status', type: 'string', default: '');
+        $paymentStatusMsg = self::getValue(data: $data, key: 'payment_status_msg', type: 'string', default: '');
+        $billingStatus = self::getValue(data: $data, key: 'billing_status', type: 'string', default: '');
+        $billingStatusMsg = self::getValue(data: $data, key: 'billing_status_msg', type: 'string', default: '');
+        $payUrl = self::getValue(data: $data, key: 'pay_url', type: 'string', default: null);
 
-        $instance = new self(
-            createdPurchaseId: is_string($createdPurchaseId) ? $createdPurchaseId : '',
-            paymentStatus: is_string($paymentStatus) ? $paymentStatus : '',
-            paymentStatusMsg: is_string($paymentStatusMsg) ? $paymentStatusMsg : '',
-            billingStatus: is_string($billingStatus) ? $billingStatus : '',
-            billingStatusMsg: is_string($billingStatusMsg) ? $billingStatusMsg : '',
-            payUrl: $payUrl !== null && is_string($payUrl) ? $payUrl : null,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->createdPurchaseId = is_string($createdPurchaseId) ? $createdPurchaseId : '';
+        $response->paymentStatus = is_string($paymentStatus) ? $paymentStatus : '';
+        $response->paymentStatusMsg = is_string($paymentStatusMsg) ? $paymentStatusMsg : '';
+        $response->billingStatus = is_string($billingStatus) ? $billingStatus : '';
+        $response->billingStatusMsg = is_string($billingStatusMsg) ? $billingStatusMsg : '';
+        $response->payUrl = $payUrl !== null && is_string($payUrl) ? $payUrl : null;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }
