@@ -15,21 +15,35 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ListImagesResponse extends AbstractResponse
 {
     /**
-     * @param array<ImageListItem> $images Array of image list items
-     * @param int $totalCount Total number of images
+     * Result status
      */
-    public function __construct(
-        public readonly array $images,
-        public readonly int $totalCount,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * Array of image list items
+     *
+     * @var array<ImageListItem>
+     */
+    public array $images {
+        get => $this->images ?? [];
+    }
+
+    /**
+     * Total number of images
+     */
+    public int $totalCount {
+        get => $this->totalCount ?? 0;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $images = [];
+        $innerData = self::extractInnerData(data: $data);
 
-        if (isset($data['images']) && is_array($data['images'])) {
-            foreach ($data['images'] as $image) {
+        $images = [];
+        if (isset($innerData['images']) && is_array($innerData['images'])) {
+            foreach ($innerData['images'] as $image) {
                 if (is_array($image)) {
                     /** @var array<string, mixed> $validatedImage */
                     $validatedImage = $image;
@@ -38,13 +52,15 @@ final class ListImagesResponse extends AbstractResponse
             }
         }
 
-        $totalCount = $data['total_count'] ?? count($images);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->images = $images;
+        $response->totalCount = is_int($innerData['total_count'] ?? null) ? $innerData['total_count'] : count($images);
 
-        $instance = new self(
-            images: $images,
-            totalCount: is_int($totalCount) ? $totalCount : count($images),
-        );
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }

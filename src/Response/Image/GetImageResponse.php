@@ -14,34 +14,72 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetImageResponse extends AbstractResponse
 {
-    public function __construct(
-        public readonly string $imageId,
-        public readonly string $imageUrl,
-        public readonly string $name,
-        public readonly ?string $usageType,
-        public readonly ?string $altTag,
-        public readonly \DateTimeInterface $createdAt,
-    ) {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * Image ID
+     */
+    public string $imageId {
+        get => $this->imageId ?? '';
+    }
+
+    /**
+     * Image URL
+     */
+    public string $imageUrl {
+        get => $this->imageUrl ?? '';
+    }
+
+    /**
+     * Image name
+     */
+    public string $name {
+        get => $this->name ?? '';
+    }
+
+    /**
+     * Usage type
+     */
+    public ?string $usageType {
+        get => $this->usageType ?? null;
+    }
+
+    /**
+     * Alt tag
+     */
+    public ?string $altTag {
+        get => $this->altTag ?? null;
+    }
+
+    /**
+     * Creation timestamp
+     */
+    public ?\DateTimeInterface $createdAt {
+        get => $this->createdAt ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $imageId = $data['image_id'] ?? '';
-        $imageUrl = $data['image_url'] ?? '';
-        $name = $data['name'] ?? '';
-        $usageType = $data['usage_type'] ?? null;
-        $altTag = $data['alt_tag'] ?? null;
-        $createdAt = $data['created_at'] ?? 'now';
+        $innerData = self::extractInnerData(data: $data);
 
-        $instance = new self(
-            imageId: is_string($imageId) ? $imageId : '',
-            imageUrl: is_string($imageUrl) ? $imageUrl : '',
-            name: is_string($name) ? $name : '',
-            usageType: $usageType === null || is_string($usageType) ? $usageType : null,
-            altTag: $altTag === null || is_string($altTag) ? $altTag : null,
-            createdAt: new \DateTimeImmutable(is_string($createdAt) ? $createdAt : 'now'),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->imageId = is_string($innerData['image_id'] ?? null) ? $innerData['image_id'] : '';
+        $response->imageUrl = is_string($innerData['image_url'] ?? null) ? $innerData['image_url'] : '';
+        $response->name = is_string($innerData['name'] ?? null) ? $innerData['name'] : '';
+        $response->usageType = isset($innerData['usage_type']) && is_string($innerData['usage_type']) ? $innerData['usage_type'] : null;
+        $response->altTag = isset($innerData['alt_tag']) && is_string($innerData['alt_tag']) ? $innerData['alt_tag'] : null;
+        $response->createdAt = isset($innerData['created_at']) ? new \DateTimeImmutable(is_string($innerData['created_at']) ? $innerData['created_at'] : 'now') : null;
 
-        return $instance;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

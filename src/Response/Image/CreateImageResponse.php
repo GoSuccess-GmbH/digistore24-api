@@ -15,25 +15,39 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class CreateImageResponse extends AbstractResponse
 {
     /**
-     * @param string $imageId ID of the created image
-     * @param string $imageUrl URL of the created image on Digistore24
+     * Result status
      */
-    public function __construct(
-        public readonly string $imageId,
-        public readonly string $imageUrl,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * ID of the created image
+     */
+    public string $imageId {
+        get => $this->imageId ?? '';
+    }
+
+    /**
+     * URL of the created image on Digistore24
+     */
+    public string $imageUrl {
+        get => $this->imageUrl ?? '';
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $imageId = self::getValue($data, 'image_id', 'string', '');
-        $imageUrl = self::getValue($data, 'image_url', 'string', '');
+        $innerData = self::extractInnerData(data: $data);
 
-        $instance = new self(
-            imageId: is_string($imageId) ? $imageId : '',
-            imageUrl: is_string($imageUrl) ? $imageUrl : '',
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->imageId = is_string($innerData['image_id'] ?? null) ? $innerData['image_id'] : '';
+        $response->imageUrl = is_string($innerData['image_url'] ?? null) ? $innerData['image_url'] : '';
 
-        return $instance;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

@@ -15,25 +15,48 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class DeleteImageResponse extends AbstractResponse
 {
-    public function __construct(
-        public readonly bool $success,
-        public readonly string $imageId,
-        public readonly ?string $message = null,
-    ) {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * Whether deletion was successful
+     */
+    public bool $success {
+        get => $this->success ?? true;
+    }
+
+    /**
+     * ID of the deleted image
+     */
+    public string $imageId {
+        get => $this->imageId ?? '';
+    }
+
+    /**
+     * Optional message
+     */
+    public ?string $message {
+        get => $this->message ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $success = $data['success'] ?? true;
-        $imageId = $data['image_id'] ?? '';
-        $message = $data['message'] ?? null;
+        $innerData = self::extractInnerData(data: $data);
 
-        $instance = new self(
-            success: TypeConverter::toBool($success) ?? true,
-            imageId: TypeConverter::toString($imageId) ?? '',
-            message: $message === null ? null : TypeConverter::toString($message),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->success = TypeConverter::toBool($innerData['success'] ?? true) ?? true;
+        $response->imageId = TypeConverter::toString($innerData['image_id'] ?? '') ?? '';
+        $response->message = isset($innerData['message']) ? TypeConverter::toString($innerData['message']) : null;
 
-        return $instance;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
