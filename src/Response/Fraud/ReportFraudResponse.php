@@ -15,91 +15,71 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ReportFraudResponse extends AbstractResponse
 {
     /**
-     * @param string $result
-     * @param string $buyerStatus Status of buyer report (info, success, warning, failure)
-     * @param string $buyerMessage Message about buyer report
-     * @param string $buyerCode Code for buyer report (created_entry, rerequest, not_created)
-     * @param string $affiliateStatus Status of affiliate report (info, success, warning, failure)
-     * @param string $affiliateMessage Message about affiliate report
-     * @param string $affiliateCode Code for affiliate report (created_entry, rerequest, not_created)
+     * Result status
      */
-    public function __construct(
-        private string $result,
-        private string $buyerStatus,
-        private string $buyerMessage,
-        private string $buyerCode,
-        private string $affiliateStatus,
-        private string $affiliateMessage,
-        private string $affiliateCode,
-    ) {
-    }
-
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    public function getBuyerStatus(): string
-    {
-        return $this->buyerStatus;
-    }
-
-    public function getBuyerMessage(): string
-    {
-        return $this->buyerMessage;
-    }
-
-    public function getBuyerCode(): string
-    {
-        return $this->buyerCode;
-    }
-
-    public function getAffiliateStatus(): string
-    {
-        return $this->affiliateStatus;
-    }
-
-    public function getAffiliateMessage(): string
-    {
-        return $this->affiliateMessage;
-    }
-
-    public function getAffiliateCode(): string
-    {
-        return $this->affiliateCode;
-    }
-
-    public function wasSuccessful(): bool
-    {
-        return strtolower($this->result) === 'success';
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * {@inheritDoc}
+     * Status of buyer report (info, success, warning, failure)
      */
+    public string $buyerStatus {
+        get => $this->buyerStatus ?? '';
+    }
+
+    /**
+     * Message about buyer report
+     */
+    public string $buyerMessage {
+        get => $this->buyerMessage ?? '';
+    }
+
+    /**
+     * Code for buyer report (created_entry, rerequest, not_created)
+     */
+    public string $buyerCode {
+        get => $this->buyerCode ?? '';
+    }
+
+    /**
+     * Status of affiliate report (info, success, warning, failure)
+     */
+    public string $affiliateStatus {
+        get => $this->affiliateStatus ?? '';
+    }
+
+    /**
+     * Message about affiliate report
+     */
+    public string $affiliateMessage {
+        get => $this->affiliateMessage ?? '';
+    }
+
+    /**
+     * Code for affiliate report (created_entry, rerequest, not_created)
+     */
+    public string $affiliateCode {
+        get => $this->affiliateCode ?? '';
+    }
+
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $fraudData = $data['data'] ?? [];
-        if (! is_array($fraudData)) {
-            $fraudData = [];
+        $innerData = self::extractInnerData(data: $data);
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->buyerStatus = is_string($innerData['buyer_status'] ?? null) ? $innerData['buyer_status'] : '';
+        $response->buyerMessage = is_string($innerData['buyer_message'] ?? null) ? $innerData['buyer_message'] : '';
+        $response->buyerCode = is_string($innerData['buyer_code'] ?? null) ? $innerData['buyer_code'] : '';
+        $response->affiliateStatus = is_string($innerData['affiliate_status'] ?? null) ? $innerData['affiliate_status'] : '';
+        $response->affiliateMessage = is_string($innerData['affiliate_message'] ?? null) ? $innerData['affiliate_message'] : '';
+        $response->affiliateCode = is_string($innerData['affiliate_code'] ?? null) ? $innerData['affiliate_code'] : '';
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
         }
 
-        $result = $data['result'] ?? 'unknown';
-        $buyerStatus = $fraudData['buyer_status'] ?? '';
-        $buyerMessage = $fraudData['buyer_message'] ?? '';
-        $buyerCode = $fraudData['buyer_code'] ?? '';
-        $affiliateStatus = $fraudData['affiliate_status'] ?? '';
-        $affiliateMessage = $fraudData['affiliate_message'] ?? '';
-        $affiliateCode = $fraudData['affiliate_code'] ?? '';
-
-        return new self(
-            result: is_string($result) ? $result : 'unknown',
-            buyerStatus: is_string($buyerStatus) ? $buyerStatus : '',
-            buyerMessage: is_string($buyerMessage) ? $buyerMessage : '',
-            buyerCode: is_string($buyerCode) ? $buyerCode : '',
-            affiliateStatus: is_string($affiliateStatus) ? $affiliateStatus : '',
-            affiliateMessage: is_string($affiliateMessage) ? $affiliateMessage : '',
-            affiliateCode: is_string($affiliateCode) ? $affiliateCode : '',
-        );
+        return $response;
     }
 }
