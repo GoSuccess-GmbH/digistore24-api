@@ -14,22 +14,19 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class DeleteShippingCostPolicyResponse extends AbstractResponse
 {
-    public function __construct(private string $result)
-    {
-    }
-
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
+    public string $result {
+        get => $this->result ?? '';
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        return new self(result: self::extractResult($data, $rawResponse));
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
