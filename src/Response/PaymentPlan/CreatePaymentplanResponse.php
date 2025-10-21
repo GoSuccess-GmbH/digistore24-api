@@ -14,24 +14,15 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class CreatePaymentplanResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $data
-     */
-    public function __construct(private string $result, private array $data)
-    {
-    }
-
-    public function getResult(): string
-    {
-        return $this->result;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * @var array<string, mixed>
      */
-    public function getData(): array
-    {
-        return $this->data;
+    public array $data {
+        get => $this->data ?? [];
     }
 
     public function getPaymentplanId(): ?string
@@ -41,25 +32,21 @@ final class CreatePaymentplanResponse extends AbstractResponse
         return is_string($id) ? $id : null;
     }
 
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
-    }
-
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
+        $innerData = self::extractInnerData(data: $data);
 
         /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $validatedData = $innerData;
 
-        return new self(
-            result: self::extractResult($data, $rawResponse),
-            data: $validatedData,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->data = $validatedData;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

@@ -14,24 +14,20 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListPaymentPlansResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $paymentPlans
-     */
-    public function __construct(private array $paymentPlans)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * @var array<string, mixed>
      */
-    public function getPaymentPlans(): array
-    {
-        return $this->paymentPlans;
+    public array $paymentPlans {
+        get => $this->paymentPlans ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $paymentPlans = $innerData['payment_plans'] ?? [];
 
         if (! is_array($paymentPlans)) {
@@ -41,6 +37,14 @@ final class ListPaymentPlansResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedPlans */
         $validatedPlans = $paymentPlans;
 
-        return new self(paymentPlans: $validatedPlans);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->paymentPlans = $validatedPlans;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
