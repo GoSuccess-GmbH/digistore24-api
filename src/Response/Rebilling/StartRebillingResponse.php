@@ -18,45 +18,30 @@ final class StartRebillingResponse extends AbstractResponse
     /**
      * Result status
      */
-    public string $result = '' {
-        get => $this->result;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
      * Rebilling data
      */
-    public ?RebillingData $data = null {
-        get => $this->data;
-    }
-
-    public function __construct(string $result = '', ?RebillingData $data = null)
-    {
-        $this->result = $result;
-        $this->data = $data;
-    }
-
-    /**
-     * Check if operation was successful
-     */
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
+    public ?RebillingData $data {
+        get => $this->data ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $rebillingData = empty($innerData) ? null : RebillingData::fromArray($innerData);
 
-        $instance = new self(
-            result: self::extractResult($data, $rawResponse),
-            data: $rebillingData,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->data = $rebillingData;
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }

@@ -15,23 +15,24 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class ListRebillingStatusChangesResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $statusChanges
+     * Result status
      */
-    public function __construct(private array $statusChanges)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * Status changes array
+     *
+     * @var array<string, mixed>
      */
-    public function getStatusChanges(): array
-    {
-        return $this->statusChanges;
+    public array $statusChanges {
+        get => $this->statusChanges ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $statusChanges = $innerData['status_changes'] ?? [];
 
         if (! is_array($statusChanges)) {
@@ -41,6 +42,14 @@ final class ListRebillingStatusChangesResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedStatusChanges */
         $validatedStatusChanges = $statusChanges;
 
-        return new self(statusChanges: $validatedStatusChanges);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->statusChanges = $validatedStatusChanges;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
