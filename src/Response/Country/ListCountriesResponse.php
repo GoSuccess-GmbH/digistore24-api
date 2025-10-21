@@ -5,56 +5,73 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\Country;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\DataTransferObject\CountryData;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * List Countries Response
  *
- * Contains a map of country codes to country names.
+ * Contains array of countries with localized names and VAT information.
  */
 final class ListCountriesResponse extends AbstractResponse
 {
     /**
-     * Country code => Country name map
+     * Request result status
+     */
+    public string $result {
+        get => $this->result ?? '';
+    }
+
+    /**
+     * Array of countries
      *
-     * @var array<string, string>
+     * @var array<int, CountryData>
      */
-    public array $countries = [] {
-        get => $this->countries;
+    public array $countries {
+        get => $this->countries ?? [];
     }
 
     /**
-     * @param array<string, string> $countries
+     * Total number of countries
      */
-    public function __construct(array $countries = [])
-    {
-        $this->countries = $countries;
-    }
-
-    /**
-     * Get country name by code
-     */
-    public function getCountryName(string $code): ?string
-    {
-        return $this->countries[$code] ?? null;
+    public int $total {
+        get => $this->total ?? 0;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        /** @var array<string, string> $countries */
-        $countries = [];
-        foreach ($data as $code => $name) {
-            if (is_string($name)) {
-                $countries[(string)$code] = $name;
-            }
+        $innerData = self::extractInnerData(data: $data);
+
+        $countriesData = $innerData['countries'] ?? [];
+        if (! is_array($countriesData)) {
+            $countriesData = [];
         }
 
-        $instance = new self(countries: $countries);
+        /** @var array<int, CountryData> $countries */
+        $countries = array_values(array_map(
+            function (mixed $item): CountryData {
+                if (! is_array($item)) {
+                    return new CountryData();
+                }
+
+                /** @var array<string, mixed> $itemData */
+                $itemData = $item;
+
+                return CountryData::fromArray($itemData);
+            },
+            $countriesData,
+        ));
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->countries = $countries;
+        $response->total = TypeConverter::toInt($innerData['total'] ?? null) ?? 0;
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }

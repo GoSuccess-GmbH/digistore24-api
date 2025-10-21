@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\Country;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
+use GoSuccess\Digistore24\Api\DataTransferObject\CurrencyData;
 use GoSuccess\Digistore24\Api\Http\Response;
-use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * @see https://digistore24.com/api/docs/paths/listCurrencies.yaml
@@ -14,46 +14,53 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class ListCurrenciesResponse extends AbstractResponse
 {
     /**
-     * @param array<int, object{id: int, code: string, symbol: string, min_price: float, max_price: float, name: string}> $currencies
+     * Request result status
      */
-    public function __construct(
-        private array $currencies,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<int, object{id: int, code: string, symbol: string, min_price: float, max_price: float, name: string}>
+     * Array of currencies
+     *
+     * @var array<int, CurrencyData>
      */
-    public function getCurrencies(): array
-    {
-        return $this->currencies;
+    public array $currencies {
+        get => $this->currencies ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $currencies = [];
-        foreach ($data as $item) {
-            if (! is_array($item)) {
-                continue;
-            }
+        $innerData = self::extractInnerData(data: $data);
 
-            $id = $item['id'] ?? 0;
-            $code = $item['code'] ?? '';
-            $symbol = $item['symbol'] ?? '';
-            $minPrice = $item['min_price'] ?? 0.0;
-            $maxPrice = $item['max_price'] ?? 0.0;
-            $name = $item['name'] ?? '';
-
-            $currencies[] = (object)[
-                'id' => TypeConverter::toInt($id) ?? 0,
-                'code' => TypeConverter::toString($code) ?? '',
-                'symbol' => TypeConverter::toString($symbol) ?? '',
-                'min_price' => TypeConverter::toFloat($minPrice) ?? 0.0,
-                'max_price' => TypeConverter::toFloat($maxPrice) ?? 0.0,
-                'name' => TypeConverter::toString($name) ?? '',
-            ];
+        $currenciesData = $innerData['currencies'] ?? $innerData;
+        if (! is_array($currenciesData)) {
+            $currenciesData = [];
         }
 
-        return new self(currencies: $currencies);
+        /** @var array<int, CurrencyData> $currencies */
+        $currencies = array_values(array_map(
+            function (mixed $item): CurrencyData {
+                if (! is_array($item)) {
+                    return new CurrencyData();
+                }
+
+                /** @var array<string, mixed> $itemData */
+                $itemData = $item;
+
+                return CurrencyData::fromArray($itemData);
+            },
+            $currenciesData,
+        ));
+
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->currencies = $currencies;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
