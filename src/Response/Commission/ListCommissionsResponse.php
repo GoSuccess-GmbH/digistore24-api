@@ -16,61 +16,47 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
 final class ListCommissionsResponse extends AbstractResponse
 {
     /**
-     * @param int $pageNo Current page number
-     * @param int $pageSize Number of items per page
-     * @param int $itemCount Total number of items
-     * @param int $pageCount Total number of pages
-     * @param array<int, object{id: int, created_at: string, amount: float, currency: string, reason: string, schedule_payout_at: string, transaction_id: int, purchase_id: string}> $items Commission items
+     * Result status
      */
-    public function __construct(
-        private int $pageNo,
-        private int $pageSize,
-        private int $itemCount,
-        private int $pageCount,
-        private array $items,
-    ) {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * Get current page number.
+     * Current page number
      */
-    public function getPageNo(): int
-    {
-        return $this->pageNo;
+    public int $pageNo {
+        get => $this->pageNo ?? 1;
     }
 
     /**
-     * Get number of items per page.
+     * Number of items per page
      */
-    public function getPageSize(): int
-    {
-        return $this->pageSize;
+    public int $pageSize {
+        get => $this->pageSize ?? 0;
     }
 
     /**
-     * Get total number of items.
+     * Total number of items
      */
-    public function getItemCount(): int
-    {
-        return $this->itemCount;
+    public int $itemCount {
+        get => $this->itemCount ?? 0;
     }
 
     /**
-     * Get total number of pages.
+     * Total number of pages
      */
-    public function getPageCount(): int
-    {
-        return $this->pageCount;
+    public int $pageCount {
+        get => $this->pageCount ?? 0;
     }
 
     /**
-     * Get commission items.
+     * Commission items
      *
-     * @return array<int, object{id: int, created_at: string, amount: float, currency: string, reason: string, schedule_payout_at: string, transaction_id: int, purchase_id: string}>
+     * @var array<int, object{id: int, created_at: string, amount: float, currency: string, reason: string, schedule_payout_at: string, transaction_id: int, purchase_id: string}>
      */
-    public function getItems(): array
-    {
-        return $this->items;
+    public array $items {
+        get => $this->items ?? [];
     }
 
     /**
@@ -93,13 +79,12 @@ final class ListCommissionsResponse extends AbstractResponse
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
+        $innerData = self::extractInnerData(data: $data);
+
         $items = [];
-        $itemsData = $data['items'] ?? [];
+        $itemsData = $innerData['items'] ?? [];
         if (is_array($itemsData)) {
             foreach ($itemsData as $item) {
                 if (! is_array($item)) {
@@ -128,17 +113,18 @@ final class ListCommissionsResponse extends AbstractResponse
             }
         }
 
-        $pageNo = $data['page_no'] ?? 1;
-        $pageSize = $data['page_size'] ?? 0;
-        $itemCount = $data['item_count'] ?? 0;
-        $pageCount = $data['page_count'] ?? 0;
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->pageNo = TypeConverter::toInt($innerData['page_no'] ?? 1) ?? 1;
+        $response->pageSize = TypeConverter::toInt($innerData['page_size'] ?? 0) ?? 0;
+        $response->itemCount = TypeConverter::toInt($innerData['item_count'] ?? 0) ?? 0;
+        $response->pageCount = TypeConverter::toInt($innerData['page_count'] ?? 0) ?? 0;
+        $response->items = $items;
 
-        return new self(
-            pageNo: TypeConverter::toInt($pageNo) ?? 1,
-            pageSize: TypeConverter::toInt($pageSize) ?? 0,
-            itemCount: TypeConverter::toInt($itemCount) ?? 0,
-            pageCount: TypeConverter::toInt($pageCount) ?? 0,
-            items: $items,
-        );
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
