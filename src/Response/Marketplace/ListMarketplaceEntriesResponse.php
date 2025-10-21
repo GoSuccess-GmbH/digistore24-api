@@ -14,20 +14,25 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListMarketplaceEntriesResponse extends AbstractResponse
 {
-    /** @param array<string, mixed> $entries */
-    public function __construct(private array $entries)
-    {
+    /**
+     * Result status
+     */
+    public string $result {
+        get => $this->result ?? '';
     }
 
-    /** @return array<string, mixed> */
-    public function getEntries(): array
-    {
-        return $this->entries;
+    /**
+     * Marketplace entries
+     *
+     * @var array<string, mixed>
+     */
+    public array $entries {
+        get => $this->entries ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $entriesData = $innerData['entries'] ?? [];
         if (! is_array($entriesData)) {
             $entriesData = [];
@@ -35,6 +40,14 @@ final class ListMarketplaceEntriesResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedEntries */
         $validatedEntries = $entriesData;
 
-        return new self(entries: $validatedEntries);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->entries = $validatedEntries;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
