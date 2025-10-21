@@ -14,13 +14,10 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ListEticketLocationsResponse extends AbstractResponse
 {
-    /**
-     * @param array<EticketLocation> $locations Array of e-ticket locations
-     */
-    public function __construct(
-        public readonly array $locations,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    /** @var array<EticketLocation> Array of e-ticket locations */
+    public array $locations { get => $this->locations ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -37,8 +34,13 @@ final class ListEticketLocationsResponse extends AbstractResponse
             }
         }
 
-        $instance = new self(locations: $locations);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->locations = $locations;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }

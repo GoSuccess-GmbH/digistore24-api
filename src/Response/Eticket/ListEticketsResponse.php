@@ -15,19 +15,17 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class ListEticketsResponse extends AbstractResponse
 {
-    /**
-     * @param array<EticketListItem> $tickets Array of e-ticket list items
-     * @param int $totalCount Total number of tickets matching the filter
-     */
-    public function __construct(
-        public readonly array $tickets,
-        public readonly int $totalCount,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    /** @var array<EticketListItem> Array of e-ticket list items */
+    public array $tickets { get => $this->tickets ?? []; }
+
+    /** Total number of tickets matching the filter */
+    public int $totalCount { get => $this->totalCount ?? 0; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $innerData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
         $tickets = [];
 
         $ticketsData = $innerData['tickets'] ?? [];
@@ -45,9 +43,14 @@ final class ListEticketsResponse extends AbstractResponse
 
         $totalCount = $innerData['total_count'] ?? count($tickets);
 
-        return new self(
-            tickets: $tickets,
-            totalCount: TypeConverter::toInt($totalCount) ?? count($tickets),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->tickets = $tickets;
+        $response->totalCount = TypeConverter::toInt($totalCount) ?? count($tickets);
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }

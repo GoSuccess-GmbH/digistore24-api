@@ -15,18 +15,20 @@ use GoSuccess\Digistore24\Api\Util\TypeConverter;
  */
 final class GetEticketSettingsResponse extends AbstractResponse
 {
-    /**
-     * @param array<string, mixed> $settings
-     */
-    public function __construct(
-        public readonly bool $eticketEnabled,
-        public readonly ?string $defaultLocationId,
-        public readonly ?string $defaultTemplateId,
-        public readonly int $maxTicketsPerOrder,
-        public readonly bool $requireEmailValidation,
-        public readonly array $settings,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    public bool $eticketEnabled { get => $this->eticketEnabled ?? false; }
+
+    public ?string $defaultLocationId { get => $this->defaultLocationId ?? null; }
+
+    public ?string $defaultTemplateId { get => $this->defaultTemplateId ?? null; }
+
+    public int $maxTicketsPerOrder { get => $this->maxTicketsPerOrder ?? 10; }
+
+    public bool $requireEmailValidation { get => $this->requireEmailValidation ?? false; }
+
+    /** @var array<string, mixed> */
+    public array $settings { get => $this->settings ?? []; }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -40,15 +42,18 @@ final class GetEticketSettingsResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedSettings */
         $validatedSettings = $settings;
 
-        $instance = new self(
-            eticketEnabled: TypeConverter::toBool($data['eticket_enabled'] ?? false) ?? false,
-            defaultLocationId: $defaultLocationId !== null ? TypeConverter::toString($defaultLocationId) : null,
-            defaultTemplateId: $defaultTemplateId !== null ? TypeConverter::toString($defaultTemplateId) : null,
-            maxTicketsPerOrder: TypeConverter::toInt($maxTicketsPerOrder) ?? 10,
-            requireEmailValidation: TypeConverter::toBool($data['require_email_validation'] ?? false) ?? false,
-            settings: $validatedSettings,
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->eticketEnabled = TypeConverter::toBool($data['eticket_enabled'] ?? false) ?? false;
+        $response->defaultLocationId = $defaultLocationId !== null ? TypeConverter::toString($defaultLocationId) : null;
+        $response->defaultTemplateId = $defaultTemplateId !== null ? TypeConverter::toString($defaultTemplateId) : null;
+        $response->maxTicketsPerOrder = TypeConverter::toInt($maxTicketsPerOrder) ?? 10;
+        $response->requireEmailValidation = TypeConverter::toBool($data['require_email_validation'] ?? false) ?? false;
+        $response->settings = $validatedSettings;
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
 
-        return $instance;
+        return $response;
     }
 }

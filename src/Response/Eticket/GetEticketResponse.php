@@ -14,10 +14,9 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class GetEticketResponse extends AbstractResponse
 {
-    public function __construct(
-        public readonly EticketDetail $ticket,
-    ) {
-    }
+    public string $result { get => $this->result ?? ''; }
+
+    public EticketDetail $ticket;
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
@@ -29,8 +28,13 @@ final class GetEticketResponse extends AbstractResponse
         /** @var array<string, mixed> $validatedTicketData */
         $validatedTicketData = $ticketData;
 
-        return new self(
-            ticket: EticketDetail::fromArray($validatedTicketData),
-        );
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->ticket = EticketDetail::fromArray($validatedTicketData);
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
