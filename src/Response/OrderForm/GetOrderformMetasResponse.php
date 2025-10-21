@@ -19,12 +19,6 @@ final class GetOrderformMetasResponse extends AbstractResponse
     /** @var array<string, mixed> */
     public array $data { get => $this->data ?? []; }
 
-    /** @return array<string, mixed> */
-    public function getMetas(): array
-    {
-        return $this->data;
-    }
-
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
         $responseData = $data['data'] ?? [];
