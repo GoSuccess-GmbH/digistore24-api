@@ -13,12 +13,9 @@ final class ListProductTypesResponseTest extends TestCase
     public function test_can_create_from_array(): void
     {
         $data = [
-            'result' => 'success',
-            'data' => [
-                ['id' => 1, 'name' => 'Digital Product', 'category' => 'digital'],
-                ['id' => 2, 'name' => 'Physical Product', 'category' => 'physical'],
-                ['id' => 3, 'name' => 'Service', 'category' => 'service'],
-            ],
+            ['id' => 1, 'name' => 'Digital Product', 'category' => 'digital'],
+            ['id' => 2, 'name' => 'Physical Product', 'category' => 'physical'],
+            ['id' => 3, 'name' => 'Service', 'category' => 'service'],
         ];
         $response = ListProductTypesResponse::fromArray($data);
 

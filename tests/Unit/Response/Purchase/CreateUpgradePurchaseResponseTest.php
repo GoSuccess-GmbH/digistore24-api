@@ -41,12 +41,14 @@ final class CreateUpgradePurchaseResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'new_purchase' => [
-                        'purchase_id' => 'P654321',
-                        'product_id' => 456,
-                    ],
-                    'upgrade_info' => [
-                        'upgrade_date' => '2024-01-15',
+                    'data' => [
+                        'new_purchase' => [
+                            'purchase_id' => 'P654321',
+                            'product_id' => 456,
+                        ],
+                        'upgrade_info' => [
+                            'upgrade_date' => '2024-01-15',
+                        ],
                     ],
                 ],
             ],

@@ -33,8 +33,10 @@ final class GetUpgradeResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'upgrade_id' => 'UPG999',
-                    'from_product_id' => '50',
+                    'data' => [
+                        'upgrade_id' => 'UPG999',
+                        'from_product_id' => '50',
+                    ],
                 ],
             ],
             headers: [],
@@ -52,7 +54,9 @@ final class GetUpgradeResponseTest extends TestCase
         $httpResponse = new Response(
             statusCode: 200,
             data: [
-                'data' => [],
+                'data' => [
+                    'data' => [],
+                ],
             ],
             headers: [],
             rawBody: 'test',

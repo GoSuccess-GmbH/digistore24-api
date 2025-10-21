@@ -34,8 +34,10 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'buyer_email' => 'customer@test.com',
-                    'affiliate_id' => 'AFF999',
+                    'data' => [
+                        'buyer_email' => 'customer@test.com',
+                        'affiliate_id' => 'AFF999',
+                    ],
                 ],
             ],
             headers: [],
@@ -54,7 +56,9 @@ final class GetCustomerToAffiliateBuyerDetailsResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'buyer_email' => 'test@example.com',
+                    'data' => [
+                        'buyer_email' => 'test@example.com',
+                    ],
                 ],
             ],
             headers: [],

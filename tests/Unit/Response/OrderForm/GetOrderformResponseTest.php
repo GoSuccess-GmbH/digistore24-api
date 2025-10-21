@@ -33,8 +33,10 @@ final class GetOrderformResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'orderform_id' => 'OF456',
-                    'name' => 'Premium Form',
+                    'data' => [
+                        'orderform_id' => 'OF456',
+                        'name' => 'Premium Form',
+                    ],
                 ],
             ],
             headers: [],

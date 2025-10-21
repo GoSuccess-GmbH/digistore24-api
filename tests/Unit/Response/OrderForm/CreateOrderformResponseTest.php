@@ -31,7 +31,9 @@ final class CreateOrderformResponseTest extends TestCase
             data: [
                 'result' => 'success',
                 'data' => [
-                    'orderform_id' => 'OF789012',
+                    'data' => [
+                        'orderform_id' => 'OF789012',
+                    ],
                 ],
             ],
             headers: [],

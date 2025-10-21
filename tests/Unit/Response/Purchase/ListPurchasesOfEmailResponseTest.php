@@ -39,9 +39,11 @@ final class ListPurchasesOfEmailResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    [
-                        'purchase_id' => 'P333',
-                        'product_name' => 'Product C',
+                    'data' => [
+                        [
+                            'purchase_id' => 'P333',
+                            'product_name' => 'Product C',
+                        ],
                     ],
                 ],
             ],

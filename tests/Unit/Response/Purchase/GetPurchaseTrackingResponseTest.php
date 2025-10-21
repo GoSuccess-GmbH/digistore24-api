@@ -35,9 +35,11 @@ final class GetPurchaseTrackingResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'tracking_id' => 'TRK999',
-                    'source' => 'facebook',
-                    'campaign' => 'winter_promo',
+                    'data' => [
+                        'tracking_id' => 'TRK999',
+                        'source' => 'facebook',
+                        'campaign' => 'winter_promo',
+                    ],
                 ],
             ],
             headers: [],

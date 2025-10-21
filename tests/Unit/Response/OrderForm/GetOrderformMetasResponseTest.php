@@ -32,8 +32,10 @@ final class GetOrderformMetasResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'data' => [
-                    'title' => 'Order Form Title',
-                    'description' => 'Form description',
+                    'data' => [
+                        'title' => 'Order Form Title',
+                        'description' => 'Form description',
+                    ],
                 ],
             ],
             headers: [],
