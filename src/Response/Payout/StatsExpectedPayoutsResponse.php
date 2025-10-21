@@ -15,31 +15,36 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class StatsExpectedPayoutsResponse extends AbstractResponse
 {
     /**
-     * @param array<string, mixed> $data
+     * Result status
      */
-    public function __construct(private array $data)
-    {
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @return array<string, mixed>
+     * Payout statistics data
+     *
+     * @var array<string, mixed>
      */
-    public function getData(): array
-    {
-        return $this->data;
+    public array $data {
+        get => $this->data ?? [];
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $responseData = $data['data'] ?? [];
-
-        if (! is_array($responseData)) {
-            $responseData = [];
-        }
+        $innerData = self::extractInnerData(data: $data);
 
         /** @var array<string, mixed> $validatedData */
-        $validatedData = $responseData;
+        $validatedData = $innerData;
 
-        return new self(data: $validatedData);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->data = $validatedData;
+
+        if ($rawResponse !== null) {
+            $response->rawResponse = $rawResponse;
+        }
+
+        return $response;
     }
 }
