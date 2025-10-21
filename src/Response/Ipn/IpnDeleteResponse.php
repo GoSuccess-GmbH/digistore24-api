@@ -17,31 +17,19 @@ final class IpnDeleteResponse extends AbstractResponse
     /**
      * Result status
      */
-    public string $result = '' {
-        get => $this->result;
-    }
-
-    public function __construct(string $result = '')
-    {
-        $this->result = $result;
-    }
-
-    /**
-     * Check if deletion was successful
-     */
-    public function wasSuccessful(): bool
-    {
-        return $this->result === 'success';
+    public string $result {
+        get => $this->result ?? '';
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        $instance = new self(result: self::extractResult($data, $rawResponse));
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }

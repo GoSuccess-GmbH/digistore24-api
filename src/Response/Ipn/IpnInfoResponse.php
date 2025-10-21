@@ -16,43 +16,31 @@ use GoSuccess\Digistore24\Api\Http\Response;
 final class IpnInfoResponse extends AbstractResponse
 {
     /**
-     * IPN connection settings
-     *
-     * @var array<string, mixed>
+     * Result status
      */
-    public array $data = [] {
-        get => $this->data;
+    public string $result {
+        get => $this->result ?? '';
     }
 
     /**
-     * @param array<string, mixed> $data
+     * IPN URL
      */
-    public function __construct(array $data = [])
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * Get IPN URL
-     */
-    public function getUrl(): ?string
-    {
-        $url = $this->data['url'] ?? null;
-
-        return is_string($url) ? $url : null;
+    public ?string $url {
+        get => $this->url ?? null;
     }
 
     public static function fromArray(array $data, ?Response $rawResponse = null): static
     {
-        // Extract inner data (handles both direct calls and fromResponse calls)
-        $responseData = self::extractInnerData($data);
+        $innerData = self::extractInnerData(data: $data);
 
-        $instance = new self(data: $responseData);
+        $response = new self();
+        $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
+        $response->url = is_string($innerData['url'] ?? null) ? $innerData['url'] : null;
 
         if ($rawResponse !== null) {
-            $instance->rawResponse = $rawResponse;
+            $response->rawResponse = $rawResponse;
         }
 
-        return $instance;
+        return $response;
     }
 }
