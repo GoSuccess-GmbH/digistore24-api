@@ -29,7 +29,7 @@ echo "=== Get User Info ===\n";
 try {
     $response = $ds24->users->getInfo();
 
-    $userInfo = $response->getUserInfo();
+    $userInfo = $response->userInfo;
     echo "User ID: {$userInfo['user_id']}\n";
     echo "User Name: {$userInfo['user_name']}\n";
     echo "Permissions: {$userInfo['api_key_permissions']}\n\n";
@@ -75,12 +75,12 @@ echo "=== List Countries ===\n";
 try {
     $response = $ds24->countries->listCountries();
 
-    $countries = $response->getCountries();
+    $countries = $response->countries;
     echo 'Available countries: ' . count($countries) . "\n";
     // Show first 5
     $countriesToShow = array_slice($countries, 0, 5, true);
-    foreach ($countriesToShow as $code => $name) {
-        echo "- {$code}: {$name}\n";
+    foreach ($countriesToShow as $country) {
+        echo "- {$country->code}: {$country->name}\n";
     }
     echo "...\n\n";
 
