@@ -35,6 +35,7 @@ final class MonitoringResource extends AbstractResource
     public function ping(?PingRequest $request = null): PingResponse
     {
         $request ??= new PingRequest();
+
         return $this->executeTyped($request, PingResponse::class);
     }
 }
