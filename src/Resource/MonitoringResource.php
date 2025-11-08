@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Resource;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResource;
+use GoSuccess\Digistore24\Api\Request\System\PingRequest;
+use GoSuccess\Digistore24\Api\Response\System\PingResponse;
 
 /**
  * Monitoring Resource
@@ -18,19 +20,21 @@ final class MonitoringResource extends AbstractResource
     /**
      * Ping the API to check connectivity
      *
-     * TODO: Implement when ping endpoint is added
-     *
      * @link https://digistore24.com/api/docs/paths/ping.yaml
+     *
+     * @param PingRequest|null $request Optional ping request (accepts no parameters)
+     * @return PingResponse Response with API status information
      *
      * @example
      * ```php
-     * $request = new PingRequest();
-     * $response = $client->monitoring->ping($request);
-     * echo $response->isSuccess ? "API is up!" : "API is down!";
+     * $response = $client->monitoring->ping();
+     * echo $response->message; // "pong"
+     * echo "API latency: {$response->timestamp}\n";
      * ```
      */
-    // public function ping(PingRequest $request): PingResponse
-    // {
-    //     return $this->executeTyped($request, PingResponse::class);
-    // }
+    public function ping(?PingRequest $request = null): PingResponse
+    {
+        $request ??= new PingRequest();
+        return $this->executeTyped($request, PingResponse::class);
+    }
 }
