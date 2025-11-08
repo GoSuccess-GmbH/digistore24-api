@@ -1,3 +1,48 @@
+# Dependencies
 vendor/
-.vscode/
-composer.lock
+
+# IDE - VSCode (keep settings, ignore workspace)
+.vscode/*
+!.vscode/settings.json
+!.vscode/settings.local.json.example
+!.vscode/launch.json
+!.vscode/extensions.json
+.vscode/settings.local.json
+
+# IDE - PHPStorm/IntelliJ (keep code style, ignore workspace)
+.idea/*
+!.idea/codeStyles/
+!.idea/php.xml
+
+# OpenAPI cache (temporary downloads)
+.openapi-cache/
+
+# PHPUnit generated files
+junit.xml
+tests-list.xml
+.phpunit.cache/
+coverage/
+build/
+
+# PHP CS Fixer
+.php-cs-fixer.cache
+
+# PHPStan
+phpstan-baseline.neon
+.phpstan.cache/
+phpstan-errors.txt
+*-errors.txt
+
+# Infection/Mutation Testing
+.infection/
+infection.log
+
+# Integration Tests
+.env.local
+
+# AI Assistant Context (internal reference, not for repo)
+.ai-context/
+
+# OS Files
+.DS_Store
+Thumbs.db

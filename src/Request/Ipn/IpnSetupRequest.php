@@ -1,0 +1,46 @@
+<?php
+
+declare(strict_types=1);
+
+namespace GoSuccess\Digistore24\Api\Request\Ipn;
+
+use GoSuccess\Digistore24\Api\Base\AbstractRequest;
+use GoSuccess\Digistore24\Api\Enum\HttpMethod;
+
+/**
+ * IPN Setup Request
+ *
+ * Sets up an IPN (Instant Payment Notification) endpoint for receiving payment notifications.
+ */
+final class IpnSetupRequest extends AbstractRequest
+{
+    /**
+     * @param string $url The IPN endpoint URL
+     * @param string|null $ipnPassword Optional IPN password for security
+     */
+    public function __construct(
+        private string $url,
+        private ?string $ipnPassword = null,
+    ) {
+    }
+
+    public function getEndpoint(): string
+    {
+        return '/ipnSetup';
+    }
+
+    public function getMethod(): HttpMethod
+    {
+        return HttpMethod::POST;
+    }
+
+    public function toArray(): array
+    {
+        $params = ['url' => $this->url];
+        if ($this->ipnPassword !== null) {
+            $params['ipn_password'] = $this->ipnPassword;
+        }
+
+        return $params;
+    }
+}
