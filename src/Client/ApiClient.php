@@ -28,7 +28,7 @@ use GoSuccess\Digistore24\Api\Http\Response;
  */
 final class ApiClient implements HttpClientInterface
 {
-    private const string USER_AGENT = 'GoSuccess-Digistore24-API-Client/2.0 (https://github.com/GoSuccess-GmbH/digistore24-api)';
+    private const string USER_AGENT = 'GoSuccess-Digistore24-API-Client/2.0 (https://github.com/GoSuccessHQ/digistore24-api)';
 
     /**
      * @param Configuration $config API configuration

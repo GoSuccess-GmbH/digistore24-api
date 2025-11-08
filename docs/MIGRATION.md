@@ -194,7 +194,7 @@ If you encounter any issues during migration:
 
 1. Check the [README.md](README.md) for updated examples
 2. Review the [examples/](examples/) directory for complete usage examples
-3. Open an issue on [GitHub](https://github.com/GoSuccess-GmbH/digistore24-api/issues)
+3. Open an issue on [GitHub](https://github.com/GoSuccessHQ/digistore24-api/issues)
 
 ### Why the Change?
 

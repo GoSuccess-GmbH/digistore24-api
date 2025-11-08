@@ -13,7 +13,7 @@
     "affiliate",
     "marketplace"
   ],
-  "homepage": "https://github.com/GoSuccess-GmbH/digistore24-api",
+  "homepage": "https://github.com/GoSuccessHQ/digistore24-api",
   "readme": "README.md",
   "autoload": {
     "psr-4": {
@@ -75,9 +75,9 @@
     }
   },
   "support": {
-    "issues": "https://github.com/GoSuccess-GmbH/digistore24-api/issues",
-    "source": "https://github.com/GoSuccess-GmbH/digistore24-api",
-    "docs": "https://github.com/GoSuccess-GmbH/digistore24-api#readme",
-    "security": "https://github.com/GoSuccess-GmbH/digistore24-api/security/policy"
+    "issues": "https://github.com/GoSuccessHQ/digistore24-api/issues",
+    "source": "https://github.com/GoSuccessHQ/digistore24-api",
+    "docs": "https://github.com/GoSuccessHQ/digistore24-api#readme",
+    "security": "https://github.com/GoSuccessHQ/digistore24-api/security/policy"
   }
 }

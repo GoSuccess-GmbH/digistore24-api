@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - API simplification: Methods with all-optional parameters now accept optional Request objects
   - Example: `$ds24->products->list()` instead of `$ds24->products->list(new ListProductsRequest())`
   - Backward compatible: explicit Request objects still work
-- User-Agent updated to "GoSuccess-Digistore24-API-Client/2.0 (https://github.com/GoSuccess-GmbH/digistore24-api)"
+- User-Agent updated to "GoSuccess-Digistore24-API-Client/2.0 (https://github.com/GoSuccessHQ/digistore24-api)"
 - API version corrected to 1.2 (matching actual Digistore24 API)
 
 ### Removed
@@ -118,7 +118,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Package Name**: gosuccess/digistore24-api
 - **License**: MIT
 - **PHP Version**: >=8.4.0
-- **Repository**: https://github.com/GoSuccess-GmbH/digistore24-api
+- **Repository**: https://github.com/GoSuccessHQ/digistore24-api
 
 ---
 
@@ -143,6 +143,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Links
 
-- [GitHub Repository](https://github.com/GoSuccess-GmbH/digistore24-api)
-- [Issue Tracker](https://github.com/GoSuccess-GmbH/digistore24-api/issues)
+- [GitHub Repository](https://github.com/GoSuccessHQ/digistore24-api)
+- [Issue Tracker](https://github.com/GoSuccessHQ/digistore24-api/issues)
 - [Contributing Guidelines](CONTRIBUTING.md)

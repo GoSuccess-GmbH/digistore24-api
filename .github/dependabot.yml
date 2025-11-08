@@ -9,7 +9,7 @@ updates:
       time: "06:00"
     open-pull-requests-limit: 10
     reviewers:
-      - "GoSuccess-GmbH"
+      - "GoSuccessHQ"
     labels:
       - "dependencies"
       - "composer"
@@ -26,7 +26,7 @@ updates:
     # Security updates should be in separate PRs
     allow:
       - dependency-type: "all"
-    
+
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -36,7 +36,7 @@ updates:
       time: "06:00"
     open-pull-requests-limit: 5
     reviewers:
-      - "GoSuccess-GmbH"
+      - "GoSuccessHQ"
     labels:
       - "dependencies"
       - "github-actions"

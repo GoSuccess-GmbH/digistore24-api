@@ -28,7 +28,7 @@ This project follows a professional code of conduct. Be respectful, constructive
    ```
 3. **Add upstream remote**:
    ```bash
-   git remote add upstream https://github.com/GoSuccess-GmbH/digistore24-api.git
+   git remote add upstream https://github.com/GoSuccessHQ/digistore24-api.git
    ```
 
 ## Development Setup
@@ -215,7 +215,7 @@ final class BuyerData
             $this->email = $value;
         }
     }
-    
+
     public ?string $firstName = null;
     public ?string $lastName = null;
 }
@@ -244,7 +244,7 @@ final class CreateBuyUrlRequest extends AbstractRequest
     public int $productId;
     public ?string $validUntil = null;
     public ?BuyerData $buyer = null;
-    
+
     public function getEndpoint(): string
     {
         return '/json/createBuyUrl';
@@ -308,14 +308,14 @@ final class BuyerDataTest extends TestCase
     {
         $buyer = new BuyerData();
         $buyer->email = 'test@example.com';
-        
+
         $this->assertSame('test@example.com', $buyer->email);
     }
-    
+
     public function testEmailValidationRejectsInvalidEmail(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        
+
         $buyer = new BuyerData();
         $buyer->email = 'invalid-email';
     }

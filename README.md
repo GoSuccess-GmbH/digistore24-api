@@ -4,7 +4,7 @@ Modern, type-safe PHP API client for Digistore24 with **PHP 8.4 property hooks**
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.4%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Tests](https://github.com/GoSuccess-GmbH/digistore24-api/workflows/Tests/badge.svg)](https://github.com/GoSuccess-GmbH/digistore24-api/actions)
+[![Tests](https://github.com/GoSuccessHQ/digistore24-api/workflows/Tests/badge.svg)](https://github.com/GoSuccessHQ/digistore24-api/actions)
 [![Coverage](https://img.shields.io/badge/Coverage-98%25-brightgreen.svg)](docs/TESTING.md)
 [![Mutation](https://img.shields.io/badge/Mutation-85%25-brightgreen.svg)](docs/TESTING.md#mutation-testing)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg)](phpstan.neon)
@@ -476,244 +476,244 @@ while ($attempt < $maxAttempts) {
 ### Affiliate Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `getAffiliateCommission` | [View](./docs/getAffiliateCommission.md) |
-| `updateAffiliateCommission` | [View](./docs/updateAffiliateCommission.md) |
-| `getAffiliateForEmail` | [View](./docs/getAffiliateForEmail.md) |
-| `setAffiliateForEmail` | [View](./docs/setAffiliateForEmail.md) |
-| `getReferringAffiliate` | [View](./docs/getReferringAffiliate.md) |
-| `setReferringAffiliate` | [View](./docs/setReferringAffiliate.md) |
-| `validateAffiliate` | [View](./docs/validateAffiliate.md) |
-| `statsAffiliateToplist` | [View](./docs/statsAffiliateToplist.md) |
+| `getAffiliateCommission` | [View](./docs/api/getAffiliateCommission.md) |
+| `updateAffiliateCommission` | [View](./docs/api/updateAffiliateCommission.md) |
+| `getAffiliateForEmail` | [View](./docs/api/getAffiliateForEmail.md) |
+| `setAffiliateForEmail` | [View](./docs/api/setAffiliateForEmail.md) |
+| `getReferringAffiliate` | [View](./docs/api/getReferringAffiliate.md) |
+| `setReferringAffiliate` | [View](./docs/api/setReferringAffiliate.md) |
+| `validateAffiliate` | [View](./docs/api/validateAffiliate.md) |
+| `statsAffiliateToplist` | [View](./docs/api/statsAffiliateToplist.md) |
 
 ### Billing & Invoicing
 | Endpoint | Documentation |
 |----------|---------------|
-| `createBillingOnDemand` | [View](./docs/createBillingOnDemand.md) |
-| `listInvoices` | [View](./docs/listInvoices.md) |
-| `resendInvoiceMail` | [View](./docs/resendInvoiceMail.md) |
+| `createBillingOnDemand` | [View](./docs/api/createBillingOnDemand.md) |
+| `listInvoices` | [View](./docs/api/listInvoices.md) |
+| `resendInvoiceMail` | [View](./docs/api/resendInvoiceMail.md) |
 
 ### Buy URL Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `createBuyUrl` | [View](./docs/createBuyUrl.md) |
-| `listBuyUrls` | [View](./docs/listBuyUrls.md) |
-| `deleteBuyUrl` | [View](./docs/deleteBuyUrl.md) |
+| `createBuyUrl` | [View](./docs/api/createBuyUrl.md) |
+| `listBuyUrls` | [View](./docs/api/listBuyUrls.md) |
+| `deleteBuyUrl` | [View](./docs/api/deleteBuyUrl.md) |
 
 ### Buyer Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `getBuyer` | [View](./docs/getBuyer.md) |
-| `updateBuyer` | [View](./docs/updateBuyer.md) |
-| `listBuyers` | [View](./docs/listBuyers.md) |
-| `getCustomerToAffiliateBuyerDetails` | [View](./docs/getCustomerToAffiliateBuyerDetails.md) |
+| `getBuyer` | [View](./docs/api/getBuyer.md) |
+| `updateBuyer` | [View](./docs/api/updateBuyer.md) |
+| `listBuyers` | [View](./docs/api/listBuyers.md) |
+| `getCustomerToAffiliateBuyerDetails` | [View](./docs/api/getCustomerToAffiliateBuyerDetails.md) |
 
 ### Country & Currency
 | Endpoint | Documentation |
 |----------|---------------|
-| `listCountries` | [View](./docs/listCountries.md) |
-| `listCurrencies` | [View](./docs/listCurrencies.md) |
+| `listCountries` | [View](./docs/api/listCountries.md) |
+| `listCurrencies` | [View](./docs/api/listCurrencies.md) |
 
 ### Delivery Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `getDelivery` | [View](./docs/getDelivery.md) |
-| `updateDelivery` | [View](./docs/updateDelivery.md) |
-| `listDeliveries` | [View](./docs/listDeliveries.md) |
+| `getDelivery` | [View](./docs/api/getDelivery.md) |
+| `updateDelivery` | [View](./docs/api/updateDelivery.md) |
+| `listDeliveries` | [View](./docs/api/listDeliveries.md) |
 
 ### E-Tickets
 | Endpoint | Documentation |
 |----------|---------------|
-| `createEticket` | [View](./docs/createEticket.md) |
-| `getEticket` | [View](./docs/getEticket.md) |
-| `listEtickets` | [View](./docs/listEtickets.md) |
-| `validateEticket` | [View](./docs/validateEticket.md) |
-| `getEticketSettings` | [View](./docs/getEticketSettings.md) |
-| `listEticketLocations` | [View](./docs/listEticketLocations.md) |
-| `listEticketTemplates` | [View](./docs/listEticketTemplates.md) |
+| `createEticket` | [View](./docs/api/createEticket.md) |
+| `getEticket` | [View](./docs/api/getEticket.md) |
+| `listEtickets` | [View](./docs/api/listEtickets.md) |
+| `validateEticket` | [View](./docs/api/validateEticket.md) |
+| `getEticketSettings` | [View](./docs/api/getEticketSettings.md) |
+| `listEticketLocations` | [View](./docs/api/listEticketLocations.md) |
+| `listEticketTemplates` | [View](./docs/api/listEticketTemplates.md) |
 
 ### Forms & Custom Data
 | Endpoint | Documentation |
 |----------|---------------|
-| `listCustomFormRecords` | [View](./docs/listCustomFormRecords.md) |
+| `listCustomFormRecords` | [View](./docs/api/listCustomFormRecords.md) |
 
 ### Images
 | Endpoint | Documentation |
 |----------|---------------|
-| `createImage` | [View](./docs/createImage.md) |
-| `getImage` | [View](./docs/getImage.md) |
-| `listImages` | [View](./docs/listImages.md) |
-| `deleteImage` | [View](./docs/deleteImage.md) |
+| `createImage` | [View](./docs/api/createImage.md) |
+| `getImage` | [View](./docs/api/getImage.md) |
+| `listImages` | [View](./docs/api/listImages.md) |
+| `deleteImage` | [View](./docs/api/deleteImage.md) |
 
 ### IPN/Webhook Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `ipnSetup` | [View](./docs/ipnSetup.md) |
-| `ipnInfo` | [View](./docs/ipnInfo.md) |
-| `ipnDelete` | [View](./docs/ipnDelete.md) |
+| `ipnSetup` | [View](./docs/api/ipnSetup.md) |
+| `ipnInfo` | [View](./docs/api/ipnInfo.md) |
+| `ipnDelete` | [View](./docs/api/ipnDelete.md) |
 
 ### License Keys
 | Endpoint | Documentation |
 |----------|---------------|
-| `validateLicenseKey` | [View](./docs/validateLicenseKey.md) |
+| `validateLicenseKey` | [View](./docs/api/validateLicenseKey.md) |
 
 ### Marketplace
 | Endpoint | Documentation |
 |----------|---------------|
-| `getMarketplaceEntry` | [View](./docs/getMarketplaceEntry.md) |
-| `listMarketplaceEntries` | [View](./docs/listMarketplaceEntries.md) |
+| `getMarketplaceEntry` | [View](./docs/api/getMarketplaceEntry.md) |
+| `listMarketplaceEntries` | [View](./docs/api/listMarketplaceEntries.md) |
 
 ### Member Access
 | Endpoint | Documentation |
 |----------|---------------|
-| `listAccountAccess` | [View](./docs/listAccountAccess.md) |
-| `logMemberAccess` | [View](./docs/logMemberAccess.md) |
+| `listAccountAccess` | [View](./docs/api/listAccountAccess.md) |
+| `logMemberAccess` | [View](./docs/api/logMemberAccess.md) |
 
 ### Monitoring
 | Endpoint | Documentation |
 |----------|---------------|
-| `ping` | [View](./docs/ping.md) |
+| `ping` | [View](./docs/api/ping.md) |
 
 ### Order Forms
 | Endpoint | Documentation |
 |----------|---------------|
-| `createOrderform` | [View](./docs/createOrderform.md) |
-| `getOrderform` | [View](./docs/getOrderform.md) |
-| `updateOrderform` | [View](./docs/updateOrderform.md) |
-| `deleteOrderform` | [View](./docs/deleteOrderform.md) |
-| `listOrderforms` | [View](./docs/listOrderforms.md) |
-| `getOrderformMetas` | [View](./docs/getOrderformMetas.md) |
+| `createOrderform` | [View](./docs/api/createOrderform.md) |
+| `getOrderform` | [View](./docs/api/getOrderform.md) |
+| `updateOrderform` | [View](./docs/api/updateOrderform.md) |
+| `deleteOrderform` | [View](./docs/api/deleteOrderform.md) |
+| `listOrderforms` | [View](./docs/api/listOrderforms.md) |
+| `getOrderformMetas` | [View](./docs/api/getOrderformMetas.md) |
 
 ### Payment Plans
 | Endpoint | Documentation |
 |----------|---------------|
-| `createPaymentplan` | [View](./docs/createPaymentplan.md) |
-| `updatePaymentplan` | [View](./docs/updatePaymentplan.md) |
-| `deletePaymentplan` | [View](./docs/deletePaymentplan.md) |
-| `listPaymentPlans` | [View](./docs/listPaymentPlans.md) |
+| `createPaymentplan` | [View](./docs/api/createPaymentplan.md) |
+| `updatePaymentplan` | [View](./docs/api/updatePaymentplan.md) |
+| `deletePaymentplan` | [View](./docs/api/deletePaymentplan.md) |
+| `listPaymentPlans` | [View](./docs/api/listPaymentPlans.md) |
 
 ### Payouts & Commissions
 | Endpoint | Documentation |
 |----------|---------------|
-| `listPayouts` | [View](./docs/listPayouts.md) |
-| `listCommissions` | [View](./docs/listCommissions.md) |
+| `listPayouts` | [View](./docs/api/listPayouts.md) |
+| `listCommissions` | [View](./docs/api/listCommissions.md) |
 
 ### Product Groups
 | Endpoint | Documentation |
 |----------|---------------|
-| `createProductGroup` | [View](./docs/createProductGroup.md) |
-| `getProductGroup` | [View](./docs/getProductGroup.md) |
-| `updateProductGroup` | [View](./docs/updateProductGroup.md) |
-| `deleteProductGroup` | [View](./docs/deleteProductGroup.md) |
-| `listProductGroups` | [View](./docs/listProductGroups.md) |
+| `createProductGroup` | [View](./docs/api/createProductGroup.md) |
+| `getProductGroup` | [View](./docs/api/getProductGroup.md) |
+| `updateProductGroup` | [View](./docs/api/updateProductGroup.md) |
+| `deleteProductGroup` | [View](./docs/api/deleteProductGroup.md) |
+| `listProductGroups` | [View](./docs/api/listProductGroups.md) |
 
 ### Product Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `createProduct` | [View](./docs/createProduct.md) |
-| `getProduct` | [View](./docs/getProduct.md) |
-| `updateProduct` | [View](./docs/updateProduct.md) |
-| `deleteProduct` | [View](./docs/deleteProduct.md) |
-| `copyProduct` | [View](./docs/copyProduct.md) |
-| `listProducts` | [View](./docs/listProducts.md) |
-| `listProductTypes` | [View](./docs/listProductTypes.md) |
+| `createProduct` | [View](./docs/api/createProduct.md) |
+| `getProduct` | [View](./docs/api/getProduct.md) |
+| `updateProduct` | [View](./docs/api/updateProduct.md) |
+| `deleteProduct` | [View](./docs/api/deleteProduct.md) |
+| `copyProduct` | [View](./docs/api/copyProduct.md) |
+| `listProducts` | [View](./docs/api/listProducts.md) |
+| `listProductTypes` | [View](./docs/api/listProductTypes.md) |
 
 ### Purchase Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `getPurchase` | [View](./docs/getPurchase.md) |
-| `updatePurchase` | [View](./docs/updatePurchase.md) |
-| `listPurchases` | [View](./docs/listPurchases.md) |
-| `listPurchasesOfEmail` | [View](./docs/listPurchasesOfEmail.md) |
-| `getPurchaseTracking` | [View](./docs/getPurchaseTracking.md) |
-| `addBalanceToPurchase` | [View](./docs/addBalanceToPurchase.md) |
-| `createUpgradePurchase` | [View](./docs/createUpgradePurchase.md) |
-| `createAddonChangePurchase` | [View](./docs/createAddonChangePurchase.md) |
-| `getPurchaseDownloads` | [View](./docs/getPurchaseDownloads.md) |
-| `refundPurchase` | [View](./docs/refundPurchase.md) |
-| `refundPartially` | [View](./docs/refundPartially.md) |
-| `resendPurchaseConfirmationMail` | [View](./docs/resendPurchaseConfirmationMail.md) |
+| `getPurchase` | [View](./docs/api/getPurchase.md) |
+| `updatePurchase` | [View](./docs/api/updatePurchase.md) |
+| `listPurchases` | [View](./docs/api/listPurchases.md) |
+| `listPurchasesOfEmail` | [View](./docs/api/listPurchasesOfEmail.md) |
+| `getPurchaseTracking` | [View](./docs/api/getPurchaseTracking.md) |
+| `addBalanceToPurchase` | [View](./docs/api/addBalanceToPurchase.md) |
+| `createUpgradePurchase` | [View](./docs/api/createUpgradePurchase.md) |
+| `createAddonChangePurchase` | [View](./docs/api/createAddonChangePurchase.md) |
+| `getPurchaseDownloads` | [View](./docs/api/getPurchaseDownloads.md) |
+| `refundPurchase` | [View](./docs/api/refundPurchase.md) |
+| `refundPartially` | [View](./docs/api/refundPartially.md) |
+| `resendPurchaseConfirmationMail` | [View](./docs/api/resendPurchaseConfirmationMail.md) |
 
 ### Rebilling/Subscriptions
 | Endpoint | Documentation |
 |----------|---------------|
-| `startRebilling` | [View](./docs/startRebilling.md) |
-| `stopRebilling` | [View](./docs/stopRebilling.md) |
-| `createRebillingPayment` | [View](./docs/createRebillingPayment.md) |
-| `listRebillingStatusChanges` | [View](./docs/listRebillingStatusChanges.md) |
+| `startRebilling` | [View](./docs/api/startRebilling.md) |
+| `stopRebilling` | [View](./docs/api/stopRebilling.md) |
+| `createRebillingPayment` | [View](./docs/api/createRebillingPayment.md) |
+| `listRebillingStatusChanges` | [View](./docs/api/listRebillingStatusChanges.md) |
 
 ### Service Proof
 | Endpoint | Documentation |
 |----------|---------------|
-| `getServiceProofRequest` | [View](./docs/getServiceProofRequest.md) |
-| `updateServiceProofRequest` | [View](./docs/updateServiceProofRequest.md) |
-| `listServiceProofRequests` | [View](./docs/listServiceProofRequests.md) |
+| `getServiceProofRequest` | [View](./docs/api/getServiceProofRequest.md) |
+| `updateServiceProofRequest` | [View](./docs/api/updateServiceProofRequest.md) |
+| `listServiceProofRequests` | [View](./docs/api/listServiceProofRequests.md) |
 
 ### Shipping
 | Endpoint | Documentation |
 |----------|---------------|
-| `createShippingCostPolicy` | [View](./docs/createShippingCostPolicy.md) |
-| `getShippingCostPolicy` | [View](./docs/getShippingCostPolicy.md) |
-| `updateShippingCostPolicy` | [View](./docs/updateShippingCostPolicy.md) |
-| `deleteShippingCostPolicy` | [View](./docs/deleteShippingCostPolicy.md) |
-| `listShippingCostPolicies` | [View](./docs/listShippingCostPolicies.md) |
+| `createShippingCostPolicy` | [View](./docs/api/createShippingCostPolicy.md) |
+| `getShippingCostPolicy` | [View](./docs/api/getShippingCostPolicy.md) |
+| `updateShippingCostPolicy` | [View](./docs/api/updateShippingCostPolicy.md) |
+| `deleteShippingCostPolicy` | [View](./docs/api/deleteShippingCostPolicy.md) |
+| `listShippingCostPolicies` | [View](./docs/api/listShippingCostPolicies.md) |
 
 ### Statistics
 | Endpoint | Documentation |
 |----------|---------------|
-| `statsSales` | [View](./docs/statsSales.md) |
-| `statsSalesSummary` | [View](./docs/statsSalesSummary.md) |
-| `statsDailyAmounts` | [View](./docs/statsDailyAmounts.md) |
-| `statsExpectedPayouts` | [View](./docs/statsExpectedPayouts.md) |
-| `statsMarketplace` | [View](./docs/statsMarketplace.md) |
+| `statsSales` | [View](./docs/api/statsSales.md) |
+| `statsSalesSummary` | [View](./docs/api/statsSalesSummary.md) |
+| `statsDailyAmounts` | [View](./docs/api/statsDailyAmounts.md) |
+| `statsExpectedPayouts` | [View](./docs/api/statsExpectedPayouts.md) |
+| `statsMarketplace` | [View](./docs/api/statsMarketplace.md) |
 
 ### Tracking & Conversion
 | Endpoint | Documentation |
 |----------|---------------|
-| `renderJsTrackingCode` | [View](./docs/renderJsTrackingCode.md) |
-| `listConversionTools` | [View](./docs/listConversionTools.md) |
+| `renderJsTrackingCode` | [View](./docs/api/renderJsTrackingCode.md) |
+| `listConversionTools` | [View](./docs/api/listConversionTools.md) |
 
 ### Transactions
 | Endpoint | Documentation |
 |----------|---------------|
-| `listTransactions` | [View](./docs/listTransactions.md) |
-| `refundTransaction` | [View](./docs/refundTransaction.md) |
-| `reportFraud` | [View](./docs/reportFraud.md) |
+| `listTransactions` | [View](./docs/api/listTransactions.md) |
+| `refundTransaction` | [View](./docs/api/refundTransaction.md) |
+| `reportFraud` | [View](./docs/api/reportFraud.md) |
 
 ### Upgrades
 | Endpoint | Documentation |
 |----------|---------------|
-| `createUpgrade` | [View](./docs/createUpgrade.md) |
-| `getUpgrade` | [View](./docs/getUpgrade.md) |
-| `deleteUpgrade` | [View](./docs/deleteUpgrade.md) |
-| `listUpgrades` | [View](./docs/listUpgrades.md) |
-| `getSmartupgrade` | [View](./docs/getSmartupgrade.md) |
-| `listSmartUpgrades` | [View](./docs/listSmartUpgrades.md) |
+| `createUpgrade` | [View](./docs/api/createUpgrade.md) |
+| `getUpgrade` | [View](./docs/api/getUpgrade.md) |
+| `deleteUpgrade` | [View](./docs/api/deleteUpgrade.md) |
+| `listUpgrades` | [View](./docs/api/listUpgrades.md) |
+| `getSmartupgrade` | [View](./docs/api/getSmartupgrade.md) |
+| `listSmartUpgrades` | [View](./docs/api/listSmartUpgrades.md) |
 
 ### Upsells
 | Endpoint | Documentation |
 |----------|---------------|
-| `getUpsells` | [View](./docs/getUpsells.md) |
-| `updateUpsells` | [View](./docs/updateUpsells.md) |
-| `deleteUpsells` | [View](./docs/deleteUpsells.md) |
+| `getUpsells` | [View](./docs/api/getUpsells.md) |
+| `updateUpsells` | [View](./docs/api/updateUpsells.md) |
+| `deleteUpsells` | [View](./docs/api/deleteUpsells.md) |
 
 ### User/API Key Management
 | Endpoint | Documentation |
 |----------|---------------|
-| `requestApiKey` | [View](./docs/requestApiKey.md) |
-| `retrieveApiKey` | [View](./docs/retrieveApiKey.md) |
-| `unregister` | [View](./docs/unregister.md) |
-| `getUserInfo` | [View](./docs/getUserInfo.md) |
-| `getGlobalSettings` | [View](./docs/getGlobalSettings.md) |
+| `requestApiKey` | [View](./docs/api/requestApiKey.md) |
+| `retrieveApiKey` | [View](./docs/api/retrieveApiKey.md) |
+| `unregister` | [View](./docs/api/unregister.md) |
+| `getUserInfo` | [View](./docs/api/getUserInfo.md) |
+| `getGlobalSettings` | [View](./docs/api/getGlobalSettings.md) |
 
 ### Vouchers/Coupons
 | Endpoint | Documentation |
 |----------|---------------|
-| `createVoucher` | [View](./docs/createVoucher.md) |
-| `getVoucher` | [View](./docs/getVoucher.md) |
-| `updateVoucher` | [View](./docs/updateVoucher.md) |
-| `deleteVoucher` | [View](./docs/deleteVoucher.md) |
-| `listVouchers` | [View](./docs/listVouchers.md) |
-| `validateCouponCode` | [View](./docs/validateCouponCode.md) |
+| `createVoucher` | [View](./docs/api/createVoucher.md) |
+| `getVoucher` | [View](./docs/api/getVoucher.md) |
+| `updateVoucher` | [View](./docs/api/updateVoucher.md) |
+| `deleteVoucher` | [View](./docs/api/deleteVoucher.md) |
+| `listVouchers` | [View](./docs/api/listVouchers.md) |
+| `validateCouponCode` | [View](./docs/api/validateCouponCode.md) |
 
 ## Migration
 
@@ -761,7 +761,7 @@ Contributions are welcome! Please read our documentation:
 
 ```bash
 # Clone repository
-git clone https://github.com/GoSuccess-GmbH/digistore24-api.git
+git clone https://github.com/GoSuccessHQ/digistore24-api.git
 cd digistore24-api
 
 # Install dependencies (requires PHP 8.4+)
@@ -784,7 +784,7 @@ See [DEVELOPER_SETUP.md](docs/DEVELOPER_SETUP.md) for detailed IDE setup instruc
 
 - **Documentation**: Check the `docs/` directory for endpoint-specific guides
 - **Testing Guide**: See [TESTING.md](docs/TESTING.md) for test setup and coverage
-- **Issues**: Report bugs on [GitHub Issues](https://github.com/GoSuccess-GmbH/digistore24-api/issues)
+- **Issues**: Report bugs on [GitHub Issues](https://github.com/GoSuccessHQ/digistore24-api/issues)
 - **Security**: Report security vulnerabilities via [SECURITY.md](SECURITY.md)
 - **Migration Guide**: See [MIGRATION.md](docs/MIGRATION.md) for upgrading from v1.x
 - **Changelog**: See [CHANGELOG.md](docs/CHANGELOG.md) for version history
