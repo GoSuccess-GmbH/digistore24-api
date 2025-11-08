@@ -30,6 +30,8 @@ build/
 # PHPStan
 phpstan-baseline.neon
 .phpstan.cache/
+phpstan-errors.txt
+*-errors.txt
 
 # Infection/Mutation Testing
 .infection/
