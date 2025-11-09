@@ -16,13 +16,15 @@ enum ApiPermission: string implements StringBackedEnum
 {
     use StringBackedEnumTrait;
 
-    case READ_ONLY = 'read-only';
+    case READONLY = 'readonly';
+    case DELIVERY = 'delivery';
     case WRITABLE = 'writable';
 
     public function label(): string
     {
         return match ($this) {
-            self::READ_ONLY => 'Read Only',
+            self::READONLY => 'Read Only',
+            self::DELIVERY => 'Delivery',
             self::WRITABLE => 'Writable',
         };
     }
