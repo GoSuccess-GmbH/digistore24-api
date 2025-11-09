@@ -234,12 +234,20 @@ final class ApiClient implements HttpClientInterface
         $data = json_decode($body, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
             $jsonError = json_last_error_msg();
-            $bodyPreview = substr($body, 0, 1000);
+            $bodyPreview = substr($body, 0, 500);
 
             throw new ApiException(
-                'Invalid JSON response from API',
+                sprintf(
+                    'Invalid JSON response from API: %s. Body preview: %s',
+                    $jsonError,
+                    $bodyPreview,
+                ),
                 0,
-                ['json_error' => $jsonError, 'body' => $bodyPreview],
+                [
+                    'json_error' => $jsonError,
+                    'body' => $bodyPreview,
+                    'status_code' => $httpCode,
+                ],
             );
         }
 
