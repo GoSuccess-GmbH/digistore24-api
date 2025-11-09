@@ -42,7 +42,7 @@ composer require gosuccess/digistore24-api
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 // Initialize configuration
 $config = new Configuration('YOUR-API-KEY');
@@ -306,7 +306,7 @@ $purchases = $ds24->purchases->list(
 ### Create Buy URL with Payment Plan
 
 ```php
-use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DTO\PaymentPlanData;
 
 $request = new CreateBuyUrlRequest();
 $request->productId = 12345;
@@ -324,7 +324,7 @@ $response = $ds24->buyUrls->create($request);
 ### Add Tracking Parameters
 
 ```php
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
 
 $tracking = new TrackingData();
 $tracking->affiliate = 'partner123';

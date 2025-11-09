@@ -234,7 +234,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Request\BuyUrl;
 
 use GoSuccess\Digistore24\Api\Base\AbstractRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 /**
  * Create a new buy URL.
@@ -299,7 +299,7 @@ declare(strict_types=1);
 
 namespace GoSuccess\Digistore24\Api\Tests\Unit\DataTransferObject;
 
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 use PHPUnit\Framework\TestCase;
 
 final class BuyerDataTest extends TestCase

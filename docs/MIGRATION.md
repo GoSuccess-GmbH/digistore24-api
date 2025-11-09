@@ -159,7 +159,7 @@ $response = $ds24->buyUrls->create($request);
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 $config = new Configuration(
     apiKey: 'YOUR-API-KEY',

@@ -87,8 +87,8 @@ Invalid request parameters.
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\Purchase\CreateAddonChangePurchaseRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\AddonData;
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\AddonData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
 
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);

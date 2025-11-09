@@ -80,7 +80,7 @@ Access denied - Full access required.
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\Eticket\CreateEticketRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\Country;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
-use GoSuccess\Digistore24\Api\DataTransferObject\CountryData;
+use GoSuccess\Digistore24\Api\DTO\CountryData;
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
 

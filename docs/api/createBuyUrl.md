@@ -157,7 +157,7 @@ Access denied - Full access required.
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
 use GoSuccess\Digistore24\Api\Request\BuyUrl\CreateBuyUrlRequest;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 $config = new Configuration('YOUR-API-KEY');
 $ds24 = new Digistore24($config);
@@ -180,7 +180,7 @@ try {
 ## Example: Pre-filled Customer Data
 
 ```php
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 // Create buyer data
 $buyer = new BuyerData();
@@ -202,7 +202,7 @@ echo "Personalized URL: {$response->url}\n";
 ## Example: Custom Pricing
 
 ```php
-use GoSuccess\Digistore24\Api\DataTransferObject\PaymentPlanData;
+use GoSuccess\Digistore24\Api\DTO\PaymentPlanData;
 
 // Create custom payment plan
 $paymentPlan = new PaymentPlanData();
@@ -220,7 +220,7 @@ echo "Custom price URL: {$response->url}\n";
 ## Example: With Tracking
 
 ```php
-use GoSuccess\Digistore24\Api\DataTransferObject\TrackingData;
+use GoSuccess\Digistore24\Api\DTO\TrackingData;
 
 // Create tracking data
 $tracking = new TrackingData();

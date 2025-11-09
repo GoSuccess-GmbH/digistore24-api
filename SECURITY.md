@@ -81,7 +81,7 @@ Always use HTTPS connections:
 Validate all user inputs before passing to the API:
 
 ```php
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyerData;
+use GoSuccess\Digistore24\Api\DTO\BuyerData;
 
 $buyer = new BuyerData();
 

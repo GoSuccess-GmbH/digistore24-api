@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GoSuccess\Digistore24\Api\Response\BuyUrl;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
-use GoSuccess\Digistore24\Api\DataTransferObject\BuyUrlData;
+use GoSuccess\Digistore24\Api\DTO\BuyUrlData;
 use GoSuccess\Digistore24\Api\Http\Response;
 use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
