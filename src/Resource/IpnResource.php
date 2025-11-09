@@ -44,11 +44,11 @@ final class IpnResource extends AbstractResource
     /**
      * Delete IPN endpoint configuration.
      *
-     * @param IpnDeleteRequest|null $request Optional request containing product ID
+     * @param string $domainId Domain ID to identify which IPN connection to delete
      * @return IpnDeleteResponse Response confirming IPN deletion
      */
-    public function delete(?IpnDeleteRequest $request = null): IpnDeleteResponse
+    public function delete(string $domainId): IpnDeleteResponse
     {
-        return $this->executeTyped($request ?? new IpnDeleteRequest(), IpnDeleteResponse::class);
+        return $this->executeTyped(new IpnDeleteRequest($domainId), IpnDeleteResponse::class);
     }
 }

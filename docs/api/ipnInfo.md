@@ -1,18 +1,18 @@
 # ipnInfo
 
-Get information about configured IPN webhooks.
+Retrieve configured IPN (Instant Payment Notification) webhook information.
 
 ## Endpoint
 
 ```
-POST /json/ipnInfo
+GET /ipnInfo
 ```
 
 ## Request Parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `ipn_id` | int | No | Specific IPN ID (empty = list all) |
+| `domain_id` | string | No | Filter by specific domain ID. If omitted, returns all IPNs |
 
 ## Response
 
@@ -20,19 +20,18 @@ POST /json/ipnInfo
 [
     'result' => 'success',
     'data' => [
-        'ipns' => [
-            [
-                'ipn_id' => 456,
-                'url' => 'https://yoursite.com/webhook',
-                'event' => 'on_payment',
-                'product_id' => null,
-                'is_active' => true,
-                'created_at' => '2025-10-15 14:30:00',
-                'last_triggered' => '2025-10-15 16:45:00',
-                'total_triggers' => 150,
-                'failed_triggers' => 2
-            ],
-            // ... more IPNs
+        [
+            'domain_id' => 'my-platform',
+            'ipn_url' => 'https://yoursite.com/webhook',
+            'name' => 'My Platform',
+            'product_ids' => 'all',
+            'categories' => ['orders', 'affiliations'],
+            'transactions' => ['payment', 'refund', 'chargeback'],
+            'timing' => 'before_thankyou',
+            'sha_passphrase' => '***',
+            'newsletter_send_policy' => 'send_always',
+            'created_at' => '2025-10-15 14:30:00',
+            'updated_at' => '2025-11-20 10:15:00'
         ]
     ]
 ]
@@ -43,40 +42,60 @@ POST /json/ipnInfo
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Request\Ipn\IpnInfoRequest;
 
 // Initialize API client
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
-// List all configured webhooks
-$response = $api->ipn()->ipnInfo();
+// Get all configured IPNs
+$request = new IpnInfoRequest();
+$response = $api->ipn()->info($request);
 
-foreach ($response->ipns as $ipn) {
-    echo "IPN {$ipn->ipnId}: {$ipn->url}\n";
-    echo "Event: {$ipn->event}\n";
-    echo "Triggers: {$ipn->totalTriggers} (Failed: {$ipn->failedTriggers})\n";
+foreach ($response->data as $ipn) {
+    echo "IPN: {$ipn['name']} - {$ipn['ipn_url']}\n";
 }
 
-// Get specific IPN
-$response = $api->ipn()->ipnInfo(
-    ipnId: 456
-);
+// Get specific IPN by domain ID
+$request = new IpnInfoRequest(domainId: 'my-platform');
+$response = $api->ipn()->info($request);
 
-echo "Webhook URL: {$response->ipns[0]->url}";
-echo "Status: " . ($response->ipns[0]->isActive ? 'Active' : 'Inactive');
+if (!empty($response->data)) {
+    $ipn = $response->data[0];
+    echo "Domain: {$ipn['domain_id']}\n";
+    echo "URL: {$ipn['ipn_url']}\n";
+    echo "Products: {$ipn['product_ids']}\n";
+    echo "Timing: {$ipn['timing']}\n";
+}
 ```
+
+## Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `domain_id` | string | Unique identifier for this IPN connection |
+| `ipn_url` | string | Webhook URL receiving notifications |
+| `name` | string | Platform name listed on Digistore |
+| `product_ids` | string | "all" or comma-separated product IDs |
+| `categories` | array | Transaction categories (orders, affiliations, etc.) |
+| `transactions` | array | Transaction types (payment, refund, etc.) |
+| `timing` | string | Notification timing (before_thankyou, delayed) |
+| `sha_passphrase` | string | Masked passphrase for security |
+| `newsletter_send_policy` | string | Newsletter-based send policy |
+| `created_at` | string | IPN creation timestamp |
+| `updated_at` | string | Last update timestamp |
 
 ## Error Responses
 
 | Code | Message | Description |
 |------|---------|-------------|
-| 404 | IPN not found | Specified IPN ID does not exist |
-| 403 | Access denied | Not authorized to access IPN info |
+| 404 | IPN not found | No IPN configured with specified domain_id |
+| 401 | Unauthorized | Invalid API key |
 
 ## Notes
 
-- Without `ipn_id` parameter, returns all configured IPNs
-- Use this to monitor webhook health and trigger statistics
-- Failed triggers indicate your webhook endpoint is not responding
-- If failed_triggers is high, check your webhook implementation
-- Last triggered timestamp helps identify inactive webhooks
+- Without `domain_id` parameter, returns all configured IPNs
+- SHA passphrase is always masked (***) for security
+- Use this to verify IPN configuration before testing
+- Check `timing` field to understand when webhooks are sent
+- Returns empty array if no IPNs configured

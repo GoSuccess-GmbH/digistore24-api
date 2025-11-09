@@ -1,28 +1,25 @@
 # ipnDelete
 
-Delete an IPN webhook configuration.
+Delete configured IPN (Instant Payment Notification) webhook.
 
 ## Endpoint
 
 ```
-POST /json/ipnDelete
+DELETE /ipnDelete
 ```
 
 ## Request Parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `ipn_id` | int | Yes | IPN ID to delete |
+| `domain_id` | string | Yes | Domain ID of the IPN connection to delete |
 
 ## Response
 
 ```php
 [
     'result' => 'success',
-    'data' => [
-        'ipn_id' => 456,
-        'deleted_at' => '2025-10-15 14:30:00'
-    ]
+    'message' => 'IPN deleted successfully'
 ]
 ```
 
@@ -36,13 +33,34 @@ use GoSuccess\Digistore24\Api\Client\Configuration;
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
-// Delete specific webhook
-$response = $api->ipn()->ipnDelete(
-    ipnId: 456
-);
+// Delete IPN by domain ID
+$response = $api->ipn()->delete('my-platform');
 
-if ($response->result === 'success') {
-    echo "IPN {$response->ipnId} deleted successfully";
+echo $response->message; // "IPN deleted successfully"
+```
+
+## Complete Example with Error Handling
+
+```php
+use GoSuccess\Digistore24\Api\Digistore24;
+use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Exception\NotFoundException;
+
+$config = new Configuration('YOUR-API-KEY');
+$api = new Digistore24($config);
+
+try {
+    $domainId = 'my-platform';
+
+    // Delete the IPN
+    $response = $api->ipn()->delete($domainId);
+
+    echo "✓ IPN with domain_id '{$domainId}' deleted successfully\n";
+
+} catch (NotFoundException $e) {
+    echo "✗ IPN not found: {$e->getMessage()}\n";
+} catch (\Exception $e) {
+    echo "✗ Error: {$e->getMessage()}\n";
 }
 ```
 
@@ -50,14 +68,14 @@ if ($response->result === 'success') {
 
 | Code | Message | Description |
 |------|---------|-------------|
-| 400 | Missing ipn_id | IPN ID parameter is required |
-| 404 | IPN not found | IPN does not exist |
-| 403 | Access denied | Not authorized to delete IPN |
+| 404 | IPN not found | No IPN configured with specified domain_id |
+| 401 | Unauthorized | Invalid API key |
+| 400 | Missing domain_id | Required parameter not provided |
 
 ## Notes
 
+- Requires the `domain_id` parameter that was set during IPN setup
 - Deletion is permanent and cannot be undone
-- No more notifications will be sent to the deleted webhook URL
-- Historical trigger statistics are lost upon deletion
-- Consider deactivating instead of deleting for temporary suspension
-- You can recreate the same webhook configuration later if needed
+- All webhook notifications for this IPN will stop immediately
+- Use `ipnInfo` endpoint first to verify the domain_id
+- After deletion, you can setup a new IPN with the same domain_id

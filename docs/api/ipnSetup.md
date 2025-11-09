@@ -1,21 +1,26 @@
 # ipnSetup
 
-Setup IPN (Instant Payment Notification) webhook for purchase events.
+Setup IPN (Instant Payment Notification) webhook for receiving payment notifications.
 
 ## Endpoint
 
 ```
-POST /json/ipnSetup
+POST /ipnSetup
 ```
 
 ## Request Parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `url` | string | Yes | Webhook URL to receive notifications |
-| `event` | string | Yes | Event type: 'on_payment', 'on_refund', 'on_rebilling', etc. |
-| `product_id` | int | No | Specific product ID (empty = all products) |
-| `is_active` | bool | No | Active status (default: true) |
+| `ipn_url` | string | Yes | URL where Digistore24 sends the IPN notification |
+| `name` | string | Yes | The name listed on Digistore (e.g. your platform name) |
+| `product_ids` | string | Yes | "all" or a comma-separated list of product IDs |
+| `domain_id` | string | No | Used to delete the IPN connection and ensure uniqueness. Usually your platform name |
+| `categories` | array | No | Transaction categories (orders, affiliations, etickets, customforms, orderform) |
+| `transactions` | array | No | Transaction types (payment, refund, chargeback, payment_missed, payment_denial, rebill_cancelled, rebill_resumed, last_paid_day) |
+| `timing` | string | No | When to send IPN: "before_thankyou" (default) or "delayed" |
+| `sha_passphrase` | string | No | Password for signing parameters. Use "random" for auto-generated 30-char password |
+| `newsletter_send_policy` | string | No | When to send IPN based on newsletter opt-in status |
 
 ## Response
 
@@ -23,13 +28,10 @@ POST /json/ipnSetup
 [
     'result' => 'success',
     'data' => [
-        'ipn_id' => 456,
-        'url' => 'https://yoursite.com/webhook',
-        'event' => 'on_payment',
-        'product_id' => null,
-        'is_active' => true,
-        'created_at' => '2025-10-15 14:30:00',
-        'secret' => 'abc123...xyz' // For request verification
+        'domain_id' => 'my-platform',
+        'ipn_url' => 'https://yoursite.com/webhook',
+        'name' => 'My Platform',
+        'created_at' => '2025-10-15 14:30:00'
     ]
 ]
 ```
@@ -39,56 +41,88 @@ POST /json/ipnSetup
 ```php
 use GoSuccess\Digistore24\Api\Digistore24;
 use GoSuccess\Digistore24\Api\Client\Configuration;
+use GoSuccess\Digistore24\Api\Enum\IpnNewsletterSendPolicy;
+use GoSuccess\Digistore24\Api\Enum\IpnTiming;
+use GoSuccess\Digistore24\Api\Enum\IpnTransactionCategory;
+use GoSuccess\Digistore24\Api\Enum\IpnTransactionType;
+use GoSuccess\Digistore24\Api\Request\Ipn\IpnSetupRequest;
 
 // Initialize API client
 $config = new Configuration('YOUR-API-KEY');
 $api = new Digistore24($config);
 
-// Setup webhook for all payments
-$response = $api->ipn()->ipnSetup(
-    url: 'https://yoursite.com/webhook/payment',
-    event: 'on_payment'
+// Setup IPN for all products with default settings
+$request = new IpnSetupRequest(
+    ipnUrl: 'https://yoursite.com/webhook',
+    name: 'My Platform',
+    productIds: 'all'
 );
+$response = $api->ipn()->setup($request);
 
-echo "IPN ID: {$response->ipnId}";
-echo "Secret: {$response->secret}"; // Save this for verification!
-
-// Setup webhook for specific product
-$response = $api->ipn()->ipnSetup(
-    url: 'https://yoursite.com/webhook/product123',
-    event: 'on_payment',
-    productId: 123
+// Setup IPN with custom configuration
+$request = new IpnSetupRequest(
+    ipnUrl: 'https://yoursite.com/webhook',
+    name: 'My Platform',
+    productIds: '123,456',
+    domainId: 'my-platform',
+    categories: [
+        IpnTransactionCategory::ORDERS,
+        IpnTransactionCategory::AFFILIATIONS
+    ],
+    transactions: [
+        IpnTransactionType::PAYMENT,
+        IpnTransactionType::REFUND,
+        IpnTransactionType::CHARGEBACK
+    ],
+    timing: IpnTiming::DELAYED,
+    shaPassphrase: 'random',
+    newsletterSendPolicy: IpnNewsletterSendPolicy::SEND_IF_OPTIN
 );
+$response = $api->ipn()->setup($request);
 
-// Setup refund notifications
-$response = $api->ipn()->ipnSetup(
-    url: 'https://yoursite.com/webhook/refund',
-    event: 'on_refund'
-);
+echo "IPN configured for: {$response->name}";
 ```
 
-## Available Events
+## Transaction Types
 
-- `on_payment` - New payment received
-- `on_payment_pending` - Payment pending
-- `on_rebilling` - Subscription rebilling
-- `on_refund` - Payment refunded
-- `on_chargeback` - Chargeback initiated
-- `on_cancellation` - Subscription cancelled
+- `all` - All transaction types
+- `payment` - New payment received
+- `refund` - Payment refunded
+- `chargeback` - Chargeback initiated
+- `payment_missed` - Scheduled payment missed
+- `payment_denial` - Payment denied
+- `rebill_cancelled` - Subscription cancelled
+- `rebill_resumed` - Subscription resumed
+- `last_paid_day` - Last payment day notification
+
+## Transaction Categories
+
+- `orders` - Order transactions
+- `affiliations` - Affiliate transactions
+- `etickets` - E-Ticket transactions
+- `customforms` - Custom form submissions
+- `orderform` - Order form transactions
+
+## Newsletter Send Policy
+
+- `send_always` - Always send IPN (default)
+- `send_if_not_optout` - Send if not opted out
+- `send_if_optout` - Send only if opted out
+- `send_if_optin` - Send only if opted in
 
 ## Error Responses
 
 | Code | Message | Description |
 |------|---------|-------------|
 | 400 | Invalid URL | Webhook URL is invalid or unreachable |
-| 422 | Invalid event | Event type not supported |
-| 409 | IPN already exists | Webhook already configured for this URL/event |
+| 422 | Invalid parameters | Required parameters missing or invalid |
+| 409 | IPN already exists | IPN already configured for this domain_id |
 
 ## Notes
 
 - Webhook URL must be publicly accessible via HTTPS
-- Save the returned `secret` for verifying webhook requests
-- Each URL/event combination can only be registered once
-- Test your webhook endpoint before activating
-- Digistore24 will retry failed webhooks up to 5 times
-- Webhook payload is JSON with purchase/transaction data
+- Use `domain_id` to uniquely identify your IPN connection
+- Default transactions: payment, refund, chargeback, payment_missed
+- Default timing: before_thankyou
+- Digistore24 will retry failed webhooks automatically
+- Use sha_passphrase="random" for auto-generated secure password

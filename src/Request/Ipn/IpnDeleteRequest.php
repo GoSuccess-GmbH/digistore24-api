@@ -14,8 +14,12 @@ use GoSuccess\Digistore24\Api\Enum\HttpMethod;
  */
 final class IpnDeleteRequest extends AbstractRequest
 {
-    public function __construct()
-    {
+    /**
+     * @param string $domainId Used to delete the IPN connection
+     */
+    public function __construct(
+        private string $domainId,
+    ) {
     }
 
     public function getEndpoint(): string
@@ -25,11 +29,13 @@ final class IpnDeleteRequest extends AbstractRequest
 
     public function getMethod(): HttpMethod
     {
-        return HttpMethod::POST;
+        return HttpMethod::DELETE;
     }
 
     public function toArray(): array
     {
-        return [];
+        return [
+            'domain_id' => $this->domainId,
+        ];
     }
 }
