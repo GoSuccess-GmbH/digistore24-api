@@ -24,7 +24,7 @@ final class UnregisterResponseTest extends TestCase
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertSame('Y', $response->modified);
+        $this->assertTrue($response->modified);
         $this->assertSame('Der API-Schlüssel wurde gelöscht.', $response->note);
     }
 
@@ -47,7 +47,7 @@ final class UnregisterResponseTest extends TestCase
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertSame('Y', $response->modified);
+        $this->assertTrue($response->modified);
         $this->assertSame('API key revoked', $response->note);
     }
 
@@ -63,7 +63,7 @@ final class UnregisterResponseTest extends TestCase
         $response = UnregisterResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
-        $this->assertSame('N', $response->modified);
+        $this->assertFalse($response->modified);
         $this->assertNull($response->note);
     }
 
@@ -106,7 +106,7 @@ final class UnregisterResponseTest extends TestCase
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertSame('Y', $response->modified);
+        $this->assertTrue($response->modified);
         $this->assertSame('Der API-Schlüssel wurde gelöscht.', $response->note);
     }
 }

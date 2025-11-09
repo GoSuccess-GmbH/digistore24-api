@@ -6,6 +6,7 @@ namespace GoSuccess\Digistore24\Api\Response\ApiKey;
 
 use GoSuccess\Digistore24\Api\Base\AbstractResponse;
 use GoSuccess\Digistore24\Api\Http\Response;
+use GoSuccess\Digistore24\Api\Util\TypeConverter;
 
 /**
  * Unregister Response
@@ -24,8 +25,8 @@ final class UnregisterResponse extends AbstractResponse
     /**
      * Whether the API key was modified/deleted
      */
-    public string $modified {
-        get => $this->modified ?? '';
+    public bool $modified {
+        get => $this->modified ?? false;
     }
 
     /**
@@ -41,8 +42,8 @@ final class UnregisterResponse extends AbstractResponse
 
         $response = new self();
         $response->result = self::extractResult(data: $data, rawResponse: $rawResponse);
-        $response->modified = is_string($innerData['modified'] ?? null) ? $innerData['modified'] : '';
-        $response->note = is_string($innerData['note'] ?? null) ? $innerData['note'] : null;
+        $response->modified = TypeConverter::toBool($innerData['modified'] ?? null) ?? false;
+        $response->note = TypeConverter::toString($innerData['note'] ?? null);
 
         if ($rawResponse !== null) {
             $response->rawResponse = $rawResponse;
