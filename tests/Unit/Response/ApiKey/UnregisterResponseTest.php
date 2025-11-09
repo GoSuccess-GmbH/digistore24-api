@@ -15,9 +15,8 @@ final class UnregisterResponseTest extends TestCase
         $data = [
             'result' => 'success',
             'data' => [
-                'api_key_id' => 'KEY123',
-                'revoked_at' => '2025-10-15 14:30:00',
-                'message' => 'API key has been revoked successfully',
+                'modified' => 'Y',
+                'note' => 'Der API-Schlüssel wurde gelöscht.',
             ],
         ];
 
@@ -25,9 +24,8 @@ final class UnregisterResponseTest extends TestCase
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertSame('KEY123', $response->apiKeyId);
-        $this->assertInstanceOf(\DateTimeInterface::class, $response->revokedAt);
-        $this->assertSame('API key has been revoked successfully', $response->message);
+        $this->assertSame('Y', $response->modified);
+        $this->assertSame('Der API-Schlüssel wurde gelöscht.', $response->note);
     }
 
     public function test_can_create_from_response(): void
@@ -37,9 +35,8 @@ final class UnregisterResponseTest extends TestCase
             data: [
                 'result' => 'success',
                 'data' => [
-                    'api_key_id' => 'KEY456',
-                    'revoked_at' => '2025-10-15 14:30:00',
-                    'message' => 'Revoked',
+                    'modified' => 'Y',
+                    'note' => 'API key revoked',
                 ],
             ],
             headers: ['Content-Type' => ['application/json']],
@@ -50,8 +47,8 @@ final class UnregisterResponseTest extends TestCase
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
         $this->assertSame('success', $response->result);
-        $this->assertSame('KEY456', $response->apiKeyId);
-        $this->assertSame('Revoked', $response->message);
+        $this->assertSame('Y', $response->modified);
+        $this->assertSame('API key revoked', $response->note);
     }
 
     public function test_handles_minimal_data(): void
@@ -59,16 +56,15 @@ final class UnregisterResponseTest extends TestCase
         $data = [
             'result' => 'success',
             'data' => [
-                'api_key_id' => 'MINIMAL',
+                'modified' => 'N',
             ],
         ];
 
         $response = UnregisterResponse::fromArray(data: $data);
 
         $this->assertInstanceOf(UnregisterResponse::class, $response);
-        $this->assertSame('MINIMAL', $response->apiKeyId);
-        $this->assertNull($response->revokedAt);
-        $this->assertNull($response->message);
+        $this->assertSame('N', $response->modified);
+        $this->assertNull($response->note);
     }
 
     public function test_has_raw_response(): void
@@ -77,7 +73,10 @@ final class UnregisterResponseTest extends TestCase
             statusCode: 200,
             data: [
                 'result' => 'success',
-                'data' => ['api_key_id' => 'TEST'],
+                'data' => [
+                    'modified' => 'Y',
+                    'note' => 'Success',
+                ],
             ],
             headers: ['Content-Type' => ['application/json']],
             rawBody: 'test body',
@@ -88,5 +87,26 @@ final class UnregisterResponseTest extends TestCase
         $this->assertInstanceOf(Response::class, $response->rawResponse);
         $this->assertSame(200, $response->rawResponse->statusCode);
         $this->assertSame('test body', $response->rawResponse->rawBody);
+    }
+
+    public function test_real_api_response(): void
+    {
+        // Real API response from production
+        $data = [
+            'api_version' => '1.2',
+            'current_time' => '2025-11-09 12:09:36',
+            'result' => 'success',
+            'data' => [
+                'modified' => 'Y',
+                'note' => 'Der API-Schlüssel wurde gelöscht.',
+            ],
+        ];
+
+        $response = UnregisterResponse::fromArray(data: $data);
+
+        $this->assertInstanceOf(UnregisterResponse::class, $response);
+        $this->assertSame('success', $response->result);
+        $this->assertSame('Y', $response->modified);
+        $this->assertSame('Der API-Schlüssel wurde gelöscht.', $response->note);
     }
 }
