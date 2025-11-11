@@ -181,6 +181,15 @@ final class ApiClient implements HttpClientInterface
             $curlHeaders[] = "{$name}: {$value}";
         }
 
+        // Add body for POST/PUT/PATCH
+        $postFields = '';
+        if ($request->hasBody && ! $request->isGet) {
+            $postFields = $queryString;
+        } elseif (! $request->isGet && $request->method !== HttpMethod::GET) {
+            // For POST/PUT/PATCH/DELETE with empty body, explicitly set Content-Length: 0
+            $curlHeaders[] = 'Content-Length: 0';
+        }
+
         // Set cURL options
         /** @var array<int, mixed> */
         $options = [
@@ -196,10 +205,10 @@ final class ApiClient implements HttpClientInterface
             CURLOPT_HTTPHEADER => $curlHeaders,
         ];
 
-        // Add body for POST/PUT/PATCH
-        if ($request->hasBody && ! $request->isGet) {
+        // Set POST fields if not empty
+        if ($postFields !== '') {
             $options[CURLOPT_POST] = $request->method === HttpMethod::POST;
-            $options[CURLOPT_POSTFIELDS] = $queryString;
+            $options[CURLOPT_POSTFIELDS] = $postFields;
         }
 
         curl_setopt_array($ch, $options);
