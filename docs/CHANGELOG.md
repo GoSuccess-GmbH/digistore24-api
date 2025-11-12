@@ -5,7 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2025-10-XX
+## [2.0.5] - 2025-11-12
+
+### Fixed
+- IpnSetupResponse structure now matches actual Digistore24 API response
+  - Changed `created`, `updated`, `deleted` from string to bool (Y/N conversion via TypeConverter)
+  - Added `domainId`, `shaPassphrase`, `ipnConfigId`, `ipnId` properties
+
+### Breaking Changes
+- IpnSetupResponse: Properties `created`, `updated`, `deleted` are now bool instead of string
+
+## [2.0.4] - 2025-11-10
+
+### Fixed
+- Added Content-Length: 0 header for POST requests with empty body
+
+## [2.0.3] - 2025-11-09
+
+### Fixed
+- UnregisterResponse now uses bool type with TypeConverter for proper type conversion
+
+## [2.0.2] - 2025-11-09
+
+### Added
+- DELIVERY permission level to ApiPermission enum
+
+## [2.0.1] - 2025-11-08
+
+### Added
+- Complete IPN and List Request classes with type-safe Enums and DTOs
+
+### Changed
+- Consolidated DTOs into DTO directory for better organization
+
+## [2.0.0] - 2025-11-08
 
 ### Added
 - GitHub Actions CI/CD pipeline with automated testing, static analysis, and code style checks
