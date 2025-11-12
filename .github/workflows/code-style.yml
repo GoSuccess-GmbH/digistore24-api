@@ -3,8 +3,26 @@ name: Code Style
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'examples/**'
+      - 'scripts/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.php-cs-fixer.php'
+      - '.github/workflows/code-style.yml'
   pull_request:
     branches: [ main, develop ]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'examples/**'
+      - 'scripts/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.php-cs-fixer.php'
+      - '.github/workflows/code-style.yml'
 
 jobs:
   php-cs-fixer:
